@@ -1,0 +1,3 @@
+edc==0.3.52
+beautifulsoup4
+git+https://github.com/erikvw/django-import-export.git@get_export_admin_action
