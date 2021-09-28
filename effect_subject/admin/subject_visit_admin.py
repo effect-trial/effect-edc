@@ -3,13 +3,13 @@ from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple
 from edc_visit_tracking.modeladmin_mixins import VisitModelAdminMixin
 
-from ..admin_site import meta_subject_admin
+from ..admin_site import effect_subject_admin
 from ..forms import SubjectVisitForm
 from ..models import SubjectVisit
 from .modeladmin import ModelAdminMixin
 
 
-@admin.register(SubjectVisit, site=meta_subject_admin)
+@admin.register(SubjectVisit, site=effect_subject_admin)
 class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmin):
 
     show_dashboard_in_list_display_pos = 2

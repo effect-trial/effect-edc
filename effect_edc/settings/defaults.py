@@ -119,6 +119,7 @@ INSTALLED_APPS = [
     "edc_pharmacy.apps.AppConfig",
     "edc_pdutils.apps.AppConfig",
     "edc_protocol.apps.AppConfig",
+    "edc_protocol_violation.apps.AppConfig",
     "edc_prn.apps.AppConfig",
     "edc_randomization.apps.AppConfig",
     "edc_reference.apps.AppConfig",
@@ -129,6 +130,7 @@ INSTALLED_APPS = [
     "edc_sites.apps.AppConfig",
     "edc_subject_dashboard.apps.AppConfig",
     "edc_timepoint.apps.AppConfig",
+    "edc_unblinding.apps.AppConfig",
     "edc_form_describer.apps.AppConfig",
 ]
 
@@ -138,7 +140,6 @@ EFFECT_APPS = [
     "effect_dashboard.apps.AppConfig",
     "effect_labs.apps.AppConfig",
     "effect_subject.apps.AppConfig",
-    "effect_form_validators.apps.AppConfig",
     "effect_visit_schedule.apps.AppConfig",
     "effect_ae.apps.AppConfig",
     "effect_auth.apps.AppConfig",

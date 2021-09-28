@@ -1,5 +1,5 @@
 from django.test import TestCase, tag
-from meta_screening.tests.meta_test_case_mixin import MetaTestCaseMixin
+from effect_screening.tests.effect_test_case_mixin import MetaTestCaseMixin
 
 
 class TestSubjectConsent(MetaTestCaseMixin, TestCase):

@@ -11,13 +11,13 @@ from edc_lab.admin import (
 )
 from edc_model_admin import audit_fieldset_tuple
 
-from ..admin_site import meta_subject_admin
+from ..admin_site import effect_subject_admin
 from ..forms import SubjectRequisitionForm
 from ..models import SubjectRequisition
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(SubjectRequisition, site=meta_subject_admin)
+@admin.register(SubjectRequisition, site=effect_subject_admin)
 class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
 
     # show_save_next = False

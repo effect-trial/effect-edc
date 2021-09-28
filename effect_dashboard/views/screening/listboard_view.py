@@ -9,9 +9,8 @@ from edc_dashboard.view_mixins import (
 )
 from edc_dashboard.views import ListboardView as BaseListboardView
 from edc_navbar import NavbarViewMixin
-from meta_edc.meta_version import get_meta_version
 
-from ...model_wrappers import ScreeningPartOneModelWrapper
+from ...model_wrappers import SubjectScreeningModelWrapper
 from .filters import ListboardViewFilters
 
 
@@ -28,12 +27,12 @@ class ListboardView(
     listboard_panel_style = "info"
     listboard_fa_icon = "fa-user-plus"
     listboard_view_filters = ListboardViewFilters()
-    listboard_model = "meta_screening.screeningpartone"
+    listboard_model = "effect_screening.screeningpartone"
     listboard_view_permission_codename = "edc_dashboard.view_screening_listboard"
 
     alternate_search_attr = "screening_identifier"
 
-    model_wrapper_cls = ScreeningPartOneModelWrapper
+    model_wrapper_cls = SubjectScreeningModelWrapper
     navbar_selected_item = "screened_subject"
     ordering = "-report_datetime"
     paginate_by = 10
@@ -44,7 +43,6 @@ class ListboardView(
         context.update(
             subject_screening_add_url=self.get_subject_screening_add_url(),
             ABNORMAL=ABNORMAL,
-            meta_version=get_meta_version(),
         )
         return context
 

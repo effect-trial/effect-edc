@@ -2,13 +2,13 @@ from django.contrib import admin
 from edc_blood_results.admin import BloodResultsModelAdminMixin
 from edc_blood_results.fieldsets import BloodResultFieldset
 
-from ...admin_site import meta_subject_admin
+from ...admin_site import effect_subject_admin
 from ...forms import BloodResultsRftForm
 from ...models import BloodResultsRft
 from ..modeladmin import CrfModelAdmin
 
 
-@admin.register(BloodResultsRft, site=meta_subject_admin)
+@admin.register(BloodResultsRft, site=effect_subject_admin)
 class BloodResultsRftAdmin(BloodResultsModelAdminMixin, CrfModelAdmin):
     form = BloodResultsRftForm
     fieldsets = (

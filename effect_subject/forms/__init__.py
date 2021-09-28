@@ -2,7 +2,6 @@ from .blood_results import (
     BloodResultsFbcForm,
     BloodResultsGluForm,
     BloodResultsHba1cForm,
-    BloodResultsInsForm,
     BloodResultsLftForm,
     BloodResultsLipidForm,
     BloodResultsRftForm,

@@ -1,13 +1,13 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
-from ..admin_site import meta_subject_admin
+from ..admin_site import effect_subject_admin
 from ..forms import GlucoseForm
 from ..models import Glucose
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(Glucose, site=meta_subject_admin)
+@admin.register(Glucose, site=effect_subject_admin)
 class GlucoseAdmin(CrfModelAdmin):
 
     form = GlucoseForm

@@ -3,13 +3,13 @@ from django import template
 from django.conf import settings
 from edc_constants.constants import NO, TBD, YES
 from edc_dashboard.url_names import url_names
-from meta_screening.eligibility import Eligibility
+from effect_screening.eligibility import Eligibility
 
 register = template.Library()
 
 
 @register.inclusion_tag(
-    f"meta_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
     f"buttons/screening_button.html",
     takes_context=True,
 )
@@ -29,16 +29,16 @@ def screening_button(context, model_wrapper):
     p2 = model_wrapper.object.eligible_part_two
     p3 = model_wrapper.object.eligible_part_three
     p1_enabled = perms.user.has_perms(
-        "meta_screening.view_screeningpartone"
-    ) or perms.user.has_perm("meta_screening.change_screeningpartone")
+        "effect_screening.view_screeningpartone"
+    ) or perms.user.has_perm("effect_screening.change_screeningpartone")
     p2_enabled = (
-        perms.user.has_perm("meta_screening.view_screeningparttwo")
-        or perms.user.has_perm("meta_screening.change_screeningparttwo")
+        perms.user.has_perm("effect_screening.view_screeningparttwo")
+        or perms.user.has_perm("effect_screening.change_screeningparttwo")
     ) and p1 in [YES, NO]
     p3_enabled = (
         (
-            perms.user.has_perm("meta_screening.view_screeningparttwo")
-            or perms.user.has_perm("meta_screening.change_screeningparttwo")
+            perms.user.has_perm("effect_screening.view_screeningparttwo")
+            or perms.user.has_perm("effect_screening.change_screeningparttwo")
         )
         and p1 == YES
         and p2 == YES
@@ -64,7 +64,7 @@ def screening_button(context, model_wrapper):
 
 
 @register.inclusion_tag(
-    f"meta_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
     f"buttons/eligibility_button.html"
 )
 def eligibility_button(subject_screening_model_wrapper):
@@ -88,7 +88,7 @@ def eligibility_button(subject_screening_model_wrapper):
 
 
 @register.inclusion_tag(
-    f"meta_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/add_consent_button.html",
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/add_consent_button.html",
     takes_context=True,
 )
 def add_consent_button(context, model_wrapper):
@@ -114,7 +114,7 @@ def refusal_button(context, subject_refusal_model_wrapper):
 
 
 @register.inclusion_tag(
-    f"meta_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
     f"buttons/dashboard_button.html"
 )
 def dashboard_button(model_wrapper):

@@ -6,6 +6,7 @@ from edc_constants.constants import YES
 from edc_randomization.site_randomizers import site_randomizers
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from effect_screening.models import SubjectScreening
+
 from effect_subject.models import SubjectVisit
 
 from ..action_items import ReconsentAction
@@ -40,7 +41,7 @@ def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
 
             # randomize
             site_randomizers.randomize(
-                get_meta_version(),
+                get_effect_version(),
                 subject_identifier=instance.subject_identifier,
                 report_datetime=instance.consent_datetime,
                 site=instance.site,

@@ -13,17 +13,18 @@ from edc_constants.constants import (
     YES,
 )
 from edc_form_validators import FormValidatorTestCaseMixin
-from meta_edc.meta_version import PHASE_THREE
-from meta_lists.models import AbnormalFootAppearanceObservations
-from meta_screening.tests.meta_test_case_mixin import MetaTestCaseMixin
-from meta_subject.constants import DECREASED, PRESENT_REINFORCEMENT, REDUCED
-from meta_subject.forms.mnsi_form import MnsiForm, MnsiFormValidator
-from meta_subject.mnsi_calculator import (
+from effect_screening.tests.effect_test_case_mixin import MetaTestCaseMixin
+
+from effect_edc.effect_version import PHASE_THREE
+from effect_lists.models import AbnormalFootAppearanceObservations
+from effect_subject.constants import DECREASED, PRESENT_REINFORCEMENT, REDUCED
+from effect_subject.forms.mnsi_form import MnsiForm, MnsiFormValidator
+from effect_subject.mnsi_calculator import (
     MnsiCalculator,
     MnsiPatientHistoryCalculatorError,
     MnsiPhysicalAssessmentCalculatorError,
 )
-from meta_subject.models import Mnsi
+from effect_subject.models import Mnsi
 
 
 @override_settings(META_PHASE=PHASE_THREE)

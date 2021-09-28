@@ -1,9 +1,20 @@
 from django import forms
 from edc_action_item.forms import ActionItemFormMixin
+from edc_blood_results import (
+    BloodResultsFormValidatorMixin,
+    BloodResultsGluFormValidatorMixin,
+)
 from edc_crf.modelform_mixins import CrfModelFormMixin
-from meta_form_validators.form_validators import BloodResultsGluFormValidator
+from edc_form_validators import FormValidator
+from edc_lab_panel.panels import blood_glucose_panel
 
 from ...models import BloodResultsGlu
+
+
+class BloodResultsGluFormValidator(
+    BloodResultsGluFormValidatorMixin, BloodResultsFormValidatorMixin, FormValidator
+):
+    panel = blood_glucose_panel
 
 
 class BloodResultsGluForm(ActionItemFormMixin, CrfModelFormMixin, forms.ModelForm):

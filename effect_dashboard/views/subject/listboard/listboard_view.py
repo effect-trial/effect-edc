@@ -36,7 +36,7 @@ class ListboardView(
     listboard_url = "subject_listboard_url"
     listboard_panel_style = "success"
     listboard_fa_icon = "far fa-user-circle"
-    listboard_model = "meta_consent.subjectconsent"
+    listboard_model = "effect_consent.subjectconsent"
     listboard_view_permission_codename = "edc_dashboard.view_subject_listboard"
 
     model_wrapper_cls = SubjectConsentModelWrapper

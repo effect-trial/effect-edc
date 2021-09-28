@@ -7,11 +7,12 @@ from edc_subject_model_wrappers import (
     SubjectLocatorModelWrapper,
     SubjectVisitModelWrapper,
 )
-from meta_consent.models import SubjectConsent
-from meta_dashboard.model_wrappers import SubjectScreeningModelWrapper
-from meta_screening.models import SubjectScreening
-from meta_screening.tests.meta_test_case_mixin import MetaTestCaseMixin
-from meta_subject.models import SubjectVisit
+from effect_screening.models import SubjectScreening
+from effect_screening.tests.effect_test_case_mixin import MetaTestCaseMixin
+
+from effect_consent.models import SubjectConsent
+from effect_dashboard.model_wrappers import SubjectScreeningModelWrapper
+from effect_subject.models import SubjectVisit
 
 
 class SubjectModelWrapperTestHelper(ModelWrapperTestHelper):

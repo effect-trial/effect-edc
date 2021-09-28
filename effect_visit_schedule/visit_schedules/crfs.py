@@ -18,29 +18,29 @@ from edc_visit_schedule.constants import (
 )
 
 crfs_prn = FormsCollection(
-    Crf(show_order=10, model="meta_subject.bloodresultsfbc"),
-    Crf(show_order=220, model="meta_subject.bloodresultsglu"),
-    Crf(show_order=230, model="meta_subject.bloodresultshba1c"),
-    Crf(show_order=240, model="meta_subject.bloodresultsrft"),
-    Crf(show_order=250, model="meta_subject.bloodresultslft"),
-    Crf(show_order=260, model="meta_subject.bloodresultslipid"),
-    Crf(show_order=270, model="meta_subject.hepatitistest"),
-    Crf(show_order=280, model="meta_subject.malariatest"),
-    Crf(show_order=290, model="meta_subject.urinedipsticktest"),
-    Crf(show_order=360, model="meta_subject.concomitantmedication"),
+    Crf(show_order=10, model="effect_subject.bloodresultsfbc"),
+    Crf(show_order=220, model="effect_subject.bloodresultsglu"),
+    Crf(show_order=230, model="effect_subject.bloodresultshba1c"),
+    Crf(show_order=240, model="effect_subject.bloodresultsrft"),
+    Crf(show_order=250, model="effect_subject.bloodresultslft"),
+    Crf(show_order=260, model="effect_subject.bloodresultslipid"),
+    Crf(show_order=270, model="effect_subject.hepatitistest"),
+    Crf(show_order=280, model="effect_subject.malariatest"),
+    Crf(show_order=290, model="effect_subject.urinedipsticktest"),
+    Crf(show_order=360, model="effect_subject.concomitantmedication"),
     name="prn",
 )
 
 crfs_unscheduled = FormsCollection(
-    Crf(show_order=10, model="meta_subject.followupvitals"),
-    Crf(show_order=20, model="meta_subject.followupexamination"),
-    Crf(show_order=30, model="meta_subject.medicationadherence"),
-    Crf(show_order=200, model="meta_subject.bloodresultsglu"),
+    Crf(show_order=10, model="effect_subject.followupvitals"),
+    Crf(show_order=20, model="effect_subject.followupexamination"),
+    Crf(show_order=30, model="effect_subject.medicationadherence"),
+    Crf(show_order=200, model="effect_subject.bloodresultsglu"),
     name="unscheduled",
 )
 
 crfs_missed = FormsCollection(
-    Crf(show_order=10, model="meta_subject.subjectvisitmissed"),
+    Crf(show_order=10, model="effect_subject.subjectvisitmissed"),
     name="missed",
 )
 crfs_d1 = FormsCollection(

@@ -3,9 +3,9 @@ from edc_data_manager.navbar_item import dm_navbar_item
 from edc_navbar import Navbar, NavbarItem, site_navbars
 from edc_review_dashboard.navbars import navbar_item as review_navbar_item
 
-no_url_namespace = False  # True if settings.APP_NAME == "meta_dashboard" else False
+no_url_namespace = False  # True if settings.APP_NAME == "effect_dashboard" else False
 
-navbar = Navbar(name="meta_dashboard")
+navbar = Navbar(name="effect_dashboard")
 
 navbar.append_item(
     NavbarItem(

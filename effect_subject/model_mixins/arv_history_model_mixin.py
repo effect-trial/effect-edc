@@ -3,7 +3,8 @@ from django.db import models
 from edc_constants.choices import YES_NO
 from edc_model.models import OtherCharField
 from edc_reportable import CELLS_PER_MILLIMETER_CUBED_DISPLAY, COPIES_PER_MILLILITER
-from meta_lists.models import ArvRegimens, OiProphylaxis
+
+from effect_lists.models import ArvRegimens
 
 
 class ArvHistoryModelMixin(models.Model):
@@ -79,21 +80,21 @@ class ArvHistoryModelMixin(models.Model):
 
     other_previous_arv_regimen = OtherCharField(null=True, blank=True)
 
-    on_oi_prophylaxis = models.CharField(
-        verbose_name=(
-            "Is the patient on any prophylaxis against opportunistic infections?"
-        ),
-        max_length=15,
-        choices=YES_NO,
-    )
-
-    oi_prophylaxis = models.ManyToManyField(
-        OiProphylaxis,
-        verbose_name="If YES, which prophylaxis is the patient on?",
-        blank=True,
-    )
-
-    other_oi_prophylaxis = OtherCharField(null=True, blank=True)
+    # on_oi_prophylaxis = models.CharField(
+    #     verbose_name=(
+    #         "Is the patient on any prophylaxis against opportunistic infections?"
+    #     ),
+    #     max_length=15,
+    #     choices=YES_NO,
+    # )
+    #
+    # oi_prophylaxis = models.ManyToManyField(
+    #     OiProphylaxis,
+    #     verbose_name="If YES, which prophylaxis is the patient on?",
+    #     blank=True,
+    # )
+    #
+    # other_oi_prophylaxis = OtherCharField(null=True, blank=True)
 
     class Meta:
         abstract = True
