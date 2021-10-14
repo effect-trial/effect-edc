@@ -13,10 +13,22 @@ class OffstudyReasons(ListModelMixin):
         verbose_name_plural = "Offstudy Reasons"
 
 
+class NeurologicalConditions(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Neurological Conditions"
+        verbose_name_plural = "Neurological Conditions"
+
+
 class NonAdherenceReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Non-Adherence Reasons"
         verbose_name_plural = "Non-Adherence Reasons"
+
+
+class Symptoms(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Symptoms"
+        verbose_name_plural = "Symptoms"
 
 
 class SubjectVisitMissedReasons(ListModelMixin):

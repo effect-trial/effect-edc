@@ -1,10 +1,13 @@
 from edc_constants.constants import (
     ABSENT,
+    DEAD,
+    HOSPITALIZED,
     MICROSCOPY,
     NO,
     NO_EXAM,
     NORMAL,
     NOT_APPLICABLE,
+    NOT_DONE,
     OTHER,
     PRESENT,
     RAPID_TEST,
@@ -13,7 +16,14 @@ from edc_constants.constants import (
 from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
-from .constants import APPT, APPT_OTHER, DECREASED, PRESENT_WITH_REINFORCEMENT, REDUCED
+from .constants import (
+    APPT,
+    APPT_OTHER,
+    DECREASED,
+    PATIENT,
+    PRESENT_WITH_REINFORCEMENT,
+    REDUCED,
+)
 
 ACTIVITY_CHOICES = (
     ("working", "Working"),
@@ -29,6 +39,8 @@ ANKLE_REFLEX_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+ASSESSMENT_METHODS = (("telephone", "Telephone"), ("in_person", "In person"))
+
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
     ("working", "Working"),
@@ -39,11 +51,26 @@ CHILDCARE_CHOICES = (
     (OTHER, "Other, specify"),
 )
 
+CLINICAL_ASSESSMENT_INFO_SOURCES = (
+    (PATIENT, "Patient"),
+    ("next_of_kin", "Next of kin"),
+)
+
 DYSLIPIDAEMIA_RX_CHOICES = (
     ("atorvastatin", "Atorvastatin"),
     ("rosuvastatin", "Rosuvastatin"),
     (OTHER, "Other, specify below ..."),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+ECOG_SCORES = (
+    # TODO: Add descriptions
+    ("0", "0"),
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
+    ("5", "5"),
 )
 
 FOLLOWUP_REASONS = (
@@ -83,6 +110,17 @@ MALARIA_TEST_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
+
+MODIFIED_RANKIN_SCORE_CHOICES = (
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
+    ("5", "5"),
+    (NOT_DONE, "Not done"),
+)
+
 MONOFILAMENT_CHOICES = (
     (NORMAL, "Normal"),
     (REDUCED, "Reduced"),
@@ -111,6 +149,13 @@ PRESENT_ABSENT_NOEXAM_NDS = (
     (NO_EXAM, "Exam not performed"),
 )
 # 0 = Present   1 = Present with reinforcement   2 = Absent
+
+PATIENT_STATUSES = (
+    ("alive_well", "Alive and well"),
+    ("alive_unwell", "Alive, but unwell"),
+    (HOSPITALIZED, "Hospitalized"),
+    (DEAD, "Dead"),
+)
 
 TRANSPORT_CHOICES = (
     ("bus", "Bus"),
