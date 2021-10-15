@@ -3,14 +3,24 @@ from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
 from edc_model import models as edc_models
 
-from effect_lists.models import NeurologicalConditions, Symptoms
+from effect_lists.models import (
+    ArvRegimens,
+    NeurologicalConditions,
+    SignificantNewDiagnoses,
+    Symptoms,
+    TbTreatments,
+    XRayResults,
+)
 
 from ..choices import (
+    ANTIBIOTIC_CHOICES,
     ASSESSMENT_METHODS,
     CLINICAL_ASSESSMENT_INFO_SOURCES,
+    CM_TX_CHOICES,
     ECOG_SCORES,
     MODIFIED_RANKIN_SCORE_CHOICES,
     PATIENT_STATUSES,
+    STEROID_CHOICES,
 )
 from ..model_mixins import CrfModelMixin, VitalsFieldsModelMixin
 
@@ -143,10 +153,13 @@ class ClinicalAssessment(
         verbose_name="Has the patient been admitted due to these symptoms?",
         # TODO: If yes, complete SAE report
         choices=YES_NO,
+        help_text="If yes, complete SAE report",
     )
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
+        # TODO: If yes, complete SAE report
         choices=YES_NO,
+        help_text="If yes, complete SAE report",
     )
     gi_side_effects_details = models.TextField(
         verbose_name="If yes, please give details",
@@ -162,6 +175,146 @@ class ClinicalAssessment(
         ),
         choices=YES_NO_NA,
     )
+
+    any_significant_new_diagnoses = models.CharField(
+        verbose_name="Other significant new diagnoses since last visit?",
+        choices=YES_NO,
+    )
+
+    # TODO: If yes, date of diagnosis?
+
+    significant_new_diagnoses = models.ManyToManyField(
+        SignificantNewDiagnoses,
+        verbose_name="Please select all new significant diagnoses that are relevant",
+    )
+
+    significant_new_diagnoses_other = edc_models.OtherCharField()
+
+    chest_xray = models.CharField(
+        verbose_name="Has a chest x-ray been carried out?",
+        choices=YES_NO,
+    )
+
+    chest_xray_date = models.DateField(
+        verbose_name="If yes, what date was it performed?",
+        null=True,
+        blank=True,
+    )
+
+    chest_xray_results = models.ManyToManyField(
+        XRayResults,
+        verbose_name="Chest x-ray result?",
+        # TODO: Confirm all that apply
+        null=True,
+        blank=True,
+    )
+
+    # ART
+    patient_taking_art = models.CharField(
+        verbose_name="Is the patient currently taking ART?",
+        choices=YES_NO,
+    )
+
+    patient_adherent = models.CharField(
+        verbose_name="If yes, is the patient adherent?",
+        choices=YES_NO_NA,
+    )
+
+    new_art_regimen = models.CharField(
+        verbose_name="Has the patient started a new ART regimen since their last study assessment",
+        choices=YES_NO_NA,
+    )
+
+    # TODO: rename attribute appropriately
+    new_art_regimen_start_date = models.DateField(
+        # TODO: Is this:
+        #  Start date of most recent ART regimen?
+        #  Start date of new ART regimen?
+        # TODO: null = True??
+        verbose_name="Start date of this ART regimen?"
+    )
+
+    art_regimen_rx = models.ForeignKey(
+        ArvRegimens,
+        on_delete=models.PROTECT,
+        # TODO: Is this:
+        #  Start date of most recent ART regimen?
+        #  Start date of new ART regimen?
+        # TODO: null = True??
+        verbose_name="Which drugs were prescribed for this ART regimen?",
+    )
+
+    arvs_stopped_this_episode = models.CharField(
+        verbose_name="ARVs stopped this clinical episode?",
+        # TODO NA?
+        choices=YES_NO,
+    )
+
+    # Patient treatment
+    lp_completed = models.CharField(
+        verbose_name="LP completed?",
+        # TODO If yes, prompt for lab results
+        choices=YES_NO,
+        help_text="If yes, complete laboratory results",
+    )
+
+    cm_confirmed = models.CharField(
+        verbose_name="Cryptococcal meningitis confirmed?",
+        choices=YES_NO,
+    )
+
+    cm_tx_administered = models.CharField(
+        verbose_name="Cryptococcal meningitis treatment administered?",
+        choices=YES_NO,
+    )
+
+    cm_tx_given = models.CharField(
+        verbose_name="Cryptococcal meningitis treatment given?",
+        # TODO: >1 possible?
+        choices=CM_TX_CHOICES,
+    )
+
+    cm_tx_given_other = edc_models.OtherCharField()
+
+    tb_tx_given = models.ManyToManyField(
+        TbTreatments,
+        verbose_name="TB treatment given?",
+        null=True,
+        blank=True,
+    )
+
+    steroids_administered = models.CharField(
+        verbose_name="Steroids administered?",
+        choices=YES_NO,
+    )
+
+    which_steroids = models.CharField(
+        verbose_name="If yes, which steroids where administered?",
+        # TODO: >1 possible?
+        choices=STEROID_CHOICES,
+    )
+
+    which_steroids_other = edc_models.OtherCharField()
+
+    steroids_course_duration = models.IntegerField(
+        verbose_name="Length of steroid course?",
+        validators=[MinValueValidator(0)],
+        help_text="in days",
+    )
+
+    co_trimoxazole = models.CharField(
+        verbose_name="Co-Trimoxazole given?",
+        choices=YES_NO,
+    )
+
+    antibiotics_tx = models.CharField(
+        verbose_name="Antibiotics?",
+        # TODO: >1 possible?
+        choices=ANTIBIOTIC_CHOICES,
+    )
+
+    # Treatment at day 14
+    # TODO: Following section only available on day 14
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Clinical Assessment"

@@ -3,6 +3,8 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
 
+from .constants import OTHER_PLEASE_SPECIFY_TEXT
+
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
@@ -12,29 +14,31 @@ list_data = {
         ("dont_believe_pills_help", "I don't believe my pills are helping me"),
         ("dont_believe_pills_needed", "I don't believe I need to take my pills"),
         ("not_feeling_well", "I have not been feeling well"),
-        (OTHER, "Other, please specify ..."),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.arvregimens": [
-        ("ABC_3TC_ATV_r", "ABC + 3TC + ATV/r"),
-        ("ABC_3TC_LPV_r", "ABC + 3TC + LPV/r"),
-        ("AZT_3TC_ATV_r", "AZT + 3TC + ATV/r"),
-        ("AZT_3TC_EFV", "AZT + 3TC + EFV"),
-        ("AZT_3TC_LPV_r", "AZT + 3TC + LPV/r"),
-        ("AZT_3TC_NVP", "AZT + 3TC + NVP"),
-        ("D4T_3TC_NVP", "D4T + 3TC + NVP"),
-        ("DTG_ABC/3TC_ATV_r", "DTG + (ABC/3TC) + ATV/r"),
-        ("TDF_3TC_ATV_r", "TDF + 3TC + ATV/r"),
-        ("TDF_3TC_DTG", "TDF + 3TC + DTG"),
-        ("TDF_3TC_EFV", "TDF + 3TC + EFV"),
-        ("TDF_3TC_LPV_r", "TDF + 3TC + LPV/r"),
-        ("TDF_FTC_ATV_r", "TDF + FTC + ATV/r"),
-        ("TDF_FTC_EFV", "TDF + FTC + EFV"),
-        ("TDF_FTC_LPV_r", "TDF + FTC + LPV/r"),
-        ("ZDV_3TC_EFV", "ZDV + 3TC + EFV"),
-        ("ZDV_3TC_NVP", "ZDV + 3TC + NVP"),
-        ("ZDV_LPV_NVP", "ZDV + LPV + NVP"),
+        ("TDF_FTC_3TC", "TDF + FTC/3TC"),
+        ("AZT_FTC_3TC", "AZT + FTC/3TC"),
+        ("EFV", "EFV"),
+        ("NVP", "NVP"),
+        ("DTG", "DTG"),
+        ("ATZ_r", "ATZ/r"),
+        ("DRV_r", "DRV/r"),
+        ("abacavir", "Abacavir"),
+        ("lopinavir_r ", "Lopinavir/r"),
         (UNKNOWN, "Unknown"),
-        (OTHER, "Other, specify ..."),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.significantnewdiagnoses": [
+        ("bacteraemia", "Bacteraemia"),
+        ("bacterial_pneumonia", "Bacterial pneumonia"),
+        ("cryptococcal_meningitis", "Cryptococcal meningitis"),
+        ("diarrhoeal_wasting", "Diarrhoeal wasting"),
+        ("kaposi_sarcoma", "Kaposi’s sarcoma"),
+        ("malaria", "Malaria"),
+        ("tb_extra_pulmonary", "TB extra-pulmonary"),
+        ("tb_pulmonary", "TB pulmonary"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.neurologicalconditions": [
         ("meningism", "Meningism"),
@@ -46,7 +50,10 @@ list_data = {
         # TODO: Confirm V nerve palsy is valid option
         ("fifth_cranial_nerve_palsy", "Cranial nerve V palsy"),
         ("seventh_cranial_nerve_palsy", "Cranial nerve VII palsy"),
-        ("other_cranial_nerve_palsy", "Other cranial nerve palsy"),
+        (
+            "other_cranial_nerve_palsy",
+            "Other cranial nerve palsy, please specify below ...",
+        ),
     ],
     "effect_lists.offstudyreasons": [
         ("completed_followup", "Patient completed 12 months of follow-up"),
@@ -64,11 +71,11 @@ list_data = {
         (
             OTHER_RX_DISCONTINUATION,
             "Other condition that justifies the discontinuation of "
-            "treatment in the clinician’s opinion (specify below)",
+            "treatment in the clinician’s opinion, please specify below ...",
         ),
         (
             OTHER,
-            "Other reason (specify below)",
+            "Other reason, please specify below ...",
         ),
     ],
     "effect_lists.symptoms": [
@@ -96,7 +103,33 @@ list_data = {
         ("lack_of_transport", "Transportation difficulty"),
         (
             OTHER,
-            "Other reason (specify below)",
+            "Other reason, please specify below ...",
         ),
+    ],
+    "effect_lists.tbtreatments": [
+        ("HRZE", "HRZE"),
+        ("HR", "HR"),
+        ("E", "E"),
+        ("Z", "Z"),
+        ("H", "H"),
+        ("BDQ", "BDQ"),
+        ("PTO", "PTO"),
+        ("PAS", "PAS"),
+        ("LFX", "LFX"),
+        ("CFZ", "CFZ"),
+        ("MPM", "Mpm"),
+        ("AM", "Am"),
+        ("DLM", "DLM"),
+        ("TRD", "TRD"),
+        ("S", "S"),
+        ("LZD", "LZD"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.xrayresults": [
+        ("lymphadenopathy", "Lymphadenopathy"),
+        ("consolidation", "consolidation"),
+        ("military TB", "military TB"),
+        ("Infiltrates", "Infiltrates"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
 }

@@ -6,6 +6,7 @@ from .blood_results import (
     BloodResultsLipid,
     BloodResultsRft,
 )
+from .clinical_assessment import ClinicalAssessment
 from .glucose import Glucose
 from .medication_adherence import MedicationAdherence
 from .subject_requisition import SubjectRequisition

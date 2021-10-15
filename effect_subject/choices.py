@@ -20,6 +20,7 @@ from .constants import (
     APPT,
     APPT_OTHER,
     DECREASED,
+    OTHER_PLEASE_SPECIFY_TEXT,
     PATIENT,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
@@ -29,7 +30,7 @@ ACTIVITY_CHOICES = (
     ("working", "Working"),
     ("studying", "Studying"),
     ("caring_for_children", "Caring for children"),
-    (OTHER, "Other, please specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 ANKLE_REFLEX_CHOICES = (
@@ -37,6 +38,19 @@ ANKLE_REFLEX_CHOICES = (
     (PRESENT_WITH_REINFORCEMENT, "Present/Reinforcement"),
     (ABSENT, "Absent"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+ANTIBIOTIC_CHOICES = (
+    ("amoxicillin", "Amoxicillin"),
+    ("ceftriaxone", "Ceftriaxone"),
+    ("ciprofloxacin", "Ciprofloxacin"),
+    ("doxycycline", "Doxycycline"),
+    ("erythromycin", "Erythromycin (contraindicated with high dose fluconazole)"),
+    ("flucloxacillin", "Flucloxacillin"),
+    (
+        OTHER,
+        "Other (avoid with concomitant high dose fluconazole), please specify below ...",
+    ),
 )
 
 ASSESSMENT_METHODS = (("telephone", "Telephone"), ("in_person", "In person"))
@@ -48,7 +62,7 @@ CHILDCARE_CHOICES = (
     ("caring_for_children", "Caring for children"),
     ("house_maintenance", "House maintenance"),
     ("nothing", "Nothing"),
-    (OTHER, "Other, specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 CLINICAL_ASSESSMENT_INFO_SOURCES = (
@@ -56,10 +70,16 @@ CLINICAL_ASSESSMENT_INFO_SOURCES = (
     ("next_of_kin", "Next of kin"),
 )
 
+CM_TX_CHOICES = (
+    ("1w_amb_5fc", "1 week AmB + 5FC"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable (no CM treatment given)"),
+)
+
 DYSLIPIDAEMIA_RX_CHOICES = (
     ("atorvastatin", "Atorvastatin"),
     ("rosuvastatin", "Rosuvastatin"),
-    (OTHER, "Other, specify below ..."),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
@@ -157,6 +177,13 @@ PATIENT_STATUSES = (
     (DEAD, "Dead"),
 )
 
+STEROID_CHOICES = (
+    ("oral_prednisolone", "Oral prednisolone"),
+    ("iv_dexamethasone", "IV Dexamethasone"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable (no steroids administered)"),
+)
+
 TRANSPORT_CHOICES = (
     ("bus", "Bus"),
     ("train", "Train"),
@@ -168,7 +195,7 @@ TRANSPORT_CHOICES = (
     ("own_motorbike", "Own motorbike"),
     ("hired_bicycle", "Hired bicycle"),
     ("foot", "Foot"),
-    (OTHER, "Other, specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 ULCERATION_CHOICES = (
