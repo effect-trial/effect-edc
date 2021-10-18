@@ -43,12 +43,13 @@ list_data = {
     "effect_lists.neurologicalconditions": [
         ("meningism", "Meningism"),
         ("papilloedema", "Papilloedema"),
+        # TODO: Add focal neurologic deficits,
         ("focal_neurologic_deficit", "Focal neurologic deficit"),
+        (
+            "other_focal_neurologic_deficit",
+            "Other focal neurologic deficit, please specify below ...",
+        ),
         ("sixth_cranial_nerve_palsy", "Cranial nerve VI palsy"),
-        ("third_cranial_nerve_palsy", "Cranial nerve III palsy"),
-        ("fourth_cranial_nerve_palsy", "Cranial nerve IV palsy"),
-        # TODO: Confirm V nerve palsy is valid option
-        ("fifth_cranial_nerve_palsy", "Cranial nerve V palsy"),
         ("seventh_cranial_nerve_palsy", "Cranial nerve VII palsy"),
         (
             "other_cranial_nerve_palsy",
@@ -131,5 +132,39 @@ list_data = {
         ("military TB", "military TB"),
         ("Infiltrates", "Infiltrates"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.x": [
+        ("flucloxacillin", "Flucloxacillin"),
+        ("gentamicin", "Gentamicin"),
+        ("ceftriaxone", "Ceftriaxone"),
+        # TODO: ???One or two separate options?
+        ("amoxicillin_ampicillin", "Amoxicillin/Ampicillin"),
+        (
+            "erythromycin",
+            "Erythromycin (NB contra-indicated on concomitant high dose fluconazole)",
+        ),
+        (
+            "ciprofloxacin",
+            "Ciprofloxacin (NB avoid on concomitant high dose fluconazole)",
+        ),
+        (OTHER, "Other antibiotic, please specify below ..."),
+    ],
+    "effect_lists.xx": [
+        ("K", "K"),
+        ("MG", "Mg"),
+        ("Vitamins", "Vitamins"),
+        ("TMP_SMX_Cotrimoxazole", "TMP-SMX/Cotrimoxazole"),
+        ("anticonvulsants", "Anticonvulsants"),
+        ("antimalarials", "Antimalarials"),
+        ("other_drug", "Other drug, please specify below ..."),
+        ("other_intervention", "Other intervention, please specify below ..."),
+    ],
+    "effect_lists.xxx": [
+        ("fluconazole_800mg", "Fluconazole (800mg as per protocol)"),
+        # TODO: ???Is 'Other' a different dose of fluconazole, or a different drug?
+        (
+            "fluconazole_other",
+            "Fluconazole (other dose), please specify dose and reason below...",
+        ),
     ],
 }

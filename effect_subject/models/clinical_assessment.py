@@ -67,10 +67,9 @@ class ClinicalAssessment(
         validators=[edc_models.date_not_future],
     )
 
-    # TODO: Is this date estimated?
-    # No
-    # Yes, estimated the day
-    # Yes, estimated the day and month
+    date_of_death_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If date of death provided, is this date estimated?"
+    )
 
     cm_signs_symptoms = models.CharField(
         verbose_name=(
@@ -99,14 +98,14 @@ class ClinicalAssessment(
 
     # Neurological questions
     neurological_symptoms = models.ManyToManyField(
+        # TODO - insert list/options for focal_neurologic_deficits?
         NeurologicalConditions,
         related_name="neurological_conditions",
         verbose_name="Does patient have any of the following neurological conditions?",
         blank=True,
     )
 
-    # TODO - do we want to provide list/options for focal_neurologic_deficit_specify?
-    # focal_neurological_deficit =
+    focal_neurological_deficit_other = edc_models.OtherCharField()
 
     cranial_nerve_palsy_other = edc_models.OtherCharField()
 
@@ -151,13 +150,13 @@ class ClinicalAssessment(
     # Other
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to these symptoms?",
-        # TODO: If yes, complete SAE report
+        # TODO: If yes, prompt for SAE form
         choices=YES_NO,
         help_text="If yes, complete SAE report",
     )
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
-        # TODO: If yes, complete SAE report
+        # TODO: If yes, prompt for SAE form
         choices=YES_NO,
         help_text="If yes, complete SAE report",
     )
@@ -167,21 +166,12 @@ class ClinicalAssessment(
         blank=True,
     )
 
-    # TODO: Is this necessary? Do/can we trigger from here?
-    ae_report_required = models.TextField(
-        verbose_name=(
-            "If gastrointestinal side effects experienced, "
-            "is an adverse event report required?"
-        ),
-        choices=YES_NO_NA,
-    )
-
     any_significant_new_diagnoses = models.CharField(
         verbose_name="Other significant new diagnoses since last visit?",
         choices=YES_NO,
     )
 
-    # TODO: If yes, date of diagnosis?
+    # TODO: ???If yes, date of diagnosis?
 
     significant_new_diagnoses = models.ManyToManyField(
         SignificantNewDiagnoses,
@@ -204,7 +194,7 @@ class ClinicalAssessment(
     chest_xray_results = models.ManyToManyField(
         XRayResults,
         verbose_name="Chest x-ray result?",
-        # TODO: Confirm all that apply
+        # TODO: ???Confirm all that apply
         null=True,
         blank=True,
     )
@@ -227,7 +217,7 @@ class ClinicalAssessment(
 
     # TODO: rename attribute appropriately
     new_art_regimen_start_date = models.DateField(
-        # TODO: Is this:
+        # TODO: ???Is this:
         #  Start date of most recent ART regimen?
         #  Start date of new ART regimen?
         # TODO: null = True??
@@ -270,7 +260,7 @@ class ClinicalAssessment(
 
     cm_tx_given = models.CharField(
         verbose_name="Cryptococcal meningitis treatment given?",
-        # TODO: >1 possible?
+        # TODO: ???>1 possible?
         choices=CM_TX_CHOICES,
     )
 
@@ -290,7 +280,7 @@ class ClinicalAssessment(
 
     which_steroids = models.CharField(
         verbose_name="If yes, which steroids where administered?",
-        # TODO: >1 possible?
+        # TODO: ???>1 possible?
         choices=STEROID_CHOICES,
     )
 
@@ -307,14 +297,26 @@ class ClinicalAssessment(
         choices=YES_NO,
     )
 
-    antibiotics_tx = models.CharField(
+    antibiotics = models.CharField(
         verbose_name="Antibiotics?",
-        # TODO: >1 possible?
+        # TODO: ???>1 possible?
         choices=ANTIBIOTIC_CHOICES,
     )
 
     # Treatment at day 14
     # TODO: Following section only available on day 14
+    other_antibiotics_first_2w = models.CharField()
+    # TODO: other_antibiotics_first_2w_other
+    other_drugs_first_2w = models.CharField()
+    # TODO: other_drugs_first_2w_other
+    # TODO: other_interventions_first_2w_other
+    medicines_rx_d14 = models.CharField()
+    # TODO: medicines_rx_d14_other
+
+    comments = models.TextField(
+        # TODO: ???Every clinical assessment, or d14 only?
+        verbose_name="Comments on Clinical care/Assessment/Plan:"
+    )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Clinical Assessment"
