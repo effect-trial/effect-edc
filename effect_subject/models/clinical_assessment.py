@@ -4,7 +4,10 @@ from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
 from edc_model import models as edc_models
 
 from effect_lists.models import (
+    Antibiotics,
     ArvRegimens,
+    Drugs,
+    MedicinesRxDay14,
     NeurologicalConditions,
     SignificantNewDiagnoses,
     Symptoms,
@@ -13,7 +16,6 @@ from effect_lists.models import (
 )
 
 from ..choices import (
-    ANTIBIOTIC_CHOICES,
     ASSESSMENT_METHODS,
     CLINICAL_ASSESSMENT_INFO_SOURCES,
     CM_TX_CHOICES,
@@ -186,6 +188,7 @@ class ClinicalAssessment(
     )
 
     # TODO: ???If yes, date of diagnosis?
+    # TODO: Consider handling one date per diagnosis
 
     # Significant Diagnoses CRF (p3)
     significant_new_diagnoses = models.ManyToManyField(
@@ -210,7 +213,6 @@ class ClinicalAssessment(
     chest_xray_results = models.ManyToManyField(
         XRayResults,
         verbose_name="Chest x-ray result?",
-        # TODO: ???Confirm all that apply
         null=True,
         blank=True,
     )
@@ -241,12 +243,12 @@ class ClinicalAssessment(
         verbose_name="Start date of this ART regimen?"
     )
 
+    # TODO: switch to existing edc master (find-as-you-type) list
     art_regimen_rx = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,
-        # TODO: Is this:
-        #  Start date of most recent ART regimen?
-        #  Start date of new ART regimen?
+        # TODO: Clarify when this question is required (d1, d14),
+        #  and/or in response to “decision made re ART?” e.g. stopped, continued etc
         # TODO: null = True??
         verbose_name="Which drugs were prescribed for this ART regimen?",
     )
@@ -277,7 +279,6 @@ class ClinicalAssessment(
 
     cm_tx_given = models.CharField(
         verbose_name="Cryptococcal meningitis treatment given?",
-        # TODO: ???>1 possible?
         choices=CM_TX_CHOICES,
     )
 
@@ -297,7 +298,6 @@ class ClinicalAssessment(
 
     which_steroids = models.CharField(
         verbose_name="If yes, which steroids where administered?",
-        # TODO: ???>1 possible?
         choices=STEROID_CHOICES,
     )
 
@@ -314,24 +314,38 @@ class ClinicalAssessment(
         choices=YES_NO,
     )
 
-    antibiotics = models.CharField(
+    # TODO: ???d1 only?
+    antibiotics = models.ManyToManyField(
+        Antibiotics,
         verbose_name="Antibiotics?",
-        # TODO: ???>1 possible?
-        choices=ANTIBIOTIC_CHOICES,
+        null=True,
     )
 
     # Treatment at day 14
     # TODO: Following section only available on day 14
-    other_antibiotics_first_2w = models.CharField()
-    # TODO: other_antibiotics_first_2w_other
-    other_drugs_first_2w = models.CharField()
-    # TODO: other_drugs_first_2w_other
-    # TODO: other_interventions_first_2w_other
-    medicines_rx_d14 = models.CharField()
-    # TODO: medicines_rx_d14_other
+    other_antibiotics_first_2w = models.ManyToManyField(
+        Antibiotics,
+        verbose_name="Other antibiotics given during the first 14 days?",
+        null=True,
+    )
+    other_antibiotics_first_2w_other = edc_models.OtherCharField()
 
+    other_drugs_first_2w = models.ManyToManyField(
+        Drugs,
+        verbose_name="Other drugs/intervention given during the first 14 days?",
+        null=True,
+    )
+    other_drugs_first_2w_other = edc_models.OtherCharField()
+
+    medicines_rx_d14 = models.ManyToManyField(
+        MedicinesRxDay14,
+        verbose_name="Medicines prescribed on day 14?",
+        null=True,
+    )
+    medicines_rx_d14_other = edc_models.OtherCharField()
+
+    # Ask on every clinical assessment
     comments = models.TextField(
-        # TODO: ???Every clinical assessment, or d14 only?
         verbose_name="Comments on Clinical care/Assessment/Plan:"
     )
 

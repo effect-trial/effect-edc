@@ -1,16 +1,34 @@
 from edc_list_data.model_mixins import ListModelMixin
 
 
+class Antibiotics(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Antibiotics"
+        verbose_name_plural = "Antibiotics"
+
+
 class ArvRegimens(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "ARV Regimens"
         verbose_name_plural = "ARV Regimens"
 
 
+class Drugs(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Drugs"
+        verbose_name_plural = "Drugs"
+
+
 class OffstudyReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Offstudy Reasons"
         verbose_name_plural = "Offstudy Reasons"
+
+
+class MedicinesRxDay14(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Medicines Prescribed Day 14"
+        verbose_name_plural = "Medicines Prescribed Day 14"
 
 
 class NeurologicalConditions(ListModelMixin):

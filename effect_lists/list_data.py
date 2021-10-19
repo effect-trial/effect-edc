@@ -16,6 +16,31 @@ list_data = {
         ("not_feeling_well", "I have not been feeling well"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.antibiotics": [
+        ("amoxicillin", "Amoxicillin"),
+        # TODO: ???One or two separate options?
+        ("amoxicillin_ampicillin", "Amoxicillin/Ampicillin"),
+        ("flucloxacillin", "Flucloxacillin"),
+        ("doxycycline", "Doxycycline"),
+        ("ceftriaxone", "Ceftriaxone"),
+        (
+            "ciprofloxacin",
+            "Ciprofloxacin (NB avoid on concomitant high dose fluconazole)",
+        ),
+        (
+            "erythromycin",
+            "Erythromycin (NB contra-indicated on concomitant high dose fluconazole)",
+        ),
+        ("gentamicin", "Gentamicin"),
+        (
+            OTHER,
+            (
+                "Other antibiotic, (NB avoid with concomitant high dose fluconazole), "
+                "please specify below ..."
+            ),
+        ),
+        (OTHER, "Other  please specify below ..."),
+    ],
     "effect_lists.arvregimens": [
         ("TDF_FTC_3TC", "TDF + FTC/3TC"),
         ("AZT_FTC_3TC", "AZT + FTC/3TC"),
@@ -29,6 +54,15 @@ list_data = {
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.drugs": [
+        ("k", "K"),
+        ("mg", "Mg"),
+        ("vitamins", "Vitamins"),
+        ("tmp_smx_cotrimoxazole", "TMP-SMX/Cotrimoxazole"),
+        ("anticonvulsants", "Anticonvulsants"),
+        ("antimalarials", "Antimalarials"),
+        (OTHER, "Other drug/intervention, please specify below ..."),
+    ],
     "effect_lists.significantnewdiagnoses": [
         ("bacteraemia", "Bacteraemia"),
         ("bacterial_pneumonia", "Bacterial pneumonia"),
@@ -39,6 +73,14 @@ list_data = {
         ("tb_extra_pulmonary", "TB extra-pulmonary"),
         ("tb_pulmonary", "TB pulmonary"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.medicinesrxday14": [
+        ("fluconazole_800mg", "Fluconazole (800mg as per protocol)"),
+        # TODO: ???Is 'Other' a different dose of fluconazole, or a different drug?
+        (
+            "fluconazole_other",
+            "Fluconazole (other dose), please specify dose and reason below...",
+        ),
     ],
     "effect_lists.neurologicalconditions": [
         ("meningism", "Meningism"),
@@ -132,39 +174,5 @@ list_data = {
         ("military TB", "military TB"),
         ("Infiltrates", "Infiltrates"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    ],
-    "effect_lists.x": [
-        ("flucloxacillin", "Flucloxacillin"),
-        ("gentamicin", "Gentamicin"),
-        ("ceftriaxone", "Ceftriaxone"),
-        # TODO: ???One or two separate options?
-        ("amoxicillin_ampicillin", "Amoxicillin/Ampicillin"),
-        (
-            "erythromycin",
-            "Erythromycin (NB contra-indicated on concomitant high dose fluconazole)",
-        ),
-        (
-            "ciprofloxacin",
-            "Ciprofloxacin (NB avoid on concomitant high dose fluconazole)",
-        ),
-        (OTHER, "Other antibiotic, please specify below ..."),
-    ],
-    "effect_lists.xx": [
-        ("K", "K"),
-        ("MG", "Mg"),
-        ("Vitamins", "Vitamins"),
-        ("TMP_SMX_Cotrimoxazole", "TMP-SMX/Cotrimoxazole"),
-        ("anticonvulsants", "Anticonvulsants"),
-        ("antimalarials", "Antimalarials"),
-        ("other_drug", "Other drug, please specify below ..."),
-        ("other_intervention", "Other intervention, please specify below ..."),
-    ],
-    "effect_lists.xxx": [
-        ("fluconazole_800mg", "Fluconazole (800mg as per protocol)"),
-        # TODO: ???Is 'Other' a different dose of fluconazole, or a different drug?
-        (
-            "fluconazole_other",
-            "Fluconazole (other dose), please specify dose and reason below...",
-        ),
     ],
 }
