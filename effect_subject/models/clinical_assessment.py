@@ -31,12 +31,14 @@ class ClinicalAssessment(
 
     # TODO: Visit (e.g. d1, d3, ..., m4, m6, unscheduled) - is already stored, but do we need to display it?
 
+    # TODO: ???Rename, and move to subject visit
     info_source = models.CharField(
         verbose_name="Who did you speak to?",
         max_length=15,
         choices=CLINICAL_ASSESSMENT_INFO_SOURCES,
     )
 
+    # TODO: ???Move to subject
     assessment_method = models.CharField(
         verbose_name="Was this a telephone follow up or an in person visit?",
         max_length=15,
@@ -49,6 +51,7 @@ class ClinicalAssessment(
         choices=YES_NO,
     )
 
+    # TODO: ???Move/capture in subject visit
     patient_status = models.CharField(
         verbose_name="Patient status?",
         max_length=15,
@@ -56,17 +59,20 @@ class ClinicalAssessment(
         choices=PATIENT_STATUSES,
     )
 
+    # TODO: ???Move/capture in subject visit
     date_of_death_known = models.CharField(
         verbose_name="Is the date of death known?",
         max_length=15,
         choices=YES_NO,
     )
 
+    # TODO: ???Move/capture in subject visit
     date_of_death = models.DateField(
         verbose_name="Date of death",
         validators=[edc_models.date_not_future],
     )
 
+    # TODO: ???Move/capture in subject visit
     date_of_death_estimated = edc_models.IsDateEstimatedFieldNa(
         verbose_name="If date of death provided, is this date estimated?"
     )
@@ -80,7 +86,7 @@ class ClinicalAssessment(
         choices=YES_NO_UNKNOWN,
     )
 
-    # Current signs/symptoms questions
+    # Current Signs/Symptoms CRF (p2)
     current_symptoms = models.ManyToManyField(
         Symptoms,
         related_name="current_symptoms",
@@ -96,7 +102,7 @@ class ClinicalAssessment(
         help_text="in days",
     )
 
-    # Neurological questions
+    # Current Signs/Symptoms - Neurological Questions CRF (p2)
     neurological_symptoms = models.ManyToManyField(
         # TODO - insert list/options for focal_neurologic_deficits?
         NeurologicalConditions,
@@ -109,7 +115,7 @@ class ClinicalAssessment(
 
     cranial_nerve_palsy_other = edc_models.OtherCharField()
 
-    # Mental status
+    # Current Signs/Symptoms - Mental Status CRF (p2)
     recent_seizure = models.CharField(
         verbose_name="Recent seizure (<72 hours)?",
         max_length=15,
@@ -135,6 +141,7 @@ class ClinicalAssessment(
     )
 
     # TODO: Add descriptions to choices
+    # TODO: Pull from Ambition
     ecog_score = models.CharField(
         verbose_name="ECOG score?",
         max_length=15,
@@ -147,7 +154,13 @@ class ClinicalAssessment(
         validators=[MinValueValidator(3), MaxValueValidator(15)],
     )
 
-    # Other
+    # Current Signs/Symptoms - Vital Signs CRF (p2)
+    # TODO: Implement Temperature field
+    # TODO: ???Use model_mixin, or something from core edc(-vitals)?
+
+    # Current Signs/Symptoms - Other CRF (p2)
+    # TODO: ???If splitting Signs/Symptoms to separate CRFs,
+    #  does this need to be repeated for each CRF?
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to these symptoms?",
         # TODO: If yes, prompt for SAE form
@@ -156,9 +169,9 @@ class ClinicalAssessment(
     )
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
-        # TODO: If yes, prompt for SAE form
+        # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        help_text="If yes, complete SAE report (where appropriate???)",
     )
     gi_side_effects_details = models.TextField(
         verbose_name="If yes, please give details",
@@ -167,12 +180,14 @@ class ClinicalAssessment(
     )
 
     any_significant_new_diagnoses = models.CharField(
+        # TODO: determine and display date of last visit
         verbose_name="Other significant new diagnoses since last visit?",
         choices=YES_NO,
     )
 
     # TODO: ???If yes, date of diagnosis?
 
+    # Significant Diagnoses CRF (p3)
     significant_new_diagnoses = models.ManyToManyField(
         SignificantNewDiagnoses,
         verbose_name="Please select all new significant diagnoses that are relevant",
@@ -180,6 +195,7 @@ class ClinicalAssessment(
 
     significant_new_diagnoses_other = edc_models.OtherCharField()
 
+    # Chest X-ray CRF (p3)
     chest_xray = models.CharField(
         verbose_name="Has a chest x-ray been carried out?",
         choices=YES_NO,
@@ -199,7 +215,7 @@ class ClinicalAssessment(
         blank=True,
     )
 
-    # ART
+    # ART / ARV CRF (p3)
     patient_taking_art = models.CharField(
         verbose_name="Is the patient currently taking ART?",
         choices=YES_NO,
@@ -211,6 +227,7 @@ class ClinicalAssessment(
     )
 
     new_art_regimen = models.CharField(
+        # TODO: determine and display date of last study assessment
         verbose_name="Has the patient started a new ART regimen since their last study assessment",
         choices=YES_NO_NA,
     )
@@ -240,7 +257,7 @@ class ClinicalAssessment(
         choices=YES_NO,
     )
 
-    # Patient treatment
+    # Patient Treatment CRF (p4)
     lp_completed = models.CharField(
         verbose_name="LP completed?",
         # TODO If yes, prompt for lab results
