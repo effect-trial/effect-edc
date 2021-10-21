@@ -142,8 +142,6 @@ class ClinicalAssessment(
         choices=MODIFIED_RANKIN_SCORE_CHOICES,
     )
 
-    # TODO: Add descriptions to choices
-    # TODO: Pull from Ambition
     ecog_score = models.CharField(
         verbose_name="ECOG score?",
         max_length=15,
