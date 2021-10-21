@@ -152,6 +152,7 @@ class ClinicalAssessment(
     glasgow_coma_score = models.IntegerField(
         verbose_name="Glasgow Coma Score?",
         validators=[MinValueValidator(3), MaxValueValidator(15)],
+        help_text="/15",
     )
 
     # Current Signs/Symptoms - Vital Signs CRF (p2)
