@@ -65,11 +65,6 @@ CHILDCARE_CHOICES = (
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
-CLINICAL_ASSESSMENT_INFO_SOURCES = (
-    (PATIENT, "Patient"),
-    ("next_of_kin", "Next of kin"),
-)
-
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
@@ -131,6 +126,11 @@ INFO_SOURCE = (
     ("collateral_history", "Collateral History from relative/guardian"),
     (NOT_APPLICABLE, "Not applicable (if missed)"),
     (OTHER, "Other"),
+)
+
+INFO_SOURCE_WHO_CHOICES = (
+    (PATIENT, "Patient"),
+    ("next_of_kin", "Next of kin"),
 )
 
 FUNDOSCOPY_CHOICES = (

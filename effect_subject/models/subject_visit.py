@@ -1,6 +1,6 @@
 from django.db import models
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model import models as edc_models
@@ -10,7 +10,14 @@ from edc_sites.models import SiteModelMixin
 from edc_visit_tracking.managers import VisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
-from ..choices import INFO_SOURCE, VISIT_REASON, VISIT_UNSCHEDULED_REASON
+from ..choices import (
+    ASSESSMENT_METHODS,
+    INFO_SOURCE,
+    INFO_SOURCE_WHO_CHOICES,
+    PATIENT_STATUSES,
+    VISIT_REASON,
+    VISIT_UNSCHEDULED_REASON,
+)
 
 
 class CurrentSiteManager(VisitModelManager, BaseCurrentSiteManager):
@@ -67,6 +74,41 @@ class SubjectVisit(
         choices=INFO_SOURCE,
     )
 
+    # TODO: ???Reconcile with info_source? ???Redundant?
+    info_source_who = models.CharField(
+        verbose_name="Who did you speak to?",
+        max_length=15,
+        choices=INFO_SOURCE_WHO_CHOICES,
+    )
+
+    assessment_method = models.CharField(
+        verbose_name="Was this a telephone follow up or an in person visit?",
+        max_length=15,
+        choices=ASSESSMENT_METHODS,
+    )
+
+    patient_status = models.CharField(
+        verbose_name="Patient status?",
+        max_length=15,
+        # TODO: If dead, prompt for death & SAE form
+        choices=PATIENT_STATUSES,
+    )
+
+    date_of_death_known = models.CharField(
+        verbose_name="Is the date of death known?",
+        max_length=15,
+        choices=YES_NO_NA,
+    )
+
+    date_of_death = models.DateField(
+        verbose_name="Date of death",
+        validators=[edc_models.date_not_future],
+        null=True,
+    )
+
+    date_of_death_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If date of death provided, is this date estimated?"
+    )
     on_site = CurrentSiteManager()
 
     objects = VisitModelManager()

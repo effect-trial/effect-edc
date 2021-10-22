@@ -16,12 +16,9 @@ from effect_lists.models import (
 )
 
 from ..choices import (
-    ASSESSMENT_METHODS,
-    CLINICAL_ASSESSMENT_INFO_SOURCES,
     CM_TX_CHOICES,
     ECOG_SCORES,
     MODIFIED_RANKIN_SCORE_CHOICES,
-    PATIENT_STATUSES,
     STEROID_CHOICES,
 )
 from ..model_mixins import CrfModelMixin, VitalsFieldsModelMixin
@@ -33,50 +30,11 @@ class ClinicalAssessment(
 
     # TODO: Schedule for d1 and d14
 
-    # TODO: ???Rename, and move to subject visit
-    info_source = models.CharField(
-        verbose_name="Who did you speak to?",
-        max_length=15,
-        choices=CLINICAL_ASSESSMENT_INFO_SOURCES,
-    )
-
-    # TODO: ???Move to subject
-    assessment_method = models.CharField(
-        verbose_name="Was this a telephone follow up or an in person visit?",
-        max_length=15,
-        choices=ASSESSMENT_METHODS,
-    )
-
+    # Initial Questions CRF (p1)
     adherence_counselling = models.CharField(
         verbose_name="Was adherence counselling given?",
         max_length=15,
         choices=YES_NO,
-    )
-
-    # TODO: ???Move/capture in subject visit
-    patient_status = models.CharField(
-        verbose_name="Patient status?",
-        max_length=15,
-        # TODO: If dead, prompt for death & SAE form
-        choices=PATIENT_STATUSES,
-    )
-
-    # TODO: ???Move/capture in subject visit
-    date_of_death_known = models.CharField(
-        verbose_name="Is the date of death known?",
-        max_length=15,
-        choices=YES_NO,
-    )
-
-    # TODO: ???Move/capture in subject visit
-    date_of_death = models.DateField(
-        verbose_name="Date of death",
-        validators=[edc_models.date_not_future],
-    )
-
-    # TODO: ???Move/capture in subject visit
-    date_of_death_estimated = edc_models.IsDateEstimatedFieldNa(
-        verbose_name="If date of death provided, is this date estimated?"
     )
 
     cm_signs_symptoms = models.CharField(
