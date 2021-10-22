@@ -1,7 +1,6 @@
 from edc_constants.constants import (
     ABSENT,
     DEAD,
-    HOSPITALIZED,
     MICROSCOPY,
     NO,
     NO_EXAM,
@@ -128,10 +127,6 @@ INFO_SOURCE = (
     (OTHER, "Other"),
 )
 
-INFO_SOURCE_WHO_CHOICES = (
-    (PATIENT, "Patient"),
-    ("next_of_kin", "Next of kin"),
-)
 
 FUNDOSCOPY_CHOICES = (
     ("no_retinopathy", "No retinopathy"),
@@ -191,8 +186,13 @@ PRESENT_ABSENT_NOEXAM_NDS = (
 PATIENT_STATUSES = (
     ("alive_well", "Alive and well"),
     ("alive_unwell", "Alive, but unwell"),
-    (HOSPITALIZED, "Hospitalized"),
     (DEAD, "Dead"),
+)
+
+SPOKE_TO_CHOICES = (
+    (PATIENT, "Patient"),
+    ("next_of_kin", "Next of kin"),
+    (OTHER, "Other"),
 )
 
 STEROID_CHOICES = (

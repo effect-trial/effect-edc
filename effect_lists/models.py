@@ -19,6 +19,12 @@ class Drugs(ListModelMixin):
         verbose_name_plural = "Drugs"
 
 
+class FocalNeurologicDeficits(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Focal Neurologic Deficits"
+        verbose_name_plural = "Focal Neurologic Deficits"
+
+
 class OffstudyReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Offstudy Reasons"
@@ -29,12 +35,6 @@ class MedicinesRxDay14(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Medicines Prescribed Day 14"
         verbose_name_plural = "Medicines Prescribed Day 14"
-
-
-class NeurologicalConditions(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Neurological Conditions"
-        verbose_name_plural = "Neurological Conditions"
 
 
 class NonAdherenceReasons(ListModelMixin):

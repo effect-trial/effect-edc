@@ -7,8 +7,8 @@ from effect_lists.models import (
     Antibiotics,
     ArvRegimens,
     Drugs,
+    FocalNeurologicDeficits,
     MedicinesRxDay14,
-    NeurologicalConditions,
     SignificantNewDiagnoses,
     Symptoms,
     TbTreatments,
@@ -16,9 +16,12 @@ from effect_lists.models import (
 )
 
 from ..choices import (
+    ASSESSMENT_METHODS,
     CM_TX_CHOICES,
     ECOG_SCORES,
     MODIFIED_RANKIN_SCORE_CHOICES,
+    PATIENT_STATUSES,
+    SPOKE_TO_CHOICES,
     STEROID_CHOICES,
 )
 from ..model_mixins import CrfModelMixin, VitalsFieldsModelMixin
@@ -30,11 +33,40 @@ class ClinicalAssessment(
 
     # TODO: Schedule for d1 and d14
 
-    # Initial Questions CRF (p1)
+    # Initial Clinical Assessment CRF (p1)
+    who_speak_to = models.CharField(
+        verbose_name="Who did you speak to?",
+        max_length=15,
+        choices=SPOKE_TO_CHOICES,
+    )
+
+    who_speak_to_other = edc_models.OtherCharField()
+
+    assessment_method = models.CharField(
+        verbose_name="Was this a telephone follow up or an in person visit?",
+        max_length=15,
+        choices=ASSESSMENT_METHODS,
+    )
+
+    patient_hospitalized = models.CharField(
+        verbose_name="Has the patient been hospitalized",
+        max_length=15,
+        # TODO: If yes, trigger SAE
+        choices=YES_NO_NA,
+    )
+
+    patient_status = models.CharField(
+        verbose_name="Patient status?",
+        max_length=15,
+        # TODO: Validate agains visit survival status
+        # TODO: If dead, trigger SAE -> death form -> off study
+        choices=PATIENT_STATUSES,
+    )
+
     adherence_counselling = models.CharField(
         verbose_name="Was adherence counselling given?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_NA,
     )
 
     cm_signs_symptoms = models.CharField(
@@ -63,11 +95,22 @@ class ClinicalAssessment(
     )
 
     # Current Signs/Symptoms - Neurological Questions CRF (p2)
-    neurological_symptoms = models.ManyToManyField(
-        # TODO ???Split into meningism, papilloedema and focal_neurologic_deficits fields?
-        NeurologicalConditions,
-        related_name="neurological_conditions",
-        verbose_name="Does patient have any of the following neurological conditions?",
+    meningism = models.CharField(
+        verbose_name="Meningism?",
+        max_length=15,
+        choices=YES_NO,
+    )
+
+    papilloedema = models.CharField(
+        verbose_name="Papilloedema?",
+        max_length=15,
+        choices=YES_NO,
+    )
+
+    focal_neurologic_deficits = models.ManyToManyField(
+        FocalNeurologicDeficits,
+        related_name="focal_neurologic_deficits",
+        verbose_name="Does patient have any of the following focal neurologic deficits?",
         blank=True,
     )
 
@@ -79,12 +122,12 @@ class ClinicalAssessment(
         verbose_name="If other cranial nerve palsy (right), please specify ..."
     )
 
-    neurological_symptoms_other = edc_models.OtherCharField(
-        verbose_name="If other neurological symptoms, please specify ..."
+    focal_neurologic_deficits_other = edc_models.OtherCharField(
+        verbose_name="If other focal neurologic deficit, please specify ..."
     )
 
     visual_field_loss = models.TextField(
-        # TODO: ???Link to visual_field_disturbance neurological_symptoms field?
+        # TODO: ???Link to visual_field_disturbance focal_neurologic_deficits field?
         verbose_name="If visual field loss, please provide details ...",
         null=True,
     )
@@ -127,29 +170,34 @@ class ClinicalAssessment(
         help_text="/15",
     )
 
-    # Current Signs/Symptoms - Vital Signs CRF (p2)
-    # TODO: ???Use vitals_fields_model_mixin, or something from core edc(-vitals)?
-    # TODO: ???Move TemperatureField to core edc(-vitals)?
+    # Vital Signs CRF (p2)
+    # vitals_fields_model_mixin configured for vitals
+    # TODO: Move TemperatureField to core edc(-vitals)
     # TODO: ???Implement RespiratoryRateField and HeartRateField?
 
     # Current Signs/Symptoms - Other CRF (p2)
-    # TODO: ???If splitting Signs/Symptoms to separate CRFs,
-    #  does patient_admitted need to be repeated for each CRF?
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to these symptoms?",
         # TODO: If yes, prompt for SAE form
         choices=YES_NO,
         help_text="If yes, complete SAE report",
     )
-    # TODO: ???Are any of these signs/symptoms grade 3 or grade 4?
-    # TODO: ???For each CRF?
 
+    symptoms_gte_g3 = models.CharField(
+        verbose_name="Are any of these symptoms Grade 3 or above?",
+        max_length=15,
+        # TODO: If yes, prompt for SAE
+        choices=YES_NO_NA,
+    )
+
+    # Diagnoses CRF (p3)
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
         # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
         help_text="If yes, complete SAE report where appropriate",
     )
+
     gi_side_effects_details = models.TextField(
         verbose_name="If yes, please give details",
         null=True,
@@ -163,7 +211,7 @@ class ClinicalAssessment(
     )
 
     # TODO: ???If yes, date of diagnosis?
-    # TODO: Consider handling one date per diagnosis
+    # TODO: Request to handle one date per diagnosis
 
     # Significant Diagnoses CRF (p3)
     significant_new_diagnoses = models.ManyToManyField(
@@ -209,7 +257,6 @@ class ClinicalAssessment(
         choices=YES_NO_NA,
     )
 
-    # TODO: rename attribute appropriately
     new_art_regimen_start_date = models.DateField(
         # TODO: ???Is this:
         #  Start date of most recent ART regimen?
@@ -218,7 +265,7 @@ class ClinicalAssessment(
         verbose_name="Start date of this ART regimen?"
     )
 
-    # TODO: merge with existing (inte, meta) find-as-you-type list
+    # TODO: merge with/use existing (inte, meta) find-as-you-type list
     art_regimen_rx = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,
@@ -230,14 +277,14 @@ class ClinicalAssessment(
 
     arvs_stopped_this_episode = models.CharField(
         verbose_name="ARVs stopped this clinical episode?",
-        # TODO NA?
+        # TODO: YES_NO_NA?
         choices=YES_NO,
     )
 
     # Patient Treatment CRF (p4)
     lp_completed = models.CharField(
         verbose_name="LP completed?",
-        # TODO If yes, prompt for lab results
+        # TODO: If yes, prompt for lab results
         choices=YES_NO,
         help_text="If yes, complete laboratory results",
     )
@@ -263,7 +310,6 @@ class ClinicalAssessment(
         TbTreatments,
         verbose_name="TB treatment given?",
         null=True,
-        blank=True,
     )
 
     steroids_administered = models.CharField(
@@ -319,7 +365,8 @@ class ClinicalAssessment(
     )
     medicines_rx_d14_other = edc_models.OtherCharField()
 
-    # Ask on every clinical assessment
+    # Clinical Notes CRF (p5)
+    # TODO: Ask on every visit
     comments = models.TextField(
         verbose_name="Comments on Clinical care/Assessment/Plan:"
     )

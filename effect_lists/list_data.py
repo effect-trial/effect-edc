@@ -63,6 +63,26 @@ list_data = {
         ("antimalarials", "Antimalarials"),
         (OTHER, "Other drug/intervention, please specify below ..."),
     ],
+    "effect_lists.focalneurologicdeficits": [
+        ("CN_VI_palsy_left", "Cranial Nerve VI palsy (left)"),
+        ("CN_VI_palsy_right", "Cranial Nerve VI palsy (right)"),
+        ("CN_VII_palsy_left", "Cranial Nerve VII palsy (left)"),
+        ("CN_VII_palsy_right", "Cranial Nerve VII palsy (right)"),
+        (
+            "CN_palsy_left_other",
+            "Other cranial nerve palsy (left), please specify below ...",
+        ),
+        (
+            "CN_palsy_right_other",
+            "Other cranial nerve palsy (right), please specify below ...",
+        ),
+        ("hemiplegia_left", "Hemiplegia (left)"),
+        ("hemiplegia_right", "Hemiplegia (right)"),
+        ("focal_seizures_left", "Focal seizures (left)"),
+        ("focal_seizures_right", "Focal seizures (right)"),
+        ("visual_field_disturbance", "Visual field disturbance"),
+        (OTHER, "Other focal neurologic deficit, please specify below ..."),
+    ],
     "effect_lists.significantnewdiagnoses": [
         ("bacteraemia", "Bacteraemia"),
         ("bacterial_pneumonia", "Bacterial pneumonia"),
@@ -81,29 +101,6 @@ list_data = {
             "fluconazole_other",
             "Fluconazole (other dose), please specify dose and reason below...",
         ),
-    ],
-    # TODO: ???Refactor to focalneurologicdeficits (remove meningism, papilloedema)?
-    "effect_lists.neurologicalconditions": [
-        ("meningism", "Meningism"),
-        ("papilloedema", "Papilloedema"),
-        ("CN_VI_palsy_left", "Cranial Nerve VI palsy (left)"),
-        ("CN_VI_palsy_right", "Cranial Nerve VI palsy (right)"),
-        ("CN_VII_palsy_left", "Cranial Nerve VII palsy (left)"),
-        ("CN_VII_palsy_right", "Cranial Nerve VII palsy (right)"),
-        (
-            "CN_palsy_left_other",
-            "Other cranial nerve palsy (left), please specify below ...",
-        ),
-        (
-            "CN_palsy_right_other",
-            "Other cranial nerve palsy (right), please specify below ...",
-        ),
-        ("hemiplegia_left", "Hemiplegia (left)"),
-        ("hemiplegia_right", "Hemiplegia (right)"),
-        ("focal_seizures_left", "Focal seizures (left)"),
-        ("focal_seizures_right", "Focal seizures (right)"),
-        ("visual_field_disturbance", "Visual field disturbance"),
-        (OTHER, "Other neurological, please specify below ..."),
     ],
     "effect_lists.offstudyreasons": [
         ("completed_followup", "Patient completed 12 months of follow-up"),
