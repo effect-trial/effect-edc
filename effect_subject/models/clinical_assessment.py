@@ -64,16 +64,30 @@ class ClinicalAssessment(
 
     # Current Signs/Symptoms - Neurological Questions CRF (p2)
     neurological_symptoms = models.ManyToManyField(
-        # TODO - insert list/options for focal_neurologic_deficits?
+        # TODO ???Split into meningism, papilloedema and focal_neurologic_deficits fields?
         NeurologicalConditions,
         related_name="neurological_conditions",
         verbose_name="Does patient have any of the following neurological conditions?",
         blank=True,
     )
 
-    focal_neurological_deficit_other = edc_models.OtherCharField()
+    cn_palsy_left_other = edc_models.OtherCharField(
+        verbose_name="If other cranial nerve palsy (left), please specify ..."
+    )
 
-    cranial_nerve_palsy_other = edc_models.OtherCharField()
+    cn_palsy_right_other = edc_models.OtherCharField(
+        verbose_name="If other cranial nerve palsy (right), please specify ..."
+    )
+
+    neurological_symptoms_other = edc_models.OtherCharField(
+        verbose_name="If other neurological symptoms, please specify ..."
+    )
+
+    visual_field_loss = models.TextField(
+        # TODO: ???Link to visual_field_disturbance neurological_symptoms field?
+        verbose_name="If visual field loss, please provide details ...",
+        null=True,
+    )
 
     # Current Signs/Symptoms - Mental Status CRF (p2)
     recent_seizure = models.CharField(
