@@ -31,7 +31,7 @@ class ClinicalAssessment(
     VitalsFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidModel
 ):
 
-    # TODO: Visit (e.g. d1, d3, ..., m4, m6, unscheduled) - is already stored, but do we need to display it?
+    # TODO: Schedule for d1 and d14
 
     # TODO: ???Rename, and move to subject visit
     info_source = models.CharField(
@@ -156,23 +156,27 @@ class ClinicalAssessment(
     )
 
     # Current Signs/Symptoms - Vital Signs CRF (p2)
-    # TODO: Implement Temperature field
-    # TODO: ???Use model_mixin, or something from core edc(-vitals)?
+    # TODO: ???Use vitals_fields_model_mixin, or something from core edc(-vitals)?
+    # TODO: ???Move TemperatureField to core edc(-vitals)?
+    # TODO: ???Implement RespiratoryRateField and HeartRateField?
 
     # Current Signs/Symptoms - Other CRF (p2)
     # TODO: ???If splitting Signs/Symptoms to separate CRFs,
-    #  does this need to be repeated for each CRF?
+    #  does patient_admitted need to be repeated for each CRF?
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to these symptoms?",
         # TODO: If yes, prompt for SAE form
         choices=YES_NO,
         help_text="If yes, complete SAE report",
     )
+    # TODO: ???Are any of these signs/symptoms grade 3 or grade 4?
+    # TODO: ???For each CRF?
+
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
         # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
-        help_text="If yes, complete SAE report (where appropriate???)",
+        help_text="If yes, complete SAE report where appropriate",
     )
     gi_side_effects_details = models.TextField(
         verbose_name="If yes, please give details",
@@ -242,7 +246,7 @@ class ClinicalAssessment(
         verbose_name="Start date of this ART regimen?"
     )
 
-    # TODO: switch to existing edc master (find-as-you-type) list
+    # TODO: merge with existing (inte, meta) find-as-you-type list
     art_regimen_rx = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,

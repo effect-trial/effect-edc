@@ -4,6 +4,7 @@ from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField
 
 from ..choices import MEASURED_EST_CHOICES
+from ..fields.temperature import TemperatureField
 
 
 class VitalsFieldsModelMixin(SimpleBloodPressureModelMixin, models.Model):
@@ -28,13 +29,7 @@ class VitalsFieldsModelMixin(SimpleBloodPressureModelMixin, models.Model):
         null=True,
     )
 
-    temperature = models.DecimalField(
-        verbose_name="Temperature:",
-        validators=[MinValueValidator(30), MaxValueValidator(45)],
-        decimal_places=1,
-        max_digits=3,
-        help_text="in degrees Celcius",
-    )
+    temperature = TemperatureField()
 
     class Meta:
         abstract = True
