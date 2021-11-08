@@ -266,7 +266,6 @@ class ClinicalAssessment(
         verbose_name="Start date of this ART regimen?"
     )
 
-    # TODO: merge with/use existing (inte, meta) find-as-you-type list
     art_regimen_rx = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,

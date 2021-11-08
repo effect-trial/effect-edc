@@ -42,15 +42,41 @@ list_data = {
         (OTHER, "Other  please specify below ..."),
     ],
     "effect_lists.arvregimens": [
-        ("TDF_FTC_3TC", "TDF + FTC/3TC"),
-        ("AZT_FTC_3TC", "AZT + FTC/3TC"),
-        ("EFV", "EFV"),
-        ("NVP", "NVP"),
-        ("DTG", "DTG"),
-        ("ATZ_r", "ATZ/r"),
-        ("DRV_r", "DRV/r"),
-        ("abacavir", "Abacavir"),
-        ("lopinavir_r ", "Lopinavir/r"),
+        ("abacavir", "Abacavir"),  # TODO: Remove?
+        ("ABC_3TC/FTC", "ABC + 3TC/FTC"),
+        ("ABC_3TC_ATV_r", "ABC + 3TC + ATV/r"),
+        ("ABC_3TC_DTG", "ABC + 3TC + DTG"),
+        ("ABC_3TC_EFV", "ABC + 3TC + EFV"),
+        ("ABC_3TC_LPV_r", "ABC + 3TC + LPV/r"),
+        ("ATV_r", "ATV/r"),  # TODO: Remove?
+        ("ATZ_r", "ATZ/r"),  # TODO: Remove?
+        ("AZT_3TC_ATV_r", "AZT + 3TC + ATV/r"),
+        ("AZT_3TC_DTG", "AZT + 3TC + DTG"),
+        ("AZT_3TC_EFV", "AZT + 3TC + EFV"),
+        ("AZT_3TC_LPV_r", "AZT + 3TC + LPV/r"),
+        ("AZT_3TC_NVP", "AZT + 3TC + NVP"),
+        ("AZT_FTC/3TC", "AZT + FTC/3TC"),
+        ("D4T_3TC_NVP", "D4T + 3TC + NVP"),
+        ("DRV_r", "DRV/r"),  # TODO: Remove?
+        ("DTG", "DTG"),  # TODO: Remove?
+        ("DTG_ABC/3TC_ATV_r", "DTG + (ABC/3TC) + ATV/r"),
+        ("EFV", "EFV"),  # TODO: Remove?
+        ("lopinavir_r ", "Lopinavir/r"),  # TODO: Remove?
+        ("NVP", "NVP"),  # TODO: Remove?
+        ("TDF_3TC_ATV_r", "TDF + 3TC + ATV/r"),
+        ("TDF_3TC_DTG", "TDF + 3TC + DTG"),
+        ("TDF_3TC_EFV", "TDF + 3TC + EFV"),
+        ("TDF_3TC_LPV_r", "TDF + 3TC + LPV/r"),
+        ("TDF_3TC_NVP", "TDF + 3TC + NVP"),
+        ("TDF_FTC/3TC", "TDF + FTC/3TC"),
+        ("TDF_FTC_ATV_r", "TDF + FTC + ATV/r"),
+        ("TDF_FTC_DTG", "TDF + FTC + DTG"),
+        ("TDF_FTC_EFV", "TDF + FTC + EFV"),
+        ("TDF_FTC_LPV_r", "TDF + FTC + LPV/r"),
+        ("TDF_FTC_NVP", "TDF + FTC + NVP"),
+        ("ZDV_3TC_EFV", "ZDV + 3TC + EFV"),
+        ("ZDV_3TC_NVP", "ZDV + 3TC + NVP"),
+        ("ZDV_LPV_NVP", "ZDV + LPV + NVP"),
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
