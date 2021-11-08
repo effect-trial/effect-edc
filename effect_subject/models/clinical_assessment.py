@@ -58,7 +58,7 @@ class ClinicalAssessment(
     patient_status = models.CharField(
         verbose_name="Patient status?",
         max_length=15,
-        # TODO: Validate agains visit survival status
+        # TODO: Validate against visit survival status
         # TODO: If dead, trigger SAE -> death form -> off study
         choices=PATIENT_STATUSES,
     )
@@ -87,6 +87,7 @@ class ClinicalAssessment(
     )
 
     headache_duration = models.IntegerField(
+        # TODO: Only valid if headache selected in current_symptoms
         verbose_name="If patient currently has headache, for what duration have they had it for",
         validators=[MinValueValidator(0)],
         null=True,
