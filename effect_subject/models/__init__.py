@@ -1,9 +1,9 @@
 from .arv_treatment import ArvTreatment
 from .blood_results import BloodResultsFbc, BloodResultsLft, BloodResultsRft
 from .chest_xray import ChestXray
-from .clinical_assessment import ClinicalAssessment
 from .clinical_note import ClinicalNote
 from .diagnoses import Diagnoses
+from .followup import Followup
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
 from .neurological import Neurological

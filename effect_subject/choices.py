@@ -52,7 +52,7 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_METHODS = (("telephone", "Telephone"), ("in_person", "In person"))
+ASSESSMENT_TYPES = (("telephone", "Telephone"), ("in_person", "In person"))
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -186,10 +186,10 @@ PRESENT_ABSENT_NOEXAM_NDS = (
 PATIENT_STATUSES = (
     ("alive_well", "Alive and well"),
     ("alive_unwell", "Alive, but unwell"),
-    (DEAD, "Dead"),
+    (DEAD, "Deceased"),
 )
 
-SPOKE_TO_CHOICES = (
+INFO_SOURCES = (
     (PATIENT, "Patient"),
     ("next_of_kin", "Next of kin"),
     (OTHER, "Other"),

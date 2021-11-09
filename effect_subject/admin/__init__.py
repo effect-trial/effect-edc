@@ -8,6 +8,7 @@ from .blood_results import (
 from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
+from .followup_admin import FollowupAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
 from .neurological_admin import NeurologicalAdmin

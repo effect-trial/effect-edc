@@ -3,6 +3,7 @@ from .blood_results import BloodResultsFbcForm, BloodResultsLftForm, BloodResult
 from .chest_xray_form import ChestXrayForm
 from .clinical_note_form import ClinicalNoteForm
 from .diagnoses_form import DiagnosesForm
+from .followup_form import FollowupForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
 from .neurological_form import NeurologicalForm
