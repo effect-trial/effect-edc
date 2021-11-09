@@ -7,7 +7,7 @@ all_sites = {
         SingleSite(
             110,
             "capetown",
-            title="Khayelitsha district hospital and Mitchell’s Plain hospital",
+            title="Khayelitsha and Mitchell’s Plain",
             country="south_africa",
             country_code="sa",
             domain=f"capetown.sa.{fqdn}",
@@ -15,7 +15,7 @@ all_sites = {
         SingleSite(
             120,
             "baragwanath",
-            title="Chris Hani Baragwanath academic hospital, Soweto",
+            title="Chris Hani Baragwanath Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"baragwanath.sa.{fqdn}",
@@ -23,7 +23,7 @@ all_sites = {
         SingleSite(
             130,
             "helen_joseph",
-            title="Helen Joseph hospital, Johannesburg",
+            title="Helen Joseph Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"helen-joseph.sa.{fqdn}",
@@ -31,7 +31,7 @@ all_sites = {
         SingleSite(
             140,
             "klerksdorp",
-            title="Klerksdorp/Tshepong hospital",
+            title="Klerksdorp/Tshepong Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"klerksdorp.sa.{fqdn}",
@@ -39,7 +39,7 @@ all_sites = {
         SingleSite(
             150,
             "king_edward",
-            title="King Edward VIII hospital, Durban",
+            title="King Edward VIII Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"king-edward.sa.{fqdn}",
@@ -47,7 +47,7 @@ all_sites = {
         SingleSite(
             160,
             "edendale",
-            title="Edendale hospital, Pietermaritzburg",
+            title="Edendale Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"edendale.sa.{fqdn}",
@@ -55,7 +55,7 @@ all_sites = {
         SingleSite(
             170,
             "livingstone",
-            title="Livingstone hospital, Port Elizabeth",
+            title="Livingstone Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"livingstone.sa.{fqdn}",
@@ -63,7 +63,7 @@ all_sites = {
         SingleSite(
             180,
             "dora_nginza",
-            title="Dora Nginza hospital, Port Elizabeth",
+            title="Dora Nginza Hospital",
             country="south_africa",
             country_code="sa",
             domain=f"dora-nginza.sa.{fqdn}",

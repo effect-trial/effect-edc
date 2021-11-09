@@ -21,6 +21,7 @@ for app_config in django_apps.get_app_configs():
         "effect_prn",
         "effect_subject",
         "effect_consent",
+        "effect_screening",
     ]:
         for model_cls in app_config.get_models():
             for prefix in ["add", "change", "view", "delete"]:
