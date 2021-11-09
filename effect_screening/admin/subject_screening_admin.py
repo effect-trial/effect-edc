@@ -29,27 +29,36 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     )
 
     fieldsets = (
-        (
-            "None",
+        [
+            None,
             {
-                "fields": [
+                "fields": (
                     "screening_consent",
-                    "selection_method",
                     "report_datetime",
-                    "hospital_identifier",
-                    "initials",
-                    "gender",
-                    "age_in_years",
-                    "ethnicity",
-                    "hiv_pos",
-                    "art_six_months",
-                    "on_rx_stable",
-                    "lives_nearby",
-                    "staying_nearby_6",
-                    "pregnant",
-                ]
+                ),
             },
-        ),
+        ],
+        ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
+        # [
+        #     "Criteria",
+        #     {
+        #         "fields": (
+        #             "qualifying_condition",
+        #             "lives_nearby",
+        #             "requires_acute_care",
+        #         ),
+        #     },
+        # ],
+        [
+            "Additional Comments",
+            {
+                "fields": (
+                    "unsuitable_for_study",
+                    "reasons_unsuitable",
+                    "unsuitable_agreed",
+                ),
+            },
+        ],
         audit_fieldset_tuple,
     )
 
@@ -74,7 +83,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     search_fields = (
         "screening_identifier",
         "subject_identifier",
-        "hospital_identifier",
+        # "hospital_identifier",
         "initials",
         "reasons_ineligible",
     )
@@ -83,11 +92,6 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     radio_fields = {
         "gender": admin.VERTICAL,
-        "hiv_pos": admin.VERTICAL,
-        "pregnant": admin.VERTICAL,
-        "screening_consent": admin.VERTICAL,
-        "selection_method": admin.VERTICAL,
-        "severe_htn": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,
         "unsuitable_for_study": admin.VERTICAL,
     }
