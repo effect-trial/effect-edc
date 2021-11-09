@@ -33,7 +33,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             None,
             {
                 "fields": (
-                    "screening_consent",
+                    # "screening_consent",
                     "report_datetime",
                 ),
             },
