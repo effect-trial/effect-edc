@@ -29,6 +29,8 @@ env = environ.Env(
     DJANGO_USE_TZ=(bool, True),
     DEFENDER_ENABLED=(bool, False),
     EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=(bool, True),
+    EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK=(bool, True),
+    SAUCE_ENABLED=(bool, False),
     SENTRY_ENABLED=(bool, False),
     SIMPLE_HISTORY_PERMISSIONS_ENABLED=(bool, False),
     SIMPLE_HISTORY_REVERT_DISABLED=(bool, False),
@@ -60,6 +62,10 @@ TEST_DIR = os.path.join(BASE_DIR, APP_NAME, "tests")
 
 ALLOWED_HOSTS = ["*"]  # env.list('DJANGO_ALLOWED_HOSTS')
 
+ENFORCE_RELATED_ACTION_ITEM_EXISTS = False
+
+DEFAULT_APPOINTMENT_TYPE = "hospital"
+
 # LOGIN_REDIRECT_URL = env.str("DJANGO_LOGIN_REDIRECT_URL")
 LOGIN_URL = "/accounts/login/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
@@ -89,9 +95,7 @@ INSTALLED_APPS = [
     "storages",
     "edc_action_item.apps.AppConfig",
     "edc_appointment.apps.AppConfig",
-    "edc_adherence.apps.AppConfig",
     "edc_adverse_event.apps.AppConfig",
-    "edc_auth.apps.AppConfig",
     "edc_consent.apps.AppConfig",
     "edc_crf.apps.AppConfig",
     "edc_reportable.apps.AppConfig",
@@ -111,6 +115,7 @@ INSTALLED_APPS = [
     "edc_identifier.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata.apps.AppConfig",
+    "edc_model.apps.AppConfig",
     "edc_model_fields.apps.AppConfig",
     "edc_model_admin.apps.AppConfig",
     "edc_navbar.apps.AppConfig",
@@ -123,22 +128,25 @@ INSTALLED_APPS = [
     "edc_prn.apps.AppConfig",
     "edc_randomization.apps.AppConfig",
     "edc_reference.apps.AppConfig",
-    "edc_refusal.apps.AppConfig",
     "edc_registration.apps.AppConfig",
     "edc_reports.apps.AppConfig",
     "edc_review_dashboard.apps.AppConfig",
+    "edc_screening.apps.AppConfig",
     "edc_sites.apps.AppConfig",
     "edc_subject_dashboard.apps.AppConfig",
     "edc_timepoint.apps.AppConfig",
     "edc_unblinding.apps.AppConfig",
     "edc_form_describer.apps.AppConfig",
+    "edc_adherence.apps.AppConfig",
+    "edc_dx.apps.AppConfig",
+    "edc_refusal.apps.AppConfig",
 ]
-
 EFFECT_APPS = [
     "effect_consent.apps.AppConfig",
     "effect_lists.apps.AppConfig",
     "effect_dashboard.apps.AppConfig",
     "effect_labs.apps.AppConfig",
+    # "effect_metadata_rules.apps.AppConfig",
     "effect_subject.apps.AppConfig",
     "effect_visit_schedule.apps.AppConfig",
     "effect_ae.apps.AppConfig",
@@ -150,6 +158,7 @@ EFFECT_APPS = [
     "effect_edc.apps.AppConfig",
 ]
 INSTALLED_APPS.extend(EFFECT_APPS)
+INSTALLED_APPS.append("edc_auth.apps.AppConfig")
 
 if not DEFENDER_ENABLED:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("defender"))
@@ -312,6 +321,14 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # edc-pdutils
 EXPORT_FILENAME_TIMESTAMP_FORMAT = "%Y%m%d"
 
+# django_revision
+with open(
+    os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSION")
+) as f:
+    REVISION = f.read().strip()
+
+# EDC_AUTH_SKIP_AUTH_UPDATER = True
+
 # enforce https if DEBUG=False!
 # Note: will cause "CSRF verification failed. Request aborted"
 #       if DEBUG=False and https not configured.
@@ -328,8 +345,12 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
 
+# edc_lab and label
+LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or os.path.join(
+    BASE_DIR, "label_templates", "2.25x1.25in"
+)
+CUPS_SERVERS = env.dict("DJANGO_CUPS_SERVERS")
 
-# effect-edc
 LIST_MODEL_APP_LABEL = env.str("EDC_LIST_MODEL_APP_LABEL")
 SUBJECT_APP_LABEL = env.str("EDC_SUBJECT_APP_LABEL")
 SUBJECT_SCREENING_MODEL = env.str("EDC_SUBJECT_SCREENING_MODEL")
@@ -339,6 +360,10 @@ SUBJECT_VISIT_MODEL = env.str("EDC_SUBJECT_VISIT_MODEL")
 SUBJECT_VISIT_MISSED_MODEL = env.str("EDC_SUBJECT_VISIT_MISSED_MODEL")
 SUBJECT_VISIT_MISSED_REASONS_MODEL = env.str("EDC_SUBJECT_VISIT_MISSED_REASONS_MODEL")
 
+EDC_BLOOD_RESULTS_MODEL_APP_LABEL = "effect_subject"
+
+EDC_NAVBAR_DEFAULT = env("EDC_NAVBAR_DEFAULT")
+
 # dashboards
 EDC_BOOTSTRAP = env("DJANGO_EDC_BOOTSTRAP")
 DASHBOARD_URL_NAMES = env.dict("DJANGO_DASHBOARD_URL_NAMES")
@@ -346,65 +371,15 @@ DASHBOARD_BASE_TEMPLATES = env.dict("DJANGO_DASHBOARD_BASE_TEMPLATES")
 LAB_DASHBOARD_BASE_TEMPLATES = env.dict("DJANGO_LAB_DASHBOARD_BASE_TEMPLATES")
 LAB_DASHBOARD_URL_NAMES = env.dict("DJANGO_LAB_DASHBOARD_URL_NAMES")
 
-# edc-action-item
-ENFORCE_RELATED_ACTION_ITEM_EXISTS = False
-
-# edc_adverse_event
-ADVERSE_EVENT_ADMIN_SITE = env.str("EDC_ADVERSE_EVENT_ADMIN_SITE")
-ADVERSE_EVENT_APP_LABEL = env.str("EDC_ADVERSE_EVENT_APP_LABEL")
-
-# edc-appointment
-DEFAULT_APPOINTMENT_TYPE = "hospital"
-EDC_APPOINTMENT_APPT_REASON_CHOICES = (
-    (SCHEDULED_APPT, "Scheduled visit (study)"),
-    (UNSCHEDULED_APPT, "Routine / Unscheduled (non-study)"),
+# edc-diagnosis
+EDC_DX_LABELS = dict(
+    hiv="HIV", dm="Diabetes", htn="Hypertension", chol="High Cholesterol"
 )
-
-
-# edc-blood-results
-EDC_BLOOD_RESULTS_MODEL_APP_LABEL = "effect_subject"
-
-# edc_crf
-CRF_STATUS_DEFAULT = COMPLETE
-
-# edc_data_manager
-DATA_DICTIONARY_APP_LABELS = [
-    "effect_consent",
-    "effect_subject",
-    "effect_prn",
-    "effect_screening",
-    "effect_ae",
-    "edc_appointment",
-]
-
-# edc-export
-EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or os.path.expanduser("~/")
+# edc-label
+EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK = env("EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK")
 
 # edc_facility
 HOLIDAY_FILE = env.str("DJANGO_HOLIDAY_FILE")
-
-# edc_lab and label
-LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or os.path.join(
-    BASE_DIR, "label_templates", "2.25x1.25in"
-)
-CUPS_SERVERS = env.dict("DJANGO_CUPS_SERVERS")
-
-# edc-navbar
-EDC_NAVBAR_DEFAULT = env("EDC_NAVBAR_DEFAULT")
-
-# edc_protocol
-EDC_PROTOCOL = env.str("EDC_PROTOCOL")
-EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
-EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
-EDC_PROTOCOL_PROJECT_NAME = env.str("EDC_PROTOCOL_PROJECT_NAME")
-EDC_PROTOCOL_PROJECT_NAME = "EFFECT"
-EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
-    *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")
-)
-EDC_PROTOCOL_STUDY_CLOSE_DATETIME = get_datetime_from_env(
-    *env.list("EDC_PROTOCOL_STUDY_CLOSE_DATETIME")
-)
-EDC_PROTOCOL_TITLE = env.str("EDC_PROTOCOL_TITLE")
 
 # edc_randomization
 EDC_RANDOMIZATION_LIST_PATH = env.str("EDC_RANDOMIZATION_LIST_PATH")
@@ -432,6 +407,8 @@ DEFENDER_LOCK_OUT_BY_IP_AND_USERNAME = True
 DEFENDER_LOCKOUT_TEMPLATE = "edc_auth/bootstrap3/login.html"
 DEFENDER_LOGIN_FAILURE_LIMIT = 5
 
+# edc_crf
+CRF_STATUS_DEFAULT = COMPLETE
 
 EMAIL_ENABLED = env("DJANGO_EMAIL_ENABLED")
 EMAIL_CONTACTS = env.dict("DJANGO_EMAIL_CONTACTS")
@@ -457,6 +434,8 @@ GIT_DIR = BASE_DIR
 KEY_PATH = env.str("DJANGO_KEY_FOLDER")
 AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
 
+EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or os.path.expanduser("~/")
+
 # django_simple_history
 SIMPLE_HISTORY_PERMISSIONS_ENABLED = env.str("SIMPLE_HISTORY_PERMISSIONS_ENABLED")
 SIMPLE_HISTORY_REVERT_DISABLED = env.str("SIMPLE_HISTORY_REVERT_DISABLED")
@@ -465,6 +444,37 @@ FQDN = env.str("DJANGO_FQDN")  # ???
 INDEX_PAGE = env.str("DJANGO_INDEX_PAGE")
 INDEX_PAGE_LABEL = env.str("DJANGO_INDEX_PAGE_LABEL")
 DJANGO_LOG_FOLDER = env.str("DJANGO_LOG_FOLDER")
+
+# edc_adverse_event
+ADVERSE_EVENT_ADMIN_SITE = env.str("EDC_ADVERSE_EVENT_ADMIN_SITE")
+ADVERSE_EVENT_APP_LABEL = env.str("EDC_ADVERSE_EVENT_APP_LABEL")
+
+# edc_data_manager
+DATA_DICTIONARY_APP_LABELS = [
+    "effect_consent",
+    "effect_subject",
+    "effect_prn",
+    "effect_screening",
+    "effect_ae",
+    "edc_appointment",
+]
+
+# edc_protocol
+EDC_PROTOCOL = env.str("EDC_PROTOCOL")
+EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
+EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
+EDC_PROTOCOL_PROJECT_NAME = env.str("EDC_PROTOCOL_PROJECT_NAME")
+EDC_PROTOCOL_PROJECT_NAME = "EFFECT"
+EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
+    *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")
+)
+EDC_PROTOCOL_STUDY_CLOSE_DATETIME = get_datetime_from_env(
+    *env.list("EDC_PROTOCOL_STUDY_CLOSE_DATETIME")
+)
+EDC_PROTOCOL_TITLE = env.str("EDC_PROTOCOL_TITLE")
+
+
+SARSCOV2_REDIRECT_URL_NAME = "screening_listboard_url"
 
 # static
 if env("AWS_ENABLED"):
@@ -537,6 +547,11 @@ if CELERY_ENABLED:
         #         'edc_data_manager.tasks.*': {'queue': 'normal'},
         #     }
 
+EDC_APPOINTMENT_APPT_REASON_CHOICES = (
+    (SCHEDULED_APPT, "Scheduled visit (study)"),
+    (UNSCHEDULED_APPT, "Routine / Unscheduled (non-study)"),
+)
+
 
 if "test" in sys.argv:
 
@@ -550,3 +565,7 @@ if "test" in sys.argv:
     MIGRATION_MODULES = DisableMigrations()
     PASSWORD_HASHERS = ("django.contrib.auth.hashers.MD5PasswordHasher",)
     DEFAULT_FILE_STORAGE = "inmemorystorage.InMemoryStorage"
+
+    if env("SAUCE_ENABLED"):
+        SAUCE_USERNAME = env.str("SAUCE_USERNAME")
+        SAUCE_ACCESS_KEY = env.str("SAUCE_ACCESS_KEY")

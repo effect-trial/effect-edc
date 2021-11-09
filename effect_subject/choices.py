@@ -1,11 +1,14 @@
 from edc_constants.constants import (
     ABSENT,
+    DEAD,
     MICROSCOPY,
     NO,
     NO_EXAM,
     NORMAL,
     NOT_APPLICABLE,
+    NOT_DONE,
     OTHER,
+    OTHER_PLEASE_SPECIFY_TEXT,
     PRESENT,
     RAPID_TEST,
     YES,
@@ -13,13 +16,20 @@ from edc_constants.constants import (
 from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
-from .constants import APPT, APPT_OTHER, DECREASED, PRESENT_WITH_REINFORCEMENT, REDUCED
+from .constants import (
+    APPT,
+    APPT_OTHER,
+    DECREASED,
+    PATIENT,
+    PRESENT_WITH_REINFORCEMENT,
+    REDUCED,
+)
 
 ACTIVITY_CHOICES = (
     ("working", "Working"),
     ("studying", "Studying"),
     ("caring_for_children", "Caring for children"),
-    (OTHER, "Other, please specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 ANKLE_REFLEX_CHOICES = (
@@ -29,6 +39,21 @@ ANKLE_REFLEX_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+ANTIBIOTIC_CHOICES = (
+    ("amoxicillin", "Amoxicillin"),
+    ("ceftriaxone", "Ceftriaxone"),
+    ("ciprofloxacin", "Ciprofloxacin"),
+    ("doxycycline", "Doxycycline"),
+    ("erythromycin", "Erythromycin (contraindicated with high dose fluconazole)"),
+    ("flucloxacillin", "Flucloxacillin"),
+    (
+        OTHER,
+        "Other (avoid with concomitant high dose fluconazole), please specify below ...",
+    ),
+)
+
+ASSESSMENT_METHODS = (("telephone", "Telephone"), ("in_person", "In person"))
+
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
     ("working", "Working"),
@@ -36,14 +61,48 @@ CHILDCARE_CHOICES = (
     ("caring_for_children", "Caring for children"),
     ("house_maintenance", "House maintenance"),
     ("nothing", "Nothing"),
-    (OTHER, "Other, specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
+
+CM_TX_CHOICES = (
+    ("1w_amb_5fc", "1 week AmB + 5FC"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable (no CM treatment given)"),
 )
 
 DYSLIPIDAEMIA_RX_CHOICES = (
     ("atorvastatin", "Atorvastatin"),
     ("rosuvastatin", "Rosuvastatin"),
-    (OTHER, "Other, specify below ..."),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+ECOG_SCORES = (
+    (
+        "0",
+        "Fully active, able to carry on all pre-disease performance without restriction",
+    ),
+    (
+        "1",
+        "Restricted in physically strenuous activity but "
+        "ambulatory and able to carry out work of a light or sedentary nature, e.g., "
+        "light house work, office work",
+    ),
+    (
+        "2",
+        "Ambulatory and capable of all self-care but unable to carry out "
+        "any work activities; up and about more than 50% of waking hours ",
+    ),
+    (
+        "3",
+        "Capable of only limited self-care; confined to bed or chair more than "
+        "50% of waking hours",
+    ),
+    (
+        "4",
+        "Completely disabled; cannot carry on any self-care; totally confined to bed or chair",
+    ),
+    ("5", "Deceased"),
 )
 
 FOLLOWUP_REASONS = (
@@ -68,6 +127,7 @@ INFO_SOURCE = (
     (OTHER, "Other"),
 )
 
+
 FUNDOSCOPY_CHOICES = (
     ("no_retinopathy", "No retinopathy"),
     ("background_retinopathy", "Background retinopathy"),
@@ -81,6 +141,17 @@ MALARIA_TEST_CHOICES = (
     (RAPID_TEST, "Rapid test"),
     (MICROSCOPY, "Microscopy"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
+
+MODIFIED_RANKIN_SCORE_CHOICES = (
+    ("1", "1"),
+    ("2", "2"),
+    ("3", "3"),
+    ("4", "4"),
+    ("5", "5"),
+    (NOT_DONE, "Not done"),
 )
 
 MONOFILAMENT_CHOICES = (
@@ -112,6 +183,25 @@ PRESENT_ABSENT_NOEXAM_NDS = (
 )
 # 0 = Present   1 = Present with reinforcement   2 = Absent
 
+PATIENT_STATUSES = (
+    ("alive_well", "Alive and well"),
+    ("alive_unwell", "Alive, but unwell"),
+    (DEAD, "Dead"),
+)
+
+SPOKE_TO_CHOICES = (
+    (PATIENT, "Patient"),
+    ("next_of_kin", "Next of kin"),
+    (OTHER, "Other"),
+)
+
+STEROID_CHOICES = (
+    ("oral_prednisolone", "Oral prednisolone"),
+    ("iv_dexamethasone", "IV Dexamethasone"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable (no steroids administered)"),
+)
+
 TRANSPORT_CHOICES = (
     ("bus", "Bus"),
     ("train", "Train"),
@@ -123,7 +213,7 @@ TRANSPORT_CHOICES = (
     ("own_motorbike", "Own motorbike"),
     ("hired_bicycle", "Hired bicycle"),
     ("foot", "Foot"),
-    (OTHER, "Other, specify"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 ULCERATION_CHOICES = (

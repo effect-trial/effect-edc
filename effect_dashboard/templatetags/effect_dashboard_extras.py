@@ -3,6 +3,7 @@ from django import template
 from django.conf import settings
 from edc_constants.constants import NO, TBD, YES
 from edc_dashboard.url_names import url_names
+
 from effect_screening.eligibility import Eligibility
 
 register = template.Library()
@@ -103,6 +104,10 @@ def add_consent_button(context, model_wrapper):
     )
 
 
+@register.inclusion_tag(
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/refusal_button.html",
+    takes_context=True,
+)
 def refusal_button(context, subject_refusal_model_wrapper):
     title = ["Capture subject's primary reason for not joining."]
 

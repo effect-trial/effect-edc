@@ -23,8 +23,6 @@ from edc_auth.auth_objects import (
     CLINICIAN_ROLE,
     CLINICIAN_SUPER_ROLE,
     NURSE_ROLE,
-    PHARMACIST_ROLE,
-    SITE_PHARMACIST_ROLE,
 )
 from edc_auth.site_auths import site_auths
 from edc_data_manager.auth_objects import (
@@ -33,8 +31,10 @@ from edc_data_manager.auth_objects import (
     SITE_DATA_MANAGER_ROLE,
 )
 from edc_export.auth_objects import DATA_EXPORTER_ROLE
+from edc_label.auth_objects import LABELING
 from edc_offstudy.auth_objects import OFFSTUDY
-from edc_randomization.auth_objects import RANDO
+from edc_pharmacy.auth_objects import PHARMACIST_ROLE, SITE_PHARMACIST_ROLE
+from edc_randomization.auth_objects import RANDO_UNBLINDED, RANDO_VIEW
 from edc_screening.auth_objects import SCREENING, SCREENING_VIEW
 from edc_unblinding.auth_objects import UNBLINDING_REQUESTORS
 
@@ -82,6 +82,7 @@ site_auths.update_role(
     AE,
     APPOINTMENT,
     CLINIC,
+    LABELING,
     EFFECT_CLINIC,
     OFFSTUDY,
     SCREENING,
@@ -110,9 +111,6 @@ site_auths.update_role(
     name=SITE_DATA_MANAGER_ROLE,
 )
 
-site_auths.update_role(RANDO, name=PHARMACIST_ROLE)
-
-site_auths.update_role(RANDO, name=SITE_PHARMACIST_ROLE)
 
 # data export
 site_auths.update_role(
@@ -121,3 +119,6 @@ site_auths.update_role(
     DATA_MANAGER_EXPORT,
     name=DATA_EXPORTER_ROLE,
 )
+
+site_auths.update_role(RANDO_UNBLINDED, name=PHARMACIST_ROLE)
+site_auths.update_role(RANDO_VIEW, name=SITE_PHARMACIST_ROLE)

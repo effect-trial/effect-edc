@@ -16,7 +16,8 @@ base_dir = dirname(abspath(__file__))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
-    EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=False,
+    EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=True,
+    EDC_RANDOMIZATION_ASSIGNMENT_MAP={"control": 1, "intervention": 2},
     ROOT_URLCONF="effect_edc.urls",
     EDC_AUTH_CODENAMES_WARN_ONLY=True,
     EDC_DX_REVIEW_LIST_MODEL_APP_LABEL="edc_dx_review",
@@ -137,7 +138,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_list_data.apps.AppConfig",
         "edc_review_dashboard.apps.AppConfig",
         "edc_sites.apps.AppConfig",
-        "sarscov2.apps.AppConfig",
         "edc_dx_review.apps.AppConfig",
         "edc_dx.apps.AppConfig",
         "edc_unblinding.apps.AppConfig",

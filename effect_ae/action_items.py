@@ -22,7 +22,6 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
-from meta_subject.constants import FOLLOWUP_EXAMINATION_ACTION
 
 
 class AeFollowupAction(ActionWithNotification):
@@ -87,7 +86,6 @@ class AeInitialAction(ActionWithNotification):
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
         BLOOD_RESULTS_FBC_ACTION,
-        FOLLOWUP_EXAMINATION_ACTION,
     ]
     reference_model = "effect_ae.aeinitial"
     show_link_to_changelist = True

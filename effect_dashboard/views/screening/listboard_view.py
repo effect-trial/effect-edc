@@ -27,7 +27,7 @@ class ListboardView(
     listboard_panel_style = "info"
     listboard_fa_icon = "fa-user-plus"
     listboard_view_filters = ListboardViewFilters()
-    listboard_model = "effect_screening.screeningpartone"
+    listboard_model = "effect_screening.subjectscreening"
     listboard_view_permission_codename = "edc_dashboard.view_screening_listboard"
 
     alternate_search_attr = "screening_identifier"
