@@ -154,7 +154,7 @@ list_data = {
         ("fever", "Fever"),
         ("hearing_loss", "Hearing loss"),
         ("drowsiness", "Drowsiness"),
-        ("focal_weakness", "focal_weakness"),
+        ("focal_weakness", "Focal weakness"),
         ("nausea", "Nausea"),
         ("vomiting", "Vomiting"),
         ("weight_loss", "Weight loss"),
