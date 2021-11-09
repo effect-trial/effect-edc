@@ -26,7 +26,7 @@ all_sites = {
             title="Helen Joseph hospital, Johannesburg",
             country="south_africa",
             country_code="sa",
-            domain=f"helen_joseph.sa.{fqdn}",
+            domain=f"helen-joseph.sa.{fqdn}",
         ),
         SingleSite(
             140,
@@ -42,7 +42,7 @@ all_sites = {
             title="King Edward VIII hospital, Durban",
             country="south_africa",
             country_code="sa",
-            domain=f"king_edward.sa.{fqdn}",
+            domain=f"king-edward.sa.{fqdn}",
         ),
         SingleSite(
             160,
@@ -66,7 +66,7 @@ all_sites = {
             title="Dora Nginza hospital, Port Elizabeth",
             country="south_africa",
             country_code="sa",
-            domain=f"dora_nginza.sa.{fqdn}",
+            domain=f"dora-nginza.sa.{fqdn}",
         ),
     ),
     "tanzania": (
