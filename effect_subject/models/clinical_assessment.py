@@ -1,26 +1,8 @@
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO_NA
 from edc_model import models as edc_models
 
-from effect_lists.models import (
-    Antibiotics,
-    ArvRegimens,
-    Drugs,
-    FocalNeurologicDeficits,
-    TbTreatments,
-    XRayResults,
-)
-
-from ..choices import (
-    ASSESSMENT_METHODS,
-    CM_TX_CHOICES,
-    ECOG_SCORES,
-    MODIFIED_RANKIN_SCORE_CHOICES,
-    PATIENT_STATUSES,
-    SPOKE_TO_CHOICES,
-    STEROID_CHOICES,
-)
+from ..choices import ASSESSMENT_METHODS, PATIENT_STATUSES, SPOKE_TO_CHOICES
 from ..model_mixins import CrfModelMixin
 
 
