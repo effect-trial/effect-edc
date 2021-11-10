@@ -5,6 +5,7 @@ EFFECT_CLINIC = "EFFECT_CLINIC"
 EFFECT_CLINIC_SUPER = "EFFECT_CLINIC_SUPER"
 EFFECT_EXPORT = "EFFECT_EXPORT"
 
+screening_codenames = []
 clinic_codenames = []
 for app_config in django_apps.get_app_configs():
     if app_config.name in [
@@ -29,6 +30,17 @@ for app_config in django_apps.get_app_configs():
                     f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
                 )
 clinic_codenames.sort()
+
+for app_config in django_apps.get_app_configs():
+    if app_config.name in [
+        "effect_screening",
+    ]:
+        for model_cls in app_config.get_models():
+            for prefix in ["add", "change", "view", "delete"]:
+                screening_codenames.append(
+                    f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
+                )
+screening_codenames.sort()
 
 
 ae_local_reviewer = [

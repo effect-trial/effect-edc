@@ -21,9 +21,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 }
             )
 
-        self.applicable_if(YES, field="hiv_pos", field_applicable="art_six_months")
-
-        self.applicable_if(YES, field="hiv_pos", field_applicable="on_rx_stable")
+        # TODO: Jonathan add additional validation
 
         self.not_applicable_if(
             MALE, field="gender", field_applicable="pregnant", inverse=False

@@ -50,17 +50,11 @@ class Eligibility:
                 self.obj.reasons_ineligible = "|".join(reasons_ineligible)
             else:
                 self.obj.reasons_ineligible = None
-        self.obj.eligibility_datetime = (
-            self.obj.part_three_report_datetime or get_utcnow()
-        )
+        self.obj.eligibility_datetime = self.obj.report_datetime or get_utcnow()
 
     def get_reasons_if_ineligible(self, reasons_ineligible):
-        if self.obj.reasons_ineligible_part_one:
-            reasons_ineligible.append(self.obj.reasons_ineligible_part_one)
-        if self.obj.reasons_ineligible_part_two:
-            reasons_ineligible.append(self.obj.reasons_ineligible_part_two)
-        if self.obj.reasons_ineligible_part_three:
-            reasons_ineligible.append(self.obj.reasons_ineligible_part_three)
+        if self.obj.reasons_ineligible:
+            reasons_ineligible.append(self.obj.reasons_ineligible)
         return reasons_ineligible
 
     @property
@@ -70,34 +64,8 @@ class Eligibility:
 
     @property
     def eligible(self):
-        """Returns YES, NO or TBD.
-
-        Can only be final if all three parts have been assessed.
-        """
-        eligible = NO
-        p1_value = self.obj.eligible_part_one
-        p2_value = self.obj.eligible_part_two
-        p3_value = self.obj.eligible_part_three
-        self.check_eligibility_values_or_raise(p1_value, p2_value, p3_value)
-        for part in [p1_value, p2_value, p3_value]:
-            if part not in self.eligibility_values:
-                raise SubjectScreeningEligibilityError(
-                    "Invalid value for `eligible`. "
-                    f"Expected one of [{self.eligibility_values}]. Got `{part}`."
-                )
-        if p1_value == TBD or p2_value == TBD or p3_value == TBD:
-            eligible = TBD
-        if p1_value == YES and p2_value == YES and p3_value == YES:
-            eligible = YES
-        return eligible
-
-    def check_eligibility_values_or_raise(self, p1_value, p2_value, p3_value):
-        for part in [p1_value, p2_value, p3_value]:
-            if part not in self.eligibility_values:
-                raise SubjectScreeningEligibilityError(
-                    "Invalid value for `eligible`. "
-                    f"Expected one of [{self.eligibility_values}]. Got `{part}`."
-                )
+        """Returns YES, NO or TBD."""
+        return self.obj.eligible
 
     @property
     def eligibility_display_label(self):
@@ -105,11 +73,7 @@ class Eligibility:
 
     @property
     def eligibility_status(self):
-        status_str = (
-            f"P1: {self.obj.eligible_part_one.upper()}<BR>"
-            f"P2: {self.obj.eligible_part_two.upper()}<BR>"
-            f"P3: {self.obj.eligible_part_three.upper()}<BR>"
-        )
+        status_str = self.obj.eligible.upper()
         display_label = self.eligibility_display_label
 
         if "PENDING" in display_label:

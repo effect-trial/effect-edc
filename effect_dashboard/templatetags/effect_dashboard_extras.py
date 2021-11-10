@@ -28,7 +28,6 @@ def screening_button(context, model_wrapper):
         continue_p2 = NO
 
     p2 = model_wrapper.object.eligible_part_two
-    p3 = model_wrapper.object.eligible_part_three
     p1_enabled = perms.user.has_perms(
         "effect_screening.view_screeningpartone"
     ) or perms.user.has_perm("effect_screening.change_screeningpartone")
@@ -36,27 +35,16 @@ def screening_button(context, model_wrapper):
         perms.user.has_perm("effect_screening.view_screeningparttwo")
         or perms.user.has_perm("effect_screening.change_screeningparttwo")
     ) and p1 in [YES, NO]
-    p3_enabled = (
-        (
-            perms.user.has_perm("effect_screening.view_screeningparttwo")
-            or perms.user.has_perm("effect_screening.change_screeningparttwo")
-        )
-        and p1 == YES
-        and p2 == YES
-    )
     return dict(
         continue_p2=continue_p2,
         perms=context["perms"],
         screening_identifier=model_wrapper.object.screening_identifier,
         href_p1=model_wrapper.href_p1,
         href_p2=model_wrapper.href_p2,
-        href_p3=model_wrapper.href_p3,
         p1=p1,
         p2=p2,
-        p3=p3,
         p1_enabled=p1_enabled,
         p2_enabled=None if continue_p2 == NO else p2_enabled,
-        p3_enabled=p3_enabled,
         title=title,
         YES=YES,
         NO=NO,

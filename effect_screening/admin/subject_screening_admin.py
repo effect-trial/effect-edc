@@ -33,22 +33,37 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             None,
             {
                 "fields": (
-                    # "screening_consent",
                     "report_datetime",
+                    "screening_consent",
+                    "willing_to_participate",
+                    "capable_to_consent",
                 ),
             },
         ],
         ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
-        # [
-        #     "Criteria",
-        #     {
-        #         "fields": (
-        #             "qualifying_condition",
-        #             "lives_nearby",
-        #             "requires_acute_care",
-        #         ),
-        #     },
-        # ],
+        [
+            "Criteria",
+            {
+                "fields": (
+                    "hiv_pos",
+                    "cd4_value",
+                    "cd4_date",
+                    "pregnant_or_bf",
+                    "crag_value",
+                    "lp_status",
+                    "csf_crag_value",
+                    "prior_cm_epidose",
+                    "prior_cm_epidose_date",
+                    "reaction_to_study_drugs",
+                    "on_fluconazole",
+                    "contraindicated_meds",
+                    "meningitis_symptoms",
+                    "jaundice",
+                    "csf_value",
+                    "csf_date",
+                ),
+            },
+        ],
         [
             "Additional Comments",
             {
@@ -61,6 +76,27 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         ],
         audit_fieldset_tuple,
     )
+
+    radio_fields = {
+        "screening_consent": admin.VERTICAL,
+        "willing_to_participate": admin.VERTICAL,
+        "capable_to_consent": admin.VERTICAL,
+        "gender": admin.VERTICAL,
+        "hiv_pos": admin.VERTICAL,
+        "pregnant_or_bf": admin.VERTICAL,
+        "crag_value": admin.VERTICAL,
+        "csf_crag_value": admin.VERTICAL,
+        "csf_value": admin.VERTICAL,
+        "lp_status": admin.VERTICAL,
+        "prior_cm_epidose": admin.VERTICAL,
+        "reaction_to_study_drugs": admin.VERTICAL,
+        "on_fluconazole": admin.VERTICAL,
+        "contraindicated_meds": admin.VERTICAL,
+        "meningitis_symptoms": admin.VERTICAL,
+        "jaundice": admin.VERTICAL,
+        "unsuitable_agreed": admin.VERTICAL,
+        "unsuitable_for_study": admin.VERTICAL,
+    }
 
     list_display = (
         "screening_identifier",
@@ -83,18 +119,11 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     search_fields = (
         "screening_identifier",
         "subject_identifier",
-        # "hospital_identifier",
         "initials",
         "reasons_ineligible",
     )
 
     # readonly_fields = ()
-
-    radio_fields = {
-        "gender": admin.VERTICAL,
-        "unsuitable_agreed": admin.VERTICAL,
-        "unsuitable_for_study": admin.VERTICAL,
-    }
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}

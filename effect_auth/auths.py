@@ -35,7 +35,7 @@ from edc_label.auth_objects import LABELING
 from edc_offstudy.auth_objects import OFFSTUDY
 from edc_pharmacy.auth_objects import PHARMACIST_ROLE, SITE_PHARMACIST_ROLE
 from edc_randomization.auth_objects import RANDO_UNBLINDED, RANDO_VIEW
-from edc_screening.auth_objects import SCREENING, SCREENING_VIEW
+from edc_screening.auth_objects import SCREENING, SCREENING_SUPER, SCREENING_VIEW
 from edc_unblinding.auth_objects import UNBLINDING_REQUESTORS
 
 from .auth_objects import (
@@ -43,9 +43,15 @@ from .auth_objects import (
     EFFECT_CLINIC,
     EFFECT_CLINIC_SUPER,
     clinic_codenames,
+    screening_codenames,
 )
 
-# meta groups
+# screening
+site_auths.update_group(*screening_codenames, name=SCREENING_SUPER)
+site_auths.update_group(*screening_codenames, name=SCREENING_VIEW, view_only=True)
+site_auths.update_group(*screening_codenames, name=SCREENING, no_delete=True)
+
+# effect groups
 site_auths.add_group(*clinic_codenames, name=EFFECT_AUDITOR, view_only=True)
 site_auths.add_group(*clinic_codenames, name=EFFECT_CLINIC, no_delete=True)
 site_auths.add_group(*clinic_codenames, name=EFFECT_CLINIC_SUPER)
@@ -56,6 +62,7 @@ site_auths.update_role(
     AE,
     APPOINTMENT,
     EFFECT_CLINIC,
+    SCREENING,
     UNBLINDING_REQUESTORS,
     name=CLINICIAN_ROLE,
 )
@@ -65,6 +72,7 @@ site_auths.update_role(
     AE_SUPER,
     APPOINTMENT,
     EFFECT_CLINIC_SUPER,
+    SCREENING_SUPER,
     UNBLINDING_REQUESTORS,
     name=CLINICIAN_SUPER_ROLE,
 )
@@ -74,6 +82,7 @@ site_auths.update_role(
     AE,
     APPOINTMENT,
     EFFECT_CLINIC,
+    SCREENING,
     name=NURSE_ROLE,
 )
 
@@ -85,7 +94,7 @@ site_auths.update_role(
     LABELING,
     EFFECT_CLINIC,
     OFFSTUDY,
-    SCREENING,
+    SCREENING_SUPER,
     TMG,
     name=DATA_MANAGER_ROLE,
 )
@@ -97,6 +106,7 @@ site_auths.update_role(
     AE_REVIEW,
     APPOINTMENT_VIEW,
     EFFECT_AUDITOR,
+    SCREENING_VIEW,
     TMG_REVIEW,
     name=AUDITOR_ROLE,
 )
