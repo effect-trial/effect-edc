@@ -33,7 +33,6 @@ class VitalSignsAdmin(CrfModelAdmin):
 
     radio_fields = {
         "weight_measured_or_est": admin.VERTICAL,
-        "weight": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
     }

@@ -17,3 +17,4 @@ from .study_treatment_admin import StudyTreatmentAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .subject_visit_missed_admin import SubjectVisitMissedAdmin
+from .vital_signs_admin import VitalSignsAdmin

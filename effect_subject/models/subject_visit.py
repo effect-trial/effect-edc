@@ -1,6 +1,6 @@
 from django.db import models
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model import models as edc_models
