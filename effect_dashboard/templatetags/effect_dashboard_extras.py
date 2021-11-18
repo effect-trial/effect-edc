@@ -4,7 +4,7 @@ from django.conf import settings
 from edc_constants.constants import NO, TBD, YES
 from edc_dashboard.url_names import url_names
 
-from effect_screening.eligibility import Eligibility
+from effect_screening.eligibility import ScreeningEligibility
 
 register = template.Library()
 
@@ -16,35 +16,10 @@ register = template.Library()
 )
 def screening_button(context, model_wrapper):
     title = "Edit subject's screening form"
-    perms = context["perms"]
-
-    p1 = model_wrapper.object.eligible_part_one
-
-    continue_p2 = YES
-    if (
-        model_wrapper.object.eligible_part_one == NO
-        and model_wrapper.object.continue_part_two == NO
-    ):
-        continue_p2 = NO
-
-    p2 = model_wrapper.object.eligible_part_two
-    p1_enabled = perms.user.has_perms(
-        "effect_screening.view_screeningpartone"
-    ) or perms.user.has_perm("effect_screening.change_screeningpartone")
-    p2_enabled = (
-        perms.user.has_perm("effect_screening.view_screeningparttwo")
-        or perms.user.has_perm("effect_screening.change_screeningparttwo")
-    ) and p1 in [YES, NO]
     return dict(
-        continue_p2=continue_p2,
         perms=context["perms"],
         screening_identifier=model_wrapper.object.screening_identifier,
-        href_p1=model_wrapper.href_p1,
-        href_p2=model_wrapper.href_p2,
-        p1=p1,
-        p2=p2,
-        p1_enabled=p1_enabled,
-        p2_enabled=None if continue_p2 == NO else p2_enabled,
+        href=model_wrapper.href,
         title=title,
         YES=YES,
         NO=NO,
@@ -64,7 +39,7 @@ def eligibility_button(subject_screening_model_wrapper):
         comment = obj.reasons_ineligible.split("|")
         comment = list(set(comment))
         comment.sort()
-    eligibility = Eligibility(obj)
+    eligibility = ScreeningEligibility(obj)
     soup = BeautifulSoup(eligibility.eligibility_display_label, features="html.parser")
     return dict(
         eligible=obj.eligible,
@@ -96,12 +71,12 @@ def add_consent_button(context, model_wrapper):
     f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/refusal_button.html",
     takes_context=True,
 )
-def refusal_button(context, subject_refusal_model_wrapper):
+def refusal_button(context, model_wrapper):
     title = ["Capture subject's primary reason for not joining."]
-
     return dict(
         perms=context["perms"],
-        href=subject_refusal_model_wrapper.href,
+        screening_identifier=model_wrapper.object.screening_identifier,
+        href=model_wrapper.refusal.href,
         title=" ".join(title),
     )
 

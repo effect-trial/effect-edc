@@ -12,6 +12,18 @@ class SubjectScreeningForm(
 
     form_validator_cls = SubjectScreeningFormValidator
 
+    screening_identifier = forms.CharField(
+        label="Screening Identifier",
+        required=False,
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+    )
+
+    subject_identifier = forms.CharField(
+        label="Subject identifier",
+        required=False,
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+    )
+
     def clean(self):
         cleaned_data = super().clean()
         return cleaned_data

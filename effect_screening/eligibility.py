@@ -1,0 +1,128 @@
+from typing import Optional
+
+from edc_constants.constants import MALE, NEG, NO, NOT_ANSWERED, PENDING, POS, YES
+from edc_reportable import CELLS_PER_MICROLITER
+from edc_screening.screening_eligibility import (
+    ScreeningEligibility as BaseScreeningEligibility,
+)
+from edc_screening.screening_eligibility import ScreeningEligibilityError
+
+# TODO: CD4 within 3 weeks
+# TODO: Serum CrAg with 3 weeks of CD4 date
+# TODO: change not evaluated to no response
+
+
+class ScreeningEligibility(BaseScreeningEligibility):
+    @property
+    def eligible(self) -> bool:
+        """Returns True or False."""
+        return False if self.reasons_ineligible else True
+
+    @property
+    def reasons_ineligible(self) -> Optional[dict]:
+        """Returns a dictionary of reasons ineligible or None."""
+        reasons_ineligible = {}
+        reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
+        reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
+        return reasons_ineligible
+
+    def review_inclusion(self, reasons_ineligible: dict) -> dict:
+        if self.model_obj.willing_to_participate != YES:
+            reasons_ineligible.update(willing_to_participate="Unwilling to participate")
+        if self.model_obj.consent_ability != YES:
+            reasons_ineligible.update(consent_ability="Incapable of consenting")
+        if self.model_obj.gender == MALE and self.model_obj.pregnant_or_bf in [YES, NO]:
+            raise ScreeningEligibilityError(
+                f"Invalid combination. Got gender={self.model_obj.gender}, "
+                f"pregnant_or_bf={self.model_obj.pregnant_or_bf}"
+            )
+        criteria = [
+            getattr(self.model_obj, attr, None)
+            for attr in [
+                "hiv_pos",
+                "cd4_value",
+                "serum_crag_value",
+                "lp_done",
+                "lp_declined",
+                "csf_crag_value",
+            ]
+        ]
+        if not (all(criteria) and NOT_ANSWERED not in criteria):
+            reasons_ineligible.update(
+                inclusion_criteria="Incomplete inclusion criteria"
+            )
+        if self.model_obj.hiv_pos != YES:
+            reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
+        if self.model_obj.cd4_value and self.model_obj.cd4_value >= 100:
+            reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
+        reasons_ineligible = self.review_crag(reasons_ineligible)
+        return reasons_ineligible
+
+    def review_crag(self, reasons_ineligible: dict) -> dict:
+        if self.model_obj.lp_done == YES and (
+            self.model_obj.lp_declined == YES
+            or self.model_obj.csf_crag_value == PENDING
+        ):
+            raise ScreeningEligibilityError(
+                f"Invalid combination. Got lp_done={self.model_obj.lp_done}, "
+                f"csf_crag_value={self.model_obj.csf_crag_value} "
+                f"lp_declined={self.model_obj.lp_declined}"
+            )
+        if (
+            self.model_obj.serum_crag_value == POS
+            and self.model_obj.csf_crag_value == NEG
+        ):
+            pass
+        elif self.model_obj.serum_crag_value != POS:
+            reasons_ineligible.update(crag_value="Serum CrAg not (+)")
+        elif (
+            self.model_obj.serum_crag_value == POS
+            and self.model_obj.csf_crag_value != NEG
+        ):
+            reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg not (-)")
+        return reasons_ineligible
+
+    def review_exclusion(self, reasons_ineligible: dict) -> dict:
+        criteria = [
+            getattr(self.model_obj, attr, None)
+            for attr in [
+                "pregnant_or_bf",
+                "prior_cm_epidose",
+                "reaction_to_study_drugs",
+                "on_fluconazole",
+                "contraindicated_meds",
+                "meningitis_symptoms",
+                "jaundice",
+                "csf_cm_value",
+            ]
+        ]
+        if not (all(criteria) and NOT_ANSWERED not in criteria):
+            reasons_ineligible.update(
+                exclusion_criteria="Incomplete exclusion criteria"
+            )
+        if self.model_obj.pregnant_or_bf == YES:
+            reasons_ineligible.update(pregnant_or_bf="Pregnant or breastfeeding")
+        if self.model_obj.prior_cm_epidose not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(prior_cm_epidose="Prior episode of CM")
+        if self.model_obj.reaction_to_study_drugs not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(
+                reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
+            )
+        if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(on_fluconazole="On fluconazole")
+        if self.model_obj.contraindicated_meds not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(
+                contraindicated_meds="Contraindicated concomitant medications"
+            )
+        if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(
+                meningitis_symptoms="Signs of symptomatic meningitis"
+            )
+        if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(jaundice="Jaundice")
+        if (
+            self.model_obj.csf_cm_value == POS
+            and self.model_obj.csf_cm_value != NOT_ANSWERED
+        ):
+            reasons_ineligible.update(csf_value="CSF is positive for CM")
+        return reasons_ineligible

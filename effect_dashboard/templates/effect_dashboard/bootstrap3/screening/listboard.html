@@ -6,10 +6,10 @@
 {% block listboard_panel %}
 
     <a id="subjectscreening_add"
-        title="{% if perms.inte_screening.add_subjectscreening %}add screening{% else %}check your permissions{% endif %}"
+        title="{% if perms.effect_screening.add_subjectscreening %}add screening{% else %}check your permissions{% endif %}"
         class="btn btn-sm btn-default" role="button"
-        {% if not perms.inte_screening.add_subjectscreening %}disabled{% endif %}
-        href="{% if perms.inte_screening.add_subjectscreening %}{{ subject_screening_add_url }}?next={{ screening_listboard_url }}{% endif %}">
+        {% if not perms.effect_screening.add_subjectscreening %}disabled{% endif %}
+        href="{% if perms.effect_screening.add_subjectscreening %}{{ subject_screening_add_url }}?next={{ screening_listboard_url }}{% endif %}">
             <i class="fas fa-plus fa-sm"></i> Add Subject Screening
     </a>
 
@@ -37,7 +37,7 @@
     <div class="btn-group">
     {% screening_button result %}
     {% eligibility_button result %}
-    {% if result.eligible %}
+    {% if result.eligible is True %}
         {% if result.consent %}
             {% dashboard_button result %}
         {% else %}

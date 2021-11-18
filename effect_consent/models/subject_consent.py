@@ -33,6 +33,11 @@ class SubjectConsentManager(SearchSlugManager, models.Manager):
         return self.get(subject_identifier=subject_identifier, version=version)
 
 
+# TODO: may want to allow for a witness if required. Not just linked to literacy.
+# TODO: Languages: Xhosa, Afrikaans, Sesotho, Setswana, Zulu
+# TODO: Add Kyla's checklist on literacy, etc
+
+
 class SubjectConsent(
     ConsentModelMixin,
     SiteModelMixin,

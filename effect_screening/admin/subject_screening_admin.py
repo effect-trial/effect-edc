@@ -9,8 +9,9 @@ from edc_dashboard.url_names import url_names
 from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 
+from effect_screening.eligibility import ScreeningEligibility
+
 from ..admin_site import effect_screening_admin
-from ..eligibility import Eligibility, format_reasons_ineligible
 from ..forms import SubjectScreeningForm
 from ..models import SubjectScreening
 
@@ -25,7 +26,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
-        "exclusion criteria in order to proceed to the final screening stage"
+        "exclusion criteria in order to be considered eligible for enrolment"
     )
 
     fieldsets = (
@@ -33,25 +34,50 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             None,
             {
                 "fields": (
+                    "screening_identifier",
                     "report_datetime",
-                    "screening_consent",
                     "willing_to_participate",
-                    "capable_to_consent",
+                    "consent_ability",
                 ),
             },
         ],
         ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
         [
-            "Criteria",
+            "HIV / CD4",
             {
                 "fields": (
                     "hiv_pos",
                     "cd4_value",
                     "cd4_date",
-                    "pregnant_or_bf",
-                    "crag_value",
-                    "lp_status",
+                ),
+            },
+        ],
+        [
+            "Serum CrAg",
+            {
+                "fields": (
+                    "serum_crag_value",
+                    "serum_crag_date",
+                ),
+            },
+        ],
+        [
+            "LP / CSF CrAg",
+            {
+                "fields": (
+                    "lp_done",
+                    "lp_date",
+                    "lp_declined",
                     "csf_crag_value",
+                ),
+            },
+        ],
+        [
+            "Exclusion criteria",
+            {
+                "description": " Patient must meet ALL of the exclusion criteria in order to be enrolled",
+                "fields": (
+                    "pregnant_or_bf",
                     "prior_cm_epidose",
                     "prior_cm_epidose_date",
                     "reaction_to_study_drugs",
@@ -59,8 +85,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                     "contraindicated_meds",
                     "meningitis_symptoms",
                     "jaundice",
-                    "csf_value",
-                    "csf_date",
+                    "csf_cm_value",
+                    "csf_cm_date",
                 ),
             },
         ],
@@ -74,28 +100,43 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                 ),
             },
         ],
+        [
+            "Eligibility",
+            {
+                "classes": ("collapse",),
+                "fields": (
+                    "subject_identifier",
+                    "eligible",
+                    "eligibility_datetime",
+                    "real_eligibility_datetime",
+                    "reasons_ineligible",
+                    "consented",
+                    "refused",
+                ),
+            },
+        ],
         audit_fieldset_tuple,
     )
 
     radio_fields = {
-        "screening_consent": admin.VERTICAL,
-        "willing_to_participate": admin.VERTICAL,
-        "capable_to_consent": admin.VERTICAL,
+        "consent_ability": admin.VERTICAL,
+        "contraindicated_meds": admin.VERTICAL,
+        "csf_cm_value": admin.VERTICAL,
+        "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,
+        "jaundice": admin.VERTICAL,
+        "lp_declined": admin.VERTICAL,
+        "lp_done": admin.VERTICAL,
+        "meningitis_symptoms": admin.VERTICAL,
+        "on_fluconazole": admin.VERTICAL,
         "pregnant_or_bf": admin.VERTICAL,
-        "crag_value": admin.VERTICAL,
-        "csf_crag_value": admin.VERTICAL,
-        "csf_value": admin.VERTICAL,
-        "lp_status": admin.VERTICAL,
         "prior_cm_epidose": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,
-        "on_fluconazole": admin.VERTICAL,
-        "contraindicated_meds": admin.VERTICAL,
-        "meningitis_symptoms": admin.VERTICAL,
-        "jaundice": admin.VERTICAL,
+        "serum_crag_value": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,
         "unsuitable_for_study": admin.VERTICAL,
+        "willing_to_participate": admin.VERTICAL,
     }
 
     list_display = (
@@ -123,7 +164,16 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "reasons_ineligible",
     )
 
-    # readonly_fields = ()
+    readonly_fields = [
+        "screening_identifier",
+        "subject_identifier",
+        "eligible",
+        "eligibility_datetime",
+        "real_eligibility_datetime",
+        "reasons_ineligible",
+        "consented",
+        "refused",
+    ]
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}
@@ -137,12 +187,12 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     @staticmethod
     def reasons(obj=None):
-        return format_reasons_ineligible(obj.reasons_ineligible)
+        return ScreeningEligibility(obj)
 
     @staticmethod
     def eligiblity_status(obj=None):
-        eligibility = Eligibility(obj)
-        return mark_safe(eligibility.eligibility_status)
+        eligibility = ScreeningEligibility(obj)
+        return mark_safe(eligibility.eligibility_display_label)
 
     def dashboard(self, obj=None, label=None):
         try:

@@ -2,7 +2,10 @@ from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 from edc_consent import ConsentModelWrapperMixin
 from edc_model_wrapper import ModelWrapper
+from edc_refusal.model_wrappers import SubjectRefusalModelWrapper
+from edc_screening.utils import get_subject_screening_model_name
 from edc_subject_model_wrappers import SubjectConsentModelWrapper as BaseModelWrapper
+from edc_subject_model_wrappers import SubjectRefusalModelWrapperMixin
 
 
 class SubjectConsentModelWrapper(BaseModelWrapper):
@@ -14,10 +17,13 @@ class SubjectConsentModelWrapper(BaseModelWrapper):
         )
 
 
-class SubjectScreeningModelWrapper(ConsentModelWrapperMixin, ModelWrapper):
+class SubjectScreeningModelWrapper(
+    SubjectRefusalModelWrapperMixin, ConsentModelWrapperMixin, ModelWrapper
+):
 
     consent_model_wrapper_cls = SubjectConsentModelWrapper
-    model = "effect_screening.subjectscreening"
+    refusal_model_wrapper_cls = SubjectRefusalModelWrapper
+    model = get_subject_screening_model_name()
     next_url_attrs = ["screening_identifier"]
     next_url_name = "screening_listboard_url"
     querystring_attrs = ["gender"]
@@ -31,6 +37,10 @@ class SubjectScreeningModelWrapper(ConsentModelWrapperMixin, ModelWrapper):
     @property
     def consent_options(self):
         return dict(screening_identifier=self.object.screening_identifier)
+
+    @property
+    def eligible(self) -> bool:
+        return self.object.eligible
 
     @property
     def consent_model_obj(self):

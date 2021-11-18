@@ -9,8 +9,8 @@ from edc_dashboard.view_mixins import (
 )
 from edc_dashboard.views import ListboardView as BaseListboardView
 from edc_navbar import NavbarViewMixin
+from edc_screening.model_wrappers import SubjectScreeningModelWrapper
 
-from ...model_wrappers import SubjectScreeningModelWrapper
 from .filters import ListboardViewFilters
 
 

@@ -1,1 +1,1 @@
-from .sites import all_sites, fqdn  # noqa
+from .sites import all_sites, fqdn
