@@ -2,7 +2,7 @@ import pdb
 
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
-from edc_constants.constants import IND, MALE, NEG, NO, POS, YES
+from edc_constants.constants import IND, MALE, NEG, NO, PENDING, POS, YES
 from edc_form_validators import FormValidator
 
 
@@ -12,6 +12,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.get_consent_for_period_or_raise(self.cleaned_data.get("report_datetime"))
 
         # cd4
+        # TODO: date of crag cannot precede cd4 date
         if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
             "report_datetime"
         ):
@@ -38,26 +39,26 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         )
 
         if self.cleaned_data.get("serum_crag_date") and self.cleaned_data.get(
-            "report_datetime"
+            "cd4_date"
         ):
 
             days = (
                 self.cleaned_data.get("serum_crag_date")
-                - self.cleaned_data.get("report_datetime").date()
+                - self.cleaned_data.get("cd4_date")
             ).days
 
             if days > 0:
                 raise forms.ValidationError(
-                    {"serum_crag_date": "Invalid. Cannot be after report date."}
+                    {"serum_crag_date": "Invalid. Cannot be after serum CrAg date."}
                 )
             if not 0 <= abs(days) <= 14:
                 days = (
                     self.cleaned_data.get("serum_crag_date")
-                    - self.cleaned_data.get("report_datetime").date()
+                    - self.cleaned_data.get("cd4_date")
                 ).days
                 raise forms.ValidationError(
                     {
-                        "serum_crag_date": f"Invalid. Must have been performed within the last 14 days. Got {days}."
+                        "serum_crag_date": f"Invalid. Must have been performed within 14 days or CD4. Got {days}."
                     }
                 )
 
@@ -84,23 +85,26 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
         self.applicable_if(YES, field="lp_done", field_applicable="csf_crag_value")
 
+        # CM testing
+        self.applicable_if(
+            YES, PENDING, field="lp_done", field_applicable="csf_cm_evidence"
+        )
+        self.required_if(
+            PENDING, field="csf_cm_evidence", field_required="csf_results_date"
+        )
+        if self.cleaned_data.get("csf_results_date") and (
+            self.cleaned_data.get("csf_results_date")
+            < self.cleaned_data.get("report_datetime").date()
+        ):
+            raise forms.ValidationError(
+                {"csf_results_date": "Invalid. Cannot be before report date"}
+            )
+
         # pregnancy
         if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get(
             "pregnant_or_bf"
         ) in [YES, NO]:
             raise forms.ValidationError({"pregnant_or_bf": "Invalid. Subject is male"})
-
-        # condition = (
-        #     self.cleaned_data.get("lp_done") == NO
-        #     and self.cleaned_data.get("lp_declined") == NO
-        # )
-        # self.applicable_if_true(
-        #     condition,
-        #     field_applicable="lp_pending",
-        #     not_applicable_msg="LP declined.",
-        # )
-
-        # TODO: Jonathan add additional validation
 
         self.not_applicable_if(
             MALE, field="gender", field_applicable="pregnant", inverse=False

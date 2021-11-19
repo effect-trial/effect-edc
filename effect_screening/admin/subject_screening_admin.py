@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
@@ -73,20 +74,48 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
-            "Exclusion criteria",
+            "Treatment",
             {
-                "description": " Patient must meet ALL of the exclusion criteria in order to be enrolled",
                 "fields": (
-                    "pregnant_or_bf",
-                    "prior_cm_epidose",
-                    "prior_cm_epidose_date",
                     "reaction_to_study_drugs",
                     "on_fluconazole",
                     "contraindicated_meds",
+                ),
+            },
+        ],
+        [
+            "Other evidence of CM on CSF",
+            {
+                "description": format_html(
+                    "<H3>Note: for evidence of CM on CSF, consider, for example, positive microscopy with "
+                    f"India Ink, culture, or CrAg test) at any "
+                    "time between the CrAg test and screening for eligibility, or during the "
+                    "first 2 weeks of antifungal treatment, while the patient remained "
+                    "without clinical signs or symptoms of meningitis as described above. "
+                    "(late withdrawal criterion).</H3>"
+                ),
+                "fields": (
+                    "csf_cm_evidence",
+                    "csf_results_date",
+                    "prior_cm_epidose",
+                ),
+            },
+        ],
+        [
+            "Additional exclusion criteria",
+            {
+                "description": format_html(
+                    "<div><H3>Note: for signs of meningitis below, consider, for example: "
+                    "<BR> * a progressively severe headache OR;"
+                    "<BR> * a headache and marked nuchal rigidity OR;"
+                    "<BR> * a head- ache and vomiting OR;"
+                    "<BR> * seizures OR;"
+                    "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
+                ),
+                "fields": (
                     "meningitis_symptoms",
                     "jaundice",
-                    "csf_cm_value",
-                    "csf_cm_date",
+                    "pregnant_or_bf",
                 ),
             },
         ],
@@ -121,7 +150,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     radio_fields = {
         "consent_ability": admin.VERTICAL,
         "contraindicated_meds": admin.VERTICAL,
-        "csf_cm_value": admin.VERTICAL,
+        "csf_cm_evidence": admin.VERTICAL,
         "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,

@@ -1,7 +1,8 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_constants.choices import PREG_YES_NO_NA_NOT_EVALUATED, YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_ANSWERED, NOT_APPLICABLE, NOT_EVALUATED, TBD
+from django.utils.html import format_html
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_ANSWERED, NOT_APPLICABLE
 from edc_model.models import BaseUuidModel, date_not_future
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.model_mixins import EligibilityModelMixin, ScreeningModelMixin
@@ -10,9 +11,10 @@ from edc_screening.screening_identifier import (
 )
 
 from ..choices import (
-    CSF_CM_RESULT,
+    CSF_YES_NO_PENDING_NA,
     POS_NEG_IND_NOT_ANSWERED,
     POS_NEG_IND_PENDING_NA,
+    PREG_YES_NO_NA_NOT_ANSWERED,
     YES_NO_NOT_ANSWERED,
 )
 from ..eligibility import ScreeningEligibility
@@ -62,7 +64,7 @@ class SubjectScreening(
     )
 
     cd4_date = models.DateField(
-        verbose_name="Most recent CD4 count date",
+        verbose_name="Most recent CD4 count sample collection date",
         validators=[date_not_future],
         null=True,
         blank=False,
@@ -71,8 +73,8 @@ class SubjectScreening(
     pregnant_or_bf = models.CharField(
         verbose_name="Is the patient pregnant or breastfeeding?",
         max_length=15,
-        choices=PREG_YES_NO_NA_NOT_EVALUATED,
-        default=NOT_EVALUATED,
+        choices=PREG_YES_NO_NA_NOT_ANSWERED,
+        default=NOT_ANSWERED,
         blank=False,
     )
 
@@ -96,7 +98,8 @@ class SubjectScreening(
     lp_done = models.CharField(
         verbose_name="Was LP done?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
         null=True,
         blank=False,
         help_text="If YES, provide date below",
@@ -134,11 +137,6 @@ class SubjectScreening(
         blank=False,
     )
 
-    # TODO: why is this here???
-    prior_cm_epidose_date = models.DateField(
-        verbose_name="CM episode date", null=True, blank=True
-    )
-
     reaction_to_study_drugs = models.CharField(
         verbose_name="Has the patient had any serious reaction to flucytosine or fluconazole?",
         max_length=25,
@@ -149,12 +147,12 @@ class SubjectScreening(
 
     # exclusion
     on_fluconazole = models.CharField(
-        verbose_name="Is the patent already taking high-dose fluconazole treatment?",
+        verbose_name="Has the patient taken 7 or more doses of high-dose fluconazole treatment in the last 7 days?",
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
-        help_text="fluconazole @ (800-1200 mg/day) for ≥1 week",
+        help_text="fluconazole @ (800-1200 mg/day)",
     )
 
     # exclusion
@@ -166,6 +164,7 @@ class SubjectScreening(
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
+        help_text="Refer to the protocol for a complete list",
     )
 
     # exclusion
@@ -178,11 +177,6 @@ class SubjectScreening(
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
-        help_text=(
-            "i.e. a progressively severe headache OR a headache and marked nuchal "
-            "rigidity OR a head- ache and vomiting OR seizures OR a Glasgow "
-            "Coma Scale (GCS) score of <15?"
-        ),
     )
 
     # exclusion
@@ -195,25 +189,23 @@ class SubjectScreening(
     )
 
     # TODO: refers to question 15
-    csf_cm_value = models.CharField(
-        verbose_name="CSF result for CM?",
+    # TODO: Add pending / not done like csf_crag_value
+    # TODO: not eligible if YES
+
+    csf_cm_evidence = models.CharField(
+        verbose_name="Any other evidence of CM on CSF?",
         max_length=25,
-        choices=CSF_CM_RESULT,
-        default=NOT_ANSWERED,
+        choices=CSF_YES_NO_PENDING_NA,
+        default=NOT_APPLICABLE,
         blank=False,
-        help_text=(
-            "i.e. positive microscopy with India Ink, culture, or CrAg test) at any "
-            "time between the CrAg test and screening for eligibility, or during the "
-            "first 2 weeks of antifungal treatment, while the patient remained "
-            "without clinical symptoms/ signs of meningitis as described in "
-            "15 above (late withdrawal criterion)"
+        help_text=format_html(
+            "At any time between the CrAg test and screening for eligibility. "
+            "<BR>If results on tests on CSF are `pending`, report on DAY 1 / baseline visit or when available.",
         ),
     )
 
-    csf_cm_date = models.DateField(
-        verbose_name="CSF date",
-        null=True,
-        blank=True,
+    csf_results_date = models.DateField(
+        verbose_name="Date `pending results` expected (estimate)", null=True, blank=True
     )
 
     class Meta:

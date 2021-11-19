@@ -1,11 +1,10 @@
 from typing import Optional
 
-from edc_constants.constants import MALE, NEG, NO, NOT_ANSWERED, PENDING, POS, YES
+from edc_constants.constants import NEG, NO, NOT_ANSWERED, POS, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
 )
-from edc_screening.screening_eligibility import ScreeningEligibilityError
 
 # TODO: CD4 within 3 weeks
 # TODO: Serum CrAg with 3 weeks of CD4 date
@@ -31,11 +30,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(willing_to_participate="Unwilling to participate")
         if self.model_obj.consent_ability != YES:
             reasons_ineligible.update(consent_ability="Incapable of consenting")
-        if self.model_obj.gender == MALE and self.model_obj.pregnant_or_bf in [YES, NO]:
-            raise ScreeningEligibilityError(
-                f"Invalid combination. Got gender={self.model_obj.gender}, "
-                f"pregnant_or_bf={self.model_obj.pregnant_or_bf}"
-            )
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
@@ -59,15 +53,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
         return reasons_ineligible
 
     def review_crag(self, reasons_ineligible: dict) -> dict:
-        if self.model_obj.lp_done == YES and (
-            self.model_obj.lp_declined == YES
-            or self.model_obj.csf_crag_value == PENDING
-        ):
-            raise ScreeningEligibilityError(
-                f"Invalid combination. Got lp_done={self.model_obj.lp_done}, "
-                f"csf_crag_value={self.model_obj.csf_crag_value} "
-                f"lp_declined={self.model_obj.lp_declined}"
-            )
         if (
             self.model_obj.serum_crag_value == POS
             and self.model_obj.csf_crag_value == NEG
@@ -93,7 +78,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "contraindicated_meds",
                 "meningitis_symptoms",
                 "jaundice",
-                "csf_cm_value",
+                "csf_cm_evidence",
             ]
         ]
         if not (all(criteria) and NOT_ANSWERED not in criteria):
@@ -120,9 +105,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
             )
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
-        if (
-            self.model_obj.csf_cm_value == POS
-            and self.model_obj.csf_cm_value != NOT_ANSWERED
-        ):
-            reasons_ineligible.update(csf_value="CSF is positive for CM")
+        if self.model_obj.csf_cm_evidence == POS:
+            reasons_ineligible.update(csf_value="Positive evidence of CM on CSF")
         return reasons_ineligible

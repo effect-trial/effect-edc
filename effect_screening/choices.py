@@ -5,6 +5,7 @@ from edc_constants.constants import (
     NOT_ANSWERED,
     NOT_APPLICABLE,
     NOT_DONE,
+    NOT_TESTED,
     OTHER,
     PENDING,
     POS,
@@ -64,10 +65,17 @@ LP_DONE_YES_NO_NOT_ANSWERED_NA = (
     (NOT_ANSWERED, "Not answered"),
 )
 
-
-CSF_CM_RESULT = (
-    (POS, "CM Positive"),
-    (NEG, "CM Negative"),
+CSF_YES_NO_PENDING_NA = (
+    (YES, YES),
+    (NO, NO),
+    (PENDING, "Pending results"),
+    (NOT_TESTED, "Additional testing not done"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+PREG_YES_NO_NA_NOT_ANSWERED = (
+    (YES, "Yes"),
+    (NO, "No"),
+    (NOT_APPLICABLE, "Not Applicable: e.g. male or post-menopausal"),
     (NOT_ANSWERED, "Not answered"),
 )
