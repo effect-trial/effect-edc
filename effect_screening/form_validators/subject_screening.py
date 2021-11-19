@@ -43,13 +43,13 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         ):
 
             days = (
-                self.cleaned_data.get("serum_crag_date")
-                - self.cleaned_data.get("cd4_date")
+                self.cleaned_data.get("cd4_date")
+                - self.cleaned_data.get("serum_crag_date")
             ).days
 
             if days > 0:
                 raise forms.ValidationError(
-                    {"serum_crag_date": "Invalid. Cannot be after serum CrAg date."}
+                    {"serum_crag_date": "Invalid. Cannot be before CD4 date."}
                 )
             if not 0 <= abs(days) <= 14:
                 days = (
