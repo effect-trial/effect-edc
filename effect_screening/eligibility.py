@@ -13,9 +13,9 @@ from edc_screening.screening_eligibility import (
 
 class ScreeningEligibility(BaseScreeningEligibility):
     @property
-    def eligible(self) -> bool:
-        """Returns True or False."""
-        return False if self.reasons_ineligible else True
+    def eligible(self) -> str:
+        """Returns YES or NO."""
+        return NO if self.reasons_ineligible else YES
 
     @property
     def reasons_ineligible(self) -> Optional[dict]:
