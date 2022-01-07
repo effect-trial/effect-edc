@@ -1,6 +1,7 @@
 from django.contrib.auth import admin
 from django.urls.conf import include, path
 from django.views.generic.base import RedirectView
+
 from effect_ae.admin_site import effect_ae_admin
 
 urlpatterns = [

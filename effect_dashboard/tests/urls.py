@@ -7,11 +7,11 @@ from edc_consent.admin_site import edc_consent_admin
 from edc_dashboard.views import AdministrationView
 from edc_locator.admin_site import edc_locator_admin
 from edc_reference.admin_site import edc_reference_admin
+
 from effect_ae.admin_site import effect_ae_admin
+from effect_consent.admin_site import effect_consent_admin
 from effect_prn.admin_site import effect_prn_admin
 from effect_screening.admin_site import effect_screening_admin
-
-from effect_consent.admin_site import effect_consent_admin
 from effect_subject.admin_site import effect_subject_admin
 
 from .admin import effect_test_admin

@@ -6,6 +6,7 @@ from edc_consent.forms import SubjectReconsentForm
 from edc_dashboard.url_names import url_names
 from edc_model_admin import SimpleHistoryAdmin, audit_fields, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+
 from effect_subject.models import SubjectVisit
 
 from ..admin_site import effect_consent_admin

@@ -1,4 +1,5 @@
-from django.test import TestCase, tag
+from django.test import TestCase
+
 from effect_screening.tests.effect_test_case_mixin import MetaTestCaseMixin
 
 
