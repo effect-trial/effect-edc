@@ -8,10 +8,14 @@ from edc_form_validators import FormValidator
 
 class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
     def clean(self):
-
         self.get_consent_for_period_or_raise(self.cleaned_data.get("report_datetime"))
+        self.validate_cd4()
+        self.validate_serum_crag()
+        self.validate_lp_and_csf_crag()
+        self.validate_csf_cm_evidence()
+        self.validate_pregnancy()
 
-        # cd4
+    def validate_cd4(self):
         # TODO: date of crag cannot precede cd4 date
         if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
             "report_datetime"
@@ -35,7 +39,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                     }
                 )
 
-        # serum_crag
+    def validate_serum_crag(self):
         self.required_if(
             POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
         )
@@ -67,7 +71,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                     }
                 )
 
-        # lp / CSF CrAg
+    def validate_lp_and_csf_crag(self):
         self.required_if(YES, field="lp_done", field_required="lp_date")
 
         if self.cleaned_data.get("lp_date") and self.cleaned_data.get(
@@ -90,7 +94,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
         self.applicable_if(YES, field="lp_done", field_applicable="csf_crag_value")
 
-        # CM testing
+    def validate_csf_cm_evidence(self):
         self.applicable_if(
             YES, PENDING, field="lp_done", field_applicable="csf_cm_evidence"
         )
@@ -105,7 +109,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 {"csf_results_date": "Invalid. Cannot be before report date"}
             )
 
-        # pregnancy
+    def validate_pregnancy(self):
         if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get(
             "pregnant_or_bf"
         ) in [YES, NO]:
