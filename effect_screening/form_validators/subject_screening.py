@@ -29,7 +29,9 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             ).days > 14:
                 raise forms.ValidationError(
                     {
-                        "cd4_date": "Invalid. Cannot be more than 14 days before the report date"
+                        "cd4_date": (
+                            "Invalid. Cannot be more than 14 days before the report date"
+                        )
                     }
                 )
 
@@ -58,7 +60,10 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 ).days
                 raise forms.ValidationError(
                     {
-                        "serum_crag_date": f"Invalid. Must have been performed within 14 days or CD4. Got {days}."
+                        "serum_crag_date": (
+                            "Invalid. Must have been performed within 14 days "
+                            f"of CD4. Got {days}."
+                        )
                     }
                 )
 

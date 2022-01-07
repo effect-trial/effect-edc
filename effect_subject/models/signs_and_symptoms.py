@@ -29,7 +29,9 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
 
     headache_duration = models.IntegerField(
         # TODO: Only valid if headache selected in current_symptoms
-        verbose_name="If patient currently has headache, for what duration have they had it for",
+        verbose_name=(
+            "If patient currently has headache, for what duration have they had it for"
+        ),
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,

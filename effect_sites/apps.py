@@ -5,7 +5,7 @@ from django.apps import apps as django_apps
 from django.core.management.color import color_style
 from django.db.models.signals import post_migrate
 
-from .sites import all_sites, fqdn
+from .sites import all_sites
 
 style = color_style()
 
@@ -27,7 +27,7 @@ def post_migrate_update_sites(sender=None, **kwargs):
 class AppConfig(DjangoAppConfig):
     name = "effect_sites"
     default_auto_field = "django.db.models.BigAutoField"
-    verbose_name = f"EFFECT:  Sites"
+    verbose_name = "EFFECT:  Sites"
 
     def ready(self):
         post_migrate.connect(post_migrate_update_sites, sender=self)

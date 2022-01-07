@@ -49,7 +49,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "gender": MALE,
             "age_in_years": 25,
         }
-        instance = SubjectScreening.objects.create(**opts)
+        SubjectScreening.objects.create(**opts)
         form = SubjectScreeningForm(
             initial=self.get_data(), instance=SubjectScreening()
         )
