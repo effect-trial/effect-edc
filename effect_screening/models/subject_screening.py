@@ -35,6 +35,15 @@ class SubjectScreening(
 
     identifier_cls = ScreeningIdentifier
 
+    screening_consent = models.CharField(
+        verbose_name=(
+            "Has the subject given his/her verbal consent "
+            "to be screened for the EFFECT trial?"
+        ),
+        max_length=15,
+        choices=YES_NO,
+    )
+
     willing_to_participate = models.CharField(
         verbose_name="Is the patient willing to participate in the study if found eligible?",
         max_length=25,
