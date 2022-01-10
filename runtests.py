@@ -141,6 +141,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_sites.apps.AppConfig",
         "edc_dx_review.apps.AppConfig",
         "edc_dx.apps.AppConfig",
+        "edc_refusal.apps.AppConfig",
         "edc_unblinding.apps.AppConfig",
         "effect_auth.apps.AppConfig",
         "effect_consent.apps.AppConfig",

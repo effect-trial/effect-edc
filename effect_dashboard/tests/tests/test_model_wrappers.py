@@ -11,7 +11,7 @@ from edc_subject_model_wrappers import (
 from effect_consent.models import SubjectConsent
 from effect_dashboard.model_wrappers import SubjectScreeningModelWrapper
 from effect_screening.models import SubjectScreening
-from effect_screening.tests.effect_test_case_mixin import MetaTestCaseMixin
+from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.models import SubjectVisit
 
 
@@ -23,7 +23,7 @@ class ScreeningModelWrapperTestHelper(ModelWrapperTestHelper):
     dashboard_url = "/screening_listboard/"
 
 
-class TestModelWrappers(MetaTestCaseMixin, TestCase):
+class TestModelWrappers(EffectTestCaseMixin, TestCase):
 
     model_wrapper_helper_cls = SubjectModelWrapperTestHelper
 
