@@ -3,17 +3,7 @@ from pprint import pprint
 
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
-from edc_constants.constants import (
-    DONE,
-    FEMALE,
-    MALE,
-    NEG,
-    NO,
-    NOT_APPLICABLE,
-    PENDING,
-    POS,
-    YES,
-)
+from edc_constants.constants import FEMALE, MALE, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_screening.screening_eligibility import ScreeningEligibilityError
 from edc_utils.date import get_utcnow
 
@@ -76,8 +66,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
             cd4_value=99,
             cd4_date=(get_utcnow() - relativedelta(months=3)).date(),
             pregnant_or_bf=NOT_APPLICABLE,
-            serum_crag_pos=YES,
-            lp_status=DONE,
+            serum_crag_value=POS,
+            lp_done=YES,
             csf_crag_value=NEG,
         )
 
@@ -91,7 +81,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             contraindicated_meds=NO,
             meningitis_symptoms=NO,
             jaundice=NO,
-            csf_value=NEG,
+            csf_crag_value=NEG,
         )
 
     def test_basic_eligibility(self):
@@ -118,7 +108,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
 
     def test_criteria_for_eligibility(self):
         instance = SubjectScreening.objects.create(
-            **self.inclusion_criteria,
+            self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
@@ -128,7 +118,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
 
     def test_male_preg_raises(self):
         opts = dict(
-            **self.inclusion_criteria,
+            self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
@@ -144,11 +134,14 @@ class TestForms(EffectTestCaseMixin, TestCase):
 
     def test_crags_and_lp(self):
         opts = dict(
-            **self.inclusion_criteria,
+            self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
-        opts.update(lp_status=PENDING)
+        opts.update(
+            # TODO: Is this ok?  Was: lp_status=PENDING
+            lp_done=YES,
+        )
         instance = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(instance)
         self.assertFalse(obj.eligible)
