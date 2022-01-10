@@ -1,4 +1,3 @@
-import pdb
 from copy import deepcopy
 
 from dateutil.relativedelta import relativedelta
@@ -6,13 +5,11 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
-from edc_constants.constants import YES
+from edc_constants.constants import FEMALE, YES
 from edc_facility.import_holidays import import_holidays
-from edc_facility.models import Holiday
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
-from edc_randomization.site_randomizers import site_randomizers
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_utils.date import get_utcnow
@@ -27,7 +24,7 @@ from ..models import SubjectScreening
 
 
 def get_eligible_options():
-    return dict()
+    return dict(gender=FEMALE)
 
 
 class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):

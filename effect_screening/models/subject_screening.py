@@ -35,6 +35,15 @@ class SubjectScreening(
 
     identifier_cls = ScreeningIdentifier
 
+    screening_consent = models.CharField(
+        verbose_name=(
+            "Has the subject given his/her verbal consent "
+            "to be screened for the EFFECT trial?"
+        ),
+        max_length=15,
+        choices=YES_NO,
+    )
+
     willing_to_participate = models.CharField(
         verbose_name="Is the patient willing to participate in the study if found eligible?",
         max_length=25,
@@ -42,7 +51,9 @@ class SubjectScreening(
     )
 
     consent_ability = models.CharField(
-        verbose_name="Does the patient have capacity to provide informed consent for participation?",
+        verbose_name=(
+            "Does the patient have capacity to provide informed consent for participation?"
+        ),
         max_length=25,
         choices=YES_NO,
     )
@@ -126,7 +137,9 @@ class SubjectScreening(
         choices=POS_NEG_IND_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
-        help_text="If result is `pending`, report on DAY 1 / baseline visit or when available.",
+        help_text=(
+            "If result is `pending`, report on DAY 1 / baseline visit or when available."
+        ),
     )
 
     prior_cm_epidose = models.CharField(
@@ -147,7 +160,10 @@ class SubjectScreening(
 
     # exclusion
     on_fluconazole = models.CharField(
-        verbose_name="Has the patient taken 7 or more doses of high-dose fluconazole treatment in the last 7 days?",
+        verbose_name=(
+            "Has the patient taken 7 or more doses of high-dose fluconazole "
+            "treatment in the last 7 days?"
+        ),
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
@@ -200,7 +216,8 @@ class SubjectScreening(
         blank=False,
         help_text=format_html(
             "At any time between the CrAg test and screening for eligibility. "
-            "<BR>If results on tests on CSF are `pending`, report on DAY 1 / baseline visit or when available.",
+            "<BR>If results on tests on CSF are `pending`, report on "
+            "DAY 1 / baseline visit or when available.",
         ),
     )
 

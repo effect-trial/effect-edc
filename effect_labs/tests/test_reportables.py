@@ -10,7 +10,7 @@ class TestReportables(TestCase):
             from effect_labs import reportables
         except ParserError:
             self.fail("ParserError unexpectedly raised.")
-        self.assertIsNotNone(site_reportables.get("meta"))
-        filename1, filename2 = site_reportables.to_csv("meta", path=mkdtemp())
+        self.assertIsNotNone(site_reportables.get("effect"))
+        filename1, filename2 = site_reportables.to_csv("effect", path=mkdtemp())
         print(filename1)
         print(filename2)

@@ -1,8 +1,8 @@
 from django.contrib.admin import AdminSite as DjangoAdminSite
 from edc_locator.models import SubjectLocator
-from effect_screening.models import SubjectScreening
 
 from effect_consent.models import SubjectConsent
+from effect_screening.models import SubjectScreening
 from effect_subject.models import SubjectRequisition, SubjectVisit
 
 

@@ -101,7 +101,8 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
     accommodation_per_month = models.IntegerField(
         verbose_name=(
-            "How much does your household spend on rent (or house loan/mortgage) and utilities in a month?"
+            "How much does your household spend on rent "
+            "(or house loan/mortgage) and utilities in a month?"
         ),
         help_text="Rand or  Shilling",
     )
@@ -174,7 +175,8 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
     normal_activities_disrupted = models.IntegerField(
         verbose_name=(
-            "Over the last month, how many days were your normal activities disrupted through illness?"
+            "Over the last month, how many days were your normal activities "
+            "disrupted through illness?"
         ),
         help_text="in days",
     )
@@ -278,7 +280,9 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
     transport_cost = models.IntegerField(
         verbose_name="How much did you spend on transport in total?",
-        help_text="Coming to the health care facility and going back home (in Rand or  Shilling)",
+        help_text=(
+            "Coming to the health care facility and going back home (in Rand or  Shilling)"
+        ),
     )
 
     spend_food_today = models.IntegerField(
@@ -315,7 +319,8 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
     other_activity_health = models.IntegerField(
         verbose_name=(
-            "Did you spend money on other activities (not drugs) relating to your health today?"
+            "Did you spend money on other activities (not drugs) relating to "
+            "your health today?"
         ),
         max_length=15,
         choices=YES_NO,
@@ -330,7 +335,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     pay_admin_fee_hospital = models.CharField(
-        verbose_name="Did you pay for any administrative fees/charges at the hospital when you got admitted?",
+        verbose_name=(
+            "Did you pay for any administrative fees/charges at the hospital "
+            "when you got admitted?"
+        ),
         max_length=15,
         choices=YES_NO,
     )
@@ -341,7 +349,9 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     pay_money_test = models.CharField(
-        verbose_name="Did you pay any money to have any tests/investigations done while admitted?",
+        verbose_name=(
+            "Did you pay any money to have any tests/investigations done while admitted?"
+        ),
         max_length=15,
         choices=YES_NO,
     )
@@ -357,8 +367,11 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
     admitted_spend_other = models.IntegerField(
         verbose_name="While you were admitted, how much money did you spend on other items?",
-        help_text="such as airtime, toiletries, soap/shampoo, toothbrush/toothpaste, bucket/basin for washing, "
-        "toilet paper, clothes and cups/plates (In Rands or Shillings)",
+        help_text=(
+            "such as airtime, toiletries, soap/shampoo, toothbrush/toothpaste, "
+            "bucket/basin for washing, toilet paper, clothes and cups/plates "
+            "(In Rands or Shillings)"
+        ),
     )
 
     time_off = models.CharField(
@@ -368,8 +381,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     family_friends_stayed = models.IntegerField(
-        verbose_name="How many family members or friends stayed with you in hospital to look after you during your "
-        "hospital stay? "
+        verbose_name=(
+            "How many family members or friends stayed with you in hospital to "
+            "look after you during your hospital stay?"
+        )
     )
 
     family_friends_visited = models.IntegerField(
@@ -378,8 +393,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     family_friends_time_off = models.CharField(
-        verbose_name="Did the family members/friends have to take time off work to stay with you or to come see you "
-        "during your hospital stay?",
+        verbose_name=(
+            "Did the family members/friends have to take time off work to stay "
+            "with you or to come see you during your hospital stay?"
+        ),
         max_length=15,
         choices=YES_NO,
     )
@@ -408,7 +425,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     amount_private_healthcare_insurance = models.IntegerField(
-        verbose_name="If YES, how much do you pay towards your contributions to healthcare insurance every month?",
+        verbose_name=(
+            "If YES, how much do you pay towards your contributions to "
+            "healthcare insurance every month?"
+        ),
         help_text="In Rands or Shillings",
     )
 

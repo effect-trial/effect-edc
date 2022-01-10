@@ -87,8 +87,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             "Other evidence of CM on CSF",
             {
                 "description": format_html(
-                    "<H3>Note: for evidence of CM on CSF, consider, for example, positive microscopy with "
-                    f"India Ink, culture, or CrAg test) at any "
+                    "<H3>Note: for evidence of CM on CSF, consider, for example, "
+                    "positive microscopy with India Ink, culture, or CrAg test) at any "
                     "time between the CrAg test and screening for eligibility, or during the "
                     "first 2 weeks of antifungal treatment, while the patient remained "
                     "without clinical signs or symptoms of meningitis as described above. "
