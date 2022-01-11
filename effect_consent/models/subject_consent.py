@@ -11,7 +11,7 @@ from edc_consent.field_mixins import (
 from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NO, NOT_APPLICABLE
+from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
 from edc_identifier.subject_identifier import SubjectIdentifier as BaseSubjectIdentifier
 from edc_model.models import BaseUuidModel, HistoricalRecords
@@ -69,6 +69,17 @@ class SubjectConsent(
 
     completed_by_next_of_kin = models.CharField(
         max_length=10, default=NO, choices=YES_NO, editable=False
+    )
+
+    is_able = models.CharField(
+        verbose_name="Is the participant able to provide consent?",
+        max_length=3,
+        choices=YES_NO,
+        default=YES,
+        help_text=(
+            "If 'No' provide witness's name on this "
+            "form and signature on the paper document."
+        ),
     )
 
     on_site = CurrentSiteManager()

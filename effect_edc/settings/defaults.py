@@ -287,8 +287,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
 LANGUAGE_CODE = env.str("DJANGO_LANGUAGE_CODE")
+# LANGUAGES = [x.split(":") for x in env.list("DJANGO_LANGUAGES")] or (("en", "English"),)
+LANGUAGES = [
+    ("en", "English"),
+    ("af", "Afrikaans"),
+    ("st", "Sotho"),
+    ("sw", "Swahili"),
+    ("tn", "Tswana"),
+    ("xh", "Xhosa"),
+    ("zu", "Zulu"),
+]
 
-LANGUAGES = [x.split(":") for x in env.list("DJANGO_LANGUAGES")] or (("en", "English"),)
 
 TIME_ZONE = env.str("DJANGO_TIME_ZONE")
 

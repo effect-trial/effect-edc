@@ -1,6 +1,8 @@
 from django import forms
+from django.utils.html import format_html
 from edc_consent.form_validators import SubjectConsentFormValidatorMixin
 from edc_consent.modelform_mixins import ConsentModelFormMixin
+from edc_constants.constants import NO, YES
 from edc_form_validators import FormValidator, FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
 
@@ -31,6 +33,24 @@ class SubjectConsentForm(
     def clean_identity_with_unique_fields(self):
         return None
 
+    def clean_is_literate_and_witness(self) -> None:
+        self.clean_is_literate_is_able_and_witness()
+
+    def clean_is_literate_is_able_and_witness(self) -> None:
+        cleaned_data = self.cleaned_data
+        is_literate = cleaned_data.get("is_literate")
+        is_able = cleaned_data.get("is_able")
+        witness_name = cleaned_data.get("witness_name")
+        if (is_literate == NO or is_able == NO) and not witness_name:
+            raise forms.ValidationError(
+                {
+                    "witness_name": "Provide a name of a witness on this form and "
+                    "ensure paper consent is signed."
+                }
+            )
+        if is_literate == YES and is_able == YES and witness_name:
+            raise forms.ValidationError({"witness_name": "This field is not required"})
+
     class Meta:
         model = SubjectConsent
         fields = "__all__"
@@ -39,8 +59,8 @@ class SubjectConsentForm(
                 "Use Country ID Number, Passport number, driver's license "
                 "number or Country ID receipt number"
             ),
-            "witness_name": (
-                "Required only if participant is illiterate. "
+            "witness_name": format_html(
+                "Required only if participant is illiterate or unable to provide consent.<br>"
                 "Format is 'LASTNAME, FIRSTNAME'. "
                 "All uppercase separated by a comma."
             ),
