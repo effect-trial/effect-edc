@@ -20,7 +20,8 @@ ALLOWED_HOSTS = [
 ]
 
 SECURE_SSL_REDIRECT = False
+AUTO_CREATE_KEYS = False
 
-if os.path.exists(BASE_DIR) and not os.path.exists(KEY_PATH):  # noqa
-    os.makedirs(KEY_PATH)  # noqa
-    AUTO_CREATE_KEYS = True
+# if os.path.exists(BASE_DIR) and not os.path.exists(KEY_PATH):  # noqa
+#     os.makedirs(KEY_PATH)  # noqa
+#     AUTO_CREATE_KEYS = True
