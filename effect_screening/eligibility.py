@@ -1,5 +1,3 @@
-from typing import Optional
-
 from edc_constants.constants import NEG, NO, NOT_ANSWERED, POS, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
@@ -12,18 +10,16 @@ from edc_screening.screening_eligibility import (
 
 
 class ScreeningEligibility(BaseScreeningEligibility):
-    @property
-    def eligible(self) -> str:
-        """Returns YES or NO."""
-        return NO if self.reasons_ineligible else YES
-
-    @property
-    def reasons_ineligible(self) -> Optional[dict]:
-        """Returns a dictionary of reasons ineligible or None."""
+    def assess_eligibility(self):
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
-        return reasons_ineligible
+        self.eligible = NO if reasons_ineligible else YES
+        self.reasons_ineligible = reasons_ineligible
+
+    def update_model(self) -> None:
+        self.model_obj.eligible = self.is_eligible
+        self.model_obj.reasons_ineligible = self.reasons_ineligible
 
     def review_inclusion(self, reasons_ineligible: dict) -> dict:
         if self.model_obj.willing_to_participate != YES:
@@ -85,6 +81,20 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(
                 exclusion_criteria="Incomplete exclusion criteria"
             )
+        if self.model_obj.contraindicated_meds not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(
+                contraindicated_meds="Contraindicated concomitant medications"
+            )
+        if self.model_obj.csf_cm_evidence == YES:
+            reasons_ineligible.update(csf_value="Positive evidence of CM on CSF")
+        if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(jaundice="Jaundice")
+        if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(
+                meningitis_symptoms="Signs of symptomatic meningitis"
+            )
+        if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
+            reasons_ineligible.update(on_fluconazole="On fluconazole")
         if self.model_obj.pregnant_or_bf == YES:
             reasons_ineligible.update(pregnant_or_bf="Pregnant or breastfeeding")
         if self.model_obj.prior_cm_epidose not in [NO, NOT_ANSWERED]:
@@ -93,18 +103,4 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(
                 reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
             )
-        if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(on_fluconazole="On fluconazole")
-        if self.model_obj.contraindicated_meds not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(
-                contraindicated_meds="Contraindicated concomitant medications"
-            )
-        if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(
-                meningitis_symptoms="Signs of symptomatic meningitis"
-            )
-        if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(jaundice="Jaundice")
-        if self.model_obj.csf_cm_evidence == POS:
-            reasons_ineligible.update(csf_value="Positive evidence of CM on CSF")
         return reasons_ineligible

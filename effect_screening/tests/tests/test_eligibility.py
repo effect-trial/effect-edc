@@ -1,9 +1,15 @@
-import pdb
-from pprint import pprint
-
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
-from edc_constants.constants import FEMALE, MALE, NEG, NO, NOT_APPLICABLE, POS, YES
+from edc_constants.constants import (
+    FEMALE,
+    MALE,
+    NEG,
+    NO,
+    NOT_APPLICABLE,
+    PENDING,
+    POS,
+    YES,
+)
 from edc_screening.screening_eligibility import ScreeningEligibilityError
 from edc_utils.date import get_utcnow
 
@@ -29,6 +35,44 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "unsuitable_agreed": NOT_APPLICABLE,
         }
 
+    def get_basic_opts(self):
+        return {
+            "screening_consent": YES,
+            "willing_to_participate": YES,
+            "consent_ability": YES,
+            "report_datetime": get_utcnow(),
+            "initials": "EW",
+            "gender": FEMALE,
+            "age_in_years": 25,
+        }
+
+    @property
+    def inclusion_criteria(self):
+        return dict(
+            hiv_pos=YES,
+            cd4_value=99,
+            cd4_date=(get_utcnow() - relativedelta(days=3)).date(),
+            serum_crag_value=POS,
+            serum_crag_date=(get_utcnow() - relativedelta(days=3)).date(),
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=3)).date(),
+            csf_crag_value=NEG,
+        )
+
+    @property
+    def exclusion_criteria(self):
+        return dict(
+            # prior_cm_epidose_date=(get_utcnow() - relativedelta(months=3)).date(),
+            contraindicated_meds=NO,
+            csf_cm_evidence=NO,
+            jaundice=NO,
+            meningitis_symptoms=NO,
+            on_fluconazole=NO,
+            pregnant_or_bf=NOT_APPLICABLE,
+            prior_cm_epidose=NO,
+            reaction_to_study_drugs=NO,
+        )
+
     def test_screening_ok(self):
         opts = {
             "screening_consent": YES,
@@ -48,42 +92,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
         # form.save()
         # self.assertTrue(SubjectScreening.objects.all()[0].eligible)
 
-    def get_basic_opts(self):
-        return {
-            "screening_consent": YES,
-            "willing_to_participate": YES,
-            "consent_ability": YES,
-            "report_datetime": get_utcnow(),
-            "initials": "EW",
-            "gender": FEMALE,
-            "age_in_years": 25,
-        }
-
-    @property
-    def inclusion_criteria(self):
-        return dict(
-            hiv_pos=YES,
-            cd4_value=99,
-            cd4_date=(get_utcnow() - relativedelta(months=3)).date(),
-            pregnant_or_bf=NOT_APPLICABLE,
-            serum_crag_value=POS,
-            lp_done=YES,
-            csf_crag_value=NEG,
-        )
-
-    @property
-    def exclusion_criteria(self):
-        return dict(
-            prior_cm_epidose=NO,
-            # prior_cm_epidose_date=(get_utcnow() - relativedelta(months=3)).date(),
-            reaction_to_study_drugs=NO,
-            on_fluconazole=NO,
-            contraindicated_meds=NO,
-            meningitis_symptoms=NO,
-            jaundice=NO,
-            csf_crag_value=NEG,
-        )
-
     def test_basic_eligibility(self):
         obj = SubjectScreening.objects.create(**self.get_basic_opts())
         self.assertFalse(obj.eligible)
@@ -95,54 +103,60 @@ class TestForms(EffectTestCaseMixin, TestCase):
             **self.inclusion_criteria, **self.get_basic_opts()
         )
         obj = ScreeningEligibility(instance)
-        self.assertFalse(obj.eligible)
+        self.assertFalse(obj.is_eligible)
         self.assertNotIn("inclusion_criteria", obj.reasons_ineligible)
 
     def test_exclusion_criteria_for_eligibility(self):
-        instance = SubjectScreening.objects.create(
+        model_obj = SubjectScreening.objects.create(
             **self.exclusion_criteria, **self.get_basic_opts()
         )
-        obj = ScreeningEligibility(instance)
-        self.assertFalse(obj.eligible)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertFalse(obj.is_eligible)
         self.assertNotIn("exclusion_criteria", obj.reasons_ineligible)
 
     def test_criteria_for_eligibility(self):
-        instance = SubjectScreening.objects.create(
-            self.inclusion_criteria,
+        model_obj = SubjectScreening.objects.create(
+            **self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
-        obj = ScreeningEligibility(instance)
+        obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
-        self.assertTrue(obj.eligible)
+        self.assertTrue(obj.is_eligible)
 
+    @tag("123")
     def test_male_preg_raises(self):
         opts = dict(
-            self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
-        opts.update(gender=MALE, pregnant_or_bf=YES)
-        self.assertRaises(
-            ScreeningEligibilityError, SubjectScreening.objects.create, **opts
-        )
-        opts.update(gender=FEMALE, pregnant_or_bf=NOT_APPLICABLE)
-        try:
-            SubjectScreening(SubjectScreening.objects.create, **opts)
-        except ScreeningEligibilityError:
-            self.fail("ScreeningEligibilityError unexpectedly raised")
-
-    def test_crags_and_lp(self):
-        opts = dict(
-            self.inclusion_criteria,
+            **self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
         opts.update(
-            # TODO: Is this ok?  Was: lp_status=PENDING
-            lp_done=YES,
+            gender=MALE,
+            pregnant_or_bf=YES,
+            unsuitable_for_study=NO,
+            unsuitable_agreed=NOT_APPLICABLE,
+            lp_declined=NOT_APPLICABLE,
         )
-        instance = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(instance)
-        self.assertFalse(obj.eligible)
-        self.assertIn("exclusion_criteria", obj.reasons_ineligible)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("pregnant_or_bf", form._errors)
+
+        opts.update(gender=FEMALE, pregnant_or_bf=NOT_APPLICABLE)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertDictEqual({}, form._errors)
+
+    def test_crags_and_lp(self):
+        # TODO: Is this ok?
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(lp_done=PENDING)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(obj.reasons_ineligible, {})
+        self.assertTrue(obj.is_eligible)
+        # self.assertIn("exclusion_criteria", obj.reasons_ineligible)

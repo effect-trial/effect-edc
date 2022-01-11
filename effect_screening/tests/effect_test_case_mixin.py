@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
-from edc_constants.constants import FEMALE, YES
+from edc_constants.constants import FEMALE, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
@@ -24,7 +24,26 @@ from ..models import SubjectScreening
 
 
 def get_eligible_options():
-    return dict(gender=FEMALE)
+    return dict(
+        age_in_years=25,
+        cd4_value=75,
+        consent_ability=YES,
+        contraindicated_meds=NO,
+        csf_cm_evidence=NEG,
+        csf_crag_value=NEG,
+        gender=FEMALE,
+        hiv_pos=YES,
+        jaundice=NO,
+        lp_declined=NOT_APPLICABLE,
+        lp_done=YES,
+        meningitis_symptoms=NO,
+        on_fluconazole=NO,
+        pregnant_or_bf=NO,
+        prior_cm_epidose=NO,
+        reaction_to_study_drugs=NO,
+        serum_crag_value=POS,
+        willing_to_participate=YES,
+    )
 
 
 class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):
@@ -43,12 +62,6 @@ class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):
     def setUpTestData(cls):
         super().setUpTestData()
         add_or_update_django_sites(sites=get_sites_by_country("tanzania"))
-        # site_randomizers._registry = {}
-        # if cls.import_randomization_list:
-        #     site_randomizers.register(Randomizer)
-        #     Randomizer.import_list(
-        #         verbose=False, sid_count_for_tests=cls.sid_count
-        #     )
         import_holidays(test=True)
         site_list_data.initialize()
         site_list_data.autodiscover()
@@ -63,11 +76,14 @@ class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):
         if report_datetime:
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]
+
         subject_screening = SubjectScreening.objects.create(
             user_created="erikvw", user_modified="erikvw", **eligible_options
         )
+
         screening_identifier = subject_screening.screening_identifier
-        self.assertEqual(subject_screening.eligible, YES)
+        self.assertIsNone(subject_screening.reasons_ineligible)
+        self.assertTrue(subject_screening.eligible)
 
         subject_screening = SubjectScreening.objects.get(
             screening_identifier=screening_identifier
@@ -86,7 +102,7 @@ class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):
     @staticmethod
     def get_subject_consent(subject_screening, consent_datetime=None, site_id=None):
         return baker.make_recipe(
-            "meta_consent.subjectconsent",
+            "effect_consent.subjectconsent",
             user_created="erikvw",
             user_modified="erikvw",
             screening_identifier=subject_screening.screening_identifier,
