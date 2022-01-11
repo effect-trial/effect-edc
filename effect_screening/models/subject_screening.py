@@ -204,10 +204,7 @@ class SubjectScreening(
         blank=False,
     )
 
-    # TODO: refers to question 15
-    # TODO: Add pending / not done like csf_crag_value
-    # TODO: not eligible if YES
-
+    # TODO: If pending, get at baseline
     csf_cm_evidence = models.CharField(
         verbose_name="Any other evidence of CM on CSF?",
         max_length=25,

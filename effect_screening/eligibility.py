@@ -4,10 +4,6 @@ from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
 )
 
-# TODO: CD4 within 3 weeks
-# TODO: Serum CrAg with 3 weeks of CD4 date
-# TODO: change not evaluated to no response
-
 
 class ScreeningEligibility(BaseScreeningEligibility):
     def assess_eligibility(self):
@@ -31,7 +27,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
             for attr in [
                 "hiv_pos",
                 "cd4_value",
+                "cd4_date",
                 "serum_crag_value",
+                "serum_crag_date",
                 "lp_done",
                 "lp_declined",
                 "csf_crag_value",
@@ -86,7 +84,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 contraindicated_meds="Contraindicated concomitant medications"
             )
         if self.model_obj.csf_cm_evidence == YES:
-            reasons_ineligible.update(csf_value="Positive evidence of CM on CSF")
+            reasons_ineligible.update(csf_cm_evidence="Positive evidence of CM on CSF")
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
         if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:

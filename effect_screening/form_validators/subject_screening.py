@@ -9,6 +9,7 @@ from edc_form_validators import FormValidator
 class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
     def clean(self):
         self.get_consent_for_period_or_raise(self.cleaned_data.get("report_datetime"))
+        self.validate_age()
         self.validate_cd4()
         self.validate_serum_crag()
         self.validate_lp_and_csf_crag()
@@ -16,7 +17,6 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_pregnancy()
 
     def validate_cd4(self):
-        # TODO: date of crag cannot precede cd4 date
         if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
             "report_datetime"
         ):
@@ -30,16 +30,19 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             if (
                 self.cleaned_data.get("report_datetime").date()
                 - self.cleaned_data.get("cd4_date")
-            ).days > 14:
+            ).days > 21:
                 raise forms.ValidationError(
                     {
                         "cd4_date": (
-                            "Invalid. Cannot be more than 14 days before the report date"
+                            "Invalid. Cannot be more than 21 days before the report date"
                         )
                     }
                 )
 
     def validate_serum_crag(self):
+        """Assert serum CrAg date is not before CD4 date and
+        is within 21 days of CD4.
+        """
         self.required_if(
             POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
         )
@@ -57,7 +60,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 raise forms.ValidationError(
                     {"serum_crag_date": "Invalid. Cannot be before CD4 date."}
                 )
-            if not 0 <= abs(days) <= 14:
+            if not 0 <= abs(days) <= 21:
                 days = (
                     self.cleaned_data.get("serum_crag_date")
                     - self.cleaned_data.get("cd4_date")
@@ -65,7 +68,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 raise forms.ValidationError(
                     {
                         "serum_crag_date": (
-                            "Invalid. Must have been performed within 14 days "
+                            "Invalid. Must have been performed within 21 days "
                             f"of CD4. Got {days}."
                         )
                     }
@@ -122,3 +125,12 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.required_if(
             YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
         )
+
+    def validate_age(self):
+        if (
+            self.cleaned_data.get("age_in_years") < 18
+            or self.cleaned_data.get("age_in_years") > 120
+        ):
+            raise forms.ValidationError(
+                {"age_in_years": "Invalid. Subject must be 18 years or older"}
+            )

@@ -5,8 +5,6 @@ from edc_screening.modelform_mixins import AlreadyConsentedFormMixin
 from ..form_validators import SubjectScreeningFormValidator
 from ..models import SubjectScreening
 
-# TODO: is age being validated??
-
 
 class SubjectScreeningForm(
     AlreadyConsentedFormMixin, FormValidatorMixin, forms.ModelForm

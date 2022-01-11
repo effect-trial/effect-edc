@@ -31,8 +31,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "initials": "EW",
             "gender": MALE,
             "age_in_years": 25,
-            "unsuitable_for_study": NO,
-            "unsuitable_agreed": NOT_APPLICABLE,
         }
 
     def get_basic_opts(self):
@@ -44,6 +42,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "initials": "EW",
             "gender": FEMALE,
             "age_in_years": 25,
+            "unsuitable_for_study": NO,
+            "unsuitable_agreed": NOT_APPLICABLE,
         }
 
     @property
@@ -51,11 +51,12 @@ class TestForms(EffectTestCaseMixin, TestCase):
         return dict(
             hiv_pos=YES,
             cd4_value=99,
-            cd4_date=(get_utcnow() - relativedelta(days=3)).date(),
+            cd4_date=(get_utcnow() - relativedelta(days=7)).date(),
             serum_crag_value=POS,
-            serum_crag_date=(get_utcnow() - relativedelta(days=3)).date(),
+            serum_crag_date=(get_utcnow() - relativedelta(days=6)).date(),
+            lp_declined=NOT_APPLICABLE,
             lp_done=YES,
-            lp_date=(get_utcnow() - relativedelta(days=3)).date(),
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
             csf_crag_value=NEG,
         )
 
@@ -160,3 +161,81 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertEqual(obj.reasons_ineligible, {})
         self.assertTrue(obj.is_eligible)
         # self.assertIn("exclusion_criteria", obj.reasons_ineligible)
+
+    def test_cd4_date_within_21_days(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        report_datetime = opts.get("report_datetime")
+        opts.update(cd4_date=report_datetime - relativedelta(days=22))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("cd4_date", form._errors)
+
+        opts.update(cd4_date=report_datetime - relativedelta(days=7))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("cd4_date", form._errors)
+
+    def test_serum_crag_date_not_before_cd4_date(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        report_datetime = opts.get("report_datetime")
+        opts.update(cd4_date=report_datetime - relativedelta(days=7))
+        opts.update(serum_crag_date=report_datetime - relativedelta(days=14))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("serum_crag_date", form._errors)
+
+        opts.update(cd4_date=report_datetime - relativedelta(days=7))
+        opts.update(serum_crag_date=report_datetime - relativedelta(days=6))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertDictEqual({}, form._errors)
+
+    @tag("wa")
+    def test_age(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(age_in_years=2)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("age_in_years", form._errors)
+
+        opts.update(age_in_years=18)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("age_in_years", form._errors)
+
+    @tag("wa")
+    def test_csf_cm_evidence(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(csf_cm_evidence=YES)
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("csf_cm_evidence", form._errors)
+
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertIn("csf_cm_evidence", obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+        opts.update(csf_cm_evidence=NO)
+
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertNotIn("csf_cm_evidence", obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
