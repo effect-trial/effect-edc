@@ -109,7 +109,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             and self.cleaned_data.get("lp_date")
             and (
                 self.cleaned_data.get("lp_date")
-                < self.cleaned_data.get("csf_results_date")
+                > self.cleaned_data.get("csf_results_date")
             )
         ):
             raise forms.ValidationError(
