@@ -51,7 +51,7 @@ def register_actions():
         BloodResultsFbcAction,
         BloodResultsLftAction,
         BloodResultsRftAction,
-        LpAction,
+        # LpAction,
     ]:
         try:
             site_action_items.register(action_item_cls)
