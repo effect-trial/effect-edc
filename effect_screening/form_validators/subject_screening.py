@@ -104,12 +104,16 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.required_if(
             PENDING, field="csf_cm_evidence", field_required="csf_results_date"
         )
-        if self.cleaned_data.get("csf_results_date") and (
+        if (
             self.cleaned_data.get("csf_results_date")
-            < self.cleaned_data.get("report_datetime").date()
+            and self.cleaned_data.get("lp_date")
+            and (
+                self.cleaned_data.get("lp_date")
+                < self.cleaned_data.get("csf_results_date").date()
+            )
         ):
             raise forms.ValidationError(
-                {"csf_results_date": "Invalid. Cannot be before report date"}
+                {"csf_results_date": "Invalid. Cannot be before LP date"}
             )
 
     def validate_pregnancy(self):
