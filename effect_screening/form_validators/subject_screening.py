@@ -128,7 +128,8 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
     def validate_age(self):
         if (
-            self.cleaned_data.get("age_in_years") < 18
+            self.cleaned_data.get("age_in_years")
+            and self.cleaned_data.get("age_in_years") < 18
             or self.cleaned_data.get("age_in_years") > 120
         ):
             raise forms.ValidationError(
