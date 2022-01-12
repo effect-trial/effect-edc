@@ -1,3 +1,4 @@
 edc==0.3.61
 beautifulsoup4
 git+https://github.com/erikvw/django-import-export.git@get_export_admin_action
+edc-lumbar-puncture==0.1.0
