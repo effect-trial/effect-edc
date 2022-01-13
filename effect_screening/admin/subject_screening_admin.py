@@ -108,7 +108,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                     "<div><H3>Note: for signs of meningitis below, consider, for example: "
                     "<BR> * a progressively severe headache OR;"
                     "<BR> * a headache and marked nuchal rigidity OR;"
-                    "<BR> * a head- ache and vomiting OR;"
+                    "<BR> * a headache and vomiting OR;"
                     "<BR> * seizures OR;"
                     "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
                 ),
