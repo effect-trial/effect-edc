@@ -16,6 +16,8 @@ jobs:
         exclude:
           - codebase: 'Prod'
             django-version: 'dev'
+          - codebase: 'Prod'
+            django-version: '4.0'
 
     services:
       mysql:

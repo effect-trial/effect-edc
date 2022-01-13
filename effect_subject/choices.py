@@ -20,9 +20,11 @@ from .constants import (
     APPT,
     APPT_OTHER,
     DECREASED,
+    IN_PERSON,
     PATIENT,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
+    TELEPHONE,
 )
 
 ACTIVITY_CHOICES = (
@@ -52,7 +54,7 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_TYPES = (("telephone", "Telephone"), ("in_person", "In person"))
+ASSESSMENT_TYPES = ((TELEPHONE, "Telephone"), (IN_PERSON, "In person"))
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -193,6 +195,7 @@ INFO_SOURCES = (
     (PATIENT, "Patient"),
     ("next_of_kin", "Next of kin"),
     (OTHER, "Other"),
+    (NOT_APPLICABLE, "Not applicable (in person visit)"),
 )
 
 STEROID_CHOICES = (
