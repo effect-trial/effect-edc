@@ -7,6 +7,7 @@ from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
 from edc_constants.constants import FEMALE, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
+from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
@@ -54,7 +55,9 @@ def get_eligible_options():
     )
 
 
-class EffectTestCaseMixin(AppointmentTestCaseMixin, SiteTestCaseMixin):
+class EffectTestCaseMixin(
+    AppointmentTestCaseMixin, FormValidatorTestCaseMixin, SiteTestCaseMixin
+):
 
     fqdn = fqdn
 
