@@ -34,7 +34,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def get_valid_in_person_visit_data(self):
         return {
             "appointment": self.subject_visit.appointment,
-            "report_dateime": self.subject_visit.report_datetime,
+            "report_datetime": self.subject_visit.report_datetime,
             "assessment_type": IN_PERSON,
             "info_source": NOT_APPLICABLE,
             "info_source_other": "",
@@ -46,7 +46,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def get_valid_patient_telephone_assessment_data(self):
         return {
             "appointment": self.subject_visit.appointment,
-            "report_dateime": self.subject_visit.report_datetime,
+            "report_datetime": self.subject_visit.report_datetime,
             "assessment_type": TELEPHONE,
             "info_source": PATIENT,
             "info_source_other": "",
