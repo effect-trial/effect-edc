@@ -176,3 +176,36 @@ class EffectTestCaseMixin(
             visit_code_sequence=subject_visit.visit_code_sequence,
             entry_status=REQUIRED,
         )
+
+    def assertFieldFormValidationErrorRaised(
+        self,
+        form_validator,
+        field: str,
+        expected_msg: str,
+        expected_errors: int = 1,
+    ):
+        self.assertIn(
+            field,
+            form_validator._errors,
+            msg=(
+                f"Expected to find field '{field}' "
+                f"listed in the form validation errors: '{form_validator._errors}'"
+            ),
+        )
+        self.assertIn(
+            expected_msg,
+            str(form_validator._errors.get(field)),
+            msg=(
+                f"Expected to find error message '{expected_errors}' "
+                f"in form validation errors: '{form_validator._errors}'"
+            ),
+        )
+        self.assertEqual(
+            len(form_validator._errors),
+            expected_errors,
+            msg=(
+                f"Expected {expected_errors} error message(s) in form validator, "
+                f"but got {len(form_validator._errors)}, "
+                f"as follows: '{form_validator._errors}'"
+            ),
+        )

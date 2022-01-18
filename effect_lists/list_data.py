@@ -42,7 +42,6 @@ list_data = {
                 "please specify below ..."
             ),
         ),
-        (OTHER, "Other  please specify below ..."),
     ],
     "effect_lists.arvregimens": [
         ("ABC_3TC/FTC", "ABC + 3TC/FTC"),
