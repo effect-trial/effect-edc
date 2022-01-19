@@ -1,0 +1,4 @@
+[run]
+include = effect_*/*
+omit = effect_*/tests/*
+branch = 1
