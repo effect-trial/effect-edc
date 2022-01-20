@@ -177,6 +177,9 @@ class EffectTestCaseMixin(
             entry_status=REQUIRED,
         )
 
+    def assertFormValidatorNoError(self, form_validator):
+        self.assertDictEqual({}, form_validator._errors)
+
     def assertFormValidatorError(
         self,
         field: str,

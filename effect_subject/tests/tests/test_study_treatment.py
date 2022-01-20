@@ -57,8 +57,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_form_validator_allows_valid_in_person_visit(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
-        form_validator = self.validate_form_validator(cleaned_data)
-        self.assertDictEqual({}, form_validator._errors)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
     def test_cm_confirmed_na_if_lp_not_completed(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()

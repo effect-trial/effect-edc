@@ -59,19 +59,22 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_form_validator_allows_valid_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
-        form_validator = self.validate_form_validator(cleaned_data)
-        self.assertDictEqual({}, form_validator._errors)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
     def test_form_validator_allows_valid_patient_telephone_assessment(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
-        form_validator = self.validate_form_validator(cleaned_data)
-        self.assertDictEqual({}, form_validator._errors)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
     def test_form_validator_allows_valid_nok_telephone_assessment(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": "next_of_kin"})
-        form_validator = self.validate_form_validator(cleaned_data)
-        self.assertDictEqual({}, form_validator._errors)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
     def test_info_source_na_for_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
@@ -147,8 +150,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                         "adherence_counselling": NOT_APPLICABLE,
                     }
                 )
-                form_validator = self.validate_form_validator(cleaned_data)
-                self.assertDictEqual({}, form_validator._errors)
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
 
     def test_adherence_counselling_na_if_deceased(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
