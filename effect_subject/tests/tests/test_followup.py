@@ -5,7 +5,7 @@ from edc_constants.constants import DEAD, NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.choices import INFO_SOURCES
+from effect_subject.choices import INFO_SOURCES, PATIENT_STATUSES
 from effect_subject.constants import IN_PERSON, PATIENT, TELEPHONE
 from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
@@ -75,70 +75,64 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_valid_in_person_visit_data()
         cleaned_data.update({"info_source": PATIENT})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source", form_validator._errors)
-        self.assertIn(
-            "This field is not applicable.",
-            str(form_validator._errors.get("info_source")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source",
+            expected_msg="This field is not applicable.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_applicable_for_telephone_assessments(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": NOT_APPLICABLE})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source", form_validator._errors)
-        self.assertIn(
-            "This field is applicable.",
-            str(form_validator._errors.get("info_source")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source",
+            expected_msg="This field is applicable.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_other_required_if_specified(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": OTHER})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source_other", form_validator._errors)
-        self.assertIn(
-            "This field is required.",
-            str(form_validator._errors.get("info_source_other")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source_other",
+            expected_msg="This field is required.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_other_not_required_if_not_specified(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source_other": "xxx"})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source_other", form_validator._errors)
-        self.assertIn(
-            "This field is not required.",
-            str(form_validator._errors.get("info_source_other")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source_other",
+            expected_msg="This field is not required.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_invalid_for_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
         cleaned_data.update({"survival_status": DEAD})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("survival_status", form_validator._errors)
-        self.assertIn(
-            "Invalid: Unexpected survival status 'Deceased' if 'In person' visit",
-            str(form_validator._errors.get("survival_status")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="survival_status",
+            expected_msg="Invalid: Unexpected survival status 'Deceased' if 'In person' visit",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_invalid_for_patient_telephone_visit(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"survival_status": DEAD})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("survival_status", form_validator._errors)
-        self.assertIn(
-            (
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="survival_status",
+            expected_msg=(
                 "Invalid: Unexpected survival status 'Deceased' if "
                 "'Telephone' visit with 'Patient'"
             ),
-            str(form_validator._errors.get("survival_status")),
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
         info_sources = [
@@ -154,22 +148,39 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                         "info_source": info_src,
                         "info_source_other": "xxx" if info_src == OTHER else "",
                         "survival_status": DEAD,
-                        "adherence_counselling": NO,
+                        "adherence_counselling": NOT_APPLICABLE,
                     }
                 )
                 form_validator = self.validate_form_validator(cleaned_data)
                 self.assertDictEqual({}, form_validator._errors)
 
-    def test_adherence_counselling_invalid_if_deceased(self):
+    def test_adherence_counselling_na_if_deceased(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": "next_of_kin", "survival_status": DEAD})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("adherence_counselling", form_validator._errors)
-        self.assertIn(
-            (
-                "Invalid: Adherence counselling not expected if "
-                "survival status is 'Deceased'"
-            ),
-            str(form_validator._errors.get("adherence_counselling")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="adherence_counselling",
+            expected_msg="Invalid: Expected 'Not applicable' if survival status is 'Deceased'",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
+
+    def test_adherence_counselling_applicable_if_not_deceased(self):
+        survival_statuses = [ss[0] for ss in PATIENT_STATUSES if ss[0] != DEAD]
+        for survival_status in survival_statuses:
+            with self.subTest(survival_status=survival_status):
+                cleaned_data = deepcopy(
+                    self.get_valid_patient_telephone_assessment_data()
+                )
+                cleaned_data.update(
+                    {
+                        "info_source": "next_of_kin",
+                        "survival_status": survival_status,
+                        "adherence_counselling": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = self.validate_form_validator(cleaned_data)
+                self.assertFieldFormValidationErrorRaised(
+                    form_validator=form_validator,
+                    field="adherence_counselling",
+                    expected_msg="This field is applicable.",
+                )
