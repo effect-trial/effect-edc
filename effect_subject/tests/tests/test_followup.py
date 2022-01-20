@@ -77,70 +77,64 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_valid_in_person_visit_data()
         cleaned_data.update({"info_source": PATIENT})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source", form_validator._errors)
-        self.assertIn(
-            "This field is not applicable.",
-            str(form_validator._errors.get("info_source")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source",
+            expected_msg="This field is not applicable.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_applicable_for_telephone_assessments(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": NOT_APPLICABLE})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source", form_validator._errors)
-        self.assertIn(
-            "This field is applicable.",
-            str(form_validator._errors.get("info_source")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source",
+            expected_msg="This field is applicable.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_other_required_if_specified(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": OTHER})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source_other", form_validator._errors)
-        self.assertIn(
-            "This field is required.",
-            str(form_validator._errors.get("info_source_other")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source_other",
+            expected_msg="This field is required.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_info_source_other_not_required_if_not_specified(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source_other": "xxx"})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("info_source_other", form_validator._errors)
-        self.assertIn(
-            "This field is not required.",
-            str(form_validator._errors.get("info_source_other")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="info_source_other",
+            expected_msg="This field is not required.",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_invalid_for_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
         cleaned_data.update({"survival_status": DEAD})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("survival_status", form_validator._errors)
-        self.assertIn(
-            "Invalid: Unexpected survival status 'Deceased' if 'In person' visit",
-            str(form_validator._errors.get("survival_status")),
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="survival_status",
+            expected_msg="Invalid: Unexpected survival status 'Deceased' if 'In person' visit",
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_invalid_for_patient_telephone_visit(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"survival_status": DEAD})
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertIn("survival_status", form_validator._errors)
-        self.assertIn(
-            (
+        self.assertFieldFormValidationErrorRaised(
+            form_validator=form_validator,
+            field="survival_status",
+            expected_msg=(
                 "Invalid: Unexpected survival status 'Deceased' if "
                 "'Telephone' visit with 'Patient'"
             ),
-            str(form_validator._errors.get("survival_status")),
         )
-        self.assertEqual(len(form_validator._errors), 1, form_validator._errors)
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
         info_sources = [
