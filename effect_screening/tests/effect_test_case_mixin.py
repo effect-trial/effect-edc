@@ -177,11 +177,11 @@ class EffectTestCaseMixin(
             entry_status=REQUIRED,
         )
 
-    def assertFormValidationError(
+    def assertFormValidatorError(
         self,
-        form_validator,
         field: str,
         expected_msg: str,
+        form_validator,
         expected_errors: int = 1,
     ):
         self.assertIn(
