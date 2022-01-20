@@ -15,7 +15,7 @@ class FollowupAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Followup",
+            "Follow-up",
             {
                 "fields": (
                     "assessment_type",

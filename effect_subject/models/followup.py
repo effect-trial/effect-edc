@@ -1,9 +1,10 @@
 from django.db import models
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import DEAD
 from edc_model import models as edc_models
 
 from ..choices import ASSESSMENT_TYPES, INFO_SOURCES, PATIENT_STATUSES
-from ..constants import PATIENT
+from ..constants import ALIVE_UNWELL, PATIENT
 from ..model_mixins import CrfModelMixin
 
 
@@ -32,6 +33,11 @@ class Followup(CrfModelMixin, edc_models.BaseUuidModel):
         # TODO: Validate against visit survival status
         # TODO: If dead, trigger SAE -> death form -> off study
         choices=PATIENT_STATUSES,
+        help_text=(
+            f"If subject '{dict(PATIENT_STATUSES)[ALIVE_UNWELL]}, "
+            "consider unscheduled visit, or AE report. "
+            f"If subject '{dict(PATIENT_STATUSES)[DEAD]}', submit death report"
+        ),
     )
 
     hospitalized = models.CharField(
@@ -44,9 +50,9 @@ class Followup(CrfModelMixin, edc_models.BaseUuidModel):
     adherence_counselling = models.CharField(
         verbose_name="Was adherence counselling given?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_NA,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Clinical Assessment"
-        verbose_name_plural = "Clinical Assessment"
+        verbose_name = "Follow-up"
+        verbose_name_plural = "Follow-up"

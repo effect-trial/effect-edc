@@ -17,7 +17,14 @@ class FollowupFormValidator(GlucoseFormValidatorMixin, FormValidator):
         )
         self.validate_other_specify(field="info_source")
         self.validate_survival_status()
-        self.validate_adherence_counselling()
+        self.not_applicable_if(
+            DEAD,
+            field="survival_status",
+            field_applicable="adherence_counselling",
+            not_applicable_msg=(
+                "Invalid: Expected 'Not applicable' if survival status is 'Deceased'"
+            ),
+        )
 
     def validate_survival_status(self):
         if (
@@ -42,20 +49,6 @@ class FollowupFormValidator(GlucoseFormValidatorMixin, FormValidator):
                     "survival_status": (
                         "Invalid: Unexpected survival status 'Deceased' if "
                         "'Telephone' visit with 'Patient'"
-                    )
-                }
-            )
-
-    def validate_adherence_counselling(self):
-        if (
-            self.cleaned_data.get("adherence_counselling") == YES
-            and self.cleaned_data.get("survival_status") == DEAD
-        ):
-            raise forms.ValidationError(
-                {
-                    "adherence_counselling": (
-                        "Invalid: Adherence counselling not expected if "
-                        "survival status is 'Deceased'"
                     )
                 }
             )

@@ -17,6 +17,7 @@ from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
 from .constants import (
+    ALIVE_UNWELL,
     APPT,
     APPT_OTHER,
     DECREASED,
@@ -187,7 +188,7 @@ PRESENT_ABSENT_NOEXAM_NDS = (
 
 PATIENT_STATUSES = (
     ("alive_well", "Alive and well"),
-    ("alive_unwell", "Alive, but unwell"),
+    (ALIVE_UNWELL, "Alive, but unwell"),
     (DEAD, "Deceased"),
 )
 
