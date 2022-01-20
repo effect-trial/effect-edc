@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import DEAD, NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
@@ -11,7 +11,6 @@ from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
 
 
-@tag("fu")
 class TestFollowup(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
@@ -24,7 +23,6 @@ class TestFollowup(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
-@tag("fu")
 class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = FollowupFormValidator
