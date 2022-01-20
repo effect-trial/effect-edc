@@ -177,7 +177,7 @@ class EffectTestCaseMixin(
             entry_status=REQUIRED,
         )
 
-    def assertFieldFormValidationErrorRaised(
+    def assertFormValidationError(
         self,
         form_validator,
         field: str,

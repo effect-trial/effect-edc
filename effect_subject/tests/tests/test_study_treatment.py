@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
@@ -11,6 +11,7 @@ from effect_subject.forms import StudyTreatmentForm
 from effect_subject.forms.study_treatment_form import StudyTreatmentFormValidator
 
 
+@tag("fv")
 class TestFollowup(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
@@ -25,6 +26,7 @@ class TestFollowup(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
+@tag("fv")
 class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = StudyTreatmentFormValidator
@@ -67,7 +69,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_confirmed",
             expected_msg="This field is not applicable.",
@@ -82,7 +84,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_confirmed",
             expected_msg="This field is applicable.",
@@ -98,7 +100,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_administered",
             expected_msg="This field is not applicable.",
@@ -114,7 +116,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_administered",
             expected_msg="This field is applicable.",
@@ -131,7 +133,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_given",
             expected_msg="This field is not applicable.",
@@ -148,7 +150,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_given",
             expected_msg="This field is applicable.",
@@ -166,7 +168,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_given_other",
             expected_msg="This field is required.",
@@ -184,7 +186,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="cm_tx_given_other",
             expected_msg="This field is not required.",
@@ -200,7 +202,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="tb_tx_given_other",
             expected_msg="This field is required.",
@@ -223,7 +225,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 form_validator = self.validate_form_validator(cleaned_data)
-                self.assertFieldFormValidationErrorRaised(
+                self.assertFormValidationError(
                     form_validator=form_validator,
                     field="tb_tx_given_other",
                     expected_msg="This field is not required.",
@@ -241,7 +243,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="which_steroids",
             expected_msg="This field is not applicable.",
@@ -258,7 +260,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="which_steroids",
             expected_msg="This field is applicable.",
@@ -275,7 +277,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="which_steroids_other",
             expected_msg="This field is required.",
@@ -292,7 +294,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="which_steroids_other",
             expected_msg="This field is not required.",
@@ -309,7 +311,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="steroids_course_duration",
             expected_msg="This field is not required.",
@@ -326,7 +328,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="steroids_course_duration",
             expected_msg="This field is required.",
@@ -342,7 +344,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         form_validator = self.validate_form_validator(cleaned_data)
-        self.assertFieldFormValidationErrorRaised(
+        self.assertFormValidationError(
             form_validator=form_validator,
             field="antibiotics_other",
             expected_msg="This field is required.",
@@ -364,7 +366,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 form_validator = self.validate_form_validator(cleaned_data)
-                self.assertFieldFormValidationErrorRaised(
+                self.assertFormValidationError(
                     form_validator=form_validator,
                     field="antibiotics_other",
                     expected_msg="This field is not required.",
