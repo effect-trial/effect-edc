@@ -2,13 +2,12 @@ from django import forms
 from edc_constants.constants import DEAD, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
-from edc_glucose.form_validators import GlucoseFormValidatorMixin
 
 from ..constants import IN_PERSON, PATIENT, TELEPHONE
 from ..models import Followup
 
 
-class FollowupFormValidator(GlucoseFormValidatorMixin, FormValidator):
+class FollowupFormValidator(FormValidator):
     def clean(self):
         super().clean()
 

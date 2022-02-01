@@ -9,6 +9,8 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
 
+from effect_subject.constants import HEADACHE, VISUAL_LOSS
+
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
@@ -147,9 +149,9 @@ list_data = {
         ),
     ],
     "effect_lists.sisx": [
-        ("headache", "Headache"),
+        (HEADACHE, "Headache"),
         ("double_vision", "Double vision"),
-        ("visual_loss", "Visual loss"),
+        (VISUAL_LOSS, "Visual loss"),
         ("fever", "Fever"),
         ("hearing_loss", "Hearing loss"),
         ("drowsiness", "Drowsiness"),

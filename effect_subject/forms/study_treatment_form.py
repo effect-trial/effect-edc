@@ -2,12 +2,11 @@ from django import forms
 from edc_constants.constants import OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
-from edc_glucose.form_validators import GlucoseFormValidatorMixin
 
 from ..models import StudyTreatment
 
 
-class StudyTreatmentFormValidator(GlucoseFormValidatorMixin, FormValidator):
+class StudyTreatmentFormValidator(FormValidator):
     def clean(self):
         super().clean()
 
