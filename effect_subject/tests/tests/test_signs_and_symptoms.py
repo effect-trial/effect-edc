@@ -37,9 +37,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    # TODO: Test any_sx == Unknown
-    # TODO: Test patient with signs and symptoms is valid
-
     def get_valid_patient_with_no_signs_or_symptoms(self):
         return {
             "appointment": self.subject_visit.appointment,
@@ -47,11 +44,11 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "any_sx": NO,
             "current_sx": SiSx.objects.none(),
             "current_sx_other": "",
+            "reportable_as_ae": NOT_APPLICABLE,
             "current_sx_gte_g3": SiSx.objects.none(),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
-            "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
             "cm_sx": NOT_APPLICABLE,
         }
@@ -74,11 +71,11 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
             "current_sx_other": "",
+            "reportable_as_ae": NO,
             "current_sx_gte_g3": SiSx.objects.none(),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
-            "reportable_as_ae": NO,
             "patient_admitted": NO,
             "cm_sx": NO,
         }
@@ -87,8 +84,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
         cleaned_data.update(
             {
-                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "reportable_as_ae": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+                "current_sx_gte_g3_other": "",
             }
         )
         return cleaned_data
@@ -266,8 +264,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
             {
-                "current_sx_gte_g3": SiSx.objects.none(),
                 "reportable_as_as": YES,
+                "current_sx_gte_g3": SiSx.objects.none(),
             }
         )
         self.assertFormValidatorError(
@@ -287,6 +285,140 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    @tag("sxss")
+    def test_sx_gte_g3_with_no_current_sx_raises_error(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.none(),
+                "reportable_as_as": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx",
+            expected_msg="This field is required",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(name="fever"),
+                "reportable_as_ae": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    @tag("sxss")
+    def test_sx_gte_g3_not_in_current_sx_raises_error(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
+                "current_sx_gte_g3": SiSx.objects.filter(name="cough"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="Invalid selection. Must be from above list of signs and symptoms",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                ),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    @tag("sxss")
+    def test_other_not_in_sx_gte_g3_but_other_in_current_sx_raises_error(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(name=OTHER),
+                "current_sx_other": "Some other sx",
+                "current_sx_gte_g3": SiSx.objects.none(),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="This field is required",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="Invalid selection. Must be from above list of signs and symptoms",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(name=OTHER),
+                "current_sx_gte_g3_other": "Some other G3 sx",
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    @tag("sxss")
+    def test_sx_gte_g3_superset_of_current_sx_raises_error(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
+                "current_sx_gte_g3": SiSx.objects.filter(
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="Invalid selection. Must be from above list of signs and symptoms",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                ),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    @tag("sxss")
+    def test_sx_gte_g3_subset_of_current_sx_valid(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                ),
+                "current_sx_gte_g3": SiSx.objects.filter(
+                    Q(name="fever") | Q(name="vomiting")
+                ),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
         )
 
     @tag("sxo")

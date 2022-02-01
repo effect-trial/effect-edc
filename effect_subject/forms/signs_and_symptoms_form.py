@@ -30,8 +30,17 @@ class SignsAndSymptomsFormValidator(FormValidator):
         self.m2m_other_specify(
             OTHER, m2m_field="current_sx_gte_g3", field_other="current_sx_gte_g3_other"
         )
-        # TODO: test current_sx_gte_g3 specified are a subset of
-        #  those specified in current_sx
+        sx_gte_g3_selections = self.get_m2m_selected("current_sx_gte_g3")
+        if sx_gte_g3_selections:
+            sx_selections = self.get_m2m_selected("current_sx")
+            if [x for x in sx_gte_g3_selections if x not in sx_selections]:
+                raise forms.ValidationError(
+                    {
+                        "current_sx_gte_g3": (
+                            "Invalid selection. Must be from above list of signs and symptoms"
+                        )
+                    }
+                )
 
         self.m2m_other_specify(
             HEADACHE, m2m_field="current_sx", field_other="headache_duration"
