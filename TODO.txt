@@ -1,0 +1,21 @@
+- Bump requirements to latest EDC
+
+- Follow-up
+    - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
+
+- Signs and Symptoms CRF
+    - split validation into functions (JW TODO)
+    - if reportable_as_ae, trigger/prompt SAE
+    - if patient_admitted, trigger/prompt SAE
+    - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
+    - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
+    - finalise cm_sx_lp_done, cm_sx_bloods_taken, patient_admitted questions/behaviour
+
+- Mental Status CRF
+    - Server error when trying to save “mental status” form
+
+- Other (reported by JA)
+    - Consent 2 and 3 – makes you add the name in full caps. Can this be made auto?
+    - Requisition for blood sample gave server error – this prevents saving the bloods form.
+    - I then added the requisition 992FC4G – thinking this was for a sample taken, but it seemed to only be for a FBC – and did not let me use it for chemistry results.
+    - LP details – are these available?
