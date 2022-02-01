@@ -287,7 +287,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    @tag("sxss")
     def test_sx_gte_g3_with_no_current_sx_raises_error(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
         cleaned_data.update(
@@ -314,7 +313,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("sxss")
     def test_sx_gte_g3_not_in_current_sx_raises_error(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
@@ -340,7 +338,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("sxss")
     def test_other_not_in_sx_gte_g3_but_other_in_current_sx_raises_error(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
@@ -376,7 +373,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    @tag("sxss")
     def test_sx_gte_g3_superset_of_current_sx_raises_error(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
@@ -404,7 +400,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("sxss")
     def test_sx_gte_g3_subset_of_current_sx_valid(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
@@ -421,7 +416,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("sxo")
     def test_current_sx_gte_g3_other_required_if_other_selected(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
@@ -441,7 +435,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("sxo")
     def test_current_sx_gte_g3_other_not_required_if_other_not_selected(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
