@@ -96,15 +96,29 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         help_text=IF_YES_COMPLETE_SAE,
     )
 
-    # TODO: Following 3 only applicable if cm_sx == YES
-    # TODO: Was an LP done (YES_NO_NA)?
-    # TODO: if yes, LP request and LP result
+    cm_sx_lp_done = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, was an LP done?",
+        max_length=15,
+        # TODO: if yes, LP request and LP result
+        choices=YES_NO_NA,
+        help_text="If yes, ...",
+    )
 
-    # TODO: Were bloods taken (YES_NO_NA)?
-    # TODO: if yes, chem/haemo
+    cm_sx_bloods_taken = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, were bloods taken?",
+        max_length=15,
+        # TODO: if yes, chemistry/haemo
+        choices=YES_NO_NA,
+        help_text="If yes, ...",
+    )
 
-    # TODO: Was patient admitted (YES_NO_NA)?
-    # TODO: if yes, adverse event action item
+    cm_sx_patient_admitted = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, was the patient admitted?",
+        max_length=15,
+        # TODO: if yes, adverse event action item
+        choices=YES_NO_NA,
+        help_text=IF_YES_COMPLETE_SAE,
+    )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Signs and Symptoms"

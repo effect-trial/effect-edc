@@ -36,7 +36,14 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
         ),
         (
             "CM signs and symptoms",
-            {"fields": ("cm_sx",)},
+            {
+                "fields": (
+                    "cm_sx",
+                    "cm_sx_lp_done",
+                    "cm_sx_bloods_taken",
+                    "cm_sx_patient_admitted",
+                )
+            },
         ),
         audit_fieldset_tuple,
     )
@@ -51,4 +58,7 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
         "cm_sx": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
+        "cm_sx_lp_done": admin.VERTICAL,
+        "cm_sx_bloods_taken": admin.VERTICAL,
+        "cm_sx_patient_admitted": admin.VERTICAL,
     }

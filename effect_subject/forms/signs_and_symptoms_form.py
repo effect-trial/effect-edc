@@ -52,6 +52,12 @@ class SignsAndSymptomsFormValidator(FormValidator):
 
         self.applicable_if(YES, field="any_sx", field_applicable="patient_admitted")
         self.applicable_if(YES, field="any_sx", field_applicable="cm_sx")
+        # TODO: Test "cm_sx_..." behaviour as expected
+        self.applicable_if(YES, field="cm_sx", field_applicable="cm_sx_lp_done")
+        self.applicable_if(YES, field="cm_sx", field_applicable="cm_sx_bloods_taken")
+        self.applicable_if(
+            YES, field="cm_sx", field_applicable="cm_sx_patient_admitted"
+        )
 
 
 class SignsAndSymptomsForm(CrfModelFormMixin, forms.ModelForm):
