@@ -11,7 +11,7 @@ from ..model_mixins import CrfModelMixin
 
 class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
 
-    any_signs_symptoms = models.CharField(
+    any_sx = models.CharField(
         verbose_name=(
             "Are there any signs or symptoms to report, since last contact with trial team?"
         ),
@@ -19,7 +19,7 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO_UNKNOWN,
     )
 
-    cm_signs_symptoms = models.CharField(
+    cm_sx = models.CharField(
         verbose_name=(
             "Are any of the signs or symptoms related to cryptococcal meningitis (CM)?"
         ),
@@ -29,23 +29,23 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
 
     # Current Signs/Symptoms - Other CRF (p2)
     # Current Signs/Symptoms CRF (p2)
-    signs_and_symptoms = models.ManyToManyField(
+    current_sx = models.ManyToManyField(
         SiSx,
-        related_name="signs_symptoms",
+        related_name="sx",
         verbose_name="Is patient currently experiencing any of the following signs/symptoms?",
         blank=True,
     )
 
-    # TODO: add signs_and_symptoms_other
+    # TODO: add current_sx_other
 
-    signs_and_symptoms_gte_g3 = models.ManyToManyField(
+    current_sx_gte_g3 = models.ManyToManyField(
         SiSx,
-        related_name="signs_symptoms_gte_g3",
+        related_name="sx_gte_g3",
         verbose_name="Are any of the specified signs/symptoms Grade 3 or above?",
         blank=True,
     )
 
-    # TODO: add signs_and_symptoms_gte_g3_other
+    # TODO: add current_sx_gte_g3_other
 
     headache_duration = edc_models.DurationDHField(
         verbose_name=(
@@ -86,7 +86,7 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         help_text=IF_YES_COMPLETE_SAE,
     )
 
-    # TODO: Following 3 only applicable if cm_signs_symptoms == YES
+    # TODO: Following 3 only applicable if cm_sx == YES
     # TODO: Was an LP done (YES_NO_NA)?
     # TODO: if yes, LP request and LP result
 

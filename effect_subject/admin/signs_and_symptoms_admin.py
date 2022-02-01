@@ -18,10 +18,10 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
             "Signs and symptoms",
             {
                 "fields": (
-                    "any_signs_symptoms",
-                    "signs_and_symptoms",
+                    "any_sx",
+                    "current_sx",
                     "reportable_as_ae",
-                    "signs_and_symptoms_gte_g3",
+                    "current_sx_gte_g3",
                     "headache_duration",
                     # "headache_duration_microseconds",
                     "visual_field_loss",
@@ -34,19 +34,19 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
         ),
         (
             "CM signs and symptoms",
-            {"fields": ("cm_signs_symptoms",)},
+            {"fields": ("cm_sx",)},
         ),
         audit_fieldset_tuple,
     )
 
     filter_horizontal = [
-        "signs_and_symptoms",
-        "signs_and_symptoms_gte_g3",
+        "current_sx",
+        "current_sx_gte_g3",
     ]
 
     radio_fields = {
-        "any_signs_symptoms": admin.VERTICAL,
-        "cm_signs_symptoms": admin.VERTICAL,
+        "any_sx": admin.VERTICAL,
+        "cm_sx": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
     }

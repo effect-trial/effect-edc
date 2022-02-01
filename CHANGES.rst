@@ -10,8 +10,9 @@ Changes
 - changes to Signs and Symptoms form:
     - reorder fields based on feedback
     - convert headache_duration to edc_models.DurationDHField
-    - add new fields: 'any_signs_symptoms', 'signs_and_symptoms_gte_g3', 'headache_duration_microseconds'
-    - add N/A options for if no/unknown answer to 'any_signs_symptoms'
+    - use _sx in field names to be consistent ('current_sx', cm_sx')
+    - add new fields: 'any_sx', 'current_sx_gte_g3', 'headache_duration_microseconds'
+    - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
 
 0.1.1

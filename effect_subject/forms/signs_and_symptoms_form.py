@@ -10,40 +10,34 @@ from ..models import SignsAndSymptoms
 class SignsAndSymptomsFormValidator(FormValidator):
     def clean(self) -> None:
         # TODO: Validate that patient can't specify UNKNOWN for
-        #  any_signs_symptoms (e.g. if an in-person or telephone/patient visit)
+        #  any_sx (e.g. if an in-person or telephone/patient visit)
 
         self.m2m_required_if(
             response=YES,
-            field="any_signs_symptoms",
-            m2m_field="signs_and_symptoms",
+            field="any_sx",
+            m2m_field="current_sx",
         )
 
-        self.applicable_if(
-            YES, field="any_signs_symptoms", field_applicable="reportable_as_ae"
-        )
+        self.applicable_if(YES, field="any_sx", field_applicable="reportable_as_ae")
         self.m2m_required_if(
             response=YES,
             field="reportable_as_ae",
-            m2m_field="signs_and_symptoms_gte_g3",
+            m2m_field="current_sx_gte_g3",
         )
 
-        # TODO: test signs_and_symptoms_gte_g3 specified are a subset of
-        #  those specified in signs_and_symptoms
-
-        self.m2m_other_specify(
-            HEADACHE, m2m_field="signs_and_symptoms", field_other="headache_duration"
-        )
+        # TODO: test current_sx_gte_g3 specified are a subset of
+        #  those specified in current_sx
 
         self.m2m_other_specify(
-            VISUAL_LOSS, m2m_field="signs_and_symptoms", field_other="visual_field_loss"
+            HEADACHE, m2m_field="current_sx", field_other="headache_duration"
         )
 
-        self.applicable_if(
-            YES, field="any_signs_symptoms", field_applicable="patient_admitted"
+        self.m2m_other_specify(
+            VISUAL_LOSS, m2m_field="current_sx", field_other="visual_field_loss"
         )
-        self.applicable_if(
-            YES, field="any_signs_symptoms", field_applicable="cm_signs_symptoms"
-        )
+
+        self.applicable_if(YES, field="any_sx", field_applicable="patient_admitted")
+        self.applicable_if(YES, field="any_sx", field_applicable="cm_sx")
 
 
 class SignsAndSymptomsForm(CrfModelFormMixin, forms.ModelForm):
