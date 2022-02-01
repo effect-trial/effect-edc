@@ -36,7 +36,11 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    # TODO: add current_sx_other
+    current_sx_other = models.TextField(
+        verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
+        null=True,
+        blank=True,
+    )
 
     current_sx_gte_g3 = models.ManyToManyField(
         SiSx,
@@ -45,7 +49,13 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    # TODO: add current_sx_gte_g3_other
+    current_sx_gte_g3_other = models.TextField(
+        verbose_name=(
+            "If 'Other sign(s)/symptom(s)' at Grade 3 or above selected, please specify ..."
+        ),
+        null=True,
+        blank=True,
+    )
 
     headache_duration = edc_models.DurationDHField(
         verbose_name=(

@@ -1,5 +1,5 @@
 from django import forms
-from edc_constants.constants import YES
+from edc_constants.constants import OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 
@@ -17,6 +17,9 @@ class SignsAndSymptomsFormValidator(FormValidator):
             field="any_sx",
             m2m_field="current_sx",
         )
+        self.m2m_other_specify(
+            OTHER, m2m_field="current_sx", field_other="current_sx_other"
+        )
 
         self.applicable_if(YES, field="any_sx", field_applicable="reportable_as_ae")
         self.m2m_required_if(
@@ -24,7 +27,9 @@ class SignsAndSymptomsFormValidator(FormValidator):
             field="reportable_as_ae",
             m2m_field="current_sx_gte_g3",
         )
-
+        self.m2m_other_specify(
+            OTHER, m2m_field="current_sx_gte_g3", field_other="current_sx_gte_g3_other"
+        )
         # TODO: test current_sx_gte_g3 specified are a subset of
         #  those specified in current_sx
 

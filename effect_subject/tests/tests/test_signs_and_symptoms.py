@@ -3,7 +3,7 @@ from copy import deepcopy
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import NO, NOT_APPLICABLE, UNKNOWN, YES
+from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, UNKNOWN, YES
 from model_bakery import baker
 
 from effect_lists.models import SiSx
@@ -46,7 +46,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
             "current_sx": SiSx.objects.none(),
+            "current_sx_other": "",
             "current_sx_gte_g3": SiSx.objects.none(),
+            "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
             "reportable_as_ae": NOT_APPLICABLE,
@@ -71,7 +73,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
+            "current_sx_other": "",
             "current_sx_gte_g3": SiSx.objects.none(),
+            "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
             "reportable_as_ae": NO,
@@ -145,6 +149,41 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             field="current_sx",
             expected_msg="This field is required",
             form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_current_sx_other_required_if_other_selected(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {"current_sx": SiSx.objects.filter(name=OTHER), "current_sx_other": ""}
+        )
+        self.assertFormValidatorError(
+            field="current_sx_other",
+            expected_msg="This field is required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_other": "Some other sx"})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_current_sx_other_not_required_if_other_not_selected(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(name="fever"),
+                "current_sx_other": "Some other sx",
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_other",
+            expected_msg="This field is not required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_other": ""})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_reportable_as_ae_applicable_if_any_sx_yes(self):
@@ -248,6 +287,46 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    @tag("sxo")
+    def test_current_sx_gte_g3_other_required_if_other_selected(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(name=OTHER),
+                "current_sx_gte_g3_other": "",
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3_other",
+            expected_msg="This field is required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_gte_g3_other": "Some other G3 sx"})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    @tag("sxo")
+    def test_current_sx_gte_g3_other_not_required_if_other_not_selected(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+                "current_sx_gte_g3_other": "Some other sx",
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3_other",
+            expected_msg="This field is not required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_gte_g3_other": ""})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_headache_duration_applicable_if_in_current_sx(self):

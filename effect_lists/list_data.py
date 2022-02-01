@@ -163,6 +163,7 @@ list_data = {
         ("cough", "Cough"),
         ("shortness_of_breath", "Shortness of breath"),
         ("jaundice", "Jaundice"),
+        (OTHER, "Other sign(s)/symptom(s), please specify below ..."),
     ],
     "effect_lists.subjectvisitmissedreasons": [
         ("forgot", "Forgot / Can’t remember being told about appointment"),

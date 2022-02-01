@@ -20,8 +20,10 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
                 "fields": (
                     "any_sx",
                     "current_sx",
+                    "current_sx_other",
                     "reportable_as_ae",
                     "current_sx_gte_g3",
+                    "current_sx_gte_g3_other",
                     "headache_duration",
                     # "headache_duration_microseconds",
                     "visual_field_loss",
