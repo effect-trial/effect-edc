@@ -191,24 +191,24 @@ class EffectTestCaseMixin(
             field,
             form_validator._errors,
             msg=(
-                f"Expected to find field '{field}' "
-                f"listed in the form validation errors: '{form_validator._errors}'"
+                f"Expected field '{field}' in form validation errors. "
+                f"Got '{form_validator._errors}'."
             ),
         )
         self.assertIn(
             expected_msg,
             str(form_validator._errors.get(field)),
             msg=(
-                f"Expected to find error message '{expected_errors}' "
-                f"in form validation errors: '{form_validator._errors}'"
+                f"Expected error message '{expected_msg}' for field '{field}' "
+                f"in form validation errors.  Got '{form_validator._errors}'"
             ),
         )
         self.assertEqual(
             len(form_validator._errors),
             expected_errors,
             msg=(
-                f"Expected {expected_errors} error message(s) in form validator, "
-                f"but got {len(form_validator._errors)}, "
+                f"Expected {expected_errors} error message(s) in form validator. "
+                f"Got {len(form_validator._errors)} errors "
                 f"as follows: '{form_validator._errors}'"
             ),
         )
