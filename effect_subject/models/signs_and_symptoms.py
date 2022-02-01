@@ -1,41 +1,76 @@
 from django.core.validators import MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_model import models as edc_models
 
 from effect_lists.models import SiSx
 
+from ..constants import IF_YES_COMPLETE_SAE
 from ..model_mixins import CrfModelMixin
 
 
 class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
 
-    cm_signs_symptoms = models.CharField(
+    any_sx = models.CharField(
         verbose_name=(
-            "Has the patient had signs or symptoms of "
-            "cryptococcal meningitis (CM) since last contact with trial team?"
+            "Are there any signs or symptoms to report, since last contact with trial team?"
         ),
         max_length=15,
         choices=YES_NO_UNKNOWN,
     )
 
+    cm_sx = models.CharField(
+        verbose_name=(
+            "Are any of the signs or symptoms related to cryptococcal meningitis (CM)?"
+        ),
+        max_length=15,
+        choices=YES_NO_NA,
+    )
+
     # Current Signs/Symptoms - Other CRF (p2)
     # Current Signs/Symptoms CRF (p2)
-    signs_and_symptoms = models.ManyToManyField(
+    current_sx = models.ManyToManyField(
         SiSx,
+        related_name="sx",
         verbose_name="Is patient currently experiencing any of the following signs/symptoms?",
         blank=True,
     )
 
-    headache_duration = models.IntegerField(
-        # TODO: Only valid if headache selected in current_symptoms
+    current_sx_other = models.TextField(
+        verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
+        null=True,
+        blank=True,
+    )
+
+    current_sx_gte_g3 = models.ManyToManyField(
+        SiSx,
+        related_name="sx_gte_g3",
+        verbose_name="Are any of the specified signs/symptoms Grade 3 or above?",
+        blank=True,
+    )
+
+    current_sx_gte_g3_other = models.TextField(
+        verbose_name=(
+            "If 'Other sign(s)/symptom(s)' at Grade 3 or above selected, please specify ..."
+        ),
+        null=True,
+        blank=True,
+    )
+
+    headache_duration = edc_models.DurationDHField(
         verbose_name=(
             "If patient currently has headache, for what duration have they had it for"
         ),
+        help_text="In days and/or hours.  Note: 1 day equivalent to 24 hours.</br>",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
-        help_text="in days",
+    )
+
+    # TODO: Add/convert to calculated field
+    headache_duration_microseconds = models.DurationField(
+        null=True,
+        blank=True,
     )
 
     visual_field_loss = models.TextField(
@@ -49,15 +84,40 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are any of these signs or symptoms Grade 3 or above?",
         max_length=15,
         # TODO: If yes, prompt for SAE
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to any of these signs or symptoms?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
-        choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        choices=YES_NO_NA,
+        help_text=IF_YES_COMPLETE_SAE,
+    )
+
+    cm_sx_lp_done = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, was an LP done?",
+        max_length=15,
+        # TODO: if yes, LP request and LP result
+        choices=YES_NO_NA,
+        help_text="If yes, ...",
+    )
+
+    cm_sx_bloods_taken = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, were bloods taken?",
+        max_length=15,
+        # TODO: if yes, chemistry/haemo
+        choices=YES_NO_NA,
+        help_text="If yes, ...",
+    )
+
+    cm_sx_patient_admitted = models.CharField(
+        verbose_name="If the patient has CM signs or symptoms, was the patient admitted?",
+        max_length=15,
+        # TODO: if yes, adverse event action item
+        choices=YES_NO_NA,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

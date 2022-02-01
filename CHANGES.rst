@@ -3,10 +3,17 @@ Changes
 
 [unreleased]
 ------------
-- changes to Follow-up (formerly Clinical Assessment):
+- changes to Follow-up (formerly Clinical Assessment) form:
     - rename/standardise 'Clinical Assessment' to be 'Follow-up' throughout
     - add survival status help text, for 'Deceased' and 'Alive, but unwell' choices
     - modify adherence_counselling to only be applicable if not 'Deceased'
+- changes to Signs and Symptoms form:
+    - reorder fields based on feedback
+    - convert headache_duration to edc_models.DurationDHField
+    - use _sx in field names to be consistent ('current_sx', cm_sx')
+    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds'
+    - add N/A options for if no/unknown answer to 'any_sx'
+    - add validation
 
 0.1.1
 -----
