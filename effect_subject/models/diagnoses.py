@@ -4,6 +4,7 @@ from edc_model import models as edc_models
 
 from effect_lists.models import Dx
 
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
 from ..model_mixins import CrfModelMixin
 
 
@@ -52,6 +53,7 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE
         choices=YES_NO,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
@@ -59,7 +61,7 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE form
         choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

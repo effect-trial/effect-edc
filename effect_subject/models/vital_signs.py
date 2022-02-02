@@ -4,9 +4,9 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_model import models as edc_models
 from edc_vitals.models import WeightField
 
-from effect_subject.choices import MEASURED_EST_CHOICES
-from effect_subject.fields.temperature import TemperatureField
-
+from ..choices import MEASURED_EST_CHOICES
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
+from ..fields.temperature import TemperatureField
 from ..model_mixins import CrfModelMixin
 
 
@@ -40,6 +40,7 @@ class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE
         choices=YES_NO_NA,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
@@ -47,7 +48,7 @@ class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE form
         choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
