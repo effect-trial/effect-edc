@@ -1,3 +1,5 @@
+from typing import List
+
 from edc_action_item import Action, site_action_items
 from edc_action_item.site_action_items import AlreadyRegistered
 from edc_blood_results.action_items import (
@@ -5,7 +7,7 @@ from edc_blood_results.action_items import (
     BloodResultsLftAction,
     BloodResultsRftAction,
 )
-from edc_constants.constants import HIGH_PRIORITY, PENDING
+from edc_constants.constants import HIGH_PRIORITY, YES
 from edc_visit_schedule.utils import is_baseline
 
 from effect_screening.models import SubjectScreening
@@ -26,12 +28,13 @@ class SubjectVisitAction(Action):
         return False
 
     def get_next_actions(self):
+        # TODO: based on Q12 on screening form (lp_done)
         next_actions = []
         if is_baseline(self.reference_obj):
             subject_screening = SubjectScreening.objects.get(
                 subject_identifier=self.subject_identifier
             )
-            if subject_screening.lp_done == PENDING:
+            if subject_screening.lp_done == YES:
                 next_actions = [LP_ACTION]
         return next_actions
 
@@ -44,6 +47,23 @@ class LpAction(Action):
     priority = HIGH_PRIORITY
     show_on_dashboard = True
     create_by_user = False
+
+
+# TODO:
+# class FollowupAction(Action):
+#     name = FOLLOWUP_ACTION
+#     display_name = "Follow up action"
+#     reference_model = "effect_subject.followup"
+#
+#     priority = HIGH_PRIORITY
+#     show_on_dashboard = True
+#     create_by_user = False
+#
+#     def get_next_actions(self) -> List[str]:
+#         next_actions = []
+#         if followup == YES:
+#             next_actions = [HE_ACTION]
+#         return next_actions
 
 
 def register_actions():

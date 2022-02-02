@@ -1,5 +1,3 @@
-import pdb
-
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
 from edc_constants.constants import IND, MALE, NEG, NO, PENDING, POS, YES
@@ -15,6 +13,9 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_lp_and_csf_crag()
         self.validate_csf_cm_evidence()
         self.validate_pregnancy()
+        self.required_if(
+            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
+        )
 
     def validate_cd4(self):
         if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
@@ -124,10 +125,6 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
         self.not_applicable_if(
             MALE, field="gender", field_applicable="pregnant", inverse=False
-        )
-
-        self.required_if(
-            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
         )
 
     def validate_age(self):

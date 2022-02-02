@@ -40,6 +40,17 @@ class Followup(CrfModelMixin, edc_models.BaseUuidModel):
         ),
     )
 
+    health_related_costs = models.CharField(
+        verbose_name=(
+            "Has the patient accessed any health services, incurred costs or "
+            "lost income related to their health since the last assessment"
+        ),
+        max_length=15,
+        # TODO: If yes, trigger HEALTH ECONOMICS
+        # TODO: HEALTH ECONOMICS always required for unscheduled visits
+        choices=YES_NO,
+    )
+
     hospitalized = models.CharField(
         verbose_name="Has the patient been hospitalized since the last assessment?",
         max_length=15,

@@ -1,13 +1,19 @@
+import pdb
+from copy import deepcopy
+
 from dateutil.relativedelta import relativedelta
+from django.db.models import NOT_PROVIDED
 from django.test import TestCase, tag
 from edc_constants.constants import (
     FEMALE,
     MALE,
     NEG,
     NO,
+    NOT_ANSWERED,
     NOT_APPLICABLE,
     PENDING,
     POS,
+    TBD,
     YES,
 )
 from edc_screening.screening_eligibility import ScreeningEligibilityError
@@ -17,7 +23,17 @@ from effect_screening.eligibility import ScreeningEligibility
 from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
 
-from ..effect_test_case_mixin import EffectTestCaseMixin
+from ..effect_test_case_mixin import EffectTestCaseMixin, get_eligible_options
+
+
+def set_to_defaults(cleaned_data, field_list):
+    """Sets values to the default value from the corresponding model field class"""
+    for k in field_list:
+        default = getattr(SubjectScreening, k).__dict__["field"].default
+        if default == NOT_PROVIDED:
+            default = None
+        cleaned_data[k] = default
+    return cleaned_data
 
 
 @tag("screen")
@@ -74,46 +90,32 @@ class TestForms(EffectTestCaseMixin, TestCase):
             reaction_to_study_drugs=NO,
         )
 
-    def test_screening_ok(self):
-        opts = {
-            "screening_consent": YES,
-            "willing_to_participate": YES,
-            "consent_ability": YES,
-            "report_datetime": get_utcnow(),
-            "initials": "EW",
-            "gender": MALE,
-            "age_in_years": 25,
-        }
-        SubjectScreening.objects.create(**opts)
+    @tag("10")
+    def test_screening_form_ok(self):
         form = SubjectScreeningForm(
-            initial=self.get_data(), instance=SubjectScreening()
+            data=get_eligible_options(), instance=SubjectScreening()
         )
         form.is_valid()
-        # self.assertEqual(form._errors, {})
-        # form.save()
-        # self.assertTrue(SubjectScreening.objects.all()[0].eligible)
+        self.assertEqual(form._errors, {})
+        form.save()
+        self.assertIsNone(SubjectScreening.objects.all()[0].reasons_ineligible)
+        self.assertTrue(SubjectScreening.objects.all()[0].eligible)
 
-    def test_basic_eligibility(self):
-        obj = SubjectScreening.objects.create(**self.get_basic_opts())
-        self.assertFalse(obj.eligible)
-        self.assertIn("incomplete inclusion criteria", obj.reasons_ineligible.lower())
-        self.assertIn("incomplete exclusion criteria", obj.reasons_ineligible.lower())
+    @tag("10")
+    def test_screening_model_ok(self):
+        obj = SubjectScreening.objects.create(**get_eligible_options())
+        self.assertIsNone(obj.reasons_ineligible)
+        self.assertTrue(obj.eligible)
 
-    def test_inclusion_criteria_for_eligibility(self):
-        instance = SubjectScreening.objects.create(
-            **self.inclusion_criteria, **self.get_basic_opts()
-        )
-        obj = ScreeningEligibility(instance)
-        self.assertFalse(obj.is_eligible)
-        self.assertNotIn("inclusion_criteria", obj.reasons_ineligible)
-
-    def test_exclusion_criteria_for_eligibility(self):
-        model_obj = SubjectScreening.objects.create(
-            **self.exclusion_criteria, **self.get_basic_opts()
-        )
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertFalse(obj.is_eligible)
-        self.assertNotIn("exclusion_criteria", obj.reasons_ineligible)
+    def test_missing_inclusion(self):
+        cleaned_data = deepcopy(get_eligible_options())
+        cleaned_data = set_to_defaults(cleaned_data, self.inclusion_criteria)
+        eligibility = ScreeningEligibility(cleaned_data=cleaned_data, verbose=True)
+        self.assertIn("hiv_pos", eligibility.reasons_ineligible)
+        self.assertIn("cd4_value", eligibility.reasons_ineligible)
+        self.assertIn("lp_done", eligibility.reasons_ineligible)
+        print(eligibility.reasons_ineligible)
+        self.assertEqual(eligibility.eligible, TBD)
 
     def test_criteria_for_eligibility(self):
         model_obj = SubjectScreening.objects.create(
@@ -125,7 +127,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
-    @tag("123")
     def test_male_preg_raises(self):
         opts = dict(
             **self.inclusion_criteria,

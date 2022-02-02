@@ -70,23 +70,25 @@ visit010 = Visit(
     facility_name="7-day-clinic",
 )
 
+# TODO: 1 day before and until the next visit -1
 visit020 = Visit(
     code=DAY09,
     title="Day 9",
     timepoint=20,
     rbase=relativedelta(days=9),
-    rlower=relativedelta(days=2),
+    rlower=relativedelta(days=1),
     rupper=relativedelta(days=12),
     crfs=crfs_d09,
     facility_name="7-day-clinic",
 )
 
 
+# TODO: 1 day before and until the next visit -1
 visit030 = Visit(
     code=DAY14,
     title="Day 14",
     timepoint=30,
-    rbase=relativedelta(days=2),
+    rbase=relativedelta(days=14),
     rlower=relativedelta(days=2),
     rupper=relativedelta(days=2),
     requisitions=requisitions_d14,
@@ -94,6 +96,7 @@ visit030 = Visit(
     facility_name="7-day-clinic",
 )
 
+# TODO: -7 to next -7 12 JAN 2022
 visit040 = Visit(
     code=WEEK04,
     title="Week 4",
@@ -126,6 +129,7 @@ visit060 = Visit(
     facility_name="7-day-clinic",
 )
 
+# TODO: -7 to up to 36 weeks
 visit070 = Visit(
     code=WEEK24,
     title="Week 24",

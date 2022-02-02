@@ -26,6 +26,7 @@ from .crf_model_mixin import CrfModelMixin
 from .subject_requisition import SubjectRequisition
 
 
+# TODO: make fields optional, all data may not be available
 class LumbarPunctureCsf(CrfModelMixin, BiosynexSemiQuantitativeCragMixin):
 
     lp_datetime = models.DateTimeField(

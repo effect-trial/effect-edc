@@ -12,6 +12,8 @@ from ..choices import (
 )
 from ..model_mixins import CrfModelMixin
 
+# TODO: HEALTH ECONOMICS always required at unscheduled visits and SAE
+
 
 class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
 
