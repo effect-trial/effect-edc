@@ -1,16 +1,59 @@
-- Follow-up
+- SAE:
+    - Reconcile with provided form
+    - Pt 4, Q15 - remove "17 or more days"
+
+- Requisitions:
+    - combine renal (RFT) and liver (LFT) function tests into single requisition
+        - combine results forms
+
+- Follow-up CRF:
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
 
-- Signs and Symptoms CRF
+- Signs and Symptoms CRF:
     - if reportable_as_ae, trigger/prompt SAE
     - if patient_admitted, trigger/prompt SAE
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
     - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
-    - finalise cm_sx_lp_done, cm_sx_bloods_taken, patient_admitted questions/behaviour
+    - if cm_sx_lp_done, generate LP
+    - if cm_sx_bloods_taken
+        - which bloods? fbc, chem, or other
+        - ???if fbc or chem, generate requisition
 
-- Mental Status CRF
+    cm_sx_bloods_taken, patient_admitted questions/behaviour
+    - request _sx other fields be comma-separated, and look at basic validation
 
-- Other (reported by JA)
+- Neurological Symptoms CRF:
+    - TBC: merge within Signs and Symptoms CRF, or
+    - or TBC, ask:
+        - which are G3 or above?
+        - are any related to CM?
+    - implement basic validation
+
+- Mental Status CRF:
+
+- Vital Signs CRF:
+    - add blood pressure
+        - Gradable if >= 180 / 110 (either value)
+    - Temperature G3 if temp >= 39.3 and < 40
+    - Temperature G4 if temp >= 40
+    - remove reportable NA option
+
+- Economics CRF:
+    - update
+    - everyone to complete at baseline
+    - everyone to complete who has a medical event with any costs to them or establishment
+
+- Study Treatment / Patient Treatment CRF:
+    - refactor from study treatment to patient treatment
+    - if Q4 (cm_confirmed) is YES
+        - remove from study treatment
+        - remain in follow-up
+        - validate with study medication, to confirm taken off drug
+
+- End of Stud CRF:
+    - check if started treatment, cannot be late exclusion
+
+- Other (reported by JA):
     - Consent 2 and 3 – makes you add the name in full caps. Can this be made auto?
     - Requisition for blood sample gave server error – this prevents saving the bloods form.
     - I then added the requisition 992FC4G – thinking this was for a sample taken, but it seemed to only be for a FBC – and did not let me use it for chemistry results.
