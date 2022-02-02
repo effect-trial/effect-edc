@@ -24,6 +24,8 @@ class VitalSignsAdmin(CrfModelAdmin):
                     "heart_rate",
                     "respiratory_rate",
                     "temperature",
+                    "sys_blood_pressure",
+                    "dia_blood_pressure",
                 )
             },
         ),

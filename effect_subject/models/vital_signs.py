@@ -2,6 +2,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
 from edc_model import models as edc_models
+from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField
 
 from ..choices import MEASURED_EST_CHOICES
@@ -10,7 +11,9 @@ from ..fields.temperature import TemperatureField
 from ..model_mixins import CrfModelMixin
 
 
-class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
+class VitalSigns(
+    SimpleBloodPressureModelMixin, CrfModelMixin, edc_models.BaseUuidModel
+):
 
     weight = WeightField(null=True)
 
