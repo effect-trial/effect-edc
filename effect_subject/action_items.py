@@ -69,7 +69,10 @@ class SxAction(Action):
         return next_actions
 
 
-# TODO:
+# TODO: trigger HE CRF (is this an action or a metadata rule
+#   1. Baseline
+#   2. At any medical event which would incur a cost (to either the health system or the patient
+#   3. Study termination
 # class FollowupAction(Action):
 #     name = FOLLOWUP_ACTION
 #     display_name = "Follow up action"

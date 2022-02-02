@@ -15,11 +15,13 @@ crfs_prn = FormsCollection(
     Crf(show_order=10, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=240, model="effect_subject.bloodresultsrft"),
     Crf(show_order=250, model="effect_subject.bloodresultslft"),
+    Crf(show_order=260, model="effect_subject.healtheconomics"),
     name="prn",
 )
 
 crfs_unscheduled = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=20, model="effect_subject.healtheconomics"),
     name="unscheduled",
 )
 
@@ -38,6 +40,7 @@ crfs_d01 = FormsCollection(
     Crf(show_order=80, model="effect_subject.arvtreatment"),
     Crf(show_order=90, model="effect_subject.studytreatment"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
+    Crf(show_order=105, model="effect_subject.healtheconomicsbaseline"),
     Crf(show_order=110, model="effect_subject.clinicalnote"),
     name=DAY01,
 )
@@ -75,5 +78,6 @@ crfs_w16 = FormsCollection(
 
 crfs_w24 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=260, model="effect_subject.healtheconomicsend"),
     name=WEEK24,
 )
