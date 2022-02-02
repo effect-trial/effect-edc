@@ -344,6 +344,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "current_sx": SiSx.objects.filter(name=OTHER),
                 "current_sx_other": "Some other sx",
+                "reportable_as_ae": YES,
                 "current_sx_gte_g3": SiSx.objects.none(),
             }
         )
@@ -366,6 +367,16 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name=OTHER),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3_other",
+            expected_msg="This field is required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
                 "current_sx_gte_g3_other": "Some other G3 sx",
             }
         )
