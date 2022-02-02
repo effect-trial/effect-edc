@@ -14,6 +14,7 @@ Changes
     - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds'
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
+- fix server error when trying to save “mental status” form
 
 0.1.1
 -----

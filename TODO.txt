@@ -12,7 +12,6 @@
     - finalise cm_sx_lp_done, cm_sx_bloods_taken, patient_admitted questions/behaviour
 
 - Mental Status CRF
-    - Server error when trying to save “mental status” form
 
 - Other (reported by JA)
     - Consent 2 and 3 – makes you add the name in full caps. Can this be made auto?
