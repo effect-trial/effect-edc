@@ -36,7 +36,6 @@
         - Gradable if >= 180 / 110 (either value)
     - Temperature G3 if temp >= 39.3 and < 40
     - Temperature G4 if temp >= 40
-    - remove reportable NA option
 
 - Economics CRF:
     - update

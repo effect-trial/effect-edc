@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 from edc_model import models as edc_models
 from edc_vitals.models import WeightField
 
@@ -39,7 +39,7 @@ class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are any of the above reportable as Grade 3 or above?",
         max_length=15,
         # TODO: If yes, prompt for SAE
-        choices=YES_NO_NA,
+        choices=YES_NO,
         help_text=IF_YES_COMPLETE_AE,
     )
 
