@@ -24,6 +24,7 @@ class MentalStatusAdmin(CrfModelAdmin):
                     "confusion",
                     "modified_rankin_score",
                     "ecog_score",
+                    "glasgow_coma_score",
                 )
             },
         ),
