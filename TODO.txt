@@ -1,5 +1,3 @@
-- Bump requirements to latest EDC
-
 - Follow-up
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
 

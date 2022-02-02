@@ -11,7 +11,7 @@ Changes
     - reorder fields based on feedback
     - convert headache_duration to edc_models.DurationDHField
     - use _sx in field names to be consistent ('current_sx', cm_sx')
-    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds'
+    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_patient_admitted'
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
 
