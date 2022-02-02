@@ -2,7 +2,6 @@
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
 
 - Signs and Symptoms CRF
-    - split validation into functions (JW TODO)
     - if reportable_as_ae, trigger/prompt SAE
     - if patient_admitted, trigger/prompt SAE
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
