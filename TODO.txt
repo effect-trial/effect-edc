@@ -1,6 +1,5 @@
 - SAE:
     - Reconcile with provided form
-    - Pt 4, Q15 - remove "17 or more days"
 
 - Requisitions:
     - combine renal (RFT) and liver (LFT) function tests into single requisition
