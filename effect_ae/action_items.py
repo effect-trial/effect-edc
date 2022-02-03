@@ -13,7 +13,6 @@ from edc_adverse_event.constants import (
 )
 from edc_blood_results.constants import (
     BLOOD_RESULTS_FBC_ACTION,
-    BLOOD_RESULTS_GLU_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
 )
