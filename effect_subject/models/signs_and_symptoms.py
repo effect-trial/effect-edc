@@ -1,7 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
-from edc_crf.crf_status_model_mixin import CrfStatusModelMixin
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
@@ -10,9 +9,7 @@ from effect_lists.models import SiSx
 from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, SX_ACTION
 
 
-class SignsAndSymptoms(
-    CrfStatusModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
-):
+class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     action_name = SX_ACTION
 
     tracking_identifier_prefix = "SX"
