@@ -17,8 +17,7 @@
     - if cm_sx_bloods_taken
         - which bloods? fbc, chem, or other
         - ???if fbc or chem, generate requisition
-
-    cm_sx_bloods_taken, patient_admitted questions/behaviour
+    - if cm_sx_patient_admitted, trigger/prompt SAE
     - request _sx other fields be comma-separated, and look at basic validation
 
 - Neurological Symptoms CRF:

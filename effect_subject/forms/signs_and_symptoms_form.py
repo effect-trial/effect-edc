@@ -9,7 +9,6 @@ from ..models import SignsAndSymptoms
 
 class SignsAndSymptomsFormValidator(FormValidator):
     def clean(self) -> None:
-        super().clean()
         # TODO: Validate that patient can't specify UNKNOWN for
         #  any_sx (e.g. if an in-person or telephone/patient visit)
 

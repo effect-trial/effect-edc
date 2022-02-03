@@ -56,9 +56,9 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
     radio_fields = {
         "any_sx": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,
-        "reportable_as_ae": admin.VERTICAL,
-        "patient_admitted": admin.VERTICAL,
-        "cm_sx_lp_done": admin.VERTICAL,
         "cm_sx_bloods_taken": admin.VERTICAL,
+        "cm_sx_lp_done": admin.VERTICAL,
         "cm_sx_patient_admitted": admin.VERTICAL,
+        "patient_admitted": admin.VERTICAL,
+        "reportable_as_ae": admin.VERTICAL,
     }
