@@ -7,7 +7,11 @@ from ..models import VitalSigns
 
 
 class VitalSignsFormValidator(GlucoseFormValidatorMixin, FormValidator):
-    pass
+    def clean(self) -> None:
+        super().clean()
+
+        self.required_if_true(True, field_required="sys_blood_pressure")
+        self.required_if_true(True, field_required="dia_blood_pressure")
 
 
 class VitalSignsForm(CrfModelFormMixin, forms.ModelForm):
