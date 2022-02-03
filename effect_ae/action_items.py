@@ -13,7 +13,6 @@ from edc_adverse_event.constants import (
 )
 from edc_blood_results.constants import (
     BLOOD_RESULTS_FBC_ACTION,
-    BLOOD_RESULTS_GLU_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
 )
@@ -22,6 +21,8 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
+
+from effect_subject.constants import SX_ACTION
 
 
 class AeFollowupAction(ActionWithNotification):
@@ -82,10 +83,10 @@ class AeInitialAction(ActionWithNotification):
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
     parent_action_names = [
-        BLOOD_RESULTS_GLU_ACTION,
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
         BLOOD_RESULTS_FBC_ACTION,
+        SX_ACTION,
     ]
     reference_model = "effect_ae.aeinitial"
     show_link_to_changelist = True

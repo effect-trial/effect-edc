@@ -1,15 +1,22 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
+from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
 from effect_lists.models import SiSx
 
-from ..constants import IF_YES_COMPLETE_SAE
-from ..model_mixins import CrfModelMixin
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, SX_ACTION
 
 
-class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
+class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
+    action_name = SX_ACTION
+
+    tracking_identifier_prefix = "SX"
+
+    action_identifier = models.CharField(max_length=50, unique=True, null=True)
+
+    tracking_identifier = models.CharField(max_length=30, unique=True, null=True)
 
     any_sx = models.CharField(
         verbose_name=(
@@ -83,15 +90,13 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
     reportable_as_ae = models.CharField(
         verbose_name="Are any of these signs or symptoms Grade 3 or above?",
         max_length=15,
-        # TODO: If yes, prompt for SAE
         choices=YES_NO_NA,
-        help_text=IF_YES_COMPLETE_SAE,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to any of these signs or symptoms?",
         max_length=15,
-        # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,
         help_text=IF_YES_COMPLETE_SAE,
     )
@@ -115,11 +120,10 @@ class SignsAndSymptoms(CrfModelMixin, edc_models.BaseUuidModel):
     cm_sx_patient_admitted = models.CharField(
         verbose_name="If the patient has CM signs or symptoms, was the patient admitted?",
         max_length=15,
-        # TODO: if yes, adverse event action item
         choices=YES_NO_NA,
         help_text=IF_YES_COMPLETE_SAE,
     )
 
-    class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
+    class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Signs and Symptoms"
         verbose_name_plural = "Signs and Symptoms"
