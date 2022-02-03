@@ -1,14 +1,24 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_action_item import (
+    ModelAdminActionItemMixin,
+    action_fields,
+    action_fieldset_tuple,
+)
+from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import effect_subject_admin
 from ..forms import SignsAndSymptomsForm
 from ..models import SignsAndSymptoms
-from .modeladmin import CrfModelAdmin
+from .modeladmin import CrfModelAdminMixin
 
 
 @admin.register(SignsAndSymptoms, site=effect_subject_admin)
-class SignsAndSymptomsAdmin(CrfModelAdmin):
+class SignsAndSymptomsAdmin(
+    CrfModelAdminMixin,
+    ModelAdminActionItemMixin,
+    SimpleHistoryAdmin,
+):
 
     form = SignsAndSymptomsForm
 
@@ -45,6 +55,7 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
                 )
             },
         ),
+        action_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
@@ -52,6 +63,8 @@ class SignsAndSymptomsAdmin(CrfModelAdmin):
         "current_sx",
         "current_sx_gte_g3",
     ]
+
+    readonly_fields = action_fields
 
     radio_fields = {
         "any_sx": admin.VERTICAL,

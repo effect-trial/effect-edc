@@ -23,6 +23,8 @@ from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
 
+from effect_subject.constants import SX_ACTION
+
 
 class AeFollowupAction(ActionWithNotification):
     name = AE_FOLLOWUP_ACTION
@@ -82,10 +84,10 @@ class AeInitialAction(ActionWithNotification):
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
     parent_action_names = [
-        BLOOD_RESULTS_GLU_ACTION,
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
         BLOOD_RESULTS_FBC_ACTION,
+        SX_ACTION,
     ]
     reference_model = "effect_ae.aeinitial"
     show_link_to_changelist = True

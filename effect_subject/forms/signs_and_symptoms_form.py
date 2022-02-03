@@ -1,4 +1,5 @@
 from django import forms
+from edc_action_item.forms import ActionItemFormMixin
 from edc_constants.constants import OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
@@ -67,7 +68,7 @@ class SignsAndSymptomsFormValidator(FormValidator):
         )
 
 
-class SignsAndSymptomsForm(CrfModelFormMixin, forms.ModelForm):
+class SignsAndSymptomsForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
     form_validator_cls = SignsAndSymptomsFormValidator
 
     class Meta:
