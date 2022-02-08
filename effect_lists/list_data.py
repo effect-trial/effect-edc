@@ -1,6 +1,7 @@
 from edc_constants.constants import (
     DEAD,
     NONE,
+    NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
     UNKNOWN,
@@ -149,6 +150,8 @@ list_data = {
         ),
     ],
     "effect_lists.sisx": [
+        (NONE, "--No symptoms to report"),
+        (NOT_APPLICABLE, "--Not applicable (if 'Unknown')"),
         (HEADACHE, "Headache"),
         ("double_vision", "Double vision"),
         (VISUAL_LOSS, "Visual loss"),

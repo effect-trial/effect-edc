@@ -7,6 +7,8 @@ from edc_action_item import (
 )
 from edc_model_admin import SimpleHistoryAdmin
 
+from effect_subject.admin.fieldsets import reporting_fieldset_tuple
+
 from ..admin_site import effect_subject_admin
 from ..forms import SignsAndSymptomsForm
 from ..models import SignsAndSymptoms
@@ -31,7 +33,6 @@ class SignsAndSymptomsAdmin(
                     "any_sx",
                     "current_sx",
                     "current_sx_other",
-                    "reportable_as_ae",
                     "current_sx_gte_g3",
                     "current_sx_gte_g3_other",
                     "headache_duration",
@@ -40,10 +41,7 @@ class SignsAndSymptomsAdmin(
                 )
             },
         ),
-        (
-            "Reporting",
-            {"fields": ("patient_admitted",)},
-        ),
+        reporting_fieldset_tuple,
         (
             "CM signs and symptoms",
             {

@@ -2,8 +2,7 @@ from copy import deepcopy
 
 from django.db.models import Q
 from django.test import TestCase, tag
-from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, UNKNOWN, YES
+from edc_constants.constants import NO, NONE, NOT_APPLICABLE, OTHER, UNKNOWN, YES
 from model_bakery import baker
 
 from effect_lists.models import SiSx
@@ -42,15 +41,16 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
-            "current_sx": SiSx.objects.none(),
+            "current_sx": SiSx.objects.filter(name=NONE),
             "current_sx_other": "",
-            "reportable_as_ae": NOT_APPLICABLE,
-            "current_sx_gte_g3": SiSx.objects.none(),
+            "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
+            "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
             "cm_sx": NOT_APPLICABLE,
+            # TODO: Add other cm_sx_... entries
         }
 
     def get_valid_patient_any_sx_unknown(self):
@@ -58,8 +58,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "any_sx": UNKNOWN,
-                "current_sx": SiSx.objects.none(),
-                "current_sx_gte_g3": SiSx.objects.none(),
+                "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
+                "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
             }
         )
         return cleaned_data
@@ -71,11 +71,11 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
             "current_sx_other": "",
-            "reportable_as_ae": NO,
-            "current_sx_gte_g3": SiSx.objects.none(),
+            "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
             "visual_field_loss": "",
+            "reportable_as_ae": NO,
             "patient_admitted": NO,
             "cm_sx": NO,
         }
@@ -84,12 +84,19 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
         cleaned_data.update(
             {
-                "reportable_as_ae": YES,
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3_other": "",
+                "reportable_as_ae": YES,
             }
         )
         return cleaned_data
+
+    def get_non_yes_sx_selection(self, any_sx_answer: str):
+        return (
+            SiSx.objects.filter(name=NONE)
+            if any_sx_answer == NO
+            else SiSx.objects.filter(name=NOT_APPLICABLE)
+        )
 
     def test_non_symptomatic_patient_valid(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
@@ -115,44 +122,204 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_m2m_current_sx_not_required_if_any_sx_is_not_yes(self):
-        any_sx_answers = [ans for ans, _ in YES_NO_UNKNOWN if ans != YES]
-        for answer in any_sx_answers:
-            with self.subTest(answer=answer):
-                cleaned_data = self.get_valid_patient_any_sx_unknown()
-                cleaned_data.update(
-                    {
-                        "any_sx": answer,
-                        "current_sx": SiSx.objects.filter(name="fever"),
-                    }
-                )
-                self.assertFormValidatorError(
-                    field="current_sx",
-                    expected_msg="This field is not required",
-                    form_validator=self.validate_form_validator(cleaned_data),
-                )
-
-        cleaned_data.update({"current_sx": SiSx.objects.none()})
-        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
-
-    def test_m2m_current_sx_required_if_any_sx_is_yes(self):
-        cleaned_data = self.get_valid_patient_any_sx_unknown()
+    def test_m2m_sx_selections_expect_none_if_any_sx_is_no(self):
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
         cleaned_data.update(
             {
-                "any_sx": YES,
-                "current_sx": SiSx.objects.none(),
+                "any_sx": NO,
+                "current_sx": SiSx.objects.filter(name="fever"),
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
             }
         )
         self.assertFormValidatorError(
             field="current_sx",
-            expected_msg="This field is required",
+            expected_msg="Expected '--No symptoms to report' only.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(name=NONE),
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="Expected '--No symptoms to report' only.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=NONE)})
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+    def test_m2m_sx_selections_expect_na_if_any_sx_is_unknown(self):
+        cleaned_data = self.get_valid_patient_any_sx_unknown()
+        cleaned_data.update(
+            {
+                "any_sx": UNKNOWN,
+                "current_sx": SiSx.objects.filter(name="fever"),
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx",
+            expected_msg="Expected '--Not applicable (if 'Unknown')' only.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg="Expected '--Not applicable (if 'Unknown')' only.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE)}
+        )
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+    def test_m2m_current_sx_with_na_and_none_invalid_if_any_sx_is_yes(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "any_sx": YES,
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever") | Q(name=NONE) | Q(name=NOT_APPLICABLE)
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx",
+            expected_msg=(
+                "Invalid selection. "
+                "Cannot be any of: --No symptoms to report, --Not applicable (if 'Unknown')."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever") | Q(name=NOT_APPLICABLE)
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx",
+            expected_msg=(
+                "Invalid selection. Cannot be any of: --Not applicable (if 'Unknown')."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx": SiSx.objects.filter(Q(name="fever"))})
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+    def test_m2m_current_sx_gte_g3_with_na_invalid_if_any_sx_is_yes(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "any_sx": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(
+                    Q(name="fever") | Q(name=NOT_APPLICABLE)
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg=(
+                "Invalid selection. "
+                "Cannot be any of: --Not applicable (if 'Unknown')."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(Q(name="fever"))})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_m2m_current_sx_gte_g3_can_be_none_if_any_sx_is_yes(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "any_sx": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
+                "reportable_as_ae": NO,
+            }
+        )
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+    def test_m2m_current_sx_gte_g3_cannot_be_none_with_another_selection(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "any_sx": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(
+                    Q(name="fever") | Q(name=NONE)
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="current_sx_gte_g3",
+            expected_msg=(
+                "Invalid combination. "
+                "'--No symptoms to report' may not be combined with other selections"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(Q(name="fever"))})
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(Q(name=NONE)),
+                "reportable_as_ae": NO,
+            }
+        )
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
+
+    def test_m2m_sx_valid_with_multiple_selections_if_any_sx_is_yes(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "any_sx": YES,
+                "current_sx": SiSx.objects.filter(
+                    Q(name="fever")
+                    | Q(name="vomiting")
+                    | Q(name=OTHER)
+                    | Q(name=VISUAL_LOSS)
+                    | Q(name="headache")
+                ),
+                "current_sx_gte_g3": SiSx.objects.filter(
+                    Q(name="fever")
+                    | Q(name="vomiting")
+                    | Q(name=OTHER)
+                    | Q(name=VISUAL_LOSS)
+                    | Q(name="headache")
+                ),
+                "current_sx_other": "Some other sx",
+                "current_sx_gte_g3_other": "Some other sx",
+                "headache_duration": "2w",
+                "visual_field_loss": "Visual field loss details",
+            }
+        )
+        self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
     def test_current_sx_other_required_if_other_selected(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
         cleaned_data.update(
-            {"current_sx": SiSx.objects.filter(name=OTHER), "current_sx_other": ""}
+            {
+                "current_sx": SiSx.objects.filter(name=OTHER),
+                "current_sx_other": "",
+            }
         )
         self.assertFormValidatorError(
             field="current_sx_other",
@@ -204,7 +371,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     {
                         "current_sx_gte_g3": SiSx.objects.filter(name="fever")
                         if answer == YES
-                        else SiSx.objects.none(),
+                        else SiSx.objects.filter(name=NONE),
                         "reportable_as_ae": answer,
                     }
                 )
@@ -223,7 +390,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
-                            "current_sx": SiSx.objects.none(),
+                            "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
+                                any_sx_answer
+                            ),
                             "reportable_as_ae": reportable_as_ae_answer,
                         }
                     )
@@ -238,77 +408,122 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
 
-    def test_current_sx_gte_g3_not_required_if_reportable_as_ae_is_not_yes(
-        self,
-    ):
-        for reportable_as_ae_answer in [NO, NOT_APPLICABLE]:
-            with self.subTest(reportable_as_ae_answer=reportable_as_ae_answer):
-                cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
-                cleaned_data.update(
-                    {"current_sx_gte_g3": SiSx.objects.filter(name="fever")}
-                )
-
-                self.assertFormValidatorError(
-                    field="current_sx_gte_g3",
-                    expected_msg="This field is not required",
-                    form_validator=self.validate_form_validator(cleaned_data),
-                )
-
-                cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
-                cleaned_data.update({"current_sx_gte_g3": SiSx.objects.none()})
-                self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
-                )
-
-    def test_current_sx_gte_g3_required_if_reportable_as_ae_is_yes(self):
+    def test_reportable_as_ae_if_current_sx_gte_g3s(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
             {
-                "reportable_as_as": YES,
-                "current_sx_gte_g3": SiSx.objects.none(),
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+                "reportable_as_ae": NOT_APPLICABLE,
             }
         )
         self.assertFormValidatorError(
-            field="current_sx_gte_g3",
-            expected_msg="This field is required",
+            field="reportable_as_ae",
+            expected_msg="This field is applicable",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name="fever")})
+        cleaned_data.update({"reportable_as_ae": NO})
+        self.assertFormValidatorError(
+            field="reportable_as_ae",
+            expected_msg=(
+                "Invalid selection. "
+                "Expected 'Yes', if symptoms Grade 3 or above were reported"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"reportable_as_ae": YES})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_if_no_current_sx_gte_g3(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
+                "reportable_as_ae": NOT_APPLICABLE,
+            }
+        )
+        self.assertFormValidatorError(
+            field="reportable_as_ae",
+            expected_msg="This field is applicable",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"reportable_as_ae": YES})
+        self.assertFormValidatorError(
+            field="reportable_as_ae",
+            expected_msg=(
+                "Invalid selection. "
+                "Expected 'No', if no symptoms at Grade 3 or above were reported."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"reportable_as_ae": NO})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_yes_invalid_if_sx_gte_g3_none(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update({"reportable_as_ae": YES})
+        self.assertFormValidatorError(
+            field="reportable_as_ae",
+            expected_msg=(
+                "Invalid selection. "
+                "Expected 'No', if no symptoms at Grade 3 or above were reported."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"reportable_as_ae": NO})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_no_invalid_if_sx_gte_g3(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        cleaned_data.update({"reportable_as_ae": NO})
+        self.assertFormValidatorError(
+            field="reportable_as_ae",
+            expected_msg=(
+                "Invalid selection. "
+                "Expected 'Yes', if symptoms Grade 3 or above were reported."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"reportable_as_ae": YES})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_current_sx_gte_g3_not_required_if_any_sx_is_yes(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.none()})
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=NONE)})
 
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_sx_gte_g3_with_no_current_sx_raises_error(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
         cleaned_data.update(
             {
-                "current_sx": SiSx.objects.none(),
-                "reportable_as_as": YES,
+                "any_sx": NO,
+                "current_sx": SiSx.objects.filter(name=NONE),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
             }
         )
         self.assertFormValidatorError(
-            field="current_sx",
-            expected_msg="This field is required",
+            field="current_sx_gte_g3",
+            expected_msg="Expected '--No symptoms to report' only.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {
-                "current_sx": SiSx.objects.filter(name="fever"),
-                "reportable_as_ae": YES,
-                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
-        )
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=NONE)})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -338,23 +553,14 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_other_not_in_sx_gte_g3_but_other_in_current_sx_raises_error(self):
+    def test_other_not_in_current_sx_gte_g3_when_other_in_current_sx_raises_error(
+        self,
+    ):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
         cleaned_data.update(
             {
                 "current_sx": SiSx.objects.filter(name=OTHER),
                 "current_sx_other": "Some other sx",
-                "reportable_as_ae": YES,
-                "current_sx_gte_g3": SiSx.objects.none(),
-            }
-        )
-        self.assertFormValidatorError(
-            field="current_sx_gte_g3",
-            expected_msg="This field is required",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-        cleaned_data.update(
-            {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
             }
         )
@@ -364,22 +570,14 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {
-                "current_sx_gte_g3": SiSx.objects.filter(name=OTHER),
-            }
-        )
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=OTHER)})
         self.assertFormValidatorError(
             field="current_sx_gte_g3_other",
             expected_msg="This field is required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {
-                "current_sx_gte_g3_other": "Some other G3 sx",
-            }
-        )
+        cleaned_data.update({"current_sx_gte_g3_other": "Some other G3 sx"})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -588,7 +786,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
-                            "current_sx": SiSx.objects.none(),
+                            "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
+                                any_sx_answer
+                            ),
                             "patient_admitted": patient_admitted_answer,
                         }
                     )
@@ -637,7 +838,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
-                            "current_sx": SiSx.objects.none(),
+                            "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
+                                any_sx_answer
+                            ),
                             "cm_sx": cm_sx_answer,
                         }
                     )

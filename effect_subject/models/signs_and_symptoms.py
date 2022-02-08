@@ -40,7 +40,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         SiSx,
         related_name="sx",
         verbose_name="Is patient currently experiencing any of the following signs/symptoms?",
-        blank=True,
     )
 
     current_sx_other = models.TextField(
@@ -52,8 +51,8 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     current_sx_gte_g3 = models.ManyToManyField(
         SiSx,
         related_name="sx_gte_g3",
-        verbose_name="Are any of the specified signs/symptoms Grade 3 or above?",
-        blank=True,
+        verbose_name="For these signs/symptoms, were any Grade 3 or above?",
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     current_sx_gte_g3_other = models.TextField(
