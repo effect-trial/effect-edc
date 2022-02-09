@@ -46,6 +46,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
         null=True,
         blank=True,
+        help_text="If more than one, please separate each with a comma (,)",
     )
 
     current_sx_gte_g3 = models.ManyToManyField(
@@ -61,6 +62,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         ),
         null=True,
         blank=True,
+        help_text="If more than one, please separate each with a comma (,)",
     )
 
     headache_duration = edc_models.DurationDHField(
@@ -80,7 +82,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     visual_field_loss = models.TextField(
-        # TODO: ???Link to visual_field_disturbance focal_neurologic_deficits field?
         verbose_name="If visual field loss, please provide details ...",
         null=True,
         blank=True,
