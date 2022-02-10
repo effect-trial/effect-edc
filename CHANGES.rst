@@ -14,6 +14,7 @@ Changes
     - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other', 'cm_sx_patient_admitted'
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
+    - add AE_INITIAL_ACTION action item if yes answer to any of: 'reportable_as_ae', 'patient_admitted', or 'cm_sx_patient_admitted'
 - fix server error when trying to save “mental status” form
 
 0.1.1

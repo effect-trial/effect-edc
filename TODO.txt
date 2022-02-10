@@ -1,5 +1,14 @@
 - SAE:
-    - Reconcile with provided form
+    - Reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
+    - Remove references to thrombophlebitis, and hospital acquired pneumonia
+
+- Death CRF:
+    - Reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
+
+- LP CRF:
+
+- Microbiology CRF:
+    - Mirror CRF from Ambition, but move CSF into LP CRF
 
 - Requisitions:
     - combine renal (RFT) and liver (LFT) function tests into single requisition
@@ -7,6 +16,7 @@
 
 - Follow-up CRF:
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
+    - if deceased, tigger death report action, and end of study report
 
 - Signs and Symptoms CRF:
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
@@ -16,11 +26,12 @@
     - request _sx other fields be comma-separated, and look at basic validation
 
 - Neurological Symptoms CRF:
-    - TBC: merge within Signs and Symptoms CRF, or
-    - or TBC, ask:
-        - which are G3 or above?
-        - are any related to CM?
-    - implement basic validation
+    - merge all fields into Signs and Symptoms CRF
+        - merge focal_neurologic_deficits into SiSx
+            - prefix all with 'Neuro'
+        - merge 'meningism' and 'papilloedema' into SiSx list
+        - order SiSx alphabetically
+
 
 - Mental Status CRF:
 
@@ -31,8 +42,11 @@
 
 - Economics CRF:
     - update
-    - everyone to complete at baseline
-    - everyone to complete who has a medical event with any costs to them or establishment
+    - 2 CRFs:
+        - everyone to complete same CRF at baseline, and end of study
+        - everyone who has a medical event with any costs to them or trial to complete different CRF
+            - then as PRN at subsequent follow-ups
+    - Question: Has there been any events since last visit?
 
 - Study Treatment / Patient Treatment CRF:
     - refactor from study treatment to patient treatment
@@ -41,7 +55,7 @@
         - remain in follow-up
         - validate with study medication, to confirm taken off drug
 
-- End of Stud CRF:
+- End of Study/Termination CRF:
     - check if started treatment, cannot be late exclusion
 
 - Other (reported by JA):
