@@ -77,6 +77,13 @@ list_data = {
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.bloodtests": [
+        (NONE, "--No bloods taken"),
+        (NOT_APPLICABLE, "--Not applicable (if no signs or symptoms related to CM)"),
+        ("chemistry", "Chemistry"),
+        ("hematology", "Hematology"),
+        (OTHER, "Other bloods, please specify below ..."),
+    ],
     "effect_lists.drugs": [
         ("k", "K"),
         ("mg", "Mg"),

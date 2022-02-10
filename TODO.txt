@@ -12,9 +12,7 @@
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
     - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
     - if cm_sx_lp_done, generate LP
-    - if cm_sx_bloods_taken
-        - which bloods? fbc, chem, or other
-        - ???if fbc or chem, generate requisition
+    - if fbc or chem bloods taken, generate requisition
     - request _sx other fields be comma-separated, and look at basic validation
 
 - Neurological Symptoms CRF:

@@ -4,7 +4,7 @@ from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
-from effect_lists.models import SiSx
+from effect_lists.models import BloodTests, SiSx
 
 from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, SX_ACTION
 
@@ -109,12 +109,18 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         help_text="If yes, ...",
     )
 
-    cm_sx_bloods_taken = models.CharField(
-        verbose_name="If the patient has CM signs or symptoms, were bloods taken?",
-        max_length=15,
-        # TODO: if yes, chemistry/haemo
-        choices=YES_NO_NA,
-        help_text="If yes, ...",
+    cm_sx_bloods_taken = models.ManyToManyField(
+        BloodTests,
+        verbose_name=(
+            "If the patient has CM signs or symptoms, "
+            "which (if any) of the following bloods were taken?"
+        ),
+        # TODO: if yes, action blood requisition
+        help_text="If bloods taken, complete relevant blood requisition",
+    )
+
+    cm_sx_bloods_taken_other = edc_models.OtherCharField(
+        verbose_name="If other bloods taken, please specify ..."
     )
 
     cm_sx_patient_admitted = models.CharField(

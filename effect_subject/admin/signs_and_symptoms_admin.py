@@ -49,6 +49,7 @@ class SignsAndSymptomsAdmin(
                     "cm_sx",
                     "cm_sx_lp_done",
                     "cm_sx_bloods_taken",
+                    "cm_sx_bloods_taken_other",
                     "cm_sx_patient_admitted",
                 )
             },
@@ -60,6 +61,7 @@ class SignsAndSymptomsAdmin(
     filter_horizontal = [
         "current_sx",
         "current_sx_gte_g3",
+        "cm_sx_bloods_taken",
     ]
 
     readonly_fields = action_fields
@@ -67,7 +69,6 @@ class SignsAndSymptomsAdmin(
     radio_fields = {
         "any_sx": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,
-        "cm_sx_bloods_taken": admin.VERTICAL,
         "cm_sx_lp_done": admin.VERTICAL,
         "cm_sx_patient_admitted": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
