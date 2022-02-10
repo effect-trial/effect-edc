@@ -13,7 +13,6 @@ list_data = {
         ("respiratory_distress", "Respiratory distress"),
         ("TB", "TB"),
         ("thrombocytopenia", "Thrombocytopenia"),
-        ("thrombophlebitis", "Thrombophlebitis"),
         ("renal_impairment", "Renal impairment"),
         (OTHER, "Other"),
     ],
@@ -25,9 +24,8 @@ list_data = {
         ("in-patient_hospitalization", "In-patient hospitalization or prolongation"),
         (
             "medically_important_event",
-            "Medically important event (e.g. Severe thrombophlebitis, Bacteraemia, "
-            "recurrence of symptoms not requiring admission, Hospital acquired "
-            "pneumonia)",
+            "Medically important event (e.g. Bacteraemia, "
+            "recurrence of symptoms not requiring admission)",
         ),
     ],
     "edc_adverse_event.causeofdeath": [
