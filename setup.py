@@ -24,8 +24,9 @@ setup(
     license="GPL license, see LICENSE",
     description="EFFECT Trial EDC (http://www.isrctn.com/xxxxx)",
     long_description=README,
+    long_description_content_type="text/x-rst",
     zip_safe=False,
-    keywords="django meta EDC",
+    keywords="django EFFECT EDC",
     install_requires=[],
     classifiers=[
         "Environment :: Web Environment",
