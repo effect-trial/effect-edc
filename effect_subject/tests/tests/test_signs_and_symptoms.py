@@ -192,7 +192,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
         self.assertFormValidatorError(
             field="current_sx",
-            expected_msg="Expected '--Not applicable (if 'Unknown')' only.",
+            expected_msg="Expected '--Not applicable (if signs or symptoms 'Unknown')' only.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
@@ -204,7 +204,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
-            expected_msg="Expected '--Not applicable (if 'Unknown')' only.",
+            expected_msg="Expected '--Not applicable (if signs or symptoms 'Unknown')' only.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
@@ -226,8 +226,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="current_sx",
             expected_msg=(
-                "Invalid selection. "
-                "Cannot be any of: --No symptoms to report, --Not applicable (if 'Unknown')."
+                "Invalid selection. Cannot be any of: "
+                "--No symptoms to report, --Not applicable (if signs or symptoms 'Unknown')."
             ),
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -242,7 +242,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="current_sx",
             expected_msg=(
-                "Invalid selection. Cannot be any of: --Not applicable (if 'Unknown')."
+                "Invalid selection. Cannot be any of: "
+                "--Not applicable (if signs or symptoms 'Unknown')."
             ),
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -263,8 +264,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
             expected_msg=(
-                "Invalid selection. "
-                "Cannot be any of: --Not applicable (if 'Unknown')."
+                "Invalid selection. Cannot be any of: "
+                "--Not applicable (if signs or symptoms 'Unknown')."
             ),
             form_validator=self.validate_form_validator(cleaned_data),
         )

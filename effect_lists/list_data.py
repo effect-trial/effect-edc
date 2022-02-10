@@ -158,7 +158,7 @@ list_data = {
     ],
     "effect_lists.sisx": [
         (NONE, "--No symptoms to report"),
-        (NOT_APPLICABLE, "--Not applicable (if 'Unknown')"),
+        (NOT_APPLICABLE, "--Not applicable (if signs or symptoms 'Unknown')"),
         (HEADACHE, "Headache"),
         ("double_vision", "Double vision"),
         (VISUAL_LOSS, "Visual loss"),
