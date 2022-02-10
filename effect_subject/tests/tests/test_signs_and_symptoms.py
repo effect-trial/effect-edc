@@ -5,7 +5,7 @@ from django.test import TestCase, tag
 from edc_constants.constants import NO, NONE, NOT_APPLICABLE, OTHER, UNKNOWN, YES
 from model_bakery import baker
 
-from effect_lists.models import SiSx
+from effect_lists.models import BloodTests, SiSx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.constants import HEADACHE, VISUAL_LOSS
 from effect_subject.forms import SignsAndSymptomsForm
@@ -50,7 +50,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
             "cm_sx": NOT_APPLICABLE,
-            # TODO: Add other cm_sx_... entries
+            "cm_sx_lp_done": NOT_APPLICABLE,
+            "cm_sx_bloods_take": BloodTests.objects.filter(name=NOT_APPLICABLE),
+            "cm_sx_bloods_taken_other": "",
+            "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
     def get_valid_patient_any_sx_unknown(self):
@@ -78,6 +81,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "reportable_as_ae": NO,
             "patient_admitted": NO,
             "cm_sx": NO,
+            "cm_sx_lp_done": NOT_APPLICABLE,
+            "cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE),
+            "cm_sx_bloods_taken_other": "",
+            "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
     def get_valid_patient_with_g3_signs_or_symptoms(self):
@@ -91,7 +98,23 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
         return cleaned_data
 
-    def get_non_yes_sx_selection(self, any_sx_answer: str):
+    def get_valid_patient_with_cm_symptoms(self):
+        cleaned_data = deepcopy(self.get_valid_patient_with_g3_signs_or_symptoms())
+        cleaned_data.update(
+            {
+                "cm_sx": YES,
+                "cm_sx_lp_done": YES,
+                "cm_sx_bloods_taken": BloodTests.objects.filter(
+                    Q(name="chemistry") | Q(name="hematology")
+                ),
+                "cm_sx_bloods_taken_other": "",
+                "cm_sx_patient_admitted": YES,
+            }
+        )
+        return cleaned_data
+
+    @staticmethod
+    def get_non_yes_sx_selection(any_sx_answer: str):
         return (
             SiSx.objects.filter(name=NONE)
             if any_sx_answer == NO
@@ -118,6 +141,12 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_valid_patient_with_g3_signs_or_symptoms(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_cm_symptoms(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -809,8 +838,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "any_sx": YES,
-                "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
-                "patient_admitted": NO,
                 "cm_sx": NOT_APPLICABLE,
             }
         )
@@ -822,7 +849,16 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
         for answer in [YES, NO]:
             with self.subTest(answer=answer):
+                cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
                 cleaned_data.update({"cm_sx": answer})
+                if answer == YES:
+                    cleaned_data.update(
+                        {
+                            "cm_sx_lp_done": NO,
+                            "cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE),
+                            "cm_sx_patient_admitted": NO,
+                        }
+                    )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
@@ -852,6 +888,262 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     )
 
                     cleaned_data.update({"cm_sx": NOT_APPLICABLE})
+                    self.assertFormValidatorNoError(
+                        form_validator=self.validate_form_validator(cleaned_data)
+                    )
+
+    def test_cm_sx_lp_done_applicable_if_cm_sx_yes(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx": YES,
+                "cm_sx_lp_done": NOT_APPLICABLE,
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_lp_done",
+            expected_msg="This field is applicable.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        for answer in [YES, NO]:
+            with self.subTest(answer=answer):
+                cleaned_data.update({"cm_sx_lp_done": answer})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+    def test_cm_sx_lp_done_not_applicable_if_cm_sx_not_yes(self):
+        for cm_sx_answer in [NO, NOT_APPLICABLE]:
+            for cm_sx_lp_done_answer in [YES, NO]:
+                with self.subTest(
+                    cm_sx_answer=cm_sx_answer,
+                    cm_sx_lp_done_answer=cm_sx_lp_done_answer,
+                ):
+                    cleaned_data = (
+                        self.get_valid_patient_with_signs_or_symptoms()
+                        if cm_sx_answer == NO
+                        else self.get_valid_patient_any_sx_unknown()
+                    )
+                    cleaned_data.update(
+                        {
+                            "cm_sx": cm_sx_answer,
+                            "cm_sx_lp_done": cm_sx_lp_done_answer,
+                        }
+                    )
+                    self.assertFormValidatorError(
+                        field="cm_sx_lp_done",
+                        expected_msg="This field is not applicable",
+                        form_validator=self.validate_form_validator(cleaned_data),
+                    )
+
+                    cleaned_data.update({"cm_sx_lp_done": NOT_APPLICABLE})
+                    self.assertFormValidatorNoError(
+                        form_validator=self.validate_form_validator(cleaned_data)
+                    )
+
+    def test_cm_sx_bloods_taken_not_applicable_if_cm_sx_not_yes(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry")}
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken",
+            expected_msg="This field is not applicable",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)}
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken",
+            expected_msg="This field is not applicable",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE)}
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_bloods_taken_applicable_if_cm_sx_is_yes(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE)}
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken",
+            expected_msg="This field is applicable",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)}
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry")}
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_cm_sx_bloods_taken_allows_multiple_selections(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx_bloods_taken": BloodTests.objects.filter(
+                    Q(name="chemistry") | Q(name="hematology") | Q(name=OTHER)
+                ),
+                "cm_sx_bloods_taken_other": "Some other bloods...",
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_bloods_taken_single_selection_only_for_none(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx_bloods_taken": BloodTests.objects.filter(
+                    Q(name=NONE) | Q(name="chemistry")
+                )
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken",
+            expected_msg=(
+                "Invalid combination. "
+                "'--No bloods taken' may not be combined with other selections"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NONE))}
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_bloods_taken_single_selection_only_for_na(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx": NO,
+                "cm_sx_bloods_taken": BloodTests.objects.filter(
+                    Q(name=NOT_APPLICABLE) | Q(name="chemistry")
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken",
+            expected_msg=(
+                "Invalid combination. "
+                "'--Not applicable (if no signs or symptoms related to CM)' "
+                "may not be combined with other selections"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NOT_APPLICABLE))}
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_bloods_taken_other_required_if_other_selected(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx_bloods_taken": BloodTests.objects.filter(name=OTHER),
+                "cm_sx_bloods_taken_other": "",
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken_other",
+            expected_msg="This field is required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"cm_sx_bloods_taken_other": "Some other blood test"})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_bloods_taken_other_not_required_if_other_not_selected(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry"),
+                "cm_sx_bloods_taken_other": "Some other blood test",
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_bloods_taken_other",
+            expected_msg="This field is not required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"cm_sx_bloods_taken_other": ""})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_cm_sx_patient_admitted_applicable_if_cm_sx_yes(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+        cleaned_data.update(
+            {
+                "cm_sx": YES,
+                "cm_sx_patient_admitted": NOT_APPLICABLE,
+            }
+        )
+        self.assertFormValidatorError(
+            field="cm_sx_patient_admitted",
+            expected_msg="This field is applicable.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        for answer in [YES, NO]:
+            with self.subTest(answer=answer):
+                cleaned_data.update({"cm_sx_patient_admitted": answer})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+    def test_cm_sx_patient_admitted_not_applicable_if_cm_sx_not_yes(self):
+        for cm_sx_answer in [NO, NOT_APPLICABLE]:
+            for cm_sx_patient_admitted_answer in [YES, NO]:
+                with self.subTest(
+                    cm_sx_answer=cm_sx_answer,
+                    cm_sx_patient_admitted_answer=cm_sx_patient_admitted_answer,
+                ):
+                    cleaned_data = (
+                        self.get_valid_patient_with_signs_or_symptoms()
+                        if cm_sx_answer == NO
+                        else self.get_valid_patient_any_sx_unknown()
+                    )
+                    cleaned_data.update(
+                        {
+                            "cm_sx": cm_sx_answer,
+                            "cm_sx_patient_admitted": cm_sx_patient_admitted_answer,
+                        }
+                    )
+                    self.assertFormValidatorError(
+                        field="cm_sx_patient_admitted",
+                        expected_msg="This field is not applicable",
+                        form_validator=self.validate_form_validator(cleaned_data),
+                    )
+
+                    cleaned_data.update({"cm_sx_patient_admitted": NOT_APPLICABLE})
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
