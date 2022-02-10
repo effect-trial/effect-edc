@@ -46,14 +46,14 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,)",
+        help_text="If more than one, please separate each with a comma (,).",
     )
 
     current_sx_gte_g3 = models.ManyToManyField(
         SiSx,
         related_name="sx_gte_g3",
         verbose_name="For these signs/symptoms, were any Grade 3 or above?",
-        help_text=IF_YES_COMPLETE_AE,
+        help_text=f"{IF_YES_COMPLETE_AE}</br>",
     )
 
     current_sx_gte_g3_other = models.TextField(
@@ -62,7 +62,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         ),
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,)",
+        help_text="If more than one, please separate each with a comma (,).",
     )
 
     headache_duration = edc_models.DurationDHField(
@@ -116,7 +116,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
             "which (if any) of the following bloods were taken?"
         ),
         # TODO: if yes, action blood requisition
-        help_text="If bloods taken, complete relevant blood requisition",
+        help_text="If bloods taken, complete relevant blood requisition.</br>",
     )
 
     cm_sx_bloods_taken_other = edc_models.OtherCharField(
