@@ -1,6 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
+from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
@@ -32,6 +33,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         ),
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
     )
 
     # Current Signs/Symptoms - Other CRF (p2)
@@ -91,6 +93,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are any of these signs or symptoms Grade 3 or above?",
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_AE,
     )
 
@@ -98,6 +101,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Has the patient been admitted due to any of these signs or symptoms?",
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_SAE,
     )
 
@@ -106,6 +110,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: if yes, LP request and LP result
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text="If yes, ...",
     )
 
@@ -127,6 +132,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="If the patient has CM signs or symptoms, was the patient admitted?",
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_SAE,
     )
 
