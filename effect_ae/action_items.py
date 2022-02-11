@@ -22,7 +22,7 @@ from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
 
-from effect_subject.constants import SX_ACTION
+from effect_subject.constants import FOLLOWUP_ACTION, SX_ACTION
 
 
 class AeFollowupAction(ActionWithNotification):
@@ -86,6 +86,7 @@ class AeInitialAction(ActionWithNotification):
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
         BLOOD_RESULTS_FBC_ACTION,
+        FOLLOWUP_ACTION,
         SX_ACTION,
     ]
     reference_model = "effect_ae.aeinitial"

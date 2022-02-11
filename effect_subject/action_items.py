@@ -13,7 +13,7 @@ from edc_visit_schedule.utils import is_baseline
 
 from effect_screening.models import SubjectScreening
 
-from .constants import LP_ACTION, SX_ACTION
+from .constants import FOLLOWUP_ACTION, LP_ACTION, SX_ACTION
 
 
 class SubjectVisitAction(Action):
@@ -36,6 +36,22 @@ class SubjectVisitAction(Action):
             )
             if subject_screening.lp_done == PENDING:
                 next_actions = [LP_ACTION]
+        return next_actions
+
+
+class FollowupAction(Action):
+    name = FOLLOWUP_ACTION
+    display_name = "Follow-up"
+    reference_model = "effect_subject.followup"
+
+    priority = HIGH_PRIORITY
+    show_on_dashboard = True
+    create_by_user = False
+
+    def get_next_actions(self) -> List[str]:
+        next_actions = []
+        if self.reference_obj.hospitalized == YES:
+            next_actions.append(AE_INITIAL_ACTION)
         return next_actions
 
 
@@ -74,6 +90,7 @@ def register_actions():
         BloodResultsFbcAction,
         BloodResultsLftAction,
         BloodResultsRftAction,
+        FollowupAction,
         # LpAction,
         SxAction,
     ]:
