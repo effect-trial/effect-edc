@@ -25,12 +25,6 @@
     - request _sx other fields be comma-separated, and look at basic validation
 
 - Neurological Symptoms CRF:
-    - merge all fields into Signs and Symptoms CRF
-        - merge focal_neurologic_deficits into SiSx
-            - prefix all with 'Neuro'
-        - merge 'meningism' and 'papilloedema' into SiSx list
-        - order SiSx alphabetically
-
 
 - Mental Status CRF:
 

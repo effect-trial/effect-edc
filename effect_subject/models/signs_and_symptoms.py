@@ -83,6 +83,18 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
+    cn_palsy_left_other = edc_models.OtherCharField(
+        verbose_name="If other cranial nerve palsy (left), please specify ..."
+    )
+
+    cn_palsy_right_other = edc_models.OtherCharField(
+        verbose_name="If other cranial nerve palsy (right), please specify ..."
+    )
+
+    focal_neurologic_deficit_other = edc_models.OtherCharField(
+        verbose_name="If other focal neurologic deficit, please specify ..."
+    )
+
     visual_field_loss = models.TextField(
         verbose_name="If visual field loss, please provide details ...",
         null=True,

@@ -11,7 +11,6 @@ from .diagnoses_admin import DiagnosesAdmin
 from .followup_admin import FollowupAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
-from .neurological_admin import NeurologicalAdmin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
 from .study_treatment_admin import StudyTreatmentAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin

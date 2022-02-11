@@ -10,7 +10,13 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
 
-from effect_subject.constants import HEADACHE, VISUAL_LOSS
+from effect_subject.constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+    HEADACHE,
+    VISUAL_LOSS,
+)
 
 list_data = {
     "effect_lists.nonadherencereasons": [
@@ -93,27 +99,6 @@ list_data = {
         ("antimalarials", "Antimalarials"),
         (OTHER, "Other drug/intervention, please specify below ..."),
     ],
-    "effect_lists.focalneurologicdeficits": [
-        (NONE, "None"),
-        ("CN_VI_palsy_left", "Neuro - Cranial Nerve VI palsy (left)"),
-        ("CN_VI_palsy_right", "Neuro - Cranial Nerve VI palsy (right)"),
-        ("CN_VII_palsy_left", "Neuro - Cranial Nerve VII palsy (left)"),
-        ("CN_VII_palsy_right", "Neuro - Cranial Nerve VII palsy (right)"),
-        (
-            "CN_palsy_left_other",
-            "Neuro - Other cranial nerve palsy (left), please specify below ...",
-        ),
-        (
-            "CN_palsy_right_other",
-            "Neuro - Other cranial nerve palsy (right), please specify below ...",
-        ),
-        ("focal_seizures_left", "Neuro - Focal seizures (left)"),
-        ("focal_seizures_right", "Neuro - Focal seizures (right)"),
-        ("hemiplegia_left", "Neuro - Hemiplegia (left)"),
-        ("hemiplegia_right", "Neuro - Hemiplegia (right)"),
-        ("visual_field_disturbance", "Neuro - Visual field disturbance"),
-        (OTHER, "Neuro - Other focal neurologic deficit, please specify below ..."),
-    ],
     "effect_lists.dx": [
         ("bacteraemia", "Bacteraemia"),
         ("bacterial_pneumonia", "Bacterial pneumonia"),
@@ -168,6 +153,29 @@ list_data = {
         ("hearing_loss", "Hearing loss"),
         ("jaundice", "Jaundice"),
         ("nausea", "Nausea"),
+        ("CN_VI_palsy_left", "Neuro - Cranial Nerve VI palsy (left)"),
+        ("CN_VI_palsy_right", "Neuro - Cranial Nerve VI palsy (right)"),
+        ("CN_VII_palsy_left", "Neuro - Cranial Nerve VII palsy (left)"),
+        ("CN_VII_palsy_right", "Neuro - Cranial Nerve VII palsy (right)"),
+        (
+            CN_PALSY_LEFT_OTHER,
+            "Neuro - Other cranial nerve palsy (left), please specify below ...",
+        ),
+        (
+            CN_PALSY_RIGHT_OTHER,
+            "Neuro - Other cranial nerve palsy (right), please specify below ...",
+        ),
+        ("focal_seizures_left", "Neuro - Focal seizures (left)"),
+        ("focal_seizures_right", "Neuro - Focal seizures (right)"),
+        ("hemiplegia_left", "Neuro - Hemiplegia (left)"),
+        ("hemiplegia_right", "Neuro - Hemiplegia (right)"),
+        ("meningism", "Neuro - Meningism"),
+        ("papilloedema", "Neuro - Papilloedema"),
+        ("visual_field_disturbance", "Neuro - Visual field disturbance"),
+        (
+            FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+            "Neuro - Other focal neurologic deficit, please specify below ...",
+        ),
         ("shortness_of_breath", "Shortness of breath"),
         ("skin_lesions", "Skin lesions"),
         (VISUAL_LOSS, "Visual loss"),

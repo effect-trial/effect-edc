@@ -6,7 +6,13 @@ from edc_form_validators.form_validator import FormValidator
 
 from effect_lists.list_data import list_data
 
-from ..constants import HEADACHE, VISUAL_LOSS
+from ..constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+    HEADACHE,
+    VISUAL_LOSS,
+)
 from ..models import SignsAndSymptoms
 
 
@@ -25,12 +31,7 @@ class SignsAndSymptomsFormValidator(FormValidator):
             OTHER, m2m_field="current_sx_gte_g3", field_other="current_sx_gte_g3_other"
         )
 
-        self.m2m_other_specify(
-            HEADACHE, m2m_field="current_sx", field_other="headache_duration"
-        )
-        self.m2m_other_specify(
-            VISUAL_LOSS, m2m_field="current_sx", field_other="visual_field_loss"
-        )
+        self.validate_current_sx_other_specify_fields()
 
         self.validate_reporting_fieldset()
 
@@ -104,6 +105,29 @@ class SignsAndSymptomsFormValidator(FormValidator):
                     )
                 }
             )
+
+    def validate_current_sx_other_specify_fields(self):
+        self.m2m_other_specify(
+            HEADACHE, m2m_field="current_sx", field_other="headache_duration"
+        )
+        self.m2m_other_specify(
+            CN_PALSY_LEFT_OTHER,
+            m2m_field="current_sx",
+            field_other="cn_palsy_left_other",
+        )
+        self.m2m_other_specify(
+            CN_PALSY_RIGHT_OTHER,
+            m2m_field="current_sx",
+            field_other="cn_palsy_right_other",
+        )
+        self.m2m_other_specify(
+            FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+            m2m_field="current_sx",
+            field_other="focal_neurologic_deficit_other",
+        )
+        self.m2m_other_specify(
+            VISUAL_LOSS, m2m_field="current_sx", field_other="visual_field_loss"
+        )
 
     def validate_reporting_fieldset(self):
         self.applicable_if(YES, field="any_sx", field_applicable="reportable_as_ae")

@@ -25,12 +25,6 @@ class Drugs(ListModelMixin):
         verbose_name_plural = "Drugs"
 
 
-class FocalNeurologicDeficits(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Focal Neurologic Deficits"
-        verbose_name_plural = "Focal Neurologic Deficits"
-
-
 class OffstudyReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Offstudy Reasons"

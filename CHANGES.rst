@@ -15,6 +15,10 @@ Changes
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
     - add AE_INITIAL_ACTION action item if yes answer to any of: 'reportable_as_ae', 'patient_admitted', or 'cm_sx_patient_admitted'
+    - merge in Neurological form fields
+- remove:
+    - Neurological Symptoms form
+    - FocalNeurologicDeficits list model
 - fix server error when trying to save “mental status” form
 
 0.1.1
