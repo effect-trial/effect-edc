@@ -37,6 +37,9 @@ class SignsAndSymptomsAdmin(
                     "current_sx_gte_g3_other",
                     "headache_duration",
                     # "headache_duration_microseconds",
+                    "cn_palsy_left_other",
+                    "cn_palsy_right_other",
+                    "focal_neurologic_deficit_other",
                     "visual_field_loss",
                 )
             },

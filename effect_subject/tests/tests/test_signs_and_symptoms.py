@@ -7,7 +7,13 @@ from model_bakery import baker
 
 from effect_lists.models import BloodTests, SiSx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.constants import HEADACHE, VISUAL_LOSS
+from effect_subject.constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+    HEADACHE,
+    VISUAL_LOSS,
+)
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
 
@@ -46,6 +52,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
+            "cn_palsy_left_other": "",
+            "cn_palsy_right_other": "",
+            "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
             "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
@@ -77,6 +86,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
+            "cn_palsy_left_other": "",
+            "cn_palsy_right_other": "",
+            "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
             "reportable_as_ae": NO,
             "patient_admitted": NO,
@@ -695,93 +707,57 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_headache_duration_applicable_if_in_current_sx(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update(
-            {
-                "current_sx": SiSx.objects.filter(name=HEADACHE),
-                "headache_duration": "",
-            }
-        )
-        self.assertFormValidatorError(
-            field="headache_duration",
-            expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
+    def test_validate_current_sx_other_specify_fields_required_if_specified(self):
+        sx_selection_other_fields = [
+            (HEADACHE, "headache_duration"),
+            (CN_PALSY_LEFT_OTHER, "cn_palsy_left_other"),
+            (CN_PALSY_RIGHT_OTHER, "cn_palsy_right_other"),
+            (FOCAL_NEUROLOGIC_DEFICIT_OTHER, "focal_neurologic_deficit_other"),
+            (VISUAL_LOSS, "visual_field_loss"),
+        ]
 
-        cleaned_data.update({"headache_duration": "2d3h"})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
+        for sx_selection, other_field in sx_selection_other_fields:
+            with self.subTest(sx_selection=sx_selection, other_field=other_field):
+                cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
+                cleaned_data.update(
+                    {"current_sx": SiSx.objects.filter(name=sx_selection)}
+                )
+                self.assertFormValidatorError(
+                    field=other_field,
+                    expected_msg="This field is required.",
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
 
-    def test_headache_duration_not_applicable_if_not_in_current_sx(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
-        cleaned_data.update({"headache_duration": "2d3h"})
-        self.assertFormValidatorError(
-            field="headache_duration",
-            expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-        cleaned_data.update({"headache_duration": ""})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
+                cleaned_data.update({other_field: "Some other text"})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
 
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update({"headache_duration": "2d3h"})
-        self.assertFormValidatorError(
-            field="headache_duration",
-            expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-        cleaned_data.update({"headache_duration": ""})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
+    def test_validate_current_sx_other_specify_fields_not_required_if_not_specified(
+        self,
+    ):
+        other_fields = [
+            "headache_duration",
+            "cn_palsy_left_other",
+            "cn_palsy_right_other",
+            "focal_neurologic_deficit_other",
+            "visual_field_loss",
+        ]
 
-    def test_visual_field_loss_applicable_if_in_current_sx(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update(
-            {
-                "current_sx": SiSx.objects.filter(name=VISUAL_LOSS),
-                "visual_field_loss": "",
-            }
-        )
-        self.assertFormValidatorError(
-            field="visual_field_loss",
-            expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
+        for other_field in other_fields:
+            with self.subTest(other_field=other_field):
+                cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
+                cleaned_data.update({other_field: "Some other text"})
+                self.assertFormValidatorError(
+                    field=other_field,
+                    expected_msg="This field is not required.",
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
 
-        cleaned_data.update({"visual_field_loss": "Details on visual field loss"})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_visual_field_loss_not_applicable_if_not_in_current_sx(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
-        cleaned_data.update({"visual_field_loss": "Details on visual field loss"})
-        self.assertFormValidatorError(
-            field="visual_field_loss",
-            expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-        cleaned_data.update({"visual_field_loss": ""})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update({"visual_field_loss": "Details on visual field loss"})
-        self.assertFormValidatorError(
-            field="visual_field_loss",
-            expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-        cleaned_data.update({"visual_field_loss": ""})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
+                cleaned_data.update({other_field: ""})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
 
     def test_patient_admitted_applicable_if_any_sx_yes(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms()

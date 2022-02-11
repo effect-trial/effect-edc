@@ -6,7 +6,6 @@ from .diagnoses_form import DiagnosesForm
 from .followup_form import FollowupForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
-from .neurological_form import NeurologicalForm
 from .signs_and_symptoms_form import SignsAndSymptomsForm
 from .study_treatment_day14_form import StudyTreatmentDay14Form
 from .study_treatment_form import StudyTreatmentForm
