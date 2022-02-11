@@ -17,6 +17,7 @@
 - Follow-up CRF:
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
     - if deceased, tigger death report action, and end of study report
+    - if hospitalised, trigger SAE action item
 
 - Signs and Symptoms CRF:
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit

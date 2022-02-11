@@ -4,7 +4,7 @@ from edc_constants.constants import DEAD
 from edc_model import models as edc_models
 
 from ..choices import ASSESSMENT_TYPES, INFO_SOURCES, PATIENT_STATUSES
-from ..constants import ALIVE_UNWELL, PATIENT
+from ..constants import ALIVE_UNWELL, IF_YES_COMPLETE_SAE, PATIENT
 from ..model_mixins import CrfModelMixin
 
 
@@ -45,6 +45,7 @@ class Followup(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, trigger SAE
         choices=YES_NO,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     adherence_counselling = models.CharField(
