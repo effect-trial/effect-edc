@@ -1,14 +1,24 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_action_item import (
+    ModelAdminActionItemMixin,
+    action_fields,
+    action_fieldset_tuple,
+)
+from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import effect_subject_admin
 from ..forms import FollowupForm
 from ..models import Followup
-from .modeladmin import CrfModelAdmin
+from .modeladmin import CrfModelAdminMixin
 
 
 @admin.register(Followup, site=effect_subject_admin)
-class FollowupAdmin(CrfModelAdmin):
+class FollowupAdmin(
+    CrfModelAdminMixin,
+    ModelAdminActionItemMixin,
+    SimpleHistoryAdmin,
+):
 
     form = FollowupForm
 
@@ -27,8 +37,11 @@ class FollowupAdmin(CrfModelAdmin):
                 )
             },
         ),
+        action_fieldset_tuple,
         audit_fieldset_tuple,
     )
+
+    readonly_fields = action_fields
 
     radio_fields = {
         "assessment_type": admin.VERTICAL,

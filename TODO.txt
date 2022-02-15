@@ -17,16 +17,13 @@
 - Follow-up CRF:
     - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
     - if deceased, tigger death report action, and end of study report
-    - if hospitalised, trigger SAE action item
 
 - Signs and Symptoms CRF:
     - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
     - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
     - if cm_sx_lp_done, generate LP
     - if fbc or chem bloods taken, generate requisition
-    - request _sx other fields be comma-separated, and look at basic validation
-
-- Neurological Symptoms CRF:
+    - look at basic validation for _sx_other fields
 
 - Mental Status CRF:
 

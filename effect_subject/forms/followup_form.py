@@ -1,5 +1,6 @@
 from django import forms
-from edc_constants.constants import DEAD, YES
+from edc_action_item.forms import ActionItemFormMixin
+from edc_constants.constants import DEAD
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 
@@ -53,7 +54,7 @@ class FollowupFormValidator(FormValidator):
             )
 
 
-class FollowupForm(CrfModelFormMixin, forms.ModelForm):
+class FollowupForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
     form_validator_cls = FollowupFormValidator
 
     class Meta:
