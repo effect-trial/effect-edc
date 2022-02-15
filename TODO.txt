@@ -23,9 +23,7 @@
     - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
     - if cm_sx_lp_done, generate LP
     - if fbc or chem bloods taken, generate requisition
-    - request _sx other fields be comma-separated, and look at basic validation
-
-- Neurological Symptoms CRF:
+    - look at basic validation for _sx_other fields
 
 - Mental Status CRF:
 
