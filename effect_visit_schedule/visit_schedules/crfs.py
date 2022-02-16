@@ -15,6 +15,7 @@ crfs_prn = FormsCollection(
     Crf(show_order=10, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=240, model="effect_subject.bloodresultsrft"),
     Crf(show_order=250, model="effect_subject.bloodresultslft"),
+    Crf(show_order=300, model="effect_subject.microbiology"),
     name="prn",
 )
 
@@ -37,6 +38,7 @@ crfs_d01 = FormsCollection(
     Crf(show_order=80, model="effect_subject.arvtreatment"),
     Crf(show_order=90, model="effect_subject.studytreatment"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
+    Crf(show_order=105, model="effect_subject.microbiology"),
     Crf(show_order=110, model="effect_subject.clinicalnote"),
     name=DAY01,
 )
