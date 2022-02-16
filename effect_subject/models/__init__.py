@@ -8,6 +8,7 @@ from .followup import Followup
 # from .lumbar_puncture_csf import LumbarPunctureCsf
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
+from .microbiology import Microbiology
 
 # from .patient_history import PatientHistory
 from .signs_and_symptoms import SignsAndSymptoms
