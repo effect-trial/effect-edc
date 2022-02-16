@@ -1,5 +1,10 @@
 - SAE:
     - Reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
+        - Relation to study drug (8/9) >  split into: Relation to study Fluconazole,  Relation to study Flucytosine
+        - Hospitalisation details (2.c):
+            - Date of hospital admission
+            - Inpatient status
+            - Date of discharge
     - Make Subject Identifier field read only
 
 - Death CRF:
