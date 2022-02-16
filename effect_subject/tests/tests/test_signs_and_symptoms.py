@@ -19,7 +19,7 @@ from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormVal
 
 
 @tag("sas")
-class TestFollowup(EffectTestCaseMixin, TestCase):
+class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
@@ -34,7 +34,7 @@ class TestFollowup(EffectTestCaseMixin, TestCase):
 
 
 @tag("sas")
-class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
+class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SignsAndSymptomsFormValidator
 
