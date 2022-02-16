@@ -59,7 +59,6 @@
     - look at basic validation for _sx_other fields
 
 - Mental Status CRF:
-    - update Modified Rankin Score (JW has details)
     - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
 
 - Vital Signs CRF:
