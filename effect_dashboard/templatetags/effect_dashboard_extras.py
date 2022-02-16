@@ -39,10 +39,10 @@ def eligibility_button(subject_screening_model_wrapper):
         comment = obj.reasons_ineligible.split("|")
         comment = list(set(comment))
         comment.sort()
-    eligibility = ScreeningEligibility(obj)
+    eligibility = ScreeningEligibility(obj, update_model=False)
     soup = BeautifulSoup(eligibility.display_label, features="html.parser")
     return dict(
-        eligible=obj.eligible,
+        eligible=eligibility.eligible,
         eligible_final=eligibility.eligible,
         display_label=soup.get_text(),
         comment=comment,
