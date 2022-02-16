@@ -1,11 +1,36 @@
-- SAE:
-    - Reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
-    - Make Subject Identifier field read only
+- Redmine:
+    - fix/renew expired certificate
+
+- Schedule:
+    - "Participants who are treated as outpatients will be seen in clinic on day 1 and 14".
+    - d1:
+        - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
+        - "Bloods will be drawn on day 1 to assess serum creatinine, full blood count with differential (FBC) and alanine transaminase (ALT) levels"
+    - d3:
+        - Adherence CRF
+    - d9:
+        - Adherence CRF
+    - d14
+        - Clinical Assessment d14 CRFs
+        - "Bloods drawn to check FBC and differential count"
+        - ???"ART will be started on day 14, consistent with current guidelines"
+    - "Ambulatory participants (or next of kin) will be contacted at 1, 2.5 (10 weeks), 4 and 6 months to determine survival status"
+    - update visit schedule when EFFECT Protocol v1.3 released/approved
+
+- SAE CRF:
+    - reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
+        - Relation to study drug (8/9) >  split into: Relation to study Fluconazole,  Relation to study Flucytosine
+        - Hospitalisation details (2.c):
+            - Date of hospital admission
+            - Inpatient status
+            - Date of discharge
+    - make Subject Identifier field read only
 
 - Death CRF:
-    - Reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
+    - reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
 
 - LP CRF:
+    - implement
 
 - Microbiology CRF:
     - Mirror CRF from Ambition, but move CSF into LP CRF
@@ -13,24 +38,63 @@
 - Requisitions:
     - combine renal (RFT) and liver (LFT) function tests into single requisition
         - combine results forms
+    - add to requisitions
+
+- Screening:
+    - fix missing 'ineligible' button
+    - cryptococcal antigen (CrAg)-positive in blood who decline a lumbar puncture (LP) should be eligible
 
 - Follow-up CRF:
-    - validate can't have in-person or telephone-based patient visit if visit report specified based on 'Collateral History ...'
+    - add other/other, please specify option to Q3 (Was this a telephone follow up or an in person visit?)
+    - validate 'assessment_type' and 'info_source' against 'info_source' answer provided on Subject Visit CRF
     - if deceased, tigger death report action, and end of study report
 
 - Signs and Symptoms CRF:
-    - validate any_sx != UNKNOWN if an in-person or telephone-based patient visit
-    - headache_duration_microseconds to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
-    - if cm_sx_lp_done, generate LP
-    - if fbc or chem bloods taken, generate requisition
+    - validate 'followup' model exists before anything else
+    - validate 'any_sx' != UNKNOWN if an in-person or telephone-based (patient) visit
+    - fix bug, AE_INITIAL_ACTION not created if AE_INITIAL_ACTION was created for followup
+    - 'headache_duration_microseconds' to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
+    - if 'cm_sx_lp_done', generate LP
+    - if fbc or chem bloods taken, generate related requisition
     - look at basic validation for _sx_other fields
 
 - Mental Status CRF:
+    - update Modified Rankin Score (JW has details)
+    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
 
 - Vital Signs CRF:
-    - blood pressure gradable if >= 180 / 110 (either value)
-    - Temperature G3 if temp >= 39.3 and < 40
-    - Temperature G4 if temp >= 40
+    - add, "Was blood pressure taken?" / "If not, why?"
+    - validate:
+        - blood pressure gradable if >= 180 / 110 (either value)
+        - Temperature G3 if temp >= 39.3 and < 40
+        - Temperature G4 if temp >= 40
+    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
+
+- Significant Diagnoses CRF:
+    - add validation
+    - trigger AE_INITIAL_ACTION if answer YES to 'gi_side_effects'
+    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
+
+- Chest X-ray CRF:
+    - add validation
+
+- ARV Treatment CRF:
+    - add validation
+
+- Study Treatment / Patient Treatment CRF:
+    - refactor from Study Treatment to Patient Treatment
+    - if Q4 'cm_confirmed' is YES
+        - remove from study treatment
+        - remain in follow-up
+        - validate with study medication, to confirm taken off drug
+    - if 'lp_completed', prompt for LP results
+
+- Blood Result: FBC CRF:
+    - Q3, 'requisition' + button doesn't work (no panels are listed)
+    - ???validation
+
+- Clinical Note CRF:
+    - add validation
 
 - Economics CRF:
     - update
@@ -40,14 +104,13 @@
             - then as PRN at subsequent follow-ups
     - Question: Has there been any events since last visit?
 
-- Study Treatment / Patient Treatment CRF:
-    - refactor from study treatment to patient treatment
-    - if Q4 (cm_confirmed) is YES
-        - remove from study treatment
-        - remain in follow-up
-        - validate with study medication, to confirm taken off drug
+- Adherence CRF:
+    - implement
+    - schedule for d3 and d9
 
 - End of Study/Termination CRF:
+    - reconcile with provided form (08_Termination_Form_110821_V0.5.pdf)
+    - add validation
     - check if started treatment, cannot be late exclusion
 
 - Other (reported by JA):
