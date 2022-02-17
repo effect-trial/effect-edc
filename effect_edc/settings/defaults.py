@@ -115,6 +115,7 @@ INSTALLED_APPS = [
     "edc_identifier.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata.apps.AppConfig",
+    "edc_microbiology.apps.AppConfig",
     "edc_model.apps.AppConfig",
     "edc_model_fields.apps.AppConfig",
     "edc_model_admin.apps.AppConfig",
