@@ -149,11 +149,39 @@ MALARIA_TEST_CHOICES = (
 MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
 
 MODIFIED_RANKIN_SCORE_CHOICES = (
-    ("1", "1"),
-    ("2", "2"),
-    ("3", "3"),
-    ("4", "4"),
-    ("5", "5"),
+    ("0", "No symptoms"),
+    (
+        "1",
+        (
+            "No significant disability. "
+            "Able to carry out usual activities, despite some symptoms."
+        ),
+    ),
+    (
+        "2",
+        (
+            "Slight disability. "
+            "Able to look after own affairs without assistance, "
+            "but unable to carry out all previous activities."
+        ),
+    ),
+    ("3", "Moderate disability. Requires some help, but able to walk unassisted."),
+    (
+        "4",
+        (
+            "Moderately severe disability. "
+            "Unable to attend to own bodily needs without assistance, "
+            "and unable to walk unassisted."
+        ),
+    ),
+    (
+        "5",
+        (
+            "Severe disability. "
+            "Requires constant nursing care and attention, bedridden, incontinent."
+        ),
+    ),
+    ("6", "Dead"),
     (NOT_DONE, "Not done"),
 )
 

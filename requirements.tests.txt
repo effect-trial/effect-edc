@@ -1,0 +1,2 @@
+edc-form-validators>=0.3.7
+edc-microbiology>=0.1.0

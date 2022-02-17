@@ -17,6 +17,8 @@ Changes
     - add validation
     - add AE_INITIAL_ACTION action item if yes answer to any of: 'reportable_as_ae', 'patient_admitted', or 'cm_sx_patient_admitted'
     - merge in Neurological form fields
+- changes to Mental Status form:
+    - expand Modified Rankin Score choices to include 0 and 6, and add descriptions
 - remove:
     - Neurological Symptoms form
     - FocalNeurologicDeficits list model
