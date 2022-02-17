@@ -26,6 +26,8 @@ class Followup(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         choices=ASSESSMENT_TYPES,
     )
 
+    assessment_type_other = edc_models.OtherCharField()
+
     info_source = models.CharField(
         verbose_name="If by telephone, who did you speak to?",
         max_length=15,

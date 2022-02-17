@@ -10,13 +10,15 @@ from ..models import Followup
 
 class FollowupFormValidator(FormValidator):
     def clean(self):
-        super().clean()
+        self.validate_other_specify(field="assessment_type")
 
         self.applicable_if(
             TELEPHONE, field="assessment_type", field_applicable="info_source"
         )
         self.validate_other_specify(field="info_source")
+
         self.validate_survival_status()
+
         self.not_applicable_if(
             DEAD,
             field="survival_status",
