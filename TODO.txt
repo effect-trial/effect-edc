@@ -45,7 +45,6 @@
     - cryptococcal antigen (CrAg)-positive in blood who decline a lumbar puncture (LP) should be eligible
 
 - Follow-up CRF:
-    - add other/other, please specify option to Q3 (Was this a telephone follow up or an in person visit?)
     - validate 'assessment_type' and 'info_source' against 'info_source' answer provided on Subject Visit CRF
     - if deceased, tigger death report action, and end of study report
 

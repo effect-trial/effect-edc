@@ -55,7 +55,11 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_TYPES = ((TELEPHONE, "Telephone"), (IN_PERSON, "In person"))
+ASSESSMENT_TYPES = (
+    (TELEPHONE, "Telephone"),
+    (IN_PERSON, "In person"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -224,7 +228,7 @@ INFO_SOURCES = (
     (PATIENT, "Patient"),
     ("next_of_kin", "Next of kin"),
     (OTHER, "Other"),
-    (NOT_APPLICABLE, "Not applicable (in person visit)"),
+    (NOT_APPLICABLE, "Not applicable (if not telephone follow-up)"),
 )
 
 STEROID_CHOICES = (
