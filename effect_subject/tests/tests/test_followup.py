@@ -1,12 +1,24 @@
 from copy import deepcopy
+from dataclasses import dataclass
 
 from django.test import TestCase, tag
-from edc_constants.constants import DEAD, NO, NOT_APPLICABLE, OTHER, YES
+from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.choices import INFO_SOURCES, PATIENT_STATUSES
-from effect_subject.constants import IN_PERSON, PATIENT, TELEPHONE
+from effect_subject.choices import (
+    ASSESSMENT_INFO_SOURCES,
+    INFO_SOURCE,
+    PATIENT_STATUSES,
+)
+from effect_subject.constants import (
+    COLLATERAL_HISTORY,
+    IN_PERSON,
+    NEXT_OF_KIN,
+    OUTPATIENT_CARDS,
+    PATIENT,
+    TELEPHONE,
+)
 from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
 
@@ -34,7 +46,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         self.subject_visit = self.get_subject_visit()
 
     def get_valid_in_person_visit_data(self):
+        self.subject_visit.info_source = PATIENT
         return {
+            "subject_visit": self.subject_visit,
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "assessment_type": IN_PERSON,
@@ -47,7 +61,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         }
 
     def get_valid_patient_telephone_assessment_data(self):
+        self.subject_visit.info_source = PATIENT
         return {
+            "subject_visit": self.subject_visit,
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "assessment_type": TELEPHONE,
@@ -58,6 +74,29 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             "hospitalized": YES,
             "adherence_counselling": YES,
         }
+
+    def get_valid_next_of_kin_telephone_assessment_data(self):
+        cleaned_data = deepcopy(self.get_valid_patient_telephone_assessment_data())
+        self.subject_visit.info_source = COLLATERAL_HISTORY
+        cleaned_data.update(
+            {
+                "subject_visit": self.subject_visit,
+                "info_source": NEXT_OF_KIN,
+            }
+        )
+        return cleaned_data
+
+    def get_valid_other_assessment_type_data(self):
+        cleaned_data = deepcopy(self.get_valid_in_person_visit_data())
+        self.subject_visit.info_source = HOSPITAL_NOTES
+        cleaned_data.update(
+            {
+                "subject_visit": self.subject_visit,
+                "assessment_type": OTHER,
+                "assessment_type_other": "Some other assessment type",
+            }
+        )
+        return cleaned_data
 
     def test_form_validator_allows_valid_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
@@ -72,27 +111,20 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_form_validator_allows_valid_nok_telephone_assessment(self):
-        cleaned_data = self.get_valid_patient_telephone_assessment_data()
-        cleaned_data.update({"info_source": "next_of_kin"})
+        cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_form_validator_allows_valid_other_assessment_type(self):
-        cleaned_data = self.get_valid_in_person_visit_data()
-        cleaned_data.update(
-            {
-                "assessment_type": OTHER,
-                "assessment_type_other": "Some other assessment type",
-            }
-        )
+        cleaned_data = self.get_valid_other_assessment_type_data()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_assessment_type_other_required_if_specified(self):
-        cleaned_data = self.get_valid_in_person_visit_data()
-        cleaned_data.update({"assessment_type": OTHER, "assessment_type_other": ""})
+        cleaned_data = self.get_valid_other_assessment_type_data()
+        cleaned_data.update({"assessment_type_other": ""})
         self.assertFormValidatorError(
             field="assessment_type_other",
             expected_msg="This field is required.",
@@ -133,14 +165,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_info_source_na_for_other_assessment_type(self):
-        cleaned_data = self.get_valid_in_person_visit_data()
-        cleaned_data.update(
-            {
-                "assessment_type": OTHER,
-                "assessment_type_other": "Some other assessment type",
-                "info_source": PATIENT,
-            }
-        )
+        cleaned_data = self.get_valid_other_assessment_type_data()
+        cleaned_data.update({"info_source": PATIENT})
         self.assertFormValidatorError(
             field="info_source",
             expected_msg="This field is not applicable.",
@@ -157,6 +183,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_info_source_other_required_if_specified(self):
+        self.subject_visit.info_source = COLLATERAL_HISTORY
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": OTHER})
         self.assertFormValidatorError(
@@ -173,6 +200,105 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
             expected_msg="This field is not required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
+
+    def test_sv_info_source_raises_error_if_does_not_reconcile_with_patient_followup_answers(
+        self,
+    ):
+        for sv_info_source in [src[0] for src in INFO_SOURCE if src[0] != PATIENT]:
+            with self.subTest(sv_info_source=sv_info_source):
+                cleaned_data = self.get_valid_in_person_visit_data()
+                self.subject_visit.info_source = sv_info_source
+                cleaned_data.update({"subject_visit": self.subject_visit})
+
+                expected_msg = (
+                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                        sv_info_source=sv_info_source,
+                        fu_assessment_type=cleaned_data.get("assessment_type"),
+                        fu_info_source=cleaned_data.get("info_source"),
+                    )
+                )
+                self.assertFormValidatorError(
+                    field="assessment_type",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
+                self.assertFormValidatorError(
+                    field="info_source",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
+
+    def test_sv_info_source_raises_error_if_does_not_reconcile_with_nok_telephone_answers(
+        self,
+    ):
+        for sv_info_source in [
+            src[0] for src in INFO_SOURCE if src[0] != COLLATERAL_HISTORY
+        ]:
+            with self.subTest(sv_info_source=sv_info_source):
+                cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
+                self.subject_visit.info_source = sv_info_source
+                cleaned_data.update({"subject_visit": self.subject_visit})
+                # print(cleaned_data)
+                # print(cleaned_data.get("subject_visit").info_source)
+                # print(self.subject_visit.info_source)
+
+                expected_msg = (
+                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                        sv_info_source=sv_info_source,
+                        fu_assessment_type=cleaned_data.get("assessment_type"),
+                        fu_info_source=cleaned_data.get("info_source"),
+                    )
+                )
+                self.assertFormValidatorError(
+                    field="assessment_type",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
+                self.assertFormValidatorError(
+                    field="info_source",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
+
+    def test_sv_info_source_raises_error_if_does_not_reconcile_with_other_assessment_type(
+        self,
+    ):
+        for sv_info_source in [
+            src[0]
+            for src in INFO_SOURCE
+            if src[0]
+            not in [COLLATERAL_HISTORY, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+        ]:
+            with self.subTest(sv_info_source=sv_info_source):
+                cleaned_data = self.get_valid_other_assessment_type_data()
+                self.subject_visit.info_source = sv_info_source
+                cleaned_data.update({"subject_visit": self.subject_visit})
+                print(cleaned_data)
+                print(sv_info_source)
+                print(cleaned_data.get("subject_visit").info_source)
+                expected_msg = (
+                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                        sv_info_source=sv_info_source,
+                        fu_assessment_type=cleaned_data.get("assessment_type"),
+                        fu_info_source=cleaned_data.get("info_source"),
+                    )
+                )
+                self.assertFormValidatorError(
+                    field="assessment_type",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
+                self.assertFormValidatorError(
+                    field="info_source",
+                    expected_msg=expected_msg,
+                    form_validator=self.validate_form_validator(cleaned_data),
+                    expected_errors=2,
+                )
 
     def test_deceased_status_invalid_for_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
@@ -197,12 +323,14 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
         info_sources = [
-            src[0] for src in INFO_SOURCES if src[0] not in [PATIENT, NOT_APPLICABLE]
+            src[0]
+            for src in ASSESSMENT_INFO_SOURCES
+            if src[0] not in [PATIENT, NOT_APPLICABLE]
         ]
         for info_src in info_sources:
             with self.subTest(info_src=info_src):
                 cleaned_data = deepcopy(
-                    self.get_valid_patient_telephone_assessment_data()
+                    self.get_valid_next_of_kin_telephone_assessment_data()
                 )
                 cleaned_data.update(
                     {
@@ -217,8 +345,8 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                 )
 
     def test_adherence_counselling_na_if_deceased(self):
-        cleaned_data = self.get_valid_patient_telephone_assessment_data()
-        cleaned_data.update({"info_source": "next_of_kin", "survival_status": DEAD})
+        cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
+        cleaned_data.update({"survival_status": DEAD})
         self.assertFormValidatorError(
             field="adherence_counselling",
             expected_msg="Invalid: Expected 'Not applicable' if survival status is 'Deceased'",
@@ -230,11 +358,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         for survival_status in survival_statuses:
             with self.subTest(survival_status=survival_status):
                 cleaned_data = deepcopy(
-                    self.get_valid_patient_telephone_assessment_data()
+                    self.get_valid_next_of_kin_telephone_assessment_data()
                 )
                 cleaned_data.update(
                     {
-                        "info_source": "next_of_kin",
                         "survival_status": survival_status,
                         "adherence_counselling": NOT_APPLICABLE,
                     }
@@ -243,4 +370,209 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     field="adherence_counselling",
                     expected_msg="This field is applicable.",
                     form_validator=self.validate_form_validator(cleaned_data),
+                )
+
+
+@dataclass
+class SvFuChoices:
+    sv_info_source: str
+    fu_assessment_type: str
+    fu_info_source: str
+
+
+@tag("fu")
+class TestSubjectVisitFollowupValidationLogic(TestCase):
+    def test_returns_true_for_valid_choice_combos(self):
+        valid_combos = (
+            # Valid combos when subject visit info source is 'Patient'
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            # Valid combos when subject visit info source is 'Collateral History'
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=OTHER,
+            ),
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=OTHER,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            # Valid combos when subject visit info source is 'Hospital notes',
+            # 'Outpatient cards', or 'Other'
+            SvFuChoices(
+                sv_info_source=HOSPITAL_NOTES,
+                fu_assessment_type=OTHER,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=OUTPATIENT_CARDS,
+                fu_assessment_type=OTHER,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=OTHER,
+                fu_assessment_type=OTHER,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+        )
+        for combo in valid_combos:
+            with self.subTest(combo=combo):
+                self.assertTrue(
+                    FollowupFormValidator.sv_info_source_reconciles_with_fu(
+                        sv_info_source=combo.sv_info_source,
+                        fu_assessment_type=combo.fu_assessment_type,
+                        fu_info_source=combo.fu_info_source,
+                    )
+                )
+
+    def test_returns_false_for_invalid_choice_combos(self):
+        invalid_combos = (
+            # Invalid combos when subject visit info source is 'Patient'
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=OTHER,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=OTHER,
+                fu_info_source=IN_PERSON,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=OTHER,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=PATIENT,
+                fu_assessment_type=OTHER,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            # Invalid combos when subject visit info source is 'Collateral History'
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=COLLATERAL_HISTORY,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            # Invalid combos when subject visit info source is 'Hospital notes',
+            # 'Outpatient cards', or 'Other'
+            SvFuChoices(
+                sv_info_source=HOSPITAL_NOTES,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=OUTPATIENT_CARDS,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=OTHER,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=NOT_APPLICABLE,
+            ),
+            SvFuChoices(
+                sv_info_source=HOSPITAL_NOTES,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=OUTPATIENT_CARDS,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=OTHER,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=HOSPITAL_NOTES,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=OUTPATIENT_CARDS,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=OTHER,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+            SvFuChoices(
+                sv_info_source=HOSPITAL_NOTES,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=OTHER,
+            ),
+            SvFuChoices(
+                sv_info_source=OUTPATIENT_CARDS,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=OTHER,
+            ),
+            SvFuChoices(
+                sv_info_source=OTHER,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=OTHER,
+            ),
+            # Invalid combos when subject visit info source is 'Not applicable (if missed)'
+            SvFuChoices(
+                sv_info_source=NOT_APPLICABLE,
+                fu_assessment_type=IN_PERSON,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=NOT_APPLICABLE,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=PATIENT,
+            ),
+            SvFuChoices(
+                sv_info_source=NOT_APPLICABLE,
+                fu_assessment_type=TELEPHONE,
+                fu_info_source=NEXT_OF_KIN,
+            ),
+        )
+        for combo in invalid_combos:
+            with self.subTest(combo=combo):
+                self.assertFalse(
+                    FollowupFormValidator.sv_info_source_reconciles_with_fu(
+                        sv_info_source=combo.sv_info_source,
+                        fu_assessment_type=combo.fu_assessment_type,
+                        fu_info_source=combo.fu_info_source,
+                    )
                 )
