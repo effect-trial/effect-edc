@@ -4,13 +4,11 @@ from edc_constants.constants import DEAD
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
-from ..choices import ASSESSMENT_TYPES, INFO_SOURCES, PATIENT_STATUSES
+from ..choices import ASSESSMENT_INFO_SOURCES, ASSESSMENT_TYPES, PATIENT_STATUSES
 from ..constants import ALIVE_UNWELL, FOLLOWUP_ACTION, IF_YES_COMPLETE_SAE, PATIENT
 
 
 class Followup(CrfWithActionModelMixin, edc_models.BaseUuidModel):
-
-    # TODO: Schedule for d1 and d14
 
     action_name = FOLLOWUP_ACTION
 
@@ -31,7 +29,7 @@ class Followup(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     info_source = models.CharField(
         verbose_name="If by telephone, who did you speak to?",
         max_length=15,
-        choices=INFO_SOURCES,
+        choices=ASSESSMENT_INFO_SOURCES,
         default=PATIENT,
     )
 
