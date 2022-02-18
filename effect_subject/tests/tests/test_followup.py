@@ -1,7 +1,7 @@
 from copy import deepcopy
 from dataclasses import dataclass
 
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
@@ -23,7 +23,6 @@ from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
 
 
-@tag("fu")
 class TestFollowup(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
@@ -36,7 +35,6 @@ class TestFollowup(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
-@tag("fu")
 class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = FollowupFormValidator
@@ -380,7 +378,6 @@ class SvFuChoices:
     fu_info_source: str
 
 
-@tag("fu")
 class TestSubjectVisitFollowupValidationLogic(TestCase):
     def test_returns_true_for_valid_choice_combos(self):
         valid_combos = (
