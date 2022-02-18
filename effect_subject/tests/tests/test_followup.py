@@ -181,7 +181,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_info_source_other_required_if_specified(self):
-        self.subject_visit.info_source = COLLATERAL_HISTORY
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
         cleaned_data.update({"info_source": OTHER})
         self.assertFormValidatorError(
@@ -238,9 +237,6 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
                 self.subject_visit.info_source = sv_info_source
                 cleaned_data.update({"subject_visit": self.subject_visit})
-                # print(cleaned_data)
-                # print(cleaned_data.get("subject_visit").info_source)
-                # print(self.subject_visit.info_source)
 
                 expected_msg = (
                     FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
@@ -275,9 +271,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data = self.get_valid_other_assessment_type_data()
                 self.subject_visit.info_source = sv_info_source
                 cleaned_data.update({"subject_visit": self.subject_visit})
-                print(cleaned_data)
-                print(sv_info_source)
-                print(cleaned_data.get("subject_visit").info_source)
+
                 expected_msg = (
                     FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
                         sv_info_source=sv_info_source,
