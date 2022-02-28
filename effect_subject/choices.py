@@ -99,29 +99,29 @@ DYSLIPIDAEMIA_RX_CHOICES = (
 ECOG_SCORES = (
     (
         "0",
-        "Fully active, able to carry on all pre-disease performance without restriction",
+        "[0] Fully active, able to carry on all pre-disease performance without restriction",
     ),
     (
         "1",
-        "Restricted in physically strenuous activity but "
+        "[1] Restricted in physically strenuous activity but "
         "ambulatory and able to carry out work of a light or sedentary nature, e.g., "
         "light house work, office work",
     ),
     (
         "2",
-        "Ambulatory and capable of all self-care but unable to carry out "
+        "[2] Ambulatory and capable of all self-care but unable to carry out "
         "any work activities; up and about more than 50% of waking hours ",
     ),
     (
         "3",
-        "Capable of only limited self-care; confined to bed or chair more than "
+        "[3] Capable of only limited self-care; confined to bed or chair more than "
         "50% of waking hours",
     ),
     (
         "4",
-        "Completely disabled; cannot carry on any self-care; totally confined to bed or chair",
+        "[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair",
     ),
-    ("5", "Deceased"),
+    ("5", "[5] Deceased"),
 )
 
 FOLLOWUP_REASONS = (
