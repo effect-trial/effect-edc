@@ -29,6 +29,7 @@ class FollowupAdmin(
             {
                 "fields": (
                     "assessment_type",
+                    "assessment_type_other",
                     "info_source",
                     "info_source_other",
                     "survival_status",

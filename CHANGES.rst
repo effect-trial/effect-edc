@@ -5,9 +5,11 @@ Changes
 ------------
 - changes to Follow-up (formerly Clinical Assessment) form:
     - rename/standardise 'Clinical Assessment' to be 'Follow-up' throughout
+    - add "Other" choice/"Other, please specify..." field to Q3 (Was this a telephone follow up or an in person visit?)
     - add survival status help text, for 'Deceased' and 'Alive, but unwell' choices
     - modify adherence_counselling to only be applicable if not 'Deceased'
     - add AE_INITIAL_ACTION action item if yes answer to 'hospitalized'
+    - validate 'assessment_type' and 'info_source' against 'info_source' answer provided on Subject Visit CRF
 - changes to Signs and Symptoms form:
     - reorder fields based on feedback
     - convert headache_duration to edc_models.DurationDHField

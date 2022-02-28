@@ -2,6 +2,7 @@ from edc_constants.constants import (
     ABSENT,
     AWAITING_RESULTS,
     DEAD,
+    HOSPITAL_NOTES,
     MICROSCOPY,
     NO,
     NO_EXAM,
@@ -21,8 +22,11 @@ from .constants import (
     ALIVE_UNWELL,
     APPT,
     APPT_OTHER,
+    COLLATERAL_HISTORY,
     DECREASED,
     IN_PERSON,
+    NEXT_OF_KIN,
+    OUTPATIENT_CARDS,
     PATIENT,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
@@ -56,7 +60,18 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_TYPES = ((TELEPHONE, "Telephone"), (IN_PERSON, "In person"))
+ASSESSMENT_INFO_SOURCES = (
+    (PATIENT, "Patient"),
+    (NEXT_OF_KIN, "Next of kin"),
+    (OTHER, "Other"),
+    (NOT_APPLICABLE, "Not applicable (if not telephone follow-up)"),
+)
+
+ASSESSMENT_TYPES = (
+    (TELEPHONE, "Telephone"),
+    (IN_PERSON, "In person"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -123,10 +138,10 @@ GRADE34_CHOICES = (
 )
 
 INFO_SOURCE = (
-    ("hospital_notes", "Hospital notes"),
-    ("outpatient_cards", "Outpatient cards"),
-    ("patient", "Patient"),
-    ("collateral_history", "Collateral History from relative/guardian"),
+    (HOSPITAL_NOTES, "Hospital notes"),
+    (OUTPATIENT_CARDS, "Outpatient cards"),
+    (PATIENT, "Patient"),
+    (COLLATERAL_HISTORY, "Collateral History from relative/guardian"),
     (NOT_APPLICABLE, "Not applicable (if missed)"),
     (OTHER, "Other"),
 )
@@ -224,13 +239,6 @@ PATIENT_STATUSES = (
     ("alive_well", "Alive and well"),
     (ALIVE_UNWELL, "Alive, but unwell"),
     (DEAD, "Deceased"),
-)
-
-INFO_SOURCES = (
-    (PATIENT, "Patient"),
-    ("next_of_kin", "Next of kin"),
-    (OTHER, "Other"),
-    (NOT_APPLICABLE, "Not applicable (in person visit)"),
 )
 
 STEROID_CHOICES = (
