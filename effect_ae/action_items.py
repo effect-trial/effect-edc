@@ -53,7 +53,7 @@ class AeFollowupAction(ActionWithNotification):
             required=self.reference_obj.followup == YES,
         )
 
-        # add Death report to next_actions if G5/Death
+        # add Death Report to next_actions if G5/Death
         next_actions = self.append_to_next_if_required(
             next_actions=next_actions,
             action_name=DEATH_REPORT_ACTION,
@@ -83,9 +83,9 @@ class AeInitialAction(ActionWithNotification):
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
     parent_action_names = [
+        BLOOD_RESULTS_FBC_ACTION,
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
-        BLOOD_RESULTS_FBC_ACTION,
         FOLLOWUP_ACTION,
         SX_ACTION,
     ]
@@ -258,7 +258,7 @@ class DeathReportTmgAction(ActionWithNotification):
         return self.reference_obj.report_status == CLOSED
 
     def get_next_actions(self):
-        """Returns an second DeathReportTmgAction if the
+        """Returns a second DeathReportTmgAction if the
         submitted report does not match the cause of death
         of the original death report.
 

@@ -1,13 +1,14 @@
+from uuid import UUID, uuid4
+
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_microbiology.fieldsets import (
-    get_blood_culture_fieldset,
-    get_csf_fieldset,
-    get_histopathology_fieldset,
-    get_sputum_fieldset,
-    get_urine_culture_fieldset,
+    get_sputum_afb_fieldset,
+    get_sputum_culture_fieldset,
+    get_sputum_genexpert_fieldset,
+    get_urinary_lam_fieldset,
 )
-from edc_microbiology.modeladmin_mixin import MicrobiologyModelAdminMixin
+from edc_microbiology.modeladmin_mixins import MicrobiologyModelAdminMixin
 
 from ..admin_site import effect_subject_admin
 from ..forms import MicrobiologyForm
@@ -20,12 +21,23 @@ class MicrobiologyAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
 
     form = MicrobiologyForm
 
+    autocomplete_fields = ["sputum_requisition"]
+
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        get_urine_culture_fieldset(),
-        get_blood_culture_fieldset(),
-        get_sputum_fieldset(),
-        get_csf_fieldset(),
-        get_histopathology_fieldset(),
+        get_urinary_lam_fieldset(),
+        (
+            "Sputum requisition",
+            {
+                "fields": ("sputum_requisition",),
+                "description": "This requisition is required before proceeding to the next sections",
+            },
+        ),
+        get_sputum_genexpert_fieldset(),
+        get_sputum_culture_fieldset(),
+        get_sputum_afb_fieldset(),
+        ("Comment", {"fields": ("comment",)}),
         audit_fieldset_tuple,
     )
+
+    search_fields = ("subject_visit__subject_identifier",)

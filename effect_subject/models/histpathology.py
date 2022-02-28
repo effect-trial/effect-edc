@@ -1,31 +1,19 @@
 from django.db import models
 from django.db.models import PROTECT
 from edc_lab.utils import get_requisition_model_name
-from edc_microbiology.model_mixins import (
-    SputumAfbModelMixin,
-    SputumCultureModelMixin,
-    SputumGenexpertModelMixin,
-    UrinaryLamModelMixin,
-)
+from edc_microbiology.model_mixins import HistopathologyModelMixin
 from edc_model import models as edc_models
 
 from ..model_mixins import CrfModelMixin
 
 
-class Microbiology(
-    UrinaryLamModelMixin,
-    SputumGenexpertModelMixin,
-    SputumCultureModelMixin,
-    SputumAfbModelMixin,
-    CrfModelMixin,
-    edc_models.BaseUuidModel,
-):
+class Histopathology(HistopathologyModelMixin, CrfModelMixin, edc_models.BaseUuidModel):
 
-    sputum_requisition = models.ForeignKey(
+    requisition = models.ForeignKey(
         get_requisition_model_name(),
         on_delete=PROTECT,
         related_name="+",
-        verbose_name="Sputum requisition",
+        verbose_name="Requisition",
         null=True,
         blank=True,
         help_text="Start typing the requisition identifier or select one from this visit",
@@ -36,5 +24,5 @@ class Microbiology(
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Microbiology"
-        verbose_name_plural = "Microbiology"
+        verbose_name = "Histopathoplogy"
+        verbose_name_plural = "Histopathoplogy"

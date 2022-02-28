@@ -45,7 +45,13 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
         )
         path = urlsplit(request.META.get("HTTP_REFERER")).path
         query = urlsplit(request.META.get("HTTP_REFERER")).query
-        if "bloodresult" in path:
+        if (
+            "bloodresult" in path
+            or "microbiology" in path
+            or "histopathology" in path
+            or "bloodculture" in path
+            or "lpcsf" in path
+        ):
             attrs = parse_qs(query)
             try:
                 subject_visit = attrs.get("subject_visit")[0]

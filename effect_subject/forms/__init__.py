@@ -1,9 +1,13 @@
+from .adherence_form import AdherenceForm
 from .arv_treatment_form import ArvTreatmentForm
+from .blood_culture_form import BloodCultureForm
 from .blood_results import BloodResultsFbcForm, BloodResultsLftForm, BloodResultsRftForm
 from .chest_xray_form import ChestXrayForm
 from .clinical_note_form import ClinicalNoteForm
 from .diagnoses_form import DiagnosesForm
 from .followup_form import FollowupForm
+from .histopathology_form import HistopathologyForm
+from .lp_csf_form import LpCsfForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
 from .microbiology_form import MicrobiologyForm

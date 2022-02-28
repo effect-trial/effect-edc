@@ -1,5 +1,6 @@
 from edc_constants.constants import (
     ABSENT,
+    AWAITING_RESULTS,
     DEAD,
     MICROSCOPY,
     NO,
@@ -140,6 +141,11 @@ FUNDOSCOPY_CHOICES = (
     (NO_EXAM, "Exam not performed"),
 )
 
+LP_REASON = (
+    ("scheduled_per_protocol", "Scheduled per protocol"),
+    ("clincal_deterioration", "Suspected Cryptococcal meningitis / Suspected IRIS"),
+)
+
 MALARIA_TEST_CHOICES = (
     (RAPID_TEST, "Rapid test"),
     (MICROSCOPY, "Microscopy"),
@@ -149,27 +155,27 @@ MALARIA_TEST_CHOICES = (
 MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
 
 MODIFIED_RANKIN_SCORE_CHOICES = (
-    ("0", "No symptoms"),
+    ("0", "[0] No symptoms"),
     (
         "1",
         (
-            "No significant disability. "
+            "[1] No significant disability. "
             "Able to carry out usual activities, despite some symptoms."
         ),
     ),
     (
         "2",
         (
-            "Slight disability. "
+            "[2] Slight disability. "
             "Able to look after own affairs without assistance, "
             "but unable to carry out all previous activities."
         ),
     ),
-    ("3", "Moderate disability. Requires some help, but able to walk unassisted."),
+    ("3", "[3] Moderate disability. Requires some help, but able to walk unassisted."),
     (
         "4",
         (
-            "Moderately severe disability. "
+            "[4] Moderately severe disability. "
             "Unable to attend to own bodily needs without assistance, "
             "and unable to walk unassisted."
         ),
@@ -177,11 +183,11 @@ MODIFIED_RANKIN_SCORE_CHOICES = (
     (
         "5",
         (
-            "Severe disability. "
+            "[5] Severe disability. "
             "Requires constant nursing care and attention, bedridden, incontinent."
         ),
     ),
-    ("6", "Dead"),
+    ("6", "[6] Dead"),
     (NOT_DONE, "Not done"),
 )
 
@@ -277,6 +283,13 @@ VISIT_REASON = (
 )
 
 WEIGHT_DETERMINATION = (("estimated", "Estimated"), ("measured", "Measured"))
+
+YES_NO_AWAITING_RESULTS = (
+    (YES, YES),
+    (NO, NO),
+    (AWAITING_RESULTS, "Awaiting results"),
+)
+
 
 YES_NO_NO_EXAM = (
     (YES, YES),

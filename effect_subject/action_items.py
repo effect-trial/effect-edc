@@ -62,7 +62,7 @@ class LpAction(Action):
 
     priority = HIGH_PRIORITY
     show_on_dashboard = True
-    create_by_user = False
+    create_by_user = True
 
 
 class SxAction(Action):

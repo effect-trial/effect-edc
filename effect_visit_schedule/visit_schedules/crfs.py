@@ -16,11 +16,15 @@ crfs_prn = FormsCollection(
     Crf(show_order=240, model="effect_subject.bloodresultsrft"),
     Crf(show_order=250, model="effect_subject.bloodresultslft"),
     Crf(show_order=300, model="effect_subject.microbiology"),
+    Crf(show_order=310, model="effect_subject.lpcsf"),
+    Crf(show_order=340, model="effect_subject.bloodculture"),
+    Crf(show_order=360, model="effect_subject.histopathology"),
     name="prn",
 )
 
 crfs_unscheduled = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name="unscheduled",
 )
 
@@ -38,43 +42,53 @@ crfs_d01 = FormsCollection(
     Crf(show_order=80, model="effect_subject.arvtreatment"),
     Crf(show_order=90, model="effect_subject.studytreatment"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
-    Crf(show_order=105, model="effect_subject.microbiology"),
-    Crf(show_order=110, model="effect_subject.clinicalnote"),
+    Crf(show_order=140, model="effect_subject.lpcsf"),
+    Crf(show_order=160, model="effect_subject.microbiology"),
+    Crf(show_order=340, model="effect_subject.bloodculture"),
+    Crf(show_order=360, model="effect_subject.histopathology"),
+    Crf(show_order=500, model="effect_subject.clinicalnote"),
     name=DAY01,
 )
 
 crfs_d03 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=DAY03,
 )
 
 crfs_d09 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=DAY09,
 )
 
 crfs_d14 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=DAY14,
 )
 
 
 crfs_w04 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=WEEK04,
 )
 
 crfs_w10 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=WEEK10,
 )
 
 crfs_w16 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=WEEK16,
 )
 
 crfs_w24 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
+    Crf(show_order=65, model="effect_subject.adherence"),
     name=WEEK24,
 )

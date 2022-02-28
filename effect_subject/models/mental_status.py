@@ -1,7 +1,10 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
+from django.db.models import PROTECT
 from edc_constants.choices import YES_NO
 from edc_model import models as edc_models
+
+from effect_lists.models import RankinScore
 
 from ..choices import ECOG_SCORES, MODIFIED_RANKIN_SCORE_CHOICES
 from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
@@ -29,7 +32,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     modified_rankin_score = models.CharField(
-        verbose_name="Modified Rankin Score?",
+        verbose_name="Modified Rankin Score",
         max_length=15,
         choices=MODIFIED_RANKIN_SCORE_CHOICES,
     )

@@ -98,6 +98,7 @@ INSTALLED_APPS = [
     "edc_adverse_event.apps.AppConfig",
     "edc_consent.apps.AppConfig",
     "edc_crf.apps.AppConfig",
+    "edc_csf.apps.AppConfig",
     "edc_reportable.apps.AppConfig",
     "edc_lab.apps.AppConfig",
     "edc_visit_schedule.apps.AppConfig",
@@ -513,11 +514,12 @@ SENTRY_DSN = env("SENTRY_DSN")
 
 if SENTRY_ENABLED and SENTRY_DSN:
     import sentry_sdk
-    from sentry_sdk.integrations.django import DjangoIntegration
+
+    # from sentry_sdk.integrations.django import DjangoIntegration
 
     sentry_sdk.init(
         dsn=SENTRY_DSN,
-        integrations=[DjangoIntegration()],
+        integrations=[sentry_sdk.integrations.django.DjangoIntegration()],
         traces_sample_rate=1.0,
         send_default_pii=True,
     )
