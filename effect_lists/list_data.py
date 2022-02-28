@@ -19,45 +19,8 @@ from effect_subject.constants import (
     VISUAL_LOSS,
 )
 
+# TODO: remove RankinScore list model
 list_data = {
-    "effect_lists.rankinscore": [
-        ("0", "[0] No symptoms"),
-        (
-            "1",
-            "[1] No significant disability. "
-            "Able to carry out usual activities, despite some symptoms.",
-        ),
-        (
-            "2",
-            (
-                "[2] Slight disability. "
-                "Able to look after own affairs without assistance, "
-                "but unable to carry out all previous activities."
-            ),
-        ),
-        (
-            "3",
-            "[3] Moderate disability. "
-            "Requires some help, but able to walk unassisted.",
-        ),
-        (
-            "4",
-            (
-                "[4] Moderately severe disability. "
-                "Unable to attend to own bodily needs without assistance, "
-                "and unable to walk unassisted."
-            ),
-        ),
-        (
-            "5",
-            (
-                "[5] Severe disability. "
-                "Requires constant nursing care and attention, bedridden, incontinent."
-            ),
-        ),
-        ("6", "[6] Deceased"),
-        (NOT_DONE, "Not done"),
-    ],
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
         ("dont_like_taking", "I don't like taking my pills"),

@@ -71,9 +71,3 @@ class XRayResults(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "X-Ray Results"
         verbose_name_plural = "X-Ray Results"
-
-
-class RankinScore(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Rankin Score"
-        verbose_name_plural = "Rankin Score"
