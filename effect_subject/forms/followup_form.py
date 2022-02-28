@@ -1,8 +1,9 @@
 from django import forms
 from edc_action_item.forms import ActionItemFormMixin
-from edc_constants.constants import DEAD, HOSPITAL_NOTES, NOT_APPLICABLE, OTHER
+from edc_constants.constants import DEAD, HOSPITAL_NOTES, NOT_APPLICABLE, OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
+from edc_visit_schedule.utils import is_baseline
 
 from ..choices import ASSESSMENT_INFO_SOURCES, ASSESSMENT_TYPES, INFO_SOURCE
 from ..constants import (
@@ -23,6 +24,15 @@ def get_choice_display_text(choices: tuple[tuple[str, str]], key: str) -> str:
 
 class FollowupFormValidator(FormValidator):
     def clean(self):
+
+        if (
+            is_baseline(self.cleaned_data.get("subject_visit"))
+            and self.cleaned_data.get("assessment_type") == TELEPHONE
+        ):
+            raise forms.ValidationError(
+                {"assessment_type": "Invalid. Expected in-person at baseline"}
+            )
+
         self.validate_other_specify(field="assessment_type")
 
         self.applicable_if(
@@ -126,10 +136,15 @@ class FollowupFormValidator(FormValidator):
             raise forms.ValidationError(
                 {
                     "survival_status": (
-                        "Invalid: Unexpected survival status 'Deceased' if "
-                        "'In person' visit"
+                        "Invalid: Cannot be 'Deceased' if this is an 'In person' visit"
                     )
                 }
+            )
+        elif self.cleaned_data.get("survival_status") == DEAD and is_baseline(
+            self.cleaned_data.get("subject_visit")
+        ):
+            raise forms.ValidationError(
+                {"survival_status": "Invalid: Cannot be 'Deceased' at baseline"}
             )
         elif (
             self.cleaned_data.get("survival_status") == DEAD
@@ -143,6 +158,13 @@ class FollowupFormValidator(FormValidator):
                         "'Telephone' visit with 'Patient'"
                     )
                 }
+            )
+        if (
+            is_baseline(self.cleaned_data.get("subject_visit"))
+            and self.cleaned_data.get("hospitalized") == YES
+        ):
+            raise forms.ValidationError(
+                {"hospitalized": "Invalid. Expected NO at baseline"}
             )
 
 
