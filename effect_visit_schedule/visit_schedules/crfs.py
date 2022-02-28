@@ -19,6 +19,7 @@ crfs_prn = FormsCollection(
     Crf(show_order=310, model="effect_subject.lpcsf"),
     Crf(show_order=340, model="effect_subject.bloodculture"),
     Crf(show_order=360, model="effect_subject.histopathology"),
+    Crf(show_order=400, model="effect_subject.healtheconomics"),
     name="prn",
 )
 
@@ -46,6 +47,7 @@ crfs_d01 = FormsCollection(
     Crf(show_order=160, model="effect_subject.microbiology"),
     Crf(show_order=340, model="effect_subject.bloodculture"),
     Crf(show_order=360, model="effect_subject.histopathology"),
+    Crf(show_order=400, model="effect_subject.healtheconomics"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     name=DAY01,
 )
@@ -90,5 +92,6 @@ crfs_w16 = FormsCollection(
 crfs_w24 = FormsCollection(
     Crf(show_order=10, model="effect_subject.followup"),
     Crf(show_order=65, model="effect_subject.adherence"),
+    Crf(show_order=400, model="effect_subject.healtheconomics"),
     name=WEEK24,
 )

@@ -36,5 +36,5 @@ class Microbiology(
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Microbiology"
-        verbose_name_plural = "Microbiology"
+        verbose_name = "Microbiology: TB Diagnostics"
+        verbose_name_plural = "Microbiology: TB Diagnostics"
