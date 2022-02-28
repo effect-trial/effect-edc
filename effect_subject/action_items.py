@@ -13,7 +13,7 @@ from edc_visit_schedule.utils import is_baseline
 
 from effect_screening.models import SubjectScreening
 
-from .constants import FOLLOWUP_ACTION, LP_ACTION, SX_ACTION
+from .constants import FOLLOWUP_ACTION, LP_ACTION, SX_ACTION, VITAL_SIGNS_ACTION
 
 
 class SubjectVisitAction(Action):
@@ -88,6 +88,25 @@ class SxAction(Action):
         return next_actions
 
 
+class VitalSignsAction(Action):
+    name = VITAL_SIGNS_ACTION
+    display_name = "Vital Signs"
+    reference_model = "effect_subject.vitalsigns"
+
+    priority = HIGH_PRIORITY
+    show_on_dashboard = True
+    create_by_user = False
+
+    def get_next_actions(self) -> List[str]:
+        next_actions = []
+        if not is_baseline(self.reference_obj.subject_visit) and (
+            self.reference_obj.reportable_as_ae == YES
+            or self.reference_obj.patient_admitted == YES
+        ):
+            next_actions.append(AE_INITIAL_ACTION)
+        return next_actions
+
+
 def register_actions():
     for action_item_cls in [
         BloodResultsFbcAction,
@@ -96,6 +115,7 @@ def register_actions():
         FollowupAction,
         # LpAction,
         SxAction,
+        VitalSignsAction,
     ]:
         try:
             site_action_items.register(action_item_cls)

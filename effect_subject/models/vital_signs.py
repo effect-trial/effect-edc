@@ -1,19 +1,23 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO
+from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField
 
 from ..choices import MEASURED_EST_CHOICES
-from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, VITAL_SIGNS_ACTION
 from ..fields.temperature import TemperatureField
-from ..model_mixins import CrfModelMixin
 
 
 class VitalSigns(
-    SimpleBloodPressureModelMixin, CrfModelMixin, edc_models.BaseUuidModel
+    SimpleBloodPressureModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
 ):
+
+    action_name = VITAL_SIGNS_ACTION
+
+    tracking_identifier_prefix = "SX"
 
     weight = WeightField(null=True)
 
@@ -54,6 +58,6 @@ class VitalSigns(
         help_text=IF_YES_COMPLETE_SAE,
     )
 
-    class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
+    class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Vital Signs"
         verbose_name_plural = "Vital Signs"
