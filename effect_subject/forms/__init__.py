@@ -6,6 +6,7 @@ from .chest_xray_form import ChestXrayForm
 from .clinical_note_form import ClinicalNoteForm
 from .diagnoses_form import DiagnosesForm
 from .followup_form import FollowupForm
+from .health_economics_form import HealthEconomicsForm
 from .histopathology_form import HistopathologyForm
 from .lp_csf_form import LpCsfForm
 from .medication_adherence_form import MedicationAdherenceForm

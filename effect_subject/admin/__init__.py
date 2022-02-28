@@ -11,6 +11,7 @@ from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
 from .followup_admin import FollowupAdmin
+from .health_economics_admin import HealthEconomicsAdmin
 from .histopathology_admin import HistopathologyAdmin
 from .lp_csf_admin import LpCsfAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
