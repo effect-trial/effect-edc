@@ -30,7 +30,9 @@ class MicrobiologyAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
             "Sputum requisition",
             {
                 "fields": ("sputum_requisition",),
-                "description": "This requisition is required before proceeding to the next sections",
+                "description": (
+                    "This requisition is required before proceeding to the next sections"
+                ),
             },
         ),
         get_sputum_genexpert_fieldset(),
