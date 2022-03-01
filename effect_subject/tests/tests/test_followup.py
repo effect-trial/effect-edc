@@ -3,6 +3,7 @@ from dataclasses import dataclass
 
 from django.test import TestCase
 from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
+from edc_visit_schedule.constants import DAY1
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -21,6 +22,7 @@ from effect_subject.constants import (
 )
 from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
+from effect_visit_schedule.constants import DAY14
 
 
 class TestFollowup(EffectTestCaseMixin, TestCase):
@@ -42,6 +44,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
+        self.subject_visit.appointment.visit_code = DAY14
 
     def get_valid_in_person_visit_data(self):
         self.subject_visit.info_source = PATIENT
@@ -118,6 +121,16 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_valid_other_assessment_type_data()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_form_validator_denies_patient_telephone_assessment_at_baseline(self):
+        cleaned_data = self.get_valid_patient_telephone_assessment_data()
+        self.subject_visit.appointment.visit_code = DAY1
+        cleaned_data.update({"subject_visit": self.subject_visit})
+        self.assertFormValidatorError(
+            field="assessment_type",
+            expected_msg="Invalid. Expected 'In person' at baseline",
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_assessment_type_other_required_if_specified(self):
@@ -292,12 +305,27 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                     expected_errors=2,
                 )
 
+    def test_deceased_status_invalid_at_baseline(self):
+        cleaned_data = self.get_valid_other_assessment_type_data()
+        self.subject_visit.appointment.visit_code = DAY1
+        cleaned_data.update(
+            {
+                "subject_visit": self.subject_visit,
+                "survival_status": DEAD,
+            }
+        )
+        self.assertFormValidatorError(
+            field="survival_status",
+            expected_msg="Invalid: Cannot be 'Deceased' at baseline",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
     def test_deceased_status_invalid_for_in_person_visit(self):
         cleaned_data = self.get_valid_in_person_visit_data()
         cleaned_data.update({"survival_status": DEAD})
         self.assertFormValidatorError(
             field="survival_status",
-            expected_msg="Invalid: Unexpected survival status 'Deceased' if 'In person' visit",
+            expected_msg="Invalid: Cannot be 'Deceased' if this is an 'In person' visit",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
@@ -335,6 +363,21 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
+
+    def test_hospitalized_yes_invalid_at_baseline(self):
+        cleaned_data = self.get_valid_in_person_visit_data()
+        self.subject_visit.appointment.visit_code = DAY1
+        cleaned_data.update(
+            {
+                "subject_visit": self.subject_visit,
+                "hospitalized": YES,
+            }
+        )
+        self.assertFormValidatorError(
+            field="hospitalized",
+            expected_msg="Invalid. Expected NO at baseline",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
 
     def test_adherence_counselling_na_if_deceased(self):
         cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
