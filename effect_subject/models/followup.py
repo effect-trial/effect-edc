@@ -42,9 +42,10 @@ class Followup(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         # TODO: If dead, trigger SAE -> death form -> off study
         choices=PATIENT_STATUSES,
         help_text=(
-            f"If subject '{dict(PATIENT_STATUSES)[ALIVE_UNWELL]}, "
-            "consider unscheduled visit, or AE report. "
-            f"If subject '{dict(PATIENT_STATUSES)[DEAD]}', submit death report"
+            f"If subject '{dict(PATIENT_STATUSES)[DEAD]}', "
+            "complete AE Initial report, and Death Report. "
+            f"If subject '{dict(PATIENT_STATUSES)[ALIVE_UNWELL]}', "
+            "consider completing AE Initial report. "
         ),
     )
 
