@@ -30,7 +30,7 @@ class FollowupFormValidator(FormValidator):
             and self.cleaned_data.get("assessment_type") == TELEPHONE
         ):
             raise forms.ValidationError(
-                {"assessment_type": "Invalid. Expected in-person at baseline"}
+                {"assessment_type": "Invalid. Expected 'In person' at baseline"}
             )
 
         self.validate_other_specify(field="assessment_type")
@@ -43,6 +43,14 @@ class FollowupFormValidator(FormValidator):
         self.validate_against_subject_visit_info_source()
 
         self.validate_survival_status()
+
+        if (
+            is_baseline(self.cleaned_data.get("subject_visit"))
+            and self.cleaned_data.get("hospitalized") == YES
+        ):
+            raise forms.ValidationError(
+                {"hospitalized": "Invalid. Expected NO at baseline"}
+            )
 
         self.not_applicable_if(
             DEAD,
@@ -158,13 +166,6 @@ class FollowupFormValidator(FormValidator):
                         "'Telephone' visit with 'Patient'"
                     )
                 }
-            )
-        if (
-            is_baseline(self.cleaned_data.get("subject_visit"))
-            and self.cleaned_data.get("hospitalized") == YES
-        ):
-            raise forms.ValidationError(
-                {"hospitalized": "Invalid. Expected NO at baseline"}
             )
 
 

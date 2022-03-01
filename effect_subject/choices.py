@@ -119,7 +119,8 @@ ECOG_SCORES = (
     ),
     (
         "4",
-        "[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair",
+        "[4] Completely disabled; cannot carry on any self-care; "
+        "totally confined to bed or chair",
     ),
     ("5", "[5] Deceased"),
 )
