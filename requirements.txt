@@ -1,4 +1,4 @@
-edc==0.3.66
+edc==0.3.67
 edc-microbiology>=0.1.3
 edc-csf>=0.1.3
 beautifulsoup4
