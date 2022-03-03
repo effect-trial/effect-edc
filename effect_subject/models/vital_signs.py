@@ -1,6 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
@@ -46,7 +47,8 @@ class VitalSigns(
         verbose_name="Are any of the above reportable as Grade 3 or above?",
         max_length=15,
         # TODO: If yes, prompt for SAE
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_AE,
     )
 
@@ -54,7 +56,8 @@ class VitalSigns(
         verbose_name="Has the patient been admitted due to any of the above?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_SAE,
     )
 
