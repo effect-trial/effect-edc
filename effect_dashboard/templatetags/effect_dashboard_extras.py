@@ -42,8 +42,8 @@ def eligibility_button(subject_screening_model_wrapper):
     eligibility = ScreeningEligibility(obj, update_model=False)
     soup = BeautifulSoup(eligibility.display_label, features="html.parser")
     return dict(
-        eligible=eligibility.eligible,
-        eligible_final=eligibility.eligible,
+        eligible=eligibility.is_eligible,
+        eligible_final=eligibility.is_eligible,
         display_label=soup.get_text(),
         comment=comment,
         tooltip=tooltip,

@@ -1,4 +1,13 @@
-from edc_constants.constants import NEG, NO, NOT_ANSWERED, POS, YES
+from edc_constants.constants import (
+    IND,
+    NEG,
+    NO,
+    NOT_ANSWERED,
+    NOT_APPLICABLE,
+    PENDING,
+    POS,
+    YES,
+)
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
@@ -10,7 +19,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
-        self.eligible = NO if reasons_ineligible else YES
+        self.eligible = (
+            self.is_ineligible_value if reasons_ineligible else self.is_eligible_value
+        )
         self.reasons_ineligible = reasons_ineligible
 
     def update_model(self) -> None:
@@ -47,18 +58,19 @@ class ScreeningEligibility(BaseScreeningEligibility):
         return reasons_ineligible
 
     def review_crag(self, reasons_ineligible: dict) -> dict:
-        if (
-            self.model_obj.serum_crag_value == POS
-            and self.model_obj.csf_crag_value == NEG
-        ):
-            pass
-        elif self.model_obj.serum_crag_value != POS:
+        if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(crag_value="Serum CrAg not (+)")
-        elif (
-            self.model_obj.serum_crag_value == POS
-            and self.model_obj.csf_crag_value != NEG
-        ):
-            reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg not (-)")
+        elif self.model_obj.serum_crag_value == POS:
+            if self.model_obj.csf_crag_value == POS:
+                reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (+)")
+            elif self.model_obj.csf_crag_value == IND:
+                reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (IND)")
+            elif self.model_obj.csf_crag_value == PENDING:
+                pass
+            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == NO:
+                pass
+            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == YES:
+                reasons_ineligible.update(crag_value="Serum CrAg(+) / LP declined")
         return reasons_ineligible
 
     def review_exclusion(self, reasons_ineligible: dict) -> dict:
