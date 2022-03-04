@@ -37,6 +37,6 @@ class DiagnosesAdmin(CrfModelAdmin):
     radio_fields = {
         "gi_side_effects": admin.VERTICAL,
         "has_diagnoses": admin.VERTICAL,
-        "reportable_as_ae": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
+        "reportable_as_ae": admin.VERTICAL,
     }
