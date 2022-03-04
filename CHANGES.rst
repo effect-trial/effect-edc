@@ -21,6 +21,7 @@ Changes
     - merge in Neurological form fields
 - changes to Mental Status form:
     - expand Modified Rankin Score choices to include 0 and 6, and add descriptions
+    - make 'reportable_as_ae' and 'patient_admitted' not applicable at baseline
 - rename Study Treatment form to Patient Treatment
 - remove:
     - Neurological Symptoms form
