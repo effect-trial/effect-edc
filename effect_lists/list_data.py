@@ -2,7 +2,6 @@ from edc_constants.constants import (
     DEAD,
     NONE,
     NOT_APPLICABLE,
-    NOT_DONE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
     UNKNOWN,
@@ -19,7 +18,6 @@ from effect_subject.constants import (
     VISUAL_LOSS,
 )
 
-# TODO: remove RankinScore list model
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
