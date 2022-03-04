@@ -36,14 +36,14 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     ecog_score = models.CharField(
-        verbose_name="ECOG score?",
+        verbose_name="ECOG score",
         max_length=15,
         choices=ECOG_SCORES,
     )
 
     # See: https://www.ncbi.nlm.nih.gov/books/NBK513298/#article-22258.s3
     glasgow_coma_score = models.IntegerField(
-        verbose_name="Glasgow Coma Score?",
+        verbose_name="Glasgow Coma Score",
         validators=[MinValueValidator(3), MaxValueValidator(15)],
         help_text="/15",
     )
