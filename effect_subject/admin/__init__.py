@@ -17,8 +17,8 @@ from .lp_csf_admin import LpCsfAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
 from .microbiology_admin import MicrobiologyAdmin
+from .patient_treatment_admin import PatientTreatmentAdmin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
-from .study_treatment_admin import StudyTreatmentAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .subject_visit_missed_admin import SubjectVisitMissedAdmin

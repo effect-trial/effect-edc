@@ -2,20 +2,20 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
-from ..forms import StudyTreatmentForm
-from ..models import StudyTreatment
+from ..forms import PatientTreatmentForm
+from ..models import PatientTreatment
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(StudyTreatment, site=effect_subject_admin)
-class StudyTreatmentAdmin(CrfModelAdmin):
+@admin.register(PatientTreatment, site=effect_subject_admin)
+class PatientTreatmentAdmin(CrfModelAdmin):
 
-    form = StudyTreatmentForm
+    form = PatientTreatmentForm
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Study treatment",
+            "Patient treatment",
             {
                 "fields": (
                     "lp_completed",

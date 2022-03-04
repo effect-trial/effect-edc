@@ -4,8 +4,8 @@ from model_bakery.recipe import Recipe
 
 from .models import (
     Followup,
+    PatientTreatment,
     SignsAndSymptoms,
-    StudyTreatment,
     SubjectRequisition,
     SubjectVisit,
 )
@@ -16,8 +16,8 @@ followup = Recipe(Followup)
 
 signsandsymptoms = Recipe(SignsAndSymptoms)
 
-studytreatment = Recipe(StudyTreatment)
-
 subjectvisit = Recipe(SubjectVisit, reason=SCHEDULED)
 
 subjectrequisition = Recipe(SubjectRequisition)
+
+patienttreatment = Recipe(PatientTreatment)

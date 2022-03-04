@@ -21,6 +21,7 @@ Changes
     - merge in Neurological form fields
 - changes to Mental Status form:
     - expand Modified Rankin Score choices to include 0 and 6, and add descriptions
+- rename Study Treatment form to Patient Treatment
 - remove:
     - Neurological Symptoms form
     - FocalNeurologicDeficits list model

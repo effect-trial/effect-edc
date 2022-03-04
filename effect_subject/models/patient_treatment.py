@@ -9,7 +9,7 @@ from effect_subject.choices import CM_TX_CHOICES, STEROID_CHOICES
 from ..model_mixins import CrfModelMixin
 
 
-class StudyTreatment(CrfModelMixin, edc_models.BaseUuidModel):
+class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     # Patient Treatment CRF (p4)
     lp_completed = models.CharField(
@@ -93,5 +93,5 @@ class StudyTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Study Treatment"
-        verbose_name_plural = "Study Treatment"
+        verbose_name = "Patient Treatment"
+        verbose_name_plural = "Patient Treatment"
