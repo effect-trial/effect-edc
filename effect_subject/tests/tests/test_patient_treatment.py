@@ -7,11 +7,11 @@ from model_bakery import baker
 from effect_lists.list_data import list_data
 from effect_lists.models import Antibiotics, TbTreatments
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.forms import StudyTreatmentForm
-from effect_subject.forms.study_treatment_form import StudyTreatmentFormValidator
+from effect_subject.forms import PatientTreatmentForm
+from effect_subject.forms.patient_treatment_form import PatientTreatmentFormValidator
 
 
-class TestFollowup(EffectTestCaseMixin, TestCase):
+class TestPatientTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
@@ -19,15 +19,15 @@ class TestFollowup(EffectTestCaseMixin, TestCase):
     def test_ok(self):
         subject_visit = self.subject_visit
         obj = baker.make_recipe(
-            "effect_subject.studytreatment", subject_visit=subject_visit
+            "effect_subject.patienttreatment", subject_visit=subject_visit
         )
-        form = StudyTreatmentForm(instance=obj)
+        form = PatientTreatmentForm(instance=obj)
         form.is_valid()
 
 
-class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
+class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = StudyTreatmentFormValidator
+    form_validator_default_form_cls = PatientTreatmentFormValidator
 
     def setUp(self):
         super().setUp()

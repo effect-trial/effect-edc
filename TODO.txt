@@ -78,13 +78,16 @@
 - ARV Treatment CRF:
     - add validation
 
-- Study Treatment / Patient Treatment CRF:
-    - refactor from Study Treatment to Patient Treatment
+- Patient Treatment CRF:
     - if Q4 'cm_confirmed' is YES
         - remove from study treatment
         - remain in follow-up
         - validate with study medication, to confirm taken off drug
     - if 'lp_completed', prompt for LP results
+
+- Patient Treatment Day 14 CRF:
+    - add form admin
+    - review
 
 - Blood Result: FBC CRF:
     - Q3, 'requisition' + button doesn't work (no panels are listed)

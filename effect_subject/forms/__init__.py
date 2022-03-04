@@ -12,9 +12,9 @@ from .lp_csf_form import LpCsfForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
 from .microbiology_form import MicrobiologyForm
+from .patient_treatment_day14_form import PatientTreatmentDay14Form
+from .patient_treatment_form import PatientTreatmentForm
 from .signs_and_symptoms_form import SignsAndSymptomsForm
-from .study_treatment_day14_form import StudyTreatmentDay14Form
-from .study_treatment_form import StudyTreatmentForm
 from .subject_requisition_form import SubjectRequisitionForm
 from .subject_visit_form import SubjectVisitForm
 from .subject_visit_missed_form import SubjectVisitMissedForm

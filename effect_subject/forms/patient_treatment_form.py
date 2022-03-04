@@ -3,10 +3,10 @@ from edc_constants.constants import OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 
-from ..models import StudyTreatment
+from ..models import PatientTreatment
 
 
-class StudyTreatmentFormValidator(FormValidator):
+class PatientTreatmentFormValidator(FormValidator):
     def clean(self):
         super().clean()
 
@@ -44,9 +44,9 @@ class StudyTreatmentFormValidator(FormValidator):
         )
 
 
-class StudyTreatmentForm(CrfModelFormMixin, forms.ModelForm):
-    form_validator_cls = StudyTreatmentFormValidator
+class PatientTreatmentForm(CrfModelFormMixin, forms.ModelForm):
+    form_validator_cls = PatientTreatmentFormValidator
 
     class Meta:
-        model = StudyTreatment
+        model = PatientTreatment
         fields = "__all__"

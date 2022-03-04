@@ -6,7 +6,7 @@ from effect_lists.models import Antibiotics, Drugs, MedicinesDay14
 from ..model_mixins import CrfModelMixin
 
 
-class StudyTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
+class PatientTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
 
     # Treatment at day 14
     # TODO: Following section only available on day 14
@@ -34,5 +34,5 @@ class StudyTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
     medicines_rx_d14_other = edc_models.OtherCharField()
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Study Treatment: Day 14"
-        verbose_name_plural = "Study Treatment: Day 14"
+        verbose_name = "Patient Treatment: Day 14"
+        verbose_name_plural = "Patient Treatment: Day 14"

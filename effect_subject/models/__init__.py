@@ -12,9 +12,9 @@ from .lp_csf import LpCsf
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
 from .microbiology import Microbiology
+from .patient_treatment import PatientTreatment
+from .patient_treatment_day14 import PatientTreatmentDay14
 from .signs_and_symptoms import SignsAndSymptoms
-from .study_treatment import StudyTreatment
-from .study_treatment_day14 import StudyTreatmentDay14
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .subject_visit_missed import SubjectVisitMissed
