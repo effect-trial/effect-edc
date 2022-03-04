@@ -18,7 +18,11 @@ class VitalSigns(
 
     action_name = VITAL_SIGNS_ACTION
 
-    tracking_identifier_prefix = "SX"
+    tracking_identifier_prefix = "VS"
+
+    action_identifier = models.CharField(max_length=50, unique=True, null=True)
+
+    tracking_identifier = models.CharField(max_length=30, unique=True, null=True)
 
     weight = WeightField(null=True)
 
