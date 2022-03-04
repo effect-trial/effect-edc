@@ -1,4 +1,5 @@
 from edc_constants.constants import NO, OTHER, YES
+from edc_visit_schedule.utils import is_baseline
 
 
 class ArvHistoryFormValidatorMixin:
@@ -69,3 +70,13 @@ class ArvHistoryFormValidatorMixin:
         self.m2m_other_specify(
             OTHER, m2m_field="oi_prophylaxis", field_other="other_oi_prophylaxis"
         )
+
+
+class ReportingFieldsetFormValidatorMixin:
+    def validate_reporting_fieldset(self):
+        for reportable_field in ["reportable_as_ae", "patient_admitted"]:
+            self.applicable_if_true(
+                condition=not is_baseline(self.cleaned_data.get("subject_visit")),
+                not_applicable_msg="Expected 'Not applicable' at baseline.",
+                field_applicable=reportable_field,
+            )
