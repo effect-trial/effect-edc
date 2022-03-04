@@ -9,6 +9,7 @@ from effect_subject.forms.mental_status_form import MentalStatusFormValidator
 from effect_subject.tests.tests.mixins import (
     ReportingFieldsetFormValidatorTestCaseMixin,
 )
+from effect_visit_schedule.constants import DAY14
 
 
 @tag("ms")
@@ -50,6 +51,18 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
             "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else NO,
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
         }
+
+    def test_baseline_valid_mental_status_data_valid(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_d14_valid_mental_status_data_valid(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY14)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
 
 @tag("ms")

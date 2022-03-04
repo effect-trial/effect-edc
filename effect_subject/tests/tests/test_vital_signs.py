@@ -8,6 +8,7 @@ from effect_subject.forms.vital_signs_form import (
     VitalSignsForm,
     VitalSignsFormValidator,
 )
+from effect_visit_schedule.constants import DAY14
 
 from .mixins import ReportingFieldsetFormValidatorTestCaseMixin
 
@@ -52,6 +53,18 @@ class TestVitalSignsFormValidationBase(EffectTestCaseMixin, TestCase):
             "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else NO,
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
         }
+
+    def test_baseline_valid_vital_signs_data_valid(self):
+        cleaned_data = self.get_valid_vital_signs_data(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_d14_valid_vital_signs_data_valid(self):
+        cleaned_data = self.get_valid_vital_signs_data(visit_code=DAY14)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
 
 
 @tag("vs")

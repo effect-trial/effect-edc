@@ -9,6 +9,20 @@ from effect_visit_schedule.constants import DAY14
 class ReportingFieldsetFormValidatorTestCaseMixin(EffectTestCaseMixin, TestCase):
     default_cleaned_data = None
 
+    def test_baseline_cleaned_data_valid(self):
+        """Test that the test data we're working with is valid."""
+        cleaned_data = self.default_cleaned_data(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_d14_cleaned_data_valid(self):
+        """Test that the test data we're working with is valid."""
+        cleaned_data = self.default_cleaned_data(visit_code=DAY14)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
     def test_reportable_as_ae_not_applicable_at_baseline(self):
         cleaned_data = self.default_cleaned_data(visit_code=DAY1)
         for response in [YES, NO]:
@@ -21,18 +35,6 @@ class ReportingFieldsetFormValidatorTestCaseMixin(EffectTestCaseMixin, TestCase)
                     ),
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
-
-    def test_valid_vital_signs_data_valid_baseline(self):
-        cleaned_data = self.default_cleaned_data(visit_code=DAY1)
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_valid_vital_signs_data_valid_d14(self):
-        cleaned_data = self.default_cleaned_data(visit_code=DAY14)
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
 
     def test_patient_admitted_not_applicable_at_baseline(self):
         cleaned_data = self.default_cleaned_data(visit_code=DAY1)
