@@ -7,7 +7,8 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import MentalStatusForm
 from effect_subject.forms.mental_status_form import MentalStatusFormValidator
 from effect_subject.tests.tests.mixins import (
-    ReportingFieldsetFormValidatorTestCaseMixin,
+    ReportingFieldsetBaselineTestCaseMixin,
+    ReportingFieldsetDay14TestCaseMixin,
 )
 from effect_visit_schedule.constants import DAY14
 
@@ -72,7 +73,9 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
 
 @tag("ms")
 class TestMentalStatusReportingFieldsetFormValidation(
-    ReportingFieldsetFormValidatorTestCaseMixin, TestMentalStatusFormValidationBase
+    ReportingFieldsetBaselineTestCaseMixin,
+    ReportingFieldsetDay14TestCaseMixin,
+    TestMentalStatusFormValidationBase,
 ):
     default_cleaned_data = (
         TestMentalStatusFormValidationBase.get_valid_mental_status_data

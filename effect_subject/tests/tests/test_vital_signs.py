@@ -10,7 +10,10 @@ from effect_subject.forms.vital_signs_form import (
 )
 from effect_visit_schedule.constants import DAY14
 
-from .mixins import ReportingFieldsetFormValidatorTestCaseMixin
+from .mixins import (
+    ReportingFieldsetBaselineTestCaseMixin,
+    ReportingFieldsetDay14TestCaseMixin,
+)
 
 
 @tag("vs")
@@ -74,6 +77,8 @@ class TestVitalSignsFormValidation(TestVitalSignsFormValidationBase):
 
 @tag("vs")
 class TestVitalSignsReportingFieldsetFormValidation(
-    ReportingFieldsetFormValidatorTestCaseMixin, TestVitalSignsFormValidationBase
+    ReportingFieldsetBaselineTestCaseMixin,
+    ReportingFieldsetDay14TestCaseMixin,
+    TestVitalSignsFormValidationBase,
 ):
     default_cleaned_data = TestVitalSignsFormValidationBase.get_valid_vital_signs_data
