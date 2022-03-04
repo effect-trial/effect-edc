@@ -9,6 +9,7 @@ from .models import (
     SignsAndSymptoms,
     SubjectRequisition,
     SubjectVisit,
+    VitalSigns,
 )
 
 fake = Faker()
@@ -24,3 +25,5 @@ subjectvisit = Recipe(SubjectVisit, reason=SCHEDULED)
 subjectrequisition = Recipe(SubjectRequisition)
 
 patienttreatment = Recipe(PatientTreatment)
+
+vitalsigns = Recipe(VitalSigns)
