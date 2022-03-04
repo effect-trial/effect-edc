@@ -4,12 +4,15 @@ from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 
 from ..models import VitalSigns
+from .mixins import ReportingFieldsetFormValidatorMixin
 
 
-class VitalSignsFormValidator(FormValidator):
+class VitalSignsFormValidator(ReportingFieldsetFormValidatorMixin, FormValidator):
     def clean(self) -> None:
         self.required_if_true(True, field_required="sys_blood_pressure")
         self.required_if_true(True, field_required="dia_blood_pressure")
+
+        self.validate_reporting_fieldset()
 
 
 class VitalSignsForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
