@@ -65,7 +65,6 @@
         - blood pressure gradable if >= 180 / 110 (either value)
         - Temperature G3 if temp >= 39.3 and < 40
         - Temperature G4 if temp >= 40
-    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
 
 - Significant Diagnoses CRF:
     - add validation
