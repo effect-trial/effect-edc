@@ -8,7 +8,8 @@ from .mixins import ReportingFieldsetFormValidatorMixin
 
 class DiagnosesFormValidator(ReportingFieldsetFormValidatorMixin, FormValidator):
     def clean(self) -> None:
-        self.validate_reporting_fieldset()
+        # TODO: validate reporting na if no dx
+        self.validate_reporting_fieldset_na_baseline()
 
 
 class DiagnosesForm(CrfModelFormMixin, forms.ModelForm):

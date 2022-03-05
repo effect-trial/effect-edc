@@ -8,7 +8,7 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.diagnoses_form import DiagnosesForm, DiagnosesFormValidator
 from effect_visit_schedule.constants import DAY14
 
-from .mixins import ReportingFieldsetFormValidatorTestCaseMixin
+from .mixins import ReportingFieldsetBaselineTestCaseMixin
 
 
 @tag("dx")
@@ -71,6 +71,6 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
 
 @tag("dx")
 class TestDiagnosesReportingFieldsetFormValidation(
-    ReportingFieldsetFormValidatorTestCaseMixin, TestDiagnosesFormValidationBase
+    ReportingFieldsetBaselineTestCaseMixin, TestDiagnosesFormValidationBase
 ):
     default_cleaned_data = TestDiagnosesFormValidationBase.get_valid_diagnoses_data
