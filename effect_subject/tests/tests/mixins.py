@@ -6,7 +6,7 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.constants import DAY14
 
 
-class ReportingFieldsetBaselineTestCaseMixin(EffectTestCaseMixin, TestCase):
+class ReportingFieldsetBaselineTestCaseMixin:
     default_cleaned_data = None
 
     def test_baseline_cleaned_data_valid(self):
@@ -39,7 +39,7 @@ class ReportingFieldsetBaselineTestCaseMixin(EffectTestCaseMixin, TestCase):
                 )
 
 
-class ReportingFieldsetDay14TestCaseMixin(EffectTestCaseMixin, TestCase):
+class ReportingFieldsetDay14TestCaseMixin:
     default_cleaned_data = None
 
     def test_d14_cleaned_data_valid(self):
