@@ -3,6 +3,7 @@ from edc_action_item.forms import ActionItemFormMixin
 from edc_constants.constants import NO, NONE, NOT_APPLICABLE, OTHER, UNKNOWN, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
+from edc_visit_schedule.utils import is_baseline
 
 from effect_lists.list_data import list_data
 
@@ -14,9 +15,10 @@ from ..constants import (
     VISUAL_LOSS,
 )
 from ..models import SignsAndSymptoms
+from .mixins import ReportingFieldsetFormValidatorMixin
 
 
-class SignsAndSymptomsFormValidator(FormValidator):
+class SignsAndSymptomsFormValidator(ReportingFieldsetFormValidatorMixin, FormValidator):
     def clean(self) -> None:
         # TODO: Validate that patient can't specify UNKNOWN for
         #  any_sx (e.g. if an in-person or telephone/patient visit)
@@ -130,7 +132,10 @@ class SignsAndSymptomsFormValidator(FormValidator):
         )
 
     def validate_reporting_fieldset(self):
-        self.applicable_if(YES, field="any_sx", field_applicable="reportable_as_ae")
+        self.validate_reporting_fieldset_na_baseline()
+
+        if not is_baseline(self.cleaned_data.get("subject_visit")):
+            self.applicable_if(YES, field="any_sx", field_applicable="reportable_as_ae")
 
         sx_gte_g3_selections = self._get_selection_keys("current_sx_gte_g3")
         if (
@@ -158,7 +163,8 @@ class SignsAndSymptomsFormValidator(FormValidator):
                 }
             )
 
-        self.applicable_if(YES, field="any_sx", field_applicable="patient_admitted")
+        if not is_baseline(self.cleaned_data.get("subject_visit")):
+            self.applicable_if(YES, field="any_sx", field_applicable="patient_admitted")
 
     def validate_cm_sx_fieldset(self):
         self.applicable_if(YES, field="any_sx", field_applicable="cm_sx")

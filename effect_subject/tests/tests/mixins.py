@@ -1,8 +1,6 @@
-from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_visit_schedule.constants import DAY1
 
-from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.constants import DAY14
 
 

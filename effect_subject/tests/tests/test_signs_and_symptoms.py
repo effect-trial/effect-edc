@@ -3,6 +3,7 @@ from copy import deepcopy
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NONE, NOT_APPLICABLE, OTHER, UNKNOWN, YES
+from edc_visit_schedule.constants import DAY1
 from model_bakery import baker
 
 from effect_lists.models import BloodTests, SiSx
@@ -16,6 +17,8 @@ from effect_subject.constants import (
 )
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
+from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
+from effect_visit_schedule.constants import DAY14
 
 
 @tag("sas")
@@ -34,7 +37,7 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
 
 
 @tag("sas")
-class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
+class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SignsAndSymptomsFormValidator
 
@@ -42,8 +45,10 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_patient_with_no_signs_or_symptoms(self):
+    def get_valid_patient_with_no_signs_or_symptoms(self, visit_code: str = None):
+        self.subject_visit.appointment.visit_code = visit_code or DAY14
         return {
+            "subject_visit": self.subject_visit,
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
@@ -65,8 +70,10 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
             "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
-    def get_valid_patient_any_sx_unknown(self):
-        cleaned_data = deepcopy(self.get_valid_patient_with_no_signs_or_symptoms())
+    def get_valid_patient_any_sx_unknown(self, visit_code: str = None):
+        cleaned_data = deepcopy(
+            self.get_valid_patient_with_no_signs_or_symptoms(visit_code=visit_code)
+        )
         cleaned_data.update(
             {
                 "any_sx": UNKNOWN,
@@ -76,8 +83,10 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
         )
         return cleaned_data
 
-    def get_valid_patient_with_signs_or_symptoms(self):
+    def get_valid_patient_with_signs_or_symptoms(self, visit_code: str = None):
+        self.subject_visit.appointment.visit_code = visit_code or DAY14
         return {
+            "subject_visit": self.subject_visit,
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": YES,
@@ -90,8 +99,8 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
             "cn_palsy_right_other": "",
             "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
-            "reportable_as_ae": NO,
-            "patient_admitted": NO,
+            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else NO,
+            "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
             "cm_sx": NO,
             "cm_sx_lp_done": NOT_APPLICABLE,
             "cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE),
@@ -99,19 +108,23 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
             "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
-    def get_valid_patient_with_g3_signs_or_symptoms(self):
-        cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
+    def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
+        cleaned_data = deepcopy(
+            self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code)
+        )
         cleaned_data.update(
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3_other": "",
-                "reportable_as_ae": YES,
+                "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else YES,
             }
         )
         return cleaned_data
 
-    def get_valid_patient_with_cm_symptoms(self):
-        cleaned_data = deepcopy(self.get_valid_patient_with_g3_signs_or_symptoms())
+    def get_valid_patient_with_cm_symptoms(self, visit_code: str = None):
+        cleaned_data = deepcopy(
+            self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=visit_code)
+        )
         cleaned_data.update(
             {
                 "cm_sx": YES,
@@ -133,32 +146,69 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
             else SiSx.objects.filter(name=NOT_APPLICABLE)
         )
 
-    def test_non_symptomatic_patient_valid(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+
+@tag("sas")
+class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase):
+    def test_non_symptomatic_patient_valid_baseline(self):
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY1)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_any_sx_unknown_valid(self):
-        cleaned_data = self.get_valid_patient_any_sx_unknown()
+    def test_non_symptomatic_patient_valid_d14(self):
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+            visit_code=DAY14
+        )
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_valid_patient_with_signs_or_symptoms(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
+    def test_any_sx_unknown_valid_baseline(self):
+        cleaned_data = self.get_valid_patient_any_sx_unknown(visit_code=DAY1)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_valid_patient_with_g3_signs_or_symptoms(self):
-        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms()
+    def test_any_sx_unknown_valid_d14(self):
+        cleaned_data = self.get_valid_patient_any_sx_unknown(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_valid_patient_with_cm_symptoms(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
+    def test_valid_patient_with_signs_or_symptoms_baseline(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_signs_or_symptoms_d14(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_g3_signs_or_symptoms_baseline(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_g3_signs_or_symptoms_d14(self):
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(
+            visit_code=DAY14
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_cm_symptoms_baseline(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms(visit_code=DAY1)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_valid_patient_with_cm_symptoms_d14(self):
+        cleaned_data = self.get_valid_patient_with_cm_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -1124,3 +1174,57 @@ class TestSignsAndSymptomsFormValidation(EffectTestCaseMixin, TestCase):
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
+
+
+@tag("sas")
+class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
+    ReportingFieldsetBaselineTestCaseMixin,
+    TestSignsAndSymptomsFormValidationBase,
+):
+    default_cleaned_data = (
+        TestSignsAndSymptomsFormValidationBase.get_valid_patient_with_signs_or_symptoms
+    )
+
+    def test_reportable_as_ae_allowed_at_d14(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "reportable_as_ae": YES,
+                "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+        cleaned_data.update(
+            {
+                "reportable_as_ae": NO,
+                "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_not_required_at_d14(self):
+        cleaned_data = self.get_valid_patient_any_sx_unknown()
+        cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_patient_admitted_allowed_at_d14(self):
+        cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
+        for response in [YES, NO]:
+            with self.subTest(patient_admitted=response):
+                cleaned_data.update({"patient_admitted": response})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+    def test_patient_admitted_not_required_at_d14(self):
+        cleaned_data = self.get_valid_patient_any_sx_unknown()
+        cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
