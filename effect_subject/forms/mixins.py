@@ -76,10 +76,6 @@ class ArvHistoryFormValidatorMixin:
 class ReportingFieldsetFormValidatorMixin:
     reportable_fields = ["reportable_as_ae", "patient_admitted"]
 
-    def validate_reporting_fieldset(self):
-        self.validate_reporting_fieldset_na_baseline()
-        self.validate_reporting_fieldset_applicable_if_not_baseline()
-
     def validate_field_na_baseline(self, field_applicable: str):
         if (
             is_baseline(self.cleaned_data.get("subject_visit"))

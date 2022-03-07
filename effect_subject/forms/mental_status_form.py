@@ -8,7 +8,8 @@ from .mixins import ReportingFieldsetFormValidatorMixin
 
 class MentalStatusFormValidator(ReportingFieldsetFormValidatorMixin, FormValidator):
     def clean(self) -> None:
-        self.validate_reporting_fieldset()
+        self.validate_reporting_fieldset_na_baseline()
+        self.validate_reporting_fieldset_applicable_if_not_baseline()
 
 
 class MentalStatusForm(CrfModelFormMixin, forms.ModelForm):
