@@ -47,7 +47,7 @@ class VitalSignsAdmin(
     readonly_fields = action_fields
 
     radio_fields = {
-        "weight_measured_or_est": admin.VERTICAL,
-        "reportable_as_ae": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
+        "reportable_as_ae": admin.VERTICAL,
+        "weight_measured_or_est": admin.VERTICAL,
     }
