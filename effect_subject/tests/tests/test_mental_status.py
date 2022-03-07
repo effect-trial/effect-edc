@@ -53,6 +53,9 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
         }
 
+
+@tag("ms")
+class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
     def test_baseline_valid_mental_status_data_valid(self):
         cleaned_data = self.get_valid_mental_status_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
@@ -64,11 +67,6 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
-
-
-@tag("ms")
-class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
-    pass
 
 
 @tag("ms")

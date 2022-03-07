@@ -57,6 +57,9 @@ class TestVitalSignsFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
         }
 
+
+@tag("vs")
+class TestVitalSignsFormValidation(TestVitalSignsFormValidationBase):
     def test_baseline_valid_vital_signs_data_valid(self):
         cleaned_data = self.get_valid_vital_signs_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
@@ -68,11 +71,6 @@ class TestVitalSignsFormValidationBase(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
-
-
-@tag("vs")
-class TestVitalSignsFormValidation(TestVitalSignsFormValidationBase):
-    pass
 
 
 @tag("vs")

@@ -1,5 +1,5 @@
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NOT_APPLICABLE
+from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_visit_schedule.constants import DAY1
 from model_bakery import baker
 
@@ -51,6 +51,9 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
         }
 
+
+@tag("dx")
+class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
     def test_baseline_valid_diagnoses_data_valid(self):
         cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
@@ -65,12 +68,42 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
 
 
 @tag("dx")
-class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
-    pass
-
-
-@tag("dx")
 class TestDiagnosesReportingFieldsetFormValidation(
-    ReportingFieldsetBaselineTestCaseMixin, TestDiagnosesFormValidationBase
+    ReportingFieldsetBaselineTestCaseMixin,
+    TestDiagnosesFormValidationBase,
 ):
     default_cleaned_data = TestDiagnosesFormValidationBase.get_valid_diagnoses_data
+
+    def test_reportable_as_ae_allowed_at_d14(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update({"reportable_as_ae": YES})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+        cleaned_data.update({"reportable_as_ae": NO})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_not_required_at_d14(self):
+        cleaned_data = self.get_valid_diagnoses_data()
+        cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_patient_admitted_allowed_at_d14(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        for response in [YES, NO]:
+            with self.subTest(patient_admitted=response):
+                cleaned_data.update({"patient_admitted": response})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+    def test_patient_admitted_not_required_at_d14(self):
+        cleaned_data = self.get_valid_diagnoses_data()
+        cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
