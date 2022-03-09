@@ -1,4 +1,4 @@
-from edc_constants.constants import OTHER, UNKNOWN
+from edc_constants.constants import DECEASED, NOT_APPLICABLE, OTHER, UNKNOWN
 
 AE_TYPE = (
     ("sae", "Serious Adverse Event / Reaction"),
@@ -29,4 +29,11 @@ INFORMANT_RELATIONSHIP = (
     ("child", "Child"),
     (UNKNOWN, "Unknown"),
     (OTHER, "Other"),
+)
+
+INPATIENT_STATUSES = (
+    ("inpatient", "Currently an inpatient"),
+    ("discharged", "Discharged"),
+    (DECEASED, "Died during hospitalization"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
