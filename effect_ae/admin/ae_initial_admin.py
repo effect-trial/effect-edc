@@ -38,6 +38,17 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
         (None, {"fields": ("subject_identifier", "report_datetime")}),
         fieldset_part_one,
         (
+            "Hospitalization",
+            {
+                "fields": (
+                    "patient_admitted",
+                    "date_admitted",
+                    "inpatient_status",
+                    "date_discharged",
+                )
+            },
+        ),
+        (
             "Part 2: Cause and relationship to study",
             {
                 "fields": (
@@ -62,6 +73,8 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
         "ae_study_relation_possibility": admin.VERTICAL,
         "fluconazole_relation": admin.VERTICAL,
         "flucytosine_relation": admin.VERTICAL,
+        "inpatient_status": admin.VERTICAL,
+        "patient_admitted": admin.VERTICAL,
         "sae": admin.VERTICAL,
         "sae_reason": admin.VERTICAL,
         "susar": admin.VERTICAL,
