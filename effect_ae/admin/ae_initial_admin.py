@@ -3,7 +3,6 @@ from django.contrib import admin
 from django.utils.safestring import mark_safe
 from django_audit_fields import audit_fieldset_tuple
 from edc_action_item import action_fieldset_tuple
-from edc_adverse_event.forms import AeInitialForm
 from edc_adverse_event.modeladmin_mixins import (
     AeInitialModelAdminMixin,
     fieldset_part_one,
@@ -15,19 +14,14 @@ from edc_adverse_event.modeladmin_mixins.ae_initial import (
 from edc_model_admin import SimpleHistoryAdmin
 
 from ..admin_site import effect_ae_admin
-from ..form_validators.ae_initial import AeInitialFormValidator
+from ..forms import AeInitialForm
 from ..models import AeInitial
-
-
-class CustomAeInitialForm(AeInitialForm):
-
-    form_validator = AeInitialFormValidator
 
 
 @admin.register(AeInitial, site=effect_ae_admin)
 class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
 
-    form = CustomAeInitialForm
+    form = AeInitialForm
     email_contact = settings.EMAIL_CONTACTS.get("ae_reports")
     additional_instructions = mark_safe(
         "Complete the initial AE report and forward to the TMG. "
@@ -38,6 +32,7 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
         (None, {"fields": ("subject_identifier", "report_datetime")}),
         fieldset_part_one,
         (
+            # TODO: Make section names consistent
             "Hospitalization",
             {
                 "fields": (

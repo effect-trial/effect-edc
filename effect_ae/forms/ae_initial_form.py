@@ -2,10 +2,14 @@ from django import forms
 from django.utils.translation import gettext_lazy as _
 from edc_adverse_event.forms import AeInitialModelFormMixin
 
+from ..form_validators import AeInitialFormValidator
 from ..models import AeInitial
 
 
 class AeInitialForm(AeInitialModelFormMixin, forms.ModelForm):
+
+    form_validator_cls = AeInitialFormValidator
+
     class Meta:
         model = AeInitial
         fields = "__all__"
