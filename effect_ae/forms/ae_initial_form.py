@@ -14,10 +14,7 @@ class AeInitialForm(AeInitialModelFormMixin, forms.ModelForm):
         model = AeInitial
         fields = "__all__"
         labels = {
-            "ae_cause": _(
-                "Has a reason other than the study drugs been "
-                "identified as the cause of the event(s)?"
-            ),
+            "ae_cause": _("Has any cause other than study medication been identified?"),
         }
         help_texts = {
             "ae_description": _(
