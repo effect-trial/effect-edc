@@ -52,9 +52,9 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
             "Part 2: Cause and relationship to study",
             {
                 "fields": (
-                    "ae_study_relation_possibility",
                     "fluconazole_relation",
                     "flucytosine_relation",
+                    "ae_study_relation_possibility",
                     "ae_cause",
                     "ae_cause_other",
                 )
