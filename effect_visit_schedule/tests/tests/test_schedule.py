@@ -1,5 +1,9 @@
-from django.test import TestCase
+from datetime import datetime
 
+from django.test import TestCase
+from edc_utils import to_utc
+
+from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.visit_schedules import schedule, visit_schedule
 
 
@@ -147,3 +151,27 @@ class TestVisitSchedule(TestCase):
                 self.assertEqual(
                     prn, actual, msg=f"see PRN CRFs for visit {visit_code}"
                 )
+
+
+class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
+    def test_generated_visit_dates_as_expected(self):
+        consent_date = to_utc(datetime(year=2022, month=3, day=10, hour=9))
+        expected = {
+            "1000": to_utc(consent_date),
+            "1003": to_utc(datetime(year=2022, month=3, day=12, hour=9)),
+            "1009": to_utc(datetime(year=2022, month=3, day=18, hour=9)),
+            "1014": to_utc(datetime(year=2022, month=3, day=23, hour=9)),
+            "1028": to_utc(datetime(year=2022, month=4, day=7, hour=9)),
+            "1070": to_utc(datetime(year=2022, month=5, day=19, hour=9)),
+            "1112": to_utc(datetime(year=2022, month=6, day=30, hour=9)),
+            "1168": to_utc(datetime(year=2022, month=8, day=25, hour=9)),
+        }
+
+        actual = {
+            visit.code: visit_date
+            for visit, visit_date in self.get_subject_visit()
+            .visits.timepoint_dates(dt=consent_date)
+            .items()
+        }
+
+        self.assertDictEqual(expected, actual)

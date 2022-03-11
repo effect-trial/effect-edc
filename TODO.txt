@@ -2,6 +2,7 @@
     - fix/renew expired certificate
 
 - Schedule:
+    - Finalise and update upper/lower visit windows
     - "Participants who are treated as outpatients will be seen in clinic on day 1 and 14".
     - d1:
         - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
