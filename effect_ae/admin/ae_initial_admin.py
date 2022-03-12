@@ -32,8 +32,7 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
         (None, {"fields": ("subject_identifier", "report_datetime")}),
         fieldset_part_one,
         (
-            # TODO: Make section names consistent
-            "Hospitalization",
+            "Part 2: Hospitalization",
             {
                 "fields": (
                     "patient_admitted",
@@ -44,7 +43,7 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
             },
         ),
         (
-            "Part 2: Cause and relationship to study",
+            "Part 3: Cause and relationship to study",
             {
                 "fields": (
                     "fluconazole_relation",
@@ -55,8 +54,8 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
                 )
             },
         ),
-        fieldset_part_three,
-        fieldset_part_four,
+        (fieldset_part_three[0].replace("Part 3:", "Part 4:"), fieldset_part_three[1]),
+        (fieldset_part_four[0].replace("Part 4:", "Part 5:"), fieldset_part_four[1]),
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )
