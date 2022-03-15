@@ -20,11 +20,14 @@ from effect_subject.forms.followup_form import get_choice_display_text
 class AeInitialFormValidator(FormValidator):
     def clean(self):
         super().clean()
-        self.validate_hospitalization()
+
+        self.required_if(YES, field="patient_admitted", field_required="date_admitted")
+        self.validate_inpatient_status()
+        self.validate_date_discharged()
+
         self.validate_study_relation_possibility()
 
-    def validate_hospitalization(self):
-        self.required_if(YES, field="patient_admitted", field_required="date_admitted")
+    def validate_inpatient_status(self):
         self.applicable_if(
             YES, field="patient_admitted", field_applicable="inpatient_status"
         )
@@ -32,10 +35,7 @@ class AeInitialFormValidator(FormValidator):
             DISCHARGED, field="inpatient_status", field_required="date_discharged"
         )
 
-        g5_display_text = get_choice_display_text(
-            choices=AE_GRADE,
-            key=GRADE5,
-        )
+        g5_display_text = get_choice_display_text(choices=AE_GRADE, key=GRADE5)
         inpatient_status_display_text = get_choice_display_text(
             choices=INPATIENT_STATUSES,
             key=self.cleaned_data.get("inpatient_status"),
@@ -65,6 +65,7 @@ class AeInitialFormValidator(FormValidator):
                 }
             )
 
+    def validate_date_discharged(self):
         if (
             self.cleaned_data.get("date_discharged")
             and self.cleaned_data.get("date_admitted")
