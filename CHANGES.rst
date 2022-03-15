@@ -22,6 +22,10 @@ Changes
 - changes to Mental Status form:
     - expand Modified Rankin Score choices to include 0 and 6, and add descriptions
     - make 'reportable_as_ae' and 'patient_admitted' not applicable at baseline
+- changes to AE Initial Form:
+    - add new model fields: 'fluconazole_relation', 'flucytosine_relation', 'patient_admitted', 'date_admitted', 'inpatient_status' and 'date_discharged'
+    - added 'Hospitalization' section to form/admin
+    - reordered 'Cause and relationship to study' form/admin section
 - rename Study Treatment form to Patient Treatment
 - remove:
     - Neurological Symptoms form
