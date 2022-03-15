@@ -2,10 +2,11 @@ from django import forms
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import NO, UNKNOWN
+from edc_constants.constants import NO, UNKNOWN, YES
 
 from effect_ae.constants import (
     DEFINITELY_RELATED,
+    DISCHARGED,
     POSSIBLY_RELATED,
     PROBABLY_RELATED,
     UNLIKELY_RELATED,
@@ -16,9 +17,31 @@ from effect_subject.forms.followup_form import get_choice_display_text
 class AeInitialFormValidator(FormValidator):
     def clean(self):
         super().clean()
-        # TODO: Validate hospitalization section
-
+        self.validate_hospitalization()
         self.validate_study_relation_possibility()
+
+    def validate_hospitalization(self):
+        self.required_if(YES, field="patient_admitted", field_required="date_admitted")
+        self.applicable_if(
+            YES, field="patient_admitted", field_applicable="inpatient_status"
+        )
+        self.required_if(
+            DISCHARGED, field="inpatient_status", field_required="date_discharged"
+        )
+
+        if (
+            self.cleaned_data.get("date_discharged")
+            and self.cleaned_data.get("date_admitted")
+            and self.cleaned_data.get("date_discharged")
+            < self.cleaned_data.get("date_admitted")
+        ):
+            raise forms.ValidationError(
+                {
+                    "date_discharged": (
+                        "Invalid. Date discharged cannot be before date admitted"
+                    )
+                }
+            )
 
     def validate_study_relation_possibility(self):
         for study_drug in ["fluconazole", "flucytosine"]:
