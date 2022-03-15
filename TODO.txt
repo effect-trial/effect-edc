@@ -19,14 +19,15 @@
     - update visit schedule when EFFECT Protocol v1.3 released/approved
 
 - SAE CRF:
-    - reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
-        - Validate
-            - Relation to study Fluconazole/Flucytosine
-            - Hospitalization details
+    - validate Flucytosine only applicable if it is a study drug (i.e. on that arm of trial)
+    - make Subject Identifier, and Action Identifier fields read only
+
+- AE Follow-up Form:
     - make Subject Identifier, and Action Identifier fields read only
 
 - TMG Form:
-    - reconcile with provided form (07_Serious_Adverse_Event_Form_110821_V0.5.pdf)
+    - make Subject Identifier, and Action Identifier fields read only
+        - should Original Report be read only?
 
 - Death CRF:
     - reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
