@@ -3,13 +3,13 @@ from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
+from edc_constants.utils import get_display
 from edc_reportable import GRADE3, GRADE4, GRADE5
 
 from effect_ae.choices import INPATIENT_STATUSES
 from effect_ae.constants import DEFINITELY_RELATED, DISCHARGED, INPATIENT, NOT_RELATED
 from effect_ae.form_validators import AeInitialFormValidator
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.forms.followup_form import get_choice_display_text
 
 
 @tag("aei")
@@ -286,7 +286,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     self.assertFormValidatorError(
                         field="ae_study_relation_possibility",
                         expected_msg="Invalid. Cannot be 'No' if "
-                        f"'{get_choice_display_text(STUDY_DRUG_RELATIONSHIP, choice)}' "
+                        f"'{get_display(STUDY_DRUG_RELATIONSHIP, choice)}' "
                         f"to study drug: {study_drug.title()}",
                         form_validator=self.validate_form_validator(cleaned_data),
                     )

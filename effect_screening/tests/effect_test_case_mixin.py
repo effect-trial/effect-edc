@@ -176,8 +176,3 @@ class EffectTestCaseMixin(
             visit_code_sequence=subject_visit.visit_code_sequence,
             entry_status=REQUIRED,
         )
-
-    @staticmethod
-    def get_choice_display_text(choices: tuple[tuple[str, str]], key: str) -> str:
-        """Returns display text given a `choices.py` tuple and value key."""
-        return dict(choices).get(key)

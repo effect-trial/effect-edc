@@ -1,6 +1,7 @@
 from django import forms
 from edc_action_item.forms import ActionItemFormMixin
 from edc_constants.constants import DEAD, HOSPITAL_NOTES, NOT_APPLICABLE, OTHER, YES
+from edc_constants.utils import get_display
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_visit_schedule.utils import is_baseline
@@ -15,11 +16,6 @@ from ..constants import (
     TELEPHONE,
 )
 from ..models import Followup
-
-
-def get_choice_display_text(choices: tuple[tuple[str, str]], key: str) -> str:
-    """Returns display text given a choices tuple and lookup key."""
-    return dict(choices).get(key)
 
 
 class FollowupFormValidator(FormValidator):
@@ -107,11 +103,11 @@ class FollowupFormValidator(FormValidator):
     ) -> str:
         return (
             "Invalid. Did not expect "
-            f"'{get_choice_display_text(ASSESSMENT_TYPES, fu_assessment_type)}' "
+            f"'{get_display(ASSESSMENT_TYPES, fu_assessment_type)}' "
             "assessment with "
-            f"'{get_choice_display_text(ASSESSMENT_INFO_SOURCES, fu_info_source)}'"
+            f"'{get_display(ASSESSMENT_INFO_SOURCES, fu_info_source)}'"
             f", since the main source of information provided in the Subject Visit was "
-            f"'{get_choice_display_text(INFO_SOURCE, sv_info_source)}'."
+            f"'{get_display(INFO_SOURCE, sv_info_source)}'."
         )
 
     def validate_against_subject_visit_info_source(self):
