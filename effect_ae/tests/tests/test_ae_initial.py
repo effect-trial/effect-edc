@@ -2,10 +2,11 @@ import arrow
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
-from edc_constants.constants import NO, NOT_APPLICABLE, UNKNOWN, YES
+from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
+from edc_reportable import GRADE3, GRADE4, GRADE5
 
 from effect_ae.choices import INPATIENT_STATUSES
-from effect_ae.constants import DEFINITELY_RELATED, DISCHARGED, NOT_RELATED
+from effect_ae.constants import DEFINITELY_RELATED, DISCHARGED, INPATIENT, NOT_RELATED
 from effect_ae.form_validators import AeInitialFormValidator
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.followup_form import get_choice_display_text
@@ -49,6 +50,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_inpatient_status_applicable_if_patient_admitted(self):
         cleaned_data = {
+            "ae_grade": GRADE3,
             "patient_admitted": YES,
             "date_admitted": self.get_utcnow_as_date(),
             "inpatient_status": NOT_APPLICABLE,
@@ -65,6 +67,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             with self.subTest(status=status):
                 cleaned_data.update(
                     {
+                        "ae_grade": GRADE5 if status == DECEASED else GRADE3,
                         "inpatient_status": status,
                         "date_discharged": self.get_utcnow_as_date()
                         if status == DISCHARGED
@@ -92,6 +95,64 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
+    def test_inpatient_status_deceased_invalid_if_not_g5(self):
+        for grade in [GRADE3, GRADE4]:
+            with self.subTest(grade=grade):
+                cleaned_data = {
+                    "ae_grade": grade,
+                    "patient_admitted": YES,
+                    "date_admitted": self.get_utcnow_as_date(),
+                    "inpatient_status": DECEASED,
+                }
+                self.assertFormValidatorError(
+                    field="inpatient_status",
+                    expected_msg=(
+                        "Invalid. Status cannot be 'Died during hospitalization' "
+                        "if severity of AE is not 'Grade 5 - Death'"
+                    ),
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
+
+    def test_inpatient_status_deceased_valid_if_g5(self):
+        cleaned_data = {
+            "ae_grade": GRADE5,
+            "patient_admitted": YES,
+            "date_admitted": self.get_utcnow_as_date(),
+            "inpatient_status": DECEASED,
+        }
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_inpatient_status_inpatient_invalid_if_g5(self):
+        cleaned_data = {
+            "ae_grade": GRADE5,
+            "patient_admitted": YES,
+            "date_admitted": self.get_utcnow_as_date(),
+            "inpatient_status": INPATIENT,
+        }
+        self.assertFormValidatorError(
+            field="inpatient_status",
+            expected_msg=(
+                "Invalid. Status cannot be 'Currently an inpatient' "
+                "if severity of AE is 'Grade 5 - Death'"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_inpatient_status_inpatient_valid_if_not_g5(self):
+        for grade in [GRADE3, GRADE4]:
+            with self.subTest(grade=grade):
+                cleaned_data = {
+                    "ae_grade": grade,
+                    "patient_admitted": YES,
+                    "date_admitted": self.get_utcnow_as_date(),
+                    "inpatient_status": INPATIENT,
+                }
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
     def test_date_discharged_required_if_patient_discharged(self):
         cleaned_data = {
             "patient_admitted": YES,
@@ -118,6 +179,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         for status in non_discharged_statuses:
             with self.subTest(status=status):
                 cleaned_data = {
+                    "ae_grade": GRADE5 if status == DECEASED else GRADE4,
                     "patient_admitted": YES,
                     "date_admitted": self.get_utcnow_as_date(),
                     "inpatient_status": status,

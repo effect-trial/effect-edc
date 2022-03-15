@@ -1,12 +1,15 @@
 from django import forms
-from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
+from edc_adverse_event.choices import AE_GRADE, STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import NO, UNKNOWN, YES
+from edc_constants.constants import DECEASED, NO, UNKNOWN, YES
+from edc_reportable import GRADE5
 
+from effect_ae.choices import INPATIENT_STATUSES
 from effect_ae.constants import (
     DEFINITELY_RELATED,
     DISCHARGED,
+    INPATIENT,
     POSSIBLY_RELATED,
     PROBABLY_RELATED,
     UNLIKELY_RELATED,
@@ -28,6 +31,39 @@ class AeInitialFormValidator(FormValidator):
         self.required_if(
             DISCHARGED, field="inpatient_status", field_required="date_discharged"
         )
+
+        g5_display_text = get_choice_display_text(
+            choices=AE_GRADE,
+            key=GRADE5,
+        )
+        inpatient_status_display_text = get_choice_display_text(
+            choices=INPATIENT_STATUSES,
+            key=self.cleaned_data.get("inpatient_status"),
+        )
+        if (
+            self.cleaned_data.get("inpatient_status") == INPATIENT
+            and self.cleaned_data.get("ae_grade") == GRADE5
+        ):
+            raise forms.ValidationError(
+                {
+                    "inpatient_status": (
+                        f"Invalid. Status cannot be '{inpatient_status_display_text}' "
+                        f"if severity of AE is '{g5_display_text}'"
+                    )
+                }
+            )
+        if (
+            self.cleaned_data.get("inpatient_status") == DECEASED
+            and not self.cleaned_data.get("ae_grade") == GRADE5
+        ):
+            raise forms.ValidationError(
+                {
+                    "inpatient_status": (
+                        f"Invalid. Status cannot be '{inpatient_status_display_text}' "
+                        f"if severity of AE is not '{g5_display_text}'"
+                    )
+                }
+            )
 
         if (
             self.cleaned_data.get("date_discharged")
@@ -62,12 +98,12 @@ class AeInitialFormValidator(FormValidator):
                 )
             ):
                 study_relation = get_choice_display_text(
-                    YES_NO_UNKNOWN,
-                    self.cleaned_data.get("ae_study_relation_possibility"),
+                    choices=YES_NO_UNKNOWN,
+                    key=self.cleaned_data.get("ae_study_relation_possibility"),
                 )
                 drug_relation_choice = get_choice_display_text(
-                    STUDY_DRUG_RELATIONSHIP,
-                    self.cleaned_data.get(f"{study_drug}_relation"),
+                    choices=STUDY_DRUG_RELATIONSHIP,
+                    key=self.cleaned_data.get(f"{study_drug}_relation"),
                 )
                 raise forms.ValidationError(
                     {
