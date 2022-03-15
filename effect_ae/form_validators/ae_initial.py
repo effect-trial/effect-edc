@@ -113,8 +113,8 @@ class AeInitialFormValidator(FormValidator):
                 raise forms.ValidationError(
                     {
                         "ae_study_relation_possibility": (
-                            f"Invalid. "
-                            f"Cannot be '{study_relation_display}' if '{drug_relation_display}' "
+                            f"Invalid. Cannot be '{study_relation_display}' "
+                            f"if '{drug_relation_display}' "
                             f"to study drug: {study_drug.title()}"
                         )
                     }
