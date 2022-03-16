@@ -7,7 +7,7 @@ all_sites = {
         SingleSite(
             110,
             "capetown",
-            title="Khayelitsha and Mitchell’s Plain",
+            title="Khayelitsha and Mitchells Plain",
             country="south_africa",
             country_code="sa",
             domain=f"capetown.sa.{fqdn}",
