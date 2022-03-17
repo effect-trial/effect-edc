@@ -113,7 +113,6 @@
 
 - Adherence CRF:
     - schedule for each visit
-    - remove Q14. "Have all night time doses (5FC) been taken on time?", Q15. "If no, number of doses not taken on time"
     - baseline
         - only ask adherence_counselling, no_adherence_counselling_reason, adherence_narrative
         - issued a diary?
@@ -124,9 +123,7 @@
         - capture adherence diary
     - w4 onwards,
         - ???capture missed doses
-        - split Q16. "In the clinician’s opinion, is the patient 90% adherence?" into
-            - In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
-            - In the clinician’s opinion, is the patient 90% adherent to ART?
+        - capture opinion_<treatment>_adherent
 
 - Adherence Diary
     - 14 days, 4 doses per day, reason for missed dose
