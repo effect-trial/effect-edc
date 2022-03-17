@@ -27,6 +27,14 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If 'No', please specify reason ..."
     )
 
+    diary_issued = models.CharField(
+        verbose_name="Was an adherence diary issued to the patient?",
+        **proxy_yes_no_options,
+    )
+    diary_issued_reason_no = edc_models.OtherCharField(
+        verbose_name="If 'No', please specify reason ..."
+    )
+
     any_doses_missed = models.CharField(
         verbose_name="Have any doses been missed since the last visit?",
         max_length=15,
@@ -65,12 +73,12 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If pill count not conducted, please specify reason ..."
     )
 
-    diary_stored = models.CharField(
+    diary_returned = models.CharField(
         verbose_name="Was patient adherence diary received and stored in patient records?",
         **proxy_yes_no_options,
     )
 
-    diary_stored_reason_no = edc_models.OtherCharField(
+    diary_returned_reason_no = edc_models.OtherCharField(
         verbose_name="If 'No', please specify reason ..."
     )
 

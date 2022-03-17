@@ -16,7 +16,14 @@ class AdherenceAdmin(CrfModelAdmin):
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
             "Adherence counselling",
-            {"fields": ("adherence_counselling", "adherence_counselling_reason_no")},
+            {
+                "fields": (
+                    "adherence_counselling",
+                    "adherence_counselling_reason_no",
+                    "diary_issued",
+                    "diary_issued_reason_no",
+                )
+            },
         ),
         (
             "Missed doses",
@@ -34,8 +41,8 @@ class AdherenceAdmin(CrfModelAdmin):
                 "fields": (
                     "pill_count_conducted",
                     "pill_count_conducted_reason_no",
-                    "diary_stored",
-                    "diary_stored_reason_no",
+                    "diary_returned",
+                    "diary_returned_reason_no",
                     "diary_match_pill_count",
                     "diary_match_pill_count_reason_no",
                 )
@@ -57,8 +64,9 @@ class AdherenceAdmin(CrfModelAdmin):
     radio_fields = {
         "adherence_counselling": admin.VERTICAL,
         "any_doses_missed": admin.VERTICAL,
+        "diary_issued": admin.VERTICAL,
         "diary_match_pill_count": admin.VERTICAL,
-        "diary_stored": admin.VERTICAL,
+        "diary_returned": admin.VERTICAL,
         "opinion_art_adherent": admin.VERTICAL,
         "opinion_fluconazole_adherent": admin.VERTICAL,
         "pill_count_conducted": admin.VERTICAL,
