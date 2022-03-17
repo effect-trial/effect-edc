@@ -4,6 +4,7 @@ from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
+from ..constants import IF_NO_SPECIFY_REASON
 from ..model_mixins import CrfModelMixin
 
 
@@ -24,7 +25,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         **proxy_yes_no_options,
     )
     adherence_counselling_reason_no = edc_models.OtherCharField(
-        verbose_name="If 'No', please specify reason ..."
+        verbose_name=IF_NO_SPECIFY_REASON
     )
 
     diary_issued = models.CharField(
@@ -32,7 +33,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         **proxy_yes_no_options,
     )
     diary_issued_reason_no = edc_models.OtherCharField(
-        verbose_name="If 'No', please specify reason ..."
+        verbose_name=IF_NO_SPECIFY_REASON
     )
 
     any_doses_missed = models.CharField(
@@ -70,7 +71,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     pill_count_conducted_reason_no = edc_models.OtherCharField(
-        verbose_name="If pill count not conducted, please specify reason ..."
+        verbose_name=IF_NO_SPECIFY_REASON
     )
 
     diary_returned = models.CharField(
@@ -79,7 +80,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_returned_reason_no = edc_models.OtherCharField(
-        verbose_name="If 'No', please specify reason ..."
+        verbose_name=IF_NO_SPECIFY_REASON
     )
 
     diary_match_pill_count = models.CharField(
@@ -88,7 +89,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_match_pill_count_reason_no = edc_models.OtherCharField(
-        verbose_name="If 'No', please specify reason ..."
+        verbose_name=IF_NO_SPECIFY_REASON
     )
 
     opinion_fluconazole_adherent = models.CharField(
