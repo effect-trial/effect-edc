@@ -1,5 +1,10 @@
-from .adherence_admin import AdherenceAdmin
-from .adherence_baseline_admin import AdherenceBaselineAdmin
+from .adherence import (
+    AdherenceAdmin,
+    AdherenceStageFourAdmin,
+    AdherenceStageOneAdmin,
+    AdherenceStageThreeAdmin,
+    AdherenceStageTwoAdmin,
+)
 from .arv_treatment_admin import ArvTreatmentAdmin
 from .autocomplete_admin import ArvRegimensAdmin
 from .blood_culture_admin import BloodCultureAdmin

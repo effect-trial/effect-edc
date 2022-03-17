@@ -1,16 +1,16 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
-from ..admin_site import effect_subject_admin
-from ..forms import AdherenceBaselineForm
-from ..models import AdherenceBaseline
-from .modeladmin import CrfModelAdmin
+from ...admin_site import effect_subject_admin
+from ...forms import AdherenceStageOneForm
+from ...models import AdherenceStageOne
+from ..modeladmin import CrfModelAdmin
 
 
-@admin.register(AdherenceBaseline, site=effect_subject_admin)
-class AdherenceBaselineAdmin(CrfModelAdmin):
+@admin.register(AdherenceStageOne, site=effect_subject_admin)
+class AdherenceStageOneAdmin(CrfModelAdmin):
 
-    form = AdherenceBaselineForm
+    form = AdherenceStageOneForm
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
