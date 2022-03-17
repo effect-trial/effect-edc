@@ -48,7 +48,12 @@
     - cryptococcal antigen (CrAg)-positive in blood who decline a lumbar puncture (LP) should be eligible
 
 - Follow-up CRF:
-    - if deceased, tigger death report action, and end of study report
+    - merge into subject visit
+
+- Study Medication CRF:
+    - capture initial prescription
+    - capture time_of_first_dose ???[4am, 10am, 4pm, 10pm]
+    - capture modifications at subsequent visits (e.g. "Were there modifications to the study medication?")
 
 - Signs and Symptoms CRF:
     - validate 'followup' model exists before anything else
@@ -107,8 +112,27 @@
     - Question: Has there been any events since last visit?
 
 - Adherence CRF:
-    - implement
-    - schedule for d3 and d9
+    - schedule for each visit
+    - remove Q14. "Have all night time doses (5FC) been taken on time?", Q15. "If no, number of doses not taken on time"
+    - baseline
+        - only ask adherence_counselling, no_adherence_counselling_reason, adherence_narrative
+        - issued a diary?
+    - d3, d9, d14
+        - capture missed doses
+    - d14
+        - capture pill count taken
+        - capture adherence diary
+    - w4 onwards,
+        - ???capture missed doses
+        - split Q16. "In the clinician’s opinion, is the patient 90% adherence?" into
+            - In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
+            - In the clinician’s opinion, is the patient 90% adherent to ART?
+
+- Adherence Diary
+    - 14 days, 4 doses per day, reason for missed dose
+    - user confirm number of missed doses (EDC to validate)
+    - user confirm if there are 2 or more consecutive missed doses (EDC to validate)
+    - if not filled in on D14 visit, EDC to prompts, until it is
 
 - End of Study/Termination CRF:
     - reconcile with provided form (08_Termination_Form_110821_V0.5.pdf)
