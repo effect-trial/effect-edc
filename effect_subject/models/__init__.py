@@ -1,4 +1,5 @@
 from .adherence import Adherence
+from .adherence_baseline import AdherenceBaseline
 from .arv_treatment import ArvTreatment
 from .blood_culture import BloodCulture
 from .blood_results import BloodResultsFbc, BloodResultsLft, BloodResultsRft
