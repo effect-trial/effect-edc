@@ -1,4 +1,10 @@
-from .adherence_form import AdherenceForm
+from .adherence import (
+    AdherenceForm,
+    AdherenceStageFourForm,
+    AdherenceStageOneForm,
+    AdherenceStageThreeForm,
+    AdherenceStageTwoForm,
+)
 from .arv_treatment_form import ArvTreatmentForm
 from .blood_culture_form import BloodCultureForm
 from .blood_results import BloodResultsFbcForm, BloodResultsLftForm, BloodResultsRftForm
