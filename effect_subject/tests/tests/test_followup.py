@@ -1,17 +1,12 @@
 from copy import deepcopy
 from dataclasses import dataclass
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
 from edc_visit_schedule.constants import DAY1
-from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.choices import (
-    ASSESSMENT_INFO_SOURCES,
-    INFO_SOURCE,
-    PATIENT_STATUSES,
-)
+from effect_subject.choices import ASSESSMENT_WHO_CHOICES, INFO_SOURCE, PATIENT_STATUSES
 from effect_subject.constants import (
     COLLATERAL_HISTORY,
     IN_PERSON,
@@ -20,23 +15,11 @@ from effect_subject.constants import (
     PATIENT,
     TELEPHONE,
 )
-from effect_subject.forms import FollowupForm
 from effect_subject.forms.followup_form import FollowupFormValidator
 from effect_visit_schedule.constants import DAY14
 
 
-class TestFollowup(EffectTestCaseMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-        self.subject_visit = self.get_subject_visit()
-
-    def test_ok(self):
-        subject_visit = self.get_next_subject_visit(self.subject_visit)
-        obj = baker.make_recipe("effect_subject.followup", subject_visit=subject_visit)
-        form = FollowupForm(instance=obj)
-        form.is_valid()
-
-
+@tag("fu")
 class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = FollowupFormValidator
@@ -344,7 +327,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def test_deceased_status_valid_for_other_telephone_visits(self):
         info_sources = [
             src[0]
-            for src in ASSESSMENT_INFO_SOURCES
+            for src in ASSESSMENT_WHO_CHOICES
             if src[0] not in [PATIENT, NOT_APPLICABLE]
         ]
         for info_src in info_sources:

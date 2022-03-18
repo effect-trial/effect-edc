@@ -4,7 +4,6 @@ from model_bakery.recipe import Recipe
 
 from .models import (
     Diagnoses,
-    Followup,
     MentalStatus,
     PatientTreatment,
     SignsAndSymptoms,
@@ -16,8 +15,6 @@ from .models import (
 fake = Faker()
 
 diagnoses = Recipe(Diagnoses)
-
-followup = Recipe(Followup)
 
 mentalstatus = Recipe(MentalStatus)
 

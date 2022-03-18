@@ -89,7 +89,6 @@ class TestVisitSchedule(TestCase):
         ]
         expected = {
             "1000": [
-                "effect_subject.followup",
                 "effect_subject.adherencestageone",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.mentalstatus",
@@ -107,31 +106,24 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.clinicalnote",
             ],
             "1003": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagetwo",
             ],
             "1009": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagetwo",
             ],
             "1014": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagethree",
             ],
             "1028": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagefour",
             ],
             "1070": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagefour",
             ],
             "1112": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagefour",
             ],
             "1168": [
-                "effect_subject.followup",
                 "effect_subject.adherencestagefour",
                 "effect_subject.healtheconomics",
             ],

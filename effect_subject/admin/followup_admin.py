@@ -24,30 +24,10 @@ class FollowupAdmin(
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        (
-            "Follow-up",
-            {
-                "fields": (
-                    "assessment_type",
-                    "assessment_type_other",
-                    "info_source",
-                    "info_source_other",
-                    "survival_status",
-                    "hospitalized",
-                    "adherence_counselling",
-                )
-            },
-        ),
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
     readonly_fields = action_fields
 
-    radio_fields = {
-        "assessment_type": admin.VERTICAL,
-        "info_source": admin.VERTICAL,
-        "survival_status": admin.VERTICAL,
-        "hospitalized": admin.VERTICAL,
-        "adherence_counselling": admin.VERTICAL,
-    }
+    radio_fields = {}

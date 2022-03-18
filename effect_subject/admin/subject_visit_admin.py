@@ -26,18 +26,43 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
                     "reason",
                     "reason_unscheduled",
                     "reason_unscheduled_other",
-                    "info_source",
-                    "info_source_other",
-                    "comments",
                 ]
             },
         ),
+        (
+            "Information source",
+            {
+                "fields": (
+                    "assessment_type",
+                    "assessment_type_other",
+                    "assessment_who",
+                    "assessment_who_other",
+                    "info_source",
+                    "info_source_other",
+                )
+            },
+        ),
+        (
+            "Patient status",
+            {
+                "fields": (
+                    "survival_status",
+                    "last_alive_date",
+                    "hospitalized",
+                )
+            },
+        ),
+        ("Comments", {"fields": ("comments",)}),
         visit_schedule_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
     radio_fields = {
+        "assessment_type": admin.VERTICAL,
+        "assessment_who": admin.VERTICAL,
+        "hospitalized": admin.VERTICAL,
+        "info_source": admin.VERTICAL,
         "reason": admin.VERTICAL,
         "reason_unscheduled": admin.VERTICAL,
-        "info_source": admin.VERTICAL,
+        "survival_status": admin.VERTICAL,
     }
