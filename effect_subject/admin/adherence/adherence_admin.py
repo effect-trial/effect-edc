@@ -4,7 +4,19 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from ...admin_site import effect_subject_admin
 from ...forms import AdherenceForm
 from ...models import Adherence
+from ..fieldsets import (
+    adherence_counselling_baseline_fieldset_tuple,
+    adherence_summary_fieldset_tuple,
+    missed_doses_fieldset_tuple,
+    pill_count_diary_review_fieldset_tuple,
+)
 from ..modeladmin import CrfModelAdmin
+from ..radio_fields import (
+    adherence_counselling_baseline_radio_fields,
+    adherence_summary_radio_fields,
+    missed_doses_radio_fields,
+    pill_count_diary_review_radio_fields,
+)
 
 
 @admin.register(Adherence, site=effect_subject_admin)
@@ -14,60 +26,16 @@ class AdherenceAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
-        (
-            "Adherence counselling",
-            {
-                "fields": (
-                    "adherence_counselling",
-                    "adherence_counselling_reason_no",
-                    "diary_issued",
-                    "diary_issued_reason_no",
-                )
-            },
-        ),
-        (
-            "Missed doses",
-            {
-                "fields": (
-                    "any_doses_missed",
-                    "fluconazole_doses_missed",
-                    "flucytosine_doses_missed",
-                )
-            },
-        ),
-        (
-            "Pill count and adherence diary review",
-            {
-                "fields": (
-                    "pill_count_conducted",
-                    "pill_count_conducted_reason_no",
-                    "diary_returned",
-                    "diary_returned_reason_no",
-                    "diary_match_pill_count",
-                    "diary_match_pill_count_reason_no",
-                )
-            },
-        ),
-        (
-            "Adherence summary",
-            {
-                "fields": (
-                    "opinion_fluconazole_adherent",
-                    "opinion_art_adherent",
-                    "adherence_narrative",
-                )
-            },
-        ),
+        adherence_counselling_baseline_fieldset_tuple,
+        missed_doses_fieldset_tuple,
+        pill_count_diary_review_fieldset_tuple,
+        adherence_summary_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
-        "adherence_counselling": admin.VERTICAL,
-        "any_doses_missed": admin.VERTICAL,
-        "diary_issued": admin.VERTICAL,
-        "diary_match_pill_count": admin.VERTICAL,
-        "diary_returned": admin.VERTICAL,
-        "opinion_art_adherent": admin.VERTICAL,
-        "opinion_fluconazole_adherent": admin.VERTICAL,
-        "pill_count_conducted": admin.VERTICAL,
-    }
+    radio_fields = (
+        adherence_counselling_baseline_radio_fields
+        | missed_doses_radio_fields
+        | pill_count_diary_review_radio_fields
+        | adherence_summary_radio_fields
+    )

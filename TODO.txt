@@ -112,18 +112,9 @@
     - Question: Has there been any events since last visit?
 
 - Adherence CRF:
-    - schedule for each visit
-    - baseline
-        - only ask adherence_counselling, no_adherence_counselling_reason, adherence_narrative
-        - issued a diary?
-    - d3, d9, d14
-        - capture missed doses
-    - d14
-        - capture pill count taken
-        - capture adherence diary
-    - w4 onwards,
-        - ???capture missed doses
-        - capture opinion_<treatment>_adherent
+    - schedule for relevant visits
+    - set version to use for each unscheduled visit
+    - form validation (all)
 
 - Adherence Diary
     - 14 days, 4 doses per day, reason for missed dose
