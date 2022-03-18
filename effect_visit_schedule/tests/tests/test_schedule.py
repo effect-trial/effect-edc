@@ -1,12 +1,13 @@
 from datetime import datetime
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_utils import to_utc
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.visit_schedules import schedule, visit_schedule
 
 
+@tag("vsched")
 class TestVisitSchedule(TestCase):
     def test_visit_schedule_models(self):
         self.assertEqual(visit_schedule.death_report_model, "effect_ae.deathreport")
@@ -89,6 +90,7 @@ class TestVisitSchedule(TestCase):
         expected = {
             "1000": [
                 "effect_subject.followup",
+                "effect_subject.adherencestageone",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.mentalstatus",
                 "effect_subject.vitalsigns",
@@ -106,31 +108,31 @@ class TestVisitSchedule(TestCase):
             ],
             "1003": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagetwo",
             ],
             "1009": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagetwo",
             ],
             "1014": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagethree",
             ],
             "1028": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagefour",
             ],
             "1070": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagefour",
             ],
             "1112": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagefour",
             ],
             "1168": [
                 "effect_subject.followup",
-                "effect_subject.adherence",
+                "effect_subject.adherencestagefour",
                 "effect_subject.healtheconomics",
             ],
         }
@@ -153,6 +155,7 @@ class TestVisitSchedule(TestCase):
                 )
 
 
+@tag("vsched")
 class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
     def test_generated_visit_dates_as_expected(self):
         consent_date = to_utc(datetime(year=2022, month=3, day=10, hour=9))

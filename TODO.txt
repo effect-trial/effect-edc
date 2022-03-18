@@ -115,6 +115,9 @@
     - schedule for relevant visits
     - set version to use for each unscheduled visit
     - form validation (all)
+    - Qs:
+        - What adherence data required for unscheduled (same or different per visit)?
+        - What (if any) adherence data collected on 6m visit
 
 - Adherence Diary
     - 14 days, 4 doses per day, reason for missed dose
