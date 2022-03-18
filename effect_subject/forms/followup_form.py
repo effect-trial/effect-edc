@@ -6,7 +6,7 @@ from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_visit_schedule.utils import is_baseline
 
-from ..choices import ASSESSMENT_INFO_SOURCES, ASSESSMENT_TYPES, INFO_SOURCE
+from ..choices import ASSESSMENT_TYPES, ASSESSMENT_WHO_CHOICES, INFO_SOURCE
 from ..constants import (
     COLLATERAL_HISTORY,
     IN_PERSON,
@@ -105,7 +105,7 @@ class FollowupFormValidator(FormValidator):
             "Invalid. Did not expect "
             f"'{get_display(ASSESSMENT_TYPES, fu_assessment_type)}' "
             "assessment with "
-            f"'{get_display(ASSESSMENT_INFO_SOURCES, fu_info_source)}'"
+            f"'{get_display(ASSESSMENT_WHO_CHOICES, fu_info_source)}'"
             f", since the main source of information provided in the Subject Visit was "
             f"'{get_display(INFO_SOURCE, sv_info_source)}'."
         )

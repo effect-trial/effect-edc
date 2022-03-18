@@ -60,11 +60,10 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_INFO_SOURCES = (
+ASSESSMENT_WHO_CHOICES = (
     (PATIENT, "Patient"),
     (NEXT_OF_KIN, "Next of kin"),
-    (OTHER, "Other"),
-    (NOT_APPLICABLE, "Not applicable (if not telephone follow-up)"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 ASSESSMENT_TYPES = (
@@ -139,10 +138,13 @@ GRADE34_CHOICES = (
 )
 
 INFO_SOURCE = (
+    (PATIENT, "Patient"),
+    (
+        "patient_representative",
+        "Patient representative (e.g., next of kin, relative, guardian)",
+    ),
     (HOSPITAL_NOTES, "Hospital notes"),
     (OUTPATIENT_CARDS, "Outpatient cards"),
-    (PATIENT, "Patient"),
-    (COLLATERAL_HISTORY, "Collateral History from relative/guardian"),
     (NOT_APPLICABLE, "Not applicable (if missed)"),
     (OTHER, "Other"),
 )

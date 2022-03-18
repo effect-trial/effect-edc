@@ -24,8 +24,11 @@ crfs_prn = FormsCollection(
 )
 
 crfs_unscheduled = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
     Crf(show_order=65, model="effect_subject.adherence"),
+    Crf(show_order=70, model="effect_subject.adherencestageone"),
+    Crf(show_order=75, model="effect_subject.adherencestagetwo"),
+    Crf(show_order=80, model="effect_subject.adherencestagethree"),
+    Crf(show_order=85, model="effect_subject.adherencestagefour"),
     name="unscheduled",
 )
 
@@ -34,8 +37,7 @@ crfs_missed = FormsCollection(
     name="missed",
 )
 crfs_d01 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestageone"),
+    Crf(show_order=10, model="effect_subject.adherencestageone"),
     Crf(show_order=20, model="effect_subject.signsandsymptoms"),
     Crf(show_order=40, model="effect_subject.mentalstatus"),
     Crf(show_order=50, model="effect_subject.vitalsigns"),
@@ -54,44 +56,37 @@ crfs_d01 = FormsCollection(
 )
 
 crfs_d03 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagetwo"),
+    Crf(show_order=10, model="effect_subject.adherencestagetwo"),
     name=DAY03,
 )
 
 crfs_d09 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagetwo"),
+    Crf(show_order=10, model="effect_subject.adherencestagetwo"),
     name=DAY09,
 )
 
 crfs_d14 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagethree"),
+    Crf(show_order=10, model="effect_subject.adherencestagethree"),
     name=DAY14,
 )
 
 crfs_w04 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagefour"),
+    Crf(show_order=10, model="effect_subject.adherencestagefour"),
     name=WEEK04,
 )
 
 crfs_w10 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagefour"),
+    Crf(show_order=10, model="effect_subject.adherencestagefour"),
     name=WEEK10,
 )
 
 crfs_w16 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagefour"),
+    Crf(show_order=10, model="effect_subject.adherencestagefour"),
     name=WEEK16,
 )
 
 crfs_w24 = FormsCollection(
-    Crf(show_order=10, model="effect_subject.followup"),
-    Crf(show_order=15, model="effect_subject.adherencestagefour"),
+    Crf(show_order=10, model="effect_subject.adherencestagefour"),
     Crf(show_order=400, model="effect_subject.healtheconomics"),
     name=WEEK24,
 )

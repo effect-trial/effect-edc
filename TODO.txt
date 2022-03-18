@@ -47,8 +47,15 @@
     - fix missing 'ineligible' button
     - cryptococcal antigen (CrAg)-positive in blood who decline a lumbar puncture (LP) should be eligible
 
+- Subject visit:
+    - Hide 'survival_status' at baseline
+    - trigger AE_INITIAL_ACTION/DEATH_REPORT_ACTION if answer YES to 'survival_status'
+    - Hide 'hospitalized' at baseline
+    - trigger AE_INITIAL_ACTION if answer YES to 'hospitalized'
+    - Validate new fields
+
 - Follow-up CRF:
-    - merge into subject visit
+    - Remove model, form, admin and test once validation transferred over
 
 - Study Medication CRF:
     - capture initial prescription

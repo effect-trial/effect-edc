@@ -1,4 +1,5 @@
 from django import forms
+from django.utils.translation import gettext_lazy as _
 from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
 from edc_visit_tracking.form_validators import VisitFormValidator
@@ -17,3 +18,6 @@ class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
     class Meta:
         model = SubjectVisit
         fields = "__all__"
+        help_texts = {
+            "survival_status": _("If subject deceased, complete Death report"),
+        }
