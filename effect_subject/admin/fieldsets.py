@@ -22,8 +22,9 @@ missed_doses_fieldset_tuple = (
     "Missed doses",
     {
         "fields": (
-            "any_doses_missed",
+            "any_fluconazole_doses_missed",
             "fluconazole_doses_missed",
+            "any_flucytosine_doses_missed",
             "flucytosine_doses_missed",
         )
     },

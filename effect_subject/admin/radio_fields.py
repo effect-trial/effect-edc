@@ -6,7 +6,10 @@ adherence_counselling_baseline_radio_fields = adherence_counselling_radio_fields
     "diary_issued": admin.VERTICAL
 }
 
-missed_doses_radio_fields = {"any_doses_missed": admin.VERTICAL}
+missed_doses_radio_fields = {
+    "any_fluconazole_doses_missed": admin.VERTICAL,
+    "any_flucytosine_doses_missed": admin.VERTICAL,
+}
 
 pill_count_diary_review_radio_fields = {
     "diary_match_pill_count": admin.VERTICAL,

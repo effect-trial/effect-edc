@@ -36,27 +36,32 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
-    any_doses_missed = models.CharField(
-        verbose_name="Have any doses been missed since the last visit?",
+    any_fluconazole_doses_missed = models.CharField(
+        verbose_name="Have any Fluconazole doses been missed since the last visit?",
         max_length=15,
         choices=YES_NO_UNKNOWN,
         **proxy_null_default_options,
     )
 
     fluconazole_doses_missed = models.IntegerField(
-        verbose_name="If 'Yes', number of doses missed: FLU",
+        verbose_name="If 'Yes', number of Fluconazole doses missed since last visit:",
         help_text="This should be measured in single doses (1 dose per day)",
-        validators=[MinValueValidator(1), MaxValueValidator(14 * 1)],
-        null=True,
-        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(14 * 1)],
+        default=0,
+    )
+
+    any_flucytosine_doses_missed = models.CharField(
+        verbose_name="Have any Flucytosine doses been missed since the last visit?",
+        max_length=15,
+        choices=YES_NO_UNKNOWN,
+        **proxy_null_default_options,
     )
 
     flucytosine_doses_missed = models.IntegerField(
-        verbose_name="If 'Yes', number of doses missed: 5FC",
+        verbose_name="If 'Yes', number of Flucytosine doses missed since last visit:",
         help_text="This should be measured in single doses (4 doses per day)",
-        validators=[MinValueValidator(1), MaxValueValidator(14 * 4)],
-        null=True,
-        blank=True,
+        validators=[MinValueValidator(0), MaxValueValidator(14 * 4)],
+        default=0,
     )
 
     pill_count_conducted = models.CharField(
