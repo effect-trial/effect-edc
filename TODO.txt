@@ -3,6 +3,7 @@
 
 - Schedule:
     - Finalise and update upper/lower visit windows
+    - Use correct adherence form for unscheduled visits
     - "Participants who are treated as outpatients will be seen in clinic on day 1 and 14".
     - d1:
         - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
@@ -122,9 +123,6 @@
     - schedule for relevant visits
     - set version to use for each unscheduled visit
     - form validation (all)
-    - Qs:
-        - What adherence data required for unscheduled (same or different per visit)?
-        - What (if any) adherence data collected on 6m visit
 
 - Adherence Diary
     - 14 days, 4 doses per day, reason for missed dose

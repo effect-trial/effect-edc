@@ -107,24 +107,43 @@ class TestVisitSchedule(TestCase):
             ],
             "1003": [
                 "effect_subject.adherencestagetwo",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
             ],
             "1009": [
                 "effect_subject.adherencestagetwo",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
             ],
             "1014": [
                 "effect_subject.adherencestagethree",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
+                "effect_subject.arvtreatment",
+                "effect_subject.patienttreatment",
+                "effect_subject.bloodresultsfbc",
+                "effect_subject.healtheconomics",
+                "effect_subject.clinicalnote",
             ],
             "1028": [
                 "effect_subject.adherencestagefour",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
             ],
             "1070": [
                 "effect_subject.adherencestagefour",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
             ],
             "1112": [
                 "effect_subject.adherencestagefour",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
             ],
             "1168": [
                 "effect_subject.adherencestagefour",
+                "effect_subject.signsandsymptoms",
+                "effect_subject.mentalstatus",
                 "effect_subject.healtheconomics",
             ],
         }
