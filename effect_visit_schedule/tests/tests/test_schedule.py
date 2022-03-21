@@ -92,6 +92,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestageone",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.mentalstatus",
+                "effect_subject.medicalhistory",
                 "effect_subject.vitalsigns",
                 "effect_subject.diagnoses",
                 "effect_subject.chestxray",

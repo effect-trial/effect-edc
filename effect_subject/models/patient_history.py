@@ -50,43 +50,6 @@ class PatientHistory(CrfModelMixin):
         blank=True,
     )
 
-    tb_history = models.CharField(
-        verbose_name="Previous medical history of Tuberculosis?",
-        max_length=5,
-        choices=YES_NO,
-    )
-
-    tb_site = models.CharField(
-        verbose_name="If YES, site of TB?",
-        max_length=15,
-        choices=TB_SITE,
-        default=NOT_APPLICABLE,
-    )
-
-    tb_treatment = models.CharField(
-        verbose_name="Are you currently taking TB treatment?",
-        max_length=5,
-        choices=YES_NO,
-    )
-
-    taking_rifampicin = models.CharField(
-        verbose_name="If YES, are you currently also taking Rifampicin?",
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    rifampicin_started_date = models.DateField(
-        verbose_name="If YES, when did you first start taking Rifampicin?",
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    new_hiv_diagnosis = models.CharField(
-        verbose_name="Is this a new HIV diagnosis?", max_length=5, choices=YES_NO
-    )
-
     taking_arv = models.CharField(
         verbose_name="If NO, has the patient ever been on ART?",
         max_length=5,
@@ -399,12 +362,6 @@ class PatientHistory(CrfModelMixin):
     specify_medications = models.ManyToManyField(Medication, blank=True)
 
     specify_medications_other = models.TextField(max_length=150, blank=True, null=True)
-
-    previous_oi = models.CharField(
-        verbose_name="Previous opportunistic infection other than TB?",
-        max_length=5,
-        choices=YES_NO,
-    )
 
     on_site = CurrentSiteManager()
 
