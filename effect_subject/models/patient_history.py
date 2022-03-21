@@ -50,13 +50,6 @@ class PatientHistory(CrfModelMixin):
         blank=True,
     )
 
-    taking_arv = models.CharField(
-        verbose_name="If NO, has the patient ever been on ART?",
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
     # retired
     first_arv_regimen = models.CharField(
         verbose_name="If YES, which drugs were prescribed for their first ART regimen?",
@@ -76,101 +69,6 @@ class PatientHistory(CrfModelMixin):
         choices=FIRST_LINE_REGIMEN_RETIRED,
         default=QUESTION_RETIRED,
         editable=False,
-    )
-
-    initial_arv_date = models.DateField(
-        verbose_name=mark_safe(
-            "If YES, when did the patient <u>start</u> ART for the first time."
-        ),
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    initial_arv_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this ART date estimated?", default=NOT_APPLICABLE
-    )
-
-    initial_arv_regimen = models.ManyToManyField(
-        ArvRegimens,
-        verbose_name=mark_safe(
-            "If YES, which drugs were prescribed for their first ART regimen?"
-        ),
-        related_name="initial_arv",
-    )
-
-    initial_arv_regimen_other = OtherCharField()
-
-    has_switched_regimen = models.CharField(
-        verbose_name="Has the patient ever switched ART regimen?",
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    current_arv_date = models.DateField(
-        verbose_name=mark_safe(
-            "If YES, when was their <u>current or most recent</u> "
-            "ART regimen started?"
-        ),
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    current_arv_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this ART date estimated?", default=NOT_APPLICABLE
-    )
-
-    current_arv_regimen = models.ManyToManyField(
-        ArvRegimens,
-        verbose_name=mark_safe(
-            "If YES, what is their current or most recent ART regimen?"
-        ),
-        related_name="current_arv",
-    )
-
-    current_arv_regimen_other = OtherCharField()
-
-    current_arv_is_defaulted = models.CharField(
-        verbose_name=mark_safe(
-            "Has the patient <u>now</u> defaulted from their ART regimen?"
-        ),
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text="'DEFAULTED' means no ART for at least one month.",
-    )
-
-    current_arv_defaulted_date = models.DateField(
-        verbose_name=mark_safe(
-            "If the patient has DEFAULTED, on what date did they default "
-            "from their <u>most recent</u> ART regimen?"
-        ),
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    current_arv_defaulted_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If DEFAULTED, is this date estimated?", default=NOT_APPLICABLE
-    )
-
-    current_arv_is_adherent = models.CharField(
-        verbose_name=mark_safe(
-            "If the patient is currently on ART, are they ADHERENT to "
-            "their <u>current</u> ART regimen?"
-        ),
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    current_arv_tablets_missed = models.IntegerField(
-        verbose_name=("If not ADHERENT, how many doses missed in the last month?"),
-        validators=[MinValueValidator(0), MaxValueValidator(31)],
-        null=True,
-        blank=True,
     )
 
     current_arv_decision = models.CharField(
@@ -214,43 +112,6 @@ class PatientHistory(CrfModelMixin):
         null=True,
         blank=True,
         editable=False,
-    )
-
-    last_viral_load = models.DecimalField(
-        verbose_name="Last Viral Load, if known?",
-        decimal_places=3,
-        max_digits=10,
-        null=True,
-        blank=True,
-        help_text="copies/mL",
-    )
-
-    viral_load_date = models.DateField(
-        verbose_name="Viral Load date",
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    vl_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name=("Is the subject's Viral Load date estimated?"),
-        default=NOT_APPLICABLE,
-    )
-
-    last_cd4 = models.IntegerField(
-        verbose_name="Last CD4, if known?",
-        validators=[MinValueValidator(1), MaxValueValidator(2500)],
-        null=True,
-        blank=True,
-        help_text=mark_safe("acceptable units are mm<sup>3</sup>"),
-    )
-
-    cd4_date = models.DateField(
-        verbose_name="CD4 date", validators=[date_not_future], null=True, blank=True
-    )
-
-    cd4_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name=("Is the subject's CD4 date estimated?"), default=NOT_APPLICABLE
     )
 
     temp = models.DecimalField(

@@ -5,6 +5,7 @@ from .adherence import (
     AdherenceStageThreeForm,
     AdherenceStageTwoForm,
 )
+from .arv_history_form import ArvHistoryForm
 from .arv_treatment_form import ArvTreatmentForm
 from .blood_culture_form import BloodCultureForm
 from .blood_results import BloodResultsFbcForm, BloodResultsLftForm, BloodResultsRftForm
