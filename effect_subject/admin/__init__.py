@@ -20,6 +20,7 @@ from .followup_admin import FollowupAdmin
 from .health_economics_admin import HealthEconomicsAdmin
 from .histopathology_admin import HistopathologyAdmin
 from .lp_csf_admin import LpCsfAdmin
+from .medical_history_admin import MedicalHistoryAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
 from .microbiology_admin import MicrobiologyAdmin

@@ -41,6 +41,7 @@ crfs_d01 = FormsCollection(
     Crf(show_order=10, model="effect_subject.adherencestageone"),
     Crf(show_order=20, model="effect_subject.signsandsymptoms"),
     Crf(show_order=40, model="effect_subject.mentalstatus"),
+    Crf(show_order=45, model="effect_subject.medicalhistory"),
     Crf(show_order=50, model="effect_subject.vitalsigns"),
     Crf(show_order=60, model="effect_subject.diagnoses"),
     Crf(show_order=70, model="effect_subject.chestxray"),

@@ -251,6 +251,19 @@ STEROID_CHOICES = (
     (NOT_APPLICABLE, "Not applicable (no steroids administered)"),
 )
 
+TB_DX_AGO_CHOICES = (
+    ("lte_5_yrs", "During past 5 years (no longer on treatment)"),
+    ("gt_5_yrs", "More than 5 years ago (no longer on treatment)"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+TB_SITE_CHOICES = (
+    (NOT_APPLICABLE, "Not applicable"),
+    ("pulmonary", "Pulmonary"),
+    ("extra_pulmonary", "Extra-pulmonary"),
+    ("both", "Both"),
+)
+
 TRANSPORT_CHOICES = (
     ("bus", "Bus"),
     ("train", "Train"),
