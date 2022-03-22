@@ -224,9 +224,9 @@ list_data = {
     ],
     "effect_lists.xrayresults": [
         ("lymphadenopathy", "Lymphadenopathy"),
-        ("consolidation", "consolidation"),
-        ("military TB", "military TB"),
-        ("Infiltrates", "Infiltrates"),
+        ("consolidation", "Consolidation"),
+        ("miliary_tb", "Miliary TB"),
+        ("infiltrates", "Infiltrates"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "edc_refusal.refusalreasons": [
