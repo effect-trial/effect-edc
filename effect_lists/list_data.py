@@ -86,7 +86,7 @@ list_data = {
         ("DTG", "DTG"),
         ("ATZ_r", "ATZ/r"),
         ("DRV_r", "DRV/r"),
-        ("Lopinavir_r", "Lopinavir/r"),
+        ("lopinavir_r", "Lopinavir/r"),
         ("abacavir", "Abacavir"),
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
