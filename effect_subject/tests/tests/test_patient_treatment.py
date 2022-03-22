@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
@@ -11,13 +11,16 @@ from effect_subject.forms import PatientTreatmentForm
 from effect_subject.forms.patient_treatment_form import PatientTreatmentFormValidator
 
 
+@tag("pt")
 class TestPatientTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
     def test_ok(self):
-        subject_visit = self.subject_visit
+        subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
         obj = baker.make_recipe(
             "effect_subject.patienttreatment", subject_visit=subject_visit
         )
@@ -25,6 +28,7 @@ class TestPatientTreatment(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
+@tag("pt")
 class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = PatientTreatmentFormValidator
