@@ -24,5 +24,5 @@ class Histopathology(HistopathologyModelMixin, CrfModelMixin, edc_models.BaseUui
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Histopathoplogy"
-        verbose_name_plural = "Histopathoplogy"
+        verbose_name = "Histopathology"
+        verbose_name_plural = "Histopathology"
