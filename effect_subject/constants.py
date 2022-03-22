@@ -1,6 +1,8 @@
 ALIVE_UNWELL = "alive_unwell"
 APPT = "appt"
 APPT_OTHER = "other_routine_appt"
+ART_CONTINUED = "art_continued"
+ART_STOPPED = "art_stopped"
 CN_PALSY_LEFT_OTHER = "CN_palsy_left_other"
 CN_PALSY_RIGHT_OTHER = "CN_palsy_right_other"
 COLLATERAL_HISTORY = "collateral_history"

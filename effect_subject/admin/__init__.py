@@ -25,6 +25,7 @@ from .medical_history_admin import MedicalHistoryAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
 from .microbiology_admin import MicrobiologyAdmin
+from .patient_history_admin import PatientHistoryAdmin
 from .patient_treatment_admin import PatientTreatmentAdmin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin

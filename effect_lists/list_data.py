@@ -118,6 +118,11 @@ list_data = {
         ("tb_pulmonary", "TB pulmonary"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.medication": [
+        ("TMP-SMX", "TMP-SMX"),
+        ("steroids", "Steroids, please specify type and dose below ..."),
+        (OTHER, "Other medication, please specify below ..."),
+    ],
     "effect_lists.medicinesday14": [
         ("fluconazole_800mg", "Fluconazole (800mg as per protocol)"),
         # TODO: ???Is 'Other' a different dose of fluconazole, or a different drug?

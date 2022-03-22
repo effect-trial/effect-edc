@@ -47,6 +47,7 @@ crfs_d01 = FormsCollection(
     Crf(show_order=60, model="effect_subject.diagnoses"),
     Crf(show_order=70, model="effect_subject.chestxray"),
     Crf(show_order=80, model="effect_subject.arvtreatment"),
+    Crf(show_order=85, model="effect_subject.patienthistory"),
     Crf(show_order=90, model="effect_subject.patienttreatment"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=140, model="effect_subject.lpcsf"),

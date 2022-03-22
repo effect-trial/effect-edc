@@ -1,76 +1,51 @@
-from ambition_lists.models import ArvRegimens, Medication, Neurological, Symptom
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
-from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE, QUESTION_RETIRED
-from edc_constants.utils import append_question_retired_choice
-from edc_model.models import HistoricalRecords, date_not_future
-from edc_model_fields.fields import IsDateEstimatedFieldNa, OtherCharField
-from edc_visit_tracking.managers import CrfModelManager
+from edc_constants.choices import YES_NO
+from edc_constants.constants import NOT_APPLICABLE
+from edc_model import models as edc_models
 
-from ..choices import (
-    ARV_DECISION,
-    ECOG_SCORE,
-    FIRST_ARV_REGIMEN,
-    FIRST_LINE_REGIMEN,
-    SECOND_ARV_REGIMEN,
-    TB_SITE,
-    WEIGHT_DETERMINATION,
-)
-from ..managers import CurrentSiteManager
-from .crf_model_mixin import CrfModelMixin
+from effect_lists.models import Medication
 
-FIRST_ARV_REGIMEN_RETIRED = append_question_retired_choice(FIRST_ARV_REGIMEN)
-SECOND_ARV_REGIMEN_RETIRED = append_question_retired_choice(SECOND_ARV_REGIMEN)
-FIRST_LINE_REGIMEN_RETIRED = append_question_retired_choice(FIRST_LINE_REGIMEN)
-YES_NO_NA_RETIRED = append_question_retired_choice(YES_NO_NA)
+from ..choices import ARV_DECISION, FLUCONAZOLE_DOSES
+from ..model_mixins import CrfModelMixin
 
 
-class PatientHistory(CrfModelMixin):
+class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
-    symptom = models.ManyToManyField(
-        Symptom,
-        blank=True,
-        related_name="symptoms",
-        verbose_name="What are your current symptoms?",
+    fluconazole_1w_prior_rando = models.CharField(
+        verbose_name="Fluconazole taken within 1 week prior to randomization?",
+        max_length=5,
+        choices=YES_NO,
     )
 
-    headache_duration = models.IntegerField(
-        verbose_name="If headache, how many days did it last?",
+    fluconazole_days = models.IntegerField(
+        verbose_name="If YES, number of days Fluconazole taken:",
         validators=[MinValueValidator(1)],
         null=True,
         blank=True,
     )
 
-    visual_loss_duration = models.IntegerField(
-        verbose_name="If visual loss, how many days did it last?",
-        validators=[MinValueValidator(1)],
-        null=True,
-        blank=True,
-    )
-
-    # retired
-    first_arv_regimen = models.CharField(
-        verbose_name="If YES, which drugs were prescribed for their first ART regimen?",
-        max_length=50,
-        choices=FIRST_ARV_REGIMEN_RETIRED,
-        default=QUESTION_RETIRED,
-        editable=False,
-    )
-
-    # retired
-    first_arv_regimen_other = OtherCharField(editable=False)
-
-    # retired
-    first_line_choice = models.CharField(
-        verbose_name="If first line:",
+    fluconazole_dose = models.CharField(
+        verbose_name="If YES, Fluconazole dose (if taken < 1 week prior to randomisation):",
         max_length=25,
-        choices=FIRST_LINE_REGIMEN_RETIRED,
-        default=QUESTION_RETIRED,
-        editable=False,
+        choices=FLUCONAZOLE_DOSES,
+        help_text="in mg/d",
     )
 
+    fluconazole_dose_other = models.IntegerField(
+        verbose_name="Other Fluconazole dose (if taken < 1 week prior to randomisation):",
+        validators=[MinValueValidator(1)],
+        null=True,
+        blank=True,
+        help_text="in mg/d",
+    )
+
+    fluconazole_dose_other_reason = edc_models.OtherCharField(
+        verbose_name="Other Fluconazole dose reason:"
+    )
+
+    # TODO: move to ARV history, or remove???
     current_arv_decision = models.CharField(
         verbose_name=mark_safe(
             "What decision was made at admission regarding their "
@@ -81,155 +56,41 @@ class PatientHistory(CrfModelMixin):
         default=NOT_APPLICABLE,
     )
 
-    # retired
-    second_arv_regimen = models.CharField(
-        verbose_name="Second line ARV regimen",
-        max_length=50,
-        choices=SECOND_ARV_REGIMEN_RETIRED,
-        default=QUESTION_RETIRED,
-        editable=False,
-    )
-
-    # retired
-    second_arv_regimen_other = OtherCharField(editable=False)
-
-    # retired
-    patient_adherence = models.CharField(
-        verbose_name="Is the patient reportedly adherent?",
-        max_length=25,
-        choices=YES_NO_NA_RETIRED,
-        default=QUESTION_RETIRED,
-        editable=False,
-    )
-
-    # retired
-    last_dose = models.IntegerField(
+    reported_neuro_abnormality = models.CharField(
         verbose_name=(
-            "If no tablets taken this month, how many months "
-            "since the last dose taken?"
+            "Is there any reported neurological abnormality "
+            "following examination by a medical practitioner?"
         ),
-        validators=[MinValueValidator(0)],
-        null=True,
-        blank=True,
-        editable=False,
+        max_length=5,
+        choices=YES_NO,
+        help_text="Must be confirmed as not related to CM",
     )
 
-    temp = models.DecimalField(
-        verbose_name="Temperature:",
-        validators=[MinValueValidator(30), MaxValueValidator(45)],
-        decimal_places=1,
-        max_digits=3,
-        help_text="in degrees Celcius",
+    neuro_abnormality_details = models.TextField(
+        verbose_name="Details of neurological abnormality?"
     )
 
-    heart_rate = models.IntegerField(
-        verbose_name="Heart rate:",
-        validators=[MinValueValidator(30), MaxValueValidator(200)],
-        help_text="bpm",
-    )
-
-    sys_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: systolic",
-        validators=[MinValueValidator(50), MaxValueValidator(220)],
-        help_text="in mm. format SYS, e.g. 120",
-    )
-
-    dia_blood_pressure = models.IntegerField(
-        verbose_name="Blood pressure: diastolic",
-        validators=[MinValueValidator(20), MaxValueValidator(150)],
-        help_text="in Hg. format DIA, e.g. 80",
-    )
-
-    respiratory_rate = models.IntegerField(
-        verbose_name="Respiratory rate:",
-        validators=[MinValueValidator(6), MaxValueValidator(50)],
-        help_text="breaths/min",
-    )
-
-    weight = models.DecimalField(
-        verbose_name="Weight:",
-        validators=[MinValueValidator(20), MaxValueValidator(150)],
-        decimal_places=1,
-        max_digits=4,
-        help_text="kg",
-    )
-
-    weight_determination = models.CharField(
-        verbose_name="Is weight estimated or measured?",
-        max_length=15,
-        choices=WEIGHT_DETERMINATION,
-    )
-
-    glasgow_coma_score = models.IntegerField(
-        verbose_name="Glasgow Coma Score:",
-        validators=[MinValueValidator(3), MaxValueValidator(15)],
-        help_text="/15",
-    )
-
-    neurological = models.ManyToManyField(Neurological, blank=True)
-
-    neurological_other = OtherCharField(
-        verbose_name='If "Other CN palsy", specify',
-        max_length=250,
-        blank=True,
-        null=True,
-    )
-
-    focal_neurologic_deficit = models.TextField(
-        verbose_name='If "Focal neurologic deficit" chosen, please specify details:',
-        null=True,
-        blank=True,
-    )
-
-    visual_acuity_day = models.DateField(
-        verbose_name="Study day visual acuity recorded?",
-        validators=[date_not_future],
-        null=True,
-        blank=True,
-    )
-
-    left_acuity = models.DecimalField(
-        verbose_name="Visual acuity left eye:",
-        decimal_places=3,
-        max_digits=4,
-        null=True,
-        blank=True,
-    )
-
-    right_acuity = models.DecimalField(
-        verbose_name="Visual acuity right eye",
-        decimal_places=3,
-        max_digits=4,
-        null=True,
-        blank=True,
-    )
-
-    ecog_score = models.CharField(
-        verbose_name="ECOG Disability Score", max_length=15, choices=ECOG_SCORE
-    )
-
-    ecog_score_value = models.CharField(
-        verbose_name="ECOG Score", max_length=15, choices=ECOG_SCORE
-    )
-
-    lung_exam = models.CharField(
+    abnormal_lung_exam = models.CharField(
         verbose_name="Abnormal lung exam:", max_length=5, choices=YES_NO
     )
 
-    cryptococcal_lesions = models.CharField(
-        verbose_name="Cryptococcal related skin lesions:", max_length=5, choices=YES_NO
+    any_medications = models.CharField(
+        verbose_name="Other medication?", max_length=5, choices=YES_NO
     )
 
     specify_medications = models.ManyToManyField(Medication, blank=True)
 
-    specify_medications_other = models.TextField(max_length=150, blank=True, null=True)
+    specify_steroid_other = models.TextField(
+        verbose_name="If STEROID, specify type and dose of steroid ...",
+        max_length=150,
+        blank=True,
+        null=True,
+    )
 
-    on_site = CurrentSiteManager()
-
-    objects = CrfModelManager()
-
-    history = HistoricalRecords()
+    specify_medications_other = models.TextField(
+        verbose_name="If OTHER, specify ...", max_length=150, blank=True, null=True
+    )
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = "Patient's History"
-        verbose_name_plural = "Patient's History"
+        verbose_name = "Patient History"
+        verbose_name_plural = "Patient History"

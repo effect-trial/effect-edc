@@ -22,7 +22,8 @@ from .constants import (
     ALIVE_UNWELL,
     APPT,
     APPT_OTHER,
-    COLLATERAL_HISTORY,
+    ART_CONTINUED,
+    ART_STOPPED,
     DECREASED,
     IN_PERSON,
     NEXT_OF_KIN,
@@ -58,6 +59,12 @@ ANTIBIOTIC_CHOICES = (
         OTHER,
         "Other (avoid with concomitant high dose fluconazole), please specify below ...",
     ),
+)
+
+ARV_DECISION = (
+    (NOT_APPLICABLE, "Not applicable"),
+    (ART_CONTINUED, "ART continued"),
+    (ART_STOPPED, "ART stopped"),
 )
 
 ASSESSMENT_WHO_CHOICES = (
@@ -122,6 +129,13 @@ ECOG_SCORES = (
         "totally confined to bed or chair",
     ),
     ("5", "[5] Deceased"),
+)
+
+FLUCONAZOLE_DOSES = (
+    ("800mg", "Fluconazole, 800mg/d"),
+    ("1200mg", "Fluconazole, 1200mg/d"),
+    (OTHER, "Other Fluconazole dose, please specify below ..."),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 FOLLOWUP_REASONS = (
