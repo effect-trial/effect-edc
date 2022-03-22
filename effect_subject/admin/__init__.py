@@ -5,6 +5,7 @@ from .adherence import (
     AdherenceStageThreeAdmin,
     AdherenceStageTwoAdmin,
 )
+from .arv_history_admin import ArvHistoryAdmin
 from .arv_treatment_admin import ArvTreatmentAdmin
 from .autocomplete_admin import ArvRegimensAdmin
 from .blood_culture_admin import BloodCultureAdmin
