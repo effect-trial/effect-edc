@@ -73,14 +73,14 @@ class ArvHistoryAdmin(CrfModelAdmin):
     ]
 
     radio_fields = {
-        "taking_arv_at_crag": admin.VERTICAL,
-        "ever_taken_arv": admin.VERTICAL,
-        "initial_arv_date_estimated": admin.VERTICAL,
-        "has_switched_regimen": admin.VERTICAL,
+        "cd4_date_estimated": admin.VERTICAL,
         "current_arv_date_estimated": admin.VERTICAL,
-        "current_arv_is_defaulted": admin.VERTICAL,
         "current_arv_defaulted_date_estimated": admin.VERTICAL,
         "current_arv_is_adherent": admin.VERTICAL,
+        "current_arv_is_defaulted": admin.VERTICAL,
+        "ever_taken_arv": admin.VERTICAL,
+        "has_switched_regimen": admin.VERTICAL,
+        "initial_arv_date_estimated": admin.VERTICAL,
+        "taking_arv_at_crag": admin.VERTICAL,
         "vl_date_estimated": admin.VERTICAL,
-        "cd4_date_estimated": admin.VERTICAL,
     }
