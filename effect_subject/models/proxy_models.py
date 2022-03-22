@@ -6,8 +6,8 @@ class AdherenceStageOne(Adherence):
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence (Baseline)"
-        verbose_name_plural = "Adherence (Baseline)"
+        verbose_name = "Adherence: Day 1"
+        verbose_name_plural = "Adherence: Day 1"
 
 
 class AdherenceStageTwo(Adherence):
@@ -15,8 +15,8 @@ class AdherenceStageTwo(Adherence):
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence (Day 3 & Day 9)"
-        verbose_name_plural = "Adherence (Day 3 & Day 9)"
+        verbose_name = "Adherence: Day 3/9"
+        verbose_name_plural = "Adherence: Day 3/9"
 
 
 class AdherenceStageThree(Adherence):
@@ -24,8 +24,8 @@ class AdherenceStageThree(Adherence):
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence (Day 14)"
-        verbose_name_plural = "Adherence (Day 14)"
+        verbose_name = "Adherence: Day 14"
+        verbose_name_plural = "Adherence: Day 14"
 
 
 class AdherenceStageFour(Adherence):
@@ -33,5 +33,5 @@ class AdherenceStageFour(Adherence):
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence (Week 4+)"
-        verbose_name_plural = "Adherence (Week 4+)"
+        verbose_name = "Adherence: Week 4+"
+        verbose_name_plural = "Adherence: Week 4+"

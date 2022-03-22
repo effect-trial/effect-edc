@@ -157,5 +157,5 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta):
-        verbose_name = "ARV History, Treatment and Monitoring"
-        verbose_name_plural = "ARV History, Treatment and Monitoring"
+        verbose_name = "ARV History"
+        verbose_name_plural = "ARV History"
