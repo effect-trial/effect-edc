@@ -52,8 +52,6 @@ crfs_d01 = FormsCollection(
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=140, model="effect_subject.lpcsf"),
     Crf(show_order=160, model="effect_subject.microbiology"),
-    Crf(show_order=340, model="effect_subject.bloodculture"),
-    Crf(show_order=360, model="effect_subject.histopathology"),
     Crf(show_order=400, model="effect_subject.healtheconomics"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     name=DAY01,

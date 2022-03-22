@@ -103,8 +103,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.bloodresultsfbc",
                 "effect_subject.lpcsf",
                 "effect_subject.microbiology",
-                "effect_subject.bloodculture",
-                "effect_subject.histopathology",
                 "effect_subject.healtheconomics",
                 "effect_subject.clinicalnote",
             ],
