@@ -27,6 +27,7 @@ from .mental_status_admin import MentalStatusAdmin
 from .microbiology_admin import MicrobiologyAdmin
 from .patient_history_admin import PatientHistoryAdmin
 from .patient_treatment_admin import PatientTreatmentAdmin
+from .patient_treatment_day14_admin import PatientTreatmentDay14Admin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin

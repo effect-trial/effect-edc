@@ -18,7 +18,9 @@ class TestDiagnoses(EffectTestCaseMixin, TestCase):
         self.subject_visit = self.get_subject_visit()
 
     def test_ok(self):
-        subject_visit = self.subject_visit
+        subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
         obj = baker.make_recipe(
             "effect_subject.diagnoses",
             subject_visit=subject_visit,
