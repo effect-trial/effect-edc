@@ -22,6 +22,9 @@
 - SAE CRF:
     - validate Flucytosine only applicable if it is a study drug (i.e. on that arm of trial)
     - make Subject Identifier, and Action Identifier fields read only
+    - if hospitalized
+        - Lab CRF
+        - Clinical Assessment CRF
 
 - AE Follow-up Form:
     - make Subject Identifier, and Action Identifier fields read only
@@ -32,6 +35,13 @@
 
 - Death CRF:
     - reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
+    - if death, required:
+        - SAE CRF
+        - Death CRF
+        - Termination CRF
+        - Adherence
+        - Clinical Assessment CRF
+
 
 - Medical History CRF:
     - validate
@@ -135,6 +145,12 @@
     - user confirm number of missed doses (EDC to validate)
     - user confirm if there are 2 or more consecutive missed doses (EDC to validate)
     - if not filled in on D14 visit, EDC to prompts, until it is
+
+- Missed Visit CRF:
+    - awaiting
+
+- Protocol violation/deviation CRF
+    - awaiting
 
 - End of Study/Termination CRF:
     - reconcile with provided form (08_Termination_Form_110821_V0.5.pdf)
