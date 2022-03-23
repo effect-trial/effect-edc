@@ -2,16 +2,13 @@
     - fix/renew expired certificate
 
 - Schedule:
+    - Clinical note CRF to be available for all visits? & Unscheduled
     - Finalise and update upper/lower visit windows
     - Use correct adherence form for unscheduled visits
     - "Participants who are treated as outpatients will be seen in clinic on day 1 and 14".
     - d1:
         - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
         - "Bloods will be drawn on day 1 to assess serum creatinine, full blood count with differential (FBC) and alanine transaminase (ALT) levels"
-    - d3:
-        - Adherence CRF
-    - d9:
-        - Adherence CRF
     - d14
         - Clinical Assessment d14 CRFs
         - "Bloods drawn to check FBC and differential count"
@@ -44,9 +41,15 @@
 
 
 - Medical History CRF:
+    - currently taking TB treatment?  -> Ask which treatment, like asked on D14 - use same list
     - validate
 
 - ARV History CRF:
+    - split?
+    - remove singular choices, convert m2m to autocomplete field
+    - store regimen history in inline (i.e. ~Q9-Q13 for each)
+    - remove CD4 (collected at baseline), add estimated_date q to screening
+    - add "What decision was made at enrollment regarding their current ART regimen?" (ART continued/ART stopped)
     - validate
 
 - LP CRF:
@@ -135,10 +138,23 @@
             - then as PRN at subsequent follow-ups
     - Question: Has there been any events since last visit?
 
+- Viral load CRF/PRN:
+    - implement
+    - schedule
+    - validate
+
 - Adherence CRF:
+    - From W4 on, ask:
+        - "Have you linked up with your local clinic?" YN, if NO reason
+        - "Are you receiving ARVs?" YN, if NO reason
+        - "Are you receiving Fluconazole?" YN, if NO reason
+    - Rename Day 3/9 to "On study"
+    - Reword "Was a pill count conducted?" to "Was a medication reconciliation conducted?"
     - schedule for relevant visits
-    - set version to use for each unscheduled visit
+    - schedule version to use for each unscheduled visits
+        - Day 3/9/On study up to D14, W4+ afterwards
     - form validation (all)
+        - consider adding "Are you speaking to patient?" lead question to validate against
 
 - Adherence Diary
     - 14 days, 4 doses per day, reason for missed dose
