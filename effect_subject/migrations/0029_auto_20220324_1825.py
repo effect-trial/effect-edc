@@ -101,63 +101,65 @@ class Migration(migrations.Migration):
             old_name="pill_count_conducted_reason_no",
             new_name="medication_reconciliation_reason_no",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="adherence",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="adherence",
-            name="pill_count_conducted",
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherence",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherence",
-            name="pill_count_conducted",
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagefour",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagefour",
-            name="pill_count_conducted",
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestageone",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestageone",
-            name="pill_count_conducted",
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagethree",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagethree",
-            name="pill_count_conducted",
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagetwo",
-            name="diary_match_pill_count",
+            old_name="diary_match_pill_count",
+            new_name="diary_match_medication",
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name="historicaladherencestagetwo",
-            name="pill_count_conducted",
-        ),
-        migrations.AddField(
-            model_name="adherence",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
+            old_name="pill_count_conducted",
+            new_name="medication_reconciliation",
         ),
         migrations.AddField(
             model_name="adherence",
@@ -177,16 +179,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="adherence",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
@@ -231,16 +223,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="historicaladherence",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherence",
             name="linked_local_clinic",
             field=models.CharField(
                 choices=[("Yes", "Yes"), ("No", "No")],
@@ -257,16 +239,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherence",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
@@ -311,16 +283,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="historicaladherencestagefour",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagefour",
             name="linked_local_clinic",
             field=models.CharField(
                 choices=[("Yes", "Yes"), ("No", "No")],
@@ -337,16 +299,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagefour",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
@@ -391,16 +343,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="historicaladherencestageone",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestageone",
             name="linked_local_clinic",
             field=models.CharField(
                 choices=[("Yes", "Yes"), ("No", "No")],
@@ -417,16 +359,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestageone",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
@@ -471,16 +403,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="historicaladherencestagethree",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagethree",
             name="linked_local_clinic",
             field=models.CharField(
                 choices=[("Yes", "Yes"), ("No", "No")],
@@ -497,16 +419,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagethree",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
@@ -551,16 +463,6 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name="historicaladherencestagetwo",
-            name="diary_match_medication",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Did the patient adherence diary match the medication reconciliation?",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagetwo",
             name="linked_local_clinic",
             field=models.CharField(
                 choices=[("Yes", "Yes"), ("No", "No")],
@@ -577,16 +479,6 @@ class Migration(migrations.Migration):
                 max_length=35,
                 null=True,
                 verbose_name="If 'No', please specify reason ...",
-            ),
-        ),
-        migrations.AddField(
-            model_name="historicaladherencestagetwo",
-            name="medication_reconciliation",
-            field=models.CharField(
-                choices=[("Yes", "Yes"), ("No", "No")],
-                default="N/A",
-                max_length=15,
-                verbose_name="Was a medication reconciliation conducted?",
             ),
         ),
         migrations.AddField(
