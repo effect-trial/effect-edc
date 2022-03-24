@@ -12,9 +12,9 @@ missed_doses_radio_fields = {
 }
 
 pill_count_diary_review_radio_fields = {
-    "diary_match_pill_count": admin.VERTICAL,
+    "diary_match_medication": admin.VERTICAL,
     "diary_returned": admin.VERTICAL,
-    "pill_count_conducted": admin.VERTICAL,
+    "medication_reconciliation": admin.VERTICAL,
 }
 
 adherence_summary_radio_fields = {

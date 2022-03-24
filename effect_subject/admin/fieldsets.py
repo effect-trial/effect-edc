@@ -30,16 +30,16 @@ missed_doses_fieldset_tuple = (
     },
 )
 
-pill_count_diary_review_fieldset_tuple = (
-    "Pill count and adherence diary review",
+medication_diary_review_fieldset_tuple = (
+    "Medication reconciliation and adherence diary review",
     {
         "fields": (
-            "pill_count_conducted",
-            "pill_count_conducted_reason_no",
+            "medication_reconciliation",
+            "medication_reconciliation_reason_no",
             "diary_returned",
             "diary_returned_reason_no",
-            "diary_match_pill_count",
-            "diary_match_pill_count_reason_no",
+            "diary_match_medication",
+            "diary_match_medication_reason_no",
         )
     },
 )
