@@ -15,8 +15,8 @@ class AdherenceStageTwo(Adherence):
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence: Day 3/9"
-        verbose_name_plural = "Adherence: Day 3/9"
+        verbose_name = "Adherence: On study"
+        verbose_name_plural = "Adherence: On study"
 
 
 class AdherenceStageThree(Adherence):
