@@ -91,6 +91,33 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
+    linked_local_clinic = models.CharField(
+        verbose_name="Have you linked up with your local clinic?",
+        **proxy_yes_no_options,
+    )
+
+    linked_local_clinic_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
+    receiving_fluconazole = models.CharField(
+        verbose_name="Are you receiving Fluconazole?",
+        **proxy_yes_no_options,
+    )
+
+    receiving_fluconazole_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
+    receiving_arv = models.CharField(
+        verbose_name="Are you receiving ARVs?",
+        **proxy_yes_no_options,
+    )
+
+    receiving_arv_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
     opinion_fluconazole_adherent = models.CharField(
         verbose_name="In the clinician’s opinion, is the patient 90% adherent to Fluconazole?",
         **proxy_yes_no_options,

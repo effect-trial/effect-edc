@@ -53,6 +53,12 @@ adherence_summary_fieldset_tuple = (
     "Adherence summary",
     {
         "fields": (
+            "linked_local_clinic",
+            "linked_local_clinic_reason_no",
+            "receiving_fluconazole",
+            "receiving_fluconazole_reason_no",
+            "receiving_arv",
+            "receiving_arv_reason_no",
             "opinion_fluconazole_adherent",
             "opinion_art_adherent",
             "adherence_narrative",
