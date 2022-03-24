@@ -29,9 +29,9 @@ class AdherenceStageThree(Adherence):
 
 
 class AdherenceStageFour(Adherence):
-    """Adherence CRF completed on or after w4 (telephone)."""
+    """Adherence CRF completed after d14 (telephone)."""
 
     class Meta:
         proxy = True
-        verbose_name = "Adherence: Week 4+"
-        verbose_name_plural = "Adherence: Week 4+"
+        verbose_name = "Adherence: Day 14+"
+        verbose_name_plural = "Adherence: Day 14+"
