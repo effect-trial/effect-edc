@@ -30,16 +30,16 @@ missed_doses_fieldset_tuple = (
     },
 )
 
-pill_count_diary_review_fieldset_tuple = (
-    "Pill count and adherence diary review",
+medication_diary_review_fieldset_tuple = (
+    "Medication reconciliation and adherence diary review",
     {
         "fields": (
-            "pill_count_conducted",
-            "pill_count_conducted_reason_no",
+            "medication_reconciliation",
+            "medication_reconciliation_reason_no",
             "diary_returned",
             "diary_returned_reason_no",
-            "diary_match_pill_count",
-            "diary_match_pill_count_reason_no",
+            "diary_match_medication",
+            "diary_match_medication_reason_no",
         )
     },
 )
@@ -53,6 +53,12 @@ adherence_summary_fieldset_tuple = (
     "Adherence summary",
     {
         "fields": (
+            "linked_local_clinic",
+            "linked_local_clinic_reason_no",
+            "receiving_fluconazole",
+            "receiving_fluconazole_reason_no",
+            "receiving_arv",
+            "receiving_arv_reason_no",
             "opinion_fluconazole_adherent",
             "opinion_art_adherent",
             "adherence_narrative",

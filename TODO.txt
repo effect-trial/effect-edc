@@ -144,15 +144,6 @@
     - validate
 
 - Adherence CRF:
-    - From W4 on, ask:
-        - "Have you linked up with your local clinic?" YN, if NO reason
-        - "Are you receiving ARVs?" YN, if NO reason
-        - "Are you receiving Fluconazole?" YN, if NO reason
-    - Rename Day 3/9 to "On study"
-    - Reword "Was a pill count conducted?" to "Was a medication reconciliation conducted?"
-    - schedule for relevant visits
-    - schedule version to use for each unscheduled visits
-        - Day 3/9/On study up to D14, W4+ afterwards
     - form validation (all)
         - consider adding "Are you speaking to patient?" lead question to validate against
 

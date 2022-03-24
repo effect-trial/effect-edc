@@ -64,12 +64,12 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=0,
     )
 
-    pill_count_conducted = models.CharField(
-        verbose_name="Was a pill count conducted?",
+    medication_reconciliation = models.CharField(
+        verbose_name="Was a medication reconciliation conducted?",
         **proxy_yes_no_options,
     )
 
-    pill_count_conducted_reason_no = edc_models.OtherCharField(
+    medication_reconciliation_reason_no = edc_models.OtherCharField(
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
@@ -82,12 +82,39 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
-    diary_match_pill_count = models.CharField(
-        verbose_name="Did the patient adherence diary match the pill count?",
+    diary_match_medication = models.CharField(
+        verbose_name="Did the patient adherence diary match the medication reconciliation?",
         **proxy_yes_no_options,
     )
 
-    diary_match_pill_count_reason_no = edc_models.OtherCharField(
+    diary_match_medication_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
+    linked_local_clinic = models.CharField(
+        verbose_name="Have you linked up with your local clinic?",
+        **proxy_yes_no_options,
+    )
+
+    linked_local_clinic_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
+    receiving_fluconazole = models.CharField(
+        verbose_name="Are you receiving Fluconazole?",
+        **proxy_yes_no_options,
+    )
+
+    receiving_fluconazole_reason_no = edc_models.OtherCharField(
+        verbose_name=IF_NO_SPECIFY_REASON
+    )
+
+    receiving_arv = models.CharField(
+        verbose_name="Are you receiving ARVs?",
+        **proxy_yes_no_options,
+    )
+
+    receiving_arv_reason_no = edc_models.OtherCharField(
         verbose_name=IF_NO_SPECIFY_REASON
     )
 

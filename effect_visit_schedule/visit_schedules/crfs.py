@@ -24,19 +24,26 @@ crfs_prn = FormsCollection(
 )
 
 crfs_unscheduled = FormsCollection(
-    Crf(show_order=65, model="effect_subject.adherence"),
-    # TODO: Use correct adherence form for unscheduled visits
-    Crf(show_order=70, model="effect_subject.adherencestageone"),
-    Crf(show_order=75, model="effect_subject.adherencestagetwo"),
-    Crf(show_order=80, model="effect_subject.adherencestagethree"),
-    Crf(show_order=85, model="effect_subject.adherencestagefour"),
     name="unscheduled",
+)
+
+crfs_unscheduled_lt_d14 = FormsCollection(
+    *[crf for crf in crfs_unscheduled],
+    Crf(show_order=75, model="effect_subject.adherencestagetwo"),
+    name="unscheduled_lt_d14",
+)
+
+crfs_unscheduled_gte_d14 = FormsCollection(
+    *[crf for crf in crfs_unscheduled],
+    Crf(show_order=85, model="effect_subject.adherencestagefour"),
+    name="unscheduled_gte_d14",
 )
 
 crfs_missed = FormsCollection(
     Crf(show_order=10, model="effect_subject.subjectvisitmissed"),
     name="missed",
 )
+
 crfs_d01 = FormsCollection(
     Crf(show_order=10, model="effect_subject.adherencestageone"),
     Crf(show_order=20, model="effect_subject.signsandsymptoms"),

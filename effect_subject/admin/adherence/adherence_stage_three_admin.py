@@ -7,8 +7,8 @@ from ...models import AdherenceStageThree
 from ..fieldsets import (
     adherence_counselling_fieldset_tuple,
     adherence_narrative_fieldset_tuple,
+    medication_diary_review_fieldset_tuple,
     missed_doses_fieldset_tuple,
-    pill_count_diary_review_fieldset_tuple,
 )
 from ..modeladmin import CrfModelAdmin
 from ..radio_fields import (
@@ -36,7 +36,7 @@ class AdherenceStageThreeAdmin(CrfModelAdmin):
                 )
             },
         ),
-        pill_count_diary_review_fieldset_tuple,
+        medication_diary_review_fieldset_tuple,
         adherence_narrative_fieldset_tuple,
         audit_fieldset_tuple,
     )

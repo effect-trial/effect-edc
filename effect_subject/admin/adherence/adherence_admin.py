@@ -7,8 +7,8 @@ from ...models import Adherence
 from ..fieldsets import (
     adherence_counselling_baseline_fieldset_tuple,
     adherence_summary_fieldset_tuple,
+    medication_diary_review_fieldset_tuple,
     missed_doses_fieldset_tuple,
-    pill_count_diary_review_fieldset_tuple,
 )
 from ..modeladmin import CrfModelAdmin
 from ..radio_fields import (
@@ -28,7 +28,7 @@ class AdherenceAdmin(CrfModelAdmin):
         (None, {"fields": ("subject_visit", "report_datetime")}),
         adherence_counselling_baseline_fieldset_tuple,
         missed_doses_fieldset_tuple,
-        pill_count_diary_review_fieldset_tuple,
+        medication_diary_review_fieldset_tuple,
         adherence_summary_fieldset_tuple,
         audit_fieldset_tuple,
     )
