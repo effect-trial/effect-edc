@@ -67,7 +67,9 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     neuro_abnormality_details = models.TextField(
-        verbose_name="Details of neurological abnormality?"
+        verbose_name="Details of neurological abnormality?",
+        null=True,
+        blank=True,
     )
 
     abnormal_lung_exam = models.CharField(
