@@ -1,5 +1,3 @@
-import pdb
-
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
 from edc_constants.constants import IND, MALE, NEG, NO, PENDING, POS, YES

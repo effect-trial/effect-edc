@@ -65,12 +65,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (+)")
             elif self.model_obj.csf_crag_value == IND:
                 reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (IND)")
-            elif self.model_obj.csf_crag_value == PENDING:
-                pass
             elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == NO:
-                pass
-            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == YES:
-                reasons_ineligible.update(crag_value="Serum CrAg(+) / LP declined")
+                reasons_ineligible.update(
+                    crag_value="Serum CrAg(+) and LP not done / not declined"
+                )
         return reasons_ineligible
 
     def review_exclusion(self, reasons_ineligible: dict) -> dict:

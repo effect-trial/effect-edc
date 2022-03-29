@@ -186,7 +186,7 @@ class SubjectScreening(
     # exclusion
     meningitis_symptoms = models.CharField(
         verbose_name=(
-            "Has the patient had clinical symptoms/ signs of symptomatic "
+            "Has the patient had clinical symptoms/signs of symptomatic "
             "meningitis at any time since CrAg screening?"
         ),
         max_length=25,
