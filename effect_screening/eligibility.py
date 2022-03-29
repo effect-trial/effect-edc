@@ -82,7 +82,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "contraindicated_meds",
                 "meningitis_symptoms",
                 "jaundice",
-                "csf_cm_evidence",
+                "cm_in_csf",
             ]
         ]
         if not (all(criteria) and NOT_ANSWERED not in criteria):
@@ -93,8 +93,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(
                 contraindicated_meds="Contraindicated concomitant medications"
             )
-        if self.model_obj.csf_cm_evidence == YES:
-            reasons_ineligible.update(csf_cm_evidence="Positive evidence of CM on CSF")
+        if self.model_obj.cm_in_csf == YES:
+            reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
         if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:

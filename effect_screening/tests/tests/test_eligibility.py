@@ -1,5 +1,5 @@
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import (
     FEMALE,
     MALE,
@@ -10,7 +10,6 @@ from edc_constants.constants import (
     POS,
     YES,
 )
-from edc_screening.screening_eligibility import ScreeningEligibilityError
 from edc_utils.date import get_utcnow
 
 from effect_screening.eligibility import ScreeningEligibility
@@ -20,9 +19,9 @@ from effect_screening.models import SubjectScreening
 from ..effect_test_case_mixin import EffectTestCaseMixin
 
 
-@tag("screen")
 class TestForms(EffectTestCaseMixin, TestCase):
-    def get_data(self):
+    @staticmethod
+    def get_data():
         return {
             "screening_consent": YES,
             "willing_to_participate": YES,
@@ -33,7 +32,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "age_in_years": 25,
         }
 
-    def get_basic_opts(self):
+    @staticmethod
+    def get_basic_opts():
         return {
             "screening_consent": YES,
             "willing_to_participate": YES,
@@ -63,9 +63,9 @@ class TestForms(EffectTestCaseMixin, TestCase):
     @property
     def exclusion_criteria(self):
         return dict(
-            # prior_cm_epidose_date=(get_utcnow() - relativedelta(months=3)).date(),
             contraindicated_meds=NO,
-            csf_cm_evidence=NO,
+            cm_in_csf=NO,
+            cm_in_csf_method=NOT_APPLICABLE,
             jaundice=NO,
             meningitis_symptoms=NO,
             on_fluconazole=NO,
@@ -89,9 +89,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
             initial=self.get_data(), instance=SubjectScreening()
         )
         form.is_valid()
-        # self.assertEqual(form._errors, {})
-        # form.save()
-        # self.assertTrue(SubjectScreening.objects.all()[0].eligible)
 
     def test_basic_eligibility(self):
         obj = SubjectScreening.objects.create(**self.get_basic_opts())
@@ -125,7 +122,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
-    @tag("123")
     def test_male_preg_raises(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -160,7 +156,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertEqual(obj.reasons_ineligible, {})
         self.assertTrue(obj.is_eligible)
-        # self.assertIn("exclusion_criteria", obj.reasons_ineligible)
 
     def test_cd4_date_within_21_days(self):
         opts = dict(
@@ -198,7 +193,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertDictEqual({}, form._errors)
 
-    @tag("wa")
     def test_age(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -215,27 +209,26 @@ class TestForms(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertNotIn("age_in_years", form._errors)
 
-    @tag("wa")
-    def test_csf_cm_evidence(self):
+    def test_cm_in_csf(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
-        opts.update(csf_cm_evidence=YES)
+        opts.update(cm_in_csf=YES)
 
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
-        self.assertNotIn("csf_cm_evidence", form._errors)
+        self.assertNotIn("cm_in_csf", form._errors)
 
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertIn("csf_cm_evidence", obj.reasons_ineligible)
+        self.assertIn("cm_in_csf", obj.reasons_ineligible)
         self.assertFalse(obj.is_eligible)
 
-        opts.update(csf_cm_evidence=NO)
+        opts.update(cm_in_csf=NO)
 
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertNotIn("csf_cm_evidence", obj.reasons_ineligible)
+        self.assertNotIn("cm_in_csf", obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)

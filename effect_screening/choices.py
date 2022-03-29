@@ -4,12 +4,18 @@ from edc_constants.constants import (
     NO,
     NOT_ANSWERED,
     NOT_APPLICABLE,
-    NOT_DONE,
     NOT_TESTED,
     OTHER,
     PENDING,
     POS,
     YES,
+)
+
+CM_ON_CSF_METHODS = (
+    ("india_ink", "positive microscopy with India Ink"),
+    ("culture", "culture"),
+    (OTHER, "Other, please specify"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 REFUSAL_REASONS = (
@@ -22,11 +28,24 @@ REFUSAL_REASONS = (
 )
 
 
+POS_NEG_NOT_ANSWERED = (
+    (POS, "Positive"),
+    (NEG, "Negative"),
+    (NOT_ANSWERED, "Not answered"),
+)
+
 POS_NEG_IND_NOT_ANSWERED = (
     (POS, "Positive"),
     (NEG, "Negative"),
     (IND, "Indeterminate"),
     (NOT_ANSWERED, "Not answered"),
+)
+
+POS_NEG_PENDING_NA = (
+    (POS, "Positive"),
+    (NEG, "Negative"),
+    (PENDING, "Pending"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 POS_NEG_IND_PENDING_NA = (

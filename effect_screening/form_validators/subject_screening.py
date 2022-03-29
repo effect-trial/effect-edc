@@ -1,6 +1,6 @@
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
-from edc_constants.constants import IND, MALE, NEG, NO, PENDING, POS, YES
+from edc_constants.constants import IND, MALE, NEG, NO, OTHER, PENDING, POS, YES
 from edc_form_validators import FormValidator
 
 
@@ -11,7 +11,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_cd4()
         self.validate_serum_crag()
         self.validate_lp_and_csf_crag()
-        self.validate_csf_cm_evidence()
+        self.validate_cm_in_csf()
         self.validate_pregnancy()
 
     def validate_cd4(self):
@@ -95,23 +95,34 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
         self.applicable_if(YES, field="lp_done", field_applicable="csf_crag_value")
 
-    def validate_csf_cm_evidence(self):
-        self.applicable_if(
-            YES, PENDING, field="lp_done", field_applicable="csf_cm_evidence"
-        )
+    def validate_cm_in_csf(self):
+        self.applicable_if(YES, field="lp_done", field_applicable="cm_in_csf")
+        self.required_if(PENDING, field="cm_in_csf", field_required="cm_in_csf_date")
+        self.applicable_if(YES, field="cm_in_csf", field_applicable="cm_in_csf_method")
         self.required_if(
-            PENDING, field="csf_cm_evidence", field_required="csf_results_date"
+            OTHER, field="cm_in_csf_method", field_required="cm_in_csf_method_other"
         )
         if (
-            self.cleaned_data.get("csf_results_date")
+            self.cleaned_data.get("cm_in_csf_date")
             and self.cleaned_data.get("lp_date")
             and (
                 self.cleaned_data.get("lp_date")
-                > self.cleaned_data.get("csf_results_date")
+                > self.cleaned_data.get("cm_in_csf_date")
             )
         ):
             raise forms.ValidationError(
-                {"csf_results_date": "Invalid. Cannot be before LP date"}
+                {"cm_in_csf_date": "Invalid. Cannot be before LP date"}
+            )
+        if (
+            self.cleaned_data.get("cm_in_csf_date")
+            and self.cleaned_data.get("report_datetime")
+            and (
+                self.cleaned_data.get("report_datetime").date()
+                > self.cleaned_data.get("cm_in_csf_date")
+            )
+        ):
+            raise forms.ValidationError(
+                {"cm_in_csf_date": "Invalid. Cannot be before report date"}
             )
 
     def validate_pregnancy(self):

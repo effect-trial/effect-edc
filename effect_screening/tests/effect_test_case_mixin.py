@@ -45,7 +45,7 @@ def get_eligible_options():
         lp_date=(get_utcnow() - relativedelta(days=6)).date(),
         csf_crag_value=NEG,
         contraindicated_meds=NO,
-        csf_cm_evidence=NO,
+        cm_in_csf=NO,
         jaundice=NO,
         meningitis_symptoms=NO,
         on_fluconazole=NO,

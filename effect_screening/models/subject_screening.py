@@ -4,6 +4,7 @@ from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_ANSWERED, NOT_APPLICABLE
 from edc_model.models import BaseUuidModel, date_not_future
+from edc_model_fields.fields import OtherCharField
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.model_mixins import EligibilityModelMixin, ScreeningModelMixin
 from edc_screening.screening_identifier import (
@@ -11,9 +12,10 @@ from edc_screening.screening_identifier import (
 )
 
 from ..choices import (
+    CM_ON_CSF_METHODS,
     CSF_YES_NO_PENDING_NA,
-    POS_NEG_IND_NOT_ANSWERED,
-    POS_NEG_IND_PENDING_NA,
+    POS_NEG_NOT_ANSWERED,
+    POS_NEG_PENDING_NA,
     PREG_YES_NO_NA_NOT_ANSWERED,
     YES_NO_NOT_ANSWERED,
 )
@@ -47,7 +49,8 @@ class SubjectScreening(
     willing_to_participate = models.CharField(
         verbose_name="Is the patient willing to participate in the study if found eligible?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
     )
 
     consent_ability = models.CharField(
@@ -55,11 +58,12 @@ class SubjectScreening(
             "Does the patient have capacity to provide informed consent for participation?"
         ),
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
     )
 
     hiv_pos = models.CharField(
-        verbose_name="Is the patient HIV sero-positive",
+        verbose_name="Is the patient CONFIRMED HIV sero-positive",
         max_length=15,
         choices=YES_NO,
         null=True,
@@ -93,7 +97,7 @@ class SubjectScreening(
     serum_crag_value = models.CharField(
         verbose_name="Serum/plasma CrAg result",
         max_length=15,
-        choices=POS_NEG_IND_NOT_ANSWERED,
+        choices=POS_NEG_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
     )
@@ -134,7 +138,7 @@ class SubjectScreening(
     csf_crag_value = models.CharField(
         verbose_name="CSF CrAg result",
         max_length=15,
-        choices=POS_NEG_IND_PENDING_NA,
+        choices=POS_NEG_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
         help_text=(
@@ -205,8 +209,8 @@ class SubjectScreening(
     )
 
     # TODO: If pending, get at baseline
-    csf_cm_evidence = models.CharField(
-        verbose_name="Any other evidence of CM on CSF?",
+    cm_in_csf = models.CharField(
+        verbose_name="Was CM confirmed in CSF by any other method?",
         max_length=25,
         choices=CSF_YES_NO_PENDING_NA,
         default=NOT_APPLICABLE,
@@ -218,9 +222,18 @@ class SubjectScreening(
         ),
     )
 
-    csf_results_date = models.DateField(
+    cm_in_csf_date = models.DateField(
         verbose_name="Date `pending results` expected (estimate)", null=True, blank=True
     )
+
+    cm_in_csf_method = models.CharField(
+        verbose_name="If YES, by which method?",
+        max_length=25,
+        choices=CM_ON_CSF_METHODS,
+        default=NOT_APPLICABLE,
+    )
+
+    cm_in_csf_method_other = OtherCharField()
 
     class Meta:
         verbose_name = "Subject Screening"

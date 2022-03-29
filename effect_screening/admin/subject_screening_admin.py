@@ -74,30 +74,24 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
+            "Other methods for confirming CM in CSF",
+            {
+                "fields": (
+                    "cm_in_csf",
+                    "cm_in_csf_date",
+                    "cm_in_csf_method",
+                    "cm_in_csf_method_other",
+                    "prior_cm_epidose",
+                ),
+            },
+        ],
+        [
             "Treatment",
             {
                 "fields": (
                     "reaction_to_study_drugs",
                     "on_fluconazole",
                     "contraindicated_meds",
-                ),
-            },
-        ],
-        [
-            "Other evidence of CM on CSF",
-            {
-                "description": format_html(
-                    "<H3>Note: for evidence of CM on CSF, consider, for example, "
-                    "positive microscopy with India Ink, culture, or CrAg test) at any "
-                    "time between the CrAg test and screening for eligibility, or during the "
-                    "first 2 weeks of antifungal treatment, while the patient remained "
-                    "without clinical signs or symptoms of meningitis as described above. "
-                    "(late withdrawal criterion).</H3>"
-                ),
-                "fields": (
-                    "csf_cm_evidence",
-                    "csf_results_date",
-                    "prior_cm_epidose",
                 ),
             },
         ],
@@ -150,7 +144,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     radio_fields = {
         "consent_ability": admin.VERTICAL,
         "contraindicated_meds": admin.VERTICAL,
-        "csf_cm_evidence": admin.VERTICAL,
+        "cm_in_csf": admin.VERTICAL,
+        "cm_in_csf_method": admin.VERTICAL,
         "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,
