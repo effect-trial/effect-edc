@@ -1,5 +1,5 @@
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import (
     FEMALE,
     MALE,
@@ -72,7 +72,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
             jaundice=NO,
             mg_ssx_since_crag=NO,
             on_fluconazole=NO,
-            pregnant_or_bf=NOT_APPLICABLE,
+            pregnant=NOT_APPLICABLE,
+            breast_feeding=NOT_APPLICABLE,
             prior_cm_epidose=NO,
             reaction_to_study_drugs=NO,
         )
@@ -125,6 +126,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
+    @tag("preg")
     def test_male_preg_raises(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -133,19 +135,89 @@ class TestForms(EffectTestCaseMixin, TestCase):
         )
         opts.update(
             gender=MALE,
-            pregnant_or_bf=YES,
+            pregnant=YES,
+            breast_feeding=NOT_APPLICABLE,
             unsuitable_for_study=NO,
             unsuitable_agreed=NOT_APPLICABLE,
             lp_declined=NOT_APPLICABLE,
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
-        self.assertIn("pregnant_or_bf", form._errors)
+        self.assertIn("pregnant", form._errors)
 
-        opts.update(gender=FEMALE, pregnant_or_bf=NOT_APPLICABLE)
+        opts.update(pregnant=NO)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("pregnant", form._errors)
+
+        opts.update(pregnant=NOT_APPLICABLE, preg_test_date=get_utcnow().date())
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("preg_test_date", form._errors)
+
+        opts.update(pregnant=NOT_APPLICABLE, preg_test_date=None, breast_feeding=YES)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("breast_feeding", form._errors)
+
+        opts.update(
+            pregnant=NOT_APPLICABLE, preg_test_date=None, breast_feeding=NOT_APPLICABLE
+        )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertDictEqual({}, form._errors)
+
+    @tag("preg")
+    def test_female_preg_or_bf(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(
+            gender=FEMALE,
+            pregnant=NOT_APPLICABLE,
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("pregnant", form._errors)
+        self.assertIn("breast_feeding", form._errors)
+
+        opts.update(
+            gender=FEMALE,
+            pregnant=YES,
+            preg_test_date=get_utcnow(),
+            breast_feeding=NOT_APPLICABLE,
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("pregnant", form._errors)
+        self.assertNotIn("preg_test_date", form._errors)
+        self.assertIn("breast_feeding", form._errors)
+
+        opts.update(
+            gender=FEMALE,
+            pregnant=YES,
+            preg_test_date=get_utcnow(),
+            breast_feeding=YES,
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("pregnant", form._errors)
+        self.assertNotIn("preg_test_date", form._errors)
+        self.assertNotIn("breast_feeding", form._errors)
+
+        opts.update(
+            gender=FEMALE,
+            pregnant=YES,
+            preg_test_date=None,
+            breast_feeding=YES,
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("pregnant", form._errors)
+        self.assertNotIn("preg_test_date", form._errors)
+        self.assertNotIn("breast_feeding", form._errors)
 
     def test_crags_and_lp(self):
         # TODO: Is this ok?

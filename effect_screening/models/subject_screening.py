@@ -18,7 +18,7 @@ from ..choices import (
     CSF_YES_NO_PENDING_NA,
     POS_NEG_NOT_ANSWERED,
     POS_NEG_PENDING_NA,
-    PREG_YES_NO_NA_NOT_ANSWERED,
+    PREG_YES_NO_NA,
     YES_NO_NOT_ANSWERED,
 )
 from ..eligibility import ScreeningEligibility
@@ -87,12 +87,24 @@ class SubjectScreening(
         blank=False,
     )
 
-    pregnant_or_bf = models.CharField(
-        verbose_name="Is the patient pregnant or breastfeeding?",
+    # ineligible if YES
+    pregnant = models.CharField(
+        verbose_name="Is the patient pregnant?",
         max_length=15,
-        choices=PREG_YES_NO_NA_NOT_ANSWERED,
-        default=NOT_ANSWERED,
-        blank=False,
+        choices=PREG_YES_NO_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    preg_test_date = models.DateTimeField(
+        verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
+    )
+
+    # ineligible if YES
+    breast_feeding = models.CharField(
+        verbose_name="Is the patient breasfeeding?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
     )
 
     # eligible if POS
@@ -192,7 +204,7 @@ class SubjectScreening(
     # exclusion
     mg_ssx_since_crag = models.CharField(
         verbose_name=(
-            "Has the patient had clinical signs/symptoms (SSX) of symptomatic "
+            "Has the patient had clinical signs/symptoms of symptomatic "
             "meningitis at any time since CrAg screening?"
         ),
         max_length=25,
@@ -208,7 +220,7 @@ class SubjectScreening(
     )
 
     mg_ssx_other = models.TextField(
-        verbose_name="If 'Other' please specify ...",
+        verbose_name="If 'Other' SSX, please specify",
         null=True,
         blank=True,
         help_text="If more than one, please separate each with a comma (,).",

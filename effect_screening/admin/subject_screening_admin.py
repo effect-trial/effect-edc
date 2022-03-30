@@ -95,7 +95,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
-            "Meningitis SSX ",
+            "Jaundice and Meningitis SSX ",
             {
                 # "description": format_html(
                 #     "<div><H3>Note: for signs of meningitis below, consider, for example: "
@@ -106,6 +106,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                 #     "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
                 # ),
                 "fields": (
+                    "jaundice",
                     "mg_ssx_since_crag",
                     "mg_ssx",
                     "mg_ssx_other",
@@ -113,11 +114,12 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
-            "Additional exclusion criteria",
+            "Pregnancy",
             {
                 "fields": (
-                    "jaundice",
-                    "pregnant_or_bf",
+                    "pregnant",
+                    "preg_test_date",
+                    "breast_feeding",
                 ),
             },
         ],
@@ -162,7 +164,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "lp_done": admin.VERTICAL,
         "mg_ssx_since_crag": admin.VERTICAL,
         "on_fluconazole": admin.VERTICAL,
-        "pregnant_or_bf": admin.VERTICAL,
+        "pregnant": admin.VERTICAL,
+        "breast_feeding": admin.VERTICAL,
         "prior_cm_epidose": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,
         "serum_crag_value": admin.VERTICAL,
@@ -206,6 +209,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "consented",
         "refused",
     ]
+
+    filter_horizontal = ["mg_ssx"]
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}

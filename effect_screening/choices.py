@@ -92,9 +92,8 @@ CSF_YES_NO_PENDING_NA = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-PREG_YES_NO_NA_NOT_ANSWERED = (
+PREG_YES_NO_NA = (
     (YES, "Yes"),
     (NO, "No"),
     (NOT_APPLICABLE, "Not Applicable: e.g. male or post-menopausal"),
-    (NOT_ANSWERED, "Not answered"),
 )

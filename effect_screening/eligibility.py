@@ -1,13 +1,4 @@
-from edc_constants.constants import (
-    IND,
-    NEG,
-    NO,
-    NOT_ANSWERED,
-    NOT_APPLICABLE,
-    PENDING,
-    POS,
-    YES,
-)
+from edc_constants.constants import IND, NO, NOT_ANSWERED, POS, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
@@ -75,7 +66,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
-                "pregnant_or_bf",
+                "pregnant",
+                "breast_feeding",
                 "prior_cm_epidose",
                 "reaction_to_study_drugs",
                 "on_fluconazole",
@@ -103,8 +95,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
             )
         if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(on_fluconazole="On fluconazole")
-        if self.model_obj.pregnant_or_bf == YES:
-            reasons_ineligible.update(pregnant_or_bf="Pregnant or breastfeeding")
+        if self.model_obj.pregnant == YES:
+            reasons_ineligible.update(pregnant="Pregnant")
+        if self.model_obj.breast_feeding == YES:
+            reasons_ineligible.update(breast_feeding="Breast feeding")
         if self.model_obj.prior_cm_epidose not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(prior_cm_epidose="Prior episode of CM")
         if self.model_obj.reaction_to_study_drugs not in [NO, NOT_ANSWERED]:

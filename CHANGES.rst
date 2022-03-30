@@ -3,6 +3,12 @@ Changes
 
 [unreleased]
 ------------
+- changes to Screening
+    - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’
+    - remove IND as option for CrAg results
+    - change to 'Was CM confirmed in CSF by any other method? etc' and add list of methods
+    - add more detail to capture meningitis SSX
+    - separate pregnancy / breast feeding questions to be like ambition, add preg date
 - changes to Follow-up (formerly Clinical Assessment) form:
     - rename/standardise 'Clinical Assessment' to be 'Follow-up' throughout
     - add "Other" choice/"Other, please specify..." field to Q3 (Was this a telephone follow up or an in person visit?)

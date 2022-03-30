@@ -1,6 +1,6 @@
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
-from edc_constants.constants import IND, MALE, NEG, NO, OTHER, PENDING, POS, YES
+from edc_constants.constants import FEMALE, IND, MALE, NEG, NO, OTHER, PENDING, POS, YES
 from edc_form_validators import FormValidator
 
 
@@ -14,6 +14,9 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_cm_in_csf()
         self.validate_ssx()
         self.validate_pregnancy()
+        self.required_if(
+            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
+        )
 
     def validate_cd4(self):
         if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
@@ -128,17 +131,14 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
     def validate_pregnancy(self):
         if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get(
-            "pregnant_or_bf"
+            "pregnant"
         ) in [YES, NO]:
-            raise forms.ValidationError({"pregnant_or_bf": "Invalid. Subject is male"})
-
-        self.not_applicable_if(
-            MALE, field="gender", field_applicable="pregnant", inverse=False
-        )
-
-        self.required_if(
-            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
-        )
+            raise forms.ValidationError({"pregnant": "Invalid. Subject is male"})
+        if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get(
+            "preg_test_date"
+        ):
+            raise forms.ValidationError({"preg_test_date": "Invalid. Subject is male"})
+        self.applicable_if(FEMALE, field="gender", field_applicable="breast_feeding")
 
     def validate_age(self):
         if self.cleaned_data.get("age_in_years") and (
