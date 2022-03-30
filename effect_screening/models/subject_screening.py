@@ -95,7 +95,7 @@ class SubjectScreening(
         default=NOT_APPLICABLE,
     )
 
-    preg_test_date = models.DateTimeField(
+    preg_test_date = models.DateField(
         verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
     )
 
