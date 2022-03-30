@@ -11,6 +11,8 @@ from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,
 )
 
+from effect_lists.models import SiSxMeningitis
+
 from ..choices import (
     CM_ON_CSF_METHODS,
     CSF_YES_NO_PENDING_NA,
@@ -188,15 +190,28 @@ class SubjectScreening(
     )
 
     # exclusion
-    meningitis_symptoms = models.CharField(
+    mg_ssx_since_crag = models.CharField(
         verbose_name=(
-            "Has the patient had clinical symptoms/signs of symptomatic "
+            "Has the patient had clinical signs/symptoms (SSX) of symptomatic "
             "meningitis at any time since CrAg screening?"
         ),
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
+    )
+
+    mg_ssx = models.ManyToManyField(
+        SiSxMeningitis,
+        verbose_name="If YES, specify the clinical SSX of symptomatic meningitis?",
+        blank=True,
+    )
+
+    mg_ssx_other = models.TextField(
+        verbose_name="If 'Other' please specify ...",
+        null=True,
+        blank=True,
+        help_text="If more than one, please separate each with a comma (,).",
     )
 
     # exclusion

@@ -36,8 +36,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    # Current Signs/Symptoms - Other CRF (p2)
-    # Current Signs/Symptoms CRF (p2)
     current_sx = models.ManyToManyField(
         SiSx,
         related_name="sx",

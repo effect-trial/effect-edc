@@ -6,15 +6,18 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    OTHER,
     PENDING,
     POS,
     YES,
 )
 from edc_utils.date import get_utcnow
 
+from effect_lists.models import SiSxMeningitis
 from effect_screening.eligibility import ScreeningEligibility
 from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
+from effect_subject.constants import HEADACHE
 
 from ..effect_test_case_mixin import EffectTestCaseMixin
 
@@ -67,7 +70,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             cm_in_csf=NO,
             cm_in_csf_method=NOT_APPLICABLE,
             jaundice=NO,
-            meningitis_symptoms=NO,
+            mg_ssx_since_crag=NO,
             on_fluconazole=NO,
             pregnant_or_bf=NOT_APPLICABLE,
             prior_cm_epidose=NO,
@@ -232,3 +235,35 @@ class TestForms(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertNotIn("cm_in_csf", obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
+
+    def test_mg_ssx(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(mg_ssx_since_crag=YES)
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("mg_ssx", form._errors)
+
+        ssx = SiSxMeningitis.objects.filter(name=HEADACHE)
+        opts.update(mg_ssx=ssx)
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("mg_ssx", form._errors)
+
+        ssx = SiSxMeningitis.objects.filter(name=OTHER)
+        opts.update(mg_ssx=ssx)
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("mg_ssx_other", form._errors)
+
+        opts.update(mg_ssx_other="blah blah")
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("mg_ssx_other", form._errors)

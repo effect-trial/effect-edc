@@ -80,7 +80,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "reaction_to_study_drugs",
                 "on_fluconazole",
                 "contraindicated_meds",
-                "meningitis_symptoms",
+                "mg_ssx_since_crag",
                 "jaundice",
                 "cm_in_csf",
             ]
@@ -97,9 +97,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
-        if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:
+        if self.model_obj.mg_ssx_since_crag not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(
-                meningitis_symptoms="Signs of symptomatic meningitis"
+                mg_ssx_since_crag="Signs of symptomatic meningitis"
             )
         if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(on_fluconazole="On fluconazole")

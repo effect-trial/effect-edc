@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
-from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
@@ -96,18 +95,27 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
+            "Meningitis SSX ",
+            {
+                # "description": format_html(
+                #     "<div><H3>Note: for signs of meningitis below, consider, for example: "
+                #     "<BR> * a progressively severe headache OR;"
+                #     "<BR> * a headache and marked nuchal rigidity OR;"
+                #     "<BR> * a headache and vomiting OR;"
+                #     "<BR> * seizures OR;"
+                #     "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
+                # ),
+                "fields": (
+                    "mg_ssx_since_crag",
+                    "mg_ssx",
+                    "mg_ssx_other",
+                ),
+            },
+        ],
+        [
             "Additional exclusion criteria",
             {
-                "description": format_html(
-                    "<div><H3>Note: for signs of meningitis below, consider, for example: "
-                    "<BR> * a progressively severe headache OR;"
-                    "<BR> * a headache and marked nuchal rigidity OR;"
-                    "<BR> * a headache and vomiting OR;"
-                    "<BR> * seizures OR;"
-                    "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
-                ),
                 "fields": (
-                    "meningitis_symptoms",
                     "jaundice",
                     "pregnant_or_bf",
                 ),
@@ -152,7 +160,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "jaundice": admin.VERTICAL,
         "lp_declined": admin.VERTICAL,
         "lp_done": admin.VERTICAL,
-        "meningitis_symptoms": admin.VERTICAL,
+        "mg_ssx_since_crag": admin.VERTICAL,
         "on_fluconazole": admin.VERTICAL,
         "pregnant_or_bf": admin.VERTICAL,
         "prior_cm_epidose": admin.VERTICAL,

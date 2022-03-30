@@ -61,6 +61,12 @@ class SiSx(ListModelMixin):
         verbose_name_plural = "Signs and Symptoms"
 
 
+class SiSxMeningitis(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Signs and Symptoms (Meningitis)"
+        verbose_name_plural = "Signs and Symptoms (Meningitis)"
+
+
 class SubjectVisitMissedReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Subject Missed Visit Reasons"

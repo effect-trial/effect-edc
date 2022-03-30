@@ -47,7 +47,7 @@ def get_eligible_options():
         contraindicated_meds=NO,
         cm_in_csf=NO,
         jaundice=NO,
-        meningitis_symptoms=NO,
+        mg_ssx_since_crag=NO,
         on_fluconazole=NO,
         pregnant_or_bf=NOT_APPLICABLE,
         prior_cm_epidose=NO,

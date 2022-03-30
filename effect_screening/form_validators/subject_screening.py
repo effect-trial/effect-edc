@@ -12,6 +12,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_serum_crag()
         self.validate_lp_and_csf_crag()
         self.validate_cm_in_csf()
+        self.validate_ssx()
         self.validate_pregnancy()
 
     def validate_cd4(self):
@@ -147,3 +148,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             raise forms.ValidationError(
                 {"age_in_years": "Invalid. Subject must be 18 years or older"}
             )
+
+    def validate_ssx(self):
+        self.m2m_required_if(YES, field="mg_ssx_since_crag", m2m_field="mg_ssx")
+        self.m2m_other_specify(m2m_field="mg_ssx", field_other="mg_ssx_other")
