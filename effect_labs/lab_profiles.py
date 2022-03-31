@@ -3,13 +3,13 @@ from edc_lab import LabProfile, ProcessingProfile, RequisitionPanel
 from edc_lab.aliquot_types import tissue_biopsy, wb
 from edc_lab_panel.panels import (
     blood_glucose_poc_panel,
-    fbc_panel,
     hba1c_panel,
     lft_panel,
     lipids_panel,
     rft_panel,
     sputum_panel,
 )
+from edc_lab_panel.processing_profiles import fbc_processing
 
 from .panels import csf_culture_panel
 
@@ -32,6 +32,21 @@ blood_culture_panel = RequisitionPanel(
     utest_ids=[],
 )
 
+fbc_panel = RequisitionPanel(
+    name="fbc",
+    verbose_name="Full Blood Count",
+    processing_profile=fbc_processing,
+    abbreviation="FBC",
+    utest_ids=[
+        ("haemoglobin", "Haemoglobin"),
+        "hct",
+        "rbc",
+        "wbc",
+        "platelets",
+    ],
+)
+
+
 subject_lab_profile = LabProfile(
     name="subject_lab_profile",
     requisition_model=settings.SUBJECT_REQUISITION_MODEL,
@@ -48,6 +63,3 @@ subject_lab_profile.add_panel(lipids_panel)
 subject_lab_profile.add_panel(rft_panel)
 subject_lab_profile.add_panel(sputum_panel)
 subject_lab_profile.add_panel(csf_culture_panel)
-
-
-# urine TB LAM test
