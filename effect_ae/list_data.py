@@ -30,7 +30,9 @@ list_data = {
     ],
     "edc_adverse_event.causeofdeath": [
         ("art_toxicity", "ART toxicity"),
+        ("covid_19", "COVID-19"),
         ("diarrhea_wasting", "Diarrhea/wasting"),
+        ("iris", "IRIS"),
         (UNKNOWN, "Unknown"),
         (OTHER, "Other"),
     ],
