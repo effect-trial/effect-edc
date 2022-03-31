@@ -1,5 +1,3 @@
-from uuid import UUID, uuid4
-
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_microbiology.fieldsets import (
@@ -11,15 +9,15 @@ from edc_microbiology.fieldsets import (
 from edc_microbiology.modeladmin_mixins import MicrobiologyModelAdminMixin
 
 from ..admin_site import effect_subject_admin
-from ..forms import MicrobiologyForm
-from ..models import Microbiology
+from ..forms import TbDiagnosticsForm
+from ..models import TbDiagnostics
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(Microbiology, site=effect_subject_admin)
-class MicrobiologyAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
+@admin.register(TbDiagnostics, site=effect_subject_admin)
+class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
 
-    form = MicrobiologyForm
+    form = TbDiagnosticsForm
 
     autocomplete_fields = ["sputum_requisition"]
 

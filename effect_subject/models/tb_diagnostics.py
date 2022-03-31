@@ -12,7 +12,7 @@ from edc_model import models as edc_models
 from ..model_mixins import CrfModelMixin
 
 
-class Microbiology(
+class TbDiagnostics(
     UrinaryLamModelMixin,
     SputumGenexpertModelMixin,
     SputumCultureModelMixin,
@@ -36,5 +36,5 @@ class Microbiology(
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Microbiology: TB Diagnostics"
-        verbose_name_plural = "Microbiology: TB Diagnostics"
+        verbose_name = "TB Diagnostics"
+        verbose_name_plural = "TB Diagnostics"

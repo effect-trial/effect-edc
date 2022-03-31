@@ -48,3 +48,6 @@ subject_lab_profile.add_panel(lipids_panel)
 subject_lab_profile.add_panel(rft_panel)
 subject_lab_profile.add_panel(sputum_panel)
 subject_lab_profile.add_panel(csf_culture_panel)
+
+
+# urine TB LAM test
