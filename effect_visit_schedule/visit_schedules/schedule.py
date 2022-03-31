@@ -46,7 +46,7 @@ class Visit(BaseVisit):
 # schedule for new participants
 schedule = Schedule(
     name=SCHEDULE,
-    verbose_name="Day 1 to Month 12 Follow-up",
+    verbose_name="Day 1 to Month 6 Follow-up",
     onschedule_model="effect_prn.onschedule",
     offschedule_model="effect_prn.endofstudy",
     consent_model="effect_consent.subjectconsent",
