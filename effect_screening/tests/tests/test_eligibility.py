@@ -73,7 +73,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             mg_ssx_since_crag=NO,
             on_fluconazole=NO,
             pregnant=NOT_APPLICABLE,
-            breast_feeding=NOT_APPLICABLE,
+            breast_feeding=NO,
             prior_cm_epidose=NO,
             reaction_to_study_drugs=NO,
         )
@@ -177,6 +177,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
         opts.update(
             gender=FEMALE,
             pregnant=NOT_APPLICABLE,
+            breast_feeding=NOT_APPLICABLE,
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
