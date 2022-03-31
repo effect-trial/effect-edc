@@ -26,6 +26,7 @@ requisitions_unscheduled = FormsCollection(
     name="requisitions_unscheduled",
 )
 
+# TODO: merge RFT and LFT and add as required to DAY 1
 requisitions_d01 = FormsCollection(
     Requisition(show_order=30, panel=fbc_panel, required=True, additional=False),
     Requisition(
