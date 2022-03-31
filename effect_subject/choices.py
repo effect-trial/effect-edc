@@ -132,8 +132,8 @@ ECOG_SCORES = (
 )
 
 FLUCONAZOLE_DOSES = (
-    ("800mg", "Fluconazole, 800mg/d"),
-    ("1200mg", "Fluconazole, 1200mg/d"),
+    ("800_mg_d", "Fluconazole, 800 mg/d"),
+    ("1200_mg_d", "Fluconazole, 1200 mg/d"),
     (OTHER, "Other Fluconazole dose, please specify below ..."),
     (NOT_APPLICABLE, "Not applicable"),
 )
