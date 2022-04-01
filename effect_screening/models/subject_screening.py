@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -74,7 +74,7 @@ class SubjectScreening(
 
     cd4_value = models.IntegerField(
         verbose_name="Most recent CD4 count",
-        validators=[MinValueValidator(0)],
+        validators=[MinValueValidator(0), MaxValueValidator(99)],
         null=True,
         blank=False,
         help_text=f"Eligible if CD4 count <100 {CELLS_PER_MICROLITER}",

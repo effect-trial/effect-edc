@@ -1,3 +1,5 @@
+from typing import Dict
+
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_constants.constants import (
@@ -23,6 +25,8 @@ from ..effect_test_case_mixin import EffectTestCaseMixin
 
 
 class TestForms(EffectTestCaseMixin, TestCase):
+    ELIGIBLE_CD4_VALUE = 99
+
     @staticmethod
     def get_data():
         return {
@@ -53,7 +57,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
     def inclusion_criteria(self):
         return dict(
             hiv_pos=YES,
-            cd4_value=99,
+            cd4_value=self.ELIGIBLE_CD4_VALUE,
             cd4_date=(get_utcnow() - relativedelta(days=7)).date(),
             serum_crag_value=POS,
             serum_crag_date=(get_utcnow() - relativedelta(days=6)).date(),
@@ -76,6 +80,13 @@ class TestForms(EffectTestCaseMixin, TestCase):
             breast_feeding=NO,
             prior_cm_epidose=NO,
             reaction_to_study_drugs=NO,
+        )
+
+    def get_valid_opts(self) -> Dict:
+        return dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
         )
 
     def test_screening_ok(self):
@@ -125,6 +136,11 @@ class TestForms(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
+
+    def test_valid_opts_ok(self):
+        form = SubjectScreeningForm(data=self.get_valid_opts())
+        form.is_valid()
+        self.assertDictEqual({}, form._errors)
 
     @tag("preg")
     def test_male_preg_raises(self):
@@ -232,6 +248,53 @@ class TestForms(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertEqual(obj.reasons_ineligible, {})
         self.assertTrue(obj.is_eligible)
+
+    def test_eligible_cd4_values_ok(self):
+        opts = self.get_valid_opts()
+        eligible_cd4_values = [0, 1, 80, 99]
+        for cd4_value in eligible_cd4_values:
+            with self.subTest(cd4_value=cd4_value):
+                opts.update(cd4_value=cd4_value)
+                form = SubjectScreeningForm(data=opts)
+                form.is_valid()
+                self.assertDictEqual({}, form._errors)
+
+    def test_ineligible_cd4_value_raises_validation_error(self):
+        opts = self.get_valid_opts()
+        ineligible_cd4_values = [-1, 100, 120, 200]
+        for cd4_value in ineligible_cd4_values:
+            with self.subTest(cd4_value=cd4_value):
+                opts.update(cd4_value=cd4_value)
+                form = SubjectScreeningForm(data=opts)
+                form.is_valid()
+                self.assertIn("cd4_value", form._errors)
+                self.assertDictEqual(
+                    {
+                        "cd4_value": [
+                            "Ensure this value is less than or equal to 99."
+                            if cd4_value > 0
+                            else "Ensure this value is greater than or equal to 0."
+                        ]
+                    },
+                    form._errors,
+                )
+        opts.update(cd4_value=self.ELIGIBLE_CD4_VALUE)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertDictEqual({}, form._errors)
+
+    def test_cd4_value_required(self):
+        opts = self.get_valid_opts()
+        for cd4_value in [None, ""]:
+            with self.subTest(cd4_value=cd4_value):
+                opts.update(cd4_value=cd4_value)
+
+                form = SubjectScreeningForm(data=opts)
+                form.is_valid()
+                self.assertIn("cd4_value", form._errors)
+                self.assertDictEqual(
+                    {"cd4_value": ["This field is required."]}, form._errors
+                )
 
     def test_cd4_date_within_21_days(self):
         opts = dict(
