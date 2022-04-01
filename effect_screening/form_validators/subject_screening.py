@@ -42,8 +42,10 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 )
 
     def validate_serum_crag(self):
-        """Assert serum CrAg date is not before CD4 date and
-        is within 21 days of CD4.
+        """Assert serum CrAg date is:
+        - not before CD4 date
+        - within 21 days of CD4
+        - within 14 days of report
         """
         self.required_if(
             POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
@@ -72,6 +74,17 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                         "serum_crag_date": (
                             "Invalid. Must have been performed within 21 days "
                             f"of CD4. Got {days}."
+                        )
+                    }
+                )
+            if (
+                self.cleaned_data.get("report_datetime").date()
+                - self.cleaned_data.get("serum_crag_date")
+            ).days > 14:
+                raise forms.ValidationError(
+                    {
+                        "serum_crag_date": (
+                            "Invalid. Cannot be more than 14 days before the report date"
                         )
                     }
                 )

@@ -312,6 +312,46 @@ class TestForms(EffectTestCaseMixin, TestCase):
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertNotIn("cd4_date", form._errors)
+        self.assertDictEqual({}, form._errors)
+
+    def test_serum_crag_date_within_14_days(self):
+        opts = self.get_valid_opts()
+        report_datetime = opts.get("report_datetime")
+        cd4_date = report_datetime - relativedelta(days=20)
+
+        opts.update(
+            cd4_date=cd4_date,
+            serum_crag_date=report_datetime - relativedelta(days=14 + 1),
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("serum_crag_date", form._errors)
+        self.assertDictEqual(
+            {
+                "serum_crag_date": [
+                    "Invalid. Cannot be more than 14 days before the report date"
+                ]
+            },
+            form._errors,
+        )
+
+        opts.update(
+            cd4_date=cd4_date,
+            serum_crag_date=report_datetime - relativedelta(days=14),
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("cd4_date", form._errors)
+        self.assertDictEqual({}, form._errors)
+
+        opts.update(
+            cd4_date=cd4_date,
+            serum_crag_date=report_datetime - relativedelta(days=14 - 1),
+        )
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("cd4_date", form._errors)
+        self.assertDictEqual({}, form._errors)
 
     def test_serum_crag_date_not_before_cd4_date(self):
         opts = dict(
