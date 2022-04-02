@@ -21,6 +21,7 @@ from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
 from effect_subject.constants import HEADACHE
 
+from ...choices import POS_NEG_NOT_ANSWERED
 from ..effect_test_case_mixin import EffectTestCaseMixin
 
 
@@ -313,6 +314,23 @@ class TestForms(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertNotIn("cd4_date", form._errors)
         self.assertDictEqual({}, form._errors)
+
+    def test_crag_not_positive_raises_validation_error(self):
+        opts = self.get_valid_opts()
+        for choice in [c[0] for c in POS_NEG_NOT_ANSWERED if c[0] != POS]:
+            with self.subTest(serum_crag_value=choice):
+                opts.update(serum_crag_value=choice)
+                form = SubjectScreeningForm(data=opts)
+                form.is_valid()
+                self.assertIn("serum_crag_value", form._errors)
+                self.assertDictEqual(
+                    {
+                        "serum_crag_value": [
+                            "Invalid. Subject must have positive serum/plasma CrAg test result."
+                        ]
+                    },
+                    form._errors,
+                )
 
     def test_serum_crag_date_within_14_days(self):
         opts = self.get_valid_opts()

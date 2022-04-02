@@ -4,9 +4,10 @@ Changes
 [unreleased]
 ------------
 - changes to Screening
-    - prevent saving CD4 count not < 100
+    - prevent saving if CD4 count not < 100
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’
     - Serum CrAg
+        - prevent saving if serum CrAg result not positive
         - remove IND as option for CrAg results
         - validate serum CrAg date within last 14 days
     - change to 'Was CM confirmed in CSF by any other method? etc' and add list of methods

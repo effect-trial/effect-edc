@@ -43,10 +43,20 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
 
     def validate_serum_crag(self):
         """Assert serum CrAg date is:
+        - positive
         - not before CD4 date
         - within 21 days of CD4
         - within 14 days of report
         """
+        if self.cleaned_data.get("serum_crag_value") != POS:
+            raise forms.ValidationError(
+                {
+                    "serum_crag_value": (
+                        "Invalid. Subject must have positive serum/plasma CrAg test result."
+                    )
+                }
+            )
+
         self.required_if(
             POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
         )
