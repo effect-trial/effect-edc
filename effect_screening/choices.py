@@ -12,8 +12,8 @@ from edc_constants.constants import (
 )
 
 CM_ON_CSF_METHODS = (
-    ("india_ink", "positive microscopy with India Ink"),
-    ("culture", "culture"),
+    ("india_ink", "Positive microscopy with India Ink"),
+    ("culture", "Positive culture"),
     (OTHER, "Other, please specify"),
     (NOT_APPLICABLE, "Not applicable"),
 )
