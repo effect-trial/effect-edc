@@ -72,7 +72,12 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "reaction_to_study_drugs",
                 "on_fluconazole",
                 "contraindicated_meds",
-                "mg_ssx_since_crag",
+                "mg_severe_headache",
+                "mg_headache_nuchal_rigidity",
+                "mg_headache_vomiting",
+                "mg_seizures",
+                "mg_gcs_lt_15",
+                "any_other_mg_ssx",
                 "jaundice",
                 "cm_in_csf",
             ]
@@ -89,10 +94,16 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
-        if self.model_obj.mg_ssx_since_crag not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(
-                mg_ssx_since_crag="Signs of symptomatic meningitis"
-            )
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            if getattr(self.model_obj, mg_ssx) not in [NO, NOT_ANSWERED]:
+                reasons_ineligible.update({mg_ssx: "Signs of symptomatic meningitis"})
         if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(on_fluconazole="On fluconazole")
         if self.model_obj.pregnant == YES:

@@ -202,30 +202,65 @@ class SubjectScreening(
     )
 
     # exclusion
-    mg_ssx_since_crag = models.CharField(
-        verbose_name=(
-            "Has the patient had clinical signs/symptoms of symptomatic "
-            "meningitis at any time since CrAg screening?"
-        ),
+    mg_severe_headache = models.CharField(
+        verbose_name="a progressively severe headache?",
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
     )
 
-    mg_ssx = models.ManyToManyField(
-        SiSxMeningitis,
-        verbose_name="If YES, specify the clinical SSX of symptomatic meningitis?",
-        blank=True,
+    # exclusion
+    mg_headache_nuchal_rigidity = models.CharField(
+        verbose_name="a headache and marked nuchal rigidity?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
     )
 
-    mg_ssx_other = models.TextField(
-        verbose_name="If 'Other' SSX, please specify",
+    # exclusion
+    mg_headache_vomiting = models.CharField(
+        verbose_name="a headache and vomiting?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    mg_seizures = models.CharField(
+        verbose_name="seizures?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    mg_gcs_lt_15 = models.CharField(
+        verbose_name="a Glasgow Coma Scale (GCS) score of <15?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    any_other_mg_ssx = models.CharField(
+        verbose_name="any other clinical symptoms/signs of symptomatic meningitis?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    any_other_mg_ssx_other = models.TextField(
+        verbose_name="If 'YES', specify",
         null=True,
         blank=True,
         help_text="If more than one, please separate each with a comma (,).",
     )
-
     # exclusion
     jaundice = models.CharField(
         verbose_name="Based on clinical examination, does the patient have jaundice?",

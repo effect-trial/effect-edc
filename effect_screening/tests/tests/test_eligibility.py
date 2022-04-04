@@ -7,19 +7,17 @@ from edc_constants.constants import (
     MALE,
     NEG,
     NO,
+    NOT_ANSWERED,
     NOT_APPLICABLE,
-    OTHER,
     PENDING,
     POS,
     YES,
 )
 from edc_utils.date import get_utcnow
 
-from effect_lists.models import SiSxMeningitis
 from effect_screening.eligibility import ScreeningEligibility
 from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
-from effect_subject.constants import HEADACHE
 
 from ...choices import POS_NEG_NOT_ANSWERED
 from ..effect_test_case_mixin import EffectTestCaseMixin
@@ -52,6 +50,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "age_in_years": 25,
             "unsuitable_for_study": NO,
             "unsuitable_agreed": NOT_APPLICABLE,
+            "any_other_mg_ssx_other": "",
         }
 
     @property
@@ -74,8 +73,13 @@ class TestForms(EffectTestCaseMixin, TestCase):
             contraindicated_meds=NO,
             cm_in_csf=NO,
             cm_in_csf_method=NOT_APPLICABLE,
+            mg_severe_headache=NO,
+            mg_headache_nuchal_rigidity=NO,
+            mg_headache_vomiting=NO,
+            mg_seizures=NO,
+            mg_gcs_lt_15=NO,
+            any_other_mg_ssx=NO,
             jaundice=NO,
-            mg_ssx_since_crag=NO,
             on_fluconazole=NO,
             pregnant=NOT_APPLICABLE,
             breast_feeding=NO,
@@ -137,6 +141,42 @@ class TestForms(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
+
+    def test_mg_ssx_ineligible(self):
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            with self.subTest(mg_ssx=mg_ssx):
+                model_obj = SubjectScreening.objects.create(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                setattr(model_obj, mg_ssx, NOT_ANSWERED)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertFalse(obj.is_eligible)
+                self.assertDictEqual(
+                    {"exclusion_criteria": "Incomplete exclusion criteria"},
+                    obj.reasons_ineligible,
+                )
+
+                setattr(model_obj, mg_ssx, YES)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertFalse(obj.is_eligible)
+                self.assertDictEqual(
+                    {mg_ssx: "Signs of symptomatic meningitis"},
+                    obj.reasons_ineligible,
+                )
+
+                setattr(model_obj, mg_ssx, NO)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertTrue(obj.is_eligible)
+                self.assertDictEqual({}, obj.reasons_ineligible)
 
     def test_valid_opts_ok(self):
         form = SubjectScreeningForm(data=self.get_valid_opts())
@@ -431,34 +471,20 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertNotIn("cm_in_csf", obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
-    def test_mg_ssx(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
+    def test_any_other_mg_ssx_other(self):
+        opts = self.get_valid_opts()
+        opts.update(any_other_mg_ssx=YES, any_other_mg_ssx_other="")
+
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("any_other_mg_ssx_other", form._errors)
+        self.assertDictEqual(
+            {"any_other_mg_ssx_other": ["This field is required."]}, form._errors
         )
-        opts.update(mg_ssx_since_crag=YES)
+
+        opts.update(any_other_mg_ssx=YES, any_other_mg_ssx_other="Some other sx")
 
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
-        self.assertIn("mg_ssx", form._errors)
-
-        ssx = SiSxMeningitis.objects.filter(name=HEADACHE)
-        opts.update(mg_ssx=ssx)
-
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertNotIn("mg_ssx", form._errors)
-
-        ssx = SiSxMeningitis.objects.filter(name=OTHER)
-        opts.update(mg_ssx=ssx)
-
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertIn("mg_ssx_other", form._errors)
-
-        opts.update(mg_ssx_other="blah blah")
-
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertNotIn("mg_ssx_other", form._errors)
+        self.assertNotIn("any_other_mg_ssx_other", form._errors)
+        self.assertDictEqual({}, form._errors)
