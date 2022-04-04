@@ -120,7 +120,5 @@ class ScreeningEligibility(BaseScreeningEligibility):
             "any_other_mg_ssx",
         ]:
             if getattr(self.model_obj, mg_ssx, None) not in [NO, NOT_ANSWERED]:
-                reasons_ineligible.update(
-                    {mg_ssx: f"Signs of symptomatic meningitis {mg_ssx}"}
-                )
+                reasons_ineligible.update({mg_ssx: "Signs of symptomatic meningitis"})
         return reasons_ineligible
