@@ -326,7 +326,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
                 self.assertDictEqual(
                     {
                         "serum_crag_value": [
-                            "Invalid. Subject must have positive serum/plasma CrAg test result."
+                            "Invalid. "
+                            "Subject must have positive serum/plasma CrAg test result."
                         ]
                     },
                     form._errors,
