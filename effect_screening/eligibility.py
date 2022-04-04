@@ -94,16 +94,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
         if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(jaundice="Jaundice")
-        for mg_ssx in [
-            "mg_severe_headache",
-            "mg_headache_nuchal_rigidity",
-            "mg_headache_vomiting",
-            "mg_seizures",
-            "mg_gcs_lt_15",
-            "any_other_mg_ssx",
-        ]:
-            if getattr(self.model_obj, mg_ssx) not in [NO, NOT_ANSWERED]:
-                reasons_ineligible.update({mg_ssx: "Signs of symptomatic meningitis"})
         if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
             reasons_ineligible.update(on_fluconazole="On fluconazole")
         if self.model_obj.pregnant == YES:
@@ -116,4 +106,21 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(
                 reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
             )
+        reasons_ineligible = self.review_mg_ssx(reasons_ineligible)
+        return reasons_ineligible
+
+    def review_mg_ssx(self, reasons_ineligible: dict) -> dict:
+        """Exclusion for clinical symptoms/signs of symptomatic meningitis."""
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            if getattr(self.model_obj, mg_ssx, None) not in [NO, NOT_ANSWERED]:
+                reasons_ineligible.update(
+                    {mg_ssx: f"Signs of symptomatic meningitis {mg_ssx}"}
+                )
         return reasons_ineligible
