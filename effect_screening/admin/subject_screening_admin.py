@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
+from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
@@ -95,24 +96,23 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
-            "Jaundice and Meningitis SSX ",
+            "Clinical symptoms/signs of symptomatic meningitis",
             {
-                # "description": format_html(
-                #     "<div><H3>Note: for signs of meningitis below, consider, for example: "
-                #     "<BR> * a progressively severe headache OR;"
-                #     "<BR> * a headache and marked nuchal rigidity OR;"
-                #     "<BR> * a headache and vomiting OR;"
-                #     "<BR> * seizures OR;"
-                #     "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
-                # ),
+                "description": format_html(
+                    "<h3>At any time since CrAg screening, has the patient experienced:</h3>"
+                ),
                 "fields": (
-                    "jaundice",
-                    "mg_ssx_since_crag",
-                    "mg_ssx",
-                    "mg_ssx_other",
+                    "mg_severe_headache",
+                    "mg_headache_nuchal_rigidity",
+                    "mg_headache_vomiting",
+                    "mg_seizures",
+                    "mg_gcs_lt_15",
+                    "any_other_mg_ssx",
+                    "any_other_mg_ssx_other",
                 ),
             },
         ],
+        ["Jaundice", {"fields": ("jaundice",)}],
         [
             "Pregnancy",
             {
@@ -152,20 +152,25 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     )
 
     radio_fields = {
-        "consent_ability": admin.VERTICAL,
-        "contraindicated_meds": admin.VERTICAL,
+        "any_other_mg_ssx": admin.VERTICAL,
+        "breast_feeding": admin.VERTICAL,
         "cm_in_csf": admin.VERTICAL,
         "cm_in_csf_method": admin.VERTICAL,
+        "consent_ability": admin.VERTICAL,
+        "contraindicated_meds": admin.VERTICAL,
         "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,
         "jaundice": admin.VERTICAL,
         "lp_declined": admin.VERTICAL,
         "lp_done": admin.VERTICAL,
-        "mg_ssx_since_crag": admin.VERTICAL,
+        "mg_gcs_lt_15": admin.VERTICAL,
+        "mg_headache_nuchal_rigidity": admin.VERTICAL,
+        "mg_headache_vomiting": admin.VERTICAL,
+        "mg_seizures": admin.VERTICAL,
+        "mg_severe_headache": admin.VERTICAL,
         "on_fluconazole": admin.VERTICAL,
         "pregnant": admin.VERTICAL,
-        "breast_feeding": admin.VERTICAL,
         "prior_cm_epidose": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,
         "serum_crag_value": admin.VERTICAL,
@@ -209,8 +214,6 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "consented",
         "refused",
     ]
-
-    filter_horizontal = ["mg_ssx"]
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}

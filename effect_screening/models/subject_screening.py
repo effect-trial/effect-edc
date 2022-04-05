@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
@@ -74,7 +74,7 @@ class SubjectScreening(
 
     cd4_value = models.IntegerField(
         verbose_name="Most recent CD4 count",
-        validators=[MinValueValidator(0)],
+        validators=[MinValueValidator(0), MaxValueValidator(99)],
         null=True,
         blank=False,
         help_text=f"Eligible if CD4 count <100 {CELLS_PER_MICROLITER}",
@@ -179,14 +179,14 @@ class SubjectScreening(
     # exclusion
     on_fluconazole = models.CharField(
         verbose_name=(
-            "Has the patient taken 7 or more doses of high-dose fluconazole "
-            "treatment in the last 7 days?"
+            # As per '01_Screening Form_110821_V0.5.pdf' / 'EFFECT Protocol V1.2 7July 2021'
+            "Is the patient already taking high-dose fluconazole treatment "
+            "(800-1200 mg/day) for ≥1 week?"
         ),
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
-        help_text="fluconazole @ (800-1200 mg/day)",
     )
 
     # exclusion
@@ -202,30 +202,65 @@ class SubjectScreening(
     )
 
     # exclusion
-    mg_ssx_since_crag = models.CharField(
-        verbose_name=(
-            "Has the patient had clinical signs/symptoms of symptomatic "
-            "meningitis at any time since CrAg screening?"
-        ),
+    mg_severe_headache = models.CharField(
+        verbose_name="a progressively severe headache?",
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
     )
 
-    mg_ssx = models.ManyToManyField(
-        SiSxMeningitis,
-        verbose_name="If YES, specify the clinical SSX of symptomatic meningitis?",
-        blank=True,
+    # exclusion
+    mg_headache_nuchal_rigidity = models.CharField(
+        verbose_name="a headache and marked nuchal rigidity?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
     )
 
-    mg_ssx_other = models.TextField(
-        verbose_name="If 'Other' SSX, please specify",
+    # exclusion
+    mg_headache_vomiting = models.CharField(
+        verbose_name="a headache and vomiting?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    mg_seizures = models.CharField(
+        verbose_name="seizures?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    mg_gcs_lt_15 = models.CharField(
+        verbose_name="a Glasgow Coma Scale (GCS) score of <15?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    # exclusion
+    any_other_mg_ssx = models.CharField(
+        verbose_name="any other clinical symptoms/signs of symptomatic meningitis?",
+        max_length=25,
+        choices=YES_NO_NOT_ANSWERED,
+        default=NOT_ANSWERED,
+        blank=False,
+    )
+
+    any_other_mg_ssx_other = models.TextField(
+        verbose_name="If 'YES', specify",
         null=True,
         blank=True,
         help_text="If more than one, please separate each with a comma (,).",
     )
-
     # exclusion
     jaundice = models.CharField(
         verbose_name="Based on clinical examination, does the patient have jaundice?",

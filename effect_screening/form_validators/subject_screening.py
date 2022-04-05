@@ -12,7 +12,7 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_serum_crag()
         self.validate_lp_and_csf_crag()
         self.validate_cm_in_csf()
-        self.validate_ssx()
+        self.validate_mg_ssx()
         self.validate_pregnancy()
         self.required_if(
             YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
@@ -42,9 +42,21 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 )
 
     def validate_serum_crag(self):
-        """Assert serum CrAg date is not before CD4 date and
-        is within 21 days of CD4.
+        """Assert serum CrAg date is:
+        - positive
+        - not before CD4 date
+        - within 21 days of CD4
+        - within 14 days of report
         """
+        if self.cleaned_data.get("serum_crag_value") != POS:
+            raise forms.ValidationError(
+                {
+                    "serum_crag_value": (
+                        "Invalid. Subject must have positive serum/plasma CrAg test result."
+                    )
+                }
+            )
+
         self.required_if(
             POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
         )
@@ -72,6 +84,17 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                         "serum_crag_date": (
                             "Invalid. Must have been performed within 21 days "
                             f"of CD4. Got {days}."
+                        )
+                    }
+                )
+            if (
+                self.cleaned_data.get("report_datetime").date()
+                - self.cleaned_data.get("serum_crag_date")
+            ).days > 14:
+                raise forms.ValidationError(
+                    {
+                        "serum_crag_date": (
+                            "Invalid. Cannot be more than 14 days before the report date"
                         )
                     }
                 )
@@ -149,6 +172,9 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 {"age_in_years": "Invalid. Subject must be 18 years or older"}
             )
 
-    def validate_ssx(self):
-        self.m2m_required_if(YES, field="mg_ssx_since_crag", m2m_field="mg_ssx")
-        self.m2m_other_specify(m2m_field="mg_ssx", field_other="mg_ssx_other")
+    def validate_mg_ssx(self):
+        self.validate_other_specify(
+            field="any_other_mg_ssx",
+            other_specify_field="any_other_mg_ssx_other",
+            other_stored_value=YES,
+        )

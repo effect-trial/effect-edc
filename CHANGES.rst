@@ -5,10 +5,16 @@ Changes
 ------------
 - rename Microbiology CRF to TB Diagnostics
 - changes to Screening
+    - validate/prevent saving if CD4 count not < 100
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’
-    - remove IND as option for CrAg results
+    - Serum CrAg
+        - validate/prevent saving if serum CrAg result not positive
+        - remove IND as option for CrAg results
+        - validate/prevent saving if serum CrAg date not within last 14 days
     - change to 'Was CM confirmed in CSF by any other method? etc' and add list of methods
-    - add more detail to capture meningitis SSX
+    - explicitly ask about/exclude protocol listed clinical symptoms/signs of symptomatic meningitis
+      (i.e. a progressively severe headache, a headache and marked nuchal rigidity,
+      a headache and vomiting, seizures, a Glasgow Coma Scale (GCS) score of <15)
     - separate pregnancy / breast feeding questions to be like ambition, add preg date
 - changes to Follow-up (formerly Clinical Assessment) form:
     - rename/standardise 'Clinical Assessment' to be 'Follow-up' throughout
