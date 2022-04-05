@@ -85,7 +85,7 @@ class TestVisitSchedule(TestCase):
             "effect_subject.healtheconomics",
             "effect_subject.histopathology",
             "effect_subject.lpcsf",
-            "effect_subject.microbiology",
+            "effect_subject.tbdiagnostics",
         ]
         expected = {
             "1000": [
@@ -99,7 +99,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.chestxray",
                 "effect_subject.bloodresultsfbc",
                 "effect_subject.lpcsf",
-                "effect_subject.microbiology",
+                "effect_subject.tbdiagnostics",
                 "effect_subject.healtheconomics",
                 "effect_subject.clinicalnote",
             ],
