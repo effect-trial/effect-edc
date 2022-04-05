@@ -3,6 +3,7 @@ Changes
 
 [unreleased]
 ------------
+- rename Microbiology CRF to TB Diagnostics
 - changes to Screening
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’
     - remove IND as option for CrAg results
