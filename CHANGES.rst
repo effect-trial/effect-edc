@@ -3,6 +3,7 @@ Changes
 
 [unreleased]
 ------------
+- rename Microbiology CRF to TB Diagnostics
 - changes to Screening
     - validate/prevent saving if CD4 count not < 100
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’

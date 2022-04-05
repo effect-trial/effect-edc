@@ -12,10 +12,10 @@ from edc_microbiology.form_validators import (
     UrinaryLamFormValidatorMixin,
 )
 
-from ..models import Microbiology
+from ..models import TbDiagnostics
 
 
-class MicrobiologyFormValidator(
+class TbDiagnosticsFormValidator(
     StudyDayFormValidatorMixin,
     UrinaryLamFormValidatorMixin,
     SputumGenexpertFormValidatorMixin,
@@ -76,9 +76,9 @@ class MicrobiologyFormValidator(
         return super().validate_sputum_genexpert()
 
 
-class MicrobiologyForm(CrfModelFormMixin, forms.ModelForm):
-    form_validator_cls = MicrobiologyFormValidator
+class TbDiagnosticsForm(CrfModelFormMixin, forms.ModelForm):
+    form_validator_cls = TbDiagnosticsFormValidator
 
     class Meta:
-        model = Microbiology
+        model = TbDiagnostics
         fields = "__all__"

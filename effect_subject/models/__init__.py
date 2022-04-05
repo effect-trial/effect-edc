@@ -13,7 +13,6 @@ from .lp_csf import LpCsf
 from .medical_history import MedicalHistory
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
-from .microbiology import Microbiology
 from .patient_history import PatientHistory
 from .patient_treatment import PatientTreatment
 from .patient_treatment_day14 import PatientTreatmentDay14
@@ -27,4 +26,5 @@ from .signs_and_symptoms import SignsAndSymptoms
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .subject_visit_missed import SubjectVisitMissed
+from .tb_diagnostics import TbDiagnostics
 from .vital_signs import VitalSigns

@@ -1,7 +1,11 @@
-from edc_lab_panel.panels import fbc_panel, lft_panel, rft_panel, sputum_panel
+from edc_lab_panel.panels import lft_panel, rft_panel, sputum_panel
 from edc_visit_schedule import FormsCollection, Requisition
 
-from effect_labs.lab_profiles import blood_culture_panel, histopathology_panel
+from effect_labs.lab_profiles import (
+    blood_culture_panel,
+    fbc_panel,
+    histopathology_panel,
+)
 from effect_labs.panels import csf_culture_panel
 from effect_visit_schedule.constants import DAY01, DAY14
 
@@ -26,6 +30,7 @@ requisitions_unscheduled = FormsCollection(
     name="requisitions_unscheduled",
 )
 
+# TODO: merge RFT and LFT and add as required to DAY 1
 requisitions_d01 = FormsCollection(
     Requisition(show_order=30, panel=fbc_panel, required=True, additional=False),
     Requisition(
