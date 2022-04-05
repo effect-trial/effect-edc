@@ -179,14 +179,14 @@ class SubjectScreening(
     # exclusion
     on_fluconazole = models.CharField(
         verbose_name=(
-            "Has the patient taken 7 or more doses of high-dose fluconazole "
-            "treatment in the last 7 days?"
+            # As per '01_Screening Form_110821_V0.5.pdf' / 'EFFECT Protocol V1.2 7July 2021'
+            "Is the patient already taking high-dose fluconazole treatment "
+            "(800-1200 mg/day) for ≥1 week?"
         ),
         max_length=25,
         choices=YES_NO_NOT_ANSWERED,
         default=NOT_ANSWERED,
         blank=False,
-        help_text="fluconazole @ (800-1200 mg/day)",
     )
 
     # exclusion
