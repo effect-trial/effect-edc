@@ -362,6 +362,23 @@ class TestForms(EffectTestCaseMixin, TestCase):
             form._errors,
         )
 
+    def test_serum_crag_date_required(self):
+        opts = self.get_valid_opts()
+        opts.update(serum_crag_date="")
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("serum_crag_date", form._errors)
+        self.assertDictEqual(
+            {"serum_crag_date": ["This field is required."]},
+            form._errors,
+        )
+
+        opts.update(serum_crag_date=opts.get("lp_date"))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("serum_crag_date", form._errors)
+        self.assertDictEqual({}, form._errors)
+
     def test_serum_crag_date_within_14_days(self):
         opts = self.get_valid_opts()
         report_datetime = opts.get("report_datetime")

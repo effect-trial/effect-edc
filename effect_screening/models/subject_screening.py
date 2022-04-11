@@ -114,7 +114,7 @@ class SubjectScreening(
         verbose_name="Date of serum/plasma CrAg result",
         validators=[date_not_future],
         null=True,
-        blank=True,
+        blank=False,
         help_text="Test must have been performed within the last 14 days",
     )
 
