@@ -56,7 +56,7 @@ def get_eligible_options():
         on_fluconazole=NO,
         pregnant=NOT_APPLICABLE,
         breast_feeding=NOT_APPLICABLE,
-        prior_cm_epidose=NO,
+        prior_cm_episode=NO,
         reaction_to_study_drugs=NO,
     )
 

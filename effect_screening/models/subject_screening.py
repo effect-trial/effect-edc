@@ -153,7 +153,7 @@ class SubjectScreening(
         ),
     )
 
-    prior_cm_epidose = models.CharField(
+    prior_cm_episode = models.CharField(
         verbose_name="Has the patient had a prior episode of CM?",
         max_length=25,
         choices=YES_NO,
