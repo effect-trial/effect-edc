@@ -101,7 +101,7 @@ class SubjectScreening(
 
     # ineligible if YES
     breast_feeding = models.CharField(
-        verbose_name="Is the patient breasfeeding?",
+        verbose_name="Is the patient breastfeeding?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
