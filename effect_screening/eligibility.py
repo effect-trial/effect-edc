@@ -68,7 +68,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             for attr in [
                 "pregnant",
                 "breast_feeding",
-                "prior_cm_epidose",
+                "prior_cm_episode",
                 "reaction_to_study_drugs",
                 "on_fluconazole",
                 "contraindicated_meds",
@@ -100,8 +100,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(pregnant="Pregnant")
         if self.model_obj.breast_feeding == YES:
             reasons_ineligible.update(breast_feeding="Breastfeeding")
-        if self.model_obj.prior_cm_epidose == YES:
-            reasons_ineligible.update(prior_cm_epidose="Prior episode of CM")
+        if self.model_obj.prior_cm_episode == YES:
+            reasons_ineligible.update(prior_cm_episode="Prior episode of CM")
         if self.model_obj.reaction_to_study_drugs == YES:
             reasons_ineligible.update(
                 reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
