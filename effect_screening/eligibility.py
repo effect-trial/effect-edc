@@ -99,7 +99,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
         if self.model_obj.pregnant == YES:
             reasons_ineligible.update(pregnant="Pregnant")
         if self.model_obj.breast_feeding == YES:
-            reasons_ineligible.update(breast_feeding="Breast feeding")
+            reasons_ineligible.update(breast_feeding="Breastfeeding")
         if self.model_obj.prior_cm_epidose == YES:
             reasons_ineligible.update(prior_cm_epidose="Prior episode of CM")
         if self.model_obj.reaction_to_study_drugs == YES:

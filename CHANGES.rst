@@ -15,7 +15,7 @@ Changes
     - explicitly ask about/exclude protocol listed clinical symptoms/signs of symptomatic meningitis
       (i.e. a progressively severe headache, a headache and marked nuchal rigidity,
       a headache and vomiting, seizures, a Glasgow Coma Scale (GCS) score of <15)
-    - separate pregnancy / breast feeding questions to be like ambition, add preg date
+    - separate pregnancy / breastfeeding questions to be like ambition, add preg date
 - changes to Follow-up (formerly Clinical Assessment) form:
     - rename/standardise 'Clinical Assessment' to be 'Follow-up' throughout
     - add "Other" choice/"Other, please specify..." field to Q3 (Was this a telephone follow up or an in person visit?)
