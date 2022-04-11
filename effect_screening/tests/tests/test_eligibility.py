@@ -7,7 +7,6 @@ from edc_constants.constants import (
     MALE,
     NEG,
     NO,
-    NOT_ANSWERED,
     NOT_APPLICABLE,
     PENDING,
     POS,
@@ -19,10 +18,10 @@ from effect_screening.eligibility import ScreeningEligibility
 from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
 
-from ...choices import POS_NEG_NOT_ANSWERED
 from ..effect_test_case_mixin import EffectTestCaseMixin
 
 
+@tag("elig")
 class TestForms(EffectTestCaseMixin, TestCase):
     ELIGIBLE_CD4_VALUE = 99
 
@@ -157,14 +156,6 @@ class TestForms(EffectTestCaseMixin, TestCase):
                     **self.exclusion_criteria,
                     **self.get_basic_opts(),
                 )
-                setattr(model_obj, mg_ssx, NOT_ANSWERED)
-                obj = ScreeningEligibility(model_obj=model_obj)
-                self.assertFalse(obj.is_eligible)
-                self.assertDictEqual(
-                    {"exclusion_criteria": "Incomplete exclusion criteria"},
-                    obj.reasons_ineligible,
-                )
-
                 setattr(model_obj, mg_ssx, YES)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertFalse(obj.is_eligible)
@@ -355,23 +346,38 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertNotIn("cd4_date", form._errors)
         self.assertDictEqual({}, form._errors)
 
-    def test_crag_not_positive_raises_validation_error(self):
+    def test_serum_crag_negative_raises_validation_error(self):
         opts = self.get_valid_opts()
-        for choice in [c[0] for c in POS_NEG_NOT_ANSWERED if c[0] != POS]:
-            with self.subTest(serum_crag_value=choice):
-                opts.update(serum_crag_value=choice)
-                form = SubjectScreeningForm(data=opts)
-                form.is_valid()
-                self.assertIn("serum_crag_value", form._errors)
-                self.assertDictEqual(
-                    {
-                        "serum_crag_value": [
-                            "Invalid. "
-                            "Subject must have positive serum/plasma CrAg test result."
-                        ]
-                    },
-                    form._errors,
-                )
+        opts.update(serum_crag_value=NEG)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("serum_crag_value", form._errors)
+        self.assertDictEqual(
+            {
+                "serum_crag_value": [
+                    "Invalid. "
+                    "Subject must have positive serum/plasma CrAg test result."
+                ]
+            },
+            form._errors,
+        )
+
+    def test_serum_crag_date_required(self):
+        opts = self.get_valid_opts()
+        opts.update(serum_crag_date="")
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("serum_crag_date", form._errors)
+        self.assertDictEqual(
+            {"serum_crag_date": ["This field is required."]},
+            form._errors,
+        )
+
+        opts.update(serum_crag_date=opts.get("lp_date"))
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("serum_crag_date", form._errors)
+        self.assertDictEqual({}, form._errors)
 
     def test_serum_crag_date_within_14_days(self):
         opts = self.get_valid_opts()

@@ -1,6 +1,6 @@
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
-from edc_constants.constants import FEMALE, IND, MALE, NEG, NO, OTHER, PENDING, POS, YES
+from edc_constants.constants import FEMALE, MALE, NO, OTHER, PENDING, POS, YES
 from edc_form_validators import FormValidator
 
 
@@ -57,10 +57,6 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 }
             )
 
-        self.required_if(
-            POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
-        )
-
         if self.cleaned_data.get("serum_crag_date") and self.cleaned_data.get(
             "cd4_date"
         ):
@@ -102,9 +98,14 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
     def validate_lp_and_csf_crag(self):
         self.required_if(YES, field="lp_done", field_required="lp_date")
 
-        if self.cleaned_data.get("lp_date") and self.cleaned_data.get(
-            "lp_date"
-        ) < self.cleaned_data.get("serum_crag_date"):
+        if (
+            self.cleaned_data.get("lp_date")
+            and self.cleaned_data.get("serum_crag_date")
+            and (
+                self.cleaned_data.get("lp_date")
+                < self.cleaned_data.get("serum_crag_date")
+            )
+        ):
             raise forms.ValidationError(
                 {"lp_date": "Invalid. Cannot be before serum CrAg date"}
             )
