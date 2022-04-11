@@ -37,7 +37,6 @@ class SubjectConsentAdmin(
                     "witness_name",
                     "consent_datetime",
                     "dob",
-                    "guardian_name",
                     "is_dob_estimated",
                     "identity",
                     "identity_type",
