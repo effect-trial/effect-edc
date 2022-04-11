@@ -7,6 +7,7 @@ Changes
 - changes to Consent form:
     - remove "Guardian name" field (#346)
 - changes to Screening:
+    - move "willing to participate?" and "capacity to provide informed consent?" towards bottom of form (#339, #340)
     - remove all "Not answered" responses (#341, #342)
     - validate/prevent saving if CD4 count not < 100 (#345)
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’

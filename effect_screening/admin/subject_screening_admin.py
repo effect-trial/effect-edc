@@ -37,8 +37,6 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                 "fields": (
                     "screening_identifier",
                     "report_datetime",
-                    "willing_to_participate",
-                    "consent_ability",
                 ),
             },
         ],
@@ -120,6 +118,15 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                     "pregnant",
                     "preg_test_date",
                     "breast_feeding",
+                ),
+            },
+        ],
+        [
+            "Additional Criteria",
+            {
+                "fields": (
+                    "willing_to_participate",
+                    "consent_ability",
                 ),
             },
         ],
