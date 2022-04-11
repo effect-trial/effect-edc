@@ -4,7 +4,9 @@ Changes
 [unreleased]
 ------------
 - rename Microbiology CRF to TB Diagnostics
-- changes to Screening
+- changes to Consent form:
+    - remove "Guardian name" field (#346)
+- changes to Screening:
     - remove all "Not answered" responses (#341, #342)
     - validate/prevent saving if CD4 count not < 100 (#345)
     - update verbose_name to ‘Is the patient CONFIRMED HIV sero-positive’
