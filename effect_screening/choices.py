@@ -2,7 +2,6 @@ from edc_constants.constants import (
     IND,
     NEG,
     NO,
-    NOT_ANSWERED,
     NOT_APPLICABLE,
     NOT_TESTED,
     OTHER,
@@ -27,18 +26,9 @@ REFUSAL_REASONS = (
     (OTHER, "Other, please specify"),
 )
 
-
-POS_NEG_NOT_ANSWERED = (
+POS_NEG = (
     (POS, "Positive"),
     (NEG, "Negative"),
-    (NOT_ANSWERED, "Not answered"),
-)
-
-POS_NEG_IND_NOT_ANSWERED = (
-    (POS, "Positive"),
-    (NEG, "Negative"),
-    (IND, "Indeterminate"),
-    (NOT_ANSWERED, "Not answered"),
 )
 
 POS_NEG_PENDING_NA = (
@@ -54,34 +44,6 @@ POS_NEG_IND_PENDING_NA = (
     (IND, "Indeterminate"),
     (PENDING, "Pending"),
     (NOT_APPLICABLE, "Not applicable"),
-)
-
-
-YES_NO_NOT_ANSWERED = (
-    (YES, YES),
-    (NO, NO),
-    (NOT_ANSWERED, "Not answered"),
-)
-
-YES_NO_NA_NOT_ANSWERED = (
-    (YES, YES),
-    (NO, NO),
-    (NOT_APPLICABLE, "Not applicable"),
-    (NOT_ANSWERED, "Not answered"),
-)
-
-LP_NOT_DONE_YES_NO_NOT_ANSWERED_NA = (
-    (YES, YES),
-    (NO, NO),
-    (NOT_APPLICABLE, "Not applicable, LP not done"),
-    (NOT_ANSWERED, "Not answered"),
-)
-
-LP_DONE_YES_NO_NOT_ANSWERED_NA = (
-    (YES, YES),
-    (NO, NO),
-    (NOT_APPLICABLE, "Not applicable, LP done"),
-    (NOT_ANSWERED, "Not answered"),
 )
 
 CSF_YES_NO_PENDING_NA = (
