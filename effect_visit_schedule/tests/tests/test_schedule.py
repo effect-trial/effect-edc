@@ -97,6 +97,8 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.bloodresultsfbc",
+                "effect_subject.bloodresultsrft",
+                "effect_subject.bloodresultslft",
                 # "effect_subject.chestxray",
                 # "effect_subject.lpcsf",
                 # "effect_subject.tbdiagnostics",

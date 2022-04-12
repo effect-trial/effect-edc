@@ -58,6 +58,8 @@ crfs_d01 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
+    Crf(show_order=120, model="effect_subject.bloodresultsrft"),
+    Crf(show_order=140, model="effect_subject.bloodresultslft"),
     # TODO: Ask "Was xxx performed, and configure metadata rule to include CRF if it has
     # Crf(show_order=160, model="effect_subject.chestxray", required=False),
     # Crf(show_order=170, model="effect_subject.lpcsf", required=False),
