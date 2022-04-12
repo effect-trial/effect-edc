@@ -3,6 +3,9 @@ Changes
 
 [unreleased]
 ------------
+- changes to Visit Schedule:
+    - Unscheduled:
+        - Add Health Economics CRF to be included for all unscheduled visits
 - rename Microbiology CRF to TB Diagnostics
 - changes to Consent form:
     - remove "Guardian name" field (#346)

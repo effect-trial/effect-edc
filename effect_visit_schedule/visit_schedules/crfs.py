@@ -27,6 +27,7 @@ crfs_unscheduled = FormsCollection(
     Crf(show_order=20, model="effect_subject.signsandsymptoms"),
     Crf(show_order=30, model="effect_subject.mentalstatus"),
     Crf(show_order=50, model="effect_subject.diagnoses"),
+    Crf(show_order=400, model="effect_subject.healtheconomics"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     name="unscheduled",
 )
