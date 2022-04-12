@@ -90,19 +90,19 @@ class TestVisitSchedule(TestCase):
         ]
         expected = {
             "1000": [
-                "effect_subject.adherencestageone",
-                "effect_subject.signsandsymptoms",
-                "effect_subject.mentalstatus",
                 "effect_subject.medicalhistory",
-                "effect_subject.patienthistory",
                 "effect_subject.arvhistory",
+                "effect_subject.patienthistory",
                 "effect_subject.vitalsigns",
+                "effect_subject.mentalstatus",
+                "effect_subject.signsandsymptoms",
                 "effect_subject.bloodresultsfbc",
                 # "effect_subject.chestxray",
                 # "effect_subject.lpcsf",
                 # "effect_subject.tbdiagnostics",
                 "effect_subject.healtheconomics",
                 "effect_subject.clinicalnote",
+                "effect_subject.adherencestageone",
             ],
             "1003": [
                 "effect_subject.adherencestagetwo",

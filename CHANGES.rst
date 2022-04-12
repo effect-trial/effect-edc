@@ -5,6 +5,7 @@ Changes
 ------------
 - changes to Visit Schedule:
     - D1
+        - Re-order baseline forms
         - Move X-ray, LP CSF & Microbiology (TB Diagnostics) to PRN forms
     - Unscheduled:
         - Add Health Economics CRF to be included for all unscheduled visits
