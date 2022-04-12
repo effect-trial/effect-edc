@@ -115,6 +115,33 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         help_text=IF_YES_COMPLETE_SAE,
     )
 
+    xray_performed = models.CharField(
+        verbose_name="Was an X-ray performed?",
+        max_length=15,
+        choices=YES_NO_NA,
+        # TODO: expect NA if telephone or not in person
+        default=NOT_APPLICABLE,
+        help_text="If yes, complete 'Chest X-ray' CRF.",
+    )
+
+    lp_performed = models.CharField(
+        verbose_name="Was a lumbar puncture performed?",
+        max_length=15,
+        choices=YES_NO_NA,
+        # TODO: expect NA if telephone or not in person
+        default=NOT_APPLICABLE,
+        help_text="If yes, complete 'Lumbar Puncture/CSF' CRF.",
+    )
+
+    urinary_lam_performed = models.CharField(
+        verbose_name="Was a urinary LAM performed?",
+        max_length=15,
+        choices=YES_NO_NA,
+        # TODO: expect NA if telephone or not in person
+        default=NOT_APPLICABLE,
+        help_text="If yes, complete 'TB Diagnostics' CRF.",
+    )
+
     cm_sx_lp_done = models.CharField(
         verbose_name="If the patient has CM signs or symptoms, was an LP done?",
         max_length=15,
