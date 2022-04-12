@@ -4,6 +4,8 @@ Changes
 [unreleased]
 ------------
 - changes to Visit Schedule:
+    - D1
+        - Move X-ray, LP CSF & Microbiology (TB Diagnostics) to PRN forms
     - Unscheduled:
         - Add Health Economics CRF to be included for all unscheduled visits
 - rename Microbiology CRF to TB Diagnostics
