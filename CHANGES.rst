@@ -3,6 +3,7 @@ Changes
 
 [unreleased]
 ------------
+- remove MCV, MCH, MCHC and HCT from Full Blood Count CRF
 - changes to Patient Treatment D14:
     - make fluconazole prescription questions consistent with Patient History CRF
     - update "800mg as per protocol" to "1200 mg/d (as per protocol)"

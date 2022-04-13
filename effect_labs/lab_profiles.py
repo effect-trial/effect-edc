@@ -39,7 +39,6 @@ fbc_panel = RequisitionPanel(
     abbreviation="FBC",
     utest_ids=[
         ("haemoglobin", "Haemoglobin"),
-        "hct",
         "rbc",
         "wbc",
         "platelets",
