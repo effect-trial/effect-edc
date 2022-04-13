@@ -3,6 +3,9 @@ Changes
 
 [unreleased]
 ------------
+- changes to Patient Treatment D14:
+    - make fluconazole prescription questions consistent with Patient History CRF
+    - update "800mg as per protocol" to "1200 mg/d (as per protocol)"
 - changes to Visit Schedule:
     - D1
         - Re-order baseline forms
