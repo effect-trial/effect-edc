@@ -4,6 +4,11 @@ Changes
 [unreleased]
 ------------
 - changes to Visit Schedule:
+    - D1
+        - Re-order baseline forms
+        - Move X-ray, LP CSF & Microbiology (TB Diagnostics) to PRN forms
+        - If yes to "Was an Xray/lumbar puncture/urinary LAM performed" on Signs and Symptoms, present relevant CRF
+        - Make renal function and liver function required at baseline
     - Unscheduled:
         - Add Health Economics CRF to be included for all unscheduled visits
 - rename Microbiology CRF to TB Diagnostics
@@ -34,7 +39,7 @@ Changes
     - reorder fields based on feedback
     - convert headache_duration to edc_models.DurationDHField
     - use _sx in field names to be consistent ('current_sx', cm_sx')
-    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other', 'cm_sx_patient_admitted'
+    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'xray_performed', 'lp_performed', 'urinary_lam_performed', 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other', 'cm_sx_patient_admitted'
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
     - add AE_INITIAL_ACTION action item if yes answer to any of: 'reportable_as_ae', 'patient_admitted', or 'cm_sx_patient_admitted'

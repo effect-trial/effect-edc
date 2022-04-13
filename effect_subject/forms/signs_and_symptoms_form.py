@@ -22,6 +22,7 @@ class SignsAndSymptomsFormValidator(ReportingFieldsetFormValidatorMixin, FormVal
     def clean(self) -> None:
         # TODO: Validate that patient can't specify UNKNOWN for
         #  any_sx (e.g. if an in-person or telephone/patient visit)
+        # TODO: Validate xxx_performed NA if telephone or not in person
 
         self.validate_current_sx()
         self.m2m_other_specify(

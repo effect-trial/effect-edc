@@ -46,6 +46,16 @@ class SignsAndSymptomsAdmin(
         ),
         reporting_fieldset_tuple,
         (
+            "Investigations",
+            {
+                "fields": (
+                    "xray_performed",
+                    "lp_performed",
+                    "urinary_lam_performed",
+                )
+            },
+        ),
+        (
             "CM signs and symptoms",
             {
                 "fields": (
@@ -74,6 +84,9 @@ class SignsAndSymptomsAdmin(
         "cm_sx": admin.VERTICAL,
         "cm_sx_lp_done": admin.VERTICAL,
         "cm_sx_patient_admitted": admin.VERTICAL,
+        "lp_performed": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
+        "urinary_lam_performed": admin.VERTICAL,
+        "xray_performed": admin.VERTICAL,
     }
