@@ -123,14 +123,6 @@ list_data = {
         ("steroids", "Steroids, please specify type and dose below ..."),
         (OTHER, "Other medication, please specify below ..."),
     ],
-    "effect_lists.medicinesday14": [
-        ("fluconazole_800_mg_d", "Fluconazole (800 mg/d as per protocol)"),
-        # TODO: ???Is 'Other' a different dose of fluconazole, or a different drug?
-        (
-            "fluconazole_other",
-            "Fluconazole (other dose), please specify dose and reason below...",
-        ),
-    ],
     "effect_lists.offstudyreasons": [
         ("completed_followup", "Patient completed 12 months of follow-up"),
         ("clinical_endpoint", "Patient reached a clinical endpoint"),

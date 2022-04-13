@@ -22,8 +22,9 @@ class PatientTreatmentDay14Admin(CrfModelAdmin):
                     "other_antibiotics_first_2w_other",
                     "other_drugs_first_2w",
                     "other_drugs_first_2w_other",
-                    "prescribed_d14",
-                    "medicines_rx_d14_other",
+                    "fluconazole_rx_d14",
+                    "fluconazole_rx_d14_other",
+                    "fluconazole_rx_d14_other_reason",
                 )
             },
         ),
@@ -33,7 +34,6 @@ class PatientTreatmentDay14Admin(CrfModelAdmin):
     filter_horizontal = [
         "other_antibiotics_first_2w",
         "other_drugs_first_2w",
-        "prescribed_d14",
     ]
 
-    radio_fields = {}
+    radio_fields = {"fluconazole_rx_d14": admin.VERTICAL}

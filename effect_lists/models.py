@@ -37,12 +37,6 @@ class Medication(ListModelMixin):
         verbose_name_plural = "Medication"
 
 
-class MedicinesDay14(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Medicines Prescribed Day 14"
-        verbose_name_plural = "Medicines Prescribed Day 14"
-
-
 class NonAdherenceReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Non-Adherence Reasons"
