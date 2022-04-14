@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO
@@ -35,7 +35,7 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     fluconazole_dose_other = models.IntegerField(
         verbose_name="Other Fluconazole dose (if taken < 1 week prior to randomisation):",
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(1), MaxValueValidator(1199)],
         null=True,
         blank=True,
         help_text="in mg/d",

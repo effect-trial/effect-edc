@@ -1,4 +1,4 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_model import models as edc_models
 
@@ -37,7 +37,7 @@ class PatientTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
     # TODO: Validate _other if fluconazole_rx_d14 == OTHER
     fluconazole_rx_d14_other = models.IntegerField(
         verbose_name="Other Fluconazole dose prescribed:",
-        validators=[MinValueValidator(1)],
+        validators=[MinValueValidator(1), MaxValueValidator(1199)],
         null=True,
         blank=True,
         help_text="in mg/d",
