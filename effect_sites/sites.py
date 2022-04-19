@@ -46,11 +46,11 @@ all_sites = {
         ),
         SingleSite(
             160,
-            "edendale",
+            "harry_gwala",
             title="UKZN: Harry Gwala (Pietermaritzburg)",
             country="south_africa",
             country_code="sa",
-            domain=f"edendale.sa.{fqdn}",
+            domain=f"harry-gwala.sa.{fqdn}",
         ),
         SingleSite(
             170,
