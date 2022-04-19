@@ -121,7 +121,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO_NA,
         # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
-        help_text="If yes, complete 'Chest X-ray' CRF.",
+        help_text="If YES, complete 'Chest X-ray' CRF.",
     )
 
     lp_performed = models.CharField(
@@ -130,7 +130,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO_NA,
         # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
-        help_text="If yes, complete 'Lumbar Puncture/CSF' CRF.",
+        help_text="If YES, complete 'Lumbar Puncture/CSF' CRF.",
     )
 
     urinary_lam_performed = models.CharField(
@@ -139,7 +139,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO_NA,
         # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
-        help_text="If yes, complete 'TB Diagnostics' CRF.",
+        help_text="If YES, complete 'TB Diagnostics' CRF.",
     )
 
     cm_sx_lp_done = models.CharField(
@@ -148,7 +148,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         # TODO: if yes, LP request and LP result
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text="If yes, ...",
+        help_text="If YES, complete 'Lumbar Puncture/CSF' CRF.",
     )
 
     cm_sx_bloods_taken = models.ManyToManyField(

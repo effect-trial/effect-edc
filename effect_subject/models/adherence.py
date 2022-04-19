@@ -44,7 +44,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     fluconazole_doses_missed = models.IntegerField(
-        verbose_name="If 'Yes', number of Fluconazole doses missed since last visit:",
+        verbose_name="If YES, number of Fluconazole doses missed since last visit:",
         help_text="This should be measured in single doses (1 dose per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 1)],
         default=0,
@@ -58,7 +58,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucytosine_doses_missed = models.IntegerField(
-        verbose_name="If 'Yes', number of Flucytosine doses missed since last visit:",
+        verbose_name="If YES, number of Flucytosine doses missed since last visit:",
         help_text="This should be measured in single doses (4 doses per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 4)],
         default=0,

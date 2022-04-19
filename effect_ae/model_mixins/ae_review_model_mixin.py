@@ -75,7 +75,7 @@ class AeReviewModelMixin(models.Model):
         choices=YES_NO,
         blank=False,
         null=True,
-        help_text="If No, explain in the narrative below",
+        help_text="If NO, explain in the narrative below",
     )
 
     narrative = models.TextField(verbose_name="Narrative", blank=True, null=True)

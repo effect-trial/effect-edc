@@ -17,11 +17,11 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
-        help_text="If yes, complete SAE report where appropriate",
+        help_text="If YES, complete SAE report where appropriate",
     )
 
     gi_side_effects_details = models.TextField(
-        verbose_name="If yes, please give details",
+        verbose_name="If YES, please give details",
         null=True,
         blank=True,
     )
