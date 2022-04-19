@@ -1,4 +1,3 @@
-import arrow
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
@@ -20,10 +19,6 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
     study_drugs = ["fluconazole", "flucytosine"]
     study_drug_relationships_choices = [choice[0] for choice in STUDY_DRUG_RELATIONSHIP]
-
-    @staticmethod
-    def get_utcnow_as_date():
-        return arrow.utcnow().date()
 
     def test_date_admitted_required_if_patient_admitted(self):
         cleaned_data = {"patient_admitted": YES, "date_admitted": None}
