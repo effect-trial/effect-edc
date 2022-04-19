@@ -3,6 +3,7 @@ from faker import Faker
 from model_bakery.recipe import Recipe
 
 from .models import (
+    ChestXray,
     Diagnoses,
     MentalStatus,
     PatientTreatment,
@@ -13,6 +14,8 @@ from .models import (
 )
 
 fake = Faker()
+
+chestxray = Recipe(ChestXray)
 
 diagnoses = Recipe(Diagnoses)
 
