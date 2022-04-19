@@ -7,7 +7,7 @@ all_sites = {
         SingleSite(
             110,
             "capetown",
-            title="UCT: Khayelitsha and Mitchell’s Plain",
+            title="UCT: Khayelitsha and Mitchell’s Plain (Cape Town)",
             country="south_africa",
             country_code="sa",
             domain=f"capetown.sa.{fqdn}",
@@ -15,7 +15,7 @@ all_sites = {
         SingleSite(
             120,
             "baragwanath",
-            title="Wits: Chris Hani Baragwanath",
+            title="Wits: Chris Hani Baragwanath (Soweto)",
             country="south_africa",
             country_code="sa",
             domain=f"baragwanath.sa.{fqdn}",
@@ -23,7 +23,7 @@ all_sites = {
         SingleSite(
             130,
             "helen_joseph",
-            title="Wits: Helen Joseph",
+            title="Wits: Helen Joseph (Johannesburg)",
             country="south_africa",
             country_code="sa",
             domain=f"helen-joseph.sa.{fqdn}",
@@ -31,7 +31,7 @@ all_sites = {
         SingleSite(
             140,
             "tshepong",
-            title="Wits: Tshepong",
+            title="Wits: Tshepong (Klerksdorp)",
             country="south_africa",
             country_code="sa",
             domain=f"tshepong.sa.{fqdn}",
@@ -39,7 +39,7 @@ all_sites = {
         SingleSite(
             150,
             "king_edward",
-            title="UKZN: King Edward VIII",
+            title="UKZN: King Edward VIII (Durban)",
             country="south_africa",
             country_code="sa",
             domain=f"king-edward.sa.{fqdn}",
@@ -47,7 +47,7 @@ all_sites = {
         SingleSite(
             160,
             "edendale",
-            title="Edendale Hospital",
+            title="UKZN: Harry Gwala (Pietermaritzburg)",
             country="south_africa",
             country_code="sa",
             domain=f"edendale.sa.{fqdn}",
@@ -55,7 +55,7 @@ all_sites = {
         SingleSite(
             170,
             "livingstone",
-            title="WSU: Livingstone",
+            title="WSU: Livingstone (Gqeberha)",
             country="south_africa",
             country_code="sa",
             domain=f"livingstone.sa.{fqdn}",
@@ -63,7 +63,7 @@ all_sites = {
         SingleSite(
             180,
             "dora_nginza",
-            title="WSU: Dora Nginza",
+            title="WSU: Dora Nginza (Gqeberha)",
             country="south_africa",
             country_code="sa",
             domain=f"dora-nginza.sa.{fqdn}",
