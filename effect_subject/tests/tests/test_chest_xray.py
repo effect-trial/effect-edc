@@ -171,7 +171,9 @@ class TestChestXrayFormValidation(EffectTestCaseMixin, TestCase):
         )
         self.assertFormValidatorError(
             field="chest_xray_results",
-            expected_msg="Invalid combination. 'Normal' may not be combined with other selections",
+            expected_msg=(
+                "Invalid combination. 'Normal' may not be combined with other selections"
+            ),
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
