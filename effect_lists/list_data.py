@@ -1,6 +1,7 @@
 from edc_constants.constants import (
     DEAD,
     NONE,
+    NORMAL,
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
@@ -253,6 +254,7 @@ list_data = {
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.xrayresults": [
+        (NORMAL, "Normal"),
         ("lymphadenopathy", "Lymphadenopathy"),
         ("consolidation", "Consolidation"),
         ("miliary_tb", "Miliary TB"),

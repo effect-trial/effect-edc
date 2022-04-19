@@ -1,5 +1,5 @@
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 from edc_model import models as edc_models
 
 from effect_lists.models import XRayResults
@@ -23,9 +23,11 @@ class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
 
     chest_xray_results = models.ManyToManyField(
         XRayResults,
-        verbose_name="Chest x-ray result",
+        verbose_name="If yes, what were the results?",
         blank=True,
     )
+
+    chest_xray_results_other = edc_models.OtherCharField()
 
     comment = models.TextField(
         verbose_name="Any additional comment", null=True, blank=True
