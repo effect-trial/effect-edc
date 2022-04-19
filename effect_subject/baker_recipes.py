@@ -21,12 +21,12 @@ diagnoses = Recipe(Diagnoses)
 
 mentalstatus = Recipe(MentalStatus)
 
-signsandsymptoms = Recipe(SignsAndSymptoms)
+patienttreatment = Recipe(PatientTreatment)
 
-subjectvisit = Recipe(SubjectVisit, reason=SCHEDULED)
+signsandsymptoms = Recipe(SignsAndSymptoms)
 
 subjectrequisition = Recipe(SubjectRequisition)
 
-patienttreatment = Recipe(PatientTreatment)
+subjectvisit = Recipe(SubjectVisit, reason=SCHEDULED)
 
 vitalsigns = Recipe(VitalSigns)
