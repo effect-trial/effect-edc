@@ -16,14 +16,14 @@ class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     chest_xray_date = models.DateField(
-        verbose_name="If yes, what date was it performed?",
+        verbose_name="If YES, what date was it performed?",
         null=True,
         blank=True,
     )
 
     chest_xray_results = models.ManyToManyField(
         XRayResults,
-        verbose_name="If yes, what were the results?",
+        verbose_name="If YES, what were the results?",
         blank=True,
     )
 

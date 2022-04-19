@@ -239,7 +239,7 @@ class SubjectScreening(
     )
 
     any_other_mg_ssx_other = models.TextField(
-        verbose_name="If 'YES', specify",
+        verbose_name="If YES, specify",
         null=True,
         blank=True,
         help_text="If more than one, please separate each with a comma (,).",
