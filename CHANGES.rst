@@ -3,6 +3,11 @@ Changes
 
 [unreleased]
 ------------
+-changes to Lumbar Puncture/CSF CRF:
+    - remove Q16: QC Requisition
+    - remove Q17: QC Result Report Date and Time
+    - remove Q18: Quantitative culture
+    - remove Q32: CSF CrAg done by IMMY CrAg LFA
 - changes to Chest X-ray CRF:
     - add 'Normal' option to results list
     - add 'chest_xray_results_other' field
