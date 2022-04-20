@@ -16,8 +16,6 @@ class LpCsfFormValidator(BaseLpCsfFormValidator):
 
         self.validate_csf_assessment()
 
-        self.validate_quantitative_culture("qc_requisition")
-
         self.validate_csf_culture("csf_requisition")
 
     def validate_csf_assessment(self: FormValidator):
