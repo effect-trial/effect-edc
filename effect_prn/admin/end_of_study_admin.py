@@ -33,8 +33,26 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                     "offschedule_datetime",
                     "offschedule_reason",
                     "other_offschedule_reason",
-                    "ltfu_date",
-                    "death_date",
+                    "withdrawal_consent_reasons",
+                    "late_exclusion_reasons",
+                    "transferred_consent",
+                    "medication_study_termination",
+                    "other_medication_study_termination",
+                    "diagnoses_since_enrolment",
+                    "diagnoses_datetime",
+                    "diagnoses",
+                    "other_diagnoses",
+                    "missed_doses_5fc",
+                    "no_missed_doses_5fc",
+                    "missed_doses_flu",
+                    "no_missed_doses_flu",
+                    "fluconazole_dose_14days",
+                    "other_fluconazole_dose_14days",
+                    "reasons",
+                    "missed_doses_consolidation_flu",
+                    "no_missed_doses_consolidation_flu",
+                    "fluconazole_consolidation_phase",
+                    "other_fluconazole_consolidation_phase",
                     "comment",
                 )
             },
@@ -53,7 +71,19 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     list_filter = ("offschedule_datetime",)
 
-    radio_fields = {"offschedule_reason": admin.VERTICAL}
+    radio_fields = {
+        "offschedule_reason": admin.VERTICAL,
+        "admitted_for_cm": admin.VERTICAL,
+        "transferred_consent": admin.VERTICAL,
+        "medication_study_termination": admin.VERTICAL,
+        "diagnoses_since_enrolment": admin.VERTICAL,
+        "diagnoses": admin.VERTICAL,
+        "missed_doses_5fc": admin.VERTICAL,
+        "missed_doses_flu": admin.VERTICAL,
+        "fluconazole_dose_14days": admin.VERTICAL,
+        "missed_doses_consolidation_flu": admin.VERTICAL,
+        "fluconazole_consolidation_phase": admin.VERTICAL,
+    }
 
     search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
 

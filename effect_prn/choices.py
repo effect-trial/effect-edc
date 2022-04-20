@@ -46,5 +46,50 @@ ACTION_REQUIRED = (
     ),
 )
 
+MEDICINES = (
+    ("fluconazole_200mg", "Fluconazole (200mg)"),
+    ("rifampicin", "Rifampicin"),
+    ("co_trimaxazole", "co_trimaxazole"),
+    (OTHER, "Other"),
+)
+
+DIAGNOSIS = (
+    ("tuberculosis_pulmonary", "Tuberculosis pulmonary"),
+    ("tuberculosis_extra_pulmonary", "Tuberculosis extra-pulmonary"),
+    ("bacteraemia", "Bacteraemia"),
+    ("bacterial_pneumonia", "Bacterial pneumonia"),
+    ("cryptococcal_meningitis", "Cryptococcal meningitis"),
+    ("kaposis_syndrome", "Kaposi’s syndrome"),
+    ("diarrhoeal_wasting", "Diarrhoeal wasting"),
+    ("malaria", "Malaria"),
+    (OTHER, "Other"),
+)
+
+FLUCONAZOLE_DOSE_14DAYS = (
+    ("800", "800"),
+    ("1200", "1200"),
+    (OTHER, "Other"),
+)
+
+FLUCONAZOLE_DOSE_CONSOLIDATION = (
+    ("200", "200"),
+    (OTHER, "Other"),
+)
+
+STUDY_TERMINATION_REASONS = (
+    ("completed_6month_followup", "Completed 6 month follow-up"),
+    ("Withdrawal of consent", "Withdrawal of consent"),
+    (
+        "Late Exclusion—positive baseline CSF CrAg result",
+        "Late Exclusion—positive baseline CSF CrAg result",
+    ),
+    ("Late exclusion—Other reason", "Late exclusion—Other reason"),
+    (
+        "Care transferred to another institution",
+        "Care transferred to another institution",
+    ),
+    ("Patient Lost to follow up", "Patient Lost to follow up"),
+    ("Patient died", "Patient died"),
+)
 
 REASON_STUDY_TERMINATED = ()
