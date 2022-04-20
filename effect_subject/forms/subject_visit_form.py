@@ -21,6 +21,15 @@ class SubjectVisitFormValidator(VisitFormValidator):
 
     def clean(self):
         super().clean()
+        self.validate_assessment_type()
+
+        self.validate_other_specify(field="assessment_who")
+
+        self.validate_survival_status()
+
+        self.validate_hospitalized()
+
+    def validate_assessment_type(self):
         if (
             self.is_baseline_appointment(self.cleaned_data.get("appointment"))
             and self.cleaned_data.get("assessment_type") == TELEPHONE
@@ -30,18 +39,6 @@ class SubjectVisitFormValidator(VisitFormValidator):
             )
 
         self.validate_other_specify(field="assessment_type")
-
-        self.validate_other_specify(field="assessment_who")
-
-        self.validate_survival_status()
-
-        if (
-            self.is_baseline_appointment(self.cleaned_data.get("appointment"))
-            and self.cleaned_data.get("hospitalized") == YES
-        ):
-            raise forms.ValidationError(
-                {"hospitalized": "Invalid. Expected NO at baseline"}
-            )
 
     def validate_survival_status(self):
         if self.cleaned_data.get("survival_status") != ALIVE:
@@ -61,6 +58,15 @@ class SubjectVisitFormValidator(VisitFormValidator):
 
             if error_msg:
                 raise forms.ValidationError({"survival_status": error_msg})
+
+    def validate_hospitalized(self):
+        if (
+            self.is_baseline_appointment(self.cleaned_data.get("appointment"))
+            and self.cleaned_data.get("hospitalized") == YES
+        ):
+            raise forms.ValidationError(
+                {"hospitalized": "Invalid. Expected NO at baseline"}
+            )
 
 
 class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
