@@ -15,6 +15,5 @@ csf_culture_panel = RequisitionPanel(
         ("csf_protein", "CSF protein"),
         ("csf_crag", "CSF CrAg"),
         ("csf_crag_lfa", "CSF CrAg LFA"),
-        ("csf_crag_immy_lfa", "CSF CrAg IMMY LFA"),
     ],
 )

@@ -24,7 +24,18 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_lp_fieldset(),
         get_csf_fieldset(),
-        get_csf_culture_fieldset(requisition_field="csf_requisition"),
+        (
+            get_csf_culture_fieldset(requisition_field="csf_requisition")[0],
+            {
+                "fields": tuple(
+                    f
+                    for f in get_csf_culture_fieldset(
+                        requisition_field="csf_requisition"
+                    )[1]["fields"]
+                    if f not in {"csf_crag_immy_lfa"}
+                )
+            },
+        ),
         audit_fieldset_tuple,
     )
 
@@ -38,7 +49,6 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
         "csf_culture": admin.VERTICAL,
         "csf_crag": admin.VERTICAL,
         "csf_crag_lfa": admin.VERTICAL,
-        "csf_crag_immy_lfa": admin.VERTICAL,
         "differential_lymphocyte_unit": admin.VERTICAL,
         "differential_neutrophil_unit": admin.VERTICAL,
         "csf_glucose_units": admin.VERTICAL,
