@@ -65,6 +65,8 @@ Changes
     - added 'Hospitalization' section to form/admin
     - reordered 'Cause and relationship to study' form/admin section
 - rename Study Treatment form to Patient Treatment
+    - replace 'admission' with 'enrolment' in 'current_arv_decision' question
+
 - remove:
     - Neurological Symptoms form
     - FocalNeurologicDeficits list model
