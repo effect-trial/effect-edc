@@ -97,5 +97,3 @@ class ProtocolDeviationViolationAction(BaseProtocolDeviationViolationAction):
 site_action_items.register(ProtocolDeviationViolationAction)
 site_action_items.register(EndOfStudyAction)
 site_action_items.register(LossToFollowupAction)
-site_action_items.register(UnblindingRequestAction)
-site_action_items.register(UnblindingReviewAction)

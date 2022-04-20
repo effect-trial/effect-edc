@@ -3,7 +3,8 @@ Changes
 
 [unreleased]
 ------------
--changes to Lumbar Puncture/CSF CRF:
+- remove 'Unblinding request' action linked PRN
+- changes to Lumbar Puncture/CSF CRF:
     - remove Q16: QC Requisition
     - remove Q17: QC Result Report Date and Time
     - remove Q18: Quantitative culture
@@ -66,7 +67,6 @@ Changes
     - reordered 'Cause and relationship to study' form/admin section
 - rename Study Treatment form to Patient Treatment
     - replace 'admission' with 'enrolment' in 'current_arv_decision' question
-
 - remove:
     - Neurological Symptoms form
     - FocalNeurologicDeficits list model
