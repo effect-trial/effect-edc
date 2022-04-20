@@ -4,7 +4,6 @@ from edc_csf.fieldsets import (
     get_csf_culture_fieldset,
     get_csf_fieldset,
     get_lp_fieldset,
-    get_quantitative_culture_fieldset,
 )
 from edc_csf.modeladmin_mixins import LpCsfModelAdminMixin
 
@@ -19,13 +18,12 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
 
     form = LpCsfForm
 
-    autocomplete_fields = ["qc_requisition", "csf_requisition"]
+    autocomplete_fields = ["csf_requisition"]
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_lp_fieldset(),
         get_csf_fieldset(),
-        get_quantitative_culture_fieldset(requisition_field="qc_requisition"),
         get_csf_culture_fieldset(requisition_field="csf_requisition"),
         audit_fieldset_tuple,
     )
