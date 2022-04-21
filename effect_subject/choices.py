@@ -29,6 +29,7 @@ from .constants import (
     NEXT_OF_KIN,
     OUTPATIENT_CARDS,
     PATIENT,
+    PATIENT_REPRESENTATIVE,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
     TELEPHONE,
@@ -160,7 +161,7 @@ GRADE34_CHOICES = (
 INFO_SOURCE = (
     (PATIENT, "Patient"),
     (
-        "patient_representative",
+        PATIENT_REPRESENTATIVE,
         "Patient representative (e.g., next of kin, relative, guardian)",
     ),
     (HOSPITAL_NOTES, "Hospital notes"),
