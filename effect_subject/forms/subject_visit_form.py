@@ -31,7 +31,7 @@ class SubjectVisitFormValidator(VisitFormValidator):
         super().clean()
         self.validate_assessment_type()
 
-        self.validate_other_specify(field="assessment_who")
+        self.validate_assessment_who()
 
         self.validate_info_source_against_assessment_type_who()
 
@@ -49,6 +49,17 @@ class SubjectVisitFormValidator(VisitFormValidator):
             )
 
         self.validate_other_specify(field="assessment_type")
+
+    def validate_assessment_who(self):
+        if (
+            self.cleaned_data.get("assessment_type") == IN_PERSON
+            and self.cleaned_data.get("assessment_who") != PATIENT
+        ):
+            raise forms.ValidationError(
+                {"assessment_who": "Invalid. Expected 'Patient' if 'In person' visit"}
+            )
+
+        self.validate_other_specify(field="assessment_who")
 
     @staticmethod
     def info_source_reconciles_with_assessment_type_who(

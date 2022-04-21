@@ -213,6 +213,68 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
+    def test_in_person_visit_expects_speak_to_patient(self):
+        cleaned_data = self.get_valid_in_person_sv_data()
+        cleaned_data.update({"assessment_who": NEXT_OF_KIN})
+        self.assertFormValidatorError(
+            field="assessment_who",
+            expected_msg="Invalid. Expected 'Patient' if 'In person' visit",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "assessment_who": OTHER,
+                "assessment_who_other": "Some other assessment entity",
+            }
+        )
+        self.assertFormValidatorError(
+            field="assessment_who",
+            expected_msg="Invalid. Expected 'Patient' if 'In person' visit",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "assessment_who": PATIENT,
+                "assessment_who_other": "",
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_after_baseline_can_be_any_assessment_who(self):
+        for visit_code in [vc for vc in self.subject_visit_codes if vc != DAY1]:
+            with self.subTest(visit_code=visit_code):
+                cleaned_data = self.get_valid_in_person_sv_data(visit_code=visit_code)
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+                cleaned_data.update(
+                    {
+                        "assessment_type": TELEPHONE,
+                        "assessment_who": NEXT_OF_KIN,
+                        "info_source": PATIENT_REPRESENTATIVE,
+                    }
+                )
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+                cleaned_data.update(
+                    {
+                        "assessment_who": OTHER,
+                        "assessment_who_other": "Some other entity",
+                        "info_source": OTHER,
+                        "info_source_other": "Some other information source",
+                    }
+                )
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
     def test_assessment_who_other_required_if_specified(self):
         cleaned_data = self.get_valid_assessment_who_other_sv_data(visit_code=DAY3)
         cleaned_data.update({"assessment_who_other": ""})
