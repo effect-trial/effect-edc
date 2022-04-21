@@ -7,14 +7,7 @@ from effect_subject.forms.clinical_note_form import ClinicalNoteFormValidator
 
 
 @tag("cn")
-class TestVitalSigns(EffectTestCaseMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-        self.subject_visit = self.get_subject_visit()
-
-
-@tag("cn")
-class TestClinicalNoteFormValidationBase(EffectTestCaseMixin, TestCase):
+class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = ClinicalNoteFormValidator
 
@@ -32,9 +25,6 @@ class TestClinicalNoteFormValidationBase(EffectTestCaseMixin, TestCase):
             "comments": None,
         }
 
-
-@tag("cn")
-class TestClinicalNoteFormValidation(TestClinicalNoteFormValidationBase):
     def test_clinical_note_data_valid(self):
         cleaned_data = self.get_clinical_note_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
