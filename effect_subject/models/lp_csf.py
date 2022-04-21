@@ -44,16 +44,6 @@ class LpCsf(
         help_text="Start typing the requisition identifier or select one from this visit",
     )
 
-    qc_requisition = models.ForeignKey(
-        get_requisition_model_name(),
-        on_delete=PROTECT,
-        related_name="qcrequisition",
-        verbose_name="QC Requisition",
-        null=True,
-        blank=True,
-        help_text="Start typing the requisition identifier or select one from this visit",
-    )
-
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Lumbar Puncture/CSF"
         verbose_name_plural = "Lumbar Puncture/CSF"

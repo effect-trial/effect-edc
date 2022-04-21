@@ -4,7 +4,6 @@ from edc_csf.fieldsets import (
     get_csf_culture_fieldset,
     get_csf_fieldset,
     get_lp_fieldset,
-    get_quantitative_culture_fieldset,
 )
 from edc_csf.modeladmin_mixins import LpCsfModelAdminMixin
 
@@ -19,14 +18,24 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
 
     form = LpCsfForm
 
-    autocomplete_fields = ["qc_requisition", "csf_requisition"]
+    autocomplete_fields = ["csf_requisition"]
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_lp_fieldset(),
         get_csf_fieldset(),
-        get_quantitative_culture_fieldset(requisition_field="qc_requisition"),
-        get_csf_culture_fieldset(requisition_field="csf_requisition"),
+        (
+            get_csf_culture_fieldset(requisition_field="csf_requisition")[0],
+            {
+                "fields": tuple(
+                    f
+                    for f in get_csf_culture_fieldset(
+                        requisition_field="csf_requisition"
+                    )[1]["fields"]
+                    if f not in {"csf_crag_immy_lfa"}
+                )
+            },
+        ),
         audit_fieldset_tuple,
     )
 
@@ -40,7 +49,6 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
         "csf_culture": admin.VERTICAL,
         "csf_crag": admin.VERTICAL,
         "csf_crag_lfa": admin.VERTICAL,
-        "csf_crag_immy_lfa": admin.VERTICAL,
         "differential_lymphocyte_unit": admin.VERTICAL,
         "differential_neutrophil_unit": admin.VERTICAL,
         "csf_glucose_units": admin.VERTICAL,

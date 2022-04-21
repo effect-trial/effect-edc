@@ -17,7 +17,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for lab results
         choices=YES_NO,
-        help_text="If yes, complete laboratory results",
+        help_text="If YES, complete laboratory results",
     )
 
     cm_confirmed = models.CharField(
@@ -59,7 +59,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     which_steroids = models.CharField(
-        verbose_name="If yes, which steroids where administered?",
+        verbose_name="If YES, which steroids where administered?",
         max_length=35,
         choices=STEROID_CHOICES,
     )

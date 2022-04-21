@@ -18,7 +18,7 @@ class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     adherent = models.CharField(
-        verbose_name="If yes, on an ART regimen, has the patient adhered to this ART regimen?",
+        verbose_name="If YES, on an ART regimen, has the patient adhered to this ART regimen?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,

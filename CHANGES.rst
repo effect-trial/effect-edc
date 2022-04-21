@@ -3,10 +3,19 @@ Changes
 
 [unreleased]
 ------------
+-changes to Lumbar Puncture/CSF CRF:
+    - remove Q16: QC Requisition
+    - remove Q17: QC Result Report Date and Time
+    - remove Q18: Quantitative culture
+    - remove Q32: CSF CrAg done by IMMY CrAg LFA
+- changes to Chest X-ray CRF:
+    - add 'Normal' option to results list
+    - add 'chest_xray_results_other' field
 - remove MCV, MCH, MCHC and HCT from Full Blood Count CRF
 - changes to Patient Treatment D14:
     - make fluconazole prescription questions consistent with Patient History CRF
-    - update "800mg as per protocol" to "1200 mg/d (as per protocol)"
+    - set maximum allowed Fluconazole dose other value (D1) to be 1199 mg/d
+    - set maximum allowed Fluconazole prescription other value (D14) to be 1200 mg/d
 - changes to Visit Schedule:
     - D1
         - Re-order baseline forms
@@ -56,6 +65,8 @@ Changes
     - added 'Hospitalization' section to form/admin
     - reordered 'Cause and relationship to study' form/admin section
 - rename Study Treatment form to Patient Treatment
+    - replace 'admission' with 'enrolment' in 'current_arv_decision' question
+
 - remove:
     - Neurological Symptoms form
     - FocalNeurologicDeficits list model

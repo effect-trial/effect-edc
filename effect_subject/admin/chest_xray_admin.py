@@ -21,6 +21,7 @@ class ChestXrayAdmin(CrfModelAdmin):
                     "chest_xray",
                     "chest_xray_date",
                     "chest_xray_results",
+                    "chest_xray_results_other",
                     "comment",
                 )
             },

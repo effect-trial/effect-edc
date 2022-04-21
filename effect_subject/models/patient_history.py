@@ -48,7 +48,7 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
     # TODO: move to ARV history, or remove???
     current_arv_decision = models.CharField(
         verbose_name=mark_safe(
-            "What decision was made at admission regarding their "
+            "What decision was made at enrolment regarding their "
             "<u>current</u> ART regimen?"
         ),
         max_length=25,
