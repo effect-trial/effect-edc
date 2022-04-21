@@ -32,7 +32,7 @@ class SubjectVisitFormValidator(VisitFormValidator):
     def validate_assessment_type(self):
         if (
             self.is_baseline_appointment(self.cleaned_data.get("appointment"))
-            and self.cleaned_data.get("assessment_type") == TELEPHONE
+            and self.cleaned_data.get("assessment_type") != IN_PERSON
         ):
             raise forms.ValidationError(
                 {"assessment_type": "Invalid. Expected 'In person' at baseline"}
