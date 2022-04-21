@@ -1,7 +1,7 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
 from edc_constants.choices import ALIVE_DEAD_UNKNOWN
-from edc_constants.constants import ALIVE, HOSPITAL_NOTES, OTHER, YES
+from edc_constants.constants import ALIVE, HOSPITAL_NOTES, OTHER, UNKNOWN, YES
 from edc_constants.utils import get_display
 from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
@@ -142,6 +142,19 @@ class SubjectVisitFormValidator(VisitFormValidator):
         ):
             raise forms.ValidationError(
                 {"hospitalized": "Invalid. Expected NO at baseline"}
+            )
+
+        if self.cleaned_data.get("hospitalized") == UNKNOWN and (
+            self.cleaned_data.get("assessment_who") == PATIENT
+            or self.cleaned_data.get("info_source") == PATIENT
+        ):
+            raise forms.ValidationError(
+                {
+                    "hospitalized": (
+                        "Invalid. Cannot be 'Unknown' if spoke to 'Patient' "
+                        "or 'Patient' was MAIN source of information"
+                    )
+                }
             )
 
 

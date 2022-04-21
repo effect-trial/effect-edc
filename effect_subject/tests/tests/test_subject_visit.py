@@ -9,6 +9,7 @@ from edc_constants.constants import (
     NO,
     NOT_APPLICABLE,
     OTHER,
+    UNKNOWN,
     YES,
 )
 from edc_visit_tracking.constants import SCHEDULED
@@ -435,6 +436,54 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
             field="hospitalized",
             expected_msg="Invalid. Expected NO at baseline",
             form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_hospitalized_unknown_invalid_if_spoke_to_patient(self):
+        cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY01)
+        cleaned_data.update(
+            {
+                "assessment_who": PATIENT,
+                "info_source": PATIENT,
+                "hospitalized": UNKNOWN,
+            }
+        )
+        self.assertFormValidatorError(
+            field="hospitalized",
+            expected_msg=(
+                "Invalid. Cannot be 'Unknown' if spoke to 'Patient' "
+                "or 'Patient' was MAIN source of information"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "assessment_who": PATIENT,
+                "info_source": OTHER,
+                "info_source_other": "some other information source",
+                "hospitalized": UNKNOWN,
+            }
+        )
+        self.assertFormValidatorError(
+            field="hospitalized",
+            expected_msg=(
+                "Invalid. Cannot be 'Unknown' if spoke to 'Patient' "
+                "or 'Patient' was MAIN source of information"
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_hospitalized_unknown_valid_if_not_patient(self):
+        cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
+        cleaned_data.update({"hospitalized": UNKNOWN})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+        cleaned_data = self.get_valid_assessment_who_other_sv_data(visit_code=DAY03)
+        cleaned_data.update({"hospitalized": UNKNOWN})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
         )
 
 

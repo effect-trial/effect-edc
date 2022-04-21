@@ -1,6 +1,6 @@
 from django.db import models
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model import models as edc_models
@@ -93,7 +93,7 @@ class SubjectVisit(
     hospitalized = models.CharField(
         verbose_name="Has the patient been hospitalized since the last assessment?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_UNKNOWN,
         # TODO: If yes, trigger AE Initial
         help_text=IF_YES_COMPLETE_SAE,
         default=NOT_APPLICABLE,
