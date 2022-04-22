@@ -5,8 +5,9 @@ from edc_constants.constants import ALIVE, HOSPITAL_NOTES, OTHER, UNKNOWN, YES
 from edc_constants.utils import get_display
 from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
-from edc_visit_schedule.constants import DAY1
 from edc_visit_tracking.form_validators import VisitFormValidator
+
+from effect_visit_schedule.constants import DAY01
 
 from ..choices import ASSESSMENT_TYPES, ASSESSMENT_WHO_CHOICES, INFO_SOURCE
 from ..constants import (
@@ -25,7 +26,7 @@ class SubjectVisitFormValidator(VisitFormValidator):
 
     @staticmethod
     def is_baseline_appointment(appointment) -> bool:
-        return appointment.visit_code == DAY1 and appointment.visit_code_sequence == 0
+        return appointment.visit_code == DAY01 and appointment.visit_code_sequence == 0
 
     def clean(self):
         super().clean()

@@ -3,7 +3,6 @@ from dataclasses import dataclass
 
 from django.test import TestCase, tag
 from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
-from edc_visit_schedule.constants import DAY1
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.choices import ASSESSMENT_WHO_CHOICES, INFO_SOURCE, PATIENT_STATUSES
@@ -16,7 +15,7 @@ from effect_subject.constants import (
     TELEPHONE,
 )
 from effect_subject.forms.followup_form import FollowupFormValidator
-from effect_visit_schedule.constants import DAY14
+from effect_visit_schedule.constants import DAY01, DAY14
 
 
 @tag("fu")
@@ -108,7 +107,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_form_validator_denies_patient_telephone_assessment_at_baseline(self):
         cleaned_data = self.get_valid_patient_telephone_assessment_data()
-        self.subject_visit.appointment.visit_code = DAY1
+        self.subject_visit.appointment.visit_code = DAY01
         cleaned_data.update({"subject_visit": self.subject_visit})
         self.assertFormValidatorError(
             field="assessment_type",
@@ -290,7 +289,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_deceased_status_invalid_at_baseline(self):
         cleaned_data = self.get_valid_other_assessment_type_data()
-        self.subject_visit.appointment.visit_code = DAY1
+        self.subject_visit.appointment.visit_code = DAY01
         cleaned_data.update(
             {
                 "subject_visit": self.subject_visit,
@@ -349,7 +348,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_hospitalized_yes_invalid_at_baseline(self):
         cleaned_data = self.get_valid_in_person_visit_data()
-        self.subject_visit.appointment.visit_code = DAY1
+        self.subject_visit.appointment.visit_code = DAY01
         cleaned_data.update(
             {
                 "subject_visit": self.subject_visit,
