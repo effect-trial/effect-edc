@@ -1,5 +1,5 @@
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NOT_APPLICABLE
+from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -66,6 +66,42 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
+
+    def test_seizures_at_baseline_raises_error(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY01)
+        cleaned_data.update({"recent_seizure": YES})
+        self.assertFormValidatorError(
+            field="recent_seizure",
+            expected_msg="Invalid. Cannot have had a recent seizure at baseline",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_gcs_lt_15_at_baseline_raises_error(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY01)
+        for gcs in [3, 14]:
+            with self.subTest(gcs=gcs):
+                cleaned_data.update({"glasgow_coma_score": gcs})
+                self.assertFormValidatorError(
+                    field="glasgow_coma_score",
+                    expected_msg="Invalid. GCS cannot be less than 15 at baseline",
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
+
+    def test_seizures_at_d14_ok(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY14)
+        cleaned_data.update({"recent_seizure": YES})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_gcs_lt_15_at_d14_ok(self):
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY14)
+        for gcs in [3, 14]:
+            with self.subTest(gcs=gcs):
+                cleaned_data.update({"glasgow_coma_score": gcs})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
 
 
 @tag("ms")
