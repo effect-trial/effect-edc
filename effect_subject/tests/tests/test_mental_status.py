@@ -1,6 +1,5 @@
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE
-from edc_visit_schedule.constants import DAY1
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -10,7 +9,7 @@ from effect_subject.tests.tests.mixins import (
     ReportingFieldsetBaselineTestCaseMixin,
     ReportingFieldsetDay14TestCaseMixin,
 )
-from effect_visit_schedule.constants import DAY14
+from effect_visit_schedule.constants import DAY01, DAY14
 
 
 @tag("ms")
@@ -37,7 +36,7 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_mental_status_data(self, visit_code: str = DAY1):
+    def get_valid_mental_status_data(self, visit_code: str = DAY01):
         self.subject_visit.appointment.visit_code = visit_code
         return {
             "subject_visit": self.subject_visit,
@@ -49,15 +48,15 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
             "modified_rankin_score": "0",
             "ecog_score": "0",
             "glasgow_coma_score": 15,
-            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else NO,
-            "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
+            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
+            "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
         }
 
 
 @tag("ms")
 class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
     def test_baseline_valid_mental_status_data_valid(self):
-        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY1)
+        cleaned_data = self.get_valid_mental_status_data(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )

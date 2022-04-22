@@ -1,7 +1,6 @@
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
-from edc_visit_schedule.constants import DAY1
 
-from effect_visit_schedule.constants import DAY14
+from effect_visit_schedule.constants import DAY01, DAY14
 
 
 class ReportingFieldsetBaselineTestCaseMixin:
@@ -9,13 +8,13 @@ class ReportingFieldsetBaselineTestCaseMixin:
 
     def test_baseline_cleaned_data_valid(self):
         """Test that the test data we're working with is valid."""
-        cleaned_data = self.default_cleaned_data(visit_code=DAY1)
+        cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_reportable_as_ae_not_applicable_at_baseline(self):
-        cleaned_data = self.default_cleaned_data(visit_code=DAY1)
+        cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         for response in [YES, NO]:
             with self.subTest(reportable_as_ae=response):
                 cleaned_data.update({"reportable_as_ae": response})
@@ -26,7 +25,7 @@ class ReportingFieldsetBaselineTestCaseMixin:
                 )
 
     def test_patient_admitted_not_applicable_at_baseline(self):
-        cleaned_data = self.default_cleaned_data(visit_code=DAY1)
+        cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         for response in [YES, NO]:
             with self.subTest(patient_admitted=response):
                 cleaned_data.update({"patient_admitted": response})
