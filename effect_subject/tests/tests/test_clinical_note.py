@@ -8,25 +8,44 @@ from effect_subject.forms.clinical_note_form import ClinicalNoteFormValidator
 
 @tag("cn")
 class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
-
     form_validator_default_form_cls = ClinicalNoteFormValidator
 
-    def setUp(self):
-        super().setUp()
-        self.subject_visit = self.get_subject_visit()
-
-    def get_clinical_note_data(self, visit_code: str = DAY1):
-        self.subject_visit.appointment.visit_code = visit_code
+    def get_cleaned_data(self, visit_code: str):
+        subject_visit = self.get_subject_visit(visit_code=visit_code)
         return {
-            "subject_visit": self.subject_visit,
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+            "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
             "has_comment": NO,
             "comments": None,
         }
 
-    def test_clinical_note_data_valid(self):
-        cleaned_data = self.get_clinical_note_data(visit_code=DAY1)
+    def test_clean_data_valid(self):
+        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_has_comment_yes_no_comment_raises(self):
+        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
+        cleaned_data.update(has_comment=YES, comments=None)
+
+        self.assertFormValidatorError(
+            field="comments     wflpw47669",
+            expected_msg="This field is required",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_has_comment_no_comment_raises(self):
+        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
+        cleaned_data.update(has_comment=NO, comments="Data blahh blahh")
+
+        # form_validator = ClinicalNoteFormValidator(cleaned_data=cleaned_data)
+        # with self.assertRaises(ValidationError) as cm:
+        #     form_validator.validate()
+        # self.assertIn("comments", cm.exception.error_dict)
+
+        self.assertFormValidatorError(
+            field="comments",
+            expected_msg="This field is required",
+            form_validator=self.validate_form_validator(cleaned_data),
         )
