@@ -25,27 +25,30 @@ class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_has_comment_yes_no_comment_raises(self):
+    def test_has_comment_yes_comment_no_raises(self):
         cleaned_data = self.get_cleaned_data(visit_code=DAY1)
         cleaned_data.update(has_comment=YES, comments=None)
-
-        self.assertFormValidatorError(
-            field="comments     wflpw47669",
-            expected_msg="This field is required",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-    def test_has_comment_no_comment_raises(self):
-        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
-        cleaned_data.update(has_comment=NO, comments="Data blahh blahh")
-
-        # form_validator = ClinicalNoteFormValidator(cleaned_data=cleaned_data)
-        # with self.assertRaises(ValidationError) as cm:
-        #     form_validator.validate()
-        # self.assertIn("comments", cm.exception.error_dict)
 
         self.assertFormValidatorError(
             field="comments",
             expected_msg="This field is required",
             form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_has_comment_no_comment_yes_raises(self):
+        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
+        cleaned_data.update(has_comment=NO, comments="Data blahh blahh")
+
+        self.assertFormValidatorError(
+            field="comments",
+            expected_msg="This field is not required",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_has_comment_no_comment_none(self):
+        cleaned_data = self.get_cleaned_data(visit_code=DAY1)
+        cleaned_data.update(has_comment=NO, comments=None)
+
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
         )
