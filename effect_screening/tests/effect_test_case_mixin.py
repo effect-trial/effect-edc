@@ -15,12 +15,12 @@ from edc_metadata.models import CrfMetadata
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_utils.date import get_utcnow
-from edc_visit_schedule.constants import DAY1
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
 
 from effect_sites import fqdn
 from effect_subject.models import SubjectVisit
+from effect_visit_schedule.constants import DAY01
 
 from ..models import SubjectScreening
 
@@ -151,7 +151,7 @@ class EffectTestCaseMixin(
         subject_consent = subject_consent or self.get_subject_consent(subject_screening)
         options = dict(
             subject_identifier=subject_consent.subject_identifier,
-            visit_code=visit_code or DAY1,
+            visit_code=visit_code or DAY01,
             visit_code_sequence=(
                 visit_code_sequence if visit_code_sequence is not None else 0
             ),

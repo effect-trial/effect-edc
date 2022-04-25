@@ -1,6 +1,5 @@
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NOT_APPLICABLE, YES
-from edc_visit_schedule.constants import DAY1
+from edc_constants.constants import NO, NOT_APPLICABLE
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -8,7 +7,7 @@ from effect_subject.forms.vital_signs_form import (
     VitalSignsForm,
     VitalSignsFormValidator,
 )
-from effect_visit_schedule.constants import DAY14
+from effect_visit_schedule.constants import DAY01, DAY14
 
 from .mixins import (
     ReportingFieldsetBaselineTestCaseMixin,
@@ -42,7 +41,7 @@ class TestVitalSignsFormValidationBase(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_vital_signs_data(self, visit_code: str = DAY1):
+    def get_valid_vital_signs_data(self, visit_code: str = DAY01):
         self.subject_visit.appointment.visit_code = visit_code
         return {
             "subject_visit": self.subject_visit,
@@ -53,15 +52,15 @@ class TestVitalSignsFormValidationBase(EffectTestCaseMixin, TestCase):
             "heart_rate": 60,
             "respiratory_rate": 14,
             "temperature": 37.0,
-            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY1 else NO,
-            "patient_admitted": NOT_APPLICABLE if visit_code == DAY1 else NO,
+            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
+            "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
         }
 
 
 @tag("vs")
 class TestVitalSignsFormValidation(TestVitalSignsFormValidationBase):
     def test_baseline_valid_vital_signs_data_valid(self):
-        cleaned_data = self.get_valid_vital_signs_data(visit_code=DAY1)
+        cleaned_data = self.get_valid_vital_signs_data(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
