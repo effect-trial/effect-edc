@@ -1,27 +1,30 @@
-from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata.metadata_rules import CrfRule, CrfRuleGroup, P, register
+
+from .predicates import Predicates
+
+pc = Predicates()
 
 
 @register()
 class SignsAndSymptomsRuleGroup(CrfRuleGroup):
 
     chest_xray = CrfRule(
-        predicate=P("xray_performed", "eq", YES),
+        predicate=pc.chest_xray_crf_required,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=["chestxray"],
     )
 
     lp_csf = CrfRule(
-        predicate=P("lp_performed", "eq", YES),
+        predicate=pc.lp_csf_crf_required,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=["lpcsf"],
     )
 
     tb_diagnostics = CrfRule(
-        predicate=P("urinary_lam_performed", "eq", YES),
+        predicate=pc.tb_diagnostics_crf_required,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=["tbdiagnostics"],
