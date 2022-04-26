@@ -1,5 +1,6 @@
+from django.db.models import Q
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NOT_APPLICABLE, YES
+from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
 from effect_lists.models import Dx
@@ -65,6 +66,144 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_diagnoses_applicable_if_has_diagnoses_yes(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": YES,
+                "diagnoses": Dx.objects.filter(name="malaria"),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_diagnoses_na_if_has_diagnoses_no(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": NO,
+                "diagnoses": Dx.objects.filter(name=NOT_APPLICABLE),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_diagnoses_na_raises_if_has_diagnoses_yes(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": YES,
+                "diagnoses": Dx.objects.filter(name=NOT_APPLICABLE),
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses",
+            expected_msg=(
+                "Invalid selection. "
+                "Cannot be N/A if there are significant diagnoses to report."
+            ),
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_diagnoses_specified_raises_if_has_diagnoses_no(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": NO,
+                "diagnoses": Dx.objects.filter(name="malaria"),
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses",
+            expected_msg="Expected N/A only if NO significant diagnoses to report.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_cannot_list_other_diagnoses_with_na(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": NO,
+                "diagnoses": Dx.objects.filter(
+                    Q(name=NOT_APPLICABLE) | Q(name="malaria") | Q(name="bacteraemia")
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses",
+            expected_msg="Expected N/A only if NO significant diagnoses to report.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "has_diagnoses": NO,
+                "diagnoses": Dx.objects.filter(
+                    Q(name=NOT_APPLICABLE) | Q(name="malaria")
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses",
+            expected_msg="Expected N/A only if NO significant diagnoses to report.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update(
+            {
+                "has_diagnoses": NO,
+                "diagnoses": Dx.objects.filter(Q(name=NOT_APPLICABLE)),
+            }
+        )
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_diagnoses_other_required_if_specified(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": YES,
+                "diagnoses": Dx.objects.filter(
+                    Q(name=OTHER) | Q(name="malaria") | Q(name="bacteraemia")
+                ),
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses_other",
+            expected_msg="This field is required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"diagnoses_other": "Some other dx"})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_diagnoses_other_not_required_if_not_specified(self):
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "has_diagnoses": YES,
+                "diagnoses": Dx.objects.filter(
+                    Q(name="malaria") | Q(name="bacteraemia")
+                ),
+                "diagnoses_other": "Some other dx",
+            }
+        )
+        self.assertFormValidatorError(
+            field="diagnoses_other",
+            expected_msg="This field is not required.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        cleaned_data.update({"diagnoses_other": ""})
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
 
