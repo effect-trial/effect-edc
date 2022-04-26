@@ -1,13 +1,14 @@
 from django import forms
+from edc_constants.constants import YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
-from edc_glucose.form_validators import GlucoseFormValidatorMixin
 
 from ..models import ClinicalNote
 
 
-class ClinicalNoteFormValidator(GlucoseFormValidatorMixin, FormValidator):
-    pass
+class ClinicalNoteFormValidator(FormValidator):
+    def clean(self):
+        self.required_if(YES, field="has_comment", field_required="comments")
 
 
 class ClinicalNoteForm(CrfModelFormMixin, forms.ModelForm):
