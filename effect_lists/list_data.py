@@ -109,6 +109,7 @@ list_data = {
         (OTHER, "Other drug/intervention, please specify below ..."),
     ],
     "effect_lists.dx": [
+        (NOT_APPLICABLE, "--Not applicable"),
         ("bacteraemia", "Bacteraemia"),
         ("bacterial_pneumonia", "Bacterial pneumonia"),
         ("cryptococcal_meningitis", "Cryptococcal meningitis"),
