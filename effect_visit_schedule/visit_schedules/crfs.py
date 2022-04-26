@@ -74,6 +74,9 @@ crfs_d03 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     # TODO: ???Remove neurological symptoms for tel visits
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=600, model="effect_subject.adherencestagetwo"),
     name=DAY03,
 )
@@ -81,6 +84,9 @@ crfs_d03 = FormsCollection(
 crfs_d09 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=600, model="effect_subject.adherencestagetwo"),
     name=DAY09,
 )
@@ -95,6 +101,8 @@ crfs_d14 = FormsCollection(
     Crf(show_order=130, model="effect_subject.patienttreatmentday14"),
     Crf(show_order=200, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=400, model="effect_subject.healtheconomics"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     Crf(show_order=600, model="effect_subject.adherencestagethree"),
@@ -104,6 +112,9 @@ crfs_d14 = FormsCollection(
 crfs_w04 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=600, model="effect_subject.adherencestagefour"),
     name=WEEK04,
 )
@@ -111,6 +122,9 @@ crfs_w04 = FormsCollection(
 crfs_w10 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=600, model="effect_subject.adherencestagefour"),
     name=WEEK10,
 )
@@ -118,6 +132,9 @@ crfs_w10 = FormsCollection(
 crfs_w16 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=600, model="effect_subject.adherencestagefour"),
     name=WEEK16,
 )
@@ -125,6 +142,9 @@ crfs_w16 = FormsCollection(
 crfs_w24 = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
+    Crf(show_order=230, model="effect_subject.chestxray", required=False),
+    Crf(show_order=240, model="effect_subject.lpcsf", required=False),
+    Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
     Crf(show_order=400, model="effect_subject.healtheconomics"),
     # TODO: Termination Form CRF
     Crf(show_order=600, model="effect_subject.adherencestagefour"),

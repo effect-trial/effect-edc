@@ -1,18 +1,15 @@
 from django.test import TestCase, tag
+from edc_appointment.models import Appointment
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_metadata import KEYED, REQUIRED
 from edc_metadata.models import CrfMetadata
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_visit_schedule.visit_schedules.schedule import visits
 
 
 @tag("mdr")
 class TestMetadataRules(EffectTestCaseMixin, TestCase):
-
-    scheduled_visit_codes = [v.code for v in visits]
-
     @staticmethod
     def get_metadata_models(subject_visit):
         crf_metadatas = CrfMetadata.objects.filter(
@@ -29,28 +26,29 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
     def test_investigations_crfs_not_required_if_sisx_not_completed(self):
         subject_visit = self.get_subject_visit()
-        for visit_code in self.scheduled_visit_codes:
-            with self.subTest(visit_code=visit_code):
-                # If not baseline visit
-                if visit_code != self.scheduled_visit_codes[0]:
-                    subject_visit = self.get_next_subject_visit(subject_visit)
-                self.assertEqual(subject_visit.appointment.visit_code, visit_code)
+
+        for obj in Appointment.objects.all().order_by("visit_code"):
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                self.assertEqual(subject_visit.visit_code, obj.visit_code)
 
                 models = self.get_metadata_models(subject_visit)
                 self.assertNotIn("effect_subject.chestxray", models)
                 self.assertNotIn("effect_subject.lpcsf", models)
                 self.assertNotIn("effect_subject.tbdiagnostics", models)
+            try:
+                subject_visit = self.get_next_subject_visit(subject_visit)
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
 
     def test_investigations_crfs_not_required_if_sisx_investigations_not_performed(
         self,
     ):
         subject_visit = self.get_subject_visit()
-        for visit_code in self.scheduled_visit_codes:
-            with self.subTest(visit_code=visit_code, subject_visit=subject_visit):
-                # If not baseline visit
-                if visit_code != self.scheduled_visit_codes[0]:
-                    subject_visit = self.get_next_subject_visit(subject_visit)
-                self.assertEqual(subject_visit.appointment.visit_code, visit_code)
+
+        for obj in Appointment.objects.all().order_by("visit_code"):
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                self.assertEqual(subject_visit.visit_code, obj.visit_code)
 
                 signs_and_symptoms = baker.make(
                     "effect_subject.signsandsymptoms",
@@ -64,15 +62,18 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.chestxray", models)
                 self.assertNotIn("effect_subject.lpcsf", models)
                 self.assertNotIn("effect_subject.tbdiagnostics", models)
+            try:
+                subject_visit = self.get_next_subject_visit(subject_visit)
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
 
     def test_investigations_crfs_not_required_if_sisx_investigations_na(self):
         subject_visit = self.get_subject_visit()
-        for visit_code in self.scheduled_visit_codes:
-            with self.subTest(visit_code=visit_code, subject_visit=subject_visit):
-                # If not baseline visit
-                if visit_code != self.scheduled_visit_codes[0]:
-                    subject_visit = self.get_next_subject_visit(subject_visit)
-                self.assertEqual(subject_visit.appointment.visit_code, visit_code)
+
+        for obj in Appointment.objects.all().order_by("visit_code"):
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                self.assertEqual(subject_visit.visit_code, obj.visit_code)
 
                 signs_and_symptoms = baker.make(
                     "effect_subject.signsandsymptoms",
@@ -86,15 +87,18 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.chestxray", models)
                 self.assertNotIn("effect_subject.lpcsf", models)
                 self.assertNotIn("effect_subject.tbdiagnostics", models)
+            try:
+                subject_visit = self.get_next_subject_visit(subject_visit)
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
 
     def test_investigations_crfs_required_if_if_sisx_investigations_performed(self):
         subject_visit = self.get_subject_visit()
-        for visit_code in self.scheduled_visit_codes:
-            with self.subTest(visit_code=visit_code, subject_visit=subject_visit):
-                # If not baseline visit
-                if visit_code != self.scheduled_visit_codes[0]:
-                    subject_visit = self.get_next_subject_visit(subject_visit)
-                self.assertEqual(subject_visit.appointment.visit_code, visit_code)
+
+        for obj in Appointment.objects.all().order_by("visit_code"):
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                self.assertEqual(subject_visit.visit_code, obj.visit_code)
 
                 signs_and_symptoms = baker.make(
                     "effect_subject.signsandsymptoms",
@@ -144,3 +148,8 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertIn("effect_subject.chestxray", models)
                 self.assertNotIn("effect_subject.lpcsf", models)
                 self.assertIn("effect_subject.tbdiagnostics", models)
+            try:
+                subject_visit = self.get_next_subject_visit(subject_visit)
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break

@@ -15,12 +15,14 @@ from edc_metadata.models import CrfMetadata
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_utils.date import get_utcnow
+from edc_visit_schedule import site_visit_schedules
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
 
 from effect_sites import fqdn
 from effect_subject.models import SubjectVisit
 from effect_visit_schedule.constants import DAY01
+from effect_visit_schedule.visit_schedules import visit_schedule
 
 from ..models import SubjectScreening
 
@@ -83,6 +85,8 @@ class EffectTestCaseMixin(
         import_holidays(test=True)
         site_list_data.initialize()
         site_list_data.autodiscover()
+        site_visit_schedules._registry = {}
+        site_visit_schedules.register(visit_schedule=visit_schedule)
 
     def get_subject_screening(
         self,
