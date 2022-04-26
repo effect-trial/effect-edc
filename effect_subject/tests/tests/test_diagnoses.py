@@ -34,23 +34,37 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = DiagnosesFormValidator
 
-    def setUp(self):
-        super().setUp()
-        self.subject_visit = self.get_subject_visit()
+    def get_d14_visit(self):
+        baseline_visit = self.get_subject_visit()
+        d3_visit = self.get_next_subject_visit(baseline_visit)
+        d9_visit = self.get_next_subject_visit(d3_visit)
+        return self.get_next_subject_visit(d9_visit)
 
-    def get_valid_diagnoses_data(self, visit_code: str = DAY01):
-        self.subject_visit.appointment.visit_code = visit_code
+    def get_valid_diagnoses_data(self, visit_code: str):
+        if visit_code == DAY14:
+            # Significant Diagnoses CRF only applicable/required at D14
+            subject_visit = self.get_d14_visit()
+            reporting_response = NO
+        elif visit_code == DAY01:
+            # D1 case only used for testing ReportingFieldsetBaselineTestCaseMixin
+            subject_visit = self.get_subject_visit(visit_code=DAY01)
+            reporting_response = NOT_APPLICABLE
+        else:
+            raise ValueError(
+                f"Invalid/unexpected visit_code. "
+                f"Expected one of ['{DAY01}', '{DAY14}']. Got '{visit_code}'."
+            )
+
         return {
-            "subject_visit": self.subject_visit,
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+            "subject_visit": subject_visit,
+            "appointment": subject_visit.appointment,
             "gi_side_effects": NO,
             "gi_side_effects_details": "",
             "has_diagnoses": NO,
-            "diagnoses": Dx.objects.filter(name=""),  # TODO check:
+            "diagnoses": Dx.objects.filter(name=""),
             "diagnoses_other": "",
-            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
-            "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
+            "reportable_as_ae": reporting_response,
+            "patient_admitted": reporting_response,
         }
 
 
@@ -226,7 +240,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
         )
 
     def test_reportable_as_ae_not_required_at_d14(self):
-        cleaned_data = self.get_valid_diagnoses_data()
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
         cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
@@ -242,7 +256,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
                 )
 
     def test_patient_admitted_not_required_at_d14(self):
-        cleaned_data = self.get_valid_diagnoses_data()
+        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
         cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
