@@ -25,6 +25,7 @@ Changes
         - Make renal function and liver function required at baseline
     - Unscheduled:
         - Add Health Economics CRF to be included for all unscheduled visits
+    - Schedule Significant Diagnoses CRF for all visits post baseline
 - rename Microbiology CRF to TB Diagnostics
 - changes to Consent form:
     - remove "Guardian name" field (#346)
