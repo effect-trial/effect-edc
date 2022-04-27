@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
@@ -8,7 +10,7 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.diagnoses_form import DiagnosesForm, DiagnosesFormValidator
 from effect_visit_schedule.constants import DAY01, DAY14
 
-from .mixins import ReportingFieldsetBaselineTestCaseMixin
+from .mixins import ReportingFieldsetDay14TestCaseMixin
 
 
 @tag("dx")
@@ -40,19 +42,9 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
         d9_visit = self.get_next_subject_visit(d3_visit)
         return self.get_next_subject_visit(d9_visit)
 
-    def get_valid_diagnoses_data(self, visit_code: str):
-        if visit_code == DAY14:
-            # Significant Diagnoses CRF only applicable/required at D14
-            subject_visit = self.get_d14_visit()
-        elif visit_code == DAY01:
-            # D1 case only used for testing ReportingFieldsetBaselineTestCaseMixin
-            subject_visit = self.get_subject_visit(visit_code=DAY01)
-        else:
-            raise ValueError(
-                f"Invalid/unexpected visit_code. "
-                f"Expected one of ['{DAY01}', '{DAY14}']. Got '{visit_code}'."
-            )
-
+    def get_cleaned_data_no_dx(self, visit_code: str = None):
+        # Significant Diagnoses CRF only applicable/required at D14
+        subject_visit = self.get_d14_visit()
         return {
             "subject_visit": subject_visit,
             "appointment": subject_visit.appointment,
@@ -65,26 +57,14 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE,
         }
 
-    def get_cleaned_data_with_dx(self, visit_code: str):
-        if visit_code == DAY14:
-            # Significant Diagnoses CRF only applicable/required at D14
-            reportable_response = NO
-        elif visit_code == DAY01:
-            # D1 case only used for testing ReportingFieldsetBaselineTestCaseMixin
-            reportable_response = NOT_APPLICABLE
-        else:
-            raise ValueError(
-                f"Invalid/unexpected visit_code. "
-                f"Expected one of ['{DAY01}', '{DAY14}']. Got '{visit_code}'."
-            )
-
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=visit_code)
+    def get_cleaned_data_with_dx(self, visit_code: str = None):
+        cleaned_data = deepcopy(self.get_cleaned_data_no_dx())
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
                 "diagnoses": Dx.objects.filter(name="malaria"),
-                "reportable_as_ae": reportable_response,
-                "patient_admitted": reportable_response,
+                "reportable_as_ae": NO,
+                "patient_admitted": NO,
             }
         )
         return cleaned_data
@@ -92,32 +72,20 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
 
 @tag("dx")
 class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
-    def test_baseline_cleaned_data_no_dx_ok(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY01)
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_baseline_cleaned_data_with_dx_ok(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY01)
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
     def test_d14_cleaned_data_no_dx_ok(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_d14_cleaned_data_with_dx_ok(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_with_dx()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_diagnoses_na_if_has_diagnoses_no(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": NO,
@@ -129,7 +97,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         )
 
     def test_diagnoses_na_raises_if_has_diagnoses_yes(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
@@ -146,7 +114,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         )
 
     def test_diagnoses_specified_raises_if_has_diagnoses_no(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": NO,
@@ -160,7 +128,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         )
 
     def test_cannot_list_other_diagnoses_with_na(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": NO,
@@ -200,7 +168,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         )
 
     def test_diagnoses_other_required_if_specified(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_with_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
@@ -221,7 +189,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         )
 
     def test_diagnoses_other_not_required_if_not_specified(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_with_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
@@ -245,13 +213,13 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
 
 @tag("dx")
 class TestDiagnosesReportingFieldsetFormValidation(
-    ReportingFieldsetBaselineTestCaseMixin,
+    ReportingFieldsetDay14TestCaseMixin,
     TestDiagnosesFormValidationBase,
 ):
-    default_cleaned_data = TestDiagnosesFormValidationBase.get_valid_diagnoses_data
+    default_cleaned_data = TestDiagnosesFormValidationBase.get_cleaned_data_with_dx
 
     def test_reporting_fieldset_ok_if_dx(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_with_dx()
         for ae_answer in [YES, NO]:
             for admitted_answer in [YES, NO]:
                 with self.subTest(ae_answer=ae_answer, admitted_answer=admitted_answer):
@@ -268,7 +236,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
                     )
 
     def test_reporting_fieldset_applicable_if_dx(self):
-        cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_with_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
@@ -306,7 +274,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
         )
 
     def test_reporting_fieldset_na_if_no_dx(self):
-        cleaned_data = self.get_valid_diagnoses_data(visit_code=DAY14)
+        cleaned_data = self.get_cleaned_data_no_dx()
         cleaned_data.update(
             {
                 "has_diagnoses": NO,
