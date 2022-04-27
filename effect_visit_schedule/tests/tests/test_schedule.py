@@ -109,6 +109,7 @@ class TestVisitSchedule(TestCase):
             "1003": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -117,6 +118,7 @@ class TestVisitSchedule(TestCase):
             "1009": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -141,6 +143,7 @@ class TestVisitSchedule(TestCase):
             "1028": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -149,6 +152,7 @@ class TestVisitSchedule(TestCase):
             "1070": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -157,6 +161,7 @@ class TestVisitSchedule(TestCase):
             "1112": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -165,6 +170,7 @@ class TestVisitSchedule(TestCase):
             "1168": [
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.diagnoses",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
