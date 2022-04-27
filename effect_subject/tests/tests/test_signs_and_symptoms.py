@@ -66,7 +66,6 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cm_sx_lp_done": NOT_APPLICABLE,
             "cm_sx_bloods_take": BloodTests.objects.filter(name=NOT_APPLICABLE),
             "cm_sx_bloods_taken_other": "",
-            "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
     def get_valid_patient_any_sx_unknown(self, visit_code: str = None):
@@ -104,7 +103,6 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cm_sx_lp_done": NOT_APPLICABLE,
             "cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE),
             "cm_sx_bloods_taken_other": "",
-            "cm_sx_patient_admitted": NOT_APPLICABLE,
         }
 
     def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
@@ -132,7 +130,6 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
                     Q(name="chemistry") | Q(name="hematology")
                 ),
                 "cm_sx_bloods_taken_other": "",
-                "cm_sx_patient_admitted": YES,
             }
         )
         return cleaned_data
@@ -886,7 +883,6 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                         {
                             "cm_sx_lp_done": NO,
                             "cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE),
-                            "cm_sx_patient_admitted": NO,
                         }
                     )
                 self.assertFormValidatorNoError(
@@ -1127,56 +1123,6 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
-
-    def test_cm_sx_patient_admitted_applicable_if_cm_sx_yes(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx": YES,
-                "cm_sx_patient_admitted": NOT_APPLICABLE,
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_patient_admitted",
-            expected_msg="This field is applicable.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        for answer in [YES, NO]:
-            with self.subTest(answer=answer):
-                cleaned_data.update({"cm_sx_patient_admitted": answer})
-                self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
-                )
-
-    def test_cm_sx_patient_admitted_not_applicable_if_cm_sx_not_yes(self):
-        for cm_sx_answer in [NO, NOT_APPLICABLE]:
-            for cm_sx_patient_admitted_answer in [YES, NO]:
-                with self.subTest(
-                    cm_sx_answer=cm_sx_answer,
-                    cm_sx_patient_admitted_answer=cm_sx_patient_admitted_answer,
-                ):
-                    cleaned_data = (
-                        self.get_valid_patient_with_signs_or_symptoms()
-                        if cm_sx_answer == NO
-                        else self.get_valid_patient_any_sx_unknown()
-                    )
-                    cleaned_data.update(
-                        {
-                            "cm_sx": cm_sx_answer,
-                            "cm_sx_patient_admitted": cm_sx_patient_admitted_answer,
-                        }
-                    )
-                    self.assertFormValidatorError(
-                        field="cm_sx_patient_admitted",
-                        expected_msg="This field is not applicable",
-                        form_validator=self.validate_form_validator(cleaned_data),
-                    )
-
-                    cleaned_data.update({"cm_sx_patient_admitted": NOT_APPLICABLE})
-                    self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
-                    )
 
 
 @tag("sas")

@@ -181,10 +181,6 @@ class SignsAndSymptomsFormValidator(ReportingFieldsetFormValidatorMixin, FormVal
             field_other="cm_sx_bloods_taken_other",
         )
 
-        self.applicable_if(
-            YES, field="cm_sx", field_applicable="cm_sx_patient_admitted"
-        )
-
 
 class SignsAndSymptomsForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
     form_validator_cls = SignsAndSymptomsFormValidator

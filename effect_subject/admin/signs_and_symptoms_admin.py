@@ -63,7 +63,6 @@ class SignsAndSymptomsAdmin(
                     "cm_sx_lp_done",
                     "cm_sx_bloods_taken",
                     "cm_sx_bloods_taken_other",
-                    "cm_sx_patient_admitted",
                 )
             },
         ),
@@ -83,7 +82,6 @@ class SignsAndSymptomsAdmin(
         "any_sx": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,
         "cm_sx_lp_done": admin.VERTICAL,
-        "cm_sx_patient_admitted": admin.VERTICAL,
         "lp_performed": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
