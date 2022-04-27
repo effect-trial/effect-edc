@@ -2,7 +2,6 @@ from django import forms
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
-from edc_visit_schedule.utils import is_baseline
 
 from ..models import Diagnoses
 from .mixins import ReportingFieldsetFormValidatorMixin
@@ -36,14 +35,10 @@ class DiagnosesFormValidator(ReportingFieldsetFormValidatorMixin, FormValidator)
         )
 
     def validate_reporting_fieldset(self):
-        # TODO: Diagnoses CRF not completed at baseline visit, pull out baseline validation
-        self.validate_reporting_fieldset_na_baseline()
-
-        if not is_baseline(self.cleaned_data.get("subject_visit")):
-            for reportable_field in ["reportable_as_ae", "patient_admitted"]:
-                self.applicable_if(
-                    YES, field="has_diagnoses", field_applicable=reportable_field
-                )
+        for reportable_field in self.reportable_fields:
+            self.applicable_if(
+                YES, field="has_diagnoses", field_applicable=reportable_field
+            )
 
 
 class DiagnosesForm(CrfModelFormMixin, forms.ModelForm):
