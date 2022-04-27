@@ -165,14 +165,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="If other bloods taken, please specify ..."
     )
 
-    cm_sx_patient_admitted = models.CharField(
-        verbose_name="If the patient has CM signs or symptoms, was the patient admitted?",
-        max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_SAE,
-    )
-
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Signs and Symptoms"
         verbose_name_plural = "Signs and Symptoms"

@@ -82,7 +82,6 @@ class SxAction(Action):
         if not is_baseline(self.reference_obj.subject_visit) and (
             self.reference_obj.reportable_as_ae == YES
             or self.reference_obj.patient_admitted == YES
-            or self.reference_obj.cm_sx_patient_admitted == YES
         ):
             next_actions.append(AE_INITIAL_ACTION)
         return next_actions
