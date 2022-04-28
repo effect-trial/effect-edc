@@ -7,8 +7,8 @@ adherence_counselling_baseline_radio_fields = adherence_counselling_radio_fields
 }
 
 missed_doses_radio_fields = {
-    "any_fluconazole_doses_missed": admin.VERTICAL,
-    "any_flucytosine_doses_missed": admin.VERTICAL,
+    "fcon_doses_missed": admin.VERTICAL,
+    "fcyz_doses_missed": admin.VERTICAL,
 }
 
 pill_count_diary_review_radio_fields = {
@@ -19,8 +19,8 @@ pill_count_diary_review_radio_fields = {
 
 adherence_summary_radio_fields = {
     "linked_local_clinic": admin.VERTICAL,
-    "opinion_art_adherent": admin.VERTICAL,
-    "opinion_fluconazole_adherent": admin.VERTICAL,
-    "receiving_arv": admin.VERTICAL,
-    "receiving_fluconazole": admin.VERTICAL,
+    "on_arv": admin.VERTICAL,
+    "on_fcon": admin.VERTICAL,
+    "opinion_arv_adherent": admin.VERTICAL,
+    "opinion_fcon_adherent": admin.VERTICAL,
 }

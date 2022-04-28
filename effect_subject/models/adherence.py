@@ -9,20 +9,13 @@ from ..model_mixins import CrfModelMixin
 
 
 class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
-    proxy_null_default_options = dict(
-        null=False,
-        default=NOT_APPLICABLE,
-    )
-
-    proxy_yes_no_options = dict(
-        max_length=15,
-        choices=YES_NO,
-        **proxy_null_default_options,
-    )
 
     adherence_counselling = models.CharField(
         verbose_name="Has appropriate adherence counselling been given as per the trial SOP?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
     adherence_counselling_reason_no = edc_models.OtherCharField(
         verbose_name=IF_NO_SPECIFY_REASON
@@ -30,34 +23,39 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     diary_issued = models.CharField(
         verbose_name="Was an adherence diary issued to the patient?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
     diary_issued_reason_no = edc_models.OtherCharField(
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
-    any_fluconazole_doses_missed = models.CharField(
+    fcon_doses_missed = models.CharField(
         verbose_name="Have any Fluconazole doses been missed since the last visit?",
         max_length=15,
         choices=YES_NO_UNKNOWN,
-        **proxy_null_default_options,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
-    fluconazole_doses_missed = models.IntegerField(
+    fcon_doses_missed_number = models.IntegerField(
         verbose_name="If YES, number of Fluconazole doses missed since last visit:",
         help_text="This should be measured in single doses (1 dose per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 1)],
         default=0,
     )
 
-    any_flucytosine_doses_missed = models.CharField(
+    fcyz_doses_missed = models.CharField(
         verbose_name="Have any Flucytosine doses been missed since the last visit?",
         max_length=15,
         choices=YES_NO_UNKNOWN,
-        **proxy_null_default_options,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
-    flucytosine_doses_missed = models.IntegerField(
+    fcyz_doses_missed_number = models.IntegerField(
         verbose_name="If YES, number of Flucytosine doses missed since last visit:",
         help_text="This should be measured in single doses (4 doses per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 4)],
@@ -66,7 +64,10 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     medication_reconciliation = models.CharField(
         verbose_name="Was a medication reconciliation conducted?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
     medication_reconciliation_reason_no = edc_models.OtherCharField(
@@ -75,7 +76,10 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     diary_returned = models.CharField(
         verbose_name="Was patient adherence diary received and stored in patient records?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
     diary_returned_reason_no = edc_models.OtherCharField(
@@ -84,7 +88,10 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     diary_match_medication = models.CharField(
         verbose_name="Did the patient adherence diary match the medication reconciliation?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
     diary_match_medication_reason_no = edc_models.OtherCharField(
@@ -92,40 +99,51 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     linked_local_clinic = models.CharField(
-        verbose_name="Have you linked up with your local clinic?",
-        **proxy_yes_no_options,
+        verbose_name="Has the patient linked up with their local clinic?",
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
     linked_local_clinic_reason_no = edc_models.OtherCharField(
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
-    receiving_fluconazole = models.CharField(
-        verbose_name="Are you receiving Fluconazole?",
-        **proxy_yes_no_options,
+    on_fcon = models.CharField(
+        verbose_name="Is the patient receiving Fluconazole?",
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
-    receiving_fluconazole_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
+    on_fcon_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
+
+    on_arv = models.CharField(
+        verbose_name="Is the patient receiving ARVs?",
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
-    receiving_arv = models.CharField(
-        verbose_name="Are you receiving ARVs?",
-        **proxy_yes_no_options,
-    )
+    on_arv_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
-    receiving_arv_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
-    )
-
-    opinion_fluconazole_adherent = models.CharField(
+    opinion_fcon_adherent = models.CharField(
         verbose_name="In the clinician’s opinion, is the patient 90% adherent to Fluconazole?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
-    opinion_art_adherent = models.CharField(
+    opinion_arv_adherent = models.CharField(
         verbose_name="In the clinician’s opinion, is the patient 90% adherent to ART?",
-        **proxy_yes_no_options,
+        max_length=15,
+        choices=YES_NO,
+        null=False,
+        default=NOT_APPLICABLE,
     )
 
     adherence_narrative = models.TextField(
