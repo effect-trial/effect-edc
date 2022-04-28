@@ -22,10 +22,10 @@ missed_doses_fieldset_tuple = (
     "Missed doses",
     {
         "fields": (
-            "any_fluconazole_doses_missed",
-            "fluconazole_doses_missed",
-            "any_flucytosine_doses_missed",
-            "flucytosine_doses_missed",
+            "fcon_doses_missed",
+            "fcon_doses_missed_number",
+            "fcyz_doses_missed",
+            "fcyz_doses_missed_number",
         )
     },
 )
@@ -55,12 +55,12 @@ adherence_summary_fieldset_tuple = (
         "fields": (
             "linked_local_clinic",
             "linked_local_clinic_reason_no",
-            "receiving_fluconazole",
-            "receiving_fluconazole_reason_no",
-            "receiving_arv",
-            "receiving_arv_reason_no",
-            "opinion_fluconazole_adherent",
-            "opinion_art_adherent",
+            "on_fcon",
+            "on_fcon_reason_no",
+            "on_arv",
+            "on_arv_reason_no",
+            "opinion_fcon_adherent",
+            "opinion_arv_adherent",
             "adherence_narrative",
         )
     },
