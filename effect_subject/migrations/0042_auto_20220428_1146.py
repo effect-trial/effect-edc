@@ -250,113 +250,65 @@ class Migration(migrations.Migration):
             old_name='opinion_fluconazole_adherent',
             new_name='opinion_fcon_adherent',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='adherence',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='adherence',
-            name='receiving_fluconazole',
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherence',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherence',
-            name='receiving_fluconazole',
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagefour',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagefour',
-            name='receiving_fluconazole',
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestageone',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestageone',
-            name='receiving_fluconazole',
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagethree',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagethree',
-            name='receiving_fluconazole',
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagetwo',
-            name='receiving_arv',
+            old_name='receiving_arv',
+            new_name='on_arv',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicaladherencestagetwo',
-            name='receiving_fluconazole',
-        ),
-        migrations.AddField(
-            model_name='adherence',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='adherence',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherence',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherence',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagefour',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagefour',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestageone',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestageone',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagethree',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagethree',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagetwo',
-            name='on_arv',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving ARVs?'),
-        ),
-        migrations.AddField(
-            model_name='historicaladherencestagetwo',
-            name='on_fcon',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='N/A', max_length=15, verbose_name='Is the patient receiving Fluconazole?'),
+            old_name='receiving_fluconazole',
+            new_name='on_fcon',
         ),
         migrations.AlterField(
             model_name='adherence',
