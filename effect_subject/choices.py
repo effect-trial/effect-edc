@@ -139,12 +139,6 @@ FLUCONAZOLE_DOSES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-FLUCONAZOLE_DOSES_D14 = (
-    ("800_mg_d", "Fluconazole, 800 mg/d (as per protocol)"),
-    (OTHER, "Other (specify dose and reason below ...)"),
-    ("taken_off_study_drug", "No, taken off study drug"),
-)
-
 FOLLOWUP_REASONS = (
     (APPT, "Study appointment"),
     (APPT_OTHER, "Other routine appointment"),

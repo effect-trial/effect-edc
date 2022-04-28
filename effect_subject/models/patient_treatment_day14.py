@@ -4,14 +4,12 @@ from edc_model import models as edc_models
 
 from effect_lists.models import Antibiotics, Drugs
 
-from ..choices import FLUCONAZOLE_DOSES_D14
 from ..model_mixins import CrfModelMixin
 
 
 class PatientTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
 
     # Treatment at day 14
-    # TODO: Following section only available on day 14
     other_antibiotics_first_2w = models.ManyToManyField(
         Antibiotics,
         verbose_name="Other antibiotics given during the first 14 days?",
@@ -28,23 +26,14 @@ class PatientTreatmentDay14(CrfModelMixin, edc_models.BaseUuidModel):
 
     other_drugs_first_2w_other = edc_models.OtherCharField()
 
-    fluconazole_rx_d14 = models.CharField(
+    fcon_rx_d14 = models.IntegerField(
         verbose_name="Fluconazole prescribed on day 14?",
-        max_length=25,
-        choices=FLUCONAZOLE_DOSES_D14,
-        help_text="in mg/d",
+        validators=[MinValueValidator(0), MaxValueValidator(1200)],
+        help_text="in mg/d. If taken off study drug, enter 0.",
     )
-    # TODO: Validate _other if fluconazole_rx_d14 == OTHER
-    fluconazole_rx_d14_other = models.IntegerField(
-        verbose_name="Other Fluconazole dose prescribed:",
-        validators=[MinValueValidator(1), MaxValueValidator(1200)],
-        null=True,
-        blank=True,
-        help_text="in mg/d",
-    )
-    # TODO: Validate _other_reason if fluconazole_rx_d14 == OTHER
-    fluconazole_rx_d14_other_reason = edc_models.OtherCharField(
-        verbose_name="Other Fluconazole dose reason:"
+
+    fcon_rx_d14_reason = edc_models.OtherCharField(
+        verbose_name="If fluconazole dose not 800 mg/d (as per protocol), specify reason ..."
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
