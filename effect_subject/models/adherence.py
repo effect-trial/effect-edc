@@ -99,7 +99,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     linked_local_clinic = models.CharField(
-        verbose_name="Have you linked up with your local clinic?",
+        verbose_name="Has the patient linked up with their local clinic?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -111,7 +111,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     receiving_fluconazole = models.CharField(
-        verbose_name="Are you receiving Fluconazole?",
+        verbose_name="Is the patient receiving Fluconazole?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -123,7 +123,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     receiving_arv = models.CharField(
-        verbose_name="Are you receiving ARVs?",
+        verbose_name="Is the patient receiving ARVs?",
         max_length=15,
         choices=YES_NO,
         null=False,
