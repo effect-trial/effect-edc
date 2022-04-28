@@ -90,6 +90,7 @@ STUDY_TERMINATION_REASONS = (
     ),
     ("Patient Lost to follow up", "Patient Lost to follow up"),
     ("Patient died", "Patient died"),
+    (OTHER, "Other"),
 )
 
 REASON_STUDY_TERMINATED = ()
