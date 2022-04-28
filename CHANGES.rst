@@ -3,6 +3,8 @@ Changes
 
 [unreleased]
 ------------
+- simplify Patient Treatment Day 14 questions, to 'fcon_rx_d14' (dose)
+  and 'fcon_rx_d14_reason' (if dose not 800 mg/d as per protocol)
 - remove 'Unblinding request' action linked PRN
 - changes to Lumbar Puncture/CSF CRF:
     - remove Q16: QC Requisition
