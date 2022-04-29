@@ -43,18 +43,18 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "report_datetime": self.subject_visit.report_datetime,
             "lp_completed": NO,
             "cm_confirmed": NOT_APPLICABLE,
-            "cm_tx_administered": NOT_APPLICABLE,
+            "cm_tx": NOT_APPLICABLE,
             "cm_tx_given": NOT_APPLICABLE,
             "cm_tx_given_other": "",
             "tb_tx_given": TbTreatments.objects.none(),
             "tb_tx_given_other": "",
-            "steroids_administered": NO,
-            "which_steroids": NOT_APPLICABLE,
-            "which_steroids_other": "",
-            "steroids_course_duration": None,
+            "steroids": NO,
+            "steroids_given": NOT_APPLICABLE,
+            "steroids_given_other": "",
+            "steroids_course": None,
             "co_trimoxazole": NO,
-            "antibiotics": Antibiotics.objects.none(),
-            "antibiotics_other": "",
+            "antibiotics_given": Antibiotics.objects.none(),
+            "antibiotics_given_other": "",
         }
 
     def test_form_validator_allows_valid_in_person_visit(self):
@@ -91,43 +91,43 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_cm_tx_administered_na_if_cm_not_confirmed(self):
+    def test_cm_tx_na_if_cm_not_confirmed(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
                 "lp_completed": YES,
                 "cm_confirmed": NO,
-                "cm_tx_administered": NO,
+                "cm_tx": NO,
             }
         )
         self.assertFormValidatorError(
-            field="cm_tx_administered",
+            field="cm_tx",
             expected_msg="This field is not applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_cm_tx_administered_applicable_if_cm_confirmed(self):
+    def test_cm_tx_applicable_if_cm_confirmed(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx_administered": NOT_APPLICABLE,
+                "cm_tx": NOT_APPLICABLE,
             }
         )
         self.assertFormValidatorError(
-            field="cm_tx_administered",
+            field="cm_tx",
             expected_msg="This field is applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_cm_tx_given_na_if_cm_tx_not_administered(self):
+    def test_cm_tx_given_na_if_cm_tx_no(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx_administered": NO,
+                "cm_tx": NO,
                 "cm_tx_given": "1w_amb_5fc",
             }
         )
@@ -137,13 +137,13 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_cm_tx_given_applicable_if_cm_tx_administered(self):
+    def test_cm_tx_given_applicable_if_cm_tx(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx_administered": YES,
+                "cm_tx": YES,
                 "cm_tx_given": NOT_APPLICABLE,
             }
         )
@@ -159,7 +159,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx_administered": YES,
+                "cm_tx": YES,
                 "cm_tx_given": OTHER,
                 "cm_tx_given_other": "",
             }
@@ -176,7 +176,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx_administered": YES,
+                "cm_tx": YES,
                 "cm_tx_given": "1w_amb_5fc",
                 "cm_tx_given_other": "some_other_cm_tx_given",
             }
@@ -225,98 +225,98 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 )
 
     # steroid validation tests
-    def test_which_steroids_na_if_steroids_not_administered(self):
+    def test_steroids_given_na_if_steroids_no(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": NO,
-                "which_steroids": "oral_prednisolone",
-                "which_steroids_other": "",
-                "steroids_course_duration": 1,
+                "steroids": NO,
+                "steroids_given": "oral_prednisolone",
+                "steroids_given_other": "",
+                "steroids_course": 1,
             }
         )
         self.assertFormValidatorError(
-            field="which_steroids",
+            field="steroids_given",
             expected_msg="This field is not applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_which_steroids_applicable_if_steroids_administered(self):
+    def test_steroids_given_applicable_if_steroids(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": YES,
-                "which_steroids": NOT_APPLICABLE,
-                "which_steroids_other": "",
-                "steroids_course_duration": None,
+                "steroids": YES,
+                "steroids_given": NOT_APPLICABLE,
+                "steroids_given_other": "",
+                "steroids_course": None,
             }
         )
         self.assertFormValidatorError(
-            field="which_steroids",
+            field="steroids_given",
             expected_msg="This field is applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_which_steroids_other_required_if_specified(self):
+    def test_steroids_given_other_required_if_specified(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": YES,
-                "which_steroids": OTHER,
-                "which_steroids_other": "",
-                "steroids_course_duration": 1,
+                "steroids": YES,
+                "steroids_given": OTHER,
+                "steroids_given_other": "",
+                "steroids_course": 1,
             }
         )
         self.assertFormValidatorError(
-            field="which_steroids_other",
+            field="steroids_given_other",
             expected_msg="This field is required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_which_steroids_other_not_required_if_not_specified(self):
+    def test_steroids_given_other_not_required_if_not_specified(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": YES,
-                "which_steroids": "oral_prednisolone",
-                "which_steroids_other": "xxx",
-                "steroids_course_duration": 1,
+                "steroids": YES,
+                "steroids_given": "oral_prednisolone",
+                "steroids_given_other": "xxx",
+                "steroids_course": 1,
             }
         )
         self.assertFormValidatorError(
-            field="which_steroids_other",
+            field="steroids_given_other",
             expected_msg="This field is not required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_steroids_course_duration_not_required_if_steroids_not_administered(self):
+    def test_steroids_course_not_required_if_steroids_no(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": NO,
-                "which_steroids": NOT_APPLICABLE,
-                "which_steroids_other": "",
-                "steroids_course_duration": 1,
+                "steroids": NO,
+                "steroids_given": NOT_APPLICABLE,
+                "steroids_given_other": "",
+                "steroids_course": 1,
             }
         )
         self.assertFormValidatorError(
-            field="steroids_course_duration",
+            field="steroids_course",
             expected_msg="This field is not required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_steroids_course_duration_required_if_steroids_administered(self):
+    def test_steroids_course_required_if_steroids(self):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "steroids_administered": YES,
-                "which_steroids": "oral_prednisolone",
-                "which_steroids_other": "",
-                "steroids_course_duration": None,
+                "steroids": YES,
+                "steroids_given": "oral_prednisolone",
+                "steroids_given_other": "",
+                "steroids_course": None,
             }
         )
         self.assertFormValidatorError(
-            field="steroids_course_duration",
+            field="steroids_course",
             expected_msg="This field is required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -326,12 +326,12 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
         cleaned_data.update(
             {
-                "antibiotics": Antibiotics.objects.filter(name=OTHER),
-                "antibiotics_other": "",
+                "antibiotics_given": Antibiotics.objects.filter(name=OTHER),
+                "antibiotics_given_other": "",
             }
         )
         self.assertFormValidatorError(
-            field="antibiotics_other",
+            field="antibiotics_given_other",
             expected_msg="This field is required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -347,12 +347,14 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 )
                 cleaned_data.update(
                     {
-                        "antibiotics": Antibiotics.objects.filter(name=antibiotic),
-                        "antibiotics_other": "some_other_antibiotics",
+                        "antibiotics_given": Antibiotics.objects.filter(
+                            name=antibiotic
+                        ),
+                        "antibiotics_given_other": "some_other_antibiotics",
                     }
                 )
                 self.assertFormValidatorError(
-                    field="antibiotics_other",
+                    field="antibiotics_given_other",
                     expected_msg="This field is not required.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )

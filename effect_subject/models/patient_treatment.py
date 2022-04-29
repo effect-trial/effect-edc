@@ -1,10 +1,12 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
+from edc_model.models import date_not_future
 
-from effect_lists.models import Antibiotics, TbTreatments
-from effect_subject.choices import CM_TX_CHOICES, STEROID_CHOICES
+from effect_lists.models import Antibiotics, Drugs, TbTreatments
+from effect_subject.choices import CM_TX_CHOICES, NEGATIVE_TX_CHOICES, STEROID_CHOICES
 
 from ..model_mixins import CrfModelMixin
 
@@ -24,49 +26,78 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Cryptococcal meningitis confirmed?",
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
     )
 
-    cm_tx_administered = models.CharField(
+    cm_tx = models.CharField(
         verbose_name="Cryptococcal meningitis treatment administered?",
         max_length=15,
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
     )
 
     cm_tx_given = models.CharField(
-        verbose_name="Cryptococcal meningitis treatment given?",
+        verbose_name="If YES, treatment given?",
         max_length=15,
         choices=CM_TX_CHOICES,
+        default=NOT_APPLICABLE,
     )
 
-    cm_tx_given_other = edc_models.OtherCharField(
-        verbose_name="If other CM treatment given, please specify ..."
-    )
+    cm_tx_given_other = edc_models.OtherCharField()
 
-    tb_tx_given = models.ManyToManyField(
-        TbTreatments,
-        verbose_name="TB treatment given?",
-        blank=True,
-    )
-
-    tb_tx_given_other = edc_models.OtherCharField(
-        verbose_name="If other TB treatment given, please specify ..."
-    )
-
-    steroids_administered = models.CharField(
-        verbose_name="Steroids administered?",
+    tb_tx = models.CharField(
+        verbose_name="Has the patient been put on TB preventive therapy?",
         max_length=15,
         choices=YES_NO,
     )
 
-    which_steroids = models.CharField(
-        verbose_name="If YES, which steroids where administered?",
-        max_length=35,
-        choices=STEROID_CHOICES,
+    tb_tx_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
     )
 
-    which_steroids_other = edc_models.OtherCharField()
+    tb_tx_given = models.ManyToManyField(
+        TbTreatments,
+        verbose_name="If YES, which treatment?",
+        blank=True,
+    )
 
-    steroids_course_duration = models.IntegerField(
+    tb_tx_given_other = edc_models.OtherCharField()
+
+    tb_tx_reason_no = models.CharField(
+        verbose_name="If NO, give reason",
+        max_length=30,
+        choices=NEGATIVE_TX_CHOICES,
+        default=NOT_APPLICABLE,
+    )
+
+    tb_tx_reason_no_other = edc_models.OtherCharField()
+
+    steroids = models.CharField(
+        verbose_name="Were steroids administered to the patient?",
+        max_length=15,
+        choices=YES_NO,
+    )
+
+    steroids_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    steroids_given = models.CharField(
+        verbose_name="If YES, which steroids?",
+        max_length=35,
+        choices=STEROID_CHOICES,
+        default=NOT_APPLICABLE,
+    )
+
+    steroids_given_other = edc_models.OtherCharField()
+
+    steroids_course = models.IntegerField(
         verbose_name="Length of steroid course?",
         validators=[MinValueValidator(0)],
         help_text="in days",
@@ -76,21 +107,68 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     # other treatment
     co_trimoxazole = models.CharField(
-        verbose_name="Co-Trimoxazole given?",
+        verbose_name="Has the patient been prescribed co-trimoxazole?",
         max_length=15,
         choices=YES_NO,
     )
 
-    # TODO: ???d1 only?
-    antibiotics = models.ManyToManyField(
+    co_trimoxazole_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    co_trimoxazole_reason_no = models.CharField(
+        verbose_name="If NO, give reason",
+        max_length=30,
+        choices=NEGATIVE_TX_CHOICES,
+        default=NOT_APPLICABLE,
+    )
+
+    co_trimoxazole_reason_no_other = edc_models.OtherCharField()
+
+    antibiotics = models.CharField(
+        verbose_name="Has the patient been prescribed antibiotics?",
+        max_length=15,
+        choices=YES_NO,
+    )
+
+    antibiotics_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    antibiotics_given = models.ManyToManyField(
         Antibiotics,
-        verbose_name="Antibiotics?",
+        verbose_name="If YES, which antibiotics?",
         blank=True,
     )
 
-    antibiotics_other = edc_models.OtherCharField(
-        verbose_name="If other antibiotics, please specify ..."
+    antibiotics_given_other = edc_models.OtherCharField()
+
+    other_drugs = models.CharField(
+        verbose_name="Has the patient been prescribed any other drugs/interventions?",
+        max_length=15,
+        choices=YES_NO,
     )
+
+    other_drugs_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    other_drugs_given = models.ManyToManyField(
+        Drugs,
+        verbose_name="If YES, which drugs/interventions?",
+        blank=True,
+    )
+
+    other_drugs_given_other = edc_models.OtherCharField()
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Patient Treatment"

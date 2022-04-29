@@ -19,28 +19,22 @@ class PatientTreatmentFormValidator(FormValidator):
         self.validate_steroids_administered()
 
         self.m2m_other_specify(
-            OTHER, m2m_field="antibiotics", field_other="antibiotics_other"
+            OTHER, m2m_field="antibiotics_given", field_other="antibiotics_given_other"
         )
 
     def validate_cm_tx(self):
         self.applicable_if(YES, field="lp_completed", field_applicable="cm_confirmed")
-        self.applicable_if(
-            YES, field="cm_confirmed", field_applicable="cm_tx_administered"
-        )
-        self.applicable_if(
-            YES, field="cm_tx_administered", field_applicable="cm_tx_given"
-        )
+        self.applicable_if(YES, field="cm_confirmed", field_applicable="cm_tx")
+        self.applicable_if(YES, field="cm_tx", field_applicable="cm_tx_given")
         self.validate_other_specify("cm_tx_given")
 
     def validate_steroids_administered(self):
-        self.applicable_if(
-            YES, field="steroids_administered", field_applicable="which_steroids"
-        )
-        self.validate_other_specify("which_steroids")
+        self.applicable_if(YES, field="steroids", field_applicable="steroids_given")
+        self.validate_other_specify("steroids_given")
         self.required_if(
             YES,
-            field="steroids_administered",
-            field_required="steroids_course_duration",
+            field="steroids",
+            field_required="steroids_course",
         )
 
 

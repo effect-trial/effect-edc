@@ -103,7 +103,6 @@ list_data = {
         ("k", "K"),
         ("mg", "Mg"),
         ("vitamins", "Vitamins"),
-        ("tmp_smx_cotrimoxazole", "TMP-SMX/Cotrimoxazole"),
         ("anticonvulsants", "Anticonvulsants"),
         ("antimalarials", "Antimalarials"),
         (OTHER, "Other drug/intervention, please specify below ..."),
