@@ -5,7 +5,7 @@ from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from model_bakery import baker
 
 from effect_lists.list_data import list_data
-from effect_lists.models import Antibiotics, TbTreatments
+from effect_lists.models import Antibiotics, Drugs, TbTreatments
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import PatientTreatmentForm
 from effect_subject.forms.patient_treatment_form import PatientTreatmentFormValidator
@@ -37,7 +37,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_non_cm_patient_without_treatment_data(self):
+    def get_cleaned_data_patient_no_cm_no_tx(self):
         return {
             "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
@@ -46,25 +46,39 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "cm_tx": NOT_APPLICABLE,
             "cm_tx_given": NOT_APPLICABLE,
             "cm_tx_given_other": "",
+            "tb_tx": NO,
+            "tb_tx_date": None,
             "tb_tx_given": TbTreatments.objects.none(),
             "tb_tx_given_other": "",
+            "tb_tx_reason_no": "contraindicated",
+            "tb_tx_reason_no_other": "",
             "steroids": NO,
+            "steroids_date": None,
             "steroids_given": NOT_APPLICABLE,
             "steroids_given_other": "",
             "steroids_course": None,
             "co_trimoxazole": NO,
+            "co_trimoxazole_date": None,
+            "co_trimoxazole_reason_no": "deferred_local_clinic",
+            "co_trimoxazole_reason_no_other": "",
+            "antibiotics": NO,
+            "antibiotics_date": None,
             "antibiotics_given": Antibiotics.objects.none(),
             "antibiotics_given_other": "",
+            "other_drugs": NO,
+            "other_drugs_date": None,
+            "other_drugs_given": Drugs.objects.none(),
+            "other_drugs_given_other": "",
         }
 
     def test_form_validator_allows_valid_in_person_visit(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_cm_confirmed_na_if_lp_not_completed(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": NO,
@@ -78,7 +92,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_confirmed_applicable_if_lp_completed(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -92,7 +106,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_na_if_cm_not_confirmed(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -107,7 +121,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_applicable_if_cm_confirmed(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -122,7 +136,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_na_if_cm_tx_no(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -138,7 +152,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_applicable_if_cm_tx(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -154,7 +168,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_other_required_if_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -171,7 +185,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_other_not_required_if_not_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -189,7 +203,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     # tb_tx validation tests
     def test_tb_tx_given_other_required_if_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "tb_tx_given": TbTreatments.objects.filter(name=OTHER),
@@ -209,9 +223,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
         for tb_tx in tb_treatments:
             with self.subTest(tb_tx=tb_tx):
-                cleaned_data = deepcopy(
-                    self.get_valid_non_cm_patient_without_treatment_data()
-                )
+                cleaned_data = deepcopy(self.get_cleaned_data_patient_no_cm_no_tx())
                 cleaned_data.update(
                     {
                         "tb_tx_given": TbTreatments.objects.filter(name=tb_tx),
@@ -226,7 +238,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     # steroid validation tests
     def test_steroids_given_na_if_steroids_no(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": NO,
@@ -242,7 +254,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_applicable_if_steroids(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": YES,
@@ -258,7 +270,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_other_required_if_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": YES,
@@ -274,7 +286,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_other_not_required_if_not_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": YES,
@@ -290,7 +302,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_course_not_required_if_steroids_no(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": NO,
@@ -306,7 +318,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_course_required_if_steroids(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "steroids": YES,
@@ -323,7 +335,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     # antibiotic validation tests
     def test_antibiotics_other_required_if_specified(self):
-        cleaned_data = self.get_valid_non_cm_patient_without_treatment_data()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
                 "antibiotics_given": Antibiotics.objects.filter(name=OTHER),
@@ -342,9 +354,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         ]
         for antibiotic in antibiotic_choices:
             with self.subTest(antibiotic=antibiotic):
-                cleaned_data = deepcopy(
-                    self.get_valid_non_cm_patient_without_treatment_data()
-                )
+                cleaned_data = deepcopy(self.get_cleaned_data_patient_no_cm_no_tx())
                 cleaned_data.update(
                     {
                         "antibiotics_given": Antibiotics.objects.filter(
