@@ -8,7 +8,6 @@ from model_bakery import baker
 from effect_lists.models import Dx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.diagnoses_form import DiagnosesForm, DiagnosesFormValidator
-from effect_visit_schedule.constants import DAY01, DAY14
 
 from .mixins import ReportingFieldsetDay14TestCaseMixin
 
