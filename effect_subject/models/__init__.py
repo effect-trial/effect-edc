@@ -15,7 +15,6 @@ from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
 from .patient_history import PatientHistory
 from .patient_treatment import PatientTreatment
-from .patient_treatment_day14 import PatientTreatmentDay14
 from .proxy_models import (
     AdherenceStageFour,
     AdherenceStageOne,
