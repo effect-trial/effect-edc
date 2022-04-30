@@ -160,6 +160,7 @@ list_data = {
         ("hearing_loss", "Hearing loss"),
         ("jaundice", "Jaundice"),
         ("nausea", "Nausea"),
+        ("night_sweats", "Night sweats"),
         ("CN_VI_palsy_left", "Neuro - Cranial Nerve VI palsy (left)"),
         ("CN_VI_palsy_right", "Neuro - Cranial Nerve VI palsy (right)"),
         ("CN_VII_palsy_left", "Neuro - Cranial Nerve VII palsy (left)"),
