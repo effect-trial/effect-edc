@@ -241,45 +241,6 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    # tb_tx validation tests
-    def test_tb_tx_given_other_required_if_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
-        cleaned_data.update(
-            {
-                "tb_tx": YES,
-                "tb_tx_date": self.get_utcnow_as_date(),
-                "tb_tx_given": TbTreatments.objects.filter(name=OTHER),
-                "tb_tx_given_other": "",
-            }
-        )
-        self.assertFormValidatorError(
-            field="tb_tx_given_other",
-            expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-    def test_tb_tx_given_other_not_required_if_not_specified(self):
-        tb_treatments = [
-            tx[0] for tx in list_data["effect_lists.tbtreatments"] if tx[0] != OTHER
-        ]
-
-        for tb_tx in tb_treatments:
-            with self.subTest(tb_tx=tb_tx):
-                cleaned_data = deepcopy(self.get_cleaned_data_patient_no_cm_no_tx())
-                cleaned_data.update(
-                    {
-                        "tb_tx": YES,
-                        "tb_tx_date": self.get_utcnow_as_date(),
-                        "tb_tx_given": TbTreatments.objects.filter(name=tb_tx),
-                        "tb_tx_given_other": "some_other_tb_tx",
-                    }
-                )
-                self.assertFormValidatorError(
-                    field="tb_tx_given_other",
-                    expected_msg="This field is not required.",
-                    form_validator=self.validate_form_validator(cleaned_data),
-                )
-
     # steroid validation tests
     def test_steroids_given_na_if_steroids_no(self):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
@@ -380,46 +341,6 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             expected_msg="This field is required.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
-
-    # antibiotic validation tests
-    def test_antibiotics_other_required_if_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
-        cleaned_data.update(
-            {
-                "antibiotics": YES,
-                "antibiotics_date": self.get_utcnow_as_date(),
-                "antibiotics_given": Antibiotics.objects.filter(name=OTHER),
-                "antibiotics_given_other": "",
-            }
-        )
-        self.assertFormValidatorError(
-            field="antibiotics_given_other",
-            expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-    def test_antibiotics_other_not_required_if_not_specified(self):
-        antibiotic_choices = [
-            ab[0] for ab in list_data["effect_lists.antibiotics"] if ab[0] != OTHER
-        ]
-        for antibiotic in antibiotic_choices:
-            with self.subTest(antibiotic=antibiotic):
-                cleaned_data = deepcopy(self.get_cleaned_data_patient_no_cm_no_tx())
-                cleaned_data.update(
-                    {
-                        "antibiotics": YES,
-                        "antibiotics_date": self.get_utcnow_as_date(),
-                        "antibiotics_given": Antibiotics.objects.filter(
-                            name=antibiotic
-                        ),
-                        "antibiotics_given_other": "some_other_antibiotics",
-                    }
-                )
-                self.assertFormValidatorError(
-                    field="antibiotics_given_other",
-                    expected_msg="This field is not required.",
-                    form_validator=self.validate_form_validator(cleaned_data),
-                )
 
     def test_date_fields_required_if_prescribed_yes(self):
         for field in [
