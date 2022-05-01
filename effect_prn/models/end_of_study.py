@@ -12,8 +12,8 @@ from edc_model.models import (
 from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 
+from effect_lists.models import Dx
 from effect_prn.choices import (
-    DIAGNOSIS,
     FLUCONAZOLE_DOSE_14DAYS,
     FLUCONAZOLE_DOSE_CONSOLIDATION,
     MEDICINES,
@@ -110,10 +110,10 @@ class EndOfStudy(
         null=True,
     )
 
-    dx_since_enrolment_dx = models.CharField(
+    dx_since_enrolment_dx = models.ManyToManyField(
+        Dx,
+        related_name="dx",
         verbose_name="If Yes, diagnosis",
-        choices=DIAGNOSIS,
-        max_length=45,
     )
 
     dx_since_enrolment_other = OtherCharField()
@@ -130,15 +130,15 @@ class EndOfStudy(
         null=True,
     )
 
-    fcon_dose_14 = models.CharField(
+    flucon_dose_14 = models.CharField(
         verbose_name="Fluconazole dose taken during first 14days of study",
         choices=FLUCONAZOLE_DOSE_14DAYS,
         max_length=15,
     )
 
-    fcon_dose_14_other = OtherCharField()
+    flucon_dose_14_other = OtherCharField()
 
-    fcon_dose_14_reasons = models.TextField(
+    flucon_dose_14_reasons = models.TextField(
         verbose_name="Reasons",
         max_length=500,
         blank=True,
@@ -151,13 +151,13 @@ class EndOfStudy(
         null=True,
     )
 
-    fcon_consolidation_phase = models.CharField(
+    flucon_consolidation_phase = models.CharField(
         verbose_name="Fluconazole dose taken during consolidation/maintenance phase",
         choices=FLUCONAZOLE_DOSE_CONSOLIDATION,
         max_length=15,
     )
 
-    fcon_consolidation_phase_other = OtherCharField()
+    flucon_consolidation_phase_other = OtherCharField()
 
     comment = models.TextField(
         verbose_name="Please provide further details if possible",

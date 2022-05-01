@@ -47,21 +47,9 @@ ACTION_REQUIRED = (
 )
 
 MEDICINES = (
-    ("co_trimaxazole", "co_trimaxazole"),
+    ("co_trimaxazole", "Co-trimaxazole"),
     ("fluconazole_200mg", "Fluconazole (200mg)"),
     ("rifampicin", "Rifampicin"),
-    (OTHER, "Other"),
-)
-
-DIAGNOSIS = (
-    ("bacteraemia", "Bacteraemia"),
-    ("bacterial_pneumonia", "Bacterial pneumonia"),
-    ("cryptococcal_meningitis", "Cryptococcal meningitis"),
-    ("diarrhoeal_wasting", "Diarrhoeal wasting"),
-    ("kaposis_syndrome", "Kaposi’s syndrome"),
-    ("malaria", "Malaria"),
-    ("tuberculosis_extra_pulmonary", "Tuberculosis extra-pulmonary"),
-    ("tuberculosis_pulmonary", "Tuberculosis pulmonary"),
     (OTHER, "Other"),
 )
 

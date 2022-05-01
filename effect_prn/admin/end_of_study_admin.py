@@ -47,12 +47,12 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                     "dx_since_enrolment_other",
                     "missed_doses_5fc_cnt",
                     "missed_doses_flu_cnt",
-                    "fcon_dose_14",
-                    "fcon_dose_14_other",
-                    "fcon_dose_14_reasons",
+                    "flucon_dose_14",
+                    "flucon_dose_14_other",
+                    "flucon_dose_14_reasons",
                     "missed_doses_consolidation_flu_cnt",
-                    "fcyz_consolidation_phase",
-                    "fcyz_consolidation_phase_other",
+                    "flucon_consolidation_phase",
+                    "flucon_consolidation_phase_other",
                     "comment",
                 )
             },
@@ -71,12 +71,15 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     list_filter = ("offschedule_datetime",)
 
+    filter_horizontal = [
+        "dx_since_enrolment_dx",
+    ]
+
     radio_fields = {
         "cm_admitted": admin.VERTICAL,
         "dx_since_enrolment": admin.VERTICAL,
-        "dx_since_enrolment_dx": admin.VERTICAL,
-        "fcon_dose_14": admin.VERTICAL,
-        "fcyz_consolidation_phase": admin.VERTICAL,
+        "flucon_dose_14": admin.VERTICAL,
+        "flucon_consolidation_phase": admin.VERTICAL,
         "medication_study_termination": admin.VERTICAL,
         "offschedule_reason": admin.VERTICAL,
         "transferred_consent": admin.VERTICAL,
