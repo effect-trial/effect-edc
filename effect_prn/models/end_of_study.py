@@ -36,7 +36,7 @@ class EndOfStudy(
         null=True,
     )
 
-    lastfollowup_datetime = models.DateTimeField(
+    lastfollowup_datetime = models.DateField(
         verbose_name="Date of last research follow-up",
         validators=[datetime_not_future],
         blank=False,
@@ -151,13 +151,13 @@ class EndOfStudy(
         null=True,
     )
 
-    fcyz_consolidation_phase = models.CharField(
+    fcon_consolidation_phase = models.CharField(
         verbose_name="Fluconazole dose taken during consolidation/maintenance phase",
         choices=FLUCONAZOLE_DOSE_CONSOLIDATION,
         max_length=15,
     )
 
-    fcyz_consolidation_phase_other = OtherCharField()
+    fcon_consolidation_phase_other = OtherCharField()
 
     comment = models.TextField(
         verbose_name="Please provide further details if possible",

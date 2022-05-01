@@ -29,7 +29,7 @@ class EndOfStudyForm(
         fields = "__all__"
         help_texts = {
             "offschedule_datetime": "This can include date of: lost to follow up; withdrawal, Death, Calendar month 6",
-            "missed_doses_5fc_cnt": "If no missed doses, put 0",
-            "missed_doses_flu_cnt": "If no missed doses, put 0",
-            "missed_doses_consolidation_flu_cnt": "If no missed doses, put 0",
+            "missed_doses_5fc_cnt": "If no missed doses, Enter 0",
+            "missed_doses_flu_cnt": "If no missed doses, Enter 0",
+            "missed_doses_consolidation_flu_cnt": "If no missed doses, Enter 0",
         }
