@@ -49,37 +49,45 @@ class Migration(migrations.Migration):
             old_name='which_steroids_other',
             new_name='steroids_given_other',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicalpatienttreatment',
-            name='antibiotics_other',
+            old_name='antibiotics_other',
+            new_name='antibiotics_given_other',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicalpatienttreatment',
-            name='cm_tx_administered',
+            old_name='cm_tx_administered',
+            new_name='cm_tx',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicalpatienttreatment',
-            name='steroids_administered',
+            old_name='steroids_administered',
+            new_name='steroids',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicalpatienttreatment',
-            name='which_steroids',
+            old_name='which_steroids',
+            new_name='steroids_given',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='patienttreatment',
-            name='antibiotics_other',
+            old_name='antibiotics_other',
+            new_name='antibiotics_given_other',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='patienttreatment',
-            name='cm_tx_administered',
+            old_name='cm_tx_administered',
+            new_name='cm_tx',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='patienttreatment',
-            name='steroids_administered',
+            old_name='steroids_administered',
+            new_name='steroids',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='patienttreatment',
-            name='which_steroids',
+            old_name='which_steroids',
+            new_name='steroids_given',
         ),
         migrations.AddField(
             model_name='historicalpatienttreatment',
@@ -91,16 +99,6 @@ class Migration(migrations.Migration):
             model_name='historicalpatienttreatment',
             name='antibiotics_date',
             field=models.DateField(blank=True, null=True, validators=[edc_model.models.validators.date.date_not_future], verbose_name='If YES, give date'),
-        ),
-        migrations.AddField(
-            model_name='historicalpatienttreatment',
-            name='antibiotics_given_other',
-            field=edc_model.models.fields.other_charfield.OtherCharField(blank=True, max_length=35, null=True, verbose_name='If other, please specify ...'),
-        ),
-        migrations.AddField(
-            model_name='historicalpatienttreatment',
-            name='cm_tx',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='Cryptococcal meningitis treatment administered?'),
         ),
         migrations.AddField(
             model_name='historicalpatienttreatment',
@@ -135,19 +133,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='historicalpatienttreatment',
-            name='steroids',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=15, verbose_name='Were steroids administered to the patient?'),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='historicalpatienttreatment',
             name='steroids_date',
             field=models.DateField(blank=True, null=True, validators=[edc_model.models.validators.date.date_not_future], verbose_name='If YES, give date'),
-        ),
-        migrations.AddField(
-            model_name='historicalpatienttreatment',
-            name='steroids_given',
-            field=models.CharField(choices=[('oral_prednisolone', 'Oral prednisolone'), ('iv_dexamethasone', 'IV Dexamethasone'), ('OTHER', 'Other, please specify below ...'), ('N/A', 'Not applicable')], default='N/A', max_length=35, verbose_name='If YES, which steroids?'),
         ),
         migrations.AddField(
             model_name='historicalpatienttreatment',
@@ -179,16 +166,6 @@ class Migration(migrations.Migration):
             model_name='patienttreatment',
             name='antibiotics_given',
             field=models.ManyToManyField(blank=True, to='effect_lists.Antibiotics', verbose_name='If YES, which antibiotics?'),
-        ),
-        migrations.AddField(
-            model_name='patienttreatment',
-            name='antibiotics_given_other',
-            field=edc_model.models.fields.other_charfield.OtherCharField(blank=True, max_length=35, null=True, verbose_name='If other, please specify ...'),
-        ),
-        migrations.AddField(
-            model_name='patienttreatment',
-            name='cm_tx',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='Cryptococcal meningitis treatment administered?'),
         ),
         migrations.AddField(
             model_name='patienttreatment',
@@ -228,19 +205,8 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='patienttreatment',
-            name='steroids',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=15, verbose_name='Were steroids administered to the patient?'),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='patienttreatment',
             name='steroids_date',
             field=models.DateField(blank=True, null=True, validators=[edc_model.models.validators.date.date_not_future], verbose_name='If YES, give date'),
-        ),
-        migrations.AddField(
-            model_name='patienttreatment',
-            name='steroids_given',
-            field=models.CharField(choices=[('oral_prednisolone', 'Oral prednisolone'), ('iv_dexamethasone', 'IV Dexamethasone'), ('OTHER', 'Other, please specify below ...'), ('N/A', 'Not applicable')], default='N/A', max_length=35, verbose_name='If YES, which steroids?'),
         ),
         migrations.AddField(
             model_name='patienttreatment',
