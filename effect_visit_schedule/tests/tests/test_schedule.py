@@ -131,7 +131,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.diagnoses",
                 "effect_subject.arvtreatment",
                 "effect_subject.patienttreatment",
-                "effect_subject.patienttreatmentday14",
                 "effect_subject.bloodresultsfbc",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",

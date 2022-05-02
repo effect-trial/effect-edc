@@ -93,7 +93,7 @@ CHILDCARE_CHOICES = (
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    (NOT_APPLICABLE, "Not applicable (no CM treatment given)"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 DYSLIPIDAEMIA_RX_CHOICES = (
@@ -237,6 +237,13 @@ MONOFILAMENT_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+NEGATIVE_TX_CHOICES = (
+    ("deferred_local_clinic", "Deferred to local clinic"),
+    ("contraindicated", "Contraindicated"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
 PAYEE_CHOICES = (
     ("own_cash", "Own cash"),
     ("insurance", "Insurance"),
@@ -269,7 +276,7 @@ STEROID_CHOICES = (
     ("oral_prednisolone", "Oral prednisolone"),
     ("iv_dexamethasone", "IV Dexamethasone"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    (NOT_APPLICABLE, "Not applicable (no steroids administered)"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 TB_DX_AGO_CHOICES = (

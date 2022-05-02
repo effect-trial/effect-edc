@@ -100,7 +100,6 @@ crfs_d14 = FormsCollection(
     Crf(show_order=100, model="effect_subject.diagnoses"),
     Crf(show_order=110, model="effect_subject.arvtreatment"),
     Crf(show_order=120, model="effect_subject.patienttreatment"),
-    Crf(show_order=130, model="effect_subject.patienttreatmentday14"),
     Crf(show_order=200, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=230, model="effect_subject.chestxray", required=False),
     Crf(show_order=240, model="effect_subject.lpcsf", required=False),
