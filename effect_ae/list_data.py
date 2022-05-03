@@ -1,4 +1,11 @@
-from edc_constants.constants import DEAD, NOT_APPLICABLE, OTHER, UNKNOWN
+from edc_constants.constants import (
+    DEAD,
+    MALIGNANCY,
+    NOT_APPLICABLE,
+    OTHER,
+    OTHER_PLEASE_SPECIFY_TEXT,
+    UNKNOWN,
+)
 
 list_data = {
     "edc_adverse_event.aeclassification": [
@@ -29,11 +36,23 @@ list_data = {
         ),
     ],
     "edc_adverse_event.causeofdeath": [
-        ("art_toxicity", "ART toxicity"),
+        ("cm", "Cryptococcal meningitis"),
+        ("bacteraemia", "Bacteraemia"),
+        ("bacterial_pneumonia", "Bacterial pneumonia"),
         ("covid_19", "COVID-19"),
+        (
+            "iris_cm_relapse",
+            "Cryptococcal meningitis relapse/IRIS",
+        ),
+        ("iris_non_cm", "IRIS non-CM"),
+        ("tb_pulmonary", "TB - Pulmonary"),
+        ("tb_meningitis", "TB - Meningitis"),
+        ("tb_disseminated", "TB - Disseminated"),
+        ("art_toxicity", "ART toxicity"),
+        (MALIGNANCY, "Malignancy"),
         ("diarrhea_wasting", "Diarrhea/wasting"),
-        ("iris", "IRIS"),
+        ("sepsis", "Sepsis"),
         (UNKNOWN, "Unknown"),
-        (OTHER, "Other"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
 }
