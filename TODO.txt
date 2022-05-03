@@ -2,19 +2,12 @@
     - fix/renew expired certificate
 
 - Schedule:
-    - Clinical note CRF to be available for all visits? & Unscheduled
     - Finalise and update upper/lower visit windows
-    - Use correct adherence form for unscheduled visits
-    - "Participants who are treated as outpatients will be seen in clinic on day 1 and 14".
     - d1:
         - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
         - "Bloods will be drawn on day 1 to assess serum creatinine, full blood count with differential (FBC) and alanine transaminase (ALT) levels"
     - d14
-        - Clinical Assessment d14 CRFs
         - "Bloods drawn to check FBC and differential count"
-        - ???"ART will be started on day 14, consistent with current guidelines"
-    - "Ambulatory participants (or next of kin) will be contacted at 1, 2.5 (10 weeks), 4 and 6 months to determine survival status"
-    - update visit schedule when EFFECT Protocol v1.3 released/approved
 
 - SAE CRF:
     - validate Flucytosine only applicable if it is a study drug (i.e. on that arm of trial)
@@ -39,7 +32,6 @@
         - Adherence
         - Clinical Assessment CRF
 
-
 - Medical History CRF:
     - currently taking TB treatment?  -> Ask which treatment, like asked on D14 - use same list
     - validate
@@ -52,27 +44,15 @@
     - add "What decision was made at enrollment regarding their current ART regimen?" (ART continued/ART stopped)
     - validate
 
-- LP CRF:
-    - implement
-
-- Microbiology CRF:
-    - Mirror CRF from Ambition, but move CSF into LP CRF
-
 - Requisitions:
     - combine renal (RFT) and liver (LFT) function tests into single requisition
         - combine results forms
-    - add to requisitions
-
-- Screening:
-    - fix missing 'ineligible' button
-    - cryptococcal antigen (CrAg)-positive in blood who decline a lumbar puncture (LP) should be eligible
 
 - Subject visit:
     - Hide 'survival_status' at baseline
-    - trigger AE_INITIAL_ACTION/DEATH_REPORT_ACTION if answer YES to 'survival_status'
+        - trigger AE_INITIAL_ACTION/DEATH_REPORT_ACTION if answer YES to 'survival_status'
     - Hide 'hospitalized' at baseline
-    - trigger AE_INITIAL_ACTION if answer YES to 'hospitalized'
-    - Validate new fields
+        - trigger AE_INITIAL_ACTION if answer YES to 'hospitalized'
 
 - Follow-up CRF:
     - Remove model, form, admin and test once validation transferred over
@@ -83,9 +63,7 @@
     - capture modifications at subsequent visits (e.g. "Were there modifications to the study medication?")
 
 - Signs and Symptoms CRF:
-    - validate 'followup' model exists before anything else
     - validate 'any_sx' != UNKNOWN if an in-person or telephone-based (patient) visit
-    - fix bug, AE_INITIAL_ACTION not created if AE_INITIAL_ACTION was created for followup
     - 'headache_duration_microseconds' to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
     - if 'cm_sx_lp_done', generate LP
     - if fbc or chem bloods taken, generate related requisition
@@ -106,9 +84,6 @@
     - trigger AE_INITIAL_ACTION if answer YES to 'gi_side_effects'
     - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
 
-- Chest X-ray CRF:
-    - add validation
-
 - ARV Treatment CRF:
     - add validation
 
@@ -119,16 +94,9 @@
         - validate with study medication, to confirm taken off drug
     - if 'lp_completed', prompt for LP results
 
-- Patient Treatment Day 14 CRF:
-    - add form admin
-    - review
-
 - Blood Result: FBC CRF:
     - Q3, 'requisition' + button doesn't work (no panels are listed)
     - ???validation
-
-- Clinical Note CRF:
-    - add validation
 
 - Economics CRF:
     - update

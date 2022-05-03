@@ -13,10 +13,9 @@ Changes
     - add 'Normal' option to results list
     - add 'chest_xray_results_other' field
 - remove MCV, MCH, MCHC and HCT from Full Blood Count CRF
-- changes to Patient Treatment D14:
-    - make fluconazole prescription questions consistent with Patient History CRF
-    - set maximum allowed Fluconazole dose other value (D1) to be 1199 mg/d
-    - set maximum allowed Fluconazole prescription other value (D14) to be 1200 mg/d
+- changes to Patient Treatment CRF:
+    - merge Patient Treatment and Patient Treatment Day 14 into single CRF
+    - remove Fluconazole dose question
 - changes to Visit Schedule:
     - D1
         - Re-order baseline forms
