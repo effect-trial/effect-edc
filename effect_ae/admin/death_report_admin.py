@@ -21,15 +21,46 @@ class DeathReportAdmin(DeathReportModelAdminMixin, SimpleHistoryAdmin):
                 "fields": (
                     "subject_identifier",
                     "report_datetime",
+                )
+            },
+        ),
+        (
+            "Death",
+            {
+                "fields": (
                     "death_datetime",
                     "death_as_inpatient",
                 )
             },
         ),
         (
-            "Opinion of Local Study Doctor",
+            "Next of kin",
+            {
+                "fields": (
+                    "speak_nok",
+                    "date_first_unwell",
+                    "date_first_unwell_estimated",
+                    "headache",
+                    "drowsy_confused_altered_behaviour",
+                    "seizures",
+                    "nok_narrative",
+                )
+            },
+        ),
+        (
+            "Opinion of Local Study Doctor and Local PI",
             {"fields": ("cause_of_death", "cause_of_death_other", "narrative")},
         ),
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )
+
+    radio_fields = {
+        "cause_of_death": admin.VERTICAL,
+        "date_first_unwell_estimated": admin.VERTICAL,
+        "death_as_inpatient": admin.VERTICAL,
+        "drowsy_confused_altered_behaviour": admin.VERTICAL,
+        "headache": admin.VERTICAL,
+        "seizures": admin.VERTICAL,
+        "speak_nok": admin.VERTICAL,
+    }
