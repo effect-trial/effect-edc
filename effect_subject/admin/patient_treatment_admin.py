@@ -31,6 +31,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "tb_tx",
                     "tb_tx_date",
+                    "tb_tx_date_estimated",
                     "tb_tx_given",
                     "tb_tx_given_other",
                     "tb_tx_reason_no",
@@ -44,6 +45,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "steroids",
                     "steroids_date",
+                    "steroids_date_estimated",
                     "steroids_given",
                     "steroids_given_other",
                     "steroids_course",
@@ -56,6 +58,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "co_trimoxazole",
                     "co_trimoxazole_date",
+                    "co_trimoxazole_date_estimated",
                     "co_trimoxazole_reason_no",
                     "co_trimoxazole_reason_no_other",
                 )
@@ -67,6 +70,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "antibiotics",
                     "antibiotics_date",
+                    "antibiotics_date_estimated",
                     "antibiotics_given",
                     "antibiotics_given_other",
                 )
@@ -78,6 +82,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "other_drugs",
                     "other_drugs_date",
+                    "other_drugs_date_estimated",
                     "other_drugs_given",
                     "other_drugs_given_other",
                 )
@@ -90,15 +95,20 @@ class PatientTreatmentAdmin(CrfModelAdmin):
 
     radio_fields = {
         "antibiotics": admin.VERTICAL,
+        "antibiotics_date_estimated": admin.VERTICAL,
         "cm_confirmed": admin.VERTICAL,
         "cm_tx": admin.VERTICAL,
         "cm_tx_given": admin.VERTICAL,
         "co_trimoxazole": admin.VERTICAL,
+        "co_trimoxazole_date_estimated": admin.VERTICAL,
         "co_trimoxazole_reason_no": admin.VERTICAL,
         "lp_completed": admin.VERTICAL,
         "other_drugs": admin.VERTICAL,
+        "other_drugs_date_estimated": admin.VERTICAL,
         "steroids": admin.VERTICAL,
+        "steroids_date_estimated": admin.VERTICAL,
         "steroids_given": admin.VERTICAL,
         "tb_tx": admin.VERTICAL,
+        "tb_tx_date_estimated": admin.VERTICAL,
         "tb_tx_reason_no": admin.VERTICAL,
     }
