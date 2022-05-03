@@ -58,6 +58,10 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         null=True,
     )
 
+    tb_tx_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
     tb_tx_given = models.ManyToManyField(
         TbTreatments,
         verbose_name="If YES, which treatment?",
@@ -86,6 +90,10 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[date_not_future],
         blank=True,
         null=True,
+    )
+
+    steroids_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
     )
 
     steroids_given = models.CharField(
@@ -119,6 +127,10 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         null=True,
     )
 
+    co_trimoxazole_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
     co_trimoxazole_reason_no = models.CharField(
         verbose_name="If NO, give reason",
         max_length=30,
@@ -141,6 +153,10 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         null=True,
     )
 
+    antibiotics_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
     antibiotics_given = models.ManyToManyField(
         Antibiotics,
         verbose_name="If YES, which antibiotics?",
@@ -160,6 +176,10 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[date_not_future],
         blank=True,
         null=True,
+    )
+
+    other_drugs_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
     )
 
     other_drugs_given = models.ManyToManyField(
