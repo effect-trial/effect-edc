@@ -9,11 +9,7 @@ from .arv_history_admin import ArvHistoryAdmin
 from .arv_treatment_admin import ArvTreatmentAdmin
 from .autocomplete_admin import ArvRegimensAdmin
 from .blood_culture_admin import BloodCultureAdmin
-from .blood_results import (
-    BloodResultsFbcAdmin,
-    BloodResultsLftAdmin,
-    BloodResultsRftAdmin,
-)
+from .blood_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
@@ -27,6 +23,8 @@ from .mental_status_admin import MentalStatusAdmin
 from .patient_history_admin import PatientHistoryAdmin
 from .patient_treatment_admin import PatientTreatmentAdmin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
+from .study_medication_baseline_admin import StudyMedicationBaselineAdmin
+from .study_medication_followup_admin import StudyMedicationFollowupAdmin
 from .subject_requisition_admin import SubjectRequisitionAdmin
 from .subject_visit_admin import SubjectVisitAdmin
 from .subject_visit_missed_admin import SubjectVisitMissedAdmin

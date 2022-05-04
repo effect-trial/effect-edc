@@ -18,12 +18,12 @@ class MedicalHistoryAdmin(CrfModelAdmin):
             "TB diagnosis/treatment",
             {
                 "fields": (
-                    "tb_history",
+                    "tb_prev_dx",
                     "tb_site",
-                    "tb_tx",
+                    "on_tb_tx",
                     "tb_dx_ago",
-                    "taking_rifampicin",
-                    "rifampicin_started_date",
+                    "on_rifampicin",
+                    "rifampicin_start_date",
                 )
             },
         ),
@@ -38,9 +38,9 @@ class MedicalHistoryAdmin(CrfModelAdmin):
     radio_fields = {
         "new_hiv_dx": admin.VERTICAL,
         "previous_oi": admin.VERTICAL,
-        "taking_rifampicin": admin.VERTICAL,
+        "on_rifampicin": admin.VERTICAL,
         "tb_dx_ago": admin.VERTICAL,
-        "tb_history": admin.VERTICAL,
+        "tb_prev_dx": admin.VERTICAL,
         "tb_site": admin.VERTICAL,
-        "tb_tx": admin.VERTICAL,
+        "on_tb_tx": admin.VERTICAL,
     }

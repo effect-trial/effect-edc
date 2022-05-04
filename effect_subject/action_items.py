@@ -1,19 +1,26 @@
 from typing import List
 
+from django.conf import settings
 from edc_action_item import Action, site_action_items
 from edc_action_item.site_action_items import AlreadyRegistered
 from edc_adverse_event.constants import AE_INITIAL_ACTION
-from edc_blood_results.action_items import (
-    BloodResultsFbcAction,
-    BloodResultsLftAction,
-    BloodResultsRftAction,
-)
+from edc_blood_results.action_items import BaseResultsAction, BloodResultsFbcAction
 from edc_constants.constants import HIGH_PRIORITY, PENDING, YES
 from edc_visit_schedule.utils import is_baseline
 
 from effect_screening.models import SubjectScreening
 
-from .constants import FOLLOWUP_ACTION, LP_ACTION, SX_ACTION, VITAL_SIGNS_ACTION
+from .constants import (
+    BLOOD_RESULTS_CHEM_ACTION,
+    FOLLOWUP_ACTION,
+    LP_ACTION,
+    SX_ACTION,
+    VITAL_SIGNS_ACTION,
+)
+
+subject_app_label = getattr(
+    settings, "EDC_BLOOD_RESULTS_MODEL_APP_LABEL", settings.SUBJECT_APP_LABEL
+)
 
 
 class SubjectVisitAction(Action):
@@ -37,6 +44,12 @@ class SubjectVisitAction(Action):
             if subject_screening.lp_done == PENDING:
                 next_actions = [LP_ACTION]
         return next_actions
+
+
+class BloodResultsChemAction(BaseResultsAction):
+    name = BLOOD_RESULTS_CHEM_ACTION
+    display_name = "Reportable result: Chemistry"
+    reference_model = f"{subject_app_label}.bloodresultschem"
 
 
 class FollowupAction(Action):
@@ -109,8 +122,7 @@ class VitalSignsAction(Action):
 def register_actions():
     for action_item_cls in [
         BloodResultsFbcAction,
-        BloodResultsLftAction,
-        BloodResultsRftAction,
+        BloodResultsChemAction,
         FollowupAction,
         # LpAction,
         SxAction,

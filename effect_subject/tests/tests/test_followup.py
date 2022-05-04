@@ -2,18 +2,24 @@ from copy import deepcopy
 from dataclasses import dataclass
 
 from django.test import TestCase, tag
-from edc_constants.constants import DEAD, HOSPITAL_NOTES, NO, NOT_APPLICABLE, OTHER, YES
-
-from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.choices import ASSESSMENT_WHO_CHOICES, INFO_SOURCE, PATIENT_STATUSES
-from effect_subject.constants import (
+from edc_constants.constants import (
     COLLATERAL_HISTORY,
+    DEAD,
+    HOSPITAL_NOTES,
     IN_PERSON,
     NEXT_OF_KIN,
+    NO,
+    NOT_APPLICABLE,
+    OTHER,
     OUTPATIENT_CARDS,
     PATIENT,
     TELEPHONE,
+    YES,
 )
+from edc_visit_tracking.choices import ASSESSMENT_WHO_CHOICES, VISIT_INFO_SOURCE2
+
+from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
+from effect_subject.choices import PATIENT_STATUSES
 from effect_subject.forms.followup_form import FollowupFormValidator
 from effect_visit_schedule.constants import DAY01, DAY14
 
@@ -196,7 +202,9 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def test_sv_info_source_raises_error_if_does_not_reconcile_with_patient_followup_answers(
         self,
     ):
-        for sv_info_source in [src[0] for src in INFO_SOURCE if src[0] != PATIENT]:
+        for sv_info_source in [
+            src[0] for src in VISIT_INFO_SOURCE2 if src[0] != PATIENT
+        ]:
             with self.subTest(sv_info_source=sv_info_source):
                 cleaned_data = self.get_valid_in_person_visit_data()
                 self.subject_visit.info_source = sv_info_source
@@ -226,7 +234,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         self,
     ):
         for sv_info_source in [
-            src[0] for src in INFO_SOURCE if src[0] != COLLATERAL_HISTORY
+            src[0] for src in VISIT_INFO_SOURCE2 if src[0] != COLLATERAL_HISTORY
         ]:
             with self.subTest(sv_info_source=sv_info_source):
                 cleaned_data = self.get_valid_next_of_kin_telephone_assessment_data()
@@ -258,7 +266,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     ):
         for sv_info_source in [
             src[0]
-            for src in INFO_SOURCE
+            for src in VISIT_INFO_SOURCE2
             if src[0]
             not in [COLLATERAL_HISTORY, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:

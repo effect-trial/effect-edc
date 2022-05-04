@@ -2,7 +2,7 @@ from .adherence import Adherence
 from .arv_history import ArvHistory
 from .arv_treatment import ArvTreatment
 from .blood_culture import BloodCulture
-from .blood_results import BloodResultsFbc, BloodResultsLft, BloodResultsRft
+from .blood_results import BloodResultsChem, BloodResultsFbc
 from .chest_xray import ChestXray
 from .clinical_note import ClinicalNote
 from .diagnoses import Diagnoses
@@ -22,6 +22,11 @@ from .proxy_models import (
     AdherenceStageTwo,
 )
 from .signs_and_symptoms import SignsAndSymptoms
+from .study_medication import (
+    StudyMedication,
+    StudyMedicationBaseline,
+    StudyMedicationFollowup,
+)
 from .subject_requisition import SubjectRequisition
 from .subject_visit import SubjectVisit
 from .subject_visit_missed import SubjectVisitMissed

@@ -1,27 +1,32 @@
 from django.db import models
 from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA_MISSED
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model import models as edc_models
+from edc_offstudy.model_mixins import OffstudyVisitModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.models import SiteModelMixin
-from edc_visit_tracking.managers import VisitModelManager
-from edc_visit_tracking.model_mixins import VisitModelMixin
-
-from ..choices import (
+from edc_visit_tracking.choices import (
     ASSESSMENT_TYPES,
     ASSESSMENT_WHO_CHOICES,
-    INFO_SOURCE,
-    VISIT_REASON,
-    VISIT_UNSCHEDULED_REASON,
+    VISIT_INFO_SOURCE2,
 )
+from edc_visit_tracking.managers import VisitModelManager as BaseVisitModelManager
+from edc_visit_tracking.model_mixins import VisitModelMixin
+
+from ..choices import VISIT_REASON, VISIT_UNSCHEDULED_REASON
 from ..constants import IF_YES_COMPLETE_SAE
 
 
-class CurrentSiteManager(VisitModelManager, BaseCurrentSiteManager):
+class CurrentSiteManager(BaseVisitModelManager, BaseCurrentSiteManager):
     pass
+
+
+class VisitModelManager(BaseVisitModelManager):
+    def create_missed_extras(self) -> dict:
+        return dict(assessment_type=NOT_APPLICABLE, assessment_who=NOT_APPLICABLE)
 
 
 class SubjectVisit(
@@ -30,6 +35,7 @@ class SubjectVisit(
     CreatesMetadataModelMixin,
     SiteModelMixin,
     RequiresConsentFieldsModelMixin,
+    OffstudyVisitModelMixin,
     edc_models.BaseUuidModel,
 ):
 
@@ -87,13 +93,13 @@ class SubjectVisit(
     info_source = models.CharField(
         verbose_name="What is the MAIN source of this information?",
         max_length=25,
-        choices=INFO_SOURCE,
+        choices=VISIT_INFO_SOURCE2,
     )
 
     hospitalized = models.CharField(
         verbose_name="Has the patient been hospitalized since the last assessment?",
         max_length=15,
-        choices=YES_NO_UNKNOWN,
+        choices=YES_NO_UNKNOWN_NA_MISSED,
         # TODO: If yes, trigger AE Initial
         help_text=IF_YES_COMPLETE_SAE,
         default=NOT_APPLICABLE,

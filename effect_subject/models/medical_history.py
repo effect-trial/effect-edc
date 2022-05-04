@@ -10,7 +10,7 @@ from ..model_mixins import CrfModelMixin
 
 class MedicalHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
-    tb_history = models.CharField(
+    tb_prev_dx = models.CharField(
         verbose_name="Previous diagnosis of Tuberculosis?",
         max_length=5,
         choices=YES_NO,
@@ -23,10 +23,10 @@ class MedicalHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    tb_tx = models.CharField(
+    on_tb_tx = models.CharField(
         verbose_name="Are you currently taking TB treatment?",
         max_length=5,
-        choices=YES_NO,
+        choices=YES_NO_NA,
     )
 
     tb_dx_ago = models.CharField(
@@ -36,14 +36,14 @@ class MedicalHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    taking_rifampicin = models.CharField(
+    on_rifampicin = models.CharField(
         verbose_name="If YES, are you currently also taking Rifampicin?",
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
     )
 
-    rifampicin_started_date = models.DateField(
+    rifampicin_start_date = models.DateField(
         verbose_name="If YES, when did you first start taking Rifampicin?",
         validators=[date_not_future],
         null=True,

@@ -2,18 +2,25 @@ from copy import deepcopy
 
 from django.db.models import Q
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NONE, NOT_APPLICABLE, OTHER, UNKNOWN, YES
+from edc_constants.constants import (
+    HEADACHE,
+    NO,
+    NONE,
+    NOT_APPLICABLE,
+    OTHER,
+    UNKNOWN,
+    VISUAL_LOSS,
+    YES,
+)
+from edc_csf.constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+)
 from model_bakery import baker
 
 from effect_lists.models import BloodTests, SiSx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.constants import (
-    CN_PALSY_LEFT_OTHER,
-    CN_PALSY_RIGHT_OTHER,
-    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
-    HEADACHE,
-    VISUAL_LOSS,
-)
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
 from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
@@ -48,7 +55,7 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
         return {
             "subject_visit": self.subject_visit,
-            "appointment": self.subject_visit.appointment,
+            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
             "current_sx": SiSx.objects.filter(name=NONE),
@@ -85,7 +92,7 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
         return {
             "subject_visit": self.subject_visit,
-            "appointment": self.subject_visit.appointment,
+            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),

@@ -12,6 +12,8 @@ from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
+from edc_randomization import Randomizer
+from edc_randomization.randomization_list_importer import RandomizationListImporter
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_utils.date import get_utcnow
@@ -87,6 +89,10 @@ class EffectTestCaseMixin(
         site_list_data.autodiscover()
         site_visit_schedules._registry = {}
         site_visit_schedules.register(visit_schedule=visit_schedule)
+        importer = RandomizationListImporter(
+            randomizer_cls=Randomizer, sid_count_for_tests=cls.sid_count
+        )
+        importer.import_list()
 
     def get_subject_screening(
         self,
@@ -162,9 +168,15 @@ class EffectTestCaseMixin(
             reason=reason,
         )
         if appt_datetime:
-            options.update(appt_datetime=appt_datetime)
+            options.update(
+                appt_datetime=appt_datetime or subject_consent.consent_datetime
+            )
         appointment = self.get_appointment(**options)
-        return SubjectVisit.objects.create(appointment=appointment, reason=SCHEDULED)
+        return SubjectVisit.objects.create(
+            appointment=appointment,
+            reason=SCHEDULED,
+            report_datetime=appointment.appt_datetime,
+        )
 
     @staticmethod
     def get_next_subject_visit(subject_visit):
@@ -176,7 +188,9 @@ class EffectTestCaseMixin(
         next_appointment.appt_status = IN_PROGRESS_APPT
         next_appointment.save()
         return SubjectVisit.objects.create(
-            appointment=next_appointment, reason=SCHEDULED
+            appointment=next_appointment,
+            reason=SCHEDULED,
+            report_datetime=next_appointment.appt_datetime,
         )
 
     @staticmethod

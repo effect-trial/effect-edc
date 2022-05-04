@@ -40,33 +40,33 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "report_datetime": self.subject_visit.report_datetime,
             "lp_completed": NO,
             "cm_confirmed": NOT_APPLICABLE,
-            "cm_tx": NOT_APPLICABLE,
+            "on_cm_tx": NOT_APPLICABLE,
             "cm_tx_given": NOT_APPLICABLE,
             "cm_tx_given_other": "",
-            "tb_tx": NO,
+            "on_tb_tx": NO,
             "tb_tx_date": None,
             "tb_tx_date_estimated": NOT_APPLICABLE,
             "tb_tx_given": TbTreatments.objects.none(),
             "tb_tx_given_other": "",
             "tb_tx_reason_no": "contraindicated",
             "tb_tx_reason_no_other": "",
-            "steroids": NO,
+            "on_steroids": NO,
             "steroids_date": None,
             "steroids_date_estimated": NOT_APPLICABLE,
             "steroids_given": NOT_APPLICABLE,
             "steroids_given_other": "",
             "steroids_course": None,
-            "co_trimoxazole": NO,
+            "on_co_trimoxazole": NO,
             "co_trimoxazole_date": None,
             "co_trimoxazole_date_estimated": NOT_APPLICABLE,
             "co_trimoxazole_reason_no": "deferred_local_clinic",
             "co_trimoxazole_reason_no_other": "",
-            "antibiotics": NO,
+            "on_antibiotics": NO,
             "antibiotics_date": None,
             "antibiotics_date_estimated": NOT_APPLICABLE,
             "antibiotics_given": Antibiotics.objects.none(),
             "antibiotics_given_other": "",
-            "other_drugs": NO,
+            "on_other_drugs": NO,
             "other_drugs_date": None,
             "other_drugs_date_estimated": NOT_APPLICABLE,
             "other_drugs_given": Drugs.objects.none(),
@@ -79,33 +79,33 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "report_datetime": self.subject_visit.report_datetime,
             "lp_completed": YES,
             "cm_confirmed": YES,
-            "cm_tx": YES,
+            "on_cm_tx": YES,
             "cm_tx_given": "1w_amb_5fc",
             "cm_tx_given_other": "",
-            "tb_tx": YES,
+            "on_tb_tx": YES,
             "tb_tx_date": self.get_utcnow_as_date(),
             "tb_tx_date_estimated": NOT_ESTIMATED,
             "tb_tx_given": TbTreatments.objects.filter(name="H"),
             "tb_tx_given_other": "",
             "tb_tx_reason_no": NOT_APPLICABLE,
             "tb_tx_reason_no_other": "",
-            "steroids": YES,
+            "on_steroids": YES,
             "steroids_date": self.get_utcnow_as_date(),
             "steroids_date_estimated": NOT_ESTIMATED,
             "steroids_given": "oral_prednisolone",
             "steroids_given_other": "",
             "steroids_course": 3,
-            "co_trimoxazole": YES,
+            "on_co_trimoxazole": YES,
             "co_trimoxazole_date": self.get_utcnow_as_date(),
             "co_trimoxazole_date_estimated": NOT_ESTIMATED,
             "co_trimoxazole_reason_no": NOT_APPLICABLE,
             "co_trimoxazole_reason_no_other": "",
-            "antibiotics": YES,
+            "on_antibiotics": YES,
             "antibiotics_date": self.get_utcnow_as_date(),
             "antibiotics_date_estimated": NOT_ESTIMATED,
             "antibiotics_given": Antibiotics.objects.filter(name="amoxicillin"),
             "antibiotics_given_other": "",
-            "other_drugs": YES,
+            "on_other_drugs": YES,
             "other_drugs_date": self.get_utcnow_as_date(),
             "other_drugs_date_estimated": NOT_ESTIMATED,
             "other_drugs_given": Drugs.objects.filter(name="vitamins"),
@@ -158,11 +158,11 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": NO,
-                "cm_tx": NO,
+                "on_cm_tx": NO,
             }
         )
         self.assertFormValidatorError(
-            field="cm_tx",
+            field="on_cm_tx",
             expected_msg="This field is not applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -173,11 +173,11 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx": NOT_APPLICABLE,
+                "on_cm_tx": NOT_APPLICABLE,
             }
         )
         self.assertFormValidatorError(
-            field="cm_tx",
+            field="on_cm_tx",
             expected_msg="This field is applicable.",
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -188,7 +188,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx": NO,
+                "on_cm_tx": NO,
                 "cm_tx_given": "1w_amb_5fc",
             }
         )
@@ -204,7 +204,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx": YES,
+                "on_cm_tx": YES,
                 "cm_tx_given": NOT_APPLICABLE,
             }
         )
@@ -220,7 +220,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx": YES,
+                "on_cm_tx": YES,
                 "cm_tx_given": OTHER,
                 "cm_tx_given_other": "",
             }
@@ -237,7 +237,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": YES,
-                "cm_tx": YES,
+                "on_cm_tx": YES,
                 "cm_tx_given": "1w_amb_5fc",
                 "cm_tx_given_other": "some_other_cm_tx_given",
             }
@@ -253,7 +253,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": NO,
+                "on_steroids": NO,
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "",
                 "steroids_course": 1,
@@ -269,7 +269,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": YES,
+                "on_steroids": YES,
                 "steroids_date": self.get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": NOT_APPLICABLE,
@@ -287,7 +287,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": YES,
+                "on_steroids": YES,
                 "steroids_date": self.get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": OTHER,
@@ -305,7 +305,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": YES,
+                "on_steroids": YES,
                 "steroids_date": self.get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": "oral_prednisolone",
@@ -323,7 +323,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": NO,
+                "on_steroids": NO,
                 "steroids_given": NOT_APPLICABLE,
                 "steroids_given_other": "",
                 "steroids_course": 1,
@@ -339,7 +339,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
         cleaned_data.update(
             {
-                "steroids": YES,
+                "on_steroids": YES,
                 "steroids_date": self.get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": "oral_prednisolone",
@@ -354,259 +354,259 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_date_fields_required_if_prescribed_yes(self):
-        for field in [
+        for field_stub in [
             "tb_tx",
             "steroids",
             "co_trimoxazole",
             "antibiotics",
             "other_drugs",
         ]:
-            with self.subTest(field=field):
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: YES,
-                        f"{field}_date": None,
+                        f"on_{field_stub}": YES,
+                        f"{field_stub}_date": None,
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_date",
+                    field=f"{field_stub}_date",
                     expected_msg="This field is required.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_date_fields_not_required_if_prescribed_no(self):
-        for field in [
+        for field_stub in [
             "tb_tx",
             "steroids",
             "co_trimoxazole",
             "antibiotics",
             "other_drugs",
         ]:
-            with self.subTest(field=field):
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: NO,
-                        f"{field}_date": self.get_utcnow_as_date(),
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_date": self.get_utcnow_as_date(),
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_date",
+                    field=f"{field_stub}_date",
                     expected_msg="This field is not required.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_date_estimated_fields_applicable_if_prescribed_yes(self):
-        for field in [
+        for field_stub in [
             "tb_tx",
             "steroids",
             "co_trimoxazole",
             "antibiotics",
             "other_drugs",
         ]:
-            with self.subTest(field=field):
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: YES,
-                        f"{field}_date": self.get_utcnow_as_date(),
-                        f"{field}_date_estimated": NOT_APPLICABLE,
+                        f"on_{field_stub}": YES,
+                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date_estimated": NOT_APPLICABLE,
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_date_estimated",
+                    field=f"{field_stub}_date_estimated",
                     expected_msg="This field is applicable",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_date_estimated_fields_not_applicable_if_prescribed_no(self):
-        for field in [
+        for field_stub in [
             "tb_tx",
             "steroids",
             "co_trimoxazole",
             "antibiotics",
             "other_drugs",
         ]:
-            with self.subTest(field=field):
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: NO,
-                        f"{field}_date": None,
-                        f"{field}_date_estimated": "YMD",
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_date": None,
+                        f"{field_stub}_date_estimated": "YMD",
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_date_estimated",
+                    field=f"{field_stub}_date_estimated",
                     expected_msg="This field is not applicable.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_m2m_fields_required_if_prescribed_yes(self):
-        for m2m_field, list_model in [
+        for field_stub, list_model in [
             ("tb_tx", TbTreatments),
             ("antibiotics", Antibiotics),
             ("other_drugs", Drugs),
         ]:
-            with self.subTest(m2m_field=m2m_field, list_model=list_model):
+            with self.subTest(field_stub=field_stub, list_model=list_model):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        m2m_field: YES,
-                        f"{m2m_field}_date": self.get_utcnow_as_date(),
-                        f"{m2m_field}_date_estimated": "YMD",
-                        f"{m2m_field}_given": list_model.objects.none(),
+                        f"on_{field_stub}": YES,
+                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date_estimated": "YMD",
+                        f"{field_stub}_given": list_model.objects.none(),
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{m2m_field}_given",
+                    field=f"{field_stub}_given",
                     expected_msg="This field is required",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_m2m_fields_not_applicable_if_prescribed_no(self):
-        for m2m_field, list_model in [
+        for field_stub, list_model in [
             ("tb_tx", TbTreatments),
             ("antibiotics", Antibiotics),
             ("other_drugs", Drugs),
         ]:
-            with self.subTest(m2m_field=m2m_field, list_model=list_model):
+            with self.subTest(field_stub=field_stub, list_model=list_model):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        m2m_field: NO,
-                        f"{m2m_field}_date": None,
-                        f"{m2m_field}_given": list_model.objects.all(),
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_date": None,
+                        f"{field_stub}_given": list_model.objects.all(),
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{m2m_field}_given",
+                    field=f"{field_stub}_given",
                     expected_msg="This field is not required",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_m2m_other_fields_required_if_other_specified(self):
-        for m2m_field, list_model in [
+        for field_stub, list_model in [
             ("tb_tx", TbTreatments),
             ("antibiotics", Antibiotics),
             ("other_drugs", Drugs),
         ]:
-            with self.subTest(m2m_field=m2m_field, list_model=list_model):
+            with self.subTest(field_stub=field_stub, list_model=list_model):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        m2m_field: YES,
-                        f"{m2m_field}_date": self.get_utcnow_as_date(),
-                        f"{m2m_field}_date_estimated": "YMD",
-                        f"{m2m_field}_given": list_model.objects.filter(name=OTHER),
-                        f"{m2m_field}_given_other": "",
+                        f"on_{field_stub}": YES,
+                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date_estimated": "YMD",
+                        f"{field_stub}_given": list_model.objects.filter(name=OTHER),
+                        f"{field_stub}_given_other": "",
                     }
                 )
-                if m2m_field == "tb_tx":
+                if field_stub == "tb_tx":
                     cleaned_data.update({"tb_tx_reason_no": NOT_APPLICABLE})
                 self.assertFormValidatorError(
-                    field=f"{m2m_field}_given_other",
+                    field=f"{field_stub}_given_other",
                     expected_msg="This field is required.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
-                cleaned_data.update({f"{m2m_field}_given_other": "Some other value"})
+                cleaned_data.update({f"{field_stub}_given_other": "Some other value"})
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
 
     def test_m2m_other_fields_not_required_if_not_specified(self):
-        for m2m_field, list_model in [
+        for field_stub, list_model in [
             ("tb_tx", TbTreatments),
             ("antibiotics", Antibiotics),
             ("other_drugs", Drugs),
         ]:
-            with self.subTest(m2m_field=m2m_field, list_model=list_model):
+            with self.subTest(field_stub=field_stub, list_model=list_model):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        m2m_field: NO,
-                        f"{m2m_field}_date": None,
-                        f"{m2m_field}_given": list_model.objects.none(),
-                        f"{m2m_field}_given_other": "Some other value",
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_date": None,
+                        f"{field_stub}_given": list_model.objects.none(),
+                        f"{field_stub}_given_other": "Some other value",
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{m2m_field}_given_other",
+                    field=f"{field_stub}_given_other",
                     expected_msg="This field is not required.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
-                cleaned_data.update({f"{m2m_field}_given_other": ""})
+                cleaned_data.update({f"{field_stub}_given_other": ""})
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
 
     def test_reason_no_applicable_if_prescribed_no(self):
-        for field in ["tb_tx", "co_trimoxazole"]:
-            with self.subTest(field=field):
+        for field_stub in ["tb_tx", "co_trimoxazole"]:
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
-                cleaned_data.update({f"{field}_reason_no": NOT_APPLICABLE})
+                cleaned_data.update({f"{field_stub}_reason_no": NOT_APPLICABLE})
                 self.assertFormValidatorError(
-                    field=f"{field}_reason_no",
+                    field=f"{field_stub}_reason_no",
                     expected_msg="This field is applicable",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_reason_no_not_applicable_if_prescribed_yes(self):
-        for field in ["tb_tx", "co_trimoxazole"]:
-            with self.subTest(field=field):
+        for field_stub in ["tb_tx", "co_trimoxazole"]:
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: YES,
-                        f"{field}_date": self.get_utcnow_as_date(),
-                        f"{field}_date_estimated": "YMD",
-                        f"{field}_reason_no": "contraindicated",
+                        f"on_{field_stub}": YES,
+                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date_estimated": "YMD",
+                        f"{field_stub}_reason_no": "contraindicated",
                     }
                 )
-                if field == "tb_tx":
+                if field_stub == "tb_tx":
                     cleaned_data.update(
                         {"tb_tx_given": TbTreatments.objects.filter(name="H")}
                     )
 
                 self.assertFormValidatorError(
-                    field=f"{field}_reason_no",
+                    field=f"{field_stub}_reason_no",
                     expected_msg="This field is not applicable",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_reason_no_other_required_if_specified(self):
-        for field in ["tb_tx", "co_trimoxazole"]:
-            with self.subTest(field=field):
+        for field_stub in ["tb_tx", "co_trimoxazole"]:
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: NO,
-                        f"{field}_reason_no": OTHER,
-                        f"{field}_reason_no_other": "",
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_reason_no": OTHER,
+                        f"{field_stub}_reason_no_other": "",
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_reason_no_other",
+                    field=f"{field_stub}_reason_no_other",
                     expected_msg="This field is required",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_reason_no_other_not_required_if_not_specified(self):
-        for field in ["tb_tx", "co_trimoxazole"]:
-            with self.subTest(field=field):
+        for field_stub in ["tb_tx", "co_trimoxazole"]:
+            with self.subTest(field_stub=field_stub):
                 cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
                 cleaned_data.update(
                     {
-                        field: NO,
-                        f"{field}_reason_no": "contraindicated",
-                        f"{field}_reason_no_other": "Some other reason",
+                        f"on_{field_stub}": NO,
+                        f"{field_stub}_reason_no": "contraindicated",
+                        f"{field_stub}_reason_no_other": "Some other reason",
                     }
                 )
                 self.assertFormValidatorError(
-                    field=f"{field}_reason_no_other",
+                    field=f"{field_stub}_reason_no_other",
                     expected_msg="This field is not required",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
