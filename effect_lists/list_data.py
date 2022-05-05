@@ -101,6 +101,7 @@ list_data = {
     "effect_lists.drugs": [
         ("k", "K"),
         ("mg", "Mg"),
+        ("sodium", "Sodium"),
         ("vitamins", "Vitamins"),
         ("anticonvulsants", "Anticonvulsants"),
         ("antimalarials", "Antimalarials"),
