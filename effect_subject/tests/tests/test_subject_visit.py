@@ -27,6 +27,7 @@ from effect_visit_schedule.constants import DAY01, DAY03, DAY14
 from effect_visit_schedule.visit_schedules.schedule import visits
 
 
+@tag("sv")
 class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SubjectVisitFormValidator
@@ -311,7 +312,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         for info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0] not in [PATIENT, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0] not in [PATIENT, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER, NOT_APPLICABLE]
         ]:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY14)
@@ -334,7 +335,14 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         for info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0] not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0]
+            not in [
+                PATIENT_REPRESENTATIVE,
+                HOSPITAL_NOTES,
+                OUTPATIENT_CARDS,
+                OTHER,
+                NOT_APPLICABLE,
+            ]
         ]:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
@@ -356,7 +364,14 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         for info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0] not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0]
+            not in [
+                PATIENT_REPRESENTATIVE,
+                HOSPITAL_NOTES,
+                OUTPATIENT_CARDS,
+                OTHER,
+                NOT_APPLICABLE,
+            ]
         ]:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_assessment_type_other_sv_data(visit_code=DAY03)
@@ -400,7 +415,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
-        sources = [src[0] for src in ASSESSMENT_WHO_CHOICES if src[0] not in [PATIENT]]
+        sources = [
+            src[0] for src in ASSESSMENT_WHO_CHOICES if src[0] not in [PATIENT, NOT_APPLICABLE]
+        ]
         for assessment_who in sources:
             with self.subTest(assessment_who=assessment_who):
                 cleaned_data = deepcopy(self.get_valid_nok_sv_data(visit_code=DAY03))
