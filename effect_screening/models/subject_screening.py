@@ -1,9 +1,10 @@
-from django.core.validators import MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_ANSWERED, NOT_APPLICABLE
+from edc_constants.constants import NOT_APPLICABLE
 from edc_model.models import BaseUuidModel, date_not_future
+from edc_model_fields.fields import OtherCharField
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.model_mixins import EligibilityModelMixin, ScreeningModelMixin
 from edc_screening.screening_identifier import (
@@ -11,11 +12,11 @@ from edc_screening.screening_identifier import (
 )
 
 from ..choices import (
+    CM_ON_CSF_METHODS,
     CSF_YES_NO_PENDING_NA,
-    POS_NEG_IND_NOT_ANSWERED,
-    POS_NEG_IND_PENDING_NA,
-    PREG_YES_NO_NA_NOT_ANSWERED,
-    YES_NO_NOT_ANSWERED,
+    POS_NEG,
+    POS_NEG_PENDING_NA,
+    PREG_YES_NO_NA,
 )
 from ..eligibility import ScreeningEligibility
 
@@ -59,7 +60,7 @@ class SubjectScreening(
     )
 
     hiv_pos = models.CharField(
-        verbose_name="Is the patient HIV sero-positive",
+        verbose_name="Is the patient CONFIRMED HIV sero-positive",
         max_length=15,
         choices=YES_NO,
         null=True,
@@ -68,7 +69,7 @@ class SubjectScreening(
 
     cd4_value = models.IntegerField(
         verbose_name="Most recent CD4 count",
-        validators=[MinValueValidator(0)],
+        validators=[MinValueValidator(0), MaxValueValidator(99)],
         null=True,
         blank=False,
         help_text=f"Eligible if CD4 count <100 {CELLS_PER_MICROLITER}",
@@ -81,20 +82,31 @@ class SubjectScreening(
         blank=False,
     )
 
-    pregnant_or_bf = models.CharField(
-        verbose_name="Is the patient pregnant or breastfeeding?",
+    # ineligible if YES
+    pregnant = models.CharField(
+        verbose_name="Is the patient pregnant?",
         max_length=15,
-        choices=PREG_YES_NO_NA_NOT_ANSWERED,
-        default=NOT_ANSWERED,
-        blank=False,
+        choices=PREG_YES_NO_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    preg_test_date = models.DateField(
+        verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
+    )
+
+    # ineligible if YES
+    breast_feeding = models.CharField(
+        verbose_name="Is the patient breastfeeding?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
     )
 
     # eligible if POS
     serum_crag_value = models.CharField(
         verbose_name="Serum/plasma CrAg result",
         max_length=15,
-        choices=POS_NEG_IND_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=POS_NEG,
         blank=False,
     )
 
@@ -102,15 +114,14 @@ class SubjectScreening(
         verbose_name="Date of serum/plasma CrAg result",
         validators=[date_not_future],
         null=True,
-        blank=True,
+        blank=False,
         help_text="Test must have been performed within the last 14 days",
     )
 
     lp_done = models.CharField(
         verbose_name="Was LP done?",
         max_length=15,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         null=True,
         blank=False,
         help_text="If YES, provide date below",
@@ -134,7 +145,7 @@ class SubjectScreening(
     csf_crag_value = models.CharField(
         verbose_name="CSF CrAg result",
         max_length=15,
-        choices=POS_NEG_IND_PENDING_NA,
+        choices=POS_NEG_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
         help_text=(
@@ -142,71 +153,106 @@ class SubjectScreening(
         ),
     )
 
-    prior_cm_epidose = models.CharField(
+    prior_cm_episode = models.CharField(
         verbose_name="Has the patient had a prior episode of CM?",
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
     )
 
     reaction_to_study_drugs = models.CharField(
         verbose_name="Has the patient had any serious reaction to flucytosine or fluconazole?",
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
     )
 
     # exclusion
     on_fluconazole = models.CharField(
         verbose_name=(
-            "Has the patient taken 7 or more doses of high-dose fluconazole "
-            "treatment in the last 7 days?"
+            # As per '01_Screening Form_110821_V0.5.pdf' / 'EFFECT Protocol V1.2 7July 2021'
+            "Is the patient already taking high-dose fluconazole treatment "
+            "(800-1200 mg/day) for ≥1 week?"
         ),
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
-        help_text="fluconazole @ (800-1200 mg/day)",
     )
 
     # exclusion
     contraindicated_meds = models.CharField(
-        verbose_name=(
-            "Is the patient taking any contraindicated " "concomitant medications?"
-        ),
+        verbose_name="Is the patient taking any contraindicated " "concomitant medications?",
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
         help_text="Refer to the protocol for a complete list",
     )
 
     # exclusion
-    meningitis_symptoms = models.CharField(
-        verbose_name=(
-            "Has the patient had clinical symptoms/ signs of symptomatic "
-            "meningitis at any time since CrAg screening?"
-        ),
+    mg_severe_headache = models.CharField(
+        verbose_name="a progressively severe headache?",
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
     )
 
     # exclusion
+    mg_headache_nuchal_rigidity = models.CharField(
+        verbose_name="a headache and marked nuchal rigidity?",
+        max_length=25,
+        choices=YES_NO,
+        blank=False,
+    )
+
+    # exclusion
+    mg_headache_vomiting = models.CharField(
+        verbose_name="a headache and vomiting?",
+        max_length=25,
+        choices=YES_NO,
+        blank=False,
+    )
+
+    # exclusion
+    mg_seizures = models.CharField(
+        verbose_name="seizures?",
+        max_length=25,
+        choices=YES_NO,
+        blank=False,
+    )
+
+    # exclusion
+    mg_gcs_lt_15 = models.CharField(
+        verbose_name="a Glasgow Coma Scale (GCS) score of <15?",
+        max_length=25,
+        choices=YES_NO,
+        blank=False,
+    )
+
+    # exclusion
+    any_other_mg_ssx = models.CharField(
+        verbose_name="any other clinical symptoms/signs of symptomatic meningitis?",
+        max_length=25,
+        choices=YES_NO,
+        blank=False,
+    )
+
+    any_other_mg_ssx_other = models.TextField(
+        verbose_name="If YES, specify",
+        null=True,
+        blank=True,
+        help_text="If more than one, please separate each with a comma (,).",
+    )
+    # exclusion
     jaundice = models.CharField(
         verbose_name="Based on clinical examination, does the patient have jaundice?",
         max_length=25,
-        choices=YES_NO_NOT_ANSWERED,
-        default=NOT_ANSWERED,
+        choices=YES_NO,
         blank=False,
     )
 
     # TODO: If pending, get at baseline
-    csf_cm_evidence = models.CharField(
-        verbose_name="Any other evidence of CM on CSF?",
+    cm_in_csf = models.CharField(
+        verbose_name="Was CM confirmed in CSF by any other method?",
         max_length=25,
         choices=CSF_YES_NO_PENDING_NA,
         default=NOT_APPLICABLE,
@@ -218,9 +264,18 @@ class SubjectScreening(
         ),
     )
 
-    csf_results_date = models.DateField(
+    cm_in_csf_date = models.DateField(
         verbose_name="Date `pending results` expected (estimate)", null=True, blank=True
     )
+
+    cm_in_csf_method = models.CharField(
+        verbose_name="If YES, by which method?",
+        max_length=25,
+        choices=CM_ON_CSF_METHODS,
+        default=NOT_APPLICABLE,
+    )
+
+    cm_in_csf_method_other = OtherCharField()
 
     class Meta:
         verbose_name = "Subject Screening"

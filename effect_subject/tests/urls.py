@@ -20,8 +20,6 @@ urlpatterns = [
     path("edc_visit_schedule/", include("edc_visit_schedule.urls")),
     path("ae/", include("effect_ae.urls")),
     path("effect_consent/", include("effect_consent.urls")),
-    path(
-        "administration", RedirectView.as_view(url="admin/"), name="administration_url"
-    ),
+    path("administration", RedirectView.as_view(url="admin/"), name="administration_url"),
     path("", RedirectView.as_view(url="admin/"), name="home_url"),
 ]

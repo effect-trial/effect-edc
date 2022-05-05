@@ -10,6 +10,7 @@ from ..models import OnSchedule
 class OnScheduleAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     instructions = None
+
     fields = ("subject_identifier", "onschedule_datetime")
 
     list_display = ("subject_identifier", "dashboard", "onschedule_datetime")

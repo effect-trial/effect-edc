@@ -1,8 +1,6 @@
-import pdb
-
 from django import forms
 from edc_consent.form_validators import ConsentFormValidatorMixin
-from edc_constants.constants import IND, MALE, NEG, NO, PENDING, POS, YES
+from edc_constants.constants import FEMALE, MALE, NO, OTHER, PENDING, POS, YES
 from edc_form_validators import FormValidator
 
 
@@ -13,13 +11,15 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
         self.validate_cd4()
         self.validate_serum_crag()
         self.validate_lp_and_csf_crag()
-        self.validate_csf_cm_evidence()
+        self.validate_cm_in_csf()
+        self.validate_mg_ssx()
         self.validate_pregnancy()
+        self.required_if(
+            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
+        )
 
     def validate_cd4(self):
-        if self.cleaned_data.get("cd4_date") and self.cleaned_data.get(
-            "report_datetime"
-        ):
+        if self.cleaned_data.get("cd4_date") and self.cleaned_data.get("report_datetime"):
             if (
                 self.cleaned_data.get("cd4_date")
                 > self.cleaned_data.get("report_datetime").date()
@@ -40,20 +40,25 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                 )
 
     def validate_serum_crag(self):
-        """Assert serum CrAg date is not before CD4 date and
-        is within 21 days of CD4.
+        """Assert serum CrAg date is:
+        - positive
+        - not before CD4 date
+        - within 21 days of CD4
+        - within 14 days of report
         """
-        self.required_if(
-            POS, NEG, IND, field="serum_crag_value", field_required="serum_crag_date"
-        )
+        if self.cleaned_data.get("serum_crag_value") != POS:
+            raise forms.ValidationError(
+                {
+                    "serum_crag_value": (
+                        "Invalid. Subject must have positive serum/plasma CrAg test result."
+                    )
+                }
+            )
 
-        if self.cleaned_data.get("serum_crag_date") and self.cleaned_data.get(
-            "cd4_date"
-        ):
+        if self.cleaned_data.get("serum_crag_date") and self.cleaned_data.get("cd4_date"):
 
             days = (
-                self.cleaned_data.get("cd4_date")
-                - self.cleaned_data.get("serum_crag_date")
+                self.cleaned_data.get("cd4_date") - self.cleaned_data.get("serum_crag_date")
             ).days
 
             if days > 0:
@@ -73,13 +78,26 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
                         )
                     }
                 )
+            if (
+                self.cleaned_data.get("report_datetime").date()
+                - self.cleaned_data.get("serum_crag_date")
+            ).days > 14:
+                raise forms.ValidationError(
+                    {
+                        "serum_crag_date": (
+                            "Invalid. Cannot be more than 14 days before the report date"
+                        )
+                    }
+                )
 
     def validate_lp_and_csf_crag(self):
         self.required_if(YES, field="lp_done", field_required="lp_date")
 
-        if self.cleaned_data.get("lp_date") and self.cleaned_data.get(
-            "lp_date"
-        ) < self.cleaned_data.get("serum_crag_date"):
+        if (
+            self.cleaned_data.get("lp_date")
+            and self.cleaned_data.get("serum_crag_date")
+            and (self.cleaned_data.get("lp_date") < self.cleaned_data.get("serum_crag_date"))
+        ):
             raise forms.ValidationError(
                 {"lp_date": "Invalid. Cannot be before serum CrAg date"}
             )
@@ -89,46 +107,48 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             and self.cleaned_data.get("lp_date")
             > self.cleaned_data.get("report_datetime").date()
         ):
-            raise forms.ValidationError(
-                {"lp_date": "Invalid. Cannot be after report date"}
-            )
+            raise forms.ValidationError({"lp_date": "Invalid. Cannot be after report date"})
 
         self.applicable_if(NO, field="lp_done", field_applicable="lp_declined")
 
         self.applicable_if(YES, field="lp_done", field_applicable="csf_crag_value")
 
-    def validate_csf_cm_evidence(self):
-        self.applicable_if(
-            YES, PENDING, field="lp_done", field_applicable="csf_cm_evidence"
-        )
+    def validate_cm_in_csf(self):
+        self.applicable_if(YES, field="lp_done", field_applicable="cm_in_csf")
+        self.required_if(PENDING, field="cm_in_csf", field_required="cm_in_csf_date")
+        self.applicable_if(YES, field="cm_in_csf", field_applicable="cm_in_csf_method")
         self.required_if(
-            PENDING, field="csf_cm_evidence", field_required="csf_results_date"
+            OTHER, field="cm_in_csf_method", field_required="cm_in_csf_method_other"
         )
         if (
-            self.cleaned_data.get("csf_results_date")
+            self.cleaned_data.get("cm_in_csf_date")
             and self.cleaned_data.get("lp_date")
+            and (self.cleaned_data.get("lp_date") > self.cleaned_data.get("cm_in_csf_date"))
+        ):
+            raise forms.ValidationError(
+                {"cm_in_csf_date": "Invalid. Cannot be before LP date"}
+            )
+        if (
+            self.cleaned_data.get("cm_in_csf_date")
+            and self.cleaned_data.get("report_datetime")
             and (
-                self.cleaned_data.get("lp_date")
-                > self.cleaned_data.get("csf_results_date")
+                self.cleaned_data.get("report_datetime").date()
+                > self.cleaned_data.get("cm_in_csf_date")
             )
         ):
             raise forms.ValidationError(
-                {"csf_results_date": "Invalid. Cannot be before LP date"}
+                {"cm_in_csf_date": "Invalid. Cannot be before report date"}
             )
 
     def validate_pregnancy(self):
-        if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get(
-            "pregnant_or_bf"
-        ) in [YES, NO]:
-            raise forms.ValidationError({"pregnant_or_bf": "Invalid. Subject is male"})
-
-        self.not_applicable_if(
-            MALE, field="gender", field_applicable="pregnant", inverse=False
-        )
-
-        self.required_if(
-            YES, field="unsuitable_for_study", field_required="reasons_unsuitable"
-        )
+        if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get("pregnant") in [
+            YES,
+            NO,
+        ]:
+            raise forms.ValidationError({"pregnant": "Invalid. Subject is male"})
+        if self.cleaned_data.get("gender") == MALE and self.cleaned_data.get("preg_test_date"):
+            raise forms.ValidationError({"preg_test_date": "Invalid. Subject is male"})
+        self.applicable_if(FEMALE, field="gender", field_applicable="breast_feeding")
 
     def validate_age(self):
         if self.cleaned_data.get("age_in_years") and (
@@ -138,3 +158,10 @@ class SubjectScreeningFormValidator(ConsentFormValidatorMixin, FormValidator):
             raise forms.ValidationError(
                 {"age_in_years": "Invalid. Subject must be 18 years or older"}
             )
+
+    def validate_mg_ssx(self):
+        self.validate_other_specify(
+            field="any_other_mg_ssx",
+            other_specify_field="any_other_mg_ssx_other",
+            other_stored_value=YES,
+        )

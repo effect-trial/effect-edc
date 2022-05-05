@@ -13,16 +13,16 @@ class ArvRegimens(ListModelMixin):
         verbose_name_plural = "ARV Regimens"
 
 
+class BloodTests(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Blood Test"
+        verbose_name_plural = "Blood Tests"
+
+
 class Drugs(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Drugs"
         verbose_name_plural = "Drugs"
-
-
-class FocalNeurologicDeficits(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Focal Neurologic Deficits"
-        verbose_name_plural = "Focal Neurologic Deficits"
 
 
 class OffstudyReasons(ListModelMixin):
@@ -31,10 +31,10 @@ class OffstudyReasons(ListModelMixin):
         verbose_name_plural = "Offstudy Reasons"
 
 
-class MedicinesDay14(ListModelMixin):
+class Medication(ListModelMixin):
     class Meta(ListModelMixin.Meta):
-        verbose_name = "Medicines Prescribed Day 14"
-        verbose_name_plural = "Medicines Prescribed Day 14"
+        verbose_name = "Medication"
+        verbose_name_plural = "Medication"
 
 
 class NonAdherenceReasons(ListModelMixin):
@@ -53,6 +53,12 @@ class SiSx(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Signs and Symptoms"
         verbose_name_plural = "Signs and Symptoms"
+
+
+class SiSxMeningitis(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Signs and Symptoms (Meningitis)"
+        verbose_name_plural = "Signs and Symptoms (Meningitis)"
 
 
 class SubjectVisitMissedReasons(ListModelMixin):

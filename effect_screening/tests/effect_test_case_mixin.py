@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+import arrow
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -11,15 +12,19 @@ from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
+from edc_randomization import Randomizer
+from edc_randomization.randomization_list_importer import RandomizationListImporter
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_utils.date import get_utcnow
-from edc_visit_schedule.constants import DAY1
+from edc_visit_schedule import site_visit_schedules
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
 
 from effect_sites import fqdn
 from effect_subject.models import SubjectVisit
+from effect_visit_schedule.constants import DAY01
+from effect_visit_schedule.visit_schedules import visit_schedule
 
 from ..models import SubjectScreening
 
@@ -45,12 +50,18 @@ def get_eligible_options():
         lp_date=(get_utcnow() - relativedelta(days=6)).date(),
         csf_crag_value=NEG,
         contraindicated_meds=NO,
-        csf_cm_evidence=NO,
+        cm_in_csf=NO,
+        mg_severe_headache=NO,
+        mg_headache_nuchal_rigidity=NO,
+        mg_headache_vomiting=NO,
+        mg_seizures=NO,
+        mg_gcs_lt_15=NO,
+        any_other_mg_ssx=NO,
         jaundice=NO,
-        meningitis_symptoms=NO,
         on_fluconazole=NO,
-        pregnant_or_bf=NOT_APPLICABLE,
-        prior_cm_epidose=NO,
+        pregnant=NOT_APPLICABLE,
+        breast_feeding=NOT_APPLICABLE,
+        prior_cm_episode=NO,
         reaction_to_study_drugs=NO,
     )
 
@@ -76,6 +87,12 @@ class EffectTestCaseMixin(
         import_holidays(test=True)
         site_list_data.initialize()
         site_list_data.autodiscover()
+        site_visit_schedules._registry = {}
+        site_visit_schedules.register(visit_schedule=visit_schedule)
+        importer = RandomizationListImporter(
+            randomizer_cls=Randomizer, sid_count_for_tests=cls.sid_count
+        )
+        importer.import_list()
 
     def get_subject_screening(
         self,
@@ -119,10 +136,7 @@ class EffectTestCaseMixin(
             screening_identifier=subject_screening.screening_identifier,
             initials=subject_screening.initials,
             gender=subject_screening.gender,
-            dob=(
-                get_utcnow().date()
-                - relativedelta(years=subject_screening.age_in_years)
-            ),
+            dob=(get_utcnow().date() - relativedelta(years=subject_screening.age_in_years)),
             site=Site.objects.get(id=site_id or settings.SITE_ID),
             consent_datetime=consent_datetime or subject_screening.report_datetime,
         )
@@ -138,22 +152,24 @@ class EffectTestCaseMixin(
         gender=None,
     ):
         reason = reason or SCHEDULED
-        subject_screening = subject_screening or self.get_subject_screening(
-            gender=gender
-        )
+        subject_screening = subject_screening or self.get_subject_screening(gender=gender)
         subject_consent = subject_consent or self.get_subject_consent(subject_screening)
         options = dict(
             subject_identifier=subject_consent.subject_identifier,
-            visit_code=visit_code or DAY1,
+            visit_code=visit_code or DAY01,
             visit_code_sequence=(
                 visit_code_sequence if visit_code_sequence is not None else 0
             ),
             reason=reason,
         )
         if appt_datetime:
-            options.update(appt_datetime=appt_datetime)
+            options.update(appt_datetime=appt_datetime or subject_consent.consent_datetime)
         appointment = self.get_appointment(**options)
-        return SubjectVisit.objects.create(appointment=appointment, reason=SCHEDULED)
+        return SubjectVisit.objects.create(
+            appointment=appointment,
+            reason=SCHEDULED,
+            report_datetime=appointment.appt_datetime,
+        )
 
     @staticmethod
     def get_next_subject_visit(subject_visit):
@@ -165,7 +181,9 @@ class EffectTestCaseMixin(
         next_appointment.appt_status = IN_PROGRESS_APPT
         next_appointment.save()
         return SubjectVisit.objects.create(
-            appointment=next_appointment, reason=SCHEDULED
+            appointment=next_appointment,
+            reason=SCHEDULED,
+            report_datetime=next_appointment.appt_datetime,
         )
 
     @staticmethod
@@ -177,35 +195,6 @@ class EffectTestCaseMixin(
             entry_status=REQUIRED,
         )
 
-    def assertFieldFormValidationErrorRaised(
-        self,
-        form_validator,
-        field: str,
-        expected_msg: str,
-        expected_errors: int = 1,
-    ):
-        self.assertIn(
-            field,
-            form_validator._errors,
-            msg=(
-                f"Expected to find field '{field}' "
-                f"listed in the form validation errors: '{form_validator._errors}'"
-            ),
-        )
-        self.assertIn(
-            expected_msg,
-            str(form_validator._errors.get(field)),
-            msg=(
-                f"Expected to find error message '{expected_errors}' "
-                f"in form validation errors: '{form_validator._errors}'"
-            ),
-        )
-        self.assertEqual(
-            len(form_validator._errors),
-            expected_errors,
-            msg=(
-                f"Expected {expected_errors} error message(s) in form validator, "
-                f"but got {len(form_validator._errors)}, "
-                f"as follows: '{form_validator._errors}'"
-            ),
-        )
+    @staticmethod
+    def get_utcnow_as_date():
+        return arrow.utcnow().date()

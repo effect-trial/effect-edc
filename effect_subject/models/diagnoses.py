@@ -1,25 +1,29 @@
 from django.db import models
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
 from effect_lists.models import Dx
 
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
 from ..model_mixins import CrfModelMixin
 
 
 class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
 
     # Diagnoses CRF (p3)
+    # TODO: Move gi_side_effects into SiSx
     gi_side_effects = models.CharField(
         verbose_name="Has the patient experienced any gastrointestinal side effects?",
         max_length=15,
         # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
-        help_text="If yes, complete SAE report where appropriate",
+        help_text="If YES, complete SAE report where appropriate",
     )
 
+    # TODO: Move gi_side_effects_other into SiSx
     gi_side_effects_details = models.TextField(
-        verbose_name="If yes, please give details",
+        verbose_name="If YES, please give details",
         null=True,
         blank=True,
     )
@@ -51,15 +55,18 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are any of these diagnoses Grade 3 or above?",
         max_length=15,
         # TODO: If yes, prompt for SAE
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to any of these diagnoses?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
-        choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

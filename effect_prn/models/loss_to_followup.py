@@ -1,7 +1,6 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 from edc_action_item.models.action_model_mixin import ActionModelMixin
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 from edc_constants.constants import OTHER
 from edc_identifier.model_mixins import (
     NonUniqueSubjectIdentifierFieldMixin,
@@ -76,9 +75,7 @@ class LossToFollowup(
 
     class Meta:
         verbose_name = "Loss to Follow Up"
-        verbose_name = "Loss to Follow Ups"
+        verbose_name_plural = "Loss to Follow Up"
         indexes = [
-            models.Index(
-                fields=["subject_identifier", "action_identifier", "site", "id"]
-            )
+            models.Index(fields=["subject_identifier", "action_identifier", "site", "id"])
         ]

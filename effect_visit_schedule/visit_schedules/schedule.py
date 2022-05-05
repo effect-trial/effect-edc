@@ -6,7 +6,14 @@ from ..constants import DAY01, DAY03, DAY09, DAY14, WEEK04, WEEK10, WEEK16, WEEK
 from .crfs import crfs_d01, crfs_d03, crfs_d09, crfs_d14, crfs_missed
 from .crfs import crfs_prn as default_crfs_prn
 from .crfs import crfs_unscheduled as default_crfs_unscheduled
-from .crfs import crfs_w04, crfs_w10, crfs_w16, crfs_w24
+from .crfs import (
+    crfs_unscheduled_gte_d14,
+    crfs_unscheduled_lt_d14,
+    crfs_w04,
+    crfs_w10,
+    crfs_w16,
+    crfs_w24,
+)
 from .requisitions import requisitions_d01, requisitions_d14
 from .requisitions import requisitions_prn as default_requisitions_prn
 from .requisitions import requisitions_unscheduled as default_requisitions_unscheduled
@@ -22,7 +29,7 @@ class Visit(BaseVisit):
         crfs_prn=None,
         requisitions_prn=None,
         allow_unscheduled=None,
-        **kwargs
+        **kwargs,
     ):
         super().__init__(
             allow_unscheduled=True if allow_unscheduled is None else allow_unscheduled,
@@ -39,7 +46,7 @@ class Visit(BaseVisit):
 # schedule for new participants
 schedule = Schedule(
     name=SCHEDULE,
-    verbose_name="Day 1 to Month 12 Follow-up",
+    verbose_name="Day 1 to Month 6 Follow-up",
     onschedule_model="effect_prn.onschedule",
     offschedule_model="effect_prn.endofstudy",
     consent_model="effect_consent.subjectconsent",
@@ -53,9 +60,10 @@ visit000 = Visit(
     timepoint=0,
     rbase=relativedelta(days=0),
     rlower=relativedelta(days=0),
-    rupper=relativedelta(days=0),
+    rupper=relativedelta(days=1),
     requisitions=requisitions_d01,
     crfs=crfs_d01,
+    crfs_unscheduled=crfs_unscheduled_lt_d14,
     facility_name="7-day-clinic",
 )
 
@@ -63,10 +71,11 @@ visit010 = Visit(
     code=DAY03,
     title="Day 3",
     timepoint=10,
-    rbase=relativedelta(days=3),
-    rlower=relativedelta(days=2),
+    rbase=relativedelta(days=3 - 1),
+    rlower=relativedelta(days=1),
     rupper=relativedelta(days=1),
     crfs=crfs_d03,
+    crfs_unscheduled=crfs_unscheduled_lt_d14,
     facility_name="7-day-clinic",
 )
 
@@ -74,10 +83,11 @@ visit020 = Visit(
     code=DAY09,
     title="Day 9",
     timepoint=20,
-    rbase=relativedelta(days=9),
-    rlower=relativedelta(days=2),
-    rupper=relativedelta(days=12),
+    rbase=relativedelta(days=9 - 1),
+    rlower=relativedelta(days=1),
+    rupper=relativedelta(days=1),
     crfs=crfs_d09,
+    crfs_unscheduled=crfs_unscheduled_lt_d14,
     facility_name="7-day-clinic",
 )
 
@@ -86,11 +96,12 @@ visit030 = Visit(
     code=DAY14,
     title="Day 14",
     timepoint=30,
-    rbase=relativedelta(days=2),
-    rlower=relativedelta(days=2),
-    rupper=relativedelta(days=2),
+    rbase=relativedelta(days=14 - 1),
+    rlower=relativedelta(days=0),
+    rupper=relativedelta(days=3),
     requisitions=requisitions_d14,
     crfs=crfs_d14,
+    crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
 )
 
@@ -98,10 +109,11 @@ visit040 = Visit(
     code=WEEK04,
     title="Week 4",
     timepoint=40,
-    rbase=relativedelta(months=28),
+    rbase=relativedelta(weeks=4),
     rlower=relativedelta(days=7),
     rupper=relativedelta(days=3),
     crfs=crfs_w04,
+    crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
 )
 
@@ -109,20 +121,22 @@ visit050 = Visit(
     code=WEEK10,
     title="Week 10",
     timepoint=50,
-    rbase=relativedelta(days=70),
+    rbase=relativedelta(weeks=10),
     rlower=relativedelta(days=7),
     rupper=relativedelta(days=5),
     crfs=crfs_w10,
+    crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
 )
 visit060 = Visit(
     code=WEEK16,
     title="Week 16",
     timepoint=60,
-    rbase=relativedelta(days=112),
-    rlower=relativedelta(days=14),
+    rbase=relativedelta(weeks=16),
+    rlower=relativedelta(days=7),
     rupper=relativedelta(days=5),
     crfs=crfs_w16,
+    crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
 )
 
@@ -130,10 +144,11 @@ visit070 = Visit(
     code=WEEK24,
     title="Week 24",
     timepoint=70,
-    rbase=relativedelta(days=168),
-    rlower=relativedelta(days=14),
+    rbase=relativedelta(weeks=24),
+    rlower=relativedelta(days=7),
     rupper=relativedelta(days=5),
     crfs=crfs_w24,
+    crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
 )
 

@@ -1,12 +1,13 @@
 from django.conf import settings
 from edc_lab import LabProfile
-from edc_lab_panel.panels import (
-    blood_glucose_poc_panel,
+from edc_lab_panel.panels import sputum_panel
+
+from .panels import (
+    blood_culture_panel,
+    chemistry_panel,
+    csf_culture_panel,
     fbc_panel,
-    hba1c_panel,
-    lft_panel,
-    lipids_panel,
-    rft_panel,
+    histopathology_panel,
 )
 
 subject_lab_profile = LabProfile(
@@ -16,8 +17,8 @@ subject_lab_profile = LabProfile(
 )
 
 subject_lab_profile.add_panel(fbc_panel)
-subject_lab_profile.add_panel(lft_panel)
-subject_lab_profile.add_panel(rft_panel)
-subject_lab_profile.add_panel(lipids_panel)
-subject_lab_profile.add_panel(hba1c_panel)
-subject_lab_profile.add_panel(blood_glucose_poc_panel)
+subject_lab_profile.add_panel(histopathology_panel)
+subject_lab_profile.add_panel(blood_culture_panel)
+subject_lab_profile.add_panel(chemistry_panel)
+subject_lab_profile.add_panel(sputum_panel)
+subject_lab_profile.add_panel(csf_culture_panel)

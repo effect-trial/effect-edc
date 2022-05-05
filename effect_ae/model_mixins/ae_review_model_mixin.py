@@ -36,13 +36,9 @@ class AeReviewModelMixin(models.Model):
         blank=False,
     )
 
-    ae_classification_other = edc_models.OtherCharField(
-        max_length=250, blank=True, null=True
-    )
+    ae_classification_other = edc_models.OtherCharField(max_length=250, blank=True, null=True)
 
-    ae_type = models.CharField(
-        verbose_name="Type of event", max_length=25, choices=AE_TYPE
-    )
+    ae_type = models.CharField(verbose_name="Type of event", max_length=25, choices=AE_TYPE)
 
     study_drug_relation = models.CharField(
         verbose_name="Relationship to study drug:",
@@ -75,7 +71,7 @@ class AeReviewModelMixin(models.Model):
         choices=YES_NO,
         blank=False,
         null=True,
-        help_text="If No, explain in the narrative below",
+        help_text="If NO, explain in the narrative below",
     )
 
     narrative = models.TextField(verbose_name="Narrative", blank=True, null=True)

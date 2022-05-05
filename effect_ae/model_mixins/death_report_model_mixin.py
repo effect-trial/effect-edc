@@ -1,61 +1,55 @@
 from django.db import models
-from django_crypto_fields.fields import EncryptedTextField
-from edc_adverse_event.models import CauseOfDeath
-from edc_constants.choices import YES_NO
-from edc_model_fields.fields import OtherCharField
-
-from ..choices import DEATH_LOCATIONS, INFORMANT_RELATIONSHIP
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA
+from edc_constants.constants import NOT_APPLICABLE
+from edc_model import models as edc_models
+from edc_protocol.validators import date_not_before_study_start
 
 
 class DeathReportModelMixin(models.Model):
 
-    death_location_type = models.CharField(
-        verbose_name="Where did the participant die?",
-        max_length=50,
-        choices=DEATH_LOCATIONS,
-    )
-
-    death_location_name = models.CharField(
-        verbose_name=(
-            "If death occurred at hospital / clinic, please give name of the facility"
-        ),
-        max_length=150,
-        null=True,
-        blank=True,
-    )
-
-    informant_contacts = EncryptedTextField(null=True, blank=True)
-
-    informant_relationship = models.CharField(
-        max_length=50,
-        choices=INFORMANT_RELATIONSHIP,
-        verbose_name="Informants relationship to the participant?",
-    )
-
-    other_informant_relationship = OtherCharField()
-
-    death_certificate = models.CharField(
-        verbose_name="Is a death certificate is available?",
-        max_length=15,
+    speak_nok = models.CharField(
+        verbose_name="Did study staff speak to NOK following death?",
+        max_length=5,
         choices=YES_NO,
+        help_text="If YES, include other details of conversation in 'Next of kin narrative'",
     )
 
-    secondary_cause_of_death = models.ForeignKey(
-        CauseOfDeath,
-        on_delete=models.PROTECT,
-        related_name="secondary_cause_of_death",
-        verbose_name="Secondary cause of death",
-        help_text=(
-            "Secondary cause of death in the opinion of the "
-            "local study doctor and local PI"
-        ),
-    )
-
-    secondary_cause_of_death_other = models.CharField(
-        max_length=100,
-        blank=True,
+    date_first_unwell = models.DateField(
+        verbose_name="If YES, when did they first become unwell?",
+        validators=[edc_models.date_not_future, date_not_before_study_start],
         null=True,
-        verbose_name='If "Other" above, please specify',
+        blank=True,
+    )
+
+    date_first_unwell_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
+    headache = models.CharField(
+        verbose_name="If YES, did they complain of a headache during this illness?",
+        max_length=25,
+        choices=YES_NO_UNKNOWN_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    drowsy_confused_altered_behaviour = models.CharField(
+        verbose_name="If YES, did they become drowsy, confused of have altered behaviour?",
+        max_length=25,
+        choices=YES_NO_UNKNOWN_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    seizures = models.CharField(
+        verbose_name="If YES, did they have any seizures?",
+        max_length=25,
+        choices=YES_NO_UNKNOWN_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    nok_narrative = models.TextField(
+        verbose_name="Next of kin narrative",
+        null=True,
+        blank=True,
     )
 
     class Meta:

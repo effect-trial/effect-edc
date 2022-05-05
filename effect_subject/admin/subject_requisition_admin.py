@@ -20,8 +20,6 @@ from .modeladmin import CrfModelAdmin
 @admin.register(SubjectRequisition, site=effect_subject_admin)
 class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
 
-    # show_save_next = False
-
     form = SubjectRequisitionForm
 
     fieldsets = (
@@ -40,12 +38,16 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
     }
 
     def get_search_results(self, request, queryset, search_term):
-        queryset, use_distinct = super().get_search_results(
-            request, queryset, search_term
-        )
+        queryset, use_distinct = super().get_search_results(request, queryset, search_term)
         path = urlsplit(request.META.get("HTTP_REFERER")).path
         query = urlsplit(request.META.get("HTTP_REFERER")).query
-        if "bloodresult" in path:
+        if (
+            "bloodresult" in path
+            or "microbiology" in path
+            or "histopathology" in path
+            or "bloodculture" in path
+            or "lpcsf" in path
+        ):
             attrs = parse_qs(query)
             try:
                 subject_visit = attrs.get("subject_visit")[0]

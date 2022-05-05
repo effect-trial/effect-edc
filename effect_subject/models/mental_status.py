@@ -1,10 +1,11 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
-from effect_subject.choices import ECOG_SCORES, MODIFIED_RANKIN_SCORE_CHOICES
-
+from ..choices import ECOG_SCORES, MODIFIED_RANKIN_SCORE_CHOICES
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
 from ..model_mixins import CrfModelMixin
 
 
@@ -29,20 +30,20 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     modified_rankin_score = models.CharField(
-        verbose_name="Modified Rankin Score?",
+        verbose_name="Modified Rankin Score",
         max_length=15,
         choices=MODIFIED_RANKIN_SCORE_CHOICES,
     )
 
     ecog_score = models.CharField(
-        verbose_name="ECOG score?",
+        verbose_name="ECOG score",
         max_length=15,
         choices=ECOG_SCORES,
     )
 
     # See: https://www.ncbi.nlm.nih.gov/books/NBK513298/#article-22258.s3
     glasgow_coma_score = models.IntegerField(
-        verbose_name="Glasgow Coma Score?",
+        verbose_name="Glasgow Coma Score",
         validators=[MinValueValidator(3), MaxValueValidator(15)],
         help_text="/15",
     )
@@ -51,15 +52,18 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are any of these symptoms Grade 3 or above?",
         max_length=15,
         # TODO: If yes, prompt for SAE
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to these symptoms?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
-        choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

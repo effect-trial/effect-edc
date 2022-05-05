@@ -37,8 +37,6 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                 "fields": (
                     "screening_identifier",
                     "report_datetime",
-                    "willing_to_participate",
-                    "consent_ability",
                 ),
             },
         ],
@@ -74,6 +72,18 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
+            "Other methods for confirming CM in CSF",
+            {
+                "fields": (
+                    "cm_in_csf",
+                    "cm_in_csf_date",
+                    "cm_in_csf_method",
+                    "cm_in_csf_method_other",
+                    "prior_cm_episode",
+                ),
+            },
+        ],
+        [
             "Treatment",
             {
                 "fields": (
@@ -84,38 +94,39 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             },
         ],
         [
-            "Other evidence of CM on CSF",
+            "Clinical symptoms/signs of symptomatic meningitis",
             {
                 "description": format_html(
-                    "<H3>Note: for evidence of CM on CSF, consider, for example, "
-                    "positive microscopy with India Ink, culture, or CrAg test) at any "
-                    "time between the CrAg test and screening for eligibility, or during the "
-                    "first 2 weeks of antifungal treatment, while the patient remained "
-                    "without clinical signs or symptoms of meningitis as described above. "
-                    "(late withdrawal criterion).</H3>"
+                    "<h3>At any time since CrAg screening, has the patient experienced:</h3>"
                 ),
                 "fields": (
-                    "csf_cm_evidence",
-                    "csf_results_date",
-                    "prior_cm_epidose",
+                    "mg_severe_headache",
+                    "mg_headache_nuchal_rigidity",
+                    "mg_headache_vomiting",
+                    "mg_seizures",
+                    "mg_gcs_lt_15",
+                    "any_other_mg_ssx",
+                    "any_other_mg_ssx_other",
+                ),
+            },
+        ],
+        ["Jaundice", {"fields": ("jaundice",)}],
+        [
+            "Pregnancy",
+            {
+                "fields": (
+                    "pregnant",
+                    "preg_test_date",
+                    "breast_feeding",
                 ),
             },
         ],
         [
-            "Additional exclusion criteria",
+            "Additional Criteria",
             {
-                "description": format_html(
-                    "<div><H3>Note: for signs of meningitis below, consider, for example: "
-                    "<BR> * a progressively severe headache OR;"
-                    "<BR> * a headache and marked nuchal rigidity OR;"
-                    "<BR> * a headache and vomiting OR;"
-                    "<BR> * seizures OR;"
-                    "<BR> * a Glasgow Coma Scale (GCS) score of &lt15</H3>"
-                ),
                 "fields": (
-                    "meningitis_symptoms",
-                    "jaundice",
-                    "pregnant_or_bf",
+                    "willing_to_participate",
+                    "consent_ability",
                 ),
             },
         ],
@@ -148,19 +159,26 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     )
 
     radio_fields = {
+        "any_other_mg_ssx": admin.VERTICAL,
+        "breast_feeding": admin.VERTICAL,
+        "cm_in_csf": admin.VERTICAL,
+        "cm_in_csf_method": admin.VERTICAL,
         "consent_ability": admin.VERTICAL,
         "contraindicated_meds": admin.VERTICAL,
-        "csf_cm_evidence": admin.VERTICAL,
         "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,
         "jaundice": admin.VERTICAL,
         "lp_declined": admin.VERTICAL,
         "lp_done": admin.VERTICAL,
-        "meningitis_symptoms": admin.VERTICAL,
+        "mg_gcs_lt_15": admin.VERTICAL,
+        "mg_headache_nuchal_rigidity": admin.VERTICAL,
+        "mg_headache_vomiting": admin.VERTICAL,
+        "mg_seizures": admin.VERTICAL,
+        "mg_severe_headache": admin.VERTICAL,
         "on_fluconazole": admin.VERTICAL,
-        "pregnant_or_bf": admin.VERTICAL,
-        "prior_cm_epidose": admin.VERTICAL,
+        "pregnant": admin.VERTICAL,
+        "prior_cm_episode": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,
         "serum_crag_value": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,

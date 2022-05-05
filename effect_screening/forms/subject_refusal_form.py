@@ -4,7 +4,7 @@ from django.urls.base import reverse
 from django.utils.safestring import mark_safe
 from edc_constants.constants import OTHER
 from edc_dashboard.url_names import url_names
-from edc_form_validators import FormValidator, FormValidatorMixin
+from edc_form_validators import FormValidator
 from edc_registration.models import RegisteredSubject
 
 from ..models import SubjectScreening
@@ -59,18 +59,3 @@ class AlreadyConsentedFormMixin:
             )
             raise forms.ValidationError(msg)
         return cleaned_data
-
-
-# class SubjectRefusalForm(
-#     AlreadyConsentedFormMixin, ScreeningFormMixin, FormValidatorMixin, forms.ModelForm
-# ):
-#     form_validator_cls = SubjectRefusalFormValidator
-#
-#     screening_identifier = forms.CharField(
-#         label="Screening identifier",
-#         widget=forms.TextInput(attrs={"readonly": "readonly"}),
-#     )
-#
-#     class Meta:
-#         model = SubjectRefusal
-#         fields = "__all__"

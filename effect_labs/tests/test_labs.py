@@ -20,12 +20,8 @@ class TestLabs(TestCase):
         self.assertEqual("effect_subject.subjectrequisition", obj.requisition_model)
 
     def test_panel_model(self):
-        for panel in site_labs.get(
-            lab_profile_name="subject_lab_profile"
-        ).panels.values():
-            self.assertEqual(
-                panel.requisition_model, "effect_subject.subjectrequisition"
-            )
+        for panel in site_labs.get(lab_profile_name="subject_lab_profile").panels.values():
+            self.assertEqual(panel.requisition_model, "effect_subject.subjectrequisition")
 
     def test_panels_exist(self):
         self.assertGreater(Panel.objects.all().count(), 0)

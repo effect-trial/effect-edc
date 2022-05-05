@@ -1,5 +1,6 @@
 from edc_constants.constants import (
     ABSENT,
+    AWAITING_RESULTS,
     DEAD,
     MICROSCOPY,
     NO,
@@ -17,14 +18,14 @@ from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
 from .constants import (
+    ALIVE_UNWELL,
     APPT,
     APPT_OTHER,
+    ART_CONTINUED,
+    ART_STOPPED,
     DECREASED,
-    IN_PERSON,
-    PATIENT,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
-    TELEPHONE,
 )
 
 ACTIVITY_CHOICES = (
@@ -54,7 +55,12 @@ ANTIBIOTIC_CHOICES = (
     ),
 )
 
-ASSESSMENT_TYPES = ((TELEPHONE, "Telephone"), (IN_PERSON, "In person"))
+ARV_DECISION = (
+    (NOT_APPLICABLE, "Not applicable"),
+    (ART_CONTINUED, "ART continued"),
+    (ART_STOPPED, "ART stopped"),
+)
+
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -69,7 +75,7 @@ CHILDCARE_CHOICES = (
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    (NOT_APPLICABLE, "Not applicable (no CM treatment given)"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 DYSLIPIDAEMIA_RX_CHOICES = (
@@ -82,29 +88,43 @@ DYSLIPIDAEMIA_RX_CHOICES = (
 ECOG_SCORES = (
     (
         "0",
-        "Fully active, able to carry on all pre-disease performance without restriction",
+        "[0] Fully active, able to carry on all pre-disease performance without restriction",
     ),
     (
         "1",
-        "Restricted in physically strenuous activity but "
+        "[1] Restricted in physically strenuous activity but "
         "ambulatory and able to carry out work of a light or sedentary nature, e.g., "
         "light house work, office work",
     ),
     (
         "2",
-        "Ambulatory and capable of all self-care but unable to carry out "
+        "[2] Ambulatory and capable of all self-care but unable to carry out "
         "any work activities; up and about more than 50% of waking hours ",
     ),
     (
         "3",
-        "Capable of only limited self-care; confined to bed or chair more than "
+        "[3] Capable of only limited self-care; confined to bed or chair more than "
         "50% of waking hours",
     ),
     (
         "4",
-        "Completely disabled; cannot carry on any self-care; totally confined to bed or chair",
+        "[4] Completely disabled; cannot carry on any self-care; "
+        "totally confined to bed or chair",
     ),
-    ("5", "Deceased"),
+    ("5", "[5] Deceased"),
+)
+
+FLUCONAZOLE_DOSES = (
+    ("1200_mg_d", "Fluconazole, 1200 mg/d"),
+    ("800_mg_d", "Fluconazole, 800 mg/d"),
+    (OTHER, "Other (specify dose and reason below ...)"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+FLUCONAZOLE_DOSES_D14 = (
+    ("800_mg_d", "Fluconazole, 800 mg/d (as per protocol)"),
+    (OTHER, "Other (specify dose and reason below ...)"),
+    ("taken_off_study_drug", "No, taken off study drug"),
 )
 
 FOLLOWUP_REASONS = (
@@ -120,15 +140,6 @@ GRADE34_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-INFO_SOURCE = (
-    ("hospital_notes", "Hospital notes"),
-    ("outpatient_cards", "Outpatient cards"),
-    ("patient", "Patient"),
-    ("collateral_history", "Collateral History from relative/guardian"),
-    (NOT_APPLICABLE, "Not applicable (if missed)"),
-    (OTHER, "Other"),
-)
-
 
 FUNDOSCOPY_CHOICES = (
     ("no_retinopathy", "No retinopathy"),
@@ -137,6 +148,11 @@ FUNDOSCOPY_CHOICES = (
     ("proliferative_retinopathy", "Proliferative retinopathy"),
     ("maculopathy", "Maculopathy"),
     (NO_EXAM, "Exam not performed"),
+)
+
+LP_REASON = (
+    ("scheduled_per_protocol", "Scheduled per protocol"),
+    ("clincal_deterioration", "Suspected Cryptococcal meningitis / Suspected IRIS"),
 )
 
 MALARIA_TEST_CHOICES = (
@@ -148,11 +164,39 @@ MALARIA_TEST_CHOICES = (
 MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
 
 MODIFIED_RANKIN_SCORE_CHOICES = (
-    ("1", "1"),
-    ("2", "2"),
-    ("3", "3"),
-    ("4", "4"),
-    ("5", "5"),
+    ("0", "[0] No symptoms"),
+    (
+        "1",
+        (
+            "[1] No significant disability. "
+            "Able to carry out usual activities, despite some symptoms."
+        ),
+    ),
+    (
+        "2",
+        (
+            "[2] Slight disability. "
+            "Able to look after own affairs without assistance, "
+            "but unable to carry out all previous activities."
+        ),
+    ),
+    ("3", "[3] Moderate disability. Requires some help, but able to walk unassisted."),
+    (
+        "4",
+        (
+            "[4] Moderately severe disability. "
+            "Unable to attend to own bodily needs without assistance, "
+            "and unable to walk unassisted."
+        ),
+    ),
+    (
+        "5",
+        (
+            "[5] Severe disability. "
+            "Requires constant nursing care and attention, bedridden, incontinent."
+        ),
+    ),
+    ("6", "[6] Dead"),
     (NOT_DONE, "Not done"),
 )
 
@@ -160,6 +204,13 @@ MONOFILAMENT_CHOICES = (
     (NORMAL, "Normal"),
     (REDUCED, "Reduced"),
     (ABSENT, "Absent"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+NEGATIVE_TX_CHOICES = (
+    ("deferred_local_clinic", "Deferred to local clinic"),
+    ("contraindicated", "Contraindicated"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
@@ -187,22 +238,28 @@ PRESENT_ABSENT_NOEXAM_NDS = (
 
 PATIENT_STATUSES = (
     ("alive_well", "Alive and well"),
-    ("alive_unwell", "Alive, but unwell"),
+    (ALIVE_UNWELL, "Alive, but unwell"),
     (DEAD, "Deceased"),
-)
-
-INFO_SOURCES = (
-    (PATIENT, "Patient"),
-    ("next_of_kin", "Next of kin"),
-    (OTHER, "Other"),
-    (NOT_APPLICABLE, "Not applicable (in person visit)"),
 )
 
 STEROID_CHOICES = (
     ("oral_prednisolone", "Oral prednisolone"),
     ("iv_dexamethasone", "IV Dexamethasone"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    (NOT_APPLICABLE, "Not applicable (no steroids administered)"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+TB_DX_AGO_CHOICES = (
+    ("lte_5_yrs", "During past 5 years (no longer on treatment)"),
+    ("gt_5_yrs", "More than 5 years ago (no longer on treatment)"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+TB_SITE_CHOICES = (
+    ("pulmonary", "Pulmonary"),
+    ("extra_pulmonary", "Extra-pulmonary"),
+    ("both", "Both"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 TRANSPORT_CHOICES = (
@@ -248,6 +305,13 @@ VISIT_REASON = (
 )
 
 WEIGHT_DETERMINATION = (("estimated", "Estimated"), ("measured", "Measured"))
+
+YES_NO_AWAITING_RESULTS = (
+    (YES, YES),
+    (NO, NO),
+    (AWAITING_RESULTS, "Awaiting results"),
+)
+
 
 YES_NO_NO_EXAM = (
     (YES, YES),

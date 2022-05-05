@@ -1,16 +1,28 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO_NA
+from edc_constants.constants import NOT_APPLICABLE
+from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
+from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField
 
-from effect_subject.choices import MEASURED_EST_CHOICES
-from effect_subject.fields.temperature import TemperatureField
+from ..choices import MEASURED_EST_CHOICES
+from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, VITAL_SIGNS_ACTION
+from ..fields.temperature import TemperatureField
 
-from ..model_mixins import CrfModelMixin
 
+class VitalSigns(
+    SimpleBloodPressureModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
+):
 
-class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
+    action_name = VITAL_SIGNS_ACTION
+
+    tracking_identifier_prefix = "VS"
+
+    action_identifier = models.CharField(max_length=50, unique=True, null=True)
+
+    tracking_identifier = models.CharField(max_length=30, unique=True, null=True)
 
     weight = WeightField(null=True)
 
@@ -40,16 +52,19 @@ class VitalSigns(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         # TODO: If yes, prompt for SAE
         choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_AE,
     )
 
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to any of the above?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
-        choices=YES_NO,
-        help_text="If yes, complete SAE report",
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text=IF_YES_COMPLETE_SAE,
     )
 
-    class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
+    class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Vital Signs"
         verbose_name_plural = "Vital Signs"

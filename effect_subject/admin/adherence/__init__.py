@@ -1,0 +1,5 @@
+from .adherence_admin import AdherenceAdmin
+from .adherence_stage_four_admin import AdherenceStageFourAdmin
+from .adherence_stage_one_admin import AdherenceStageOneAdmin
+from .adherence_stage_three_admin import AdherenceStageThreeAdmin
+from .adherence_stage_two_admin import AdherenceStageTwoAdmin

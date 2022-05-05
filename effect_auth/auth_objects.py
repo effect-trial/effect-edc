@@ -5,8 +5,10 @@ EFFECT_CLINIC = "EFFECT_CLINIC"
 EFFECT_CLINIC_SUPER = "EFFECT_CLINIC_SUPER"
 EFFECT_EXPORT = "EFFECT_EXPORT"
 
-screening_codenames = []
 clinic_codenames = []
+screening_codenames = []
+
+
 for app_config in django_apps.get_app_configs():
     if app_config.name in [
         "effect_lists",
@@ -25,10 +27,13 @@ for app_config in django_apps.get_app_configs():
         "effect_screening",
     ]:
         for model_cls in app_config.get_models():
-            for prefix in ["add", "change", "view", "delete"]:
-                clinic_codenames.append(
-                    f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
-                )
+            if "historical" in model_cls._meta.label_lower:
+                clinic_codenames.append(f"{app_config.name}.view_{model_cls._meta.model_name}")
+            else:
+                for prefix in ["add", "change", "view", "delete"]:
+                    clinic_codenames.append(
+                        f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
+                    )
 clinic_codenames.sort()
 
 for app_config in django_apps.get_app_configs():
@@ -36,10 +41,15 @@ for app_config in django_apps.get_app_configs():
         "effect_screening",
     ]:
         for model_cls in app_config.get_models():
-            for prefix in ["add", "change", "view", "delete"]:
+            if "historical" in model_cls._meta.label_lower:
                 screening_codenames.append(
-                    f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
+                    f"{app_config.name}.view_{model_cls._meta.model_name}"
                 )
+            else:
+                for prefix in ["add", "change", "view", "delete"]:
+                    screening_codenames.append(
+                        f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
+                    )
 screening_codenames.sort()
 
 

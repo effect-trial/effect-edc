@@ -1,0 +1,139 @@
+- Redmine:
+    - fix/renew expired certificate
+
+- Schedule:
+    - Finalise and update upper/lower visit windows
+    - d1:
+        - "Urine will be tested on day 1 with a lateral flow tuberculosis (TB) lipoarabinomannan (LAM) assay"
+        - "Bloods will be drawn on day 1 to assess serum creatinine, full blood count with differential (FBC) and alanine transaminase (ALT) levels"
+    - d14
+        - "Bloods drawn to check FBC and differential count"
+
+- SAE CRF:
+    - validate Flucytosine only applicable if it is a study drug (i.e. on that arm of trial)
+    - make Subject Identifier, and Action Identifier fields read only
+    - if hospitalized
+        - Lab CRF
+        - Clinical Assessment CRF
+
+- AE Follow-up Form:
+    - make Subject Identifier, and Action Identifier fields read only
+
+- TMG Form:
+    - make Subject Identifier, and Action Identifier fields read only
+        - should Original Report be read only?
+
+- Death CRF:
+    - reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
+    - if death, required:
+        - SAE CRF
+        - Death CRF
+        - Termination CRF
+        - Adherence
+        - Clinical Assessment CRF
+
+- Medical History CRF:
+    - currently taking TB treatment?  -> Ask which treatment, like asked on D14 - use same list
+    - validate
+
+- ARV History CRF:
+    - split?
+    - remove singular choices, convert m2m to autocomplete field
+    - store regimen history in inline (i.e. ~Q9-Q13 for each)
+    - remove CD4 (collected at baseline), add estimated_date q to screening
+    - add "What decision was made at enrollment regarding their current ART regimen?" (ART continued/ART stopped)
+    - validate
+
+- Requisitions:
+    - combine renal (RFT) and liver (LFT) function tests into single requisition
+        - combine results forms
+
+- Subject visit:
+    - Hide 'survival_status' at baseline
+        - trigger AE_INITIAL_ACTION/DEATH_REPORT_ACTION if answer YES to 'survival_status'
+    - Hide 'hospitalized' at baseline
+        - trigger AE_INITIAL_ACTION if answer YES to 'hospitalized'
+
+- Follow-up CRF:
+    - Remove model, form, admin and test once validation transferred over
+
+- Study Medication CRF:
+    - capture initial prescription
+    - capture time_of_first_dose ???[4am, 10am, 4pm, 10pm]
+    - capture modifications at subsequent visits (e.g. "Were there modifications to the study medication?")
+
+- Signs and Symptoms CRF:
+    - validate 'any_sx' != UNKNOWN if an in-person or telephone-based (patient) visit
+    - 'headache_duration_microseconds' to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
+    - if 'cm_sx_lp_done', generate LP
+    - if fbc or chem bloods taken, generate related requisition
+    - look at basic validation for _sx_other fields
+
+- Mental Status CRF:
+    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
+
+- Vital Signs CRF:
+    - add, "Was blood pressure taken?" / "If not, why?"
+    - validate:
+        - blood pressure gradable if >= 180 / 110 (either value)
+        - Temperature G3 if temp >= 39.3 and < 40
+        - Temperature G4 if temp >= 40
+
+- Significant Diagnoses CRF:
+    - add validation
+    - trigger AE_INITIAL_ACTION if answer YES to 'gi_side_effects'
+    - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
+
+- ARV Treatment CRF:
+    - add validation
+
+- Patient Treatment CRF:
+    - if Q4 'cm_confirmed' is YES
+        - remove from study treatment
+        - remain in follow-up
+        - validate with study medication, to confirm taken off drug
+    - if 'lp_completed', prompt for LP results
+
+- Blood Result: FBC CRF:
+    - Q3, 'requisition' + button doesn't work (no panels are listed)
+    - ???validation
+
+- Economics CRF:
+    - update
+    - 2 CRFs:
+        - everyone to complete same CRF at baseline, and end of study
+        - everyone who has a medical event with any costs to them or trial to complete different CRF
+            - then as PRN at subsequent follow-ups
+    - Question: Has there been any events since last visit?
+
+- Viral load CRF/PRN:
+    - implement
+    - schedule
+    - validate
+
+- Adherence CRF:
+    - form validation (all)
+        - consider adding "Are you speaking to patient?" lead question to validate against
+
+- Adherence Diary
+    - 14 days, 4 doses per day, reason for missed dose
+    - user confirm number of missed doses (EDC to validate)
+    - user confirm if there are 2 or more consecutive missed doses (EDC to validate)
+    - if not filled in on D14 visit, EDC to prompts, until it is
+
+- Missed Visit CRF:
+    - awaiting
+
+- Protocol violation/deviation CRF
+    - awaiting
+
+- End of Study/Termination CRF:
+    - reconcile with provided form (08_Termination_Form_110821_V0.5.pdf)
+    - add validation
+    - check if started treatment, cannot be late exclusion
+
+- Other (reported by JA):
+    - Consent 2 and 3 – makes you add the name in full caps. Can this be made auto?
+    - Requisition for blood sample gave server error – this prevents saving the bloods form.
+    - I then added the requisition 992FC4G – thinking this was for a sample taken, but it seemed to only be for a FBC – and did not let me use it for chemistry results.
+    - LP details – are these available?

@@ -13,7 +13,6 @@ from edc_adverse_event.constants import (
 )
 from edc_blood_results.constants import (
     BLOOD_RESULTS_FBC_ACTION,
-    BLOOD_RESULTS_GLU_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
     BLOOD_RESULTS_RFT_ACTION,
 )
@@ -22,6 +21,8 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
+
+from effect_subject.constants import FOLLOWUP_ACTION, SX_ACTION, VITAL_SIGNS_ACTION
 
 
 class AeFollowupAction(ActionWithNotification):
@@ -52,13 +53,12 @@ class AeFollowupAction(ActionWithNotification):
             required=self.reference_obj.followup == YES,
         )
 
-        # add Death report to next_actions if G5/Death
+        # add Death Report to next_actions if G5/Death
         next_actions = self.append_to_next_if_required(
             next_actions=next_actions,
             action_name=DEATH_REPORT_ACTION,
             required=(
-                self.reference_obj.outcome == DEAD
-                or self.reference_obj.ae_grade == GRADE5
+                self.reference_obj.outcome == DEAD or self.reference_obj.ae_grade == GRADE5
             ),
         )
 
@@ -82,10 +82,12 @@ class AeInitialAction(ActionWithNotification):
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
     parent_action_names = [
-        BLOOD_RESULTS_GLU_ACTION,
+        BLOOD_RESULTS_FBC_ACTION,
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
-        BLOOD_RESULTS_FBC_ACTION,
+        FOLLOWUP_ACTION,
+        SX_ACTION,
+        VITAL_SIGNS_ACTION,
     ]
     reference_model = "effect_ae.aeinitial"
     show_link_to_changelist = True
@@ -101,8 +103,7 @@ class AeInitialAction(ActionWithNotification):
         """
         next_actions = []
         deceased = (
-            self.reference_obj.ae_grade == GRADE5
-            or self.reference_obj.sae_reason.name == DEAD
+            self.reference_obj.ae_grade == GRADE5 or self.reference_obj.sae_reason.name == DEAD
         )
 
         # add next AeFollowup if not deceased
@@ -116,8 +117,7 @@ class AeInitialAction(ActionWithNotification):
             next_actions=next_actions,
             action_name=AE_SUSAR_ACTION,
             required=(
-                self.reference_obj.susar == YES
-                and self.reference_obj.susar_reported == NO
+                self.reference_obj.susar == YES and self.reference_obj.susar_reported == NO
             ),
         )
 
@@ -142,9 +142,7 @@ class AeInitialAction(ActionWithNotification):
         next_actions = self.append_to_next_if_required(
             next_actions=next_actions,
             action_name=AE_TMG_ACTION,
-            required=(
-                self.reference_obj.ae_grade == GRADE3 and self.reference_obj.sae == YES
-            ),
+            required=(self.reference_obj.ae_grade == GRADE3 and self.reference_obj.sae == YES),
         )
 
         return next_actions
@@ -246,8 +244,7 @@ class DeathReportTmgAction(ActionWithNotification):
         cause_of_death on Death Report.
         """
         return (
-            self.reference_obj.death_report.cause_of_death
-            == self.reference_obj.cause_of_death
+            self.reference_obj.death_report.cause_of_death == self.reference_obj.cause_of_death
         )
 
     def close_action_item_on_save(self):
@@ -256,7 +253,7 @@ class DeathReportTmgAction(ActionWithNotification):
         return self.reference_obj.report_status == CLOSED
 
     def get_next_actions(self):
-        """Returns an second DeathReportTmgAction if the
+        """Returns a second DeathReportTmgAction if the
         submitted report does not match the cause of death
         of the original death report.
 

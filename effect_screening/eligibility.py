@@ -1,4 +1,4 @@
-from edc_constants.constants import NEG, NO, NOT_ANSWERED, POS, YES
+from edc_constants.constants import IND, NO, POS, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
@@ -10,7 +10,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
-        self.eligible = NO if reasons_ineligible else YES
+        self.eligible = (
+            self.is_ineligible_value if reasons_ineligible else self.is_eligible_value
+        )
         self.reasons_ineligible = reasons_ineligible
 
     def update_model(self) -> None:
@@ -35,10 +37,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "csf_crag_value",
             ]
         ]
-        if not (all(criteria) and NOT_ANSWERED not in criteria):
-            reasons_ineligible.update(
-                inclusion_criteria="Incomplete inclusion criteria"
-            )
+        if not all(criteria):
+            reasons_ineligible.update(inclusion_criteria="Incomplete inclusion criteria")
         if self.model_obj.hiv_pos != YES:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
         if self.model_obj.cd4_value and self.model_obj.cd4_value >= 100:
@@ -47,58 +47,74 @@ class ScreeningEligibility(BaseScreeningEligibility):
         return reasons_ineligible
 
     def review_crag(self, reasons_ineligible: dict) -> dict:
-        if (
-            self.model_obj.serum_crag_value == POS
-            and self.model_obj.csf_crag_value == NEG
-        ):
-            pass
-        elif self.model_obj.serum_crag_value != POS:
+        if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(crag_value="Serum CrAg not (+)")
-        elif (
-            self.model_obj.serum_crag_value == POS
-            and self.model_obj.csf_crag_value != NEG
-        ):
-            reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg not (-)")
+        elif self.model_obj.serum_crag_value == POS:
+            if self.model_obj.csf_crag_value == POS:
+                reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (+)")
+            elif self.model_obj.csf_crag_value == IND:
+                reasons_ineligible.update(crag_value="Serum CrAg(+) / CSF CrAg (IND)")
+            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == NO:
+                reasons_ineligible.update(
+                    crag_value="Serum CrAg(+) and LP not done / not declined"
+                )
         return reasons_ineligible
 
     def review_exclusion(self, reasons_ineligible: dict) -> dict:
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
-                "pregnant_or_bf",
-                "prior_cm_epidose",
+                "pregnant",
+                "breast_feeding",
+                "prior_cm_episode",
                 "reaction_to_study_drugs",
                 "on_fluconazole",
                 "contraindicated_meds",
-                "meningitis_symptoms",
+                "mg_severe_headache",
+                "mg_headache_nuchal_rigidity",
+                "mg_headache_vomiting",
+                "mg_seizures",
+                "mg_gcs_lt_15",
+                "any_other_mg_ssx",
                 "jaundice",
-                "csf_cm_evidence",
+                "cm_in_csf",
             ]
         ]
-        if not (all(criteria) and NOT_ANSWERED not in criteria):
-            reasons_ineligible.update(
-                exclusion_criteria="Incomplete exclusion criteria"
-            )
-        if self.model_obj.contraindicated_meds not in [NO, NOT_ANSWERED]:
+        if not all(criteria):
+            reasons_ineligible.update(exclusion_criteria="Incomplete exclusion criteria")
+        if self.model_obj.contraindicated_meds == YES:
             reasons_ineligible.update(
                 contraindicated_meds="Contraindicated concomitant medications"
             )
-        if self.model_obj.csf_cm_evidence == YES:
-            reasons_ineligible.update(csf_cm_evidence="Positive evidence of CM on CSF")
-        if self.model_obj.jaundice not in [NO, NOT_ANSWERED]:
+        if self.model_obj.cm_in_csf == YES:
+            reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
+        if self.model_obj.jaundice == YES:
             reasons_ineligible.update(jaundice="Jaundice")
-        if self.model_obj.meningitis_symptoms not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(
-                meningitis_symptoms="Signs of symptomatic meningitis"
-            )
-        if self.model_obj.on_fluconazole not in [NO, NOT_ANSWERED]:
+        if self.model_obj.on_fluconazole == YES:
             reasons_ineligible.update(on_fluconazole="On fluconazole")
-        if self.model_obj.pregnant_or_bf == YES:
-            reasons_ineligible.update(pregnant_or_bf="Pregnant or breastfeeding")
-        if self.model_obj.prior_cm_epidose not in [NO, NOT_ANSWERED]:
-            reasons_ineligible.update(prior_cm_epidose="Prior episode of CM")
-        if self.model_obj.reaction_to_study_drugs not in [NO, NOT_ANSWERED]:
+        if self.model_obj.pregnant == YES:
+            reasons_ineligible.update(pregnant="Pregnant")
+        if self.model_obj.breast_feeding == YES:
+            reasons_ineligible.update(breast_feeding="Breastfeeding")
+        if self.model_obj.prior_cm_episode == YES:
+            reasons_ineligible.update(prior_cm_episode="Prior episode of CM")
+        if self.model_obj.reaction_to_study_drugs == YES:
             reasons_ineligible.update(
                 reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
             )
+        reasons_ineligible = self.review_mg_ssx(reasons_ineligible)
+        return reasons_ineligible
+
+    def review_mg_ssx(self, reasons_ineligible: dict) -> dict:
+        """Exclusion for clinical symptoms/signs of symptomatic meningitis."""
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            if getattr(self.model_obj, mg_ssx, None) == YES:
+                reasons_ineligible.update({mg_ssx: "Signs of symptomatic meningitis"})
         return reasons_ineligible
