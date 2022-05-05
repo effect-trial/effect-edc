@@ -58,7 +58,6 @@ EDC_CODEBASE =
 deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
-    edcdev: -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
     dj32: Django>=3.2,<3.3
     djdev: https://github.com/django/django/tarball/main
@@ -66,6 +65,8 @@ deps =
 commands =
     pip install -U pip
     pip --version
+    edcdev: pip install -U -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
+    edcdev: pip install -U effect-form-validators
     pip freeze
     coverage run -a runtests.py
     coverage report
