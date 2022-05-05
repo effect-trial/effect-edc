@@ -1,3 +1,2 @@
+from .blood_results_chem import BloodResultsChem
 from .blood_results_fbc import BloodResultsFbc
-from .blood_results_lft import BloodResultsLft
-from .blood_results_rft import BloodResultsRft

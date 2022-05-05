@@ -38,12 +38,11 @@ class TestVisitSchedule(TestCase):
     def test_requisitions(self):
         prn = [
             "blood_culture",
-            "chemistry_lft",
-            "chemistry_rft",
             "csf_culture",
             "fbc",
             "sputum",
             "tissue_biopsy",
+            "chemistry",
         ]
         expected = {
             "1000": [
@@ -52,6 +51,7 @@ class TestVisitSchedule(TestCase):
                 "fbc",
                 "sputum",
                 "tissue_biopsy",
+                "chemistry",
             ],
             "1003": [],
             "1009": [],
@@ -65,13 +65,16 @@ class TestVisitSchedule(TestCase):
             with self.subTest(visit_code=visit_code, visit=visit):
                 actual = [requisition.name for requisition in visit.requisitions]
                 actual.sort()
+                expected_for_visit = expected.get(visit_code)
+                expected_for_visit.sort()
                 self.assertEqual(
-                    expected.get(visit_code),
+                    expected_for_visit,
                     actual,
                     msg=f"see requisitions for visit {visit_code}",
                 )
                 actual = [requisition.name for requisition in visit.requisitions_prn]
                 actual.sort()
+                prn.sort()
                 self.assertEqual(
                     prn, actual, msg=f"see PRN requisitions for visit {visit_code}"
                 )
@@ -80,13 +83,13 @@ class TestVisitSchedule(TestCase):
         prn = [
             "effect_subject.bloodculture",
             "effect_subject.bloodresultsfbc",
-            "effect_subject.bloodresultslft",
-            "effect_subject.bloodresultsrft",
+            "effect_subject.bloodresultschem",
             "effect_subject.healtheconomics",
             "effect_subject.histopathology",
             "effect_subject.chestxray",
             "effect_subject.lpcsf",
             "effect_subject.tbdiagnostics",
+            "effect_subject.studymedicationfollowup",
         ]
         expected = {
             "1000": [
@@ -96,9 +99,9 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
+                "effect_subject.studymedicationbaseline",
                 "effect_subject.bloodresultsfbc",
-                "effect_subject.bloodresultsrft",
-                "effect_subject.bloodresultslft",
+                "effect_subject.bloodresultschem",
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
@@ -107,6 +110,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestageone",
             ],
             "1003": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -116,6 +120,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagetwo",
             ],
             "1009": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -125,6 +130,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagetwo",
             ],
             "1014": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
@@ -140,6 +146,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagethree",
             ],
             "1028": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -149,6 +156,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1070": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -158,6 +166,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1112": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -167,6 +176,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1168": [
+                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",

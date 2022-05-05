@@ -1,4 +1,3 @@
-from edc_blood_results import BLOOD_RESULTS_LFT_ACTION
 from edc_blood_results.model_mixins import (
     AlbuminModelMixin,
     AlpModelMixin,
@@ -6,30 +5,43 @@ from edc_blood_results.model_mixins import (
     AmylaseModelMixin,
     AstModelMixin,
     BloodResultsModelMixin,
+    CreatinineModelMixin,
+    EgfrModelMixin,
     GgtModelMixin,
+    UreaModelMixin,
+    UricAcidModelMixin,
 )
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_lab.model_mixins import CrfWithRequisitionModelMixin
-from edc_lab_panel.panels import lft_panel
 from edc_model import models as edc_models
 
+from effect_labs.panels import chemistry_panel
 
-class BloodResultsLft(
+from ...constants import BLOOD_RESULTS_CHEM_ACTION
+
+# TODO: align model mixins with panel
+
+
+class BloodResultsChem(
     CrfWithActionModelMixin,
     AlbuminModelMixin,
     AlpModelMixin,
     AltModelMixin,
     AmylaseModelMixin,
     AstModelMixin,
+    CreatinineModelMixin,
+    EgfrModelMixin,
+    UreaModelMixin,
+    UricAcidModelMixin,
     GgtModelMixin,
     CrfWithRequisitionModelMixin,
     BloodResultsModelMixin,
     edc_models.BaseUuidModel,
 ):
-    action_name = BLOOD_RESULTS_LFT_ACTION
-    tracking_identifier_prefix = "LF"
-    lab_panel = lft_panel
+    action_name = BLOOD_RESULTS_CHEM_ACTION
+    tracking_identifier_prefix = "CH"
+    lab_panel = chemistry_panel
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Blood Result: LFT"
-        verbose_name_plural = "Blood Results: LFT"
+        verbose_name = "Blood Result: Chemistry"
+        verbose_name_plural = "Blood Results: Chemistry"

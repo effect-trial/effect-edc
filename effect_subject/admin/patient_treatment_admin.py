@@ -19,7 +19,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
                 "fields": (
                     "lp_completed",
                     "cm_confirmed",
-                    "cm_tx",
+                    "on_cm_tx",
                     "cm_tx_given",
                     "cm_tx_given_other",
                 ),
@@ -29,7 +29,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
             "Tuberculosis",
             {
                 "fields": (
-                    "tb_tx",
+                    "on_tb_tx",
                     "tb_tx_date",
                     "tb_tx_date_estimated",
                     "tb_tx_given",
@@ -43,7 +43,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
             "Steroids",
             {
                 "fields": (
-                    "steroids",
+                    "on_steroids",
                     "steroids_date",
                     "steroids_date_estimated",
                     "steroids_given",
@@ -56,7 +56,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
             "Co-trimixazole",
             {
                 "fields": (
-                    "co_trimoxazole",
+                    "on_co_trimoxazole",
                     "co_trimoxazole_date",
                     "co_trimoxazole_date_estimated",
                     "co_trimoxazole_reason_no",
@@ -68,7 +68,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
             "Antibiotics",
             {
                 "fields": (
-                    "antibiotics",
+                    "on_antibiotics",
                     "antibiotics_date",
                     "antibiotics_date_estimated",
                     "antibiotics_given",
@@ -80,7 +80,7 @@ class PatientTreatmentAdmin(CrfModelAdmin):
             "Other drugs",
             {
                 "fields": (
-                    "other_drugs",
+                    "on_other_drugs",
                     "other_drugs_date",
                     "other_drugs_date_estimated",
                     "other_drugs_given",
@@ -94,21 +94,21 @@ class PatientTreatmentAdmin(CrfModelAdmin):
     filter_horizontal = ["tb_tx_given", "antibiotics_given", "other_drugs_given"]
 
     radio_fields = {
-        "antibiotics": admin.VERTICAL,
         "antibiotics_date_estimated": admin.VERTICAL,
+        "on_antibiotics": admin.VERTICAL,
         "cm_confirmed": admin.VERTICAL,
-        "cm_tx": admin.VERTICAL,
+        "on_cm_tx": admin.VERTICAL,
         "cm_tx_given": admin.VERTICAL,
-        "co_trimoxazole": admin.VERTICAL,
+        "on_co_trimoxazole": admin.VERTICAL,
         "co_trimoxazole_date_estimated": admin.VERTICAL,
         "co_trimoxazole_reason_no": admin.VERTICAL,
         "lp_completed": admin.VERTICAL,
-        "other_drugs": admin.VERTICAL,
+        "on_other_drugs": admin.VERTICAL,
         "other_drugs_date_estimated": admin.VERTICAL,
-        "steroids": admin.VERTICAL,
+        "on_steroids": admin.VERTICAL,
         "steroids_date_estimated": admin.VERTICAL,
         "steroids_given": admin.VERTICAL,
-        "tb_tx": admin.VERTICAL,
+        "on_tb_tx": admin.VERTICAL,
         "tb_tx_date_estimated": admin.VERTICAL,
         "tb_tx_reason_no": admin.VERTICAL,
     }

@@ -29,7 +29,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    cm_tx = models.CharField(
+    on_cm_tx = models.CharField(
         verbose_name="Cryptococcal meningitis treatment administered?",
         max_length=15,
         choices=YES_NO_NA,
@@ -45,7 +45,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     cm_tx_given_other = edc_models.OtherCharField()
 
-    tb_tx = models.CharField(
+    on_tb_tx = models.CharField(
         verbose_name="Has the patient been put on TB preventive therapy?",
         max_length=15,
         choices=YES_NO,
@@ -79,7 +79,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     tb_tx_reason_no_other = edc_models.OtherCharField()
 
-    steroids = models.CharField(
+    on_steroids = models.CharField(
         verbose_name="Were steroids administered to the patient?",
         max_length=15,
         choices=YES_NO,
@@ -114,7 +114,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     # other treatment
-    co_trimoxazole = models.CharField(
+    on_co_trimoxazole = models.CharField(
         verbose_name="Has the patient been prescribed co-trimoxazole?",
         max_length=15,
         choices=YES_NO,
@@ -140,7 +140,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     co_trimoxazole_reason_no_other = edc_models.OtherCharField()
 
-    antibiotics = models.CharField(
+    on_antibiotics = models.CharField(
         verbose_name="Has the patient been prescribed antibiotics?",
         max_length=15,
         choices=YES_NO,
@@ -165,7 +165,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     antibiotics_given_other = edc_models.OtherCharField()
 
-    other_drugs = models.CharField(
+    on_other_drugs = models.CharField(
         verbose_name="Has the patient been prescribed any other drugs/interventions?",
         max_length=15,
         choices=YES_NO,

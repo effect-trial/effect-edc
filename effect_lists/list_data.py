@@ -1,23 +1,22 @@
 from edc_constants.constants import (
     DEAD,
+    HEADACHE,
     NONE,
     NORMAL,
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
     UNKNOWN,
+    VISUAL_LOSS,
+)
+from edc_csf.constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
-
-from effect_subject.constants import (
-    CN_PALSY_LEFT_OTHER,
-    CN_PALSY_RIGHT_OTHER,
-    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
-    HEADACHE,
-    VISUAL_LOSS,
-)
 
 list_data = {
     "effect_lists.nonadherencereasons": [

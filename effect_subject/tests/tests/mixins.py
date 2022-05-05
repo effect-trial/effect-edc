@@ -20,7 +20,7 @@ class ReportingFieldsetBaselineTestCaseMixin:
                 cleaned_data.update({"reportable_as_ae": response})
                 self.assertFormValidatorError(
                     field="reportable_as_ae",
-                    expected_msg="This field is not applicable at baseline.",
+                    expected_msg="Not applicable at baseline.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
@@ -31,7 +31,7 @@ class ReportingFieldsetBaselineTestCaseMixin:
                 cleaned_data.update({"patient_admitted": response})
                 self.assertFormValidatorError(
                     field="patient_admitted",
-                    expected_msg="This field is not applicable at baseline.",
+                    expected_msg="Not applicable at baseline.",
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 

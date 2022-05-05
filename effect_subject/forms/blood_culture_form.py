@@ -1,17 +1,8 @@
 from django import forms
 from edc_crf.modelform_mixins import CrfModelFormMixin
-from edc_form_validators import FormValidator
-from edc_microbiology.form_validators import BloodCultureSimpleFormValidatorMixin
+from effect_form_validators.effect_subject import BloodCultureFormValidator
 
 from ..models import BloodCulture
-
-
-class BloodCultureFormValidator(
-    BloodCultureSimpleFormValidatorMixin,
-    FormValidator,
-):
-    def clean(self):
-        self.validate_blood_culture()
 
 
 class BloodCultureForm(CrfModelFormMixin, forms.ModelForm):

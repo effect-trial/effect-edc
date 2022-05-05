@@ -2,7 +2,6 @@ from edc_constants.constants import (
     ABSENT,
     AWAITING_RESULTS,
     DEAD,
-    HOSPITAL_NOTES,
     MICROSCOPY,
     NO,
     NO_EXAM,
@@ -25,14 +24,8 @@ from .constants import (
     ART_CONTINUED,
     ART_STOPPED,
     DECREASED,
-    IN_PERSON,
-    NEXT_OF_KIN,
-    OUTPATIENT_CARDS,
-    PATIENT,
-    PATIENT_REPRESENTATIVE,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
-    TELEPHONE,
 )
 
 ACTIVITY_CHOICES = (
@@ -68,17 +61,6 @@ ARV_DECISION = (
     (ART_STOPPED, "ART stopped"),
 )
 
-ASSESSMENT_WHO_CHOICES = (
-    (PATIENT, "Patient"),
-    (NEXT_OF_KIN, "Next of kin"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-)
-
-ASSESSMENT_TYPES = (
-    (TELEPHONE, "Telephone"),
-    (IN_PERSON, "In person"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-)
 
 CHILDCARE_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
@@ -156,18 +138,6 @@ GRADE34_CHOICES = (
     (GRADE3, "Grade 3"),
     (GRADE4, "Grade 4"),
     (NOT_APPLICABLE, "Not applicable"),
-)
-
-INFO_SOURCE = (
-    (PATIENT, "Patient"),
-    (
-        PATIENT_REPRESENTATIVE,
-        "Patient representative (e.g., next of kin, relative, guardian)",
-    ),
-    (HOSPITAL_NOTES, "Hospital notes"),
-    (OUTPATIENT_CARDS, "Outpatient cards"),
-    (NOT_APPLICABLE, "Not applicable (if missed)"),
-    (OTHER, "Other"),
 )
 
 
@@ -286,10 +256,10 @@ TB_DX_AGO_CHOICES = (
 )
 
 TB_SITE_CHOICES = (
-    (NOT_APPLICABLE, "Not applicable"),
     ("pulmonary", "Pulmonary"),
     ("extra_pulmonary", "Extra-pulmonary"),
     ("both", "Both"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 TRANSPORT_CHOICES = (

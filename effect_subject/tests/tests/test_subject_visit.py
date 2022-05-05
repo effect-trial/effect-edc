@@ -6,30 +6,27 @@ from edc_constants.constants import (
     ALIVE,
     DEAD,
     HOSPITAL_NOTES,
+    IN_PERSON,
+    NEXT_OF_KIN,
     NO,
     NOT_APPLICABLE,
     OTHER,
-    UNKNOWN,
-    YES,
-)
-from edc_visit_tracking.constants import SCHEDULED
-
-from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.choices import ASSESSMENT_WHO_CHOICES, INFO_SOURCE
-from effect_subject.constants import (
-    IN_PERSON,
-    NEXT_OF_KIN,
     OUTPATIENT_CARDS,
     PATIENT,
     PATIENT_REPRESENTATIVE,
     TELEPHONE,
+    UNKNOWN,
+    YES,
 )
+from edc_visit_tracking.choices import ASSESSMENT_WHO_CHOICES, VISIT_INFO_SOURCE2
+from edc_visit_tracking.constants import SCHEDULED
+
+from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.subject_visit_form import SubjectVisitFormValidator
 from effect_visit_schedule.constants import DAY01, DAY03, DAY14
 from effect_visit_schedule.visit_schedules.schedule import visits
 
 
-@tag("sv")
 class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SubjectVisitFormValidator
@@ -313,7 +310,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
     ):
         for info_source in [
             src[0]
-            for src in INFO_SOURCE
+            for src in VISIT_INFO_SOURCE2
             if src[0] not in [PATIENT, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:
             with self.subTest(info_source=info_source):
@@ -332,12 +329,13 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
+    @tag("1")
     def test_info_source_raises_error_if_does_not_reconcile_with_nok_telephone_answers(
         self,
     ):
         for info_source in [
             src[0]
-            for src in INFO_SOURCE
+            for src in VISIT_INFO_SOURCE2
             if src[0]
             not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:
@@ -362,7 +360,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
     ):
         for info_source in [
             src[0]
-            for src in INFO_SOURCE
+            for src in VISIT_INFO_SOURCE2
             if src[0]
             not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:

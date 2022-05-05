@@ -10,20 +10,20 @@ from ..model_mixins import CrfModelMixin
 class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
 
     chest_xray = models.CharField(
-        verbose_name="Has a chest x-ray been carried out?",
+        verbose_name="Was a chest x-ray performed?",
         max_length=15,
         choices=YES_NO,
     )
 
     chest_xray_date = models.DateField(
-        verbose_name="If YES, what date was it performed?",
+        verbose_name="If YES, date performed?",
         null=True,
         blank=True,
     )
 
     chest_xray_results = models.ManyToManyField(
         XRayResults,
-        verbose_name="If YES, what were the results?",
+        verbose_name="If YES, indicate results?",
         blank=True,
     )
 
@@ -35,4 +35,4 @@ class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Chest X-ray"
-        verbose_name_plural = "Chest X-ray"
+        verbose_name_plural = "Chest X-rays"

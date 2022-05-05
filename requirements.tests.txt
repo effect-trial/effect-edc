@@ -1,2 +1,3 @@
 edc-microbiology>=0.1.3
 edc-csf>=0.1.3
+effect_form_validators
