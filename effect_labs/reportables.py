@@ -7,6 +7,4 @@ grading_data.update(**dummies)
 grading_data.update(**chemistries)
 grading_data.update(**hematology)
 
-site_reportables.register(
-    name="effect", normal_data=normal_data, grading_data=grading_data
-)
+site_reportables.register(name="effect", normal_data=normal_data, grading_data=grading_data)

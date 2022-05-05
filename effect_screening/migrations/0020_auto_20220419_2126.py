@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0019_auto_20220411_1538'),
+        ("effect_screening", "0019_auto_20220411_1538"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='any_other_mg_ssx_other',
-            field=models.TextField(blank=True, help_text='If more than one, please separate each with a comma (,).', null=True, verbose_name='If YES, specify'),
+            model_name="historicalsubjectscreening",
+            name="any_other_mg_ssx_other",
+            field=models.TextField(
+                blank=True,
+                help_text="If more than one, please separate each with a comma (,).",
+                null=True,
+                verbose_name="If YES, specify",
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='any_other_mg_ssx_other',
-            field=models.TextField(blank=True, help_text='If more than one, please separate each with a comma (,).', null=True, verbose_name='If YES, specify'),
+            model_name="subjectscreening",
+            name="any_other_mg_ssx_other",
+            field=models.TextField(
+                blank=True,
+                help_text="If more than one, please separate each with a comma (,).",
+                null=True,
+                verbose_name="If YES, specify",
+            ),
         ),
     ]

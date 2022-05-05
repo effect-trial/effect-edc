@@ -28,9 +28,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         null=False,
         default=NOT_APPLICABLE,
     )
-    diary_issued_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
-    )
+    diary_issued_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     fcon_doses_missed = models.CharField(
         verbose_name="Have any Fluconazole doses been missed since the last visit?",
@@ -82,9 +80,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    diary_returned_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
-    )
+    diary_returned_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     diary_match_medication = models.CharField(
         verbose_name="Did the patient adherence diary match the medication reconciliation?",

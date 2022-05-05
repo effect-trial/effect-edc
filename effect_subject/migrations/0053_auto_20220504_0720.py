@@ -6,28 +6,56 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0052_auto_20220504_0602'),
+        ("effect_subject", "0052_auto_20220504_0602"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalmedicalhistory',
-            name='on_tb_tx',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], max_length=5, verbose_name='Are you currently taking TB treatment?'),
+            model_name="historicalmedicalhistory",
+            name="on_tb_tx",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("N/A", "Not applicable")],
+                max_length=5,
+                verbose_name="Are you currently taking TB treatment?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalmedicalhistory',
-            name='tb_site',
-            field=models.CharField(choices=[('pulmonary', 'Pulmonary'), ('extra_pulmonary', 'Extra-pulmonary'), ('both', 'Both'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='If YES, site of TB?'),
+            model_name="historicalmedicalhistory",
+            name="tb_site",
+            field=models.CharField(
+                choices=[
+                    ("pulmonary", "Pulmonary"),
+                    ("extra_pulmonary", "Extra-pulmonary"),
+                    ("both", "Both"),
+                    ("N/A", "Not applicable"),
+                ],
+                default="N/A",
+                max_length=15,
+                verbose_name="If YES, site of TB?",
+            ),
         ),
         migrations.AlterField(
-            model_name='medicalhistory',
-            name='on_tb_tx',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], max_length=5, verbose_name='Are you currently taking TB treatment?'),
+            model_name="medicalhistory",
+            name="on_tb_tx",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("N/A", "Not applicable")],
+                max_length=5,
+                verbose_name="Are you currently taking TB treatment?",
+            ),
         ),
         migrations.AlterField(
-            model_name='medicalhistory',
-            name='tb_site',
-            field=models.CharField(choices=[('pulmonary', 'Pulmonary'), ('extra_pulmonary', 'Extra-pulmonary'), ('both', 'Both'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='If YES, site of TB?'),
+            model_name="medicalhistory",
+            name="tb_site",
+            field=models.CharField(
+                choices=[
+                    ("pulmonary", "Pulmonary"),
+                    ("extra_pulmonary", "Extra-pulmonary"),
+                    ("both", "Both"),
+                    ("N/A", "Not applicable"),
+                ],
+                default="N/A",
+                max_length=15,
+                verbose_name="If YES, site of TB?",
+            ),
         ),
     ]

@@ -6,18 +6,18 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0055_auto_20220505_0623'),
+        ("effect_subject", "0055_auto_20220505_0623"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='arvhistory',
-            old_name='has_cd4',
-            new_name='has_cd4_result',
+            model_name="arvhistory",
+            old_name="has_cd4",
+            new_name="has_cd4_result",
         ),
         migrations.RenameField(
-            model_name='historicalarvhistory',
-            old_name='has_cd4',
-            new_name='has_cd4_result',
+            model_name="historicalarvhistory",
+            old_name="has_cd4",
+            new_name="has_cd4_result",
         ),
     ]

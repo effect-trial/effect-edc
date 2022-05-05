@@ -10,8 +10,7 @@ register = template.Library()
 
 
 @register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
-    f"buttons/screening_button.html",
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/" f"buttons/screening_button.html",
     takes_context=True,
 )
 def screening_button(context, model_wrapper):
@@ -28,8 +27,7 @@ def screening_button(context, model_wrapper):
 
 
 @register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
-    f"buttons/eligibility_button.html"
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/" f"buttons/eligibility_button.html"
 )
 def eligibility_button(subject_screening_model_wrapper):
     comment = []
@@ -82,8 +80,7 @@ def refusal_button(context, model_wrapper):
 
 
 @register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/"
-    f"buttons/dashboard_button.html"
+    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/" f"buttons/dashboard_button.html"
 )
 def dashboard_button(model_wrapper):
     subject_dashboard_url = url_names.get("subject_dashboard_url")

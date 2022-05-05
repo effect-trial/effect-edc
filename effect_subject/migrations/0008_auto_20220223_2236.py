@@ -6,28 +6,28 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0007_auto_20220223_2142'),
+        ("effect_subject", "0007_auto_20220223_2142"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='bloodculture',
-            old_name='blood_culture_taken_date',
-            new_name='blood_culture_date',
+            model_name="bloodculture",
+            old_name="blood_culture_taken_date",
+            new_name="blood_culture_date",
         ),
         migrations.RenameField(
-            model_name='bloodculture',
-            old_name='blood_culture_day_taken',
-            new_name='blood_culture_day',
+            model_name="bloodculture",
+            old_name="blood_culture_day_taken",
+            new_name="blood_culture_day",
         ),
         migrations.RenameField(
-            model_name='historicalbloodculture',
-            old_name='blood_culture_taken_date',
-            new_name='blood_culture_date',
+            model_name="historicalbloodculture",
+            old_name="blood_culture_taken_date",
+            new_name="blood_culture_date",
         ),
         migrations.RenameField(
-            model_name='historicalbloodculture',
-            old_name='blood_culture_day_taken',
-            new_name='blood_culture_day',
+            model_name="historicalbloodculture",
+            old_name="blood_culture_day_taken",
+            new_name="blood_culture_day",
         ),
     ]

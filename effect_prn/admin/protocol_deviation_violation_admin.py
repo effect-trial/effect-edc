@@ -13,9 +13,7 @@ from ..models import ProtocolDeviationViolation
 
 
 @admin.register(ProtocolDeviationViolation, site=effect_prn_admin)
-class ProtocolDeviationViolationAdmin(
-    ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
-):
+class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     form = ProtocolDeviationViolationForm
 
@@ -111,9 +109,7 @@ class ProtocolDeviationViolationAdmin(
 
     def status(self, obj=None):
         if obj.report_status == CLOSED:
-            return format_html(
-                f'<font color="green">{obj.report_status.title()}</font>'
-            )
+            return format_html(f'<font color="green">{obj.report_status.title()}</font>')
         elif obj.report_status == OPEN:
             return format_html(f'<font color="red">{obj.report_status.title()}</font>')
         return obj.report_status.title()

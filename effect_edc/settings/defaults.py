@@ -259,9 +259,7 @@ WSGI_APPLICATION = f"{APP_NAME}.wsgi.application"
 AUTHENTICATION_BACKENDS = ["edc_auth.backends.ModelBackendWithSite"]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
@@ -275,9 +273,7 @@ PASSWORD_HASHERS = [
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"
-    },
+    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {
         "NAME": "django.contrib.auth.password_validation.MinimumLengthValidator",
         "OPTIONS": {"min_length": 20},
@@ -333,9 +329,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 EXPORT_FILENAME_TIMESTAMP_FORMAT = "%Y%m%d"
 
 # django_revision
-with open(
-    os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSION")
-) as f:
+with open(os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSION")) as f:
     REVISION = f.read().strip()
 
 # EDC_AUTH_SKIP_AUTH_UPDATER = True
@@ -383,9 +377,7 @@ LAB_DASHBOARD_BASE_TEMPLATES = env.dict("DJANGO_LAB_DASHBOARD_BASE_TEMPLATES")
 LAB_DASHBOARD_URL_NAMES = env.dict("DJANGO_LAB_DASHBOARD_URL_NAMES")
 
 # edc-diagnosis
-EDC_DX_LABELS = dict(
-    hiv="HIV", dm="Diabetes", htn="Hypertension", chol="High Cholesterol"
-)
+EDC_DX_LABELS = dict(hiv="HIV", dm="Diabetes", htn="Hypertension", chol="High Cholesterol")
 # edc-label
 EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK = env("EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK")
 

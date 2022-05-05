@@ -6,18 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0015_auto_20220330_1816'),
+        ("effect_screening", "0015_auto_20220330_1816"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='preg_test_date',
-            field=models.DateField(blank=True, null=True, verbose_name='Pregnancy test date (Urine or serum βhCG)'),
+            model_name="historicalsubjectscreening",
+            name="preg_test_date",
+            field=models.DateField(
+                blank=True, null=True, verbose_name="Pregnancy test date (Urine or serum βhCG)"
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='preg_test_date',
-            field=models.DateField(blank=True, null=True, verbose_name='Pregnancy test date (Urine or serum βhCG)'),
+            model_name="subjectscreening",
+            name="preg_test_date",
+            field=models.DateField(
+                blank=True, null=True, verbose_name="Pregnancy test date (Urine or serum βhCG)"
+            ),
         ),
     ]

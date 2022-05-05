@@ -10,9 +10,7 @@ from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 from effect_lists.models import OffstudyReasons
 
 
-class EndOfStudy(
-    OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, BaseUuidModel
-):
+class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, BaseUuidModel):
 
     action_name = END_OF_STUDY_ACTION
 
@@ -51,9 +49,7 @@ class EndOfStudy(
     )
 
     transferred_consent = models.CharField(
-        verbose_name=(
-            "If transferred, has the patient provided consent to be followed-up?"
-        ),
+        verbose_name=("If transferred, has the patient provided consent to be followed-up?"),
         choices=YES_NO_NA,
         max_length=15,
         default=NOT_APPLICABLE,

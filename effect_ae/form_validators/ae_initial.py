@@ -32,9 +32,7 @@ class AeInitialFormValidator(FormValidator):
         super().clean()
 
     def validate_inpatient_status(self):
-        self.applicable_if(
-            YES, field="patient_admitted", field_applicable="inpatient_status"
-        )
+        self.applicable_if(YES, field="patient_admitted", field_applicable="inpatient_status")
         self.required_if(
             DISCHARGED, field="inpatient_status", field_required="date_discharged"
         )
@@ -97,10 +95,7 @@ class AeInitialFormValidator(FormValidator):
                 ]
             ) or (
                 self.cleaned_data.get("ae_study_relation_possibility") == UNKNOWN
-                and (
-                    self.cleaned_data.get(f"{study_drug}_relation")
-                    == DEFINITELY_RELATED
-                )
+                and (self.cleaned_data.get(f"{study_drug}_relation") == DEFINITELY_RELATED)
             ):
                 study_relation_display = get_display(
                     choices=YES_NO_UNKNOWN,

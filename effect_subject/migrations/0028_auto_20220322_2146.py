@@ -6,16 +6,26 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0027_auto_20220322_2029'),
+        ("effect_subject", "0027_auto_20220322_2029"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='histopathology',
-            options={'default_permissions': ('add', 'change', 'delete', 'view', 'export', 'import'), 'get_latest_by': 'modified', 'ordering': ('-modified', '-created'), 'verbose_name': 'Histopathology', 'verbose_name_plural': 'Histopathology'},
+            name="histopathology",
+            options={
+                "default_permissions": ("add", "change", "delete", "view", "export", "import"),
+                "get_latest_by": "modified",
+                "ordering": ("-modified", "-created"),
+                "verbose_name": "Histopathology",
+                "verbose_name_plural": "Histopathology",
+            },
         ),
         migrations.AlterModelOptions(
-            name='historicalhistopathology',
-            options={'get_latest_by': 'history_date', 'ordering': ('-history_date', '-history_id'), 'verbose_name': 'historical Histopathology'},
+            name="historicalhistopathology",
+            options={
+                "get_latest_by": "history_date",
+                "ordering": ("-history_date", "-history_id"),
+                "verbose_name": "historical Histopathology",
+            },
         ),
     ]

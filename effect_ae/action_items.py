@@ -58,8 +58,7 @@ class AeFollowupAction(ActionWithNotification):
             next_actions=next_actions,
             action_name=DEATH_REPORT_ACTION,
             required=(
-                self.reference_obj.outcome == DEAD
-                or self.reference_obj.ae_grade == GRADE5
+                self.reference_obj.outcome == DEAD or self.reference_obj.ae_grade == GRADE5
             ),
         )
 
@@ -104,8 +103,7 @@ class AeInitialAction(ActionWithNotification):
         """
         next_actions = []
         deceased = (
-            self.reference_obj.ae_grade == GRADE5
-            or self.reference_obj.sae_reason.name == DEAD
+            self.reference_obj.ae_grade == GRADE5 or self.reference_obj.sae_reason.name == DEAD
         )
 
         # add next AeFollowup if not deceased
@@ -119,8 +117,7 @@ class AeInitialAction(ActionWithNotification):
             next_actions=next_actions,
             action_name=AE_SUSAR_ACTION,
             required=(
-                self.reference_obj.susar == YES
-                and self.reference_obj.susar_reported == NO
+                self.reference_obj.susar == YES and self.reference_obj.susar_reported == NO
             ),
         )
 
@@ -145,9 +142,7 @@ class AeInitialAction(ActionWithNotification):
         next_actions = self.append_to_next_if_required(
             next_actions=next_actions,
             action_name=AE_TMG_ACTION,
-            required=(
-                self.reference_obj.ae_grade == GRADE3 and self.reference_obj.sae == YES
-            ),
+            required=(self.reference_obj.ae_grade == GRADE3 and self.reference_obj.sae == YES),
         )
 
         return next_actions
@@ -249,8 +244,7 @@ class DeathReportTmgAction(ActionWithNotification):
         cause_of_death on Death Report.
         """
         return (
-            self.reference_obj.death_report.cause_of_death
-            == self.reference_obj.cause_of_death
+            self.reference_obj.death_report.cause_of_death == self.reference_obj.cause_of_death
         )
 
     def close_action_item_on_save(self):

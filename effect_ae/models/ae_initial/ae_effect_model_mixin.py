@@ -12,9 +12,7 @@ class AeEffectModelMixin(models.Model):
         verbose_name="Relationship to study drugs: Fluconazole:",
         max_length=25,
         choices=[
-            (value, desc)
-            for value, desc in STUDY_DRUG_RELATIONSHIP
-            if value != NOT_APPLICABLE
+            (value, desc) for value, desc in STUDY_DRUG_RELATIONSHIP if value != NOT_APPLICABLE
         ],
     )
 
