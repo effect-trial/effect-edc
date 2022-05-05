@@ -41,7 +41,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
         d9_visit = self.get_next_subject_visit(d3_visit)
         return self.get_next_subject_visit(d9_visit)
 
-    def get_cleaned_data_no_dx(self, visit_code: str = None):
+    def get_cleaned_data_no_dx(self, visit_code: str = None):  # noqa
         # Significant Diagnoses CRF only applicable/required at D14
         subject_visit = self.get_d14_visit()
         return {
@@ -56,7 +56,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE,
         }
 
-    def get_cleaned_data_with_dx(self, visit_code: str = None):
+    def get_cleaned_data_with_dx(self, visit_code: str = None):  # noqa
         cleaned_data = deepcopy(self.get_cleaned_data_no_dx())
         cleaned_data.update(
             {
@@ -145,9 +145,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         cleaned_data.update(
             {
                 "has_diagnoses": NO,
-                "diagnoses": Dx.objects.filter(
-                    Q(name=NOT_APPLICABLE) | Q(name="malaria")
-                ),
+                "diagnoses": Dx.objects.filter(Q(name=NOT_APPLICABLE) | Q(name="malaria")),
             }
         )
         self.assertFormValidatorError(
@@ -192,9 +190,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
         cleaned_data.update(
             {
                 "has_diagnoses": YES,
-                "diagnoses": Dx.objects.filter(
-                    Q(name="malaria") | Q(name="bacteraemia")
-                ),
+                "diagnoses": Dx.objects.filter(Q(name="malaria") | Q(name="bacteraemia")),
                 "diagnoses_other": "Some other dx",
             }
         )

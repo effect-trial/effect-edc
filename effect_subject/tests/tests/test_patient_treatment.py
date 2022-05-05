@@ -18,9 +18,7 @@ class TestPatientTreatment(EffectTestCaseMixin, TestCase):
         subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
         subject_visit = self.get_next_subject_visit(subject_visit)  # d9
         subject_visit = self.get_next_subject_visit(subject_visit)  # d14
-        obj = baker.make_recipe(
-            "effect_subject.patienttreatment", subject_visit=subject_visit
-        )
+        obj = baker.make_recipe("effect_subject.patienttreatment", subject_visit=subject_visit)
         form = PatientTreatmentForm(instance=obj)
         form.is_valid()
 
@@ -567,9 +565,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 if field_stub == "tb_tx":
-                    cleaned_data.update(
-                        {"tb_tx_given": TbTreatments.objects.filter(name="H")}
-                    )
+                    cleaned_data.update({"tb_tx_given": TbTreatments.objects.filter(name="H")})
 
                 self.assertFormValidatorError(
                     field=f"{field_stub}_reason_no",

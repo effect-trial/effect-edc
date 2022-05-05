@@ -1,3 +1,5 @@
+from typing import Any
+
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 
 from effect_visit_schedule.constants import DAY01, DAY14
@@ -6,14 +8,14 @@ from effect_visit_schedule.constants import DAY01, DAY14
 class ReportingFieldsetBaselineTestCaseMixin:
     default_cleaned_data = None
 
-    def test_baseline_cleaned_data_valid(self):
+    def test_baseline_cleaned_data_valid(self: Any):
         """Test that the test data we're working with is valid."""
         cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_reportable_as_ae_not_applicable_at_baseline(self):
+    def test_reportable_as_ae_not_applicable_at_baseline(self: Any):
         cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         for response in [YES, NO]:
             with self.subTest(reportable_as_ae=response):
@@ -24,7 +26,7 @@ class ReportingFieldsetBaselineTestCaseMixin:
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
-    def test_patient_admitted_not_applicable_at_baseline(self):
+    def test_patient_admitted_not_applicable_at_baseline(self: Any):
         cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         for response in [YES, NO]:
             with self.subTest(patient_admitted=response):
@@ -39,14 +41,14 @@ class ReportingFieldsetBaselineTestCaseMixin:
 class ReportingFieldsetDay14TestCaseMixin:
     default_cleaned_data = None
 
-    def test_d14_cleaned_data_valid(self):
+    def test_d14_cleaned_data_valid(self: Any):
         """Test that the test data we're working with is valid."""
         cleaned_data = self.default_cleaned_data(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_reportable_as_ae_applicable_at_d14(self):
+    def test_reportable_as_ae_applicable_at_d14(self: Any):
         cleaned_data = self.default_cleaned_data(visit_code=DAY14)
         cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
         self.assertFormValidatorError(
@@ -61,7 +63,7 @@ class ReportingFieldsetDay14TestCaseMixin:
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
 
-    def test_patient_admitted_applicable_at_d14(self):
+    def test_patient_admitted_applicable_at_d14(self: Any):
         cleaned_data = self.default_cleaned_data(visit_code=DAY14)
         cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
         self.assertFormValidatorError(

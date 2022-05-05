@@ -316,12 +316,10 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY14)
                 cleaned_data.update({"info_source": info_source})
-                expected_msg = (
-                    SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
-                        info_source=info_source,
-                        assessment_type=cleaned_data.get("assessment_type"),
-                        assessment_who=cleaned_data.get("assessment_who"),
-                    )
+                expected_msg = SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
+                    info_source=info_source,
+                    assessment_type=cleaned_data.get("assessment_type"),
+                    assessment_who=cleaned_data.get("assessment_who"),
                 )
                 self.assertFormValidatorError(
                     field="info_source",
@@ -336,18 +334,15 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         for info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0]
-            not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0] not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
                 cleaned_data.update({"info_source": info_source})
-                expected_msg = (
-                    SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
-                        info_source=info_source,
-                        assessment_type=cleaned_data.get("assessment_type"),
-                        assessment_who=cleaned_data.get("assessment_who"),
-                    )
+                expected_msg = SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
+                    info_source=info_source,
+                    assessment_type=cleaned_data.get("assessment_type"),
+                    assessment_who=cleaned_data.get("assessment_who"),
                 )
                 self.assertFormValidatorError(
                     field="info_source",
@@ -361,20 +356,15 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         for info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0]
-            not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0] not in [PATIENT_REPRESENTATIVE, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:
             with self.subTest(info_source=info_source):
-                cleaned_data = self.get_valid_assessment_type_other_sv_data(
-                    visit_code=DAY03
-                )
+                cleaned_data = self.get_valid_assessment_type_other_sv_data(visit_code=DAY03)
                 cleaned_data.update({"info_source": info_source})
-                expected_msg = (
-                    SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
-                        info_source=info_source,
-                        assessment_type=cleaned_data.get("assessment_type"),
-                        assessment_who=cleaned_data.get("assessment_who"),
-                    )
+                expected_msg = SubjectVisitFormValidator.get_info_source_mismatch_error_msg(
+                    info_source=info_source,
+                    assessment_type=cleaned_data.get("assessment_type"),
+                    assessment_who=cleaned_data.get("assessment_who"),
                 )
                 self.assertFormValidatorError(
                     field="info_source",
@@ -417,9 +407,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         "assessment_who": assessment_who,
-                        "assessment_who_other": "xxx"
-                        if assessment_who == OTHER
-                        else "",
+                        "assessment_who_other": "xxx" if assessment_who == OTHER else "",
                         "survival_status": DEAD,
                     }
                 )
