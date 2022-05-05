@@ -746,9 +746,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="historicalsignsandsymptoms",
             name="headache_duration",
-            field=edc_model.models.fields.duration.DurationDHField(
-                blank=True, null=True
-            ),
+            field=edc_model.models.fields.duration.DurationDHField(blank=True, null=True),
         ),
         migrations.AlterField(
             model_name="historicalsignsandsymptoms",
@@ -815,9 +813,7 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name="signsandsymptoms",
             name="headache_duration",
-            field=edc_model.models.fields.duration.DurationDHField(
-                blank=True, null=True
-            ),
+            field=edc_model.models.fields.duration.DurationDHField(blank=True, null=True),
         ),
         migrations.AlterField(
             model_name="signsandsymptoms",

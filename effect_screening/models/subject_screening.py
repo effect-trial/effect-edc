@@ -181,9 +181,7 @@ class SubjectScreening(
 
     # exclusion
     contraindicated_meds = models.CharField(
-        verbose_name=(
-            "Is the patient taking any contraindicated " "concomitant medications?"
-        ),
+        verbose_name="Is the patient taking any contraindicated " "concomitant medications?",
         max_length=25,
         choices=YES_NO,
         blank=False,

@@ -144,9 +144,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[
-                            edc_model.models.validators.date.datetime_not_future
-                        ],
+                        validators=[edc_model.models.validators.date.datetime_not_future],
                         verbose_name="Result Report Date and Time",
                     ),
                 ),
@@ -1119,9 +1117,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[
-                            edc_model.models.validators.date.datetime_not_future
-                        ],
+                        validators=[edc_model.models.validators.date.datetime_not_future],
                         verbose_name="Result Report Date and Time",
                     ),
                 ),

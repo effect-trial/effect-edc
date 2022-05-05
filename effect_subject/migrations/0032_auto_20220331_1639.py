@@ -8,33 +8,45 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('sites', '0002_alter_domain_unique'),
-        ('effect_subject', '0031_auto_20220329_1743'),
+        ("sites", "0002_alter_domain_unique"),
+        ("effect_subject", "0031_auto_20220329_1743"),
     ]
 
     operations = [
         migrations.RenameModel(
-            old_name='HistoricalMicrobiology',
-            new_name='HistoricalTbDiagnostics',
+            old_name="HistoricalMicrobiology",
+            new_name="HistoricalTbDiagnostics",
         ),
         migrations.RenameModel(
-            old_name='Microbiology',
-            new_name='TbDiagnostics',
+            old_name="Microbiology",
+            new_name="TbDiagnostics",
         ),
         migrations.AlterModelOptions(
-            name='historicaltbdiagnostics',
-            options={'get_latest_by': 'history_date', 'ordering': ('-history_date', '-history_id'), 'verbose_name': 'historical TB Diagnostics'},
+            name="historicaltbdiagnostics",
+            options={
+                "get_latest_by": "history_date",
+                "ordering": ("-history_date", "-history_id"),
+                "verbose_name": "historical TB Diagnostics",
+            },
         ),
         migrations.AlterModelOptions(
-            name='tbdiagnostics',
-            options={'default_permissions': ('add', 'change', 'delete', 'view', 'export', 'import'), 'get_latest_by': 'modified', 'ordering': ('-modified', '-created'), 'verbose_name': 'TB Diagnostics', 'verbose_name_plural': 'TB Diagnostics'},
+            name="tbdiagnostics",
+            options={
+                "default_permissions": ("add", "change", "delete", "view", "export", "import"),
+                "get_latest_by": "modified",
+                "ordering": ("-modified", "-created"),
+                "verbose_name": "TB Diagnostics",
+                "verbose_name_plural": "TB Diagnostics",
+            },
         ),
         migrations.RemoveIndex(
-            model_name='tbdiagnostics',
-            name='effect_subj_subject_2917cc_idx',
+            model_name="tbdiagnostics",
+            name="effect_subj_subject_2917cc_idx",
         ),
         migrations.AddIndex(
-            model_name='tbdiagnostics',
-            index=models.Index(fields=['subject_visit', 'site', 'id'], name='effect_subj_subject_edc9eb_idx'),
+            model_name="tbdiagnostics",
+            index=models.Index(
+                fields=["subject_visit", "site", "id"], name="effect_subj_subject_edc9eb_idx"
+            ),
         ),
     ]

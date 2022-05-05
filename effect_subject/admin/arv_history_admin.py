@@ -18,17 +18,17 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "ARV treatment and monitoring",
             {
                 "fields": (
-                    "taking_arv_at_crag",
-                    "ever_taken_arv",
-                    "initial_arv_date",
-                    "initial_arv_date_estimated",
-                    "initial_arv_regimen",
-                    "initial_arv_regimen_other",
-                    "has_switched_regimen",
-                    "current_arv_date",
-                    "current_arv_date_estimated",
-                    "current_arv_regimen",
-                    "current_arv_regimen_other",
+                    "on_art_at_crag",
+                    "ever_on_art",
+                    "initial_art_date",
+                    "initial_art_date_estimated",
+                    "initial_art_regimen",
+                    "initial_art_regimen_other",
+                    "has_switched_art_regimen",
+                    "current_art_date",
+                    "current_art_date_estimated",
+                    "current_art_regimen",
+                    "current_art_regimen_other",
                 ),
             },
         ),
@@ -36,11 +36,11 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "ART adherence",
             {
                 "fields": (
-                    "current_arv_is_defaulted",
-                    "current_arv_defaulted_date",
-                    "current_arv_defaulted_date_estimated",
-                    "current_arv_is_adherent",
-                    "current_arv_tablets_missed",
+                    "has_defaulted",
+                    "defaulted_date",
+                    "defaulted_date_estimated",
+                    "is_adherent",
+                    "art_doses_missed",
                 ),
             },
         ),
@@ -48,9 +48,10 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "Viral load",
             {
                 "fields": (
-                    "last_viral_load",
+                    "has_viral_load_result",
+                    "viral_load_result",
                     "viral_load_date",
-                    "vl_date_estimated",
+                    "viral_load_date_estimated",
                 ),
             },
         ),
@@ -58,7 +59,8 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "CD4 count",
             {
                 "fields": (
-                    "last_cd4",
+                    "has_cd4_result",
+                    "cd4_result",
                     "cd4_date",
                     "cd4_date_estimated",
                 )
@@ -68,19 +70,21 @@ class ArvHistoryAdmin(CrfModelAdmin):
     )
 
     filter_horizontal = [
-        "initial_arv_regimen",
-        "current_arv_regimen",
+        "initial_art_regimen",
+        "current_art_regimen",
     ]
 
     radio_fields = {
+        "has_viral_load_result": admin.VERTICAL,
+        "has_cd4_result": admin.VERTICAL,
         "cd4_date_estimated": admin.VERTICAL,
-        "current_arv_date_estimated": admin.VERTICAL,
-        "current_arv_defaulted_date_estimated": admin.VERTICAL,
-        "current_arv_is_adherent": admin.VERTICAL,
-        "current_arv_is_defaulted": admin.VERTICAL,
-        "ever_taken_arv": admin.VERTICAL,
-        "has_switched_regimen": admin.VERTICAL,
-        "initial_arv_date_estimated": admin.VERTICAL,
-        "taking_arv_at_crag": admin.VERTICAL,
-        "vl_date_estimated": admin.VERTICAL,
+        "current_art_date_estimated": admin.VERTICAL,
+        "defaulted_date_estimated": admin.VERTICAL,
+        "is_adherent": admin.VERTICAL,
+        "has_defaulted": admin.VERTICAL,
+        "ever_on_art": admin.VERTICAL,
+        "has_switched_art_regimen": admin.VERTICAL,
+        "initial_art_date_estimated": admin.VERTICAL,
+        "on_art_at_crag": admin.VERTICAL,
+        "viral_load_date_estimated": admin.VERTICAL,
     }

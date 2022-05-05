@@ -40,20 +40,18 @@ class ArvHistoryModelMixin(models.Model):
 
     cd4_date = models.DateField(verbose_name="Date of last CD4", null=True, blank=True)
 
-    current_arv_regimen = models.ForeignKey(
+    current_art_regimen = models.ForeignKey(
         ArvRegimens,
         on_delete=models.PROTECT,
-        related_name="current_arv_regimen",
-        verbose_name=(
-            "Which antiretroviral therapy regimen is the patient currently on?"
-        ),
+        related_name="current_art_regimen",
+        verbose_name=("Which antiretroviral therapy regimen is the patient currently on?"),
         null=True,
         blank=False,
     )
 
-    other_current_arv_regimen = OtherCharField(null=True, blank=True)
+    current_art_regimen_other = OtherCharField(null=True, blank=True)
 
-    current_arv_regimen_start_date = models.DateField(
+    current_art_regimen_start_date = models.DateField(
         verbose_name=(
             "When did the patient start this current antiretroviral therapy regimen?"
         ),
@@ -71,9 +69,7 @@ class ArvHistoryModelMixin(models.Model):
         ArvRegimens,
         on_delete=models.PROTECT,
         related_name="previous_arv_regimen",
-        verbose_name=(
-            "Which antiretroviral therapy regimen was the patient previously on?"
-        ),
+        verbose_name=("Which antiretroviral therapy regimen was the patient previously on?"),
         null=True,
         blank=True,
     )

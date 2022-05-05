@@ -35,9 +35,7 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
 
     def test_ok(self):
         subject_visit = self.subject_visit
-        obj = baker.make_recipe(
-            "effect_subject.signsandsymptoms", subject_visit=subject_visit
-        )
+        obj = baker.make_recipe("effect_subject.signsandsymptoms", subject_visit=subject_visit)
         form = SignsAndSymptomsForm(instance=obj)
         form.is_valid()
 
@@ -153,17 +151,13 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
 @tag("sas")
 class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase):
     def test_non_symptomatic_patient_valid_baseline(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
-            visit_code=DAY01
-        )
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_non_symptomatic_patient_valid_d14(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
-            visit_code=DAY14
-        )
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -193,17 +187,13 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         )
 
     def test_valid_patient_with_g3_signs_or_symptoms_baseline(self):
-        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(
-            visit_code=DAY01
-        )
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_valid_patient_with_g3_signs_or_symptoms_d14(self):
-        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(
-            visit_code=DAY14
-        )
+        cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -277,9 +267,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {"current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE)}
-        )
+        cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE)})
         self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
     def test_m2m_current_sx_with_na_and_none_invalid_if_any_sx_is_yes(self):
@@ -303,9 +291,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update(
             {
-                "current_sx": SiSx.objects.filter(
-                    Q(name="fever") | Q(name=NOT_APPLICABLE)
-                ),
+                "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name=NOT_APPLICABLE)),
             }
         )
         self.assertFormValidatorError(
@@ -360,9 +346,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         cleaned_data.update(
             {
                 "any_sx": YES,
-                "current_sx_gte_g3": SiSx.objects.filter(
-                    Q(name="fever") | Q(name=NONE)
-                ),
+                "current_sx_gte_g3": SiSx.objects.filter(Q(name="fever") | Q(name=NONE)),
             }
         )
         self.assertFormValidatorError(
@@ -490,9 +474,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                         {
                             "any_sx": any_sx_answer,
                             "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
-                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
-                                any_sx_answer
-                            ),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(any_sx_answer),
                             "reportable_as_ae": reportable_as_ae_answer,
                         }
                     )
@@ -715,9 +697,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "current_sx": SiSx.objects.filter(
                     Q(name="fever") | Q(name="vomiting") | Q(name="cough")
                 ),
-                "current_sx_gte_g3": SiSx.objects.filter(
-                    Q(name="fever") | Q(name="vomiting")
-                ),
+                "current_sx_gte_g3": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
             }
         )
         self.assertFormValidatorNoError(
@@ -776,9 +756,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         for sx_selection, other_field in sx_selection_other_fields:
             with self.subTest(sx_selection=sx_selection, other_field=other_field):
                 cleaned_data = deepcopy(self.get_valid_patient_with_signs_or_symptoms())
-                cleaned_data.update(
-                    {"current_sx": SiSx.objects.filter(name=sx_selection)}
-                )
+                cleaned_data.update({"current_sx": SiSx.objects.filter(name=sx_selection)})
                 self.assertFormValidatorError(
                     field=other_field,
                     expected_msg="This field is required.",
@@ -850,9 +828,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                         {
                             "any_sx": any_sx_answer,
                             "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
-                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
-                                any_sx_answer
-                            ),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(any_sx_answer),
                             "patient_admitted": patient_admitted_answer,
                         }
                     )
@@ -908,9 +884,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                         {
                             "any_sx": any_sx_answer,
                             "current_sx": self.get_non_yes_sx_selection(any_sx_answer),
-                            "current_sx_gte_g3": self.get_non_yes_sx_selection(
-                                any_sx_answer
-                            ),
+                            "current_sx_gte_g3": self.get_non_yes_sx_selection(any_sx_answer),
                             "cm_sx": cm_sx_answer,
                         }
                     )
@@ -986,9 +960,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)}
-        )
+        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)})
         self.assertFormValidatorError(
             field="cm_sx_bloods_taken",
             expected_msg="This field is not applicable",
@@ -1013,9 +985,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)}
-        )
+        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
         )
@@ -1059,9 +1029,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NONE))}
-        )
+        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NONE))})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )

@@ -6,68 +6,88 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0019_auto_20220225_0500'),
+        ("effect_subject", "0019_auto_20220225_0500"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='historicallpcsf',
-            old_name='csf_cr_ag',
-            new_name='csf_crag',
+            model_name="historicallpcsf",
+            old_name="csf_cr_ag",
+            new_name="csf_crag",
         ),
         migrations.RenameField(
-            model_name='historicallpcsf',
-            old_name='csf_cr_ag_lfa',
-            new_name='csf_crag_immy_lfa',
+            model_name="historicallpcsf",
+            old_name="csf_cr_ag_lfa",
+            new_name="csf_crag_immy_lfa",
         ),
         migrations.RenameField(
-            model_name='historicallpcsf',
-            old_name='crag_lfa',
-            new_name='csf_crag_lfa',
+            model_name="historicallpcsf",
+            old_name="crag_lfa",
+            new_name="csf_crag_lfa",
         ),
         migrations.RenameField(
-            model_name='lpcsf',
-            old_name='csf_cr_ag',
-            new_name='csf_crag',
+            model_name="lpcsf",
+            old_name="csf_cr_ag",
+            new_name="csf_crag",
         ),
         migrations.RenameField(
-            model_name='lpcsf',
-            old_name='csf_cr_ag_lfa',
-            new_name='csf_crag_immy_lfa',
+            model_name="lpcsf",
+            old_name="csf_cr_ag_lfa",
+            new_name="csf_crag_immy_lfa",
         ),
         migrations.RenameField(
-            model_name='lpcsf',
-            old_name='crag_lfa',
-            new_name='csf_crag_lfa',
+            model_name="lpcsf",
+            old_name="crag_lfa",
+            new_name="csf_crag_lfa",
         ),
         migrations.RemoveField(
-            model_name='historicallpcsf',
-            name='csf_results_available',
+            model_name="historicallpcsf",
+            name="csf_results_available",
         ),
         migrations.RemoveField(
-            model_name='lpcsf',
-            name='csf_results_available',
+            model_name="lpcsf",
+            name="csf_results_available",
         ),
         migrations.AddField(
-            model_name='historicallpcsf',
-            name='lp_done',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='Yes', max_length=15, verbose_name='Was LP done?'),
+            model_name="historicallpcsf",
+            name="lp_done",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="Yes",
+                max_length=15,
+                verbose_name="Was LP done?",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='lpcsf',
-            name='lp_done',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='Yes', max_length=15, verbose_name='Was LP done?'),
+            model_name="lpcsf",
+            name="lp_done",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="Yes",
+                max_length=15,
+                verbose_name="Was LP done?",
+            ),
             preserve_default=False,
         ),
         migrations.AlterField(
-            model_name='historicallpcsf',
-            name='csf_positive',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('PENDING', 'Pending')], default='PENDING', max_length=18, verbose_name='CSF positive for cryptococcal meningitis?'),
+            model_name="historicallpcsf",
+            name="csf_positive",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("PENDING", "Pending")],
+                default="PENDING",
+                max_length=18,
+                verbose_name="CSF positive for cryptococcal meningitis?",
+            ),
         ),
         migrations.AlterField(
-            model_name='lpcsf',
-            name='csf_positive',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('PENDING', 'Pending')], default='PENDING', max_length=18, verbose_name='CSF positive for cryptococcal meningitis?'),
+            model_name="lpcsf",
+            name="csf_positive",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("PENDING", "Pending")],
+                default="PENDING",
+                max_length=18,
+                verbose_name="CSF positive for cryptococcal meningitis?",
+            ),
         ),
     ]

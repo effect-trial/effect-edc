@@ -6,20 +6,30 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0008_auto_20211119_2125'),
+        ("effect_screening", "0008_auto_20211119_2125"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='historicalsubjectscreening',
-            name='screening_consent',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=15, verbose_name='Has the subject given his/her verbal consent to be screened for the EFFECT trial?'),
+            model_name="historicalsubjectscreening",
+            name="screening_consent",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="-",
+                max_length=15,
+                verbose_name="Has the subject given his/her verbal consent to be screened for the EFFECT trial?",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='subjectscreening',
-            name='screening_consent',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=15, verbose_name='Has the subject given his/her verbal consent to be screened for the EFFECT trial?'),
+            model_name="subjectscreening",
+            name="screening_consent",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="-",
+                max_length=15,
+                verbose_name="Has the subject given his/her verbal consent to be screened for the EFFECT trial?",
+            ),
             preserve_default=False,
         ),
     ]

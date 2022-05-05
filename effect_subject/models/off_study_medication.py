@@ -7,13 +7,12 @@ Notes on fluconazole
 ________________ (mandatory if C or D above)"""
 
 
-from django.db import models
 from edc_model import models as edc_models
 
 from ..model_mixins import CrfModelMixin
 
 
-class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
+class OffStudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
 
     # flucon_dose
     # flucyt_dose

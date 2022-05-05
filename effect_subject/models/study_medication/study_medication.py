@@ -9,8 +9,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
 
     modifications = models.CharField(
         verbose_name=(
-            "Have there been any modifications "
-            "to study medication since the last report"
+            "Have there been any modifications " "to study medication since the last report"
         ),
         max_length=15,
         choices=YES_NO,

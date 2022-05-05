@@ -6,28 +6,44 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0002_auto_20211118_2138'),
+        ("effect_screening", "0002_auto_20211118_2138"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='historicalsubjectscreening',
-            name='real_eligibility_datetime',
-            field=models.DateTimeField(editable=False, help_text='Date and time eligibility was determined relative to now', null=True),
+            model_name="historicalsubjectscreening",
+            name="real_eligibility_datetime",
+            field=models.DateTimeField(
+                editable=False,
+                help_text="Date and time eligibility was determined relative to now",
+                null=True,
+            ),
         ),
         migrations.AddField(
-            model_name='subjectscreening',
-            name='real_eligibility_datetime',
-            field=models.DateTimeField(editable=False, help_text='Date and time eligibility was determined relative to now', null=True),
+            model_name="subjectscreening",
+            name="real_eligibility_datetime",
+            field=models.DateTimeField(
+                editable=False,
+                help_text="Date and time eligibility was determined relative to now",
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='eligibility_datetime',
-            field=models.DateTimeField(editable=False, help_text='Date and time eligibility was determined relative to report_datetime', null=True),
+            model_name="historicalsubjectscreening",
+            name="eligibility_datetime",
+            field=models.DateTimeField(
+                editable=False,
+                help_text="Date and time eligibility was determined relative to report_datetime",
+                null=True,
+            ),
         ),
         migrations.AlterField(
-            model_name='subjectscreening',
-            name='eligibility_datetime',
-            field=models.DateTimeField(editable=False, help_text='Date and time eligibility was determined relative to report_datetime', null=True),
+            model_name="subjectscreening",
+            name="eligibility_datetime",
+            field=models.DateTimeField(
+                editable=False,
+                help_text="Date and time eligibility was determined relative to report_datetime",
+                null=True,
+            ),
         ),
     ]

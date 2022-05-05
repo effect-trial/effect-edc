@@ -19,9 +19,9 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
         )
         return [
             obj.model
-            for obj in crf_metadatas.filter(
-                entry_status__in=[KEYED, REQUIRED]
-            ).order_by("model")
+            for obj in crf_metadatas.filter(entry_status__in=[KEYED, REQUIRED]).order_by(
+                "model"
+            )
         ]
 
     def test_investigations_crfs_not_required_if_sisx_not_completed(self):

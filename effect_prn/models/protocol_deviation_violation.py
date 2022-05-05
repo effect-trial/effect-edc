@@ -43,9 +43,7 @@ class ProtocolDeviationViolation(
         null=True, blank=True, verbose_name="If other, please specify", max_length=75
     )
 
-    action_required_old = models.CharField(
-        max_length=45, choices=ACTION_REQUIRED, null=True
-    )
+    action_required_old = models.CharField(max_length=45, choices=ACTION_REQUIRED, null=True)
 
     def natural_key(self):
         return (self.action_identifier,)

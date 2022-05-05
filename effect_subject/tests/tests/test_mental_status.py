@@ -20,9 +20,7 @@ class TestMentalStatus(EffectTestCaseMixin, TestCase):
 
     def test_ok(self):
         subject_visit = self.subject_visit
-        obj = baker.make_recipe(
-            "effect_subject.mentalstatus", subject_visit=subject_visit
-        )
+        obj = baker.make_recipe("effect_subject.mentalstatus", subject_visit=subject_visit)
         form = MentalStatusForm(instance=obj)
         form.is_valid()
 
@@ -110,6 +108,4 @@ class TestMentalStatusReportingFieldsetFormValidation(
     ReportingFieldsetDay14TestCaseMixin,
     TestMentalStatusFormValidationBase,
 ):
-    default_cleaned_data = (
-        TestMentalStatusFormValidationBase.get_valid_mental_status_data
-    )
+    default_cleaned_data = TestMentalStatusFormValidationBase.get_valid_mental_status_data

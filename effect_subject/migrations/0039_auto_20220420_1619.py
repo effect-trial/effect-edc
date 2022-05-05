@@ -7,28 +7,64 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0038_auto_20220420_1158'),
+        ("effect_subject", "0038_auto_20220420_1158"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalpatienttreatmentday14',
-            name='fluconazole_rx_d14',
-            field=models.CharField(choices=[('800_mg_d', 'Fluconazole, 800 mg/d (as per protocol)'), ('OTHER', 'Other (specify dose and reason below ...)'), ('taken_off_study_drug', 'No, taken off study drug')], help_text='in mg/d', max_length=25, verbose_name='Fluconazole prescribed on day 14?'),
+            model_name="historicalpatienttreatmentday14",
+            name="fluconazole_rx_d14",
+            field=models.CharField(
+                choices=[
+                    ("800_mg_d", "Fluconazole, 800 mg/d (as per protocol)"),
+                    ("OTHER", "Other (specify dose and reason below ...)"),
+                    ("taken_off_study_drug", "No, taken off study drug"),
+                ],
+                help_text="in mg/d",
+                max_length=25,
+                verbose_name="Fluconazole prescribed on day 14?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalpatienttreatmentday14',
-            name='fluconazole_rx_d14_other',
-            field=models.IntegerField(blank=True, help_text='in mg/d', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(1200)], verbose_name='Other Fluconazole dose prescribed:'),
+            model_name="historicalpatienttreatmentday14",
+            name="fluconazole_rx_d14_other",
+            field=models.IntegerField(
+                blank=True,
+                help_text="in mg/d",
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(1200),
+                ],
+                verbose_name="Other Fluconazole dose prescribed:",
+            ),
         ),
         migrations.AlterField(
-            model_name='patienttreatmentday14',
-            name='fluconazole_rx_d14',
-            field=models.CharField(choices=[('800_mg_d', 'Fluconazole, 800 mg/d (as per protocol)'), ('OTHER', 'Other (specify dose and reason below ...)'), ('taken_off_study_drug', 'No, taken off study drug')], help_text='in mg/d', max_length=25, verbose_name='Fluconazole prescribed on day 14?'),
+            model_name="patienttreatmentday14",
+            name="fluconazole_rx_d14",
+            field=models.CharField(
+                choices=[
+                    ("800_mg_d", "Fluconazole, 800 mg/d (as per protocol)"),
+                    ("OTHER", "Other (specify dose and reason below ...)"),
+                    ("taken_off_study_drug", "No, taken off study drug"),
+                ],
+                help_text="in mg/d",
+                max_length=25,
+                verbose_name="Fluconazole prescribed on day 14?",
+            ),
         ),
         migrations.AlterField(
-            model_name='patienttreatmentday14',
-            name='fluconazole_rx_d14_other',
-            field=models.IntegerField(blank=True, help_text='in mg/d', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(1200)], verbose_name='Other Fluconazole dose prescribed:'),
+            model_name="patienttreatmentday14",
+            name="fluconazole_rx_d14_other",
+            field=models.IntegerField(
+                blank=True,
+                help_text="in mg/d",
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(1200),
+                ],
+                verbose_name="Other Fluconazole dose prescribed:",
+            ),
         ),
     ]

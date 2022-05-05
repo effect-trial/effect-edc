@@ -38,9 +38,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             ]
         ]
         if not all(criteria):
-            reasons_ineligible.update(
-                inclusion_criteria="Incomplete inclusion criteria"
-            )
+            reasons_ineligible.update(inclusion_criteria="Incomplete inclusion criteria")
         if self.model_obj.hiv_pos != YES:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
         if self.model_obj.cd4_value and self.model_obj.cd4_value >= 100:
@@ -83,9 +81,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             ]
         ]
         if not all(criteria):
-            reasons_ineligible.update(
-                exclusion_criteria="Incomplete exclusion criteria"
-            )
+            reasons_ineligible.update(exclusion_criteria="Incomplete exclusion criteria")
         if self.model_obj.contraindicated_meds == YES:
             reasons_ineligible.update(
                 contraindicated_meds="Contraindicated concomitant medications"

@@ -202,20 +202,16 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
     def test_sv_info_source_raises_error_if_does_not_reconcile_with_patient_followup_answers(
         self,
     ):
-        for sv_info_source in [
-            src[0] for src in VISIT_INFO_SOURCE2 if src[0] != PATIENT
-        ]:
+        for sv_info_source in [src[0] for src in VISIT_INFO_SOURCE2 if src[0] != PATIENT]:
             with self.subTest(sv_info_source=sv_info_source):
                 cleaned_data = self.get_valid_in_person_visit_data()
                 self.subject_visit.info_source = sv_info_source
                 cleaned_data.update({"subject_visit": self.subject_visit})
 
-                expected_msg = (
-                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
-                        sv_info_source=sv_info_source,
-                        fu_assessment_type=cleaned_data.get("assessment_type"),
-                        fu_info_source=cleaned_data.get("info_source"),
-                    )
+                expected_msg = FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                    sv_info_source=sv_info_source,
+                    fu_assessment_type=cleaned_data.get("assessment_type"),
+                    fu_info_source=cleaned_data.get("info_source"),
                 )
                 self.assertFormValidatorError(
                     field="assessment_type",
@@ -241,12 +237,10 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
                 self.subject_visit.info_source = sv_info_source
                 cleaned_data.update({"subject_visit": self.subject_visit})
 
-                expected_msg = (
-                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
-                        sv_info_source=sv_info_source,
-                        fu_assessment_type=cleaned_data.get("assessment_type"),
-                        fu_info_source=cleaned_data.get("info_source"),
-                    )
+                expected_msg = FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                    sv_info_source=sv_info_source,
+                    fu_assessment_type=cleaned_data.get("assessment_type"),
+                    fu_info_source=cleaned_data.get("info_source"),
                 )
                 self.assertFormValidatorError(
                     field="assessment_type",
@@ -267,20 +261,17 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         for sv_info_source in [
             src[0]
             for src in VISIT_INFO_SOURCE2
-            if src[0]
-            not in [COLLATERAL_HISTORY, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
+            if src[0] not in [COLLATERAL_HISTORY, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER]
         ]:
             with self.subTest(sv_info_source=sv_info_source):
                 cleaned_data = self.get_valid_other_assessment_type_data()
                 self.subject_visit.info_source = sv_info_source
                 cleaned_data.update({"subject_visit": self.subject_visit})
 
-                expected_msg = (
-                    FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
-                        sv_info_source=sv_info_source,
-                        fu_assessment_type=cleaned_data.get("assessment_type"),
-                        fu_info_source=cleaned_data.get("info_source"),
-                    )
+                expected_msg = FollowupFormValidator.get_sv_info_source_mismatch_error_msg(
+                    sv_info_source=sv_info_source,
+                    fu_assessment_type=cleaned_data.get("assessment_type"),
+                    fu_info_source=cleaned_data.get("info_source"),
                 )
                 self.assertFormValidatorError(
                     field="assessment_type",
@@ -333,15 +324,11 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
         info_sources = [
-            src[0]
-            for src in ASSESSMENT_WHO_CHOICES
-            if src[0] not in [PATIENT, NOT_APPLICABLE]
+            src[0] for src in ASSESSMENT_WHO_CHOICES if src[0] not in [PATIENT, NOT_APPLICABLE]
         ]
         for info_src in info_sources:
             with self.subTest(info_src=info_src):
-                cleaned_data = deepcopy(
-                    self.get_valid_next_of_kin_telephone_assessment_data()
-                )
+                cleaned_data = deepcopy(self.get_valid_next_of_kin_telephone_assessment_data())
                 cleaned_data.update(
                     {
                         "info_source": info_src,
@@ -382,9 +369,7 @@ class TestFollowupFormValidation(EffectTestCaseMixin, TestCase):
         survival_statuses = [ss[0] for ss in PATIENT_STATUSES if ss[0] != DEAD]
         for survival_status in survival_statuses:
             with self.subTest(survival_status=survival_status):
-                cleaned_data = deepcopy(
-                    self.get_valid_next_of_kin_telephone_assessment_data()
-                )
+                cleaned_data = deepcopy(self.get_valid_next_of_kin_telephone_assessment_data())
                 cleaned_data.update(
                     {
                         "survival_status": survival_status,

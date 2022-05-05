@@ -14,6 +14,7 @@ from multisite import SiteID
 app_name = "effect_edc"
 base_dir = dirname(abspath(__file__))
 
+
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
     EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=True,
@@ -37,17 +38,11 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     DEFENDER_ENABLED=False,
     DJANGO_LAB_DASHBOARD_REQUISITION_MODEL="effect_subject.subjectrequisition",
     ADVERSE_EVENT_ADMIN_SITE="effect_ae_admin",
-    EDC_DX_LABELS=dict(
-        hiv="HIV", dm="Diabetes", htn="Hypertension", chol="High Cholesterol"
-    ),
+    EDC_DX_LABELS=dict(hiv="HIV", dm="Diabetes", htn="Hypertension", chol="High Cholesterol"),
     ADVERSE_EVENT_APP_LABEL="effect_ae",
     EDC_NAVBAR_DEFAULT="effect_dashboard",
-    EDC_PROTOCOL_STUDY_OPEN_DATETIME=datetime(
-        2019, 4, 30, 0, 0, 0, tzinfo=gettz("UTC")
-    ),
-    EDC_PROTOCOL_STUDY_CLOSE_DATETIME=datetime(
-        2023, 12, 31, 23, 59, 59, tzinfo=gettz("UTC")
-    ),
+    EDC_PROTOCOL_STUDY_OPEN_DATETIME=datetime(2019, 4, 30, 0, 0, 0, tzinfo=gettz("UTC")),
+    EDC_PROTOCOL_STUDY_CLOSE_DATETIME=datetime(2023, 12, 31, 23, 59, 59, tzinfo=gettz("UTC")),
     DJANGO_LANGUAGES=dict(
         en="English",
         lg="Luganda",

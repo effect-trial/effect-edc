@@ -11,15 +11,9 @@ from effect_labs.panels import (
 from effect_visit_schedule.constants import DAY01, DAY14
 
 requisitions_prn = FormsCollection(
-    Requisition(
-        show_order=150, panel=blood_culture_panel, required=True, additional=False
-    ),
-    Requisition(
-        show_order=175, panel=histopathology_panel, required=True, additional=False
-    ),
-    Requisition(
-        show_order=190, panel=csf_culture_panel, required=True, additional=False
-    ),
+    Requisition(show_order=150, panel=blood_culture_panel, required=True, additional=False),
+    Requisition(show_order=175, panel=histopathology_panel, required=True, additional=False),
+    Requisition(show_order=190, panel=csf_culture_panel, required=True, additional=False),
     Requisition(show_order=200, panel=sputum_panel, required=True, additional=False),
     Requisition(show_order=230, panel=chemistry_panel, required=True, additional=False),
     Requisition(show_order=250, panel=fbc_panel, required=True, additional=False),
@@ -32,15 +26,9 @@ requisitions_unscheduled = FormsCollection(
 
 requisitions_d01 = FormsCollection(
     Requisition(show_order=30, panel=fbc_panel, required=True, additional=False),
-    Requisition(
-        show_order=150, panel=blood_culture_panel, required=True, additional=False
-    ),
-    Requisition(
-        show_order=175, panel=histopathology_panel, required=True, additional=False
-    ),
-    Requisition(
-        show_order=190, panel=csf_culture_panel, required=True, additional=False
-    ),
+    Requisition(show_order=150, panel=blood_culture_panel, required=True, additional=False),
+    Requisition(show_order=175, panel=histopathology_panel, required=True, additional=False),
+    Requisition(show_order=190, panel=csf_culture_panel, required=True, additional=False),
     Requisition(show_order=200, panel=sputum_panel, required=True, additional=False),
     Requisition(show_order=230, panel=chemistry_panel, required=True, additional=False),
     name=DAY01,

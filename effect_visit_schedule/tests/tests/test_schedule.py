@@ -201,9 +201,7 @@ class TestVisitSchedule(TestCase):
                 actual = [crf.model for crf in visit.crfs_prn]
                 actual.sort()
                 prn.sort()
-                self.assertEqual(
-                    prn, actual, msg=f"see PRN CRFs for visit {visit_code}"
-                )
+                self.assertEqual(prn, actual, msg=f"see PRN CRFs for visit {visit_code}")
 
 
 @tag("vsched")

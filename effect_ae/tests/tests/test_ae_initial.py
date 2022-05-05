@@ -1,5 +1,5 @@
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
 from edc_constants.utils import get_display
@@ -11,7 +11,6 @@ from effect_ae.form_validators import AeInitialFormValidator
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
-@tag("aei")
 class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = AeInitialFormValidator
@@ -56,9 +55,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-        for status in [
-            value for value in self.inpatient_statuses if value != NOT_APPLICABLE
-        ]:
+        for status in [value for value in self.inpatient_statuses if value != NOT_APPLICABLE]:
             with self.subTest(status=status):
                 cleaned_data.update(
                     {
@@ -74,9 +71,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                 )
 
     def test_inpatient_status_not_applicable_if_patient_not_admitted(self):
-        for status in [
-            value for value in self.inpatient_statuses if value != NOT_APPLICABLE
-        ]:
+        for status in [value for value in self.inpatient_statuses if value != NOT_APPLICABLE]:
             with self.subTest(status=status):
                 cleaned_data = {"patient_admitted": NO, "inpatient_status": status}
                 self.assertFormValidatorError(

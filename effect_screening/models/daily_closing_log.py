@@ -2,14 +2,19 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.validators import MinValueValidator
 from django.db import models
+from edc_constants.choices import SELECTION_METHOD
 from edc_model.models import BaseUuidModel
 from edc_model.models.historical_records import HistoricalRecords
 from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.models import SiteModelMixin
 from edc_utils import convert_php_dateformat, get_utcnow
 
-from ..choices import CLINIC_DAYS, SELECTION_METHOD
-from .utils import get_daily_log_revision_date
+
+def get_daily_log_revision_date():
+    try:
+        return settings.EFFECT_SCREENING_DCL_REVISION_DATETIME.date()
+    except AttributeError:
+        return settings.EFFECT_SCREENING_DCL_REVISION_DATETIME
 
 
 class CurrentSiteManager(BaseCurrentSiteManager):
@@ -36,12 +41,6 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
     )
 
     log_date = models.DateField(verbose_name="Clinic date", default=get_utcnow)
-
-    clinic_services = models.CharField(
-        verbose_name="Which services are being offered at the clinic today?",
-        max_length=25,
-        choices=CLINIC_DAYS,
-    )
 
     attended = models.IntegerField(
         verbose_name="Total number of patients who attended the clinic today",
@@ -101,7 +100,5 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
         verbose_name = "Daily Closing Log"
         verbose_name_plural = "Daily Closing Logs"
         constraints = [
-            models.UniqueConstraint(
-                fields=["log_date", "site"], name="unique_date_for_site"
-            ),
+            models.UniqueConstraint(fields=["log_date", "site"], name="unique_date_for_site"),
         ]

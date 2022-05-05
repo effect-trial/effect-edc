@@ -6,38 +6,76 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0013_auto_20220224_1855'),
+        ("effect_subject", "0013_auto_20220224_1855"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='historicalmicrobiology',
-            name='sputum_afb_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], help_text='Was sputum AFB done?', max_length=5, null=True, verbose_name='AFB microscopy performed?'),
+            model_name="historicalmicrobiology",
+            name="sputum_afb_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                help_text="Was sputum AFB done?",
+                max_length=5,
+                null=True,
+                verbose_name="AFB microscopy performed?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalmicrobiology',
-            name='sputum_culture_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=15, null=True, verbose_name='Culture performed?'),
+            model_name="historicalmicrobiology",
+            name="sputum_culture_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=15,
+                null=True,
+                verbose_name="Culture performed?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalmicrobiology',
-            name='sputum_genexpert_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=15, null=True, verbose_name='Sputum Gene-Xpert performed?'),
+            model_name="historicalmicrobiology",
+            name="sputum_genexpert_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=15,
+                null=True,
+                verbose_name="Sputum Gene-Xpert performed?",
+            ),
         ),
         migrations.AlterField(
-            model_name='microbiology',
-            name='sputum_afb_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], help_text='Was sputum AFB done?', max_length=5, null=True, verbose_name='AFB microscopy performed?'),
+            model_name="microbiology",
+            name="sputum_afb_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                help_text="Was sputum AFB done?",
+                max_length=5,
+                null=True,
+                verbose_name="AFB microscopy performed?",
+            ),
         ),
         migrations.AlterField(
-            model_name='microbiology',
-            name='sputum_culture_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=15, null=True, verbose_name='Culture performed?'),
+            model_name="microbiology",
+            name="sputum_culture_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=15,
+                null=True,
+                verbose_name="Culture performed?",
+            ),
         ),
         migrations.AlterField(
-            model_name='microbiology',
-            name='sputum_genexpert_performed',
-            field=models.CharField(blank=True, choices=[('Yes', 'Yes'), ('No', 'No')], max_length=15, null=True, verbose_name='Sputum Gene-Xpert performed?'),
+            model_name="microbiology",
+            name="sputum_genexpert_performed",
+            field=models.CharField(
+                blank=True,
+                choices=[("Yes", "Yes"), ("No", "No")],
+                max_length=15,
+                null=True,
+                verbose_name="Sputum Gene-Xpert performed?",
+            ),
         ),
     ]

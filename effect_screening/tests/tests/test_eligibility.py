@@ -104,9 +104,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "age_in_years": 25,
         }
         SubjectScreening.objects.create(**opts)
-        form = SubjectScreeningForm(
-            initial=self.get_data(), instance=SubjectScreening()
-        )
+        form = SubjectScreeningForm(initial=self.get_data(), instance=SubjectScreening())
         form.is_valid()
 
     def test_basic_eligibility(self):
@@ -324,9 +322,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
                 form = SubjectScreeningForm(data=opts)
                 form.is_valid()
                 self.assertIn("cd4_value", form._errors)
-                self.assertDictEqual(
-                    {"cd4_value": ["This field is required."]}, form._errors
-                )
+                self.assertDictEqual({"cd4_value": ["This field is required."]}, form._errors)
 
     def test_cd4_date_within_21_days(self):
         opts = dict(
@@ -355,8 +351,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
         self.assertDictEqual(
             {
                 "serum_crag_value": [
-                    "Invalid. "
-                    "Subject must have positive serum/plasma CrAg test result."
+                    "Invalid. " "Subject must have positive serum/plasma CrAg test result."
                 ]
             },
             form._errors,

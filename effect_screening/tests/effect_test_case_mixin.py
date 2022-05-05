@@ -136,10 +136,7 @@ class EffectTestCaseMixin(
             screening_identifier=subject_screening.screening_identifier,
             initials=subject_screening.initials,
             gender=subject_screening.gender,
-            dob=(
-                get_utcnow().date()
-                - relativedelta(years=subject_screening.age_in_years)
-            ),
+            dob=(get_utcnow().date() - relativedelta(years=subject_screening.age_in_years)),
             site=Site.objects.get(id=site_id or settings.SITE_ID),
             consent_datetime=consent_datetime or subject_screening.report_datetime,
         )
@@ -155,9 +152,7 @@ class EffectTestCaseMixin(
         gender=None,
     ):
         reason = reason or SCHEDULED
-        subject_screening = subject_screening or self.get_subject_screening(
-            gender=gender
-        )
+        subject_screening = subject_screening or self.get_subject_screening(gender=gender)
         subject_consent = subject_consent or self.get_subject_consent(subject_screening)
         options = dict(
             subject_identifier=subject_consent.subject_identifier,
@@ -168,9 +163,7 @@ class EffectTestCaseMixin(
             reason=reason,
         )
         if appt_datetime:
-            options.update(
-                appt_datetime=appt_datetime or subject_consent.consent_datetime
-            )
+            options.update(appt_datetime=appt_datetime or subject_consent.consent_datetime)
         appointment = self.get_appointment(**options)
         return SubjectVisit.objects.create(
             appointment=appointment,
