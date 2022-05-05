@@ -18,6 +18,15 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
 
+from .constants import (
+    BACTERAEMIA,
+    BACTERIAL_PNEUMONIA,
+    CRYPTOCOCCAL_MENINGITIS,
+    DIARRHOEAL_WASTING,
+    TB_EXTRAPULMONARY,
+    TB_PULMONARY,
+)
+
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
@@ -109,14 +118,14 @@ list_data = {
     ],
     "effect_lists.dx": [
         (NOT_APPLICABLE, "--Not applicable"),
-        ("bacteraemia", "Bacteraemia"),
-        ("bacterial_pneumonia", "Bacterial pneumonia"),
-        ("cryptococcal_meningitis", "Cryptococcal meningitis"),
-        ("diarrhoeal_wasting", "Diarrhoeal wasting"),
+        (BACTERAEMIA, "Bacteraemia"),
+        (BACTERIAL_PNEUMONIA, "Bacterial pneumonia"),
+        (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
+        (DIARRHOEAL_WASTING, "Diarrhoeal wasting"),
         ("kaposi_sarcoma", "Kaposi’s sarcoma"),
         ("malaria", "Malaria"),
-        ("tb_extra_pulmonary", "TB extra-pulmonary"),
-        ("tb_pulmonary", "TB pulmonary"),
+        (TB_EXTRAPULMONARY, "TB extrapulmonary"),
+        (TB_PULMONARY, "TB pulmonary"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.medication": [

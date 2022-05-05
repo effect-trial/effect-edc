@@ -1,0 +1,7 @@
+BACTERAEMIA = "bacteraemia"
+BACTERIAL_PNEUMONIA = "bacterial_pneumonia"
+CRYPTOCOCCAL_MENINGITIS = "cm"
+DIARRHOEAL_WASTING = "diarrhoeal_wasting"
+SEPSIS = "sepsis"
+TB_EXTRAPULMONARY = "tb_extrapulmonary"
+TB_PULMONARY = "tb_pulmonary"
