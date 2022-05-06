@@ -57,14 +57,7 @@ class SignsAndSymptomsAdmin(
         ),
         (
             "CM signs and symptoms",
-            {
-                "fields": (
-                    "cm_sx",
-                    "cm_sx_lp_done",
-                    "cm_sx_bloods_taken",
-                    "cm_sx_bloods_taken_other",
-                )
-            },
+            {"fields": ("cm_sx",)},
         ),
         action_fieldset_tuple,
         audit_fieldset_tuple,
@@ -73,7 +66,6 @@ class SignsAndSymptomsAdmin(
     filter_horizontal = [
         "current_sx",
         "current_sx_gte_g3",
-        "cm_sx_bloods_taken",
     ]
 
     readonly_fields = action_fields
@@ -81,7 +73,6 @@ class SignsAndSymptomsAdmin(
     radio_fields = {
         "any_sx": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,
-        "cm_sx_lp_done": admin.VERTICAL,
         "lp_performed": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
