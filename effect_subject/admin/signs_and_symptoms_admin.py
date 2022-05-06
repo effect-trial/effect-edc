@@ -33,6 +33,7 @@ class SignsAndSymptomsAdmin(
                     "any_sx",
                     "current_sx",
                     "current_sx_other",
+                    "cm_sx",
                     "current_sx_gte_g3",
                     "current_sx_gte_g3_other",
                     "headache_duration",
@@ -54,10 +55,6 @@ class SignsAndSymptomsAdmin(
                     "urinary_lam_performed",
                 )
             },
-        ),
-        (
-            "CM signs and symptoms",
-            {"fields": ("cm_sx",)},
         ),
         action_fieldset_tuple,
         audit_fieldset_tuple,
