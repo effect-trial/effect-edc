@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.urls.base import reverse
@@ -11,12 +13,12 @@ from ..models import SubjectScreening
 
 
 class SubjectRefusalFormValidator(FormValidator):
-    def clean(self):
+    def clean(self: Any) -> None:
         self.required_if(OTHER, field="reason", field_required="other_reason")
 
 
 class ScreeningFormMixin:
-    def clean(self):
+    def clean(self: Any) -> dict:
         cleaned_data = super().clean()
         screening_identifier = cleaned_data.get("screening_identifier")
         if screening_identifier:
@@ -39,7 +41,7 @@ class ScreeningFormMixin:
 
 
 class AlreadyConsentedFormMixin:
-    def clean(self):
+    def clean(self: Any) -> dict:
         cleaned_data = super().clean()
         try:
             obj = RegisteredSubject.objects.get(

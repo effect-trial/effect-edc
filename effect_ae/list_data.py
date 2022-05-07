@@ -6,8 +6,7 @@ from edc_constants.constants import (
     OTHER_PLEASE_SPECIFY_TEXT,
     UNKNOWN,
 )
-
-from effect_lists.constants import (
+from edc_constants.disease_constants import (
     BACTERAEMIA,
     BACTERIAL_PNEUMONIA,
     CRYPTOCOCCAL_MENINGITIS,

@@ -1,3 +1,5 @@
+from typing import Any
+
 from edc_constants.constants import IND, NO, POS, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
@@ -6,7 +8,7 @@ from edc_screening.screening_eligibility import (
 
 
 class ScreeningEligibility(BaseScreeningEligibility):
-    def assess_eligibility(self):
+    def assess_eligibility(self: Any) -> None:
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
@@ -15,11 +17,11 @@ class ScreeningEligibility(BaseScreeningEligibility):
         )
         self.reasons_ineligible = reasons_ineligible
 
-    def update_model(self) -> None:
+    def update_model(self: Any) -> None:
         self.model_obj.eligible = self.is_eligible
         self.model_obj.reasons_ineligible = self.reasons_ineligible
 
-    def review_inclusion(self, reasons_ineligible: dict) -> dict:
+    def review_inclusion(self: Any, reasons_ineligible: dict) -> dict:
         if self.model_obj.willing_to_participate != YES:
             reasons_ineligible.update(willing_to_participate="Unwilling to participate")
         if self.model_obj.consent_ability != YES:
@@ -46,7 +48,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = self.review_crag(reasons_ineligible)
         return reasons_ineligible
 
-    def review_crag(self, reasons_ineligible: dict) -> dict:
+    def review_crag(self: Any, reasons_ineligible: dict) -> dict:
         if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(crag_value="Serum CrAg not (+)")
         elif self.model_obj.serum_crag_value == POS:
@@ -60,7 +62,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 )
         return reasons_ineligible
 
-    def review_exclusion(self, reasons_ineligible: dict) -> dict:
+    def review_exclusion(self: Any, reasons_ineligible: dict) -> dict:
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
@@ -105,7 +107,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = self.review_mg_ssx(reasons_ineligible)
         return reasons_ineligible
 
-    def review_mg_ssx(self, reasons_ineligible: dict) -> dict:
+    def review_mg_ssx(self: Any, reasons_ineligible: dict) -> dict:
         """Exclusion for clinical symptoms/signs of symptomatic meningitis."""
         for mg_ssx in [
             "mg_severe_headache",

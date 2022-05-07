@@ -8,6 +8,7 @@ from .panels import (
     csf_culture_panel,
     fbc_panel,
     histopathology_panel,
+    urinalysis_panel,
 )
 
 subject_lab_profile = LabProfile(
@@ -22,3 +23,4 @@ subject_lab_profile.add_panel(blood_culture_panel)
 subject_lab_profile.add_panel(chemistry_panel)
 subject_lab_profile.add_panel(sputum_panel)
 subject_lab_profile.add_panel(csf_culture_panel)
+subject_lab_profile.add_panel(urinalysis_panel)

@@ -1,13 +1,6 @@
 from django import forms
 from edc_adverse_event.choices import AE_GRADE, STUDY_DRUG_RELATIONSHIP
-from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
-from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import DECEASED, NO, UNKNOWN, YES
-from edc_constants.utils import get_display
-from edc_reportable import GRADE5
-
-from effect_ae.choices import INPATIENT_STATUSES
-from effect_ae.constants import (
+from edc_adverse_event.constants import (
     DEFINITELY_RELATED,
     DISCHARGED,
     INPATIENT,
@@ -15,6 +8,13 @@ from effect_ae.constants import (
     PROBABLY_RELATED,
     UNLIKELY_RELATED,
 )
+from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
+from edc_constants.choices import YES_NO_UNKNOWN
+from edc_constants.constants import DECEASED, NO, UNKNOWN, YES
+from edc_constants.utils import get_display
+from edc_reportable import GRADE5
+
+from effect_ae.choices import INPATIENT_STATUSES
 
 
 class AeInitialFormValidator(FormValidator):

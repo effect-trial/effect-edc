@@ -1,3 +1,5 @@
+from typing import Any
+
 from django import forms
 from edc_form_validators import FormValidatorMixin
 from edc_screening.modelform_mixins import AlreadyConsentedFormMixin
@@ -22,7 +24,7 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
     )
 
-    def clean(self):
+    def clean(self: Any) -> dict:
         cleaned_data = super().clean()
         return cleaned_data
 

@@ -2,13 +2,13 @@ from .adherence import Adherence
 from .arv_history import ArvHistory
 from .arv_treatment import ArvTreatment
 from .blood_culture import BloodCulture
-from .blood_results import BloodResultsChem, BloodResultsFbc
 from .chest_xray import ChestXray
 from .clinical_note import ClinicalNote
 from .diagnoses import Diagnoses
 from .followup import Followup
 from .health_economics import HealthEconomics
 from .histpathology import Histopathology
+from .lab_results import BloodResultsChem, BloodResultsFbc, Urinalysis
 from .lp_csf import LpCsf
 from .medical_history import MedicalHistory
 from .medication_adherence import MedicationAdherence

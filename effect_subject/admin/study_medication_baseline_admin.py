@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ObjectDoesNotExist
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_visit_tracking.utils import get_subject_visit_model_cls
 
@@ -49,10 +50,14 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
 
     def get_changeform_initial_data(self, request):
         initial_data = super().get_changeform_initial_data(request)
-        subject_visit = get_subject_visit_model_cls().objects.get(
-            id=request.GET.get(self.model.visit_model_attr())
-        )
-        initial_data.update(
-            report_datetime=subject_visit.report_datetime,
-        )
+        try:
+            subject_visit = get_subject_visit_model_cls().objects.get(
+                id=request.GET.get(self.model.visit_model_attr())
+            )
+        except ObjectDoesNotExist:
+            pass
+        else:
+            initial_data.update(
+                report_datetime=subject_visit.report_datetime,
+            )
         return initial_data
