@@ -43,10 +43,10 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     current_sx_other = models.TextField(
-        verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
+        verbose_name="If other, please specify ...",
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,).",
+        help_text="If more than one, separate each with a comma (,).",
     )
 
     current_sx_gte_g3 = models.ManyToManyField(
@@ -57,12 +57,10 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     current_sx_gte_g3_other = models.TextField(
-        verbose_name=(
-            "If 'Other sign(s)/symptom(s)' at Grade 3 or above selected, please specify ..."
-        ),
+        verbose_name="If other, please specify ...",
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,).",
+        help_text="If more than one, separate each with a comma (,).",
     )
 
     headache_duration = edc_models.DurationDHField(
