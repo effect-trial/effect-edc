@@ -65,8 +65,6 @@
 - Signs and Symptoms CRF:
     - validate 'any_sx' != UNKNOWN if an in-person or telephone-based (patient) visit
     - 'headache_duration_microseconds' to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
-    - if 'cm_sx_lp_done', generate LP
-    - if fbc or chem bloods taken, generate related requisition
     - look at basic validation for _sx_other fields
 
 - Mental Status CRF:

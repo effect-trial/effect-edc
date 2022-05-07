@@ -13,12 +13,6 @@ class ArvRegimens(ListModelMixin):
         verbose_name_plural = "ARV Regimens"
 
 
-class BloodTests(ListModelMixin):
-    class Meta(ListModelMixin.Meta):
-        verbose_name = "Blood Test"
-        verbose_name_plural = "Blood Tests"
-
-
 class Drugs(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Drugs"

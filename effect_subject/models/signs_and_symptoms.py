@@ -5,7 +5,7 @@ from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
 
-from effect_lists.models import BloodTests, SiSx
+from effect_lists.models import SiSx
 
 from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, SX_ACTION
 
@@ -43,10 +43,10 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     current_sx_other = models.TextField(
-        verbose_name="If 'Other sign(s)/symptom(s)' selected, please specify ...",
+        verbose_name="If other, please specify ...",
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,).",
+        help_text="If more than one, separate each with a comma (,).",
     )
 
     current_sx_gte_g3 = models.ManyToManyField(
@@ -57,12 +57,10 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     current_sx_gte_g3_other = models.TextField(
-        verbose_name=(
-            "If 'Other sign(s)/symptom(s)' at Grade 3 or above selected, please specify ..."
-        ),
+        verbose_name="If other, please specify ...",
         null=True,
         blank=True,
-        help_text="If more than one, please separate each with a comma (,).",
+        help_text="If more than one, separate each with a comma (,).",
     )
 
     headache_duration = edc_models.DurationDHField(
@@ -119,7 +117,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was an X-ray performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'Chest X-ray' CRF.",
     )
@@ -128,7 +125,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was a lumbar puncture performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'Lumbar Puncture/CSF' CRF.",
     )
@@ -137,32 +133,8 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was a urinary LAM performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'TB Diagnostics' CRF.",
-    )
-
-    cm_sx_lp_done = models.CharField(
-        verbose_name="If the patient has CM signs or symptoms, was an LP done?",
-        max_length=15,
-        # TODO: if yes, LP request and LP result
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text="If YES, complete 'Lumbar Puncture/CSF' CRF.",
-    )
-
-    cm_sx_bloods_taken = models.ManyToManyField(
-        BloodTests,
-        verbose_name=(
-            "If the patient has CM signs or symptoms, "
-            "which (if any) of the following bloods were taken?"
-        ),
-        # TODO: if yes, action blood requisition
-        help_text="If bloods taken, complete relevant blood requisition.</br>",
-    )
-
-    cm_sx_bloods_taken_other = edc_models.OtherCharField(
-        verbose_name="If other bloods taken, please specify ..."
     )
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

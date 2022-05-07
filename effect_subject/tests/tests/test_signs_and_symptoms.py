@@ -4,10 +4,12 @@ from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.constants import (
     HEADACHE,
+    IN_PERSON,
     NO,
     NONE,
     NOT_APPLICABLE,
     OTHER,
+    TELEPHONE,
     UNKNOWN,
     VISUAL_LOSS,
     YES,
@@ -19,12 +21,14 @@ from edc_csf.constants import (
 )
 from model_bakery import baker
 
-from effect_lists.models import BloodTests, SiSx
+from effect_lists.models import SiSx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
 from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
 from effect_visit_schedule.constants import DAY01, DAY14
+
+# TODO: Migrate to effect-form-validator
 
 
 @tag("sas")
@@ -49,15 +53,20 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_patient_with_no_signs_or_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_no_signs_or_symptoms(
+        self,
+        visit_code: str = None,
+        assessment_type: str = None,
+    ):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
+        self.subject_visit.assessment_type = assessment_type or IN_PERSON
         return {
             "subject_visit": self.subject_visit,
-            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
             "current_sx": SiSx.objects.filter(name=NONE),
             "current_sx_other": "",
+            "cm_sx": NOT_APPLICABLE,
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
@@ -65,36 +74,48 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cn_palsy_right_other": "",
             "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
+            "xray_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
+            "lp_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
+            "urinary_lam_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
             "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
-            "cm_sx": NOT_APPLICABLE,
-            "cm_sx_lp_done": NOT_APPLICABLE,
-            "cm_sx_bloods_take": BloodTests.objects.filter(name=NOT_APPLICABLE),
-            "cm_sx_bloods_taken_other": "",
         }
 
     def get_valid_patient_any_sx_unknown(self, visit_code: str = None):
         cleaned_data = deepcopy(
-            self.get_valid_patient_with_no_signs_or_symptoms(visit_code=visit_code)
+            self.get_valid_patient_with_no_signs_or_symptoms(
+                visit_code=visit_code, assessment_type=TELEPHONE
+            )
         )
         cleaned_data.update(
             {
                 "any_sx": UNKNOWN,
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
+                # Cannot be in person visit if "any_sx": UNKNOWN
+                # Investigations cannot have been performed if not in person visit
+                "xray_performed": NOT_APPLICABLE,
+                "lp_performed": NOT_APPLICABLE,
+                "urinary_lam_performed": NOT_APPLICABLE,
             }
         )
         return cleaned_data
 
-    def get_valid_patient_with_signs_or_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_signs_or_symptoms(
+        self,
+        visit_code: str = None,
+        assessment_type: str = None,
+    ):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
+        self.subject_visit.assessment_type = assessment_type or IN_PERSON
+
         return {
             "subject_visit": self.subject_visit,
-            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
             "current_sx_other": "",
+            "cm_sx": NO,
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
@@ -102,12 +123,11 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cn_palsy_right_other": "",
             "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
+            "xray_performed": YES,
+            "lp_performed": YES,
+            "urinary_lam_performed": YES,
             "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
-            "cm_sx": NO,
-            "cm_sx_lp_done": NOT_APPLICABLE,
-            "cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE),
-            "cm_sx_bloods_taken_other": "",
         }
 
     def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
@@ -127,16 +147,7 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         cleaned_data = deepcopy(
             self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=visit_code)
         )
-        cleaned_data.update(
-            {
-                "cm_sx": YES,
-                "cm_sx_lp_done": YES,
-                "cm_sx_bloods_taken": BloodTests.objects.filter(
-                    Q(name="chemistry") | Q(name="hematology")
-                ),
-                "cm_sx_bloods_taken_other": "",
-            }
-        )
+        cleaned_data.update({"cm_sx": YES})
         return cleaned_data
 
     @staticmethod
@@ -469,7 +480,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     reportable_as_ae_answer=reportable_as_ae_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -823,7 +836,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     patient_admitted_answer=patient_admitted_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -861,13 +876,6 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             with self.subTest(answer=answer):
                 cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
                 cleaned_data.update({"cm_sx": answer})
-                if answer == YES:
-                    cleaned_data.update(
-                        {
-                            "cm_sx_lp_done": NO,
-                            "cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE),
-                        }
-                    )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
@@ -879,7 +887,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     cm_sx_answer=cm_sx_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -898,206 +908,6 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
-
-    def test_cm_sx_lp_done_applicable_if_cm_sx_yes(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx": YES,
-                "cm_sx_lp_done": NOT_APPLICABLE,
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_lp_done",
-            expected_msg="This field is applicable.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        for answer in [YES, NO]:
-            with self.subTest(answer=answer):
-                cleaned_data.update({"cm_sx_lp_done": answer})
-                self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
-                )
-
-    def test_cm_sx_lp_done_not_applicable_if_cm_sx_not_yes(self):
-        for cm_sx_answer in [NO, NOT_APPLICABLE]:
-            for cm_sx_lp_done_answer in [YES, NO]:
-                with self.subTest(
-                    cm_sx_answer=cm_sx_answer,
-                    cm_sx_lp_done_answer=cm_sx_lp_done_answer,
-                ):
-                    cleaned_data = (
-                        self.get_valid_patient_with_signs_or_symptoms()
-                        if cm_sx_answer == NO
-                        else self.get_valid_patient_any_sx_unknown()
-                    )
-                    cleaned_data.update(
-                        {
-                            "cm_sx": cm_sx_answer,
-                            "cm_sx_lp_done": cm_sx_lp_done_answer,
-                        }
-                    )
-                    self.assertFormValidatorError(
-                        field="cm_sx_lp_done",
-                        expected_msg="This field is not applicable",
-                        form_validator=self.validate_form_validator(cleaned_data),
-                    )
-
-                    cleaned_data.update({"cm_sx_lp_done": NOT_APPLICABLE})
-                    self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
-                    )
-
-    def test_cm_sx_bloods_taken_not_applicable_if_cm_sx_not_yes(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry")}
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken",
-            expected_msg="This field is not applicable",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)})
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken",
-            expected_msg="This field is not applicable",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE)}
-        )
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_cm_sx_bloods_taken_applicable_if_cm_sx_is_yes(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name=NOT_APPLICABLE)}
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken",
-            expected_msg="This field is applicable",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(name=NONE)})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry")}
-        )
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-    def test_cm_sx_bloods_taken_allows_multiple_selections(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx_bloods_taken": BloodTests.objects.filter(
-                    Q(name="chemistry") | Q(name="hematology") | Q(name=OTHER)
-                ),
-                "cm_sx_bloods_taken_other": "Some other bloods...",
-            }
-        )
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_cm_sx_bloods_taken_single_selection_only_for_none(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx_bloods_taken": BloodTests.objects.filter(
-                    Q(name=NONE) | Q(name="chemistry")
-                )
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken",
-            expected_msg=(
-                "Invalid combination. "
-                "'--No bloods taken' may not be combined with other selections"
-            ),
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update({"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NONE))})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_cm_sx_bloods_taken_single_selection_only_for_na(self):
-        cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx": NO,
-                "cm_sx_bloods_taken": BloodTests.objects.filter(
-                    Q(name=NOT_APPLICABLE) | Q(name="chemistry")
-                ),
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken",
-            expected_msg=(
-                "Invalid combination. "
-                "'--Not applicable (if no signs or symptoms related to CM)' "
-                "may not be combined with other selections"
-            ),
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update(
-            {"cm_sx_bloods_taken": BloodTests.objects.filter(Q(name=NOT_APPLICABLE))}
-        )
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_cm_sx_bloods_taken_other_required_if_other_selected(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx_bloods_taken": BloodTests.objects.filter(name=OTHER),
-                "cm_sx_bloods_taken_other": "",
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken_other",
-            expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update({"cm_sx_bloods_taken_other": "Some other blood test"})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
-
-    def test_cm_sx_bloods_taken_other_not_required_if_other_not_selected(self):
-        cleaned_data = self.get_valid_patient_with_cm_symptoms()
-        cleaned_data.update(
-            {
-                "cm_sx_bloods_taken": BloodTests.objects.filter(name="chemistry"),
-                "cm_sx_bloods_taken_other": "Some other blood test",
-            }
-        )
-        self.assertFormValidatorError(
-            field="cm_sx_bloods_taken_other",
-            expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
-        )
-
-        cleaned_data.update({"cm_sx_bloods_taken_other": ""})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
-        )
 
 
 @tag("sas")
