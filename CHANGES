@@ -3,6 +3,15 @@ Changes
 
 [unreleased]
 ------------
+- changes to Signs and Symptoms form:
+    - reorder:
+        - move 'cm_sx' (Are any of the signs or symptoms related to cryptococcal meningitis (CM)?) higher up form
+        - more reporting fields: 'reportable_as_ae' and 'patient_admitted' to bottom of form
+    - remove fields: 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other'
+    - minor updates to question text/help text
+
+0.1.2
+-----
 - remove 'Unblinding request' action linked PRN
 - changes to Lumbar Puncture/CSF CRF:
     - remove Q16: QC Requisition
@@ -53,7 +62,7 @@ Changes
     - reorder fields based on feedback
     - convert headache_duration to edc_models.DurationDHField
     - use _sx in field names to be consistent ('current_sx', cm_sx')
-    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'xray_performed', 'lp_performed', 'urinary_lam_performed'
+    - add new model fields: 'any_sx', 'current_sx_other', 'current_sx_gte_g3', 'current_sx_gte_g3_other', 'headache_duration_microseconds', 'xray_performed', 'lp_performed', 'urinary_lam_performed', 'cm_sx_lp_done', 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other'
     - add N/A options for if no/unknown answer to 'any_sx'
     - add validation
     - add AE_INITIAL_ACTION action item if yes answer to any of: 'reportable_as_ae' or 'patient_admitted'

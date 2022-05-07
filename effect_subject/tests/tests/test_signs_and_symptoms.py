@@ -941,9 +941,10 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("3")
     def test_reportable_as_ae_not_required_if_sx_unknown_at_d14(self):
-        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY14)
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+            visit_code=DAY14, assessment_type=TELEPHONE
+        )
         cleaned_data.update(
             {
                 "any_sx": UNKNOWN,
@@ -956,7 +957,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
         try:
             form_validator.validate()
         except forms.ValidationError as e:
-            self.fail(f"ValidationError unexpectedly raise. Got {e}")
+            self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
     def test_patient_admitted_allowed_at_d14(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
