@@ -1,5 +1,6 @@
 from copy import deepcopy
 
+from django import forms
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.constants import (
@@ -14,7 +15,7 @@ from edc_constants.constants import (
     VISUAL_LOSS,
     YES,
 )
-from edc_csf.constants import (
+from edc_constants.disease_constants import (
     CN_PALSY_LEFT_OTHER,
     CN_PALSY_RIGHT_OTHER,
     FOCAL_NEUROLOGIC_DEFICIT_OTHER,
@@ -940,12 +941,22 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    def test_reportable_as_ae_not_required_at_d14(self):
-        cleaned_data = self.get_valid_patient_any_sx_unknown()
-        cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+    @tag("3")
+    def test_reportable_as_ae_not_required_if_sx_unknown_at_d14(self):
+        cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY14)
+        cleaned_data.update(
+            {
+                "any_sx": UNKNOWN,
+                "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
+                "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
+                "reportable_as_ae": NOT_APPLICABLE,
+            }
         )
+        form_validator = SignsAndSymptomsFormValidator(cleaned_data=cleaned_data)
+        try:
+            form_validator.validate()
+        except forms.ValidationError as e:
+            self.fail(f"ValidationError unexpectedly raise. Got {e}")
 
     def test_patient_admitted_allowed_at_d14(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)

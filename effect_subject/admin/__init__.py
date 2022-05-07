@@ -9,13 +9,13 @@ from .arv_history_admin import ArvHistoryAdmin
 from .arv_treatment_admin import ArvTreatmentAdmin
 from .autocomplete_admin import ArvRegimensAdmin
 from .blood_culture_admin import BloodCultureAdmin
-from .blood_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
 from .followup_admin import FollowupAdmin
 from .health_economics_admin import HealthEconomicsAdmin
 from .histopathology_admin import HistopathologyAdmin
+from .lab_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .lp_csf_admin import LpCsfAdmin
 from .medical_history_admin import MedicalHistoryAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin

@@ -9,23 +9,20 @@ from edc_constants.constants import (
     UNKNOWN,
     VISUAL_LOSS,
 )
-from edc_csf.constants import (
+from edc_constants.disease_constants import (
+    BACTERAEMIA,
+    BACTERIAL_PNEUMONIA,
     CN_PALSY_LEFT_OTHER,
     CN_PALSY_RIGHT_OTHER,
+    CRYPTOCOCCAL_MENINGITIS,
+    DIARRHOEAL_WASTING,
     FOCAL_NEUROLOGIC_DEFICIT_OTHER,
+    TB_EXTRAPULMONARY,
+    TB_PULMONARY,
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
-
-from .constants import (
-    BACTERAEMIA,
-    BACTERIAL_PNEUMONIA,
-    CRYPTOCOCCAL_MENINGITIS,
-    DIARRHOEAL_WASTING,
-    TB_EXTRAPULMONARY,
-    TB_PULMONARY,
-)
 
 list_data = {
     "effect_lists.nonadherencereasons": [
