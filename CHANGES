@@ -8,7 +8,7 @@ Changes
         - move 'cm_sx' (Are any of the signs or symptoms related to cryptococcal meningitis (CM)?) higher up form
         - more reporting fields: 'reportable_as_ae' and 'patient_admitted' to bottom of form
     - remove fields: 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other'
-    - minor updated to question text/help text
+    - minor updates to question text/help text
 
 0.1.2
 -----
