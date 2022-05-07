@@ -119,7 +119,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was an X-ray performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'Chest X-ray' CRF.",
     )
@@ -128,7 +127,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was a lumbar puncture performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'Lumbar Puncture/CSF' CRF.",
     )
@@ -137,7 +135,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was a urinary LAM performed?",
         max_length=15,
         choices=YES_NO_NA,
-        # TODO: expect NA if telephone or not in person
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'TB Diagnostics' CRF.",
     )

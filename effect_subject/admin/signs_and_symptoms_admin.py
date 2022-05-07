@@ -36,6 +36,13 @@ class SignsAndSymptomsAdmin(
                     "cm_sx",
                     "current_sx_gte_g3",
                     "current_sx_gte_g3_other",
+                )
+            },
+        ),
+        (
+            "Additional details",
+            {
+                "fields": (
                     "headache_duration",
                     # "headache_duration_microseconds",
                     "cn_palsy_left_other",
@@ -45,7 +52,6 @@ class SignsAndSymptomsAdmin(
                 )
             },
         ),
-        reporting_fieldset_tuple,
         (
             "Investigations",
             {
@@ -56,6 +62,7 @@ class SignsAndSymptomsAdmin(
                 )
             },
         ),
+        reporting_fieldset_tuple,
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )

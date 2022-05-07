@@ -4,10 +4,12 @@ from django.db.models import Q
 from django.test import TestCase, tag
 from edc_constants.constants import (
     HEADACHE,
+    IN_PERSON,
     NO,
     NONE,
     NOT_APPLICABLE,
     OTHER,
+    TELEPHONE,
     UNKNOWN,
     VISUAL_LOSS,
     YES,
@@ -25,6 +27,8 @@ from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
 from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
 from effect_visit_schedule.constants import DAY01, DAY14
+
+# TODO: Migrate to effect-form-validator
 
 
 @tag("sas")
@@ -49,15 +53,20 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
 
-    def get_valid_patient_with_no_signs_or_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_no_signs_or_symptoms(
+        self,
+        visit_code: str = None,
+        assessment_type: str = None,
+    ):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
+        self.subject_visit.assessment_type = assessment_type or IN_PERSON
         return {
             "subject_visit": self.subject_visit,
-            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": NO,
             "current_sx": SiSx.objects.filter(name=NONE),
             "current_sx_other": "",
+            "cm_sx": NOT_APPLICABLE,
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
@@ -65,33 +74,48 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cn_palsy_right_other": "",
             "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
+            "xray_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
+            "lp_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
+            "urinary_lam_performed": NOT_APPLICABLE if assessment_type == TELEPHONE else NO,
             "reportable_as_ae": NOT_APPLICABLE,
             "patient_admitted": NOT_APPLICABLE,
-            "cm_sx": NOT_APPLICABLE,
         }
 
     def get_valid_patient_any_sx_unknown(self, visit_code: str = None):
         cleaned_data = deepcopy(
-            self.get_valid_patient_with_no_signs_or_symptoms(visit_code=visit_code)
+            self.get_valid_patient_with_no_signs_or_symptoms(
+                visit_code=visit_code, assessment_type=TELEPHONE
+            )
         )
         cleaned_data.update(
             {
                 "any_sx": UNKNOWN,
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
+                # Cannot be in person visit if "any_sx": UNKNOWN
+                # Investigations cannot have been performed if not in person visit
+                "xray_performed": NOT_APPLICABLE,
+                "lp_performed": NOT_APPLICABLE,
+                "urinary_lam_performed": NOT_APPLICABLE,
             }
         )
         return cleaned_data
 
-    def get_valid_patient_with_signs_or_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_signs_or_symptoms(
+        self,
+        visit_code: str = None,
+        assessment_type: str = None,
+    ):
         self.subject_visit.appointment.visit_code = visit_code or DAY14
+        self.subject_visit.assessment_type = assessment_type or IN_PERSON
+
         return {
             "subject_visit": self.subject_visit,
-            # "appointment": self.subject_visit.appointment,
             "report_datetime": self.subject_visit.report_datetime,
             "any_sx": YES,
             "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
             "current_sx_other": "",
+            "cm_sx": NO,
             "current_sx_gte_g3": SiSx.objects.filter(name=NONE),
             "current_sx_gte_g3_other": "",
             "headache_duration": "",
@@ -99,9 +123,11 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "cn_palsy_right_other": "",
             "focal_neurologic_deficit_other": "",
             "visual_field_loss": "",
+            "xray_performed": YES,
+            "lp_performed": YES,
+            "urinary_lam_performed": YES,
             "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
-            "cm_sx": NO,
         }
 
     def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
@@ -454,7 +480,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     reportable_as_ae_answer=reportable_as_ae_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -808,7 +836,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     patient_admitted_answer=patient_admitted_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -857,7 +887,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     any_sx_answer=any_sx_answer,
                     cm_sx_answer=cm_sx_answer,
                 ):
-                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms()
+                    cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                    )
                     cleaned_data.update(
                         {
                             "any_sx": any_sx_answer,
@@ -876,14 +908,6 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
-
-    def test_lp_performed_applicable_if_xxx(self):
-        # TODO
-        pass
-
-    def test_lp_performed_not_applicable_if_xxx(self):
-        # TODO
-        pass
 
 
 @tag("sas")
