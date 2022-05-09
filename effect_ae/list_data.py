@@ -9,17 +9,20 @@ from edc_constants.constants import (
 from edc_constants.disease_constants import (
     BACTERAEMIA,
     BACTERIAL_PNEUMONIA,
+    CM_IRIS,
     CRYPTOCOCCAL_MENINGITIS,
+    CRYPTOCOCCAL_MENINGITIS_RELAPSE,
     SEPSIS,
     TB_PULMONARY,
 )
 
 list_data = {
     "edc_adverse_event.aeclassification": [
-        (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal Meningitis"),
+        (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
         ("anaemia", "Anaemia"),
         (BACTERAEMIA, "Bacteraemia"),
-        ("CM_IRIS", "CM IRIS"),
+        (CRYPTOCOCCAL_MENINGITIS_RELAPSE, "Cryptococcal meningitis relapse"),
+        (CM_IRIS, "CM-IRIS"),
         ("diarrhoea", "Diarrhoea"),
         ("hypokalaemia", "Hypokalaemia"),
         ("neutropaenia", "Neutropaenia"),
@@ -48,10 +51,8 @@ list_data = {
         (BACTERAEMIA, "Bacteraemia"),
         (BACTERIAL_PNEUMONIA, "Bacterial pneumonia"),
         ("covid_19", "COVID-19"),
-        (
-            "iris_cm_relapse",
-            "Cryptococcal meningitis relapse/IRIS",
-        ),
+        (CRYPTOCOCCAL_MENINGITIS_RELAPSE, "Cryptococcal meningitis relapse"),
+        (CM_IRIS, "CM-IRIS"),
         ("iris_non_cm", "IRIS non-CM"),
         (TB_PULMONARY, "TB - Pulmonary"),
         ("tb_meningitis", "TB - Meningitis"),
