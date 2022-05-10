@@ -73,7 +73,8 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
 
     transferred_consent = models.CharField(
         verbose_name=(
-            "If transferred, has the patient provided consent to be followed-up for 6 month end-point?"
+            "If transferred, has the patient provided consent to be "
+            "followed-up for 6 month end-point?"
         ),
         choices=YES_NO_NA,
         max_length=15,
