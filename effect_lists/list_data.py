@@ -1,7 +1,6 @@
 from edc_constants.constants import (
     DEAD,
     HEADACHE,
-    NONE,
     NORMAL,
     NOT_APPLICABLE,
     OTHER,
