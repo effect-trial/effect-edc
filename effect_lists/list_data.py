@@ -202,8 +202,7 @@ list_data = {
         ),
     ],
     "effect_lists.sisx": [
-        (NONE, "--No symptoms to report"),
-        (NOT_APPLICABLE, "--Not applicable (if signs or symptoms 'Unknown')"),
+        (NOT_APPLICABLE, "--Not applicable"),
         ("cough", "Cough"),
         ("double_vision", "Double vision"),
         ("drowsiness", "Drowsiness"),
