@@ -46,5 +46,22 @@ ACTION_REQUIRED = (
     ),
 )
 
+STUDY_TERMINATION_REASONS = (
+    (
+        "care_transferred_out",
+        "Care transferred to another institution",
+    ),
+    ("completed_6month_followup", "Completed 6 month follow-up"),
+    ("consent_withdrawal", "Withdrawal of consent"),
+    ("late_exclusion_other_reason", "Late exclusion—Other reason"),
+    (
+        "late_exclusion_positive_baseline_crAg",
+        "Late Exclusion—positive baseline CSF CrAg result",
+    ),
+    ("patient_died", "Patient died"),
+    ("patient_lost_followup", "Patient Lost to follow up"),
+    (OTHER, "Other"),
+)
 
-REASON_STUDY_TERMINATED = ()
+
+# REASON_STUDY_TERMINATED = ()
