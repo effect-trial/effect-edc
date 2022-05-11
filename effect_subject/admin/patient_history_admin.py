@@ -19,11 +19,11 @@ class PatientHistoryAdmin(CrfModelAdmin):
             {
                 "description": "Only complete at Day 1",
                 "fields": (
-                    "fluconazole_1w_prior_rando",
-                    "fluconazole_days",
-                    "fluconazole_dose",
-                    "fluconazole_dose_other",
-                    "fluconazole_dose_other_reason",
+                    "flucon_1w_prior_rando",
+                    "flucon_days",
+                    "flucon_dose",
+                    "flucon_dose_other",
+                    "flucon_dose_other_reason",
                 ),
             },
         ),
@@ -53,7 +53,7 @@ class PatientHistoryAdmin(CrfModelAdmin):
         "abnormal_lung_exam": admin.VERTICAL,
         "any_medications": admin.VERTICAL,
         "current_arv_decision": admin.VERTICAL,
-        "fluconazole_1w_prior_rando": admin.VERTICAL,
-        "fluconazole_dose": admin.VERTICAL,
+        "flucon_1w_prior_rando": admin.VERTICAL,
+        "flucon_dose": admin.VERTICAL,
         "reported_neuro_abnormality": admin.VERTICAL,
     }
