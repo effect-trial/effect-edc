@@ -1,5 +1,14 @@
 from edc_constants.constants import NOT_APPLICABLE, OTHER
 
+ACTION_REQUIRED = (
+    ("remain_on_study", "Participant to remain on trial"),
+    ("to_be_withdrawn", "Participant to be withdrawn from trial"),
+    (
+        "remain_on_study_modified",
+        "Patient remains on study but data analysis will be modified",
+    ),
+)
+
 LOSS_CHOICES = (
     ("unknown_address", "Changed to an unknown address"),
     ("never_returned", "Did not return despite reminders"),
@@ -37,31 +46,19 @@ PROTOCOL_VIOLATION = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-ACTION_REQUIRED = (
-    ("remain_on_study", "Participant to remain on trial"),
-    ("to_be_withdrawn", "Participant to be withdrawn from trial"),
-    (
-        "remain_on_study_modified",
-        "Patient remains on study but data analysis will be modified",
-    ),
-)
-
 STUDY_TERMINATION_REASONS = (
+    ("completed_6m_followup", "Completed 6 month follow-up"),
+    ("consent_withdrawal", "Withdrawal of consent"),
+    (
+        "late_exclusion_positive_baseline_crag",
+        "Late Exclusion—positive baseline CSF Crag result",
+    ),
+    ("late_exclusion_other", "Late exclusion—Other reason"),
     (
         "care_transferred_out",
         "Care transferred to another institution",
     ),
-    ("completed_6month_followup", "Completed 6 month follow-up"),
-    ("consent_withdrawal", "Withdrawal of consent"),
-    ("late_exclusion_other_reason", "Late exclusion—Other reason"),
-    (
-        "late_exclusion_positive_baseline_crAg",
-        "Late Exclusion—positive baseline CSF CrAg result",
-    ),
-    ("patient_died", "Patient died"),
     ("patient_lost_followup", "Patient Lost to follow up"),
+    ("patient_died", "Patient died"),
     (OTHER, "Other"),
 )
-
-
-# REASON_STUDY_TERMINATED = ()
