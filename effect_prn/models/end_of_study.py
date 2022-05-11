@@ -10,6 +10,7 @@ from edc_model.models import (
     datetime_not_future,
 )
 from edc_offstudy.constants import END_OF_STUDY_ACTION
+from edc_protocol.validators import date_not_before_study_start
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 
 from effect_prn.choices import STUDY_TERMINATION_REASONS
@@ -27,9 +28,9 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
         null=True,
     )
 
-    lastfollowup_datetime = models.DateField(
+    last_followup_date = models.DateField(
         verbose_name="Date of last research follow-up",
-        validators=[date_not_future],
+        validators=[date_not_future, date_not_before_study_start],
         blank=False,
         null=True,
     )
@@ -58,13 +59,13 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
     offschedule_reason_other = OtherCharField()
 
     withdrawal_consent_reasons = models.TextField(
-        verbose_name="If withdrawal Consent, please specify reasons",
+        verbose_name="If withdrawal of consent, specify reason",
         max_length=500,
         blank=True,
         null=True,
     )
 
-    late_exclusion_reasons = models.TextField(
+    late_exclusion_other = models.TextField(
         verbose_name="If late exclusion for other reason, specify reason",
         max_length=500,
         blank=True,
