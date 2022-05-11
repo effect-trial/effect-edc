@@ -81,7 +81,7 @@ fbc_panel = RequisitionPanel(
         ("haemoglobin", "Haemoglobin"),
         "wbc",
         "platelets",
-        ("neutrophil", "Absolute neutrophils count"),
+        ("neutrophil", "Absolute neutrophil count"),
         # ("neutrophil_diff", "Differential neutrophils count"),
         # ("lymphocyte", "Absolute lymphocyte count"),
         # ("lymphocyte_diff", "Differential lymphocyte count"),
