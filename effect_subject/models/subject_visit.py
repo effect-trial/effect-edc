@@ -17,7 +17,7 @@ from edc_visit_tracking.managers import VisitModelManager as BaseVisitModelManag
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
 from ..choices import VISIT_REASON, VISIT_UNSCHEDULED_REASON
-from ..constants import IF_YES_COMPLETE_SAE
+from ..constants import IF_ADMITTED_COMPLETE_REPORTS
 
 
 class CurrentSiteManager(BaseVisitModelManager, BaseCurrentSiteManager):
@@ -101,7 +101,7 @@ class SubjectVisit(
         max_length=15,
         choices=YES_NO_UNKNOWN_NA_MISSED,
         # TODO: If yes, trigger AE Initial
-        help_text=IF_YES_COMPLETE_SAE,
+        help_text=IF_ADMITTED_COMPLETE_REPORTS,
         default=NOT_APPLICABLE,
     )
 
