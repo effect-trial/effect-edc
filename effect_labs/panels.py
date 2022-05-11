@@ -80,10 +80,10 @@ fbc_panel = RequisitionPanel(
     utest_ids=[
         ("haemoglobin", "Haemoglobin"),
         "wbc",
-        "platelets",
-        ("neutrophil", "Absolute neutrophil count"),
-        # ("neutrophil_diff", "Differential neutrophils count"),
-        # ("lymphocyte", "Absolute lymphocyte count"),
-        # ("lymphocyte_diff", "Differential lymphocyte count"),
+        ("platelets", "Platelets"),
+        ("neutrophil", "Neutrophil absolute count"),
+        ("neutrophil_diff", "Neutrophils differential count"),
+        ("lymphocyte", "Lymphocyte absolute count"),
+        ("lymphocyte_diff", "Lymphocyte differential count"),
     ],
 )
