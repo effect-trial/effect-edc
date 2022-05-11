@@ -5,7 +5,7 @@ from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
 from ..choices import ECOG_SCORES, MODIFIED_RANKIN_SCORE_CHOICES
-from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE
+from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE
 from ..model_mixins import CrfModelMixin
 
 
@@ -63,7 +63,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_SAE,
+        help_text=IF_ADMITTED_COMPLETE_REPORTS,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

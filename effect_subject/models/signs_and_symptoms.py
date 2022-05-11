@@ -7,7 +7,7 @@ from edc_model import models as edc_models
 
 from effect_lists.models import SiSx
 
-from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, SX_ACTION
+from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACTION
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
@@ -110,7 +110,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_SAE,
+        help_text=IF_ADMITTED_COMPLETE_REPORTS,
     )
 
     xray_performed = models.CharField(
