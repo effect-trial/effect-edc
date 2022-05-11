@@ -1,3 +1,6 @@
+from datetime import date, datetime
+from typing import Any, Union
+
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.validators import MinValueValidator
@@ -10,7 +13,7 @@ from edc_sites.models import SiteModelMixin
 from edc_utils import convert_php_dateformat, get_utcnow
 
 
-def get_daily_log_revision_date():
+def get_daily_log_revision_date() -> Union[date, datetime]:
     try:
         return settings.EFFECT_SCREENING_DCL_REVISION_DATETIME.date()
     except AttributeError:
@@ -93,7 +96,7 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
     def __str__(self):
         return self.log_date.strftime(convert_php_dateformat(settings.DATE_FORMAT))
 
-    def natural_key(self):
+    def natural_key(self: Any):
         return tuple(self.log_date, self.site)
 
     class Meta:

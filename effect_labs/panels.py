@@ -6,28 +6,39 @@ from .processing_profiles import (
     csf_culture_processing,
     fbc_processing,
     tissue_biopsy_processing,
+    urinalysis_processing,
 )
 
 chemistry_panel = RequisitionPanel(
     name="chemistry",
-    verbose_name="Chemistry: RFT, LFT",
+    verbose_name="Chemistry: RFT, LFT, Electrolytes",
     abbreviation="CHEM",
     processing_profile=chemistry_processing,
     utest_ids=[
         "albumin",
         "alp",
         "alt",
-        "amylase",
         "ast",
         "creatinine",
+        ("crp", "C-Reactive Protein"),
         "egfr",
+        "magnesium",
+        "potassium",
         "ggt",
         "urea",
-        "uric_acid",
+        ("tbil", "Total Bilirubin"),
     ],
 )
 
-
+urinalysis_panel = RequisitionPanel(
+    name="urinalysis",
+    verbose_name="Urinalysis",
+    abbreviation="urlys",
+    processing_profile=urinalysis_processing,
+    utest_ids=[
+        ("proteinuria", "Proteinuria"),
+    ],
+)
 csf_culture_panel = RequisitionPanel(
     name="csf_culture",
     verbose_name="CSF culture",
@@ -60,6 +71,7 @@ blood_culture_panel = RequisitionPanel(
     utest_ids=[],
 )
 
+# TODO: update fbc_panel
 fbc_panel = RequisitionPanel(
     name="fbc",
     verbose_name="Full Blood Count",
@@ -67,8 +79,11 @@ fbc_panel = RequisitionPanel(
     abbreviation="FBC",
     utest_ids=[
         ("haemoglobin", "Haemoglobin"),
-        "rbc",
         "wbc",
         "platelets",
+        ("neutrophil", "Absolute neutrophil count"),
+        # ("neutrophil_diff", "Differential neutrophils count"),
+        # ("lymphocyte", "Absolute lymphocyte count"),
+        # ("lymphocyte_diff", "Differential lymphocyte count"),
     ],
 )

@@ -46,11 +46,7 @@ class TestVisitSchedule(TestCase):
         ]
         expected = {
             "1000": [
-                "blood_culture",
-                "csf_culture",
                 "fbc",
-                "sputum",
-                "tissue_biopsy",
                 "chemistry",
             ],
             "1003": [],

@@ -8,7 +8,11 @@ from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField
 
 from ..choices import MEASURED_EST_CHOICES
-from ..constants import IF_YES_COMPLETE_AE, IF_YES_COMPLETE_SAE, VITAL_SIGNS_ACTION
+from ..constants import (
+    IF_ADMITTED_COMPLETE_REPORTS,
+    IF_YES_COMPLETE_AE,
+    VITAL_SIGNS_ACTION,
+)
 from ..fields.temperature import TemperatureField
 
 
@@ -62,7 +66,7 @@ class VitalSigns(
         # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_SAE,
+        help_text=IF_ADMITTED_COMPLETE_REPORTS,
     )
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

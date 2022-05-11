@@ -8,13 +8,13 @@ from .adherence import (
 from .arv_history_form import ArvHistoryForm
 from .arv_treatment_form import ArvTreatmentForm
 from .blood_culture_form import BloodCultureForm
-from .blood_results import BloodResultsChemForm, BloodResultsFbcForm
 from .chest_xray_form import ChestXrayForm
 from .clinical_note_form import ClinicalNoteForm
 from .diagnoses_form import DiagnosesForm
 from .followup_form import FollowupForm
 from .health_economics_form import HealthEconomicsForm
 from .histopathology_form import HistopathologyForm
+from .lab_results import BloodResultsChemForm, BloodResultsFbcForm, UrinalysisForm
 from .lp_csf_form import LpCsfForm
 from .medical_history_form import MedicalHistoryForm
 from .medication_adherence_form import MedicationAdherenceForm

@@ -1,4 +1,7 @@
-import pytz
+from datetime import date
+from typing import Any, Optional
+from zoneinfo import ZoneInfo
+
 from arrow.arrow import Arrow
 from django import forms
 from django.apps import apps as django_apps
@@ -9,12 +12,12 @@ from edc_utils import convert_php_dateformat
 
 class StudyDayFormValidatorMixin:
     def validate_study_day_with_datetime(
-        self,
-        subject_identifier=None,
-        study_day=None,
-        compare_date=None,
-        study_day_field=None,
-    ):
+        self: Any,
+        subject_identifier: Optional[str] = None,
+        study_day: Optional[int] = None,
+        compare_date: Optional[date] = None,
+        study_day_field: Optional[str] = None,
+    ) -> None:
         """Raises an exception if study day does not match
         calculation against pytz.
 
@@ -22,7 +25,7 @@ class StudyDayFormValidatorMixin:
         """
         if study_day is not None and compare_date is not None:
             try:
-                compare_date = compare_date.date()
+                compare_date = compare_date.date()  # noqa
             except AttributeError:
                 pass
             subject_identifier = (
@@ -40,10 +43,9 @@ class StudyDayFormValidatorMixin:
             ).randomization_datetime
             days_on_study = (compare_date - randomization_datetime.date()).days
             if study_day - 1 != days_on_study:
-                tz = pytz.timezone(settings.TIME_ZONE)
                 formatted_date = (
                     Arrow.fromdatetime(randomization_datetime)
-                    .to(tz)
+                    .to(ZoneInfo(settings.TIME_ZONE))
                     .strftime(convert_php_dateformat(settings.DATETIME_FORMAT))
                 )
                 message = {
@@ -52,7 +54,6 @@ class StudyDayFormValidatorMixin:
                         f"Subject was registered on {formatted_date}"
                     )
                 }
-                print(message)
                 self._errors.update(message)
                 self._error_codes.append(INVALID_ERROR)
                 raise forms.ValidationError(message, code=INVALID_ERROR)

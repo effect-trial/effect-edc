@@ -1,13 +1,14 @@
-from edc_blood_results import BLOOD_RESULTS_FBC_ACTION
-from edc_blood_results.model_mixins import (
+from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_lab.model_mixins import CrfWithRequisitionModelMixin
+from edc_lab_results import BLOOD_RESULTS_FBC_ACTION
+from edc_lab_results.model_mixins import (
     BloodResultsModelMixin,
     HaemoglobinModelMixin,
+    NeutrophilModelMixin,
     PlateletsModelMixin,
     RbcModelMixin,
     WbcModelMixin,
 )
-from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
-from edc_lab.model_mixins import CrfWithRequisitionModelMixin
 from edc_model import models as edc_models
 
 from effect_labs.panels import fbc_panel
@@ -20,6 +21,7 @@ class BloodResultsFbc(
     RbcModelMixin,
     WbcModelMixin,
     PlateletsModelMixin,
+    NeutrophilModelMixin,
     BloodResultsModelMixin,
     edc_models.BaseUuidModel,
 ):
