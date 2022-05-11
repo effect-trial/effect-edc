@@ -1,13 +1,11 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO
-from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
 from effect_lists.models import Medication
 
-from ..choices import ARV_DECISION, FLUCONAZOLE_DOSES
+from ..choices import FLUCONAZOLE_DOSES
 from ..model_mixins import CrfModelMixin
 
 
@@ -43,17 +41,6 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     flucon_dose_other_reason = edc_models.OtherCharField(
         verbose_name="Other Fluconazole dose reason:"
-    )
-
-    # TODO: move to ARV history, or remove???
-    current_arv_decision = models.CharField(
-        verbose_name=mark_safe(
-            "What decision was made at enrolment regarding their "
-            "<u>current</u> ART regimen?"
-        ),
-        max_length=25,
-        choices=ARV_DECISION,
-        default=NOT_APPLICABLE,
     )
 
     reported_neuro_abnormality = models.CharField(
