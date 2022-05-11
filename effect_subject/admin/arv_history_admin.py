@@ -45,6 +45,12 @@ class ArvHistoryAdmin(CrfModelAdmin):
             },
         ),
         (
+            "ART decision",
+            {
+                "fields": ("art_decision",),
+            },
+        ),
+        (
             "Viral load",
             {
                 "fields": (
@@ -75,6 +81,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
     ]
 
     radio_fields = {
+        "art_decision": admin.VERTICAL,
         "cd4_date_estimated": admin.VERTICAL,
         "current_art_date_estimated": admin.VERTICAL,
         "defaulted_date_estimated": admin.VERTICAL,
