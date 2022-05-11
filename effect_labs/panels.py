@@ -71,6 +71,7 @@ blood_culture_panel = RequisitionPanel(
     utest_ids=[],
 )
 
+# TODO: update fbc_panel
 fbc_panel = RequisitionPanel(
     name="fbc",
     verbose_name="Full Blood Count",
@@ -78,8 +79,11 @@ fbc_panel = RequisitionPanel(
     abbreviation="FBC",
     utest_ids=[
         ("haemoglobin", "Haemoglobin"),
-        "rbc",
         "wbc",
         "platelets",
+        ("neutrophil", "Absolute neutrophils count"),
+        # ("neutrophil_diff", "Differential neutrophils count"),
+        # ("lymphocyte", "Absolute lymphocyte count"),
+        # ("lymphocyte_diff", "Differential lymphocyte count"),
     ],
 )
