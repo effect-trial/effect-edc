@@ -13,27 +13,27 @@ from ..model_mixins import CrfModelMixin
 
 class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
-    fluconazole_1w_prior_rando = models.CharField(
+    flucon_1w_prior_rando = models.CharField(
         verbose_name="Fluconazole taken within 1 week prior to randomization?",
         max_length=5,
         choices=YES_NO,
     )
 
-    fluconazole_days = models.IntegerField(
+    flucon_days = models.IntegerField(
         verbose_name="If YES, number of days Fluconazole taken:",
         validators=[MinValueValidator(1)],
         null=True,
         blank=True,
     )
 
-    fluconazole_dose = models.CharField(
+    flucon_dose = models.CharField(
         verbose_name="If YES, Fluconazole dose (if taken < 1 week prior to randomisation):",
         max_length=25,
         choices=FLUCONAZOLE_DOSES,
         help_text="in mg/d",
     )
 
-    fluconazole_dose_other = models.IntegerField(
+    flucon_dose_other = models.IntegerField(
         verbose_name="Other Fluconazole dose (if taken < 1 week prior to randomisation):",
         validators=[MinValueValidator(1), MaxValueValidator(1199)],
         null=True,
@@ -41,7 +41,7 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="in mg/d",
     )
 
-    fluconazole_dose_other_reason = edc_models.OtherCharField(
+    flucon_dose_other_reason = edc_models.OtherCharField(
         verbose_name="Other Fluconazole dose reason:"
     )
 
