@@ -42,7 +42,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen = models.ManyToManyField(
         ArvRegimens,
         verbose_name=format_html(
-            "Which drugs were prescribed for their <u>first</u> ART regimen?"
+            "Which drugs were prescribed for their <u>first</u> (or <u>only</u>) ART regimen?"
         ),
         related_name="initial_arv",
     )
