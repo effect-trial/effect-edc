@@ -45,6 +45,12 @@ class ArvHistoryAdmin(CrfModelAdmin):
             },
         ),
         (
+            "ART decision",
+            {
+                "fields": ("art_decision",),
+            },
+        ),
+        (
             "Viral load",
             {
                 "fields": (
@@ -75,16 +81,17 @@ class ArvHistoryAdmin(CrfModelAdmin):
     ]
 
     radio_fields = {
-        "has_viral_load_result": admin.VERTICAL,
-        "has_cd4_result": admin.VERTICAL,
+        "art_decision": admin.VERTICAL,
         "cd4_date_estimated": admin.VERTICAL,
         "current_art_date_estimated": admin.VERTICAL,
         "defaulted_date_estimated": admin.VERTICAL,
-        "is_adherent": admin.VERTICAL,
-        "has_defaulted": admin.VERTICAL,
         "ever_on_art": admin.VERTICAL,
+        "has_cd4_result": admin.VERTICAL,
+        "has_defaulted": admin.VERTICAL,
         "has_switched_art_regimen": admin.VERTICAL,
+        "has_viral_load_result": admin.VERTICAL,
         "initial_art_date_estimated": admin.VERTICAL,
+        "is_adherent": admin.VERTICAL,
         "on_art_at_crag": admin.VERTICAL,
         "viral_load_date_estimated": admin.VERTICAL,
     }

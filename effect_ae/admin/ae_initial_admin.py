@@ -46,8 +46,8 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
             "Part 3: Cause and relationship to study",
             {
                 "fields": (
-                    "fluconazole_relation",
-                    "flucytosine_relation",
+                    "flucon_relation",
+                    "flucyt_relation",
                     "ae_study_relation_possibility",
                     "ae_cause",
                     "ae_cause_other",
@@ -65,8 +65,8 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
         "ae_classification": admin.VERTICAL,
         "ae_grade": admin.VERTICAL,
         "ae_study_relation_possibility": admin.VERTICAL,
-        "fluconazole_relation": admin.VERTICAL,
-        "flucytosine_relation": admin.VERTICAL,
+        "flucon_relation": admin.VERTICAL,
+        "flucyt_relation": admin.VERTICAL,
         "inpatient_status": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "sae": admin.VERTICAL,

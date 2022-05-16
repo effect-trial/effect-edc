@@ -1,7 +1,7 @@
 from django.core.validators import MinValueValidator
 from django.db import models
 from edc_action_item.models import ActionModelMixin
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
+from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import (
     NonUniqueSubjectIdentifierFieldMixin,
@@ -78,6 +78,20 @@ class Hospitalization(
     lp_count = models.IntegerField(
         verbose_name="If YES, number performed during this hospitalization",
         validators=[MinValueValidator(1)],
+        null=True,
+        blank=True,
+    )
+
+    csf_positive_cm = models.CharField(
+        verbose_name="If YES, was CSF positive for CM?",
+        max_length=15,
+        choices=YES_NO_UNKNOWN_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    csf_positive_cm_date = models.DateField(
+        verbose_name="If YES, date of positive CSF",
+        validators=[date_not_future, date_not_before_study_start],
         null=True,
         blank=True,
     )

@@ -30,7 +30,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
     diary_issued_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
-    fcon_doses_missed = models.CharField(
+    flucon_doses_missed = models.CharField(
         verbose_name="Have any Fluconazole doses been missed since the last visit?",
         max_length=15,
         choices=YES_NO_UNKNOWN,
@@ -38,14 +38,14 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    fcon_doses_missed_number = models.IntegerField(
+    flucon_doses_missed_number = models.IntegerField(
         verbose_name="If YES, number of Fluconazole doses missed since last visit:",
         help_text="This should be measured in single doses (1 dose per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 1)],
         default=0,
     )
 
-    fcyz_doses_missed = models.CharField(
+    flucyt_doses_missed = models.CharField(
         verbose_name="Have any Flucytosine doses been missed since the last visit?",
         max_length=15,
         choices=YES_NO_UNKNOWN,
@@ -53,7 +53,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    fcyz_doses_missed_number = models.IntegerField(
+    flucyt_doses_missed_number = models.IntegerField(
         verbose_name="If YES, number of Flucytosine doses missed since last visit:",
         help_text="This should be measured in single doses (4 doses per day)",
         validators=[MinValueValidator(0), MaxValueValidator(14 * 4)],
@@ -106,7 +106,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name=IF_NO_SPECIFY_REASON
     )
 
-    on_fcon = models.CharField(
+    on_flucon = models.CharField(
         verbose_name="Is the patient receiving Fluconazole?",
         max_length=15,
         choices=YES_NO,
@@ -114,7 +114,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    on_fcon_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
+    on_flucon_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     on_arv = models.CharField(
         verbose_name="Is the patient receiving ARVs?",
@@ -126,7 +126,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     on_arv_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
-    opinion_fcon_adherent = models.CharField(
+    opinion_flucon_adherent = models.CharField(
         verbose_name="In the clinician’s opinion, is the patient 90% adherent to Fluconazole?",
         max_length=15,
         choices=YES_NO,
