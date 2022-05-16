@@ -168,7 +168,7 @@ class SubjectScreening(
     )
 
     # exclusion
-    on_fluconazole = models.CharField(
+    on_flucon = models.CharField(
         verbose_name=(
             # As per '01_Screening Form_110821_V0.5.pdf' / 'EFFECT Protocol V1.2 7July 2021'
             "Is the patient already taking high-dose fluconazole treatment "
