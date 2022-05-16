@@ -1,11 +1,40 @@
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA
+from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 from edc_protocol.validators import date_not_before_study_start
 
 
 class DeathReportModelMixin(models.Model):
+
+    hospitalization_date = models.DateField(
+        verbose_name="If YES, date of hospitalisation",
+        validators=[edc_models.date_not_future, date_not_before_study_start],
+        null=True,
+        blank=True,
+    )
+
+    hospitalization_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
+    clinical_notes_available = models.CharField(
+        verbose_name="If YES, are clinical notes available to study staff?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="If YES, include details of admission in narrative",
+    )
+
+    cm_sx = models.CharField(
+        verbose_name=(
+            "If YES, do notes document any symptoms or signs of "
+            "cryptococcal meningitis prior to death?"
+        ),
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+    )
 
     speak_nok = models.CharField(
         verbose_name="Did study staff speak to NOK following death?",

@@ -26,10 +26,17 @@ class DeathReportAdmin(DeathReportModelAdminMixin, SimpleHistoryAdmin):
         ),
         (
             "Death",
+            {"fields": ("death_datetime",)},
+        ),
+        (
+            "Hospitalization",
             {
                 "fields": (
-                    "death_datetime",
                     "death_as_inpatient",
+                    "hospitalization_date",
+                    "hospitalization_date_estimated",
+                    "clinical_notes_available",
+                    "cm_sx",
                 )
             },
         ),
@@ -57,10 +64,13 @@ class DeathReportAdmin(DeathReportModelAdminMixin, SimpleHistoryAdmin):
 
     radio_fields = {
         "cause_of_death": admin.VERTICAL,
+        "clinical_notes_available": admin.VERTICAL,
+        "cm_sx": admin.VERTICAL,
         "date_first_unwell_estimated": admin.VERTICAL,
         "death_as_inpatient": admin.VERTICAL,
         "drowsy_confused_altered_behaviour": admin.VERTICAL,
         "headache": admin.VERTICAL,
+        "hospitalization_date_estimated": admin.VERTICAL,
         "seizures": admin.VERTICAL,
         "speak_nok": admin.VERTICAL,
     }
