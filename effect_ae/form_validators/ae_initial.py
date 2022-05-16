@@ -83,7 +83,7 @@ class AeInitialFormValidator(FormValidator):
             )
 
     def validate_study_relation_possibility(self):
-        for study_drug in ["fluconazole", "flucytosine"]:
+        for study_drug in ["flucon", "flucyt"]:
             if (
                 self.cleaned_data.get("ae_study_relation_possibility") == NO
                 and self.cleaned_data.get(f"{study_drug}_relation")

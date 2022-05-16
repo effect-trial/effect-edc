@@ -1,5 +1,5 @@
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.constants import (
     DEFINITELY_RELATED,
@@ -16,12 +16,13 @@ from effect_ae.form_validators import AeInitialFormValidator
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
+@tag("ae")
 class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = AeInitialFormValidator
 
     inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
-    study_drugs = ["fluconazole", "flucytosine"]
+    study_drugs = ["flucon", "flucyt"]
     study_drug_relationships_choices = [choice[0] for choice in STUDY_DRUG_RELATIONSHIP]
 
     def test_date_admitted_required_if_patient_admitted(self):
