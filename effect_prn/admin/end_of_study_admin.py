@@ -37,7 +37,7 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                     "offschedule_reason",
                     "offschedule_reason_other",
                     "withdrawal_consent_reasons",
-                    "late_exclusion_reasons",
+                    "late_exclusion_other",
                     "transferred_consent",
                     "comment",
                 )

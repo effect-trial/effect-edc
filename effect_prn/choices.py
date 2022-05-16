@@ -1,4 +1,7 @@
+from edc_consent.constants import CONSENT_WITHDRAWAL
 from edc_constants.constants import NOT_APPLICABLE, OTHER
+
+from effect_prn.constants import CARE_TRANSFERRED_OUT, LATE_EXCLUSION_OTHER
 
 ACTION_REQUIRED = (
     ("remain_on_study", "Participant to remain on trial"),
@@ -48,14 +51,14 @@ PROTOCOL_VIOLATION = (
 
 STUDY_TERMINATION_REASONS = (
     ("completed_6m_followup", "Completed 6 month follow-up"),
-    ("consent_withdrawal", "Withdrawal of consent"),
+    (CONSENT_WITHDRAWAL, "Withdrawal of consent"),
     (
         "late_exclusion_positive_baseline_crag",
         "Late Exclusion—positive baseline CSF Crag result",
     ),
-    ("late_exclusion_other", "Late exclusion—Other reason"),
+    (LATE_EXCLUSION_OTHER, "Late exclusion—Other reason"),
     (
-        "care_transferred_out",
+        CARE_TRANSFERRED_OUT,
         "Care transferred to another institution",
     ),
     ("patient_lost_followup", "Patient Lost to follow up"),
