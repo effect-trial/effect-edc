@@ -9,7 +9,11 @@ from edc_protocol_violation.action_items import (
     ProtocolDeviationViolationAction as BaseProtocolDeviationViolationAction,
 )
 
-from .constants import UNBLINDING_REQUEST_ACTION, UNBLINDING_REVIEW_ACTION
+from .constants import (
+    HOSPITALIZATION_ACTION,
+    UNBLINDING_REQUEST_ACTION,
+    UNBLINDING_REVIEW_ACTION,
+)
 
 
 class EndOfStudyAction(ActionWithNotification):
@@ -23,6 +27,18 @@ class EndOfStudyAction(ActionWithNotification):
     ]
     reference_model = "effect_prn.endofstudy"
     show_link_to_changelist = True
+    admin_site_name = "effect_prn_admin"
+    priority = HIGH_PRIORITY
+
+
+class HospitalizationAction(ActionWithNotification):
+    name = HOSPITALIZATION_ACTION
+    display_name = "Submit Hospitalization Report"
+    notification_display_name = "Hospitalization"
+    parent_action_names = []
+    reference_model = "effect_prn.hospitalization"
+    show_link_to_changelist = True
+    show_link_to_add = True
     admin_site_name = "effect_prn_admin"
     priority = HIGH_PRIORITY
 
@@ -94,6 +110,7 @@ class ProtocolDeviationViolationAction(BaseProtocolDeviationViolationAction):
     admin_site_name = "effect_prn_admin"
 
 
+site_action_items.register(HospitalizationAction)
 site_action_items.register(ProtocolDeviationViolationAction)
 site_action_items.register(EndOfStudyAction)
 site_action_items.register(LossToFollowupAction)

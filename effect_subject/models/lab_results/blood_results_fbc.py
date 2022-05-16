@@ -4,6 +4,10 @@ from edc_lab_results import BLOOD_RESULTS_FBC_ACTION
 from edc_lab_results.model_mixins import (
     BloodResultsModelMixin,
     HaemoglobinModelMixin,
+    LymphocyteDiffModelMixin,
+    LymphocyteModelMixin,
+    NeutrophilDiffModelMixin,
+    NeutrophilModelMixin,
     PlateletsModelMixin,
     RbcModelMixin,
     WbcModelMixin,
@@ -20,6 +24,10 @@ class BloodResultsFbc(
     RbcModelMixin,
     WbcModelMixin,
     PlateletsModelMixin,
+    NeutrophilModelMixin,
+    NeutrophilDiffModelMixin,
+    LymphocyteDiffModelMixin,
+    LymphocyteModelMixin,
     BloodResultsModelMixin,
     edc_models.BaseUuidModel,
 ):

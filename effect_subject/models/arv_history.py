@@ -1,6 +1,7 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
@@ -8,6 +9,7 @@ from edc_model.models import date_not_future
 
 from effect_lists.models import ArvRegimens
 
+from ..choices import ARV_DECISION
 from ..model_mixins import CrfModelMixin
 
 
@@ -40,7 +42,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen = models.ManyToManyField(
         ArvRegimens,
         verbose_name=format_html(
-            "Which drugs were prescribed for their <u>first</u> ART regimen?"
+            "Which drugs were prescribed for their <u>first</u> (or <u>only</u>) ART regimen?"
         ),
         related_name="initial_arv",
     )
@@ -115,6 +117,15 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[MinValueValidator(0), MaxValueValidator(31)],
         null=True,
         blank=True,
+    )
+
+    art_decision = models.CharField(
+        verbose_name=mark_safe(
+            "What decision was made at enrolment regarding their <u>current</u> ART regimen?"
+        ),
+        max_length=25,
+        choices=ARV_DECISION,
+        default=NOT_APPLICABLE,
     )
 
     has_viral_load_result = models.CharField(

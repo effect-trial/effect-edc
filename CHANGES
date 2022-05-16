@@ -6,9 +6,15 @@ Changes
 - changes to Signs and Symptoms form:
     - reorder:
         - move 'cm_sx' (Are any of the signs or symptoms related to cryptococcal meningitis (CM)?) higher up form
-        - more reporting fields: 'reportable_as_ae' and 'patient_admitted' to bottom of form
+        - move reporting fields: 'reportable_as_ae' and 'patient_admitted' to bottom of form
     - remove fields: 'cm_sx_lp_done' , 'cm_sx_bloods_taken', 'cm_sx_bloods_taken_other'
+    - remove '--No symptoms to report' symptom choice (to be replaced by use of '--Not applicable')
     - minor updates to question text/help text
+- changes to Visit Schedule:
+    - D1:
+        - require only FBC and Chemistry requisitions at baseline (all others still available as PRNs)
+    - Unscheduled:
+        - Add Vital Signs CRF to be included for all unscheduled visits
 
 0.1.2
 -----
