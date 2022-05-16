@@ -79,7 +79,7 @@ class TestForms(EffectTestCaseMixin, TestCase):
             mg_gcs_lt_15=NO,
             any_other_mg_ssx=NO,
             jaundice=NO,
-            on_fluconazole=NO,
+            on_flucon=NO,
             pregnant=NOT_APPLICABLE,
             breast_feeding=NO,
             prior_cm_episode=NO,

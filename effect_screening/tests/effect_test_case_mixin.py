@@ -58,7 +58,7 @@ def get_eligible_options():
         mg_gcs_lt_15=NO,
         any_other_mg_ssx=NO,
         jaundice=NO,
-        on_fluconazole=NO,
+        on_flucon=NO,
         pregnant=NOT_APPLICABLE,
         breast_feeding=NOT_APPLICABLE,
         prior_cm_episode=NO,
