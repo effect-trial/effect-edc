@@ -17,8 +17,6 @@ class EndOfStudyFormValidator(
 
     def clean(self):
 
-        self.validate_death_report_if_deceased()
-
         self.required_if(YES, field="cm_admitted", field_required="cm_admitted_cnt")
 
         self.required_if(

@@ -52,13 +52,11 @@ PROTOCOL_VIOLATION = (
 STUDY_TERMINATION_REASONS = (
     ("completed_6m_followup", "Completed 6 month follow-up"),
     (CONSENT_WITHDRAWAL, "Withdrawal of consent"),
-    ("consent_withdrawal", "Withdrawal of consent"),
     (
         "late_exclusion_positive_baseline_crag",
         "Late Exclusion—positive baseline CSF Crag result",
     ),
     (LATE_EXCLUSION_OTHER, "Late exclusion—Other reason"),
-    ("late_exclusion_other", "Late exclusion—Other reason"),
     (
         CARE_TRANSFERRED_OUT,
         "Care transferred to another institution",
