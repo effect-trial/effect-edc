@@ -1,5 +1,6 @@
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, NOT_ESTIMATED, OTHER, YES
+from edc_utils import get_utcnow_as_date
 from model_bakery import baker
 
 from effect_lists.models import Antibiotics, Drugs, TbTreatments
@@ -81,30 +82,30 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "cm_tx_given": "1w_amb_5fc",
             "cm_tx_given_other": "",
             "on_tb_tx": YES,
-            "tb_tx_date": self.get_utcnow_as_date(),
+            "tb_tx_date": get_utcnow_as_date(),
             "tb_tx_date_estimated": NOT_ESTIMATED,
             "tb_tx_given": TbTreatments.objects.filter(name="H"),
             "tb_tx_given_other": "",
             "tb_tx_reason_no": NOT_APPLICABLE,
             "tb_tx_reason_no_other": "",
             "on_steroids": YES,
-            "steroids_date": self.get_utcnow_as_date(),
+            "steroids_date": get_utcnow_as_date(),
             "steroids_date_estimated": NOT_ESTIMATED,
             "steroids_given": "oral_prednisolone",
             "steroids_given_other": "",
             "steroids_course": 3,
             "on_co_trimoxazole": YES,
-            "co_trimoxazole_date": self.get_utcnow_as_date(),
+            "co_trimoxazole_date": get_utcnow_as_date(),
             "co_trimoxazole_date_estimated": NOT_ESTIMATED,
             "co_trimoxazole_reason_no": NOT_APPLICABLE,
             "co_trimoxazole_reason_no_other": "",
             "on_antibiotics": YES,
-            "antibiotics_date": self.get_utcnow_as_date(),
+            "antibiotics_date": get_utcnow_as_date(),
             "antibiotics_date_estimated": NOT_ESTIMATED,
             "antibiotics_given": Antibiotics.objects.filter(name="amoxicillin"),
             "antibiotics_given_other": "",
             "on_other_drugs": YES,
-            "other_drugs_date": self.get_utcnow_as_date(),
+            "other_drugs_date": get_utcnow_as_date(),
             "other_drugs_date_estimated": NOT_ESTIMATED,
             "other_drugs_given": Drugs.objects.filter(name="vitamins"),
             "other_drugs_given_other": "",
@@ -268,7 +269,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "on_steroids": YES,
-                "steroids_date": self.get_utcnow_as_date(),
+                "steroids_date": get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": NOT_APPLICABLE,
                 "steroids_given_other": "",
@@ -286,7 +287,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "on_steroids": YES,
-                "steroids_date": self.get_utcnow_as_date(),
+                "steroids_date": get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": OTHER,
                 "steroids_given_other": "",
@@ -304,7 +305,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "on_steroids": YES,
-                "steroids_date": self.get_utcnow_as_date(),
+                "steroids_date": get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "xxx",
@@ -338,7 +339,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(
             {
                 "on_steroids": YES,
-                "steroids_date": self.get_utcnow_as_date(),
+                "steroids_date": get_utcnow_as_date(),
                 "steroids_date_estimated": "MD",
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "",
@@ -386,7 +387,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
-                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date": get_utcnow_as_date(),
                     }
                 )
                 self.assertFormValidatorError(
@@ -408,7 +409,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
-                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": NOT_APPLICABLE,
                     }
                 )
@@ -452,7 +453,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
-                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_given": list_model.objects.none(),
                     }
@@ -495,7 +496,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
-                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_given": list_model.objects.filter(name=OTHER),
                         f"{field_stub}_given_other": "",
@@ -559,7 +560,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
-                        f"{field_stub}_date": self.get_utcnow_as_date(),
+                        f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_reason_no": "contraindicated",
                     }
