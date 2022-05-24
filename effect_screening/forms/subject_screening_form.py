@@ -3,9 +3,15 @@ from typing import Any
 from django import forms
 from edc_form_validators import FormValidatorMixin
 from edc_screening.modelform_mixins import AlreadyConsentedFormMixin
+from effect_form_validators.effect_screening import (
+    SubjectScreeningFormValidator as Base,
+)
 
-from ..form_validators import SubjectScreeningFormValidator
 from ..models import SubjectScreening
+
+
+class SubjectScreeningFormValidator(Base):
+    pass
 
 
 class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.ModelForm):
