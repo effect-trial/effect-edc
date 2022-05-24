@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-import arrow
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
