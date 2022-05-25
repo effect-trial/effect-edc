@@ -1,4 +1,4 @@
-from typing import Any
+from typing import Any, Optional
 
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 
@@ -6,7 +6,8 @@ from effect_visit_schedule.constants import DAY01, DAY14
 
 
 class ReportingFieldsetBaselineTestCaseMixin:
-    default_cleaned_data = None
+    def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
+        return {}
 
     def test_baseline_cleaned_data_valid(self: Any):
         """Test that the test data we're working with is valid."""
@@ -39,7 +40,8 @@ class ReportingFieldsetBaselineTestCaseMixin:
 
 
 class ReportingFieldsetDay14TestCaseMixin:
-    default_cleaned_data = None
+    def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
+        return {}
 
     def test_d14_cleaned_data_valid(self: Any):
         """Test that the test data we're working with is valid."""

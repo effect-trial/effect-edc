@@ -22,10 +22,10 @@ missed_doses_fieldset_tuple = (
     "Missed doses",
     {
         "fields": (
-            "fcon_doses_missed",
-            "fcon_doses_missed_number",
-            "fcyz_doses_missed",
-            "fcyz_doses_missed_number",
+            "flucon_doses_missed",
+            "flucon_doses_missed_number",
+            "flucyt_doses_missed",
+            "flucyt_doses_missed_number",
         )
     },
 )
@@ -55,11 +55,11 @@ adherence_summary_fieldset_tuple = (
         "fields": (
             "linked_local_clinic",
             "linked_local_clinic_reason_no",
-            "on_fcon",
-            "on_fcon_reason_no",
+            "on_flucon",
+            "on_flucon_reason_no",
             "on_arv",
             "on_arv_reason_no",
-            "opinion_fcon_adherent",
+            "opinion_flucon_adherent",
             "opinion_arv_adherent",
             "adherence_narrative",
         )

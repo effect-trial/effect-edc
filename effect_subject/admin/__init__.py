@@ -12,7 +12,6 @@ from .blood_culture_admin import BloodCultureAdmin
 from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
-from .followup_admin import FollowupAdmin
 from .health_economics_admin import HealthEconomicsAdmin
 from .histopathology_admin import HistopathologyAdmin
 from .lab_results import BloodResultsChemAdmin, BloodResultsFbcAdmin

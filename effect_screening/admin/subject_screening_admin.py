@@ -88,7 +88,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
             {
                 "fields": (
                     "reaction_to_study_drugs",
-                    "on_fluconazole",
+                    "on_flucon",
                     "contraindicated_meds",
                 ),
             },
@@ -176,7 +176,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "mg_headache_vomiting": admin.VERTICAL,
         "mg_seizures": admin.VERTICAL,
         "mg_severe_headache": admin.VERTICAL,
-        "on_fluconazole": admin.VERTICAL,
+        "on_flucon": admin.VERTICAL,
         "pregnant": admin.VERTICAL,
         "prior_cm_episode": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,

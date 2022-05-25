@@ -1,5 +1,5 @@
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.constants import (
     DEFINITELY_RELATED,
@@ -10,18 +10,20 @@ from edc_adverse_event.constants import (
 from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
 from edc_constants.utils import get_display
 from edc_reportable import GRADE3, GRADE4, GRADE5
+from edc_utils import get_utcnow_as_date
 
 from effect_ae.choices import INPATIENT_STATUSES
 from effect_ae.form_validators import AeInitialFormValidator
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
+@tag("ae")
 class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = AeInitialFormValidator
 
     inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
-    study_drugs = ["fluconazole", "flucytosine"]
+    study_drugs = ["flucon", "flucyt"]
     study_drug_relationships_choices = [choice[0] for choice in STUDY_DRUG_RELATIONSHIP]
 
     def test_date_admitted_required_if_patient_admitted(self):
@@ -31,13 +33,13 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             expected_msg="This field is required",
             form_validator=self.validate_form_validator(cleaned_data),
         )
-        cleaned_data.update({"date_admitted": self.get_utcnow_as_date()})
+        cleaned_data.update({"date_admitted": get_utcnow_as_date()})
         self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
     def test_date_admitted_not_required_if_patient_not_admitted(self):
         cleaned_data = {
             "patient_admitted": NO,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
         }
         self.assertFormValidatorError(
             field="date_admitted",
@@ -51,7 +53,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = {
             "ae_grade": GRADE3,
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": NOT_APPLICABLE,
         }
         self.assertFormValidatorError(
@@ -66,7 +68,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     {
                         "ae_grade": GRADE5 if status == DECEASED else GRADE3,
                         "inpatient_status": status,
-                        "date_discharged": self.get_utcnow_as_date()
+                        "date_discharged": get_utcnow_as_date()
                         if status == DISCHARGED
                         else None,
                     }
@@ -96,7 +98,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data = {
                     "ae_grade": grade,
                     "patient_admitted": YES,
-                    "date_admitted": self.get_utcnow_as_date(),
+                    "date_admitted": get_utcnow_as_date(),
                     "inpatient_status": DECEASED,
                 }
                 self.assertFormValidatorError(
@@ -112,7 +114,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = {
             "ae_grade": GRADE5,
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": DECEASED,
         }
         self.assertFormValidatorNoError(
@@ -123,7 +125,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data = {
             "ae_grade": GRADE5,
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": INPATIENT,
         }
         self.assertFormValidatorError(
@@ -141,7 +143,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data = {
                     "ae_grade": grade,
                     "patient_admitted": YES,
-                    "date_admitted": self.get_utcnow_as_date(),
+                    "date_admitted": get_utcnow_as_date(),
                     "inpatient_status": INPATIENT,
                 }
                 self.assertFormValidatorNoError(
@@ -151,7 +153,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     def test_date_discharged_required_if_patient_discharged(self):
         cleaned_data = {
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": DISCHARGED,
             "date_discharged": None,
         }
@@ -160,7 +162,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             expected_msg="This field is required",
             form_validator=self.validate_form_validator(cleaned_data),
         )
-        cleaned_data.update({"date_discharged": self.get_utcnow_as_date()})
+        cleaned_data.update({"date_discharged": get_utcnow_as_date()})
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -176,9 +178,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                 cleaned_data = {
                     "ae_grade": GRADE5 if status == DECEASED else GRADE4,
                     "patient_admitted": YES,
-                    "date_admitted": self.get_utcnow_as_date(),
+                    "date_admitted": get_utcnow_as_date(),
                     "inpatient_status": status,
-                    "date_discharged": self.get_utcnow_as_date(),
+                    "date_discharged": get_utcnow_as_date(),
                 }
                 self.assertFormValidatorError(
                     field="date_discharged",
@@ -195,7 +197,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             "patient_admitted": NO,
             "date_admitted": None,
             "inpatient_status": NOT_APPLICABLE,
-            "date_discharged": self.get_utcnow_as_date(),
+            "date_discharged": get_utcnow_as_date(),
         }
         self.assertFormValidatorError(
             field="date_discharged",
@@ -210,9 +212,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     def test_date_discharged_after_date_admitted_ok(self):
         cleaned_data = {
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date() - relativedelta(days=1),
+            "date_admitted": get_utcnow_as_date() - relativedelta(days=1),
             "inpatient_status": DISCHARGED,
-            "date_discharged": self.get_utcnow_as_date(),
+            "date_discharged": get_utcnow_as_date(),
         }
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
@@ -221,9 +223,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     def test_date_discharged_on_date_admitted_ok(self):
         cleaned_data = {
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": DISCHARGED,
-            "date_discharged": self.get_utcnow_as_date(),
+            "date_discharged": get_utcnow_as_date(),
         }
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
@@ -232,9 +234,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     def test_date_discharged_before_date_admitted_raises_error(self):
         cleaned_data = {
             "patient_admitted": YES,
-            "date_admitted": self.get_utcnow_as_date(),
+            "date_admitted": get_utcnow_as_date(),
             "inpatient_status": DISCHARGED,
-            "date_discharged": self.get_utcnow_as_date() - relativedelta(days=1),
+            "date_discharged": get_utcnow_as_date() - relativedelta(days=1),
         }
         self.assertFormValidatorError(
             field="date_discharged",

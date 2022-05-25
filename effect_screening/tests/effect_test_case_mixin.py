@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-import arrow
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -58,7 +57,7 @@ def get_eligible_options():
         mg_gcs_lt_15=NO,
         any_other_mg_ssx=NO,
         jaundice=NO,
-        on_fluconazole=NO,
+        on_flucon=NO,
         pregnant=NOT_APPLICABLE,
         breast_feeding=NOT_APPLICABLE,
         prior_cm_episode=NO,
@@ -194,7 +193,3 @@ class EffectTestCaseMixin(
             visit_code_sequence=subject_visit.visit_code_sequence,
             entry_status=REQUIRED,
         )
-
-    @staticmethod
-    def get_utcnow_as_date():
-        return arrow.utcnow().date()

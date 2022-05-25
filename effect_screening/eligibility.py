@@ -70,7 +70,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "breast_feeding",
                 "prior_cm_episode",
                 "reaction_to_study_drugs",
-                "on_fluconazole",
+                "on_flucon",
                 "contraindicated_meds",
                 "mg_severe_headache",
                 "mg_headache_nuchal_rigidity",
@@ -92,8 +92,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
         if self.model_obj.jaundice == YES:
             reasons_ineligible.update(jaundice="Jaundice")
-        if self.model_obj.on_fluconazole == YES:
-            reasons_ineligible.update(on_fluconazole="On fluconazole")
+        if self.model_obj.on_flucon == YES:
+            reasons_ineligible.update(on_flucon="On fluconazole")
         if self.model_obj.pregnant == YES:
             reasons_ineligible.update(pregnant="Pregnant")
         if self.model_obj.breast_feeding == YES:

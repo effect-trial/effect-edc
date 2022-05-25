@@ -37,7 +37,17 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                 )
             },
         ),
-        ("Lumbar puncture", {"fields": ("lp_performed", "lp_count")}),
+        (
+            "Lumbar puncture",
+            {
+                "fields": (
+                    "lp_performed",
+                    "lp_count",
+                    "csf_positive_cm",
+                    "csf_positive_cm_date",
+                )
+            },
+        ),
         ("Narrative", {"fields": ("narrative",)}),
         action_fieldset_tuple,
         audit_fieldset_tuple,
@@ -47,6 +57,7 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     radio_fields = {
         "admitted_date_estimated": admin.VERTICAL,
+        "csf_positive_cm": admin.VERTICAL,
         "discharged": admin.VERTICAL,
         "discharged_date_estimated": admin.VERTICAL,
         "have_details": admin.VERTICAL,

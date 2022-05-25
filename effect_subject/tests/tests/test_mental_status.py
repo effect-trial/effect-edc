@@ -1,10 +1,16 @@
-from django.test import TestCase, tag
+from typing import Optional
+
+from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
+from edc_test_utils.validate_fields_exists_or_raise import (
+    validate_fields_exists_or_raise,
+)
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import MentalStatusForm
 from effect_subject.forms.mental_status_form import MentalStatusFormValidator
+from effect_subject.models import MentalStatus, SubjectVisit
 from effect_subject.tests.tests.mixins import (
     ReportingFieldsetBaselineTestCaseMixin,
     ReportingFieldsetDay14TestCaseMixin,
@@ -12,34 +18,32 @@ from effect_subject.tests.tests.mixins import (
 from effect_visit_schedule.constants import DAY01, DAY14
 
 
-@tag("ms")
 class TestMentalStatus(EffectTestCaseMixin, TestCase):
-    def setUp(self):
-        super().setUp()
-        self.subject_visit = self.get_subject_visit()
-
     def test_ok(self):
-        subject_visit = self.subject_visit
+        subject_visit = self.get_subject_visit()
         obj = baker.make_recipe("effect_subject.mentalstatus", subject_visit=subject_visit)
         form = MentalStatusForm(instance=obj)
         form.is_valid()
 
 
-@tag("ms")
 class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = MentalStatusFormValidator
 
-    def setUp(self):
+    def setUp(self) -> None:
         super().setUp()
-        self.subject_visit = self.get_subject_visit()
+        subject_visit = self.get_subject_visit()
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        self.get_next_subject_visit(subject_visit)
 
-    def get_valid_mental_status_data(self, visit_code: str = DAY01):
-        self.subject_visit.appointment.visit_code = visit_code
-        return {
-            "subject_visit": self.subject_visit,
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+    @staticmethod
+    def get_valid_mental_status_data(visit_code: Optional[str] = None) -> dict:
+        visit_code = visit_code or DAY01
+        subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
+        cleaned_data = {
+            "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
             "recent_seizure": NO,
             "behaviour_change": NO,
             "confusion": NO,
@@ -50,8 +54,10 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
         }
 
+        validate_fields_exists_or_raise(cleaned_data, MentalStatus)
+        return cleaned_data
 
-@tag("ms")
+
 class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
     def test_baseline_valid_mental_status_data_valid(self):
         cleaned_data = self.get_valid_mental_status_data(visit_code=DAY01)
@@ -102,10 +108,10 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
                 )
 
 
-@tag("ms")
 class TestMentalStatusReportingFieldsetFormValidation(
     ReportingFieldsetBaselineTestCaseMixin,
     ReportingFieldsetDay14TestCaseMixin,
     TestMentalStatusFormValidationBase,
 ):
-    default_cleaned_data = TestMentalStatusFormValidationBase.get_valid_mental_status_data
+    def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
+        return self.get_valid_mental_status_data(visit_code=visit_code)
