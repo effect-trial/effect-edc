@@ -15,11 +15,11 @@ chemistry_panel = RequisitionPanel(
     abbreviation="CHEM",
     processing_profile=chemistry_processing,
     utest_ids=[
+        "alt",
+        "creatinine",
         "albumin",
         "alp",
-        "alt",
         "ast",
-        "creatinine",
         ("crp", "C-Reactive Protein"),
         "egfr",
         "magnesium",

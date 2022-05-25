@@ -1,15 +1,21 @@
-from django.test import TestCase, tag
+from typing import Optional
+
+from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, NOT_ESTIMATED, OTHER, YES
+from edc_test_utils.validate_fields_exists_or_raise import (
+    validate_fields_exists_or_raise,
+)
 from edc_utils import get_utcnow_as_date
+from edc_visit_schedule.constants import DAY01
 from model_bakery import baker
 
 from effect_lists.models import Antibiotics, Drugs, TbTreatments
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import PatientTreatmentForm
 from effect_subject.forms.patient_treatment_form import PatientTreatmentFormValidator
+from effect_subject.models import PatientTreatment, SubjectVisit
 
 
-@tag("pt")
 class TestPatientTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
@@ -24,19 +30,24 @@ class TestPatientTreatment(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
-@tag("pt")
 class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = PatientTreatmentFormValidator
 
-    def setUp(self):
+    def setUp(self) -> None:
         super().setUp()
-        self.subject_visit = self.get_subject_visit()
+        subject_visit = self.get_subject_visit()
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        self.get_next_subject_visit(subject_visit)
 
-    def get_cleaned_data_patient_no_cm_no_tx(self):
-        return {
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+    @staticmethod
+    def get_cleaned_data_patient_no_cm_no_tx(visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY01
+        subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
+        cleaned_data = {
+            "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
             "lp_completed": NO,
             "cm_confirmed": NOT_APPLICABLE,
             "on_cm_tx": NOT_APPLICABLE,
@@ -72,10 +83,17 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs_given_other": "",
         }
 
-    def get_cleaned_data_patient_with_cm_with_all_tx(self):
-        return {
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+        validate_fields_exists_or_raise(cleaned_data, PatientTreatment)
+
+        return cleaned_data
+
+    @staticmethod
+    def get_cleaned_data_patient_with_cm_with_all_tx(visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY01
+        subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
+        cleaned_data = {
+            "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
             "lp_completed": YES,
             "cm_confirmed": YES,
             "on_cm_tx": YES,
@@ -111,20 +129,24 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs_given_other": "",
         }
 
+        validate_fields_exists_or_raise(cleaned_data, PatientTreatment)
+
+        return cleaned_data
+
     def test_cleaned_data_patient_no_cm_no_tx_ok(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_cleaned_data_patient_with_cm_with_all_tx_ok(self):
-        cleaned_data = self.get_cleaned_data_patient_with_cm_with_all_tx()
+        cleaned_data = self.get_cleaned_data_patient_with_cm_with_all_tx(visit_code=DAY01)
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
     def test_cm_confirmed_na_if_lp_not_completed(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": NO,
@@ -138,7 +160,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_confirmed_applicable_if_lp_completed(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -152,7 +174,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_na_if_cm_not_confirmed(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -167,7 +189,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_applicable_if_cm_confirmed(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -182,7 +204,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_na_if_cm_tx_no(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -198,7 +220,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_applicable_if_cm_tx(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -214,7 +236,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_other_required_if_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -231,7 +253,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_cm_tx_given_other_not_required_if_not_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "lp_completed": YES,
@@ -249,7 +271,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
     # steroid validation tests
     def test_steroids_given_na_if_steroids_no(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": NO,
@@ -265,7 +287,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_applicable_if_steroids(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": YES,
@@ -283,7 +305,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_other_required_if_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": YES,
@@ -301,7 +323,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_given_other_not_required_if_not_specified(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": YES,
@@ -319,7 +341,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_course_not_required_if_steroids_no(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": NO,
@@ -335,7 +357,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         )
 
     def test_steroids_course_required_if_steroids(self):
-        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+        cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         cleaned_data.update(
             {
                 "on_steroids": YES,
@@ -361,7 +383,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs",
         ]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
@@ -383,7 +405,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs",
         ]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
@@ -405,7 +427,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs",
         ]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
@@ -428,7 +450,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs",
         ]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
@@ -449,7 +471,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             ("other_drugs", Drugs),
         ]:
             with self.subTest(field_stub=field_stub, list_model=list_model):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
@@ -471,7 +493,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             ("other_drugs", Drugs),
         ]:
             with self.subTest(field_stub=field_stub, list_model=list_model):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
@@ -492,7 +514,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             ("other_drugs", Drugs),
         ]:
             with self.subTest(field_stub=field_stub, list_model=list_model):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
@@ -522,7 +544,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             ("other_drugs", Drugs),
         ]:
             with self.subTest(field_stub=field_stub, list_model=list_model):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
@@ -545,7 +567,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
     def test_reason_no_applicable_if_prescribed_no(self):
         for field_stub in ["tb_tx", "co_trimoxazole"]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update({f"{field_stub}_reason_no": NOT_APPLICABLE})
                 self.assertFormValidatorError(
                     field=f"{field_stub}_reason_no",
@@ -556,7 +578,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
     def test_reason_no_not_applicable_if_prescribed_yes(self):
         for field_stub in ["tb_tx", "co_trimoxazole"]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": YES,
@@ -577,7 +599,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
     def test_reason_no_other_required_if_specified(self):
         for field_stub in ["tb_tx", "co_trimoxazole"]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,
@@ -594,7 +616,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
     def test_reason_no_other_not_required_if_not_specified(self):
         for field_stub in ["tb_tx", "co_trimoxazole"]:
             with self.subTest(field_stub=field_stub):
-                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx()
+                cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
                 cleaned_data.update(
                     {
                         f"on_{field_stub}": NO,

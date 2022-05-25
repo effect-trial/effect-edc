@@ -1,4 +1,4 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_appointment.models import Appointment
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_metadata import KEYED, REQUIRED
@@ -8,7 +8,6 @@ from model_bakery import baker
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
-@tag("mdr")
 class TestMetadataRules(EffectTestCaseMixin, TestCase):
     @staticmethod
     def get_metadata_models(subject_visit):
