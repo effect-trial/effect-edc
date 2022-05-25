@@ -23,6 +23,12 @@ from ..effect_test_case_mixin import EffectTestCaseMixin
 
 @tag("elig")
 class TestForms(EffectTestCaseMixin, TestCase):
+    """Subject screening eligibility tests.
+
+    For form validation tests, see also:
+        effect_form_validators/tests/effect_screening/test_subject_screening.py
+    """
+
     ELIGIBLE_CD4_VALUE = 99
 
     @staticmethod
