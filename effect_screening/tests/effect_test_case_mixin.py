@@ -1,6 +1,5 @@
 from copy import deepcopy
 
-import arrow
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -194,7 +193,3 @@ class EffectTestCaseMixin(
             visit_code_sequence=subject_visit.visit_code_sequence,
             entry_status=REQUIRED,
         )
-
-    @staticmethod
-    def get_utcnow_as_date():
-        return arrow.utcnow().date()

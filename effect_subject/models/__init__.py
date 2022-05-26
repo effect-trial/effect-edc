@@ -5,7 +5,6 @@ from .blood_culture import BloodCulture
 from .chest_xray import ChestXray
 from .clinical_note import ClinicalNote
 from .diagnoses import Diagnoses
-from .followup import Followup
 from .health_economics import HealthEconomics
 from .histpathology import Histopathology
 from .lab_results import BloodResultsChem, BloodResultsFbc, Urinalysis

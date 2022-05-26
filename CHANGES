@@ -1,8 +1,17 @@
 Changes
 =======
 
-[unreleased]
-------------
+0.1.5
+-----
+- add 'csf_positive_cm' and 'csf_positive_cm_date' fields to Hospitalization form
+- add 'hospitalization_date', 'hospitalization_date_estimate', 'clinical_notes_available', 'cm_sx' to Death Report
+- changes to drug field names to make consistent (prefer 'flucon_', 'flucyt_')
+
+0.1.3
+-----
+- add initial Hospitalization form
+- align CM choices in Death and AE forms
+- update 'specify_medications' choices list to include common medications
 - changes to Signs and Symptoms form:
     - reorder:
         - move 'cm_sx' (Are any of the signs or symptoms related to cryptococcal meningitis (CM)?) higher up form

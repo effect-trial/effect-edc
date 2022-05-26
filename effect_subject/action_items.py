@@ -12,7 +12,6 @@ from effect_screening.models import SubjectScreening
 
 from .constants import (
     BLOOD_RESULTS_CHEM_ACTION,
-    FOLLOWUP_ACTION,
     LP_ACTION,
     SX_ACTION,
     VITAL_SIGNS_ACTION,
@@ -37,7 +36,7 @@ class SubjectVisitAction(Action):
 
     def get_next_actions(self):
         next_actions = []
-        if is_baseline(self.reference_obj):
+        if is_baseline(instance=self.reference_obj):
             subject_screening = SubjectScreening.objects.get(
                 subject_identifier=self.subject_identifier
             )
@@ -50,25 +49,6 @@ class BloodResultsChemAction(BaseResultsAction):
     name = BLOOD_RESULTS_CHEM_ACTION
     display_name = "Reportable result: Chemistry"
     reference_model = f"{subject_app_label}.bloodresultschem"
-
-
-class FollowupAction(Action):
-    name = FOLLOWUP_ACTION
-    display_name = "Follow-up"
-    reference_model = "effect_subject.followup"
-
-    priority = HIGH_PRIORITY
-    show_on_dashboard = True
-    create_by_user = False
-
-    def get_next_actions(self) -> List[str]:
-        next_actions = []
-        if (
-            not is_baseline(self.reference_obj.subject_visit)
-            and self.reference_obj.hospitalized == YES
-        ):
-            next_actions.append(AE_INITIAL_ACTION)
-        return next_actions
 
 
 class LpAction(Action):
@@ -92,7 +72,7 @@ class SxAction(Action):
 
     def get_next_actions(self) -> List[str]:
         next_actions = []
-        if not is_baseline(self.reference_obj.subject_visit) and (
+        if not is_baseline(instance=self.reference_obj.subject_visit) and (
             self.reference_obj.reportable_as_ae == YES
             or self.reference_obj.patient_admitted == YES
         ):
@@ -111,7 +91,7 @@ class VitalSignsAction(Action):
 
     def get_next_actions(self) -> List[str]:
         next_actions = []
-        if not is_baseline(self.reference_obj.subject_visit) and (
+        if not is_baseline(instance=self.reference_obj.subject_visit) and (
             self.reference_obj.reportable_as_ae == YES
             or self.reference_obj.patient_admitted == YES
         ):
@@ -123,8 +103,6 @@ def register_actions():
     for action_item_cls in [
         BloodResultsFbcAction,
         BloodResultsChemAction,
-        FollowupAction,
-        # LpAction,
         SxAction,
         VitalSignsAction,
     ]:
