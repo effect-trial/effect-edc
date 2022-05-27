@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - move HIV diagnosis questions from Medical History to Subject Screening CRF
+- move 'abnormal_lung_exam' from Patient History to Vital Signs CRF (#382)
 
 0.1.5
 -----
