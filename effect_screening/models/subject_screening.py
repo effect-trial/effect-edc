@@ -1,8 +1,12 @@
+from datetime import date
+
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
+from edc_dx.utils import calculate_dx_date_if_estimated
+from edc_dx_review.model_mixins import initial_dx_model_mixin_factory
 from edc_model.models import BaseUuidModel, date_not_future
 from edc_model_fields.fields import OtherCharField
 from edc_reportable import CELLS_PER_MICROLITER
@@ -27,6 +31,7 @@ class ScreeningIdentifier(BaseScreeningIdentifier):
 
 
 class SubjectScreening(
+    initial_dx_model_mixin_factory(dx_field_prefix="hiv"),
     ScreeningModelMixin,
     EligibilityModelMixin,
     BaseUuidModel,
@@ -276,6 +281,21 @@ class SubjectScreening(
     )
 
     cm_in_csf_method_other = OtherCharField()
+
+    def save(self, *args, **kwargs):
+        (
+            self.hiv_dx_estimated_date,
+            self.hiv_dx_date_is_estimated,
+        ) = calculate_dx_date_if_estimated(
+            self.hiv_dx_date,
+            self.hiv_dx_ago,
+            self.report_datetime,
+        )
+        super().save(*args, **kwargs)
+
+    @property
+    def best_hiv_dx_date(self) -> date:
+        return self.hiv_dx_date or self.hiv_dx_estimated_date
 
     class Meta:
         verbose_name = "Subject Screening"

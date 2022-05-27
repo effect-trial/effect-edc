@@ -42,10 +42,19 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         ],
         ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
         [
-            "HIV / CD4",
+            "HIV",
             {
                 "fields": (
                     "hiv_pos",
+                    "hiv_dx_ago",
+                    "hiv_dx_date",
+                )
+            },
+        ],
+        [
+            "CD4",
+            {
+                "fields": (
                     "cd4_value",
                     "cd4_date",
                 ),
