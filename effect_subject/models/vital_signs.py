@@ -1,6 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO_NA
+from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
@@ -50,6 +50,10 @@ class VitalSigns(
     )
 
     temperature = TemperatureField()
+
+    abnormal_lung_exam = models.CharField(
+        verbose_name="Abnormal lung exam:", max_length=5, choices=YES_NO
+    )
 
     reportable_as_ae = models.CharField(
         verbose_name="Are any of the above reportable as Grade 3 or above?",

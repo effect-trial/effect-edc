@@ -59,10 +59,6 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    abnormal_lung_exam = models.CharField(
-        verbose_name="Abnormal lung exam:", max_length=5, choices=YES_NO
-    )
-
     any_medications = models.CharField(
         verbose_name="Other medication?", max_length=5, choices=YES_NO
     )
