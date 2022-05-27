@@ -22,7 +22,7 @@ from ..effect_test_case_mixin import EffectTestCaseMixin
 
 
 @tag("elig")
-class TestForms(EffectTestCaseMixin, TestCase):
+class TestEligibility(EffectTestCaseMixin, TestCase):
     """Subject screening eligibility tests.
 
     For form validation tests, see also:
@@ -53,6 +53,8 @@ class TestForms(EffectTestCaseMixin, TestCase):
             "initials": "EW",
             "gender": FEMALE,
             "age_in_years": 25,
+            "hiv_dx_date": (get_utcnow() - relativedelta(days=28)).date(),
+            "hiv_dx_ago": None,
             "unsuitable_for_study": NO,
             "unsuitable_agreed": NOT_APPLICABLE,
             "any_other_mg_ssx_other": "",

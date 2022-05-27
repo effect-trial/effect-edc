@@ -1,6 +1,10 @@
 Changes
 =======
 
+[unreleased]
+------------
+- move HIV diagnosis questions from Medical History to Subject Screening CRF
+
 0.1.5
 -----
 - add 'csf_positive_cm' and 'csf_positive_cm_date' fields to Hospitalization form
