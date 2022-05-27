@@ -17,18 +17,19 @@ class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
     form_validator_cls = SubjectVisitFormValidator
 
     def clean(self):
-        if self.cleaned_data.get("survival_status") == DEAD:
+        cleaned_data = super().clean()
+        if cleaned_data.get("survival_status") == DEAD:
             DeathReportAction(
-                subject_identifier=self.cleaned_data.get("appointment").subject_identifier
+                subject_identifier=cleaned_data.get("appointment").subject_identifier
             )
         else:
             try:
                 DeathReportAction.reference_model_cls().objects.get(
-                    subject_identifier=self.cleaned_data.get("appointment").subject_identifier
+                    subject_identifier=cleaned_data.get("appointment").subject_identifier
                 )
             except ObjectDoesNotExist:
                 ActionItem.objects.filter(
-                    subject_identifier=self.cleaned_data.get("appointment").subject_identifier,
+                    subject_identifier=cleaned_data.get("appointment").subject_identifier,
                     action_type__name=DeathReportAction.name,
                 ).delete()
             else:

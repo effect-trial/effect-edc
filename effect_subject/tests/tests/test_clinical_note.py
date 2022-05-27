@@ -1,4 +1,4 @@
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import NO, YES
 from edc_visit_schedule.constants import DAY1
 
@@ -6,7 +6,6 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.clinical_note_form import ClinicalNoteFormValidator
 
 
-@tag("cn")
 class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
     form_validator_default_form_cls = ClinicalNoteFormValidator
 

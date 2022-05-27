@@ -1,10 +1,10 @@
 from textwrap import wrap
 
-import arrow
 from django import template
 from django.conf import settings
 from django.utils.safestring import mark_safe
 from edc_constants.constants import OTHER, YES
+from edc_utils import get_utcnow
 
 register = template.Library()
 
@@ -17,7 +17,7 @@ format_ae_description_template_name = (
 
 @register.inclusion_tag(format_ae_description_template_name, takes_context=True)
 def format_ae_description(context, ae_initial, wrap_length):
-    context["utc_date"] = arrow.now().date()
+    context["utc_date"] = get_utcnow().date()
     context["SHORT_DATE_FORMAT"] = settings.SHORT_DATE_FORMAT
     context["OTHER"] = OTHER
     context["YES"] = YES

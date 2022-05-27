@@ -1,7 +1,8 @@
 from copy import deepcopy
 from dataclasses import dataclass
+from typing import Optional
 
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import (
     ALIVE,
     DEAD,
@@ -23,31 +24,28 @@ from edc_visit_tracking.constants import SCHEDULED
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.subject_visit_form import SubjectVisitFormValidator
+from effect_subject.models import SubjectVisit
 from effect_visit_schedule.constants import DAY01, DAY03, DAY14
-from effect_visit_schedule.visit_schedules.schedule import visits
 
 
-@tag("sv")
 class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SubjectVisitFormValidator
 
-    def setUp(self):
+    def setUp(self) -> None:
         super().setUp()
-        self.subject_visit = self.get_subject_visit()
-        self.subject_visit_codes = [v.code for v in visits if v.code <= DAY14]
+        subject_visit = self.get_subject_visit()
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        subject_visit = self.get_next_subject_visit(subject_visit)
+        self.get_next_subject_visit(subject_visit)
 
-    def set_subject_visit(self, visit_code: str):
-        for vc in sorted(self.subject_visit_codes):
-            if vc == visit_code:
-                break
-            self.subject_visit = self.get_next_subject_visit(self.subject_visit)
-
-    def get_valid_in_person_sv_data(self, visit_code: str = DAY01):
-        self.set_subject_visit(visit_code=visit_code)
+    @staticmethod
+    def get_valid_in_person_sv_data(visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY01
+        subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
         return {
-            "appointment": self.subject_visit.appointment,
-            "report_datetime": self.subject_visit.report_datetime,
+            "appointment": subject_visit.appointment,
+            "report_datetime": subject_visit.report_datetime,
             "reason": SCHEDULED,
             "reason_unscheduled": NOT_APPLICABLE,
             "reason_unscheduled_other": "",
@@ -63,12 +61,14 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
             "comments": "",
         }
 
-    def get_valid_patient_telephone_sv_data(self, visit_code: str = DAY03):
+    def get_valid_patient_telephone_sv_data(self, visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY03
         cleaned_data = deepcopy(self.get_valid_in_person_sv_data(visit_code))
         cleaned_data.update({"assessment_type": TELEPHONE})
         return cleaned_data
 
-    def get_valid_nok_sv_data(self, visit_code: str = DAY03):
+    def get_valid_nok_sv_data(self, visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY03
         cleaned_data = deepcopy(self.get_valid_in_person_sv_data(visit_code))
         cleaned_data.update(
             {
@@ -79,7 +79,8 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         )
         return cleaned_data
 
-    def get_valid_assessment_type_other_sv_data(self, visit_code: str = DAY03):
+    def get_valid_assessment_type_other_sv_data(self, visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY03
         cleaned_data = deepcopy(self.get_valid_in_person_sv_data(visit_code))
         cleaned_data.update(
             {
@@ -90,7 +91,8 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         )
         return cleaned_data
 
-    def get_valid_assessment_who_other_sv_data(self, visit_code: str = DAY03):
+    def get_valid_assessment_who_other_sv_data(self, visit_code: Optional[str] = None):
+        visit_code = visit_code or DAY03
         cleaned_data = deepcopy(self.get_valid_in_person_sv_data(visit_code))
         cleaned_data.update(
             {
@@ -105,41 +107,42 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_valid_in_person_sv_data_ok(self):
         cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY01)
-        self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+        form_validator = SubjectVisitFormValidator(
+            cleaned_data=cleaned_data, instance=SubjectVisit()
         )
+        form_validator.validate()
 
     def test_valid_patient_telephone_sv_data_ok(self):
         cleaned_data = self.get_valid_patient_telephone_sv_data(visit_code=DAY03)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_valid_nok_sv_data_ok(self):
         cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_valid_assessment_type_other_sv_data_ok(self):
         cleaned_data = self.get_valid_assessment_type_other_sv_data(visit_code=DAY03)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_valid_assessment_who_other_sv_data_ok(self):
         cleaned_data = self.get_valid_assessment_who_other_sv_data(visit_code=DAY03)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_baseline_must_be_in_person(self):
-        cleaned_data = self.get_valid_in_person_sv_data()
+        cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY01)
         cleaned_data.update({"assessment_type": TELEPHONE})
         self.assertFormValidatorError(
             field="assessment_type",
             expected_msg="Invalid. Expected 'In person' at baseline",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update(
@@ -151,20 +154,28 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_type",
             expected_msg="Invalid. Expected 'In person' at baseline",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_after_baseline_can_be_any_assessment_type(self):
-        for visit_code in [vc for vc in self.subject_visit_codes if vc != DAY01]:
-            with self.subTest(visit_code=visit_code):
-                cleaned_data = self.get_valid_in_person_sv_data(visit_code=visit_code)
+        for subject_visit in SubjectVisit.objects.exclude(visit_code=DAY01).order_by(
+            "visit_code"
+        ):
+            with self.subTest(visit_code=subject_visit.visit_code):
+                cleaned_data = self.get_valid_in_person_sv_data(
+                    visit_code=subject_visit.visit_code
+                )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
                 cleaned_data.update({"assessment_type": TELEPHONE})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
                 cleaned_data.update(
@@ -175,7 +186,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
     def test_assessment_type_other_required_if_specified(self):
@@ -184,12 +197,12 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_type_other",
             expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update({"assessment_type_other": "Some other assessment type"})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_assessment_type_other_not_required_if_not_specified(self):
@@ -203,12 +216,12 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_type_other",
             expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update({"assessment_type_other": ""})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_in_person_visit_expects_speak_to_patient(self):
@@ -217,7 +230,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_who",
             expected_msg="Invalid. Expected 'Patient' if 'In person' visit",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update(
@@ -229,7 +242,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_who",
             expected_msg="Invalid. Expected 'Patient' if 'In person' visit",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update(
@@ -239,15 +252,21 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
             }
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_after_baseline_can_be_any_assessment_who(self):
-        for visit_code in [vc for vc in self.subject_visit_codes if vc != DAY01]:
-            with self.subTest(visit_code=visit_code):
-                cleaned_data = self.get_valid_in_person_sv_data(visit_code=visit_code)
+        for subject_visit in SubjectVisit.objects.exclude(visit_code=DAY01).order_by(
+            "visit_code"
+        ):
+            with self.subTest(visit_code=subject_visit.visit_code):
+                cleaned_data = self.get_valid_in_person_sv_data(
+                    visit_code=subject_visit.visit_code
+                )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
                 cleaned_data.update(
@@ -258,7 +277,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
                 cleaned_data.update(
@@ -270,7 +291,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
     def test_assessment_who_other_required_if_specified(self):
@@ -279,12 +302,12 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_who_other",
             expected_msg="This field is required.",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update({"assessment_who_other": "Some other entity"})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_assessment_type_who_other_not_required_if_not_specified(self):
@@ -298,22 +321,20 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="assessment_who_other",
             expected_msg="This field is not required.",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update({"assessment_who_other": ""})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
     def test_info_source_raises_error_if_does_not_reconcile_with_patient_assessment(
         self,
     ):
-        for info_source in [
-            src[0]
-            for src in VISIT_INFO_SOURCE2
-            if src[0] not in [PATIENT, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER, NOT_APPLICABLE]
-        ]:
+        excluded = [PATIENT, HOSPITAL_NOTES, OUTPATIENT_CARDS, OTHER, NOT_APPLICABLE]
+        visit_info_sources = [v[0] for v in VISIT_INFO_SOURCE2 if v[0] not in excluded]
+        for info_source in visit_info_sources:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_in_person_sv_data(visit_code=DAY14)
                 cleaned_data.update({"info_source": info_source})
@@ -325,25 +346,23 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 self.assertFormValidatorError(
                     field="info_source",
                     expected_msg=expected_msg,
-                    form_validator=self.validate_form_validator(cleaned_data),
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    ),
                 )
 
-    @tag("1")
     def test_info_source_raises_error_if_does_not_reconcile_with_nok_telephone_answers(
         self,
     ):
-        for info_source in [
-            src[0]
-            for src in VISIT_INFO_SOURCE2
-            if src[0]
-            not in [
-                PATIENT_REPRESENTATIVE,
-                HOSPITAL_NOTES,
-                OUTPATIENT_CARDS,
-                OTHER,
-                NOT_APPLICABLE,
-            ]
-        ]:
+        excluded = [
+            PATIENT_REPRESENTATIVE,
+            HOSPITAL_NOTES,
+            OUTPATIENT_CARDS,
+            OTHER,
+            NOT_APPLICABLE,
+        ]
+        visit_info_sources = [v[0] for v in VISIT_INFO_SOURCE2 if v[0] not in excluded]
+        for info_source in visit_info_sources:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
                 cleaned_data.update({"info_source": info_source})
@@ -355,24 +374,23 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 self.assertFormValidatorError(
                     field="info_source",
                     expected_msg=expected_msg,
-                    form_validator=self.validate_form_validator(cleaned_data),
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    ),
                 )
 
     def test_info_source_raises_error_if_does_not_reconcile_with_other_assessment_type(
         self,
     ):
-        for info_source in [
-            src[0]
-            for src in VISIT_INFO_SOURCE2
-            if src[0]
-            not in [
-                PATIENT_REPRESENTATIVE,
-                HOSPITAL_NOTES,
-                OUTPATIENT_CARDS,
-                OTHER,
-                NOT_APPLICABLE,
-            ]
-        ]:
+        excluded = [
+            PATIENT_REPRESENTATIVE,
+            HOSPITAL_NOTES,
+            OUTPATIENT_CARDS,
+            OTHER,
+            NOT_APPLICABLE,
+        ]
+        visit_info_sources = [v[0] for v in VISIT_INFO_SOURCE2 if v[0] not in excluded]
+        for info_source in visit_info_sources:
             with self.subTest(info_source=info_source):
                 cleaned_data = self.get_valid_assessment_type_other_sv_data(visit_code=DAY03)
                 cleaned_data.update({"info_source": info_source})
@@ -384,7 +402,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 self.assertFormValidatorError(
                     field="info_source",
                     expected_msg=expected_msg,
-                    form_validator=self.validate_form_validator(cleaned_data),
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    ),
                 )
 
     def test_deceased_status_invalid_at_baseline(self):
@@ -393,7 +413,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="survival_status",
             expected_msg="Invalid: Cannot be 'Deceased' at baseline",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_deceased_status_invalid_for_in_person_visit(self):
@@ -402,7 +422,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="survival_status",
             expected_msg="Invalid: Expected 'Alive' if this is an 'In person' visit",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_deceased_status_invalid_for_patient_telephone_visit(self):
@@ -411,7 +431,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="survival_status",
             expected_msg="Invalid: Expected 'Alive' if spoke to 'Patient'",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_deceased_status_valid_for_other_telephone_visits(self):
@@ -429,7 +449,9 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                     }
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(
+                        cleaned_data, instance=SubjectVisit()
+                    )
                 )
 
     def test_hospitalized_yes_invalid_at_baseline(self):
@@ -438,7 +460,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
         self.assertFormValidatorError(
             field="hospitalized",
             expected_msg="Invalid. Expected NO at baseline",
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_hospitalized_unknown_invalid_if_spoke_to_patient(self):
@@ -456,7 +478,7 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 "Invalid. Cannot be 'Unknown' if spoke to 'Patient' "
                 "or 'Patient' was MAIN source of information"
             ),
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
         cleaned_data.update(
@@ -473,20 +495,20 @@ class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
                 "Invalid. Cannot be 'Unknown' if spoke to 'Patient' "
                 "or 'Patient' was MAIN source of information"
             ),
-            form_validator=self.validate_form_validator(cleaned_data),
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit()),
         )
 
     def test_hospitalized_unknown_valid_if_not_patient(self):
         cleaned_data = self.get_valid_nok_sv_data(visit_code=DAY03)
         cleaned_data.update({"hospitalized": UNKNOWN})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
         cleaned_data = self.get_valid_assessment_who_other_sv_data(visit_code=DAY03)
         cleaned_data.update({"hospitalized": UNKNOWN})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data, instance=SubjectVisit())
         )
 
 
