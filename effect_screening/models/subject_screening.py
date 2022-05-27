@@ -65,7 +65,7 @@ class SubjectScreening(
     )
 
     hiv_pos = models.CharField(
-        verbose_name="Is the patient CONFIRMED HIV sero-positive",
+        verbose_name="Is the patient CONFIRMED HIV sero-positive?",
         max_length=15,
         choices=YES_NO,
         null=True,
