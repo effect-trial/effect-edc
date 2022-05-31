@@ -36,6 +36,7 @@ class VitalSignsAdmin(
                     "heart_rate",
                     "respiratory_rate",
                     "temperature",
+                    "abnormal_lung_exam",
                 )
             },
         ),
@@ -47,6 +48,7 @@ class VitalSignsAdmin(
     readonly_fields = action_fields
 
     radio_fields = {
+        "abnormal_lung_exam": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
         "weight_measured_or_est": admin.VERTICAL,

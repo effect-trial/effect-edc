@@ -69,15 +69,6 @@ class MedicalHistory(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    new_hiv_dx = models.CharField(
-        verbose_name="Is this a new HIV diagnosis?", max_length=5, choices=YES_NO
-    )
-
-    hiv_dx_date = models.DateField(
-        verbose_name="Date HIV diagnosis first known",
-        validators=[date_not_future],
-    )
-
     class Meta(CrfModelMixin.Meta):
         verbose_name = "Medical History"
         verbose_name_plural = "Medical History"
