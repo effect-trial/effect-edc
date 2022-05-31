@@ -39,12 +39,13 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
         verbose_name="Was the patient admitted at any time for cryptococcal meningitis?",
         choices=YES_NO,
         max_length=45,
-        blank=False,
         null=True,
+        help="if YES, please ensure that appropriate clinical assessment and "
+        "SAE information is completed for each admission",
     )
 
     cm_admitted_cnt = models.IntegerField(
-        verbose_name="If yes, number of admissions for CM",
+        verbose_name="If YES, number of admissions for CM",
         blank=True,
         null=True,
     )

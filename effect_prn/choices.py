@@ -54,14 +54,14 @@ STUDY_TERMINATION_REASONS = (
     (CONSENT_WITHDRAWAL, "Withdrawal of consent"),
     (
         "late_exclusion_positive_baseline_crag",
-        "Late Exclusion—positive baseline CSF Crag result",
+        "Late Exclusion — positive baseline CSF Crag result",
     ),
-    (LATE_EXCLUSION_OTHER, "Late exclusion—Other reason"),
+    (LATE_EXCLUSION_OTHER, "Late exclusion — Other reason"),
     (
         CARE_TRANSFERRED_OUT,
         "Care transferred to another institution",
     ),
-    ("patient_lost_followup", "Patient Lost to follow up"),
+    ("patient_lost_followup", "Patient lost to follow up"),
     ("patient_died", "Patient died"),
     (OTHER, "Other"),
 )

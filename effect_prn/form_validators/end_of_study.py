@@ -35,14 +35,8 @@ class EndOfStudyFormValidator(
             field_required="late_exclusion_other",
         )
 
-        self.required_if(
+        self.applicable_if(
             CARE_TRANSFERRED_OUT,
             field="offschedule_reason",
-            field_required="transferred_consent",
-        )
-
-        self.required_if(
-            CONSENT_WITHDRAWAL,
-            field="offschedule_reason",
-            field_required="consent_withdrawal_reason",
+            field_applicable="transferred_consent",
         )

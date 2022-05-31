@@ -65,7 +65,9 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_offschedule_reason_other_true(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(offschedule_reason_other="None")
+        cleaned_data.update(
+            offschedule_reason="completed_6m_followup", offschedule_reason_other="None"
+        )
 
         self.assertFormValidatorError(
             field="offschedule_reason_other",
@@ -75,7 +77,7 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_late_exclusion_other_true(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(offschedule_reason=LATE_EXCLUSION_OTHER)
+        cleaned_data.update(offschedule_reason=LATE_EXCLUSION_OTHER, late_exclusion_other=None)
 
         self.assertFormValidatorError(
             field="late_exclusion_other",
@@ -85,7 +87,9 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_late_exclusion_other_false(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(late_exclusion_other="Some data")
+        cleaned_data.update(
+            offschedule_reason="completed_6m_followup", late_exclusion_other="Some data"
+        )
 
         self.assertFormValidatorError(
             field="late_exclusion_other",
@@ -95,7 +99,9 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_consent_withdrawn_true(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(offschedule_reason=CONSENT_WITHDRAWAL)
+        cleaned_data.update(
+            offschedule_reason=CONSENT_WITHDRAWAL, withdrawal_consent_reasons=None
+        )
 
         self.assertFormValidatorError(
             field="withdrawal_consent_reasons",
@@ -105,7 +111,9 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_consent_withdrawn_false(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(withdrawal_consent_reasons="Some data")
+        cleaned_data.update(
+            offschedule_reason="completed_6m_followup", withdrawal_consent_reasons="Some data"
+        )
 
         self.assertFormValidatorError(
             field="withdrawal_consent_reasons",
@@ -115,7 +123,7 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_care_transferred_out_true(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(offschedule_reason=CARE_TRANSFERRED_OUT)
+        cleaned_data.update(offschedule_reason=CARE_TRANSFERRED_OUT, transferred_consent=None)
 
         self.assertFormValidatorError(
             field="transferred_consent",
@@ -137,7 +145,9 @@ class TestEndOfStudyFormValidation(EffectTestCaseMixin, TestCase):
 
     def test_offschedule_reason_care_transferred_out_false(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update(transferred_consent=YES)
+        cleaned_data.update(
+            offschedule_reason="completed_6m_followup", transferred_consent=YES
+        )
 
         self.assertFormValidatorError(
             field="transferred_consent",
