@@ -31,10 +31,14 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                 "fields": (
                     "subject_identifier",
                     "offschedule_datetime",
+                    "last_followup_date",
+                    "cm_admitted",
+                    "cm_admitted_cnt",
                     "offschedule_reason",
-                    "other_offschedule_reason",
-                    "ltfu_date",
-                    "death_date",
+                    "offschedule_reason_other",
+                    "withdrawal_consent_reasons",
+                    "late_exclusion_other",
+                    "transferred_consent",
                     "comment",
                 )
             },
@@ -53,7 +57,11 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     list_filter = ("offschedule_datetime",)
 
-    radio_fields = {"offschedule_reason": admin.VERTICAL}
+    radio_fields = {
+        "cm_admitted": admin.VERTICAL,
+        "offschedule_reason": admin.VERTICAL,
+        "transferred_consent": admin.VERTICAL,
+    }
 
     search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
 
