@@ -12,7 +12,7 @@ import django_audit_fields.fields.uuid_auto_field
 import django_audit_fields.models.audit_model_mixin
 import django_revision.revision_field
 import edc_model.models.fields.other_charfield
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_protocol.validators
 import edc_utils.date
 import edc_visit_tracking.managers
@@ -176,7 +176,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -202,7 +202,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -235,7 +235,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -277,7 +277,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                         verbose_name="Date sputum Gene-Xpert taken",
                     ),
@@ -321,7 +321,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -493,7 +493,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -555,7 +555,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="CSF Result Report Date and Time",
                     ),
                 ),
@@ -704,7 +704,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="QC Result Report Date and Time",
                     ),
                 ),
@@ -723,7 +723,7 @@ class Migration(migrations.Migration):
                 (
                     "lp_datetime",
                     models.DateTimeField(
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="LP Date and Time",
                     ),
                 ),
@@ -932,7 +932,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -958,7 +958,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -991,7 +991,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -1033,7 +1033,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                         verbose_name="Date sputum Gene-Xpert taken",
                     ),
@@ -1077,7 +1077,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -1272,7 +1272,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -1334,7 +1334,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="CSF Result Report Date and Time",
                     ),
                 ),
@@ -1483,7 +1483,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="QC Result Report Date and Time",
                     ),
                 ),
@@ -1502,7 +1502,7 @@ class Migration(migrations.Migration):
                 (
                     "lp_datetime",
                     models.DateTimeField(
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="LP Date and Time",
                     ),
                 ),
@@ -1737,7 +1737,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -1775,7 +1775,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -1979,7 +1979,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -2000,7 +2000,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -2244,7 +2244,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -2411,7 +2411,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -2449,7 +2449,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -2630,7 +2630,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -2651,7 +2651,7 @@ class Migration(migrations.Migration):
                         null=True,
                         validators=[
                             edc_protocol.validators.date_not_before_study_start,
-                            edc_model.models.validators.date.date_not_future,
+                            edc_model.validators.date.date_not_future,
                         ],
                     ),
                 ),
@@ -2872,7 +2872,7 @@ class Migration(migrations.Migration):
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),

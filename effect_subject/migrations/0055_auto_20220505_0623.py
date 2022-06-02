@@ -2,7 +2,7 @@
 
 import django.core.validators
 import edc_model.models.fields.date_estimated
-import edc_model.models.validators.date
+import edc_model.validators.date
 from django.db import migrations, models
 
 
@@ -195,7 +195,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="If switched, when was their <u>current or most recent</u> ART regimen started?",
             ),
         ),
@@ -231,7 +231,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="If `defaulted`, on what date did they default from their <u>current</u> ART regimen?",
             ),
         ),
@@ -312,7 +312,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="When did the patient <u>start</u> ART for the first time.",
             ),
         ),
@@ -425,7 +425,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="If switched, when was their <u>current or most recent</u> ART regimen started?",
             ),
         ),
@@ -452,7 +452,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="If `defaulted`, on what date did they default from their <u>current</u> ART regimen?",
             ),
         ),
@@ -533,7 +533,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="When did the patient <u>start</u> ART for the first time.",
             ),
         ),
@@ -627,7 +627,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="Viral load date",
             ),
         ),
@@ -654,7 +654,7 @@ class Migration(migrations.Migration):
             field=models.DateField(
                 blank=True,
                 null=True,
-                validators=[edc_model.models.validators.date.date_not_future],
+                validators=[edc_model.validators.date.date_not_future],
                 verbose_name="Viral load date",
             ),
         ),
