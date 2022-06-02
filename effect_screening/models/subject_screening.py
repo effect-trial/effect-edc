@@ -7,7 +7,8 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_dx.utils import calculate_dx_date_if_estimated
 from edc_dx_review.model_mixins import initial_dx_model_mixin_factory
-from edc_model.models import BaseUuidModel, date_not_future
+from edc_model.models import BaseUuidModel
+from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.model_mixins import EligibilityModelMixin, ScreeningModelMixin

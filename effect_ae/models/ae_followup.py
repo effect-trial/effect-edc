@@ -1,5 +1,5 @@
 from edc_adverse_event.model_mixins import AeFollowupModelMixin
-from edc_model.models.base_uuid_model import BaseUuidModel
+from edc_model.models import BaseUuidModel
 
 
 class AeFollowup(AeFollowupModelMixin, BaseUuidModel):
