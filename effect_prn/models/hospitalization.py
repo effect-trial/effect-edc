@@ -8,7 +8,7 @@ from edc_identifier.model_mixins import (
     TrackingModelMixin,
 )
 from edc_model import models as edc_models
-from edc_model.models import date_not_future, datetime_not_future
+from edc_model.validators import date_not_future, datetime_not_future
 from edc_protocol.validators import (
     date_not_before_study_start,
     datetime_not_before_study_start,

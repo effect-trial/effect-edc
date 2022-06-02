@@ -31,7 +31,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
             "Neurological",
             {"fields": ("reported_neuro_abnormality", "neuro_abnormality_details")},
         ),
-        ("Lung exam", {"fields": ("abnormal_lung_exam",)}),
         (
             "Other medication",
             {
@@ -49,7 +48,6 @@ class PatientHistoryAdmin(CrfModelAdmin):
     filter_horizontal = ["specify_medications"]
 
     radio_fields = {
-        "abnormal_lung_exam": admin.VERTICAL,
         "any_medications": admin.VERTICAL,
         "flucon_1w_prior_rando": admin.VERTICAL,
         "flucon_dose": admin.VERTICAL,

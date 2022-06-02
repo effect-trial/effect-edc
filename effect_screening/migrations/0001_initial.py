@@ -11,7 +11,7 @@ import django_audit_fields.fields.uuid_auto_field
 import django_audit_fields.models.audit_model_mixin
 import django_crypto_fields.fields.encrypted_char_field
 import django_revision.revision_field
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_model_fields.fields.other_charfield
 import edc_screening.model_mixins.screening_fields_model_mixin
 import edc_sites.models
@@ -271,7 +271,7 @@ class Migration(migrations.Migration):
                     "cd4_date",
                     models.DateField(
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Most recent CD4 count date",
                     ),
                 ),
@@ -309,7 +309,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         help_text="Test must have been performed within the last 14 days",
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of serum/plasma CrAg result",
                     ),
                 ),
@@ -875,7 +875,7 @@ class Migration(migrations.Migration):
                     "cd4_date",
                     models.DateField(
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Most recent CD4 count date",
                     ),
                 ),
@@ -913,7 +913,7 @@ class Migration(migrations.Migration):
                         blank=True,
                         help_text="Test must have been performed within the last 14 days",
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of serum/plasma CrAg result",
                     ),
                 ),

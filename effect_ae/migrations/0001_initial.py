@@ -13,7 +13,7 @@ import django_revision.revision_field
 import edc_action_item.managers
 import edc_adverse_event.model_mixins.death_report.death_report_tmg_model_mixin
 import edc_model.models.fields.other_charfield
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_model_fields.fields.other_charfield
 import edc_protocol.validators
 import edc_utils.date
@@ -186,7 +186,7 @@ class Migration(migrations.Migration):
                     "ae_awareness_date",
                     models.DateField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="AE Awareness date",
                     ),
                 ),
@@ -194,7 +194,7 @@ class Migration(migrations.Migration):
                     "ae_start_date",
                     models.DateField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Actual Start Date of AE",
                     ),
                 ),
@@ -430,7 +430,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -439,7 +439,7 @@ class Migration(migrations.Migration):
                     "death_datetime",
                     models.DateTimeField(
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and Time of Death",
                     ),
                 ),
@@ -447,7 +447,7 @@ class Migration(migrations.Migration):
                     "death_date",
                     models.DateField(
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of Death",
                     ),
                 ),
@@ -701,7 +701,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -739,7 +739,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -951,7 +951,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -989,7 +989,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -1213,7 +1213,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -1222,7 +1222,7 @@ class Migration(migrations.Migration):
                     "death_datetime",
                     models.DateTimeField(
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and Time of Death",
                     ),
                 ),
@@ -1230,7 +1230,7 @@ class Migration(migrations.Migration):
                     "death_date",
                     models.DateField(
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of Death",
                     ),
                 ),
@@ -1518,7 +1518,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -1565,7 +1565,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -1574,7 +1574,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time AE form received:",
                     ),
                 ),
@@ -1583,7 +1583,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time of clinical review: ",
                     ),
                 ),
@@ -1626,7 +1626,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time regulatory authorities notified (SUSARs)",
                     ),
                 ),
@@ -1800,7 +1800,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -1836,7 +1836,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -1845,7 +1845,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="AE SUSAR submitted on",
                     ),
                 ),
@@ -2088,7 +2088,7 @@ class Migration(migrations.Migration):
                     "ae_awareness_date",
                     models.DateField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="AE Awareness date",
                     ),
                 ),
@@ -2096,7 +2096,7 @@ class Migration(migrations.Migration):
                     "ae_start_date",
                     models.DateField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Actual Start Date of AE",
                     ),
                 ),
@@ -2384,9 +2384,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "outcome_date",
-                    models.DateField(
-                        validators=[edc_model.models.validators.date.date_not_future]
-                    ),
+                    models.DateField(validators=[edc_model.validators.date.date_not_future]),
                 ),
                 (
                     "ae_grade",
@@ -2590,7 +2588,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -2622,7 +2620,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Report Date",
                     ),
@@ -2812,7 +2810,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -2853,7 +2851,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -2862,7 +2860,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time AE form received:",
                     ),
                 ),
@@ -2871,7 +2869,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time of clinical review: ",
                     ),
                 ),
@@ -2914,7 +2912,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time regulatory authorities notified (SUSARs)",
                     ),
                 ),
@@ -3062,7 +3060,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -3092,7 +3090,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -3101,7 +3099,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="AE SUSAR submitted on",
                     ),
                 ),
@@ -3237,7 +3235,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -3246,7 +3244,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time of clinical review: ",
                     ),
                 ),
@@ -3332,7 +3330,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time regulatory authorities notified",
                     ),
                 ),
@@ -3433,7 +3431,7 @@ class Migration(migrations.Migration):
                     "report_datetime",
                     models.DateTimeField(
                         default=edc_utils.date.get_utcnow,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Report date and time",
                     ),
                 ),
@@ -3442,7 +3440,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time of clinical review: ",
                     ),
                 ),
@@ -3528,7 +3526,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time regulatory authorities notified",
                     ),
                 ),
@@ -3671,9 +3669,7 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "outcome_date",
-                    models.DateField(
-                        validators=[edc_model.models.validators.date.date_not_future]
-                    ),
+                    models.DateField(validators=[edc_model.validators.date.date_not_future]),
                 ),
                 (
                     "ae_grade",

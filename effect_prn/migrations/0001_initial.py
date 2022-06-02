@@ -11,7 +11,7 @@ import django_audit_fields.models.audit_model_mixin
 import django_revision.revision_field
 import edc_identifier.managers
 import edc_model.models.fields.other_charfield
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_protocol.validators
 import edc_utils.date
 import edc_visit_schedule.model_mixins.schedule_model_mixin
@@ -189,7 +189,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date violation occurred",
                     ),
                 ),
@@ -224,7 +224,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Corrective action date and time",
                     ),
                 ),
@@ -239,7 +239,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Preventative action date and time",
                     ),
                 ),
@@ -265,7 +265,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -487,7 +487,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                     ),
                 ),
@@ -879,7 +879,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date violation occurred",
                     ),
                 ),
@@ -914,7 +914,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Corrective action date and time",
                     ),
                 ),
@@ -929,7 +929,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Preventative action date and time",
                     ),
                 ),
@@ -955,7 +955,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date and time report closed.",
                     ),
                 ),
@@ -1200,7 +1200,7 @@ class Migration(migrations.Migration):
                         default=edc_utils.date.get_utcnow,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                     ),
                 ),
@@ -1590,7 +1590,7 @@ class Migration(migrations.Migration):
                     "offschedule_datetime",
                     models.DateTimeField(
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date patient was terminated from the study",
                     ),
                 ),
@@ -1608,7 +1608,7 @@ class Migration(migrations.Migration):
                     models.DateField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of death, if applicable",
                     ),
                 ),
@@ -1617,7 +1617,7 @@ class Migration(migrations.Migration):
                     models.DateField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date lost to followup, if applicable",
                     ),
                 ),
@@ -1822,7 +1822,7 @@ class Migration(migrations.Migration):
                     "offschedule_datetime",
                     models.DateTimeField(
                         null=True,
-                        validators=[edc_model.models.validators.date.datetime_not_future],
+                        validators=[edc_model.validators.date.datetime_not_future],
                         verbose_name="Date patient was terminated from the study",
                     ),
                 ),
@@ -1840,7 +1840,7 @@ class Migration(migrations.Migration):
                     models.DateField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date of death, if applicable",
                     ),
                 ),
@@ -1849,7 +1849,7 @@ class Migration(migrations.Migration):
                     models.DateField(
                         blank=True,
                         null=True,
-                        validators=[edc_model.models.validators.date.date_not_future],
+                        validators=[edc_model.validators.date.date_not_future],
                         verbose_name="Date lost to followup, if applicable",
                     ),
                 ),

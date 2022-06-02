@@ -10,7 +10,7 @@ import django_audit_fields.fields.userfield
 import django_audit_fields.fields.uuid_auto_field
 import django_audit_fields.models.audit_model_mixin
 import django_revision.revision_field
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_protocol.validators
 import edc_utils.date
 import edc_visit_tracking.managers

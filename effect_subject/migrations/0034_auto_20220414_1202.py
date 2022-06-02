@@ -2,7 +2,7 @@
 
 import django.core.validators
 import edc_model.models.fields.other_charfield
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_protocol.validators
 from django.db import migrations, models
 
@@ -210,7 +210,7 @@ class Migration(migrations.Migration):
                 null=True,
                 validators=[
                     edc_protocol.validators.date_not_before_study_start,
-                    edc_model.models.validators.date.date_not_future,
+                    edc_model.validators.date.date_not_future,
                 ],
                 verbose_name="Date participant last known alive",
             ),
@@ -251,7 +251,7 @@ class Migration(migrations.Migration):
                 null=True,
                 validators=[
                     edc_protocol.validators.date_not_before_study_start,
-                    edc_model.models.validators.date.date_not_future,
+                    edc_model.validators.date.date_not_future,
                 ],
                 verbose_name="Date participant last known alive",
             ),

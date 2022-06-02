@@ -17,7 +17,7 @@ import django_crypto_fields.fields.lastname_field
 import django_revision.revision_field
 import edc_consent.validators
 import edc_identifier.managers
-import edc_model.models.validators.date
+import edc_model.validators.date
 import edc_model_fields.fields.date_estimated
 import edc_protocol.validators
 import edc_utils.date
@@ -650,7 +650,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Consent date and time",
                     ),
@@ -1389,7 +1389,7 @@ class Migration(migrations.Migration):
                     models.DateTimeField(
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
-                            edc_model.models.validators.date.datetime_not_future,
+                            edc_model.validators.date.datetime_not_future,
                         ],
                         verbose_name="Consent date and time",
                     ),

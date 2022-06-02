@@ -3,7 +3,7 @@ from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
-from edc_model.models import date_not_future
+from edc_model.validators import date_not_future
 
 from effect_lists.models import Antibiotics, Drugs, TbTreatments
 from effect_subject.choices import CM_TX_CHOICES, NEGATIVE_TX_CHOICES, STEROID_CHOICES
