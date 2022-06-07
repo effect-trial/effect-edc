@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - add 'hiv_dx_new' question to Subject Screening CRF (#337)
+- add "PCP" and "Toxoplasmosis" cause of death choices to Death Report CRF (#421)
 
 0.1.7
 -----

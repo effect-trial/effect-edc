@@ -49,6 +49,7 @@ list_data = {
     "edc_adverse_event.causeofdeath": [
         (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
         (BACTERAEMIA, "Bacteraemia"),
+        (SEPSIS, "Sepsis"),
         (BACTERIAL_PNEUMONIA, "Bacterial pneumonia"),
         ("covid_19", "COVID-19"),
         (CRYPTOCOCCAL_MENINGITIS_RELAPSE, "Cryptococcal meningitis relapse"),
@@ -60,7 +61,8 @@ list_data = {
         ("art_toxicity", "ART toxicity"),
         (MALIGNANCY, "Malignancy"),
         ("diarrhea_wasting", "Diarrhea/wasting"),
-        (SEPSIS, "Sepsis"),
+        ("pcp", "PCP"),
+        ("toxoplasmosis", "Toxoplasmosis"),
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
