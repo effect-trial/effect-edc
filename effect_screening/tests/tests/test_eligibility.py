@@ -55,6 +55,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "age_in_years": 25,
             "hiv_dx_date": (get_utcnow() - relativedelta(days=28)).date(),
             "hiv_dx_ago": None,
+            "hiv_dx_new": YES,
             "unsuitable_for_study": NO,
             "unsuitable_agreed": NOT_APPLICABLE,
             "any_other_mg_ssx_other": "",
