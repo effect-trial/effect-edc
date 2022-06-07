@@ -73,6 +73,13 @@ class SubjectScreening(
         blank=False,
     )
 
+    hiv_dx_new = models.CharField(
+        verbose_name="Is this a new HIV diagnosis?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+    )
+
     cd4_value = models.IntegerField(
         verbose_name="Most recent CD4 count",
         validators=[MinValueValidator(0), MaxValueValidator(99)],

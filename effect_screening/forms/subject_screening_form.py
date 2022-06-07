@@ -37,3 +37,7 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
     class Meta:
         model = SubjectScreening
         fields = "__all__"
+        labels = {
+            "hiv_dx_ago": "If YES, how long ago did the patient test HIV sero-positive?",
+            "hiv_dx_date": "If YES, date patient tested HIV sero-positive",
+        }
