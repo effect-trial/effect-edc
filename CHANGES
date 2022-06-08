@@ -3,6 +3,10 @@ Changes
 
 [unreleased]
 ------------
+- add 'hiv_dx_new' question to Subject Screening CRF (#337)
+
+0.1.7
+-----
 - move HIV diagnosis questions from Medical History to Subject Screening CRF (#337)
 - move 'abnormal_lung_exam' from Patient History to Vital Signs CRF (#382)
 

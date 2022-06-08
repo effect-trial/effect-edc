@@ -24,16 +24,13 @@ class SubjectConsentForm(
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
     )
 
-    def clean_gender_of_consent(self):
+    def validate_guardian_and_dob(self):
         return None
 
-    def clean_guardian_and_dob(self):
-        return None
+    # def validate_identity_with_unique_fields(self):
+    #     return None
 
-    def clean_identity_with_unique_fields(self):
-        return None
-
-    def clean_is_literate_and_witness(self) -> None:
+    def validate_is_literate_and_witness(self) -> None:
         self.clean_is_literate_is_able_and_witness()
 
     def clean_is_literate_is_able_and_witness(self) -> None:

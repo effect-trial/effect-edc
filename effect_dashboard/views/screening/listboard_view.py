@@ -62,6 +62,4 @@ class ListboardView(
             q_objects.append(
                 Q(screening_identifier__icontains=search_term.replace("-", "").upper())
             )
-        if re.match(r"^[0-9]+$", search_term):
-            q_objects.append(Q(hospital_identifier__exact=search_term))
         return q_objects
