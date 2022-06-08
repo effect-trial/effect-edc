@@ -1,9 +1,12 @@
 Changes
 =======
 
-[unreleased]
-------------
+0.1.10
+------
 - add 'hiv_dx_new' question to Subject Screening CRF (#337)
+- fix listboard search
+- update consent form
+- bump to edc 0.3.87
 
 0.1.7
 -----
