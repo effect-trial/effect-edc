@@ -48,6 +48,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
                     "hiv_pos",
                     "hiv_dx_ago",
                     "hiv_dx_date",
+                    "hiv_dx_new",
                 )
             },
         ],
@@ -176,6 +177,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         "contraindicated_meds": admin.VERTICAL,
         "csf_crag_value": admin.VERTICAL,
         "gender": admin.VERTICAL,
+        "hiv_dx_new": admin.VERTICAL,
         "hiv_pos": admin.VERTICAL,
         "jaundice": admin.VERTICAL,
         "lp_declined": admin.VERTICAL,
