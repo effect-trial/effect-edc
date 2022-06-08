@@ -7,12 +7,11 @@ from edc_constants.constants import (
     UNKNOWN,
 )
 from edc_constants.disease_constants import (
-    BACTERAEMIA,
+    BACTERAEMIA_SEPSIS,
     BACTERIAL_PNEUMONIA,
-    CM_IRIS,
+    CM_RELAPSE_IRIS,
+    COVID_19,
     CRYPTOCOCCAL_MENINGITIS,
-    CRYPTOCOCCAL_MENINGITIS_RELAPSE,
-    SEPSIS,
     TB_PULMONARY,
 )
 
@@ -20,9 +19,8 @@ list_data = {
     "edc_adverse_event.aeclassification": [
         (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
         ("anaemia", "Anaemia"),
-        (BACTERAEMIA, "Bacteraemia"),
-        (CRYPTOCOCCAL_MENINGITIS_RELAPSE, "Cryptococcal meningitis relapse"),
-        (CM_IRIS, "CM-IRIS"),
+        (BACTERAEMIA_SEPSIS, "Bacteraemia/sepsis"),
+        (CM_RELAPSE_IRIS, "Cryptococcal meningitis relapse/IRIS"),
         ("diarrhoea", "Diarrhoea"),
         ("hypokalaemia", "Hypokalaemia"),
         ("neutropaenia", "Neutropaenia"),
@@ -31,7 +29,6 @@ list_data = {
         ("tb", "TB"),
         ("thrombocytopenia", "Thrombocytopenia"),
         ("renal_impairment", "Renal impairment"),
-        (SEPSIS, "Sepsis"),
         (OTHER, "Other"),
     ],
     "edc_adverse_event.saereason": [
@@ -48,12 +45,10 @@ list_data = {
     ],
     "edc_adverse_event.causeofdeath": [
         (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
-        (BACTERAEMIA, "Bacteraemia"),
-        (SEPSIS, "Sepsis"),
+        (BACTERAEMIA_SEPSIS, "Bacteraemia/sepsis"),
         (BACTERIAL_PNEUMONIA, "Bacterial pneumonia"),
-        ("covid_19", "COVID-19"),
-        (CRYPTOCOCCAL_MENINGITIS_RELAPSE, "Cryptococcal meningitis relapse"),
-        (CM_IRIS, "CM-IRIS"),
+        (COVID_19, "COVID-19"),
+        (CM_RELAPSE_IRIS, "Cryptococcal meningitis relapse/IRIS"),
         ("iris_non_cm", "IRIS non-CM"),
         (TB_PULMONARY, "TB - Pulmonary"),
         ("tb_meningitis", "TB - Meningitis"),
