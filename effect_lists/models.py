@@ -71,3 +71,9 @@ class XRayResults(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "X-Ray Results"
         verbose_name_plural = "X-Ray Results"
+
+
+class Transport(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Transport"
+        verbose_name_plural = "Transport"

@@ -13,6 +13,7 @@ from .chest_xray_admin import ChestXrayAdmin
 from .clinical_note_admin import ClinicalNoteAdmin
 from .diagnoses_admin import DiagnosesAdmin
 from .health_economics_admin import HealthEconomicsAdmin
+from .health_economics_baseline_termination_admin import HealthEconomicsBaselineTerminationAdmin
 from .histopathology_admin import HistopathologyAdmin
 from .lab_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .lp_csf_admin import LpCsfAdmin
