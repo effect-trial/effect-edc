@@ -1,6 +1,16 @@
 Changes
 =======
 
+[unreleased]
+------------
+- updates to Death Report CRF cause of death choices (#421):
+    - add "PCP" and "Toxoplasmosis" choices
+    - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"
+    - consolidate "Cryptococcal meningitis relapse" and "CM-IRIS" choices to "Cryptococcal meningitis relapse/IRIS"
+- updates to AE Initial Report CRF AE classification choices
+    - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"
+    - consolidate "Cryptococcal meningitis relapse" and "CM-IRIS" choices to "Cryptococcal meningitis relapse/IRIS"
+
 0.1.10
 ------
 - add 'hiv_dx_new' question to Subject Screening CRF (#337)
