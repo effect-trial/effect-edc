@@ -39,7 +39,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     initial_art_date = models.DateField(
-        verbose_name=format_html("When did the patient <u>start</u> ART for the first time."),
+        verbose_name=format_html("When did the patient <u>start</u> ART for the first time?"),
         validators=[date_not_future],
         null=True,
         blank=True,
