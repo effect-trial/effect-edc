@@ -15,6 +15,17 @@ from ..model_mixins import CrfModelMixin
 
 class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
+    hiv_dx_date = models.DateField(
+        verbose_name="Date HIV diagnosis first known",
+        validators=[date_not_future],
+        null=True,
+        blank=False,
+    )
+
+    hiv_dx_date_estimated = edc_models.IsDateEstimatedField(
+        verbose_name="Is this date estimated?"
+    )
+
     on_art_at_crag = models.CharField(
         verbose_name="Was the patient on ART <u>at time of</u> CrAg test?",
         max_length=5,
