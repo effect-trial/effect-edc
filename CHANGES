@@ -3,6 +3,7 @@ Changes
 
 [unreleased]
 ------------
+- add 'hiv_dx_date' and 'hiv_dx_date_estimated' questions to top of ARV History CRF (#337)
 - updates to Death Report CRF cause of death choices (#421):
     - add "PCP" and "Toxoplasmosis" choices
     - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"

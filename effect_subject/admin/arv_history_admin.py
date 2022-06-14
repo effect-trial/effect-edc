@@ -14,6 +14,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
+        ("HIV Diagnosis", {"fields": ("hiv_dx_date", "hiv_dx_date_estimated")}),
         (
             "ARV treatment and monitoring",
             {
@@ -90,6 +91,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
         "has_defaulted": admin.VERTICAL,
         "has_switched_art_regimen": admin.VERTICAL,
         "has_viral_load_result": admin.VERTICAL,
+        "hiv_dx_date_estimated": admin.VERTICAL,
         "initial_art_date_estimated": admin.VERTICAL,
         "is_adherent": admin.VERTICAL,
         "on_art_at_crag": admin.VERTICAL,
