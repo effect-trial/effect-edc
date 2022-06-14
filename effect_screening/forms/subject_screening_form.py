@@ -32,8 +32,6 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
         model = SubjectScreening
         fields = "__all__"
         labels = {
-            "hiv_dx_ago": "If YES, how long ago did the patient test HIV sero-positive?",
-            "hiv_dx_date": "If YES, date patient tested HIV sero-positive",
             "unsuitable_agreed": (
                 "Does the study clinician agree that the patient is not "
                 "suitable for the study?"
