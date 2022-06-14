@@ -177,16 +177,19 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="CD4 result",
         validators=[MinValueValidator(1), MaxValueValidator(9999)],
         null=True,
-        blank=True,
+        blank=False,
         help_text=format_html("mm<sup>3</sup>"),
     )
 
     cd4_date = models.DateField(
-        verbose_name="CD4 date", validators=[date_not_future], null=True, blank=True
+        verbose_name="CD4 date",
+        validators=[date_not_future],
+        null=True,
+        blank=False,
     )
 
-    cd4_date_estimated = edc_models.IsDateEstimatedFieldNa(
-        verbose_name="Is the CD4 date estimated?", default=NOT_APPLICABLE
+    cd4_date_estimated = edc_models.IsDateEstimatedField(
+        verbose_name="Is the CD4 date estimated?"
     )
 
     class Meta(CrfModelMixin.Meta):
