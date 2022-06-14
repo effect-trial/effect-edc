@@ -5,7 +5,7 @@ Changes
 ------------
 - updates to ARV History CRF:
     - add 'hiv_dx_date' and 'hiv_dx_date_estimated' questions to top of ARV History CRF (#337)
-    - make 'cd4_result' and 'cd4_date' required (#359)
+    - make 'cd4_result' and 'cd4_date' required (#359), and validate against screening (#381)
 - updates to Subject Screening CRF (#337)
     - remove 'hiv_dx_date', 'hiv_dx_ago' and 'hiv_dx_date' questions
     - add 'hiv_confirmed_date' and 'hiv_confirmed_method' questions
