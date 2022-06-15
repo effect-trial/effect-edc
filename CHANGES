@@ -16,6 +16,8 @@ Changes
 - updates to AE Initial Report CRF AE classification choices
     - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"
     - consolidate "Cryptococcal meningitis relapse" and "CM-IRIS" choices to "Cryptococcal meningitis relapse/IRIS"
+- bump to edc 0.3.88
+- bump to effect-form-validators >= 0.1.12
 
 0.1.10
 ------
