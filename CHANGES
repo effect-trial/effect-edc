@@ -1,6 +1,10 @@
 Changes
 =======
 
+[unreleased]
+------------
+- add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
+
 0.1.11
 ------
 - updates to ARV History CRF:
