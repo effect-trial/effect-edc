@@ -6,6 +6,9 @@ Changes
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
 - fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
 - merge contents of Medical History CRF into Patient History CRF (#334)
+- updates to ARV History CRF:
+    - remove 'has_cd4_result' question (#359)
+    - rename 'cd4_result' to 'cd4_value' and set max value to 105 (#381)
 
 0.1.11
 ------

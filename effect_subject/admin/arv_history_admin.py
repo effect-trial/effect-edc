@@ -66,8 +66,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "CD4 count",
             {
                 "fields": (
-                    "has_cd4_result",
-                    "cd4_result",
+                    "cd4_value",
                     "cd4_date",
                     "cd4_date_estimated",
                 )
@@ -87,7 +86,6 @@ class ArvHistoryAdmin(CrfModelAdmin):
         "current_art_date_estimated": admin.VERTICAL,
         "defaulted_date_estimated": admin.VERTICAL,
         "ever_on_art": admin.VERTICAL,
-        "has_cd4_result": admin.VERTICAL,
         "has_defaulted": admin.VERTICAL,
         "has_switched_art_regimen": admin.VERTICAL,
         "has_viral_load_result": admin.VERTICAL,
