@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
+- fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
 
 0.1.11
 ------
