@@ -66,7 +66,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
             "CD4 count",
             {
                 "fields": (
-                    "cd4_result",
+                    "cd4_value",
                     "cd4_date",
                     "cd4_date_estimated",
                 )

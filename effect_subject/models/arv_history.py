@@ -167,7 +167,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    cd4_result = models.IntegerField(
+    cd4_value = models.IntegerField(
         verbose_name="CD4 result",
         validators=[MinValueValidator(1), MaxValueValidator(105)],
         null=True,
