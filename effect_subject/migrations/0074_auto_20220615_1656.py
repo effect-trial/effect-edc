@@ -11,30 +11,22 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='arvhistory',
-            name='cd4_result',
+            old_name='cd4_result',
+            new_name='cd4_value',
         ),
         migrations.RemoveField(
             model_name='arvhistory',
             name='has_cd4_result',
         ),
-        migrations.RemoveField(
+        migrations.RenameField(
             model_name='historicalarvhistory',
-            name='cd4_result',
+            old_name='cd4_result',
+            new_name='cd4_value',
         ),
         migrations.RemoveField(
             model_name='historicalarvhistory',
             name='has_cd4_result',
-        ),
-        migrations.AddField(
-            model_name='arvhistory',
-            name='cd4_value',
-            field=models.IntegerField(help_text='mm<sup>3</sup>', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(105)], verbose_name='CD4 result'),
-        ),
-        migrations.AddField(
-            model_name='historicalarvhistory',
-            name='cd4_value',
-            field=models.IntegerField(help_text='mm<sup>3</sup>', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(105)], verbose_name='CD4 result'),
         ),
     ]
