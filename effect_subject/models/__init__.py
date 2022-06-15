@@ -9,7 +9,6 @@ from .health_economics import HealthEconomics
 from .histpathology import Histopathology
 from .lab_results import BloodResultsChem, BloodResultsFbc, Urinalysis
 from .lp_csf import LpCsf
-from .medical_history import MedicalHistory
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
 from .patient_history import PatientHistory
