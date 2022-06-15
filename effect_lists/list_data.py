@@ -44,6 +44,7 @@ list_data = {
             "ciprofloxacin",
             "Ciprofloxacin (NB avoid on concomitant high dose fluconazole)",
         ),
+        ("coamoxiclav", "Coamoxiclav (amoxicillin/clavulanate)"),
         (
             "erythromycin",
             "Erythromycin (NB contra-indicated on concomitant high dose fluconazole)",
