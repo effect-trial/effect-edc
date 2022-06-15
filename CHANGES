@@ -1,9 +1,30 @@
 Changes
 =======
 
-[unreleased]
-------------
+0.1.11
+------
+- updates to ARV History CRF:
+    - add 'hiv_dx_date' and 'hiv_dx_date_estimated' questions to top of ARV History CRF (#337)
+    - make 'cd4_result' and 'cd4_date' required (#359), and validate against screening (#381)
+- updates to Subject Screening CRF (#337)
+    - remove 'hiv_dx_date', 'hiv_dx_ago' and 'hiv_dx_date' questions
+    - add 'hiv_confirmed_date' and 'hiv_confirmed_method' questions
+- updates to Death Report CRF cause of death choices (#421):
+    - add "PCP" and "Toxoplasmosis" choices
+    - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"
+    - consolidate "Cryptococcal meningitis relapse" and "CM-IRIS" choices to "Cryptococcal meningitis relapse/IRIS"
+- updates to AE Initial Report CRF AE classification choices
+    - consolidate "Bacteraemia" and "Sepsis" choices to "Bacteraemia/sepsis"
+    - consolidate "Cryptococcal meningitis relapse" and "CM-IRIS" choices to "Cryptococcal meningitis relapse/IRIS"
+- bump to edc 0.3.88
+- bump to effect-form-validators >= 0.1.12
+
+0.1.10
+------
 - add 'hiv_dx_new' question to Subject Screening CRF (#337)
+- fix listboard search
+- update consent form
+- bump to edc 0.3.87
 
 0.1.7
 -----

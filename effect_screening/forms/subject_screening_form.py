@@ -3,15 +3,9 @@ from typing import Any
 from django import forms
 from edc_form_validators import FormValidatorMixin
 from edc_screening.modelform_mixins import AlreadyConsentedFormMixin
-from effect_form_validators.effect_screening import (
-    SubjectScreeningFormValidator as Base,
-)
+from effect_form_validators.effect_screening import SubjectScreeningFormValidator
 
 from ..models import SubjectScreening
-
-
-class SubjectScreeningFormValidator(Base):
-    pass
 
 
 class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.ModelForm):
@@ -38,6 +32,8 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
         model = SubjectScreening
         fields = "__all__"
         labels = {
-            "hiv_dx_ago": "If YES, how long ago did the patient test HIV sero-positive?",
-            "hiv_dx_date": "If YES, date patient tested HIV sero-positive",
+            "unsuitable_agreed": (
+                "Does the study clinician agree that the patient is not "
+                "suitable for the study?"
+            ),
         }
