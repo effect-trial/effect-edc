@@ -3,7 +3,9 @@ Changes
 
 [unreleased]
 ------------
-- add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
+- updates to Patient Treatment CRF:
+    - add "Already on TB preventive therapy (TPT)" and "On TB treatment" choices to 'tb_tx_no' (#399)
+    - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list (#431)
 - fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
 - merge contents of Medical History CRF into Patient History CRF (#334)
 - updates to ARV History CRF:

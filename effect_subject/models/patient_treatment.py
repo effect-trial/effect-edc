@@ -6,7 +6,12 @@ from edc_model import models as edc_models
 from edc_model.validators import date_not_future
 
 from effect_lists.models import Antibiotics, Drugs, TbTreatments
-from effect_subject.choices import CM_TX_CHOICES, NEGATIVE_TX_CHOICES, STEROID_CHOICES
+from effect_subject.choices import (
+    CM_TX_CHOICES,
+    NEGATIVE_TB_TX_CHOICES,
+    NEGATIVE_TX_CHOICES,
+    STEROID_CHOICES,
+)
 
 from ..model_mixins import CrfModelMixin
 
@@ -73,7 +78,7 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     tb_tx_reason_no = models.CharField(
         verbose_name="If NO, give reason",
         max_length=30,
-        choices=NEGATIVE_TX_CHOICES,
+        choices=NEGATIVE_TB_TX_CHOICES,
         default=NOT_APPLICABLE,
     )
 

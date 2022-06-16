@@ -23,7 +23,10 @@ from .constants import (
     APPT_OTHER,
     ART_CONTINUED,
     ART_STOPPED,
+    CONTRAINDICATED,
     DECREASED,
+    DEFERRED_LOCAL_CLINIC,
+    ON_TB_TX,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
 )
@@ -207,9 +210,18 @@ MONOFILAMENT_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+NEGATIVE_TB_TX_CHOICES = (
+    ("on_tpt", "Already on TB preventive therapy (TPT)"),
+    (ON_TB_TX, "On TB treatment"),
+    (DEFERRED_LOCAL_CLINIC, "Deferred to local clinic"),
+    (CONTRAINDICATED, "Contraindicated"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
 NEGATIVE_TX_CHOICES = (
-    ("deferred_local_clinic", "Deferred to local clinic"),
-    ("contraindicated", "Contraindicated"),
+    (DEFERRED_LOCAL_CLINIC, "Deferred to local clinic"),
+    (CONTRAINDICATED, "Contraindicated"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
