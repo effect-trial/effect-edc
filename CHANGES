@@ -3,6 +3,8 @@ Changes
 
 [unreleased]
 ------------
+- updates to Mental Status CRF:
+    - add 'require_help' and 'any_other_problems' questions (#423)
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
 - fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
 - merge contents of Medical History CRF into Patient History CRF (#334)
