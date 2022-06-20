@@ -1,4 +1,5 @@
 from copy import deepcopy
+from datetime import timedelta
 from typing import Optional
 
 from django import forms
@@ -46,6 +47,27 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
         obj = baker.make_recipe("effect_subject.signsandsymptoms", subject_visit=subject_visit)
         form = SignsAndSymptomsForm(instance=obj)
         form.is_valid()
+
+    def test_calculated_headache_duration(self):
+        subject_visit = self.get_subject_visit()
+        obj = baker.make_recipe("effect_subject.signsandsymptoms", subject_visit=subject_visit)
+        self.assertIsNone(obj.calculated_headache_duration)
+
+        obj.headache_duration = "2d"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(days=2))
+
+        obj.headache_duration = "1d12h"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(days=1, hours=12))
+
+        obj.headache_duration = "3h"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(hours=3))
+
+        obj.headache_duration = ""
+        obj.save()
+        self.assertIsNone(obj.calculated_headache_duration)
 
 
 class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):

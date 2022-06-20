@@ -19,6 +19,7 @@ from .proxy_models import (
     AdherenceStageThree,
     AdherenceStageTwo,
 )
+from .signals import calculate_headache_duration_timedelta_on_post_save
 from .signs_and_symptoms import SignsAndSymptoms
 from .study_medication import (
     StudyMedication,

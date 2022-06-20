@@ -63,8 +63,6 @@
     - capture modifications at subsequent visits (e.g. "Were there modifications to the study medication?")
 
 - Signs and Symptoms CRF:
-    - validate 'any_sx' != UNKNOWN if an in-person or telephone-based (patient) visit
-    - 'headache_duration_microseconds' to be calculated (DurationField) based on headache_duration (DDdHHh`, `DDd` or `HHh` str)
     - look at basic validation for _sx_other fields
 
 - Mental Status CRF:
