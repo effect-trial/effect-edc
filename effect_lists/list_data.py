@@ -23,6 +23,8 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
 
+from .constants import STEROIDS
+
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
@@ -119,8 +121,9 @@ list_data = {
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.medication": [
+        (NOT_APPLICABLE, "--Not applicable"),
         ("TMP-SMX", "TMP-SMX"),
-        ("steroids", "Steroids, please specify type and dose below ..."),
+        (STEROIDS, "Steroids, please specify type and dose below ..."),
         ("actrapid", "Actrapid"),
         ("actrophane", "Actrophane"),
         ("allopurinol", "Allopurinol"),
