@@ -5,6 +5,7 @@ from edc_constants.constants import (
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    STEROIDS,
     UNKNOWN,
     VISUAL_LOSS,
 )
@@ -22,8 +23,6 @@ from edc_constants.disease_constants import (
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
 from edc_transfer.constants import TRANSFERRED
-
-from .constants import STEROIDS
 
 list_data = {
     "effect_lists.nonadherencereasons": [
