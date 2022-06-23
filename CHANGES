@@ -3,6 +3,8 @@ Changes
 
 [unreleased]
 ------------
+- updates to Mental Status CRF:
+    - fix unable to specify "Not applicable" if no symptoms to report on D3 (#402, #370)
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
 - fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
 - merge contents of Medical History CRF into Patient History CRF (#334)
