@@ -32,6 +32,23 @@ class PatientHistoryAdmin(CrfModelAdmin):
             {"fields": ("reported_neuro_abnormality", "neuro_abnormality_details")},
         ),
         (
+            "TB diagnosis/treatment",
+            {
+                "fields": (
+                    "tb_prev_dx",
+                    "tb_site",
+                    "on_tb_tx",
+                    "tb_dx_ago",
+                    "on_rifampicin",
+                    "rifampicin_start_date",
+                )
+            },
+        ),
+        (
+            "Other opportunistic infections",
+            {"fields": ("previous_oi", "previous_oi_name", "previous_oi_dx_date")},
+        ),
+        (
             "Other medication",
             {
                 "fields": (
@@ -51,5 +68,11 @@ class PatientHistoryAdmin(CrfModelAdmin):
         "any_medications": admin.VERTICAL,
         "flucon_1w_prior_rando": admin.VERTICAL,
         "flucon_dose": admin.VERTICAL,
+        "on_rifampicin": admin.VERTICAL,
+        "on_tb_tx": admin.VERTICAL,
+        "previous_oi": admin.VERTICAL,
         "reported_neuro_abnormality": admin.VERTICAL,
+        "tb_dx_ago": admin.VERTICAL,
+        "tb_prev_dx": admin.VERTICAL,
+        "tb_site": admin.VERTICAL,
     }

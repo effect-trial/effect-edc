@@ -9,7 +9,6 @@ from .health_economics import HealthEconomics
 from .histpathology import Histopathology
 from .lab_results import BloodResultsChem, BloodResultsFbc, Urinalysis
 from .lp_csf import LpCsf
-from .medical_history import MedicalHistory
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
 from .patient_history import PatientHistory
@@ -20,6 +19,7 @@ from .proxy_models import (
     AdherenceStageThree,
     AdherenceStageTwo,
 )
+from .signals import calculate_headache_duration_timedelta_on_post_save
 from .signs_and_symptoms import SignsAndSymptoms
 from .study_medication import (
     StudyMedication,

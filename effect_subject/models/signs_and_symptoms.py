@@ -1,4 +1,3 @@
-from django.core.validators import MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE
@@ -8,6 +7,7 @@ from edc_model import models as edc_models
 from effect_lists.models import SiSx
 
 from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACTION
+from ..utils import timedelta_from_duration_dh_field
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
@@ -68,13 +68,11 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
             "If patient currently has headache, for what duration have they had it for"
         ),
         help_text="In days and/or hours.  Note: 1 day equivalent to 24 hours.</br>",
-        validators=[MinValueValidator(0)],
         null=True,
         blank=True,
     )
 
-    # TODO: Add/convert to calculated field
-    headache_duration_microseconds = models.DurationField(
+    calculated_headache_duration = models.DurationField(
         null=True,
         blank=True,
     )
@@ -136,6 +134,18 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
         help_text="If YES, complete 'TB Diagnostics' CRF.",
     )
+
+    def update_calculated_headache_duration(self) -> None:
+        """Convert headache duration (string specified in days and hours) into
+         a timedelta and save in calculated field.
+
+        Called in a signal.
+        """
+        self.calculated_headache_duration = timedelta_from_duration_dh_field(
+            data={"headache_duration": self.headache_duration},
+            duration_dh_field="headache_duration",
+        )
+        self.save(update_fields=["calculated_headache_duration"])
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Signs and Symptoms"

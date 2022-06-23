@@ -167,15 +167,9 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    has_cd4_result = models.CharField(
-        verbose_name="Is the last CD4 result available?",
-        max_length=15,
-        choices=YES_NO,
-    )
-
-    cd4_result = models.IntegerField(
+    cd4_value = models.IntegerField(
         verbose_name="CD4 result",
-        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        validators=[MinValueValidator(1), MaxValueValidator(105)],
         null=True,
         blank=False,
         help_text=format_html("mm<sup>3</sup>"),
