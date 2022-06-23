@@ -11,6 +11,7 @@ Changes
 - updates to ARV History CRF:
     - remove 'has_cd4_result' question (#359)
     - rename 'cd4_result' to 'cd4_value' and set max value to 105 (#381)
+- add 'calculated_headache_duration' to Signs and Symptoms CRF
 
 0.1.11
 ------
