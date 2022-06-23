@@ -3,11 +3,11 @@ from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
 from edc_model import models as edc_models
+from edc_model.utils import timedelta_from_duration_dh_field
 
 from effect_lists.models import SiSx
 
 from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACTION
-from ..utils import timedelta_from_duration_dh_field
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
