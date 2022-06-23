@@ -1,6 +1,6 @@
 from typing import Optional
 
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_test_utils.validate_fields_exists_or_raise import (
     validate_fields_exists_or_raise,
@@ -11,13 +11,11 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import MentalStatusForm
 from effect_subject.forms.mental_status_form import MentalStatusFormValidator
 from effect_subject.models import MentalStatus, SubjectVisit
-from effect_subject.tests.tests.mixins import (
-    ReportingFieldsetBaselineTestCaseMixin,
-    ReportingFieldsetDay14TestCaseMixin,
-)
+from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
 from effect_visit_schedule.constants import DAY01, DAY14
 
 
+@tag("ms")
 class TestMentalStatus(EffectTestCaseMixin, TestCase):
     def test_ok(self):
         subject_visit = self.get_subject_visit()
@@ -26,6 +24,7 @@ class TestMentalStatus(EffectTestCaseMixin, TestCase):
         form.is_valid()
 
 
+@tag("ms")
 class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = MentalStatusFormValidator
@@ -50,8 +49,8 @@ class TestMentalStatusFormValidationBase(EffectTestCaseMixin, TestCase):
             "modified_rankin_score": "0",
             "ecog_score": "0",
             "glasgow_coma_score": 15,
-            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
-            "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
+            "reportable_as_ae": NOT_APPLICABLE,
+            "patient_admitted": NOT_APPLICABLE,
         }
 
         validate_fields_exists_or_raise(cleaned_data, MentalStatus)
@@ -93,7 +92,13 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
 
     def test_seizures_at_d14_ok(self):
         cleaned_data = self.get_valid_mental_status_data(visit_code=DAY14)
-        cleaned_data.update({"recent_seizure": YES})
+        cleaned_data.update(
+            {
+                "recent_seizure": YES,
+                "reportable_as_ae": NO,
+                "patient_admitted": NO,
+            }
+        )
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data)
         )
@@ -102,7 +107,13 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
         cleaned_data = self.get_valid_mental_status_data(visit_code=DAY14)
         for gcs in [3, 14]:
             with self.subTest(gcs=gcs):
-                cleaned_data.update({"glasgow_coma_score": gcs})
+                cleaned_data.update(
+                    {
+                        "glasgow_coma_score": gcs,
+                        "reportable_as_ae": NO,
+                        "patient_admitted": NO,
+                    }
+                )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
@@ -110,7 +121,6 @@ class TestMentalStatusFormValidation(TestMentalStatusFormValidationBase):
 
 class TestMentalStatusReportingFieldsetFormValidation(
     ReportingFieldsetBaselineTestCaseMixin,
-    ReportingFieldsetDay14TestCaseMixin,
     TestMentalStatusFormValidationBase,
 ):
     def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
