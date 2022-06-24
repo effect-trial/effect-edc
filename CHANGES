@@ -1,6 +1,10 @@
 Changes
 =======
 
+[unreleased]
+------------
+- change chest_xray_results_other from char to text field (#430)
+
 [0.1.12]
 --------
 - updates to Mental Status CRF:
