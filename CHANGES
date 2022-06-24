@@ -3,7 +3,10 @@ Changes
 
 [unreleased]
 ------------
-- change chest_xray_results_other from char to text field (#430)
+- change chest_xray_results_other from char to text field on Chest X-ray CRF (#430)
+- update TB section on Patient History CRF (#437):
+    - add 'tb_dx_date', 'tb_dx_date_estimated', 'tb_tx_type', 'active_tb_tx'
+    - remove 'tb_dx_ago', 'on_rifampicin', 'rifampicin_start_date'
 
 [0.1.12]
 --------

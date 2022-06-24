@@ -249,16 +249,17 @@ STEROID_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-TB_DX_AGO_CHOICES = (
-    ("lte_5_yrs", "During past 5 years (no longer on treatment)"),
-    ("gt_5_yrs", "More than 5 years ago (no longer on treatment)"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
 TB_SITE_CHOICES = (
     ("pulmonary", "Pulmonary"),
     ("extra_pulmonary", "Extra-pulmonary"),
     ("both", "Both"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+TB_TX_TYPES = (
+    ("active_tb", "Active TB"),
+    ("latent_tb", "Latent TB (HR: Isoniazid + Rifampicin)"),
+    ("ipt", "IPT (Isoniazid Preventive Therapy)"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
