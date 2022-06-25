@@ -15,7 +15,7 @@ class PatientHistoryAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Previous treatment",
+            "Fluconazole",
             {
                 "description": "Only complete at Day 1",
                 "fields": (
@@ -32,15 +32,23 @@ class PatientHistoryAdmin(CrfModelAdmin):
             {"fields": ("reported_neuro_abnormality", "neuro_abnormality_details")},
         ),
         (
-            "TB diagnosis/treatment",
+            "TB diagnosis",
             {
                 "fields": (
                     "tb_prev_dx",
+                    "tb_dx_date",
+                    "tb_dx_date_estimated",
                     "tb_site",
+                )
+            },
+        ),
+        (
+            "TB prevention/treatment",
+            {
+                "fields": (
                     "on_tb_tx",
-                    "tb_dx_ago",
-                    "on_rifampicin",
-                    "rifampicin_start_date",
+                    "tb_tx_type",
+                    "active_tb_tx",
                 )
             },
         ),
@@ -62,17 +70,17 @@ class PatientHistoryAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = ["specify_medications"]
+    filter_horizontal = ["active_tb_tx", "specify_medications"]
 
     radio_fields = {
         "any_medications": admin.VERTICAL,
         "flucon_1w_prior_rando": admin.VERTICAL,
         "flucon_dose": admin.VERTICAL,
-        "on_rifampicin": admin.VERTICAL,
         "on_tb_tx": admin.VERTICAL,
         "previous_oi": admin.VERTICAL,
         "reported_neuro_abnormality": admin.VERTICAL,
-        "tb_dx_ago": admin.VERTICAL,
+        "tb_dx_date_estimated": admin.VERTICAL,
         "tb_prev_dx": admin.VERTICAL,
         "tb_site": admin.VERTICAL,
+        "tb_tx_type": admin.VERTICAL,
     }
