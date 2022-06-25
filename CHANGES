@@ -21,7 +21,7 @@ Changes
     - rename 'cd4_result' to 'cd4_value' and set max value to 105 (#381)
 - add 'calculated_headache_duration' to Signs and Symptoms CRF
 - bump to edc 0.3.89
-- bump to effect-form-validators == 0.1.15
+- bump to effect-form-validators 0.1.15
 
 0.1.11
 ------
