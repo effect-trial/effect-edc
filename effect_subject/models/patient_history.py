@@ -1,13 +1,13 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from edc_constants.choices import YES_NO, YES_NO_NA
+from edc_constants.choices import YES_NO
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 from edc_model.validators import date_not_future
 
-from effect_lists.models import Medication
+from effect_lists.models import Medication, TbTreatments
 
-from ..choices import FLUCONAZOLE_DOSES, TB_DX_AGO_CHOICES, TB_SITE_CHOICES
+from ..choices import FLUCONAZOLE_DOSES, TB_SITE_CHOICES, TB_TX_TYPES
 from ..model_mixins import CrfModelMixin
 
 
@@ -67,6 +67,17 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
+    tb_dx_date = models.DateField(
+        verbose_name="If YES, give date",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    tb_dx_date_estimated = edc_models.IsDateEstimatedFieldNa(
+        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+    )
+
     tb_site = models.CharField(
         verbose_name="If YES, site of TB?",
         max_length=15,
@@ -77,27 +88,20 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
     on_tb_tx = models.CharField(
         verbose_name="Are you currently taking TB treatment?",
         max_length=5,
-        choices=YES_NO_NA,
+        choices=YES_NO,
     )
 
-    tb_dx_ago = models.CharField(
-        verbose_name="If NO, when was TB diagnosis?",
+    tb_tx_type = models.CharField(
+        verbose_name="If YES, please specify type?",
         max_length=15,
-        choices=TB_DX_AGO_CHOICES,
+        choices=TB_TX_TYPES,
         default=NOT_APPLICABLE,
+        help_text="If 'Active TB' please specify treatment below ...",
     )
 
-    on_rifampicin = models.CharField(
-        verbose_name="If YES, are you currently also taking Rifampicin?",
-        max_length=5,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-    )
-
-    rifampicin_start_date = models.DateField(
-        verbose_name="If YES, when did you first start taking Rifampicin?",
-        validators=[date_not_future],
-        null=True,
+    active_tb_tx = models.ManyToManyField(
+        TbTreatments,
+        verbose_name="If 'Active TB', which treatment?",
         blank=True,
     )
 
