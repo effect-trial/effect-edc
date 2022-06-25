@@ -15,7 +15,7 @@ class PatientHistoryAdmin(CrfModelAdmin):
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "Previous treatment",
+            "Fluconazole",
             {
                 "description": "Only complete at Day 1",
                 "fields": (
