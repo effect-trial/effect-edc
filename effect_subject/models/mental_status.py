@@ -34,7 +34,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text="Answer only at Week 10 and Month 6 visits",
+        help_text="Answer only at scheduled Week 10 and Month 6 visits",
     )
 
     any_other_problems = models.CharField(
@@ -42,7 +42,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text="Answer only at Week 10 and Month 6 visits",
+        help_text="Answer only at scheduled Week 10 and Month 6 visits",
     )
 
     modified_rankin_score = models.CharField(

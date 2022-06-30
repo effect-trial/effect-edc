@@ -1,6 +1,11 @@
 Changes
 =======
 
+[unreleased]
+------------
+- updates to Mental Status CRF:
+    - add 'require_help' and 'any_other_problems' questions (#423)
+
 [0.1.13]
 --------
 - change chest_xray_results_other from char to text field on Chest X-ray CRF (#430)
