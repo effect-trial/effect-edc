@@ -1,16 +1,27 @@
 Changes
 =======
 
-[unreleased]
-------------
+[0.1.13]
+--------
+- change chest_xray_results_other from char to text field on Chest X-ray CRF (#430)
+- update TB section on Patient History CRF (#437):
+    - add 'tb_dx_date', 'tb_dx_date_estimated', 'tb_tx_type', 'active_tb_tx'
+    - remove 'tb_dx_ago', 'on_rifampicin', 'rifampicin_start_date'
+- bump to effect-form-validators 0.1.16
+
+[0.1.12]
+--------
 - updates to Mental Status CRF:
-    - add 'require_help' and 'any_other_problems' questions (#423)
+    - fix unable to specify "Not applicable" if no symptoms to report on D3 (#402, #370)
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
 - fix typo (split "LamotriginePyridoxine" into two entries) in 'specify_medication' list in Patient History CRF
-- merge contents of Medical History CRF into Patient History CRF (#334)
+- merge contents of Medical History CRF into Patient History CRF (#334, #360)
 - updates to ARV History CRF:
     - remove 'has_cd4_result' question (#359)
     - rename 'cd4_result' to 'cd4_value' and set max value to 105 (#381)
+- add 'calculated_headache_duration' to Signs and Symptoms CRF
+- bump to edc 0.3.89
+- bump to effect-form-validators 0.1.15
 
 0.1.11
 ------

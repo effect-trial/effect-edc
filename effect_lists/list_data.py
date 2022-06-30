@@ -5,6 +5,7 @@ from edc_constants.constants import (
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    STEROIDS,
     UNKNOWN,
     VISUAL_LOSS,
 )
@@ -119,8 +120,9 @@ list_data = {
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.medication": [
+        (NOT_APPLICABLE, "--Not applicable"),
         ("TMP-SMX", "TMP-SMX"),
-        ("steroids", "Steroids, please specify type and dose below ..."),
+        (STEROIDS, "Steroids, please specify type and dose below ..."),
         ("actrapid", "Actrapid"),
         ("actrophane", "Actrophane"),
         ("allopurinol", "Allopurinol"),
