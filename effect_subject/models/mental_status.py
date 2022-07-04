@@ -30,7 +30,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     require_help = models.CharField(
-        verbose_name="Does the patient require help from anybody for everyday activities?",
+        verbose_name="Does the participant require help from anybody for everyday activities?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -38,7 +38,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     any_other_problems = models.CharField(
-        verbose_name="Has the illness left the patient with any other problems?",
+        verbose_name="Has the illness left the participant with any other problems?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
