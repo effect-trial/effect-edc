@@ -17,7 +17,6 @@ from .health_economics_baseline_termination_admin import HealthEconomicsBaseline
 from .histopathology_admin import HistopathologyAdmin
 from .lab_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .lp_csf_admin import LpCsfAdmin
-from .medical_history_admin import MedicalHistoryAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
 from .patient_history_admin import PatientHistoryAdmin

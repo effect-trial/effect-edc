@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from django import template
 from django.conf import settings
-from edc_constants.constants import NO, TBD, YES
+from edc_constants.constants import NO, PENDING, TBD, YES
 from edc_dashboard.url_names import url_names
 
 from effect_screening.eligibility import ScreeningEligibility
@@ -20,9 +20,10 @@ def screening_button(context, model_wrapper):
         screening_identifier=model_wrapper.object.screening_identifier,
         href=model_wrapper.href,
         title=title,
-        YES=YES,
         NO=NO,
+        PENDING=PENDING,
         TBD=TBD,
+        YES=YES,
     )
 
 

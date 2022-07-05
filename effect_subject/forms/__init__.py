@@ -15,7 +15,6 @@ from .health_economics_form import HealthEconomicsForm
 from .histopathology_form import HistopathologyForm
 from .lab_results import BloodResultsChemForm, BloodResultsFbcForm, UrinalysisForm
 from .lp_csf_form import LpCsfForm
-from .medical_history_form import MedicalHistoryForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
 from .patient_history_form import PatientHistoryForm

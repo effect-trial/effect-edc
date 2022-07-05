@@ -17,6 +17,15 @@ CM_ON_CSF_METHODS = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
+HIV_CONFIRMATION_METHODS = (
+    ("site_rapid_test", "Rapid test by site"),
+    ("historical_lab_result", "Historical lab result (ELISA/PCR/unsuppressed HIVVL)"),
+    (
+        "historical_clinical_note_rapid_test_result",
+        "Historical clinical note/rapid test result",
+    ),
+    (NOT_APPLICABLE, "Not applicable"),
+)
 REFUSAL_REASONS = (
     ("dont_have_time", "I don't have time"),
     ("must_consult_spouse", "I need to consult my spouse"),

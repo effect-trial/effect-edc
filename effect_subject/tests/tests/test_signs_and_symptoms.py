@@ -1,10 +1,11 @@
 from copy import deepcopy
+from datetime import timedelta
 from typing import Optional
 
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_constants.constants import (
     HEADACHE,
@@ -40,6 +41,7 @@ class SignsSymptomsTestError(Exception):
     pass
 
 
+@tag("sisx")
 class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
     def test_ok(self):
         subject_visit = self.get_subject_visit()
@@ -47,7 +49,29 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
         form = SignsAndSymptomsForm(instance=obj)
         form.is_valid()
 
+    def test_calculated_headache_duration(self):
+        subject_visit = self.get_subject_visit()
+        obj = baker.make_recipe("effect_subject.signsandsymptoms", subject_visit=subject_visit)
+        self.assertIsNone(obj.calculated_headache_duration)
 
+        obj.headache_duration = "2d"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(days=2))
+
+        obj.headache_duration = "1d12h"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(days=1, hours=12))
+
+        obj.headache_duration = "3h"
+        obj.save()
+        self.assertEqual(obj.calculated_headache_duration, timedelta(hours=3))
+
+        obj.headache_duration = ""
+        obj.save()
+        self.assertIsNone(obj.calculated_headache_duration)
+
+
+@tag("sisx")
 class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = SignsAndSymptomsFormValidator
@@ -399,7 +423,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 ),
                 "current_sx_other": "Some other sx",
                 "current_sx_gte_g3_other": "Some other sx",
-                "headache_duration": "2w",
+                "headache_duration": "2d",
                 "visual_field_loss": "Visual field loss details",
             }
         )
@@ -775,7 +799,13 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     form_validator=self.validate_form_validator(cleaned_data),
                 )
 
-                cleaned_data.update({other_field: "Some other text"})
+                cleaned_data.update(
+                    {
+                        other_field: "3d"
+                        if other_field == "headache_duration"
+                        else "Some other text"
+                    }
+                )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data),
                 )

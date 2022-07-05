@@ -1,12 +1,8 @@
-from datetime import date
-
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_dx.utils import calculate_dx_date_if_estimated
-from edc_dx_review.model_mixins import initial_dx_model_mixin_factory
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
@@ -19,6 +15,7 @@ from edc_screening.screening_identifier import (
 from ..choices import (
     CM_ON_CSF_METHODS,
     CSF_YES_NO_PENDING_NA,
+    HIV_CONFIRMATION_METHODS,
     POS_NEG,
     POS_NEG_PENDING_NA,
     PREG_YES_NO_NA,
@@ -31,12 +28,7 @@ class ScreeningIdentifier(BaseScreeningIdentifier):
     template = "S{random_string}"
 
 
-class SubjectScreening(
-    initial_dx_model_mixin_factory(dx_field_prefix="hiv"),
-    ScreeningModelMixin,
-    EligibilityModelMixin,
-    BaseUuidModel,
-):
+class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel):
 
     eligibility_cls = ScreeningEligibility
 
@@ -73,10 +65,17 @@ class SubjectScreening(
         blank=False,
     )
 
-    hiv_dx_new = models.CharField(
-        verbose_name="Is this a new HIV diagnosis?",
-        max_length=15,
-        choices=YES_NO_NA,
+    hiv_confirmed_date = models.DateField(
+        verbose_name="If YES, on what date was HIV positivity confirmed?",
+        validators=[date_not_future],
+        null=True,
+        blank=True,
+    )
+
+    hiv_confirmed_method = models.CharField(
+        verbose_name="If YES, method?",
+        max_length=50,
+        choices=HIV_CONFIRMATION_METHODS,
         default=NOT_APPLICABLE,
     )
 
@@ -289,21 +288,6 @@ class SubjectScreening(
     )
 
     cm_in_csf_method_other = OtherCharField()
-
-    def save(self, *args, **kwargs):
-        (
-            self.hiv_dx_estimated_date,
-            self.hiv_dx_date_is_estimated,
-        ) = calculate_dx_date_if_estimated(
-            self.hiv_dx_date,
-            self.hiv_dx_ago,
-            self.report_datetime,
-        )
-        super().save(*args, **kwargs)
-
-    @property
-    def best_hiv_dx_date(self) -> date:
-        return self.hiv_dx_date or self.hiv_dx_estimated_date
 
     class Meta:
         verbose_name = "Subject Screening"
