@@ -53,9 +53,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "initials": "EW",
             "gender": FEMALE,
             "age_in_years": 25,
-            "hiv_dx_date": (get_utcnow() - relativedelta(days=28)).date(),
-            "hiv_dx_ago": None,
-            "hiv_dx_new": YES,
+            "hiv_confirmed_date": (get_utcnow() - relativedelta(days=28)).date(),
+            "hiv_confirmed_method": "historical_lab_result",
             "unsuitable_for_study": NO,
             "unsuitable_agreed": NOT_APPLICABLE,
             "any_other_mg_ssx_other": "",
@@ -175,6 +174,13 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertTrue(obj.is_eligible)
                 self.assertDictEqual({}, obj.reasons_ineligible)
+
+    def test_valid_opts_eligible(self):
+        obj = SubjectScreening.objects.create(**self.get_valid_opts())
+
+        elig_obj = ScreeningEligibility(model_obj=obj)
+        self.assertDictEqual({}, elig_obj.reasons_ineligible)
+        self.assertTrue(elig_obj.is_eligible)
 
     def test_valid_opts_ok(self):
         form = SubjectScreeningForm(data=self.get_valid_opts())

@@ -5,6 +5,7 @@ from edc_constants.constants import (
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    STEROIDS,
     UNKNOWN,
     VISUAL_LOSS,
 )
@@ -44,6 +45,7 @@ list_data = {
             "ciprofloxacin",
             "Ciprofloxacin (NB avoid on concomitant high dose fluconazole)",
         ),
+        ("coamoxiclav", "Coamoxiclav (amoxicillin/clavulanate)"),
         (
             "erythromycin",
             "Erythromycin (NB contra-indicated on concomitant high dose fluconazole)",
@@ -118,8 +120,9 @@ list_data = {
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.medication": [
+        (NOT_APPLICABLE, "--Not applicable"),
         ("TMP-SMX", "TMP-SMX"),
-        ("steroids", "Steroids, please specify type and dose below ..."),
+        (STEROIDS, "Steroids, please specify type and dose below ..."),
         ("actrapid", "Actrapid"),
         ("actrophane", "Actrophane"),
         ("allopurinol", "Allopurinol"),
@@ -149,7 +152,7 @@ list_data = {
         ("humalog", "Humalog"),
         ("ibuprofen", "Ibuprofen"),
         ("iron", "Iron (FeSO4/ FeGluconate)"),
-        ("lamotriginepyridoxine", "LamotriginePyridoxine"),
+        ("lamotrigine", "Lamotrigine"),
         ("lansoprazole", "Lansoprazole"),
         ("loperamide", "Loperamide (Imodium)"),
         ("losartan", "Losartan"),
@@ -164,6 +167,7 @@ list_data = {
         ("pioglitazone", "Pioglitazone"),
         ("prednisone", "Prednisone"),
         ("protophane", "Protophane"),
+        ("pyridoxine", "Pyridoxine"),
         ("quetiapine", "Quetiapine"),
         ("ranitidine", "Ranitidine"),
         ("risperidone", "Risperidone"),

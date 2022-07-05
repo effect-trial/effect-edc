@@ -9,9 +9,7 @@ A phase III randomised controlled trial
 
 The EFFECT Trial
 
-[title]
-http://www.isrctn.com/[nnnnn]
-____
+https://www.isrctn.com/ISRCTN30579828
 
 See also https://github.com/clinicedc/edc
 

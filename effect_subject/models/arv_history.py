@@ -15,6 +15,17 @@ from ..model_mixins import CrfModelMixin
 
 class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
+    hiv_dx_date = models.DateField(
+        verbose_name="Date HIV diagnosis first known",
+        validators=[date_not_future],
+        null=True,
+        blank=False,
+    )
+
+    hiv_dx_date_estimated = edc_models.IsDateEstimatedField(
+        verbose_name="Is this date estimated?"
+    )
+
     on_art_at_crag = models.CharField(
         verbose_name="Was the patient on ART <u>at time of</u> CrAg test?",
         max_length=5,
@@ -28,7 +39,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     initial_art_date = models.DateField(
-        verbose_name=format_html("When did the patient <u>start</u> ART for the first time."),
+        verbose_name=format_html("When did the patient <u>start</u> ART for the first time?"),
         validators=[date_not_future],
         null=True,
         blank=True,
@@ -156,26 +167,23 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    has_cd4_result = models.CharField(
-        verbose_name="Is the last CD4 result available?",
-        max_length=15,
-        choices=YES_NO,
-    )
-
-    cd4_result = models.IntegerField(
+    cd4_value = models.IntegerField(
         verbose_name="CD4 result",
-        validators=[MinValueValidator(1), MaxValueValidator(9999)],
+        validators=[MinValueValidator(1), MaxValueValidator(105)],
         null=True,
-        blank=True,
+        blank=False,
         help_text=format_html("mm<sup>3</sup>"),
     )
 
     cd4_date = models.DateField(
-        verbose_name="CD4 date", validators=[date_not_future], null=True, blank=True
+        verbose_name="CD4 date",
+        validators=[date_not_future],
+        null=True,
+        blank=False,
     )
 
-    cd4_date_estimated = edc_models.IsDateEstimatedFieldNa(
-        verbose_name="Is the CD4 date estimated?", default=NOT_APPLICABLE
+    cd4_date_estimated = edc_models.IsDateEstimatedField(
+        verbose_name="Is the CD4 date estimated?"
     )
 
     class Meta(CrfModelMixin.Meta):
