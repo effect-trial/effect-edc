@@ -2,106 +2,49 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
-from ..forms import HealthEconomicsForm
-from ..models import HealthEconomics
+from ..models import HealthEconomicsBaselineTermination
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(HealthEconomics, site=effect_subject_admin)
-class HealthEconomicsAdmin(CrfModelAdmin):
-
-    form = HealthEconomicsForm
+@admin.register(HealthEconomicsBaselineTermination, site=effect_subject_admin)
+class HealthEconomicsBaselineTerminationAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
-            "EARLIER HEALTH CARE EXPENSES",
+            "Education",
             {
                 "fields": (
-                    "buy_refill_drug",
-                    "amount_spent_antiretroviral_drugs_past",
-                    "amount_spent_other_drugs_past",
-                    "payment_method_antiretroviral_drugs_past",
-                    "payment_method_other_drugs_past",
-                    "spent_money_other_health_activities_past",
-                    "other_health_activities_past",
-                    "amount_spent_other_health_activities_past",
-                    "payment_method_other_health_activities_past",
-                    "num_day_activities_disrupted",
-                    "amount_spent_healthcare_last_month",
+                    "occupation",
+                    "education_years",
+                    "highest_education_certificate",
+                    "primary_school",
+                    "primary_school_years",
+                    "secondary_school",
+                    "secondary_school_years",
+                    "higher_education",
+                    "higher_education_years",
                 ),
             },
         ),
         (
-            "LOSS OF PRODUCTIVITY AND EARNINGS",
+            "Income",
             {
                 "fields": (
-                    "activities_not_come_clinic",
-                    "activities_not_come_clinic_other",
-                    "time_taken_off_work",
-                    "time_taken_get_here",
-                    "time_spent_clinic",
-                    "loss_earnings",
-                    "loss_earnings_amount",
+                    "welfare_social_service_support",
+                    "monthly_household_income",
+                    "highest_income_person",
+                    "highest_income_person_profession",
                 ),
             },
         ),
         (
-            "FAMILY LOSS OF PRODUCTIVITY AND EARNINGS",
+            "General expenditure",
             {
                 "fields": (
-                    "someone_looking_children",
-                    "someone_looking_children_activities",
-                    "someone_looking_children_activities_other",
-                    "someone_looking_children_time_spent",
-                ),
-            },
-        ),
-        (
-            "CURRENT VISIT TRANSPORT, HEALTH CARE AND OTHER EXPENSES",
-            {
-                "fields": (
-                    "transport_used",
-                    "transport_used_other",
-                    "transport_used_amount",
-                    "amount_spent_food",
-                    "get_drugs_visit_today",
-                    "amount_spent_antiretroviral_drugs_today",
-                    "amount_spent_other_drugs_today",
-                    "payment_method_antiretroviral_drugs_today",
-                    "payment_method_other_drugs_today",
-                    "spent_money_other_health_activities_today",
-                    "other_health_activities_today",
-                    "amount_spent_other_health_activities_today",
-                ),
-            },
-        ),
-        (
-            "HOSPITAL STAY",
-            {
-                "fields": (
-                    "administrative_charges",
-                    "administrative_charges_amount",
-                    "admitted_day_pay_for_tests",
-                    "admitted_day_amount_pay_for_tests",
-                    "admitted_day_amount_spent_food",
-                    "admitted_amount_spent_other_items",
-                    "admitted_time_off_work",
-                    "admitted_num_people_stay_with_you",
-                    "admitted_num_people_visit_you",
-                    "admitted_people_time_off_work",
-                    "admitted_people_time_off_work_amount_monthly",
-                ),
-            },
-        ),
-        (
-            "HEALTH CARE FINANCING",
-            {
-                "fields": (
-                    "sale_anything_pay_visit_today",
-                    "loan_pay_visit_treatment",
-                    "private_healthcare",
-                    "private_healthcare_amount_monthly",
+                    "monthly_household_food_spent",
+                    "monthly_household_rent_spent",
+                    "yearly_household_large_item_spent",
                 ),
             },
         ),
@@ -109,40 +52,30 @@ class HealthEconomicsAdmin(CrfModelAdmin):
     )
 
     list_display = (
-        "buy_refill_drug",
-        "amount_spent_antiretroviral_drugs_past",
-        "amount_spent_other_drugs_past",
-        "spent_money_other_health_activities_past",
-        "other_health_activities_past",
+        "occupation",
+        "education_years",
+        "highest_education_certificate",
+        "primary_school",
+        "primary_school_years",
+        "secondary_school",
+        "secondary_school_years",
+        "higher_education",
+        "higher_education_years",
     )
 
-    list_filter = ("report_datetime",)
+    list_filter = (
+        "report_datetime",
+        "primary_school",
+        "secondary_school",
+        "higher_education",
+    )
 
     search_fields = ("report_datetime",)
 
-    filter_horizontal = [
-        "transport_used",
-    ]
-
     radio_fields = {
-        "buy_refill_drug": admin.VERTICAL,
-        "payment_method_antiretroviral_drugs_past": admin.VERTICAL,
-        "payment_method_other_drugs_past": admin.VERTICAL,
-        "spent_money_other_health_activities_past": admin.VERTICAL,
-        "payment_method_other_health_activities_past": admin.VERTICAL,
-        "activities_not_come_clinic": admin.VERTICAL,
-        "loss_earnings": admin.VERTICAL,
-        "someone_looking_children": admin.VERTICAL,
-        "someone_looking_children_activities": admin.VERTICAL,
-        "get_drugs_visit_today": admin.VERTICAL,
-        "payment_method_antiretroviral_drugs_today": admin.VERTICAL,
-        "payment_method_other_drugs_today": admin.VERTICAL,
-        "spent_money_other_health_activities_today": admin.VERTICAL,
-        "administrative_charges": admin.VERTICAL,
-        "admitted_day_pay_for_tests": admin.VERTICAL,
-        "admitted_time_off_work": admin.VERTICAL,
-        "admitted_people_time_off_work": admin.VERTICAL,
-        "sale_anything_pay_visit_today": admin.VERTICAL,
-        "loan_pay_visit_treatment": admin.VERTICAL,
-        "private_healthcare": admin.VERTICAL,
+        "higher_education": admin.VERTICAL,
+        "highest_income_person": admin.VERTICAL,
+        "primary_school": admin.VERTICAL,
+        "secondary_school": admin.VERTICAL,
+        "welfare_social_service_support": admin.VERTICAL,
     }

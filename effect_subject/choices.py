@@ -72,6 +72,15 @@ CHILDCARE_CHOICES = (
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
+CHILDCARE_ECON_CHOICES = (
+    ("working", "Working"),
+    ("studying", "Studying"),
+    ("caring_for_children", "Caring for children"),
+    ("house_maintenance", "House maintenance"),
+    ("nothing", "Nothing"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
+
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
@@ -217,9 +226,16 @@ NEGATIVE_TX_CHOICES = (
 PAYEE_CHOICES = (
     ("own_cash", "Own cash"),
     ("insurance", "Insurance"),
-    ("relative", "Relative of others paying"),
+    ("relative", "Relative or others paying for drug"),
     ("free", "Free drugs from the pharmacy"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+PAYEE_CHOICES_ECON = (
+    ("own_cash", "Own cash"),
+    ("insurance", "Insurance"),
+    ("relative", "Relative or others"),
+    ("free", "Free"),
 )
 
 PRESENT_ABSENT_NOEXAM = (
