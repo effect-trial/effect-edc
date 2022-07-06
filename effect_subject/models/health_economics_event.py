@@ -86,7 +86,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         choices=CHILDCARE_ECON_CHOICES,
     )
 
-    activities_not_come_clinic_other = edc_models.OtherCharField
+    activities_not_come_clinic_other = edc_models.OtherCharField()
 
     time_taken_off_work = models.IntegerField(
         verbose_name="How much time did you take off work to come to this appointment?",
@@ -123,7 +123,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=45,
         choices=CHILDCARE_CHOICES,
     )
-    someone_looking_children_activities_other = edc_models.OtherCharField
+    someone_looking_children_activities_other = edc_models.OtherCharField()
 
     someone_looking_children_time_spent = models.IntegerField(
         verbose_name="How much time did a family member, friend take off work to look after "
@@ -136,7 +136,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         "today?",
     )
 
-    transport_used_other = edc_models.OtherCharField
+    transport_used_other = edc_models.OtherCharField()
 
     transport_used_amount = models.IntegerField(
         verbose_name="How much will you spend on transport in total (coming to the health "
