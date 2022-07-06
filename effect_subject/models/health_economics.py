@@ -26,7 +26,9 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
-    primary_school_years = models.IntegerField(verbose_name="If YES, for how many years?")
+    primary_school_years = models.IntegerField(
+        verbose_name="If YES, for how many years?",
+    )
 
     secondary_school = models.CharField(
         verbose_name="Did you go to secondary school?",
@@ -49,7 +51,9 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     welfare = models.CharField(
-        verbose_name="Do you received any welfare?", max_length=15, choices=YES_NO
+        verbose_name="Do you received any welfare?",
+        max_length=15,
+        choices=YES_NO,
     )
 
     monthly_household_income = models.IntegerField(
@@ -63,7 +67,8 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     highest_income_person_profession = models.CharField(
-        verbose_name="If NO, what is the profession of the person who earns the highest income?",
+        verbose_name="If NO, what is the profession of the person who earns the highest "
+        "income?",
         max_length=45,
     )
 
@@ -72,12 +77,13 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     monthly_household_rent_spent = models.IntegerField(
-        verbose_name="How much does your household spend on rent (or house loan/mortgage) and utilities in a month?",
+        verbose_name="How much does your household spend on rent (or house loan/mortgage) "
+        "and utilities in a month?",
     )
 
     yearly_household_large_item_spent = models.IntegerField(
-        verbose_name="How much have you spent on large items (e.g., furniture, electrical items, cars) in the last "
-        "year? "
+        verbose_name="How much have you spent on large items (e.g., furniture, electrical "
+        "items, cars) in the last year? "
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
