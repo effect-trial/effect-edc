@@ -2,12 +2,12 @@ from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
-from ..models import HealthEconomicsBaselineTermination
+from ..models import HealthEconomics
 from .modeladmin import CrfModelAdmin
 
 
-@admin.register(HealthEconomicsBaselineTermination, site=effect_subject_admin)
-class HealthEconomicsBaselineTerminationAdmin(CrfModelAdmin):
+@admin.register(HealthEconomics, site=effect_subject_admin)
+class HealthEconomicsAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
@@ -77,5 +77,5 @@ class HealthEconomicsBaselineTerminationAdmin(CrfModelAdmin):
         "highest_income_person": admin.VERTICAL,
         "primary_school": admin.VERTICAL,
         "secondary_school": admin.VERTICAL,
-        "welfare_social_service_support": admin.VERTICAL,
+        "welfare": admin.VERTICAL,
     }

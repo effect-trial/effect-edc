@@ -324,11 +324,11 @@ list_data = {
         ("ambulance", "Ambulance"),
         ("private_taxi", "Private taxi"),
         ("own_bicycle", "Own bicycle"),
-        ("hired_motorbike", "Hired motorbike"),
         ("own_car", "Own car"),
         ("own_motorbike", "Own motorbike"),
         ("hired_bicycle", "Hired bicycle"),
-        ("foot", "Foot"),
+        ("hired_motorbike", "Hired motorbike"),
+        ("foot_walking", "Foot/walking"),
         (OTHER, "Other"),
     ],
     "edc_refusal.refusalreasons": [

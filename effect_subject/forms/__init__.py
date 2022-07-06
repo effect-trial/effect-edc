@@ -11,7 +11,7 @@ from .blood_culture_form import BloodCultureForm
 from .chest_xray_form import ChestXrayForm
 from .clinical_note_form import ClinicalNoteForm
 from .diagnoses_form import DiagnosesForm
-from .health_economics_form import HealthEconomicsForm
+from .health_economics_form import HealthEconomicsEventForm
 from .histopathology_form import HistopathologyForm
 from .lab_results import BloodResultsChemForm, BloodResultsFbcForm, UrinalysisForm
 from .lp_csf_form import LpCsfForm

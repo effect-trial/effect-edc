@@ -3,6 +3,8 @@ from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
+from effect_lists.models import Transport
+
 from ..choices import (
     CHILDCARE_CHOICES,
     CHILDCARE_ECON_CHOICES,
@@ -13,7 +15,7 @@ from ..choices import (
 from ..model_mixins import CrfModelMixin
 
 
-class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
+class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
     buy_refill_drug = models.CharField(
         verbose_name="Over the past period since your treatment, did you buy any drugs or had drug refill?",
         max_length=15,
@@ -123,11 +125,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     someone_looking_children_time_spent = models.IntegerField(
         verbose_name="How much time did a family member, friend take off work to look after your child or children?",
     )
-    # TODO many2many field
-    transport_used = models.CharField(
+
+    transport_used = models.ManyToManyField(
+        Transport,
         verbose_name="Which form of transport did you use to come to the hospital/clinic today?",
-        max_length=25,
-        choices=TRANSPORT_CHOICES,
     )
 
     transport_used_other = edc_models.OtherCharField
@@ -140,7 +141,7 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     amount_spent_food = models.IntegerField(
         verbose_name="How much did you spend on food while you were here today?"
     )
-    get_drugs = models.CharField(
+    get_drugs_visit_today = models.CharField(
         verbose_name="Did you get any drugs on your visit today?",
         max_length=15,
         choices=YES_NO,
