@@ -13,6 +13,8 @@ from ..constants import (
     IF_YES_COMPLETE_AE,
     VITAL_SIGNS_ACTION,
 )
+
+# TODO: Switch to edc-vitals after next edc release (>=0.3.94)
 from ..fields.temperature import TemperatureField
 
 
@@ -58,7 +60,6 @@ class VitalSigns(
     reportable_as_ae = models.CharField(
         verbose_name="Are any of the above reportable as Grade 3 or above?",
         max_length=15,
-        # TODO: If yes, prompt for SAE
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
         help_text=IF_YES_COMPLETE_AE,
@@ -67,7 +68,6 @@ class VitalSigns(
     patient_admitted = models.CharField(
         verbose_name="Has the patient been admitted due to any of the above?",
         max_length=15,
-        # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
         help_text=IF_ADMITTED_COMPLETE_REPORTS,
