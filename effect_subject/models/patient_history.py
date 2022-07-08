@@ -86,7 +86,7 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     on_tb_tx = models.CharField(
-        verbose_name="Are you currently taking TB treatment?",
+        verbose_name="Is the participant currently taking TB treatment?",
         max_length=5,
         choices=YES_NO,
     )

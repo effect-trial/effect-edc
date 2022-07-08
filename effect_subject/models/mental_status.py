@@ -29,6 +29,22 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
+    require_help = models.CharField(
+        verbose_name="Does the participant require help from anybody for everyday activities?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="Answer only at scheduled Week 10 and Month 6 visits",
+    )
+
+    any_other_problems = models.CharField(
+        verbose_name="Has the illness left the participant with any other problems?",
+        max_length=15,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="Answer only at scheduled Week 10 and Month 6 visits",
+    )
+
     modified_rankin_score = models.CharField(
         verbose_name="Modified Rankin Score",
         max_length=15,

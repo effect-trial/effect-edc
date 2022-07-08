@@ -32,18 +32,6 @@
         - Adherence
         - Clinical Assessment CRF
 
-- Medical History CRF:
-    - currently taking TB treatment?  -> Ask which treatment, like asked on D14 - use same list
-    - validate
-
-- ARV History CRF:
-    - split?
-    - remove singular choices, convert m2m to autocomplete field
-    - store regimen history in inline (i.e. ~Q9-Q13 for each)
-    - remove CD4 (collected at baseline), add estimated_date q to screening
-    - add "What decision was made at enrollment regarding their current ART regimen?" (ART continued/ART stopped)
-    - validate
-
 - Requisitions:
     - combine renal (RFT) and liver (LFT) function tests into single requisition
         - combine results forms
@@ -53,9 +41,6 @@
         - trigger AE_INITIAL_ACTION/DEATH_REPORT_ACTION if answer YES to 'survival_status'
     - Hide 'hospitalized' at baseline
         - trigger AE_INITIAL_ACTION if answer YES to 'hospitalized'
-
-- Follow-up CRF:
-    - Remove model, form, admin and test once validation transferred over
 
 - Study Medication CRF:
     - capture initial prescription
@@ -67,13 +52,6 @@
 
 - Mental Status CRF:
     - trigger AE_INITIAL_ACTION if answer YES to 'reportable_as_ae' or 'patient_admitted'
-
-- Vital Signs CRF:
-    - add, "Was blood pressure taken?" / "If not, why?"
-    - validate:
-        - blood pressure gradable if >= 180 / 110 (either value)
-        - Temperature G3 if temp >= 39.3 and < 40
-        - Temperature G4 if temp >= 40
 
 - Significant Diagnoses CRF:
     - add validation
@@ -101,11 +79,6 @@
         - everyone who has a medical event with any costs to them or trial to complete different CRF
             - then as PRN at subsequent follow-ups
     - Question: Has there been any events since last visit?
-
-- Viral load CRF/PRN:
-    - implement
-    - schedule
-    - validate
 
 - Adherence CRF:
     - form validation (all)

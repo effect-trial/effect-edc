@@ -22,6 +22,8 @@ class MentalStatusAdmin(CrfModelAdmin):
                     "recent_seizure",
                     "behaviour_change",
                     "confusion",
+                    "require_help",
+                    "any_other_problems",
                     "modified_rankin_score",
                     "ecog_score",
                     "glasgow_coma_score",
@@ -33,6 +35,7 @@ class MentalStatusAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
+        "any_other_problems": admin.VERTICAL,
         "behaviour_change": admin.VERTICAL,
         "confusion": admin.VERTICAL,
         "ecog_score": admin.VERTICAL,
@@ -40,4 +43,5 @@ class MentalStatusAdmin(CrfModelAdmin):
         "patient_admitted": admin.VERTICAL,
         "recent_seizure": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,
+        "require_help": admin.VERTICAL,
     }

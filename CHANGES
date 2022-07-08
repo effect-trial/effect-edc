@@ -1,6 +1,15 @@
 Changes
 =======
 
+[0.1.14]
+--------
+- updates to Mental Status CRF:
+    - add 'require_help' and 'any_other_problems' questions (#423)
+    - validate all symptoms must now be negative at baseline visit (#439)
+- update Vital Signs CRF to validate g3 or higher fever/blood pressure requires 'reportable_as_ae' to be YES
+- update Patient History CRF 'on_tb_tx' question wording to direct at clinician not participant (#444)
+- bump to edc 0.3.89
+
 [0.1.13]
 --------
 - change chest_xray_results_other from char to text field on Chest X-ray CRF (#430)
