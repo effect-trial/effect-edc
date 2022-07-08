@@ -1,6 +1,10 @@
 Changes
 =======
 
+[unreleased]
+------------
+- bump to edc 0.3.94
+
 [0.1.14]
 --------
 - updates to Mental Status CRF:
