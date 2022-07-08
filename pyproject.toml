@@ -33,9 +33,7 @@ legacy_tox_ini = """
 [tox]
 envlist =
     py{39,310}-dj{32,40}-edc{prod},
-    py{39,310}-dj{32,40}-edc{dev},
-#    FIXME: Disable testing djdev env until failing testrunner issue resolved
-#    py{39,310}-dj{32,40,dev}-edc{dev},
+    py{39,310}-dj{32,40,dev}-edc{dev},
     lint
 
 isolated_build = true
