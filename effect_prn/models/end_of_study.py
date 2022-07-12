@@ -18,7 +18,7 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
     tracking_identifier_prefix = "ST"
 
     offschedule_datetime = models.DateTimeField(
-        verbose_name="Date patient was terminated from the study",
+        verbose_name="Date participant was terminated from the study",
         validators=[datetime_not_future],
         blank=False,
         null=True,
@@ -26,7 +26,7 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
 
     offschedule_reason = models.ForeignKey(
         OffstudyReasons,
-        verbose_name="Reason patient was terminated from the study",
+        verbose_name="Reason participant was terminated from the study",
         on_delete=models.PROTECT,
         null=True,
     )
@@ -50,7 +50,7 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
     )
 
     transferred_consent = models.CharField(
-        verbose_name="If transferred, has the patient provided consent to be followed-up?",
+        verbose_name="If transferred, has the participant provided consent to be followed-up?",
         choices=YES_NO_NA,
         max_length=15,
         default=NOT_APPLICABLE,

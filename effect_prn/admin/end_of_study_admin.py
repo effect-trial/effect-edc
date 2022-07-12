@@ -19,9 +19,9 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
     form = EndOfStudyForm
 
     additional_instructions = format_html(
-        "Note: if the patient is <i>deceased</i>, complete form "
+        "Note: if the participant is <i>deceased</i>, complete form "
         f"`{DeathReport._meta.verbose_name}` before completing this form. "
-        "<BR>If the patient is <i>lost to follow up</i>, complete form "
+        "<BR>If the participant is <i>lost to follow up</i>, complete form "
         f"`{LossToFollowup._meta.verbose_name}` before completing this form."
     )
 
