@@ -7,6 +7,7 @@ Changes
     - update 'offschedule_reason' list to reflect (#404#note-3, #380)
     - add link to End of Study form to "Add Action linked PRN" pop-up (#388)
     - reword from "Patient" to "Participant" (#442)
+    - update validation to validate against Death Report and LTFU
 - bump to edc 0.3.94
 
 [0.1.14]
