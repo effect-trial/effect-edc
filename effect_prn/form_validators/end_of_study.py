@@ -16,7 +16,9 @@ class EndOfStudyFormValidator(
     FormValidator,
 ):
     death_report_model = "effect_ae.deathreport"
-    ltfu_model = None
+    offschedule_reason_field = "offschedule_reason"
+    ltfu_model = "effect_prn.losstofollowup"
+    ltfu_date_field = "ltfu_date"
 
     def clean(self):
 
