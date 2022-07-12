@@ -1,6 +1,7 @@
 from copy import copy
 
 from django.contrib import admin
+from django.utils.html import format_html
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
@@ -17,10 +18,10 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     form = EndOfStudyForm
 
-    additional_instructions = (
+    additional_instructions = format_html(
         "Note: if the patient is <i>deceased</i>, complete form "
         f"`{DeathReport._meta.verbose_name}` before completing this form. "
-        "<BR>If the patient is </i>lost to follow up</i>, complete form "
+        "<BR>If the patient is <i>lost to follow up</i>, complete form "
         f"`{LossToFollowup._meta.verbose_name}` before completing this form."
     )
 
