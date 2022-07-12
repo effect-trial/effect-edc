@@ -3,6 +3,8 @@ Changes
 
 [unreleased]
 ------------
+- updates to End of Study CRF:
+    - update 'offschedule_reason' list to reflect (#404#note-3, #380)
 - bump to edc 0.3.94
 
 [0.1.14]

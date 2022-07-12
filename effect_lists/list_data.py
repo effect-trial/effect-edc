@@ -21,7 +21,12 @@ from edc_constants.disease_constants import (
     TB_PULMONARY,
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
-from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
+from edc_offstudy.constants import (
+    COMPLETED_FOLLOWUP,
+    CONSENT_WITHDRAWAL,
+    INVALID_ENROLMENT,
+    LATE_EXCLUSION,
+)
 from edc_transfer.constants import TRANSFERRED
 
 list_data = {
@@ -182,27 +187,17 @@ list_data = {
         (OTHER, "Other medication, please specify below ..."),
     ],
     "effect_lists.offstudyreasons": [
-        ("completed_followup", "Patient completed 12 months of follow-up"),
-        ("clinical_endpoint", "Patient reached a clinical endpoint"),
-        ("toxicity", "Patient experienced an unacceptable toxicity"),
+        (COMPLETED_FOLLOWUP, "Completed 6 month follow-up"),
+        (DEAD, "Participant died"),
+        (LOST_TO_FOLLOWUP, "Lost to follow-up"),
+        (CONSENT_WITHDRAWAL, "Withdrew consent to participate further"),
+        (LATE_EXCLUSION, "Participant fulfilled late exclusion criteria*"),
+        (TRANSFERRED, "Participant has been transferred to another health centre"),
         (
-            "intercurrent_illness",
-            "Intercurrent illness which prevents further treatment",
+            INVALID_ENROLMENT,
+            "Included in error (i.e. violation of inclusion/exclusion criteria) ",
         ),
-        (LOST_TO_FOLLOWUP, "Patient lost to follow-up"),
-        (DEAD, "Patient reported/known to have died"),
-        (WITHDRAWAL, "Patient withdrew consent to participate further"),
-        (LATE_EXCLUSION, "Patient fulfilled late exclusion criteria*"),
-        (TRANSFERRED, "Patient has been transferred to another health centre"),
-        (
-            OTHER_RX_DISCONTINUATION,
-            "Other condition that justifies the discontinuation of "
-            "treatment in the clinician’s opinion, please specify below ...",
-        ),
-        (
-            OTHER,
-            "Other reason, please specify below ...",
-        ),
+        (OTHER, "Other reason, please specify below ..."),
     ],
     "effect_lists.sisx": [
         (NOT_APPLICABLE, "--Not applicable"),
