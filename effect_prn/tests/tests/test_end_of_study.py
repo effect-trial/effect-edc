@@ -11,14 +11,13 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
 from edc_offstudy.constants import COMPLETED_FOLLOWUP
 from edc_utils import get_utcnow, get_utcnow_as_date
-from effect_form_validators.tests.mixins import TestCaseMixin
 
 from effect_lists.models import OffstudyReasons
-from effect_prn.form_validators import EndOfStudyFormValidator
+from effect_prn.forms.end_of_study_form import EndOfStudyFormValidator
 
 
 @tag("eos")
-class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCaseMixin, TestCase):
+class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
 
     form_validator_default_form_cls = EndOfStudyFormValidator
 
@@ -28,7 +27,8 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCaseMixin, Te
     def mock_validate_death_report_if_deceased(self):
         pass
 
-    def get_cleaned_data(self, **kwargs) -> dict:
+    @staticmethod
+    def get_cleaned_data() -> dict:
         return {
             "subject_identifier": "123-456-1234-0",
             "offschedule_datetime": get_utcnow(),
