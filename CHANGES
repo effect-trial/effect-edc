@@ -9,6 +9,7 @@ Changes
     - reword from "Patient" to "Participant" (#442)
     - update validation to validate against Death Report and LTFU
 - bump to edc 0.3.94
+- bump to edc-csf 0.1.9
 
 [0.1.14]
 --------
