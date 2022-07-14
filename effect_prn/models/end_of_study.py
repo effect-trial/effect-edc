@@ -6,6 +6,7 @@ from edc_identifier.model_mixins import TrackingModelMixin
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_offstudy.constants import END_OF_STUDY_ACTION
+from edc_protocol.validators import date_not_before_study_start
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 
 from effect_lists.models import OffstudyReasons
@@ -32,28 +33,48 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
     )
 
     other_offschedule_reason = models.TextField(
-        verbose_name="If OTHER, please specify", max_length=500, blank=True, null=True
+        verbose_name="If OTHER, please specify reason ...",
+        max_length=500,
+        blank=True,
+        null=True,
     )
 
     death_date = models.DateField(
-        verbose_name="Date of death, if applicable",
-        validators=[date_not_future],
+        verbose_name="If died, what was the date of death?",
+        validators=[date_not_before_study_start, date_not_future],
         blank=True,
         null=True,
     )
 
     ltfu_date = models.DateField(
-        verbose_name="Date lost to followup, if applicable",
-        validators=[date_not_future],
+        verbose_name="If lost to follow-up, on what date?",
+        validators=[date_not_before_study_start, date_not_future],
+        blank=True,
+        null=True,
+    )
+
+    consent_withdrawal_reason = models.TextField(
+        verbose_name="If participant withdrew consent, please specify reason ...",
+        max_length=500,
         blank=True,
         null=True,
     )
 
     transferred_consent = models.CharField(
-        verbose_name="If transferred, has the participant provided consent to be followed-up?",
+        verbose_name=(
+            "If transferred, has the participant provided consent to be "
+            "followed-up for 6 month end-point?"
+        ),
         choices=YES_NO_NA,
         max_length=15,
         default=NOT_APPLICABLE,
+    )
+
+    invalid_enrol_reason = models.TextField(
+        verbose_name="If participant was included in error, please provide narrative ...",
+        max_length=500,
+        blank=True,
+        null=True,
     )
 
     comment = models.TextField(

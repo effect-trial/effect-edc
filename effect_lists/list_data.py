@@ -1,3 +1,4 @@
+from edc_consent.constants import CONSENT_WITHDRAWAL
 from edc_constants.constants import (
     DEAD,
     HEADACHE,
@@ -21,12 +22,7 @@ from edc_constants.disease_constants import (
     TB_PULMONARY,
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
-from edc_offstudy.constants import (
-    COMPLETED_FOLLOWUP,
-    CONSENT_WITHDRAWAL,
-    INVALID_ENROLMENT,
-    LATE_EXCLUSION,
-)
+from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 
 list_data = {

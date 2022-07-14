@@ -6,6 +6,8 @@ from edc_constants.constants import DEAD, OTHER
 from edc_form_validators import FormValidator
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
+from edc_offstudy.constants import INVALID_ENROLMENT
+from edc_transfer.constants import TRANSFERRED
 
 
 class EndOfStudyFormValidator(
@@ -21,6 +23,7 @@ class EndOfStudyFormValidator(
     def clean(self):
 
         self.validate_death_report_if_deceased()
+
         self.validate_ltfu()
 
         self.validate_other_specify(
@@ -43,14 +46,14 @@ class EndOfStudyFormValidator(
             field_required="consent_withdrawal_reason",
         )
 
-        self.required_if(
-            "included_in_error",
+        self.applicable_if(
+            TRANSFERRED,
             field="offschedule_reason",
-            field_required="included_in_error",
+            field_applicable="transferred_consent",
         )
 
         self.required_if(
-            "included_in_error",
+            INVALID_ENROLMENT,
             field="offschedule_reason",
-            field_required="included_in_error_date",
+            field_required="invalid_enrol_reason",
         )
