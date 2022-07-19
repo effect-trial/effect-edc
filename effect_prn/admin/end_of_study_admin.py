@@ -44,6 +44,7 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
                     "death_date",
                     "ltfu_date",
                     "consent_withdrawal_reason",
+                    "late_exclusion_reasons",
                     "transferred_consent",
                     "invalid_enrol_reason",
                 )
@@ -56,6 +57,8 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )
+
+    filter_horizontal = ("late_exclusion_reasons",)
 
     list_display = (
         "subject_identifier",

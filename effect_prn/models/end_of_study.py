@@ -9,7 +9,7 @@ from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_protocol.validators import date_not_before_study_start
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 
-from effect_lists.models import OffstudyReasons
+from effect_lists.models import LateExclusionCriteria, OffstudyReasons
 
 
 class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, BaseUuidModel):
@@ -58,6 +58,13 @@ class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, Ba
         max_length=500,
         blank=True,
         null=True,
+    )
+
+    late_exclusion_reasons = models.ManyToManyField(
+        LateExclusionCriteria,
+        verbose_name="If fulfilled late exclusion criteria, please specify which ...",
+        blank=True,
+        help_text="Select all that apply.",
     )
 
     transferred_consent = models.CharField(
