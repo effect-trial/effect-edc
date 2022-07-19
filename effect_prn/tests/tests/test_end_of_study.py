@@ -10,11 +10,11 @@ from edc_constants.constants import DEAD, NO, NOT_APPLICABLE, OTHER, YES
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
-from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT
+from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 from edc_utils import get_utcnow, get_utcnow_as_date
 
-from effect_lists.models import OffstudyReasons
+from effect_lists.models import LateExclusionCriteria, OffstudyReasons
 from effect_prn.forms.end_of_study_form import EndOfStudyFormValidator
 
 
@@ -39,6 +39,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             "ltfu_date": "",
             "death_date": "",
             "consent_withdrawal_reason": "",
+            "late_exclusion_reasons": LateExclusionCriteria.objects.none(),
             "transferred_consent": NOT_APPLICABLE,
             "invalid_enrol_reason": "",
             "comment": "Some notes on eos",
@@ -293,6 +294,83 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=CONSENT_WITHDRAWAL),
                 "consent_withdrawal_reason": "Reason for withdrawal",
+            }
+        )
+        form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
+        try:
+            form_validator.validate()
+        except ValidationError as e:
+            self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_offschedule_reason_not_selected_does_not_raise_attribute_error(self):
+        cleaned_data = self.get_cleaned_data()
+        cleaned_data.update({"offschedule_reason": OffstudyReasons.objects.none()}),
+        form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
+        try:
+            form_validator.validate()
+        except AttributeError as e:
+            self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_late_exclusion_reasons_required_if_offschedule_reason_late_exclusion(self):
+        cleaned_data = self.get_cleaned_data()
+        cleaned_data.update(
+            {
+                "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
+                "late_exclusion_reasons": LateExclusionCriteria.objects.none(),
+            }
+        )
+        form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
+        with self.assertRaises(ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("late_exclusion_reasons", cm.exception.error_dict)
+        self.assertEqual(
+            {"late_exclusion_reasons": ["This field is required"]},
+            cm.exception.message_dict,
+        )
+
+    def test_late_exclusion_reasons_not_required_if_offschedule_reason_not_late_exclusion(
+        self,
+    ):
+        cleaned_data = self.get_cleaned_data()
+        cleaned_data.update(
+            {
+                "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
+                "late_exclusion_reasons": LateExclusionCriteria.objects.filter(
+                    name="cm_evidence_screening_csf"
+                ),
+            }
+        )
+        form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
+        with self.assertRaises(ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("late_exclusion_reasons", cm.exception.error_dict)
+        self.assertEqual(
+            {"late_exclusion_reasons": ["This field is not required"]},
+            cm.exception.message_dict,
+        )
+
+    def test_late_exclusion_reasons_with_offschedule_reason_late_exclusion_ok(self):
+        cleaned_data = self.get_cleaned_data()
+        cleaned_data.update(
+            {
+                "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
+                "late_exclusion_reasons": LateExclusionCriteria.objects.filter(
+                    name="cm_evidence_screening_csf"
+                ),
+            }
+        )
+        form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
+        try:
+            form_validator.validate()
+        except ValidationError as e:
+            self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_multiple_late_exclusion_reasons__ok(self):
+        cleaned_data = self.get_cleaned_data()
+        cleaned_data.update(
+            {
+                "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
+                "late_exclusion_reasons": LateExclusionCriteria.objects.all(),
             }
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)

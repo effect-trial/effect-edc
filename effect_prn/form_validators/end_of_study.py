@@ -6,7 +6,7 @@ from edc_constants.constants import DEAD, OTHER
 from edc_form_validators import FormValidator
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
-from edc_offstudy.constants import INVALID_ENROLMENT
+from edc_offstudy.constants import INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 
 
@@ -45,6 +45,14 @@ class EndOfStudyFormValidator(
             field="offschedule_reason",
             field_required="consent_withdrawal_reason",
         )
+
+        if (
+            self.cleaned_data.get("offschedule_reason")
+            and self.cleaned_data.get("offschedule_reason").name == LATE_EXCLUSION
+        ):
+            self.m2m_required(m2m_field="late_exclusion_reasons")
+        else:
+            self.m2m_not_required(m2m_field="late_exclusion_reasons")
 
         self.applicable_if(
             TRANSFERRED,

@@ -120,6 +120,12 @@ list_data = {
         (TB_PULMONARY, "TB pulmonary"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.lateexclusioncriteria": [
+        ("g4_low_plt_d1", "DAIDS grade 4 low platelets (<25 x10^9/L) on day 1"),
+        ("g4_low_anc_d1", "DAIDS grade 4 low neutrophils (<400 x10^6/L) on day 1"),
+        ("g4_elevated_cr_d1", "DAIDS grade 4 elevated creatinine (≥400 μmol/L) on day 1"),
+        ("cm_evidence_screening_csf", "Microbiological evidence of CM on screening CSF"),
+    ],
     "effect_lists.medication": [
         (NOT_APPLICABLE, "--Not applicable"),
         ("TMP-SMX", "TMP-SMX"),
@@ -187,7 +193,7 @@ list_data = {
         (DEAD, "Participant died"),
         (LOST_TO_FOLLOWUP, "Lost to follow-up"),
         (CONSENT_WITHDRAWAL, "Withdrew consent to participate further"),
-        (LATE_EXCLUSION, "Participant fulfilled late exclusion criteria*"),
+        (LATE_EXCLUSION, "Participant fulfilled late exclusion criteria"),
         (TRANSFERRED, "Participant has been transferred to another health centre"),
         (
             INVALID_ENROLMENT,
