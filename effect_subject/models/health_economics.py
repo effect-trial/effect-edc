@@ -17,7 +17,7 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[MinValueValidator(0), MaxValueValidator(30)],
     )
 
-    highest_education_certificate = models.CharField(
+    education_certificate = models.CharField(
         verbose_name="What is your highest education certificate?",
         max_length=50,
     )
@@ -73,13 +73,13 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="In rands or shillings",
     )
 
-    highest_income_person = models.CharField(
+    is_highest_earner = models.CharField(
         verbose_name="Are you the person who earns the highest income in your household?",
         max_length=15,
         choices=YES_NO,
     )
 
-    highest_income_person_profession = models.CharField(
+    profession_highest_earner = models.CharField(
         verbose_name="If NO, what is the profession of the person who earns the highest "
         "income?",
         max_length=50,
@@ -87,20 +87,20 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    monthly_household_food_spent = models.IntegerField(
+    monthly_food = models.IntegerField(
         verbose_name="How much does your household spend on food in a month?",
         validators=[MinValueValidator(0)],
         help_text="In rands or shillings",
     )
 
-    monthly_household_rent_spent = models.IntegerField(
+    monthly_accommodation = models.IntegerField(
         verbose_name="How much does your household spend on rent (or house loan/mortgage) "
         "and utilities in a month?",
         validators=[MinValueValidator(0)],
         help_text="In rands or shillings",
     )
 
-    yearly_household_large_item_spent = models.IntegerField(
+    yearly_large_items = models.IntegerField(
         verbose_name="How much have you spent on large items (e.g., furniture, electrical "
         "items, cars) in the last year?",
         validators=[MinValueValidator(0)],

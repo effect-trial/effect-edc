@@ -20,7 +20,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
                 "fields": (
                     "occupation",
                     "education_years",
-                    "highest_education_certificate",
+                    "education_certificate",
                     "primary_school",
                     "primary_school_years",
                     "secondary_school",
@@ -36,8 +36,8 @@ class HealthEconomicsAdmin(CrfModelAdmin):
                 "fields": (
                     "welfare",
                     "monthly_household_income",
-                    "highest_income_person",
-                    "highest_income_person_profession",
+                    "is_highest_earner",
+                    "profession_highest_earner",
                 ),
             },
         ),
@@ -45,9 +45,9 @@ class HealthEconomicsAdmin(CrfModelAdmin):
             "General expenditure",
             {
                 "fields": (
-                    "monthly_household_food_spent",
-                    "monthly_household_rent_spent",
-                    "yearly_household_large_item_spent",
+                    "monthly_food",
+                    "monthly_accommodation",
+                    "yearly_large_items",
                 ),
             },
         ),
@@ -77,7 +77,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
 
     radio_fields = {
         "higher_education": admin.VERTICAL,
-        "highest_income_person": admin.VERTICAL,
+        "is_highest_earner": admin.VERTICAL,
         "primary_school": admin.VERTICAL,
         "secondary_school": admin.VERTICAL,
         "welfare": admin.VERTICAL,
