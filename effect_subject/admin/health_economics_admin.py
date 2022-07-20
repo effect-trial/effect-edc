@@ -34,6 +34,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
             "Income",
             {
                 "fields": (
+                    "welfare",
                     "monthly_household_income",
                     "highest_income_person",
                     "highest_income_person_profession",
