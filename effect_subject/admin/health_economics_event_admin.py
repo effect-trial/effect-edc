@@ -108,18 +108,6 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    list_display = (
-        "buy_refill_drug",
-        "amount_spent_antiretroviral_drugs_past",
-        "amount_spent_other_drugs_past",
-        "spent_money_other_health_activities_past",
-        "other_health_activities_past",
-    )
-
-    list_filter = ("report_datetime",)
-
-    search_fields = ("report_datetime",)
-
     filter_horizontal = [
         "transport_used",
     ]
