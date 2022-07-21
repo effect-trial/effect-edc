@@ -62,7 +62,7 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     welfare = models.CharField(
-        verbose_name="Do you receive any welfare?",
+        verbose_name="Do you receive any welfare or social service support?",
         max_length=15,
         choices=YES_NO,
     )
