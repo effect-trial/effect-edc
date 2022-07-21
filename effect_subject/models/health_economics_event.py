@@ -112,8 +112,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
 
     someone_looking_children = models.CharField(
         verbose_name="Did you ask anyone else, such as your family member, friend to look "
-        "after your child/children from .health_economics_event_form import "
-        "HealthEconomicsEventFormin order to come here?",
+        "after your child/children in order to come here?",
         max_length=15,
         choices=YES_NO_NA,
     )
