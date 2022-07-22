@@ -124,6 +124,23 @@ ECOG_SCORES = (
     ("5", "[5] Deceased"),
 )
 
+EDUCATIONAL_ATTAINMENT_CHOICES = (
+    ("no_schooling_completed", "No schooling completed"),
+    ("nursery_to_8th_grade", "Nursery school to 8th grade"),
+    ("some_high_school_no_diploma", "Some high school, no diploma"),
+    (
+        "high_school_grad_diploma_or_equiv",
+        "High school graduate, diploma or the equivalent (for example: GED)",
+    ),
+    ("some_college_no_degree", "Some college credit, no degree"),
+    ("trade_technical_vocational_training", "Trade/technical/vocational training"),
+    ("associate_degree", "Associate degree"),
+    ("bachelors_degree", "Bachelor's degree"),
+    ("masters_degree", "Master's degree"),
+    ("professional_degree", "Professional degree"),
+    ("doctorate_degree", "Doctorate degree"),
+)
+
 FLUCONAZOLE_DOSES = (
     ("1200_mg_d", "Fluconazole, 1200 mg/d"),
     ("800_mg_d", "Fluconazole, 800 mg/d"),

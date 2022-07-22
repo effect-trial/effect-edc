@@ -3,6 +3,7 @@ from django.db import models
 from edc_constants.choices import YES_NO
 from edc_model import models as edc_models
 
+from ..choices import EDUCATIONAL_ATTAINMENT_CHOICES
 from ..model_mixins import CrfModelMixin
 
 
@@ -17,9 +18,10 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[MinValueValidator(0), MaxValueValidator(30)],
     )
 
-    education_certificate = models.CharField(
+    educational_attainment = models.CharField(
         verbose_name="What is your highest education certificate?",
         max_length=50,
+        choices=EDUCATIONAL_ATTAINMENT_CHOICES,
     )
 
     primary_school = models.CharField(

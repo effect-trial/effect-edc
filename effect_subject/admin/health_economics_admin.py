@@ -20,7 +20,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
                 "fields": (
                     "occupation",
                     "education_years",
-                    "education_certificate",
+                    "educational_attainment",
                     "primary_school",
                     "primary_school_years",
                     "secondary_school",
@@ -55,6 +55,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
+        "educational_attainment": admin.VERTICAL,
         "higher_education": admin.VERTICAL,
         "highest_earner": admin.VERTICAL,
         "primary_school": admin.VERTICAL,
