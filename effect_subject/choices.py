@@ -38,9 +38,21 @@ from .constants import (
 )
 
 ACTIVITY_CHOICES = (
-    ("working", "Working"),
-    ("studying", "Studying"),
-    ("caring_for_children", "Caring for children"),
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
+
+ACTIVITY_CHOICES_NA = (
+    (NOT_APPLICABLE, "Not applicable"),
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
@@ -69,26 +81,6 @@ ARV_DECISION = (
     (ART_CONTINUED, "ART continued"),
     (ART_STOPPED, "ART stopped"),
 )
-
-CHILDCARE_CHOICES = (
-    (WORKING, "Working"),
-    (STUDYING, "Studying"),
-    (CARING_FOR_CHILDREN, "Caring for children"),
-    (HOUSE_MAINTENANCE, "House maintenance"),
-    (NOTHING, "Nothing"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-)
-
-CHILDCARE_CHOICES_NA = (
-    (NOT_APPLICABLE, "Not applicable"),
-    (WORKING, "Working"),
-    (STUDYING, "Studying"),
-    (CARING_FOR_CHILDREN, "Caring for children"),
-    (HOUSE_MAINTENANCE, "House maintenance"),
-    (NOTHING, "Nothing"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-)
-
 
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),

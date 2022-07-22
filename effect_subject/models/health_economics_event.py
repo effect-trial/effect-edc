@@ -7,8 +7,8 @@ from edc_model import models as edc_models
 from effect_lists.models import Transport
 
 from ..choices import (
-    CHILDCARE_CHOICES,
-    CHILDCARE_CHOICES_NA,
+    ACTIVITY_CHOICES,
+    ACTIVITY_CHOICES_NA,
     PAYEE_CHOICES_ACTIVITIES,
     PAYEE_CHOICES_DRUGS,
 )
@@ -110,7 +110,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
             "hospital or clinic?"
         ),
         max_length=45,
-        choices=CHILDCARE_CHOICES,
+        choices=ACTIVITY_CHOICES,
     )
 
     activities_not_come_clinic_other = edc_models.OtherCharField()
@@ -164,7 +164,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
             "after your child or children?"
         ),
         max_length=45,
-        choices=CHILDCARE_CHOICES_NA,
+        choices=ACTIVITY_CHOICES_NA,
         default=NOT_APPLICABLE,
     )
 
