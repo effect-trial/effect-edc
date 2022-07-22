@@ -2,6 +2,7 @@ from edc_constants.constants import (
     ABSENT,
     AWAITING_RESULTS,
     DEAD,
+    FREE_OF_CHARGE,
     MICROSCOPY,
     NO,
     NO_EXAM,
@@ -23,9 +24,17 @@ from .constants import (
     APPT_OTHER,
     ART_CONTINUED,
     ART_STOPPED,
+    CARING_FOR_CHILDREN,
     DECREASED,
+    HOUSE_MAINTENANCE,
+    INSURANCE,
+    NOTHING,
+    OWN_CASH,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
+    RELATIVE,
+    STUDYING,
+    WORKING,
 )
 
 ACTIVITY_CHOICES = (
@@ -61,25 +70,25 @@ ARV_DECISION = (
     (ART_STOPPED, "ART stopped"),
 )
 
-
 CHILDCARE_CHOICES = (
-    (NOT_APPLICABLE, "Not applicable"),
-    ("working", "Working"),
-    ("studying", "Studying"),
-    ("caring_for_children", "Caring for children"),
-    ("house_maintenance", "House maintenance"),
-    ("nothing", "Nothing"),
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
-CHILDCARE_ECON_CHOICES = (
-    ("working", "Working"),
-    ("studying", "Studying"),
-    ("caring_for_children", "Caring for children"),
-    ("house_maintenance", "House maintenance"),
-    ("nothing", "Nothing"),
+CHILDCARE_CHOICES_NA = (
+    (NOT_APPLICABLE, "Not applicable"),
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
+
 
 CM_TX_CHOICES = (
     ("1w_amb_5fc", "1 week AmB + 5FC"),
@@ -223,19 +232,19 @@ NEGATIVE_TX_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-PAYEE_CHOICES = (
-    ("own_cash", "Own cash"),
-    ("insurance", "Insurance"),
-    ("relative", "Relative or others paying for drug"),
-    ("free", "Free drugs from the pharmacy"),
-    (NOT_APPLICABLE, "Not applicable"),
+PAYEE_CHOICES_ACTIVITIES = (
+    (OWN_CASH, "Own cash"),
+    (INSURANCE, "Insurance"),
+    (RELATIVE, "Relative or others"),
+    (FREE_OF_CHARGE, "Free"),
 )
 
-PAYEE_CHOICES_ECON = (
-    ("own_cash", "Own cash"),
-    ("insurance", "Insurance"),
-    ("relative", "Relative or others"),
-    ("free", "Free"),
+PAYEE_CHOICES_DRUGS = (
+    (OWN_CASH, "Own cash"),
+    (INSURANCE, "Insurance"),
+    (RELATIVE, "Relative or others paying for drugs"),
+    (FREE_OF_CHARGE, "Free drugs from the pharmacy"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 PRESENT_ABSENT_NOEXAM = (

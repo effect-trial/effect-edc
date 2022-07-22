@@ -326,7 +326,7 @@ list_data = {
         ("hired_bicycle", "Hired bicycle"),
         ("hired_motorbike", "Hired motorbike"),
         ("foot_walking", "Foot/walking"),
-        (OTHER, "Other"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "edc_refusal.refusalreasons": [
         ("unwilling_to_say", "I am unwilling to say"),
