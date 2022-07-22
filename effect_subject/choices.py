@@ -47,13 +47,13 @@ ACTIVITY_CHOICES = (
 )
 
 ACTIVITY_CHOICES_NA = (
-    (NOT_APPLICABLE, "Not applicable"),
     (WORKING, "Working"),
     (STUDYING, "Studying"),
     (CARING_FOR_CHILDREN, "Caring for children"),
     (HOUSE_MAINTENANCE, "House maintenance"),
     (NOTHING, "Nothing"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 ANKLE_REFLEX_CHOICES = (
