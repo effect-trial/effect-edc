@@ -100,7 +100,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         validators=[MinValueValidator(0)],
     )
 
-    healthcare_spend_month = models.IntegerField(
+    healthcare_month = models.IntegerField(
         verbose_name="How much in total has been spent on your healthcare in the last month?",
         validators=[MinValueValidator(0)],
         help_text="In rands or shillings",
@@ -351,7 +351,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
-    admitted_kith_kin_income_month = models.IntegerField(
+    admitted_kith_kin_month = models.IntegerField(
         verbose_name=(
             "If YES, and they work, how much does this person normally earn per month?"
         ),
@@ -379,7 +379,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
-    health_insurance_spend_month = models.IntegerField(
+    health_insurance_month = models.IntegerField(
         verbose_name=(
             "If YES, how much do you pay towards your contributions to healthcare "
             "insurance every month?"

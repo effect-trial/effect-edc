@@ -36,7 +36,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
                 "fields": (
                     "welfare",
                     "monthly_household_income",
-                    "is_highest_earner",
+                    "highest_earner",
                     "profession_highest_earner",
                 ),
             },
@@ -45,9 +45,9 @@ class HealthEconomicsAdmin(CrfModelAdmin):
             "General expenditure",
             {
                 "fields": (
-                    "monthly_food",
-                    "monthly_accommodation",
-                    "yearly_large_items",
+                    "food_month",
+                    "accommodation_month",
+                    "large_items_year",
                 ),
             },
         ),
@@ -56,7 +56,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
 
     radio_fields = {
         "higher_education": admin.VERTICAL,
-        "is_highest_earner": admin.VERTICAL,
+        "highest_earner": admin.VERTICAL,
         "primary_school": admin.VERTICAL,
         "secondary_school": admin.VERTICAL,
         "welfare": admin.VERTICAL,
