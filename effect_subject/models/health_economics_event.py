@@ -3,6 +3,7 @@ from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
+from edc_model.validators import hm_validator
 
 from effect_lists.models import Transport
 
@@ -124,12 +125,14 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
 
     time_taken_get_here = models.CharField(
         verbose_name="How long did it take you to reach here?",
+        validators=[hm_validator],
         max_length=5,
         help_text="in hours and minutes (format HH:MM)",
     )
 
     time_spent_clinic = models.CharField(
         verbose_name="How much time did you spend at the hospital or clinic?",
+        validators=[hm_validator],
         max_length=5,
         help_text="in hours and minutes (format HH:MM)",
     )
