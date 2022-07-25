@@ -9,6 +9,8 @@ Changes
     - reword from "Patient" to "Participant" (#442, #446)
     - update validation to validate against Death Report and LTFU
     - add 'consent_withdrawal_reason', 'late_exclusion_reasons', 'transferred_consent' and 'invalid_enrol_reason' questions
+- add Health Economics CRF for review
+- add Health Economics Event CRF for review
 - bump to edc 0.3.97
 - bump to edc-microbiology 0.1.5
 - bump to edc-csf 0.1.9

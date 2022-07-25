@@ -20,7 +20,7 @@ crfs_prn = FormsCollection(
     Crf(show_order=320, model="effect_subject.tbdiagnostics"),
     Crf(show_order=340, model="effect_subject.bloodculture"),
     Crf(show_order=360, model="effect_subject.histopathology"),
-    Crf(show_order=400, model="effect_subject.healtheconomics"),
+    Crf(show_order=400, model="effect_subject.healtheconomicsevent"),
     name="prn",
 )
 
@@ -29,7 +29,7 @@ crfs_unscheduled = FormsCollection(
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
-    Crf(show_order=400, model="effect_subject.healtheconomics"),
+    Crf(show_order=400, model="effect_subject.healtheconomicsevent"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     name="unscheduled",
 )
@@ -107,7 +107,6 @@ crfs_d14 = FormsCollection(
     Crf(show_order=230, model="effect_subject.chestxray", required=False),
     Crf(show_order=240, model="effect_subject.lpcsf", required=False),
     Crf(show_order=250, model="effect_subject.tbdiagnostics", required=False),
-    Crf(show_order=400, model="effect_subject.healtheconomics"),
     Crf(show_order=500, model="effect_subject.clinicalnote"),
     Crf(show_order=600, model="effect_subject.adherencestagethree"),
     name=DAY14,
