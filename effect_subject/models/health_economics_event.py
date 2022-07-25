@@ -177,7 +177,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
 
     childcare_source_time_off_days = models.DecimalField(
         verbose_name=(
-            "How much time did a family member, friend take off work to look "
+            "If YES, how much time did a family member, friend take off work to look "
             "after your child or children?"
         ),
         decimal_places=1,
@@ -353,9 +353,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     admitted_kith_kin_month = models.IntegerField(
-        verbose_name=(
-            "If YES, and they work, how much does this person normally earn per month?"
-        ),
+        verbose_name="If YES, how much does this person normally earn per month?",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
