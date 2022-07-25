@@ -64,7 +64,12 @@ deps =
     djdev: https://github.com/django/django/tarball/main
 
 commands =
-    pip install -U pip
+    # Temp workaround to avoid: "pip subprocess to install build dependencies did not run successfully."
+    # when installing effect-form-validators in Python 3.9 environment.
+    # See:
+    #  - https://github.com/pypa/pip/issues/11294 for discussion on issue being introduced in pip 22.2
+    #  - https://github.com/pypa/pip/pull/11298/files for PR with possible fix
+    pip install -U pip<=22.1.2
     pip --version
     edcdev: pip install -U -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
     edcdev: pip install -U git+https://github.com/effect-trial/effect-form-validators.git@develop
