@@ -90,6 +90,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If YES, how did you pay or who paid for these activities?",
         max_length=45,
         choices=PAYEE_CHOICES_ACTIVITIES,
+        default=NOT_APPLICABLE,
     )
 
     routine_activities_disrupted_days = models.IntegerField(

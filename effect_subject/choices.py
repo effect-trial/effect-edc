@@ -246,6 +246,7 @@ PAYEE_CHOICES_ACTIVITIES = (
     (INSURANCE, "Insurance"),
     (RELATIVE, "Relative or others"),
     (FREE_OF_CHARGE, "Free"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 PAYEE_CHOICES_DRUGS = (
