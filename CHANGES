@@ -11,6 +11,8 @@ Changes
     - add 'consent_withdrawal_reason', 'late_exclusion_reasons', 'transferred_consent' and 'invalid_enrol_reason' questions
 - add Health Economics CRF for review
 - add Health Economics Event CRF for review
+- changes to Visit Schedule:
+    - Study Medication (Baseline/Follow Up) CRF only required: Baseline, Day 14, Week 10.  Also available as PRN (#448)
 - bump to edc 0.3.97
 - bump to edc-microbiology 0.1.5
 - bump to edc-csf 0.1.9
