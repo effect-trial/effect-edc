@@ -105,7 +105,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestageone",
             ],
             "1003": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -115,7 +114,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagetwo",
             ],
             "1009": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -140,7 +138,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagethree",
             ],
             "1028": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -160,7 +157,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1112": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -170,7 +166,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1168": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
