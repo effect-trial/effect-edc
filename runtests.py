@@ -25,7 +25,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     BASE_DIR=base_dir,
     APP_NAME=app_name,
     SITE_ID=SiteID(default=200),
-    SENTRY_ENABLED=False,
     INDEX_PAGE="localhost:8000",
     EXPORT_FOLDER=join(base_dir, "tests", "export"),
     SUBJECT_APP_LABEL="effect_subject",

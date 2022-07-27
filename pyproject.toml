@@ -55,6 +55,29 @@ EDC_CODEBASE =
     Dev: edcdev
 
 [testenv]
+# Temporary workaround to avoid: "pip subprocess to install build dependencies did not run successfully."
+# when pip installing (effect-form-validators, or others) in Python 3.9 environment.
+#
+# This workaround uses workaround 1. below, fixing issues occuring both when
+# running tox locally, or via CI (GitHub actions).
+#
+# The 3 available workarounds seem to be:
+#   1. Override Setuptools' own copy of distutils, see:
+#       - Setuptools issue: https://github.com/pypa/setuptools/issues/2965
+#       - Setuptools docs on use of (and overriding) local, vendored copy of distutils: https://setuptools.pypa.io/en/latest/deprecated/distutils-legacy.html
+#       - Example of this fix in the wild: https://github.com/astronomer/astro-sdk/pull/571
+#   2. Avoid pip v22.2, e.g. downgrading to pip 22.1.2, see:
+#       - Discussion on issue being introduced in pip 22.2: https://github.com/pypa/pip/issues/11294
+#       - PR with possible fix: https://github.com/pypa/pip/pull/11298
+#       - Example of this fix in the wild: https://github.com/paavopere/palabras/pull/4/commits/8aec95f99e6cf233b6e125502791f27a6af146f3
+#   3. Use Python 3.10 (or greater), see:
+#       - Why it's not an issue on >=3.10: https://github.com/pypa/pip/issues/11294#issuecomment-1193137150
+#
+# Also note: distutils is due to be deprecated in Python 3.12
+#
+setenv =
+    SETUPTOOLS_USE_DISTUTILS = stdlib
+
 deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt

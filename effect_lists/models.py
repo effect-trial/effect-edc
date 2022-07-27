@@ -25,6 +25,12 @@ class OffstudyReasons(ListModelMixin):
         verbose_name_plural = "Offstudy Reasons"
 
 
+class LateExclusionCriteria(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Late Exclusion Criteria"
+        verbose_name_plural = "Late Exclusion Criteria"
+
+
 class Medication(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Medication"
@@ -71,3 +77,9 @@ class XRayResults(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "X-Ray Results"
         verbose_name_plural = "X-Ray Results"
+
+
+class Transport(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Transport"
+        verbose_name_plural = "Transport"

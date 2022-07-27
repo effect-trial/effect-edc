@@ -1,3 +1,4 @@
+from edc_consent.constants import CONSENT_WITHDRAWAL
 from edc_constants.constants import (
     DEAD,
     HEADACHE,
@@ -21,7 +22,7 @@ from edc_constants.disease_constants import (
     TB_PULMONARY,
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
-from edc_offstudy.constants import LATE_EXCLUSION, OTHER_RX_DISCONTINUATION, WITHDRAWAL
+from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 
 list_data = {
@@ -119,6 +120,12 @@ list_data = {
         (TB_PULMONARY, "TB pulmonary"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.lateexclusioncriteria": [
+        ("g4_low_plt_d1", "DAIDS grade 4 low platelets (<25 x10^9/L) on day 1"),
+        ("g4_low_anc_d1", "DAIDS grade 4 low neutrophils (<400 x10^6/L) on day 1"),
+        ("g4_elevated_cr_d1", "DAIDS grade 4 elevated creatinine (≥400 μmol/L) on day 1"),
+        ("cm_evidence_screening_csf", "Microbiological evidence of CM on screening CSF"),
+    ],
     "effect_lists.medication": [
         (NOT_APPLICABLE, "--Not applicable"),
         ("TMP-SMX", "TMP-SMX"),
@@ -182,27 +189,17 @@ list_data = {
         (OTHER, "Other medication, please specify below ..."),
     ],
     "effect_lists.offstudyreasons": [
-        ("completed_followup", "Patient completed 12 months of follow-up"),
-        ("clinical_endpoint", "Patient reached a clinical endpoint"),
-        ("toxicity", "Patient experienced an unacceptable toxicity"),
+        (COMPLETED_FOLLOWUP, "Completed 6 month follow-up"),
+        (DEAD, "Participant died"),
+        (LOST_TO_FOLLOWUP, "Lost to follow-up"),
+        (CONSENT_WITHDRAWAL, "Withdrew consent to participate further"),
+        (LATE_EXCLUSION, "Participant fulfilled late exclusion criteria"),
+        (TRANSFERRED, "Participant has been transferred to another health centre"),
         (
-            "intercurrent_illness",
-            "Intercurrent illness which prevents further treatment",
+            INVALID_ENROLMENT,
+            "Included in error (i.e. violation of inclusion/exclusion criteria) ",
         ),
-        (LOST_TO_FOLLOWUP, "Patient lost to follow-up"),
-        (DEAD, "Patient reported/known to have died"),
-        (WITHDRAWAL, "Patient withdrew consent to participate further"),
-        (LATE_EXCLUSION, "Patient fulfilled late exclusion criteria*"),
-        (TRANSFERRED, "Patient has been transferred to another health centre"),
-        (
-            OTHER_RX_DISCONTINUATION,
-            "Other condition that justifies the discontinuation of "
-            "treatment in the clinician’s opinion, please specify below ...",
-        ),
-        (
-            OTHER,
-            "Other reason, please specify below ...",
-        ),
+        (OTHER, "Other reason, please specify below ..."),
     ],
     "effect_lists.sisx": [
         (NOT_APPLICABLE, "--Not applicable"),
@@ -316,6 +313,19 @@ list_data = {
         ("consolidation", "Consolidation"),
         ("miliary_tb", "Miliary TB"),
         ("infiltrates", "Infiltrates"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.transport": [
+        ("bus", "Bus"),
+        ("train", "Train"),
+        ("ambulance", "Ambulance"),
+        ("private_taxi", "Private taxi"),
+        ("own_bicycle", "Own bicycle"),
+        ("own_car", "Own car"),
+        ("own_motorbike", "Own motorbike"),
+        ("hired_bicycle", "Hired bicycle"),
+        ("hired_motorbike", "Hired motorbike"),
+        ("foot_walking", "Foot/walking"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "edc_refusal.refusalreasons": [

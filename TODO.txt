@@ -73,11 +73,8 @@
     - ???validation
 
 - Economics CRF:
-    - update
-    - 2 CRFs:
-        - everyone to complete same CRF at baseline, and end of study
-        - everyone who has a medical event with any costs to them or trial to complete different CRF
-            - then as PRN at subsequent follow-ups
+    - everyone who has a medical event with any costs to them or trial to complete different CRF
+        - then as PRN at subsequent follow-ups
     - Question: Has there been any events since last visit?
 
 - Adherence CRF:

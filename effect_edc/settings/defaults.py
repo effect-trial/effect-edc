@@ -30,8 +30,6 @@ env = environ.Env(
     DEFENDER_ENABLED=(bool, False),
     EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=(bool, True),
     EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK=(bool, True),
-    SAUCE_ENABLED=(bool, False),
-    SENTRY_ENABLED=(bool, False),
     SIMPLE_HISTORY_PERMISSIONS_ENABLED=(bool, False),
     SIMPLE_HISTORY_REVERT_DISABLED=(bool, False),
     TWILIO_ENABLED=(bool, False),
@@ -70,7 +68,6 @@ DEFAULT_APPOINTMENT_TYPE = "hospital"
 LOGIN_URL = "/accounts/login/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
-SENTRY_ENABLED = env("SENTRY_ENABLED")
 DEFENDER_ENABLED = env("DEFENDER_ENABLED")
 
 INSTALLED_APPS = [
@@ -164,8 +161,6 @@ INSTALLED_APPS.append("edc_auth.apps.AppConfig")
 
 if not DEFENDER_ENABLED:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("defender"))
-# if env("SENTRY_ENABLED"):
-#     INSTALLED_APPS.append("raven.contrib.django.raven_compat")
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
@@ -503,20 +498,6 @@ else:
     STATIC_URL = env.str("DJANGO_STATIC_URL")
     STATIC_ROOT = env.str("DJANGO_STATIC_ROOT")
 
-SENTRY_DSN = env("SENTRY_DSN")
-
-if SENTRY_ENABLED and SENTRY_DSN:
-    import sentry_sdk
-
-    # from sentry_sdk.integrations.django import DjangoIntegration
-
-    sentry_sdk.init(
-        dsn=SENTRY_DSN,
-        integrations=[sentry_sdk.integrations.django.DjangoIntegration()],
-        traces_sample_rate=1.0,
-        send_default_pii=True,
-    )
-
 if env("DJANGO_LOGGING_ENABLED"):
     from .logging import LOGGING  # noqa
 
@@ -570,7 +551,3 @@ if "test" in sys.argv:
     MIGRATION_MODULES = DisableMigrations()
     PASSWORD_HASHERS = ("django.contrib.auth.hashers.MD5PasswordHasher",)
     DEFAULT_FILE_STORAGE = "inmemorystorage.InMemoryStorage"
-
-    if env("SAUCE_ENABLED"):
-        SAUCE_USERNAME = env.str("SAUCE_USERNAME")
-        SAUCE_ACCESS_KEY = env.str("SAUCE_ACCESS_KEY")

@@ -80,7 +80,7 @@ class TestVisitSchedule(TestCase):
             "effect_subject.bloodculture",
             "effect_subject.bloodresultsfbc",
             "effect_subject.bloodresultschem",
-            "effect_subject.healtheconomics",
+            "effect_subject.healtheconomicsevent",
             "effect_subject.histopathology",
             "effect_subject.chestxray",
             "effect_subject.lpcsf",
@@ -105,7 +105,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestageone",
             ],
             "1003": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -115,7 +114,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagetwo",
             ],
             "1009": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -136,12 +134,10 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.chestxray",
                 "effect_subject.lpcsf",
                 "effect_subject.tbdiagnostics",
-                "effect_subject.healtheconomics",
                 "effect_subject.clinicalnote",
                 "effect_subject.adherencestagethree",
             ],
             "1028": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -161,7 +157,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1112": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -171,7 +166,6 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1168": [
-                "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",

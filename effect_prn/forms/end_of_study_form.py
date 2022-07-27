@@ -27,4 +27,3 @@ class EndOfStudyForm(
     class Meta:
         model = EndOfStudy
         fields = "__all__"
-        labels = {"offschedule_datetime": "Date patient terminated on study:"}

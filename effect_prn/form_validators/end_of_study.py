@@ -6,8 +6,8 @@ from edc_constants.constants import DEAD, OTHER
 from edc_form_validators import FormValidator
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
-
-from ..constants import OTHER_RX_DISCONTINUATION
+from edc_offstudy.constants import INVALID_ENROLMENT, LATE_EXCLUSION
+from edc_transfer.constants import TRANSFERRED
 
 
 class EndOfStudyFormValidator(
@@ -16,27 +16,21 @@ class EndOfStudyFormValidator(
     FormValidator,
 ):
     death_report_model = "effect_ae.deathreport"
-    ltfu_model = None
+    offschedule_reason_field = "offschedule_reason"
+    ltfu_model = "effect_prn.losstofollowup"
+    ltfu_date_field = "ltfu_date"
 
     def clean(self):
 
         self.validate_death_report_if_deceased()
+
         self.validate_ltfu()
 
-        if self.cleaned_data.get("offschedule_reason"):
-            if self.cleaned_data.get("offschedule_reason").name != OTHER:
-                self.validate_other_specify(
-                    field="offschedule_reason",
-                    other_specify_field="other_offschedule_reason",
-                    other_stored_value=OTHER_RX_DISCONTINUATION,
-                )
-
-            if self.cleaned_data.get("offschedule_reason").name != OTHER_RX_DISCONTINUATION:
-                self.validate_other_specify(
-                    field="offschedule_reason",
-                    other_specify_field="other_offschedule_reason",
-                    other_stored_value=OTHER,
-                )
+        self.validate_other_specify(
+            field="offschedule_reason",
+            other_specify_field="other_offschedule_reason",
+            other_stored_value=OTHER,
+        )
 
         self.required_if(DEAD, field="offschedule_reason", field_required="death_date")
 
@@ -52,14 +46,22 @@ class EndOfStudyFormValidator(
             field_required="consent_withdrawal_reason",
         )
 
-        self.required_if(
-            "included_in_error",
+        if (
+            self.cleaned_data.get("offschedule_reason")
+            and self.cleaned_data.get("offschedule_reason").name == LATE_EXCLUSION
+        ):
+            self.m2m_required(m2m_field="late_exclusion_reasons")
+        else:
+            self.m2m_not_required(m2m_field="late_exclusion_reasons")
+
+        self.applicable_if(
+            TRANSFERRED,
             field="offschedule_reason",
-            field_required="included_in_error",
+            field_applicable="transferred_consent",
         )
 
         self.required_if(
-            "included_in_error",
+            INVALID_ENROLMENT,
             field="offschedule_reason",
-            field_required="included_in_error_date",
+            field_required="invalid_enrol_reason",
         )

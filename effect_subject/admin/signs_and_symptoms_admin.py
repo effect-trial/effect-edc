@@ -1,7 +1,7 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import (
-    ModelAdminActionItemMixin,
+    ActionItemModelAdminMixin,
     action_fields,
     action_fieldset_tuple,
 )
@@ -18,7 +18,7 @@ from .modeladmin import CrfModelAdminMixin
 @admin.register(SignsAndSymptoms, site=effect_subject_admin)
 class SignsAndSymptomsAdmin(
     CrfModelAdminMixin,
-    ModelAdminActionItemMixin,
+    ActionItemModelAdminMixin,
     SimpleHistoryAdmin,
 ):
 

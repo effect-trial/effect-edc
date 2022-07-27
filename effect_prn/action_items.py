@@ -27,6 +27,7 @@ class EndOfStudyAction(ActionWithNotification):
     ]
     reference_model = "effect_prn.endofstudy"
     show_link_to_changelist = True
+    show_link_to_add = True
     admin_site_name = "effect_prn_admin"
     priority = HIGH_PRIORITY
 
@@ -112,5 +113,5 @@ class ProtocolDeviationViolationAction(BaseProtocolDeviationViolationAction):
 
 site_action_items.register(HospitalizationAction)
 site_action_items.register(ProtocolDeviationViolationAction)
-site_action_items.register(EndOfStudyAction)
 site_action_items.register(LossToFollowupAction)
+site_action_items.register(EndOfStudyAction)

@@ -2,6 +2,7 @@ from edc_constants.constants import (
     ABSENT,
     AWAITING_RESULTS,
     DEAD,
+    FREE_OF_CHARGE,
     MICROSCOPY,
     NO,
     NO_EXAM,
@@ -23,16 +24,36 @@ from .constants import (
     APPT_OTHER,
     ART_CONTINUED,
     ART_STOPPED,
+    CARING_FOR_CHILDREN,
     DECREASED,
+    HOUSE_MAINTENANCE,
+    INSURANCE,
+    NOTHING,
+    OWN_CASH,
     PRESENT_WITH_REINFORCEMENT,
     REDUCED,
+    RELATIVE,
+    STUDYING,
+    WORKING,
 )
 
 ACTIVITY_CHOICES = (
-    ("working", "Working"),
-    ("studying", "Studying"),
-    ("caring_for_children", "Caring for children"),
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+)
+
+ACTIVITY_CHOICES_NA = (
+    (WORKING, "Working"),
+    (STUDYING, "Studying"),
+    (CARING_FOR_CHILDREN, "Caring for children"),
+    (HOUSE_MAINTENANCE, "House maintenance"),
+    (NOTHING, "Nothing"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 ANKLE_REFLEX_CHOICES = (
@@ -59,17 +80,6 @@ ARV_DECISION = (
     (NOT_APPLICABLE, "Not applicable"),
     (ART_CONTINUED, "ART continued"),
     (ART_STOPPED, "ART stopped"),
-)
-
-
-CHILDCARE_CHOICES = (
-    (NOT_APPLICABLE, "Not applicable"),
-    ("working", "Working"),
-    ("studying", "Studying"),
-    ("caring_for_children", "Caring for children"),
-    ("house_maintenance", "House maintenance"),
-    ("nothing", "Nothing"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 CM_TX_CHOICES = (
@@ -112,6 +122,23 @@ ECOG_SCORES = (
         "totally confined to bed or chair",
     ),
     ("5", "[5] Deceased"),
+)
+
+EDUCATIONAL_ATTAINMENT_CHOICES = (
+    ("no_schooling_completed", "No schooling completed"),
+    ("nursery_to_8th_grade", "Nursery school to 8th grade"),
+    ("some_high_school_no_diploma", "Some high school, no diploma"),
+    (
+        "high_school_grad_diploma_or_equiv",
+        "High school graduate, diploma or the equivalent (for example: GED)",
+    ),
+    ("some_college_no_degree", "Some college credit, no degree"),
+    ("trade_technical_vocational_training", "Trade/technical/vocational training"),
+    ("associate_degree", "Associate degree"),
+    ("bachelors_degree", "Bachelor's degree"),
+    ("masters_degree", "Master's degree"),
+    ("professional_degree", "Professional degree"),
+    ("doctorate_degree", "Doctorate degree"),
 )
 
 FLUCONAZOLE_DOSES = (
@@ -214,11 +241,19 @@ NEGATIVE_TX_CHOICES = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-PAYEE_CHOICES = (
-    ("own_cash", "Own cash"),
-    ("insurance", "Insurance"),
-    ("relative", "Relative of others paying"),
-    ("free", "Free drugs from the pharmacy"),
+PAYEE_CHOICES_ACTIVITIES = (
+    (OWN_CASH, "Own cash"),
+    (INSURANCE, "Insurance"),
+    (RELATIVE, "Relative or others"),
+    (FREE_OF_CHARGE, "Free"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+PAYEE_CHOICES_DRUGS = (
+    (OWN_CASH, "Own cash"),
+    (INSURANCE, "Insurance"),
+    (RELATIVE, "Relative or others paying for drugs"),
+    (FREE_OF_CHARGE, "Free drugs from the pharmacy"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
