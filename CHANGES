@@ -15,6 +15,7 @@ Changes
     - Study Medication (Baseline/Follow Up) CRF only required: Baseline, Day 14, Week 10.  Also available as PRN (#448)
     - Health Economics CRF only required: Baseline, Week 24
     - Health Economics Event CRF only required: Unscheduled visits.  Also available as PRN
+- remove sentry and sauce from settings (#449)
 - bump to edc 0.3.97
 - bump to edc-microbiology 0.1.5
 - bump to edc-csf 0.1.9
