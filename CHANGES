@@ -17,6 +17,7 @@ Changes
     - Health Economics Event CRF only required: Unscheduled visits.  Also available as PRN
 - remove sentry and sauce from settings (#449)
 - bump to edc 0.3.98
+- bump to effect-form-validators 0.1.18
 - bump to edc-microbiology 0.1.5
 - bump to edc-csf 0.1.9
 
