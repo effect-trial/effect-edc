@@ -42,8 +42,8 @@ isolated_build = true
 
 [gh-actions]
 python =
-    3.9: py39, lint
-    3.10: py310
+    3.9: py39
+    3.10: py310, lint
 
 [gh-actions:env]
 DJANGO =
@@ -76,7 +76,7 @@ EDC_CODEBASE =
 # Also note: distutils is due to be deprecated in Python 3.12
 #
 setenv =
-    SETUPTOOLS_USE_DISTUTILS = stdlib
+    py39: SETUPTOOLS_USE_DISTUTILS = stdlib
 
 deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
