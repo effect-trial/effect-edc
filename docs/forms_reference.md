@@ -94,7 +94,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Arv History
 *[missing model class docstring]*
@@ -467,7 +467,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Patient History
 *[missing model class docstring]*
@@ -780,7 +780,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -935,7 +935,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -1088,7 +1088,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -1382,7 +1382,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
@@ -1492,7 +1492,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -1860,7 +1860,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Blood Result: Chemistry
 *[missing model class docstring]*
@@ -1917,7 +1917,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *U/L* 
+  - `IU/L`: *IU/L* 
 ---
 
 **7.0.** abnormal
@@ -2042,7 +2042,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *U/L* 
+  - `IU/L`: *IU/L* 
 ---
 
 **19.0.** abnormal
@@ -2083,7 +2083,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *U/L* 
+  - `IU/L`: *IU/L* 
 ---
 
 **23.0.** abnormal
@@ -2290,7 +2290,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *U/L* 
+  - `IU/L`: *IU/L* 
 ---
 
 **43.0.** abnormal
@@ -2435,7 +2435,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -2508,7 +2508,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -2788,7 +2788,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -2975,7 +2975,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -3151,7 +3151,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -3198,7 +3198,7 @@
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
@@ -3279,7 +3279,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -3432,7 +3432,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -3726,7 +3726,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -3840,7 +3840,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -3913,7 +3913,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -4193,7 +4193,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -4380,7 +4380,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -4479,7 +4479,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -4632,7 +4632,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -4926,7 +4926,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -5040,7 +5040,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -5113,7 +5113,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -5393,7 +5393,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -5580,7 +5580,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -5679,7 +5679,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -5764,7 +5764,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -5919,7 +5919,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -6072,7 +6072,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -6366,7 +6366,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -6480,7 +6480,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Arv Treatment
 *[missing model class docstring]*
@@ -6580,7 +6580,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Patient Treatment
 *[missing model class docstring]*
@@ -6982,7 +6982,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -7350,7 +7350,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -7423,7 +7423,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -7703,7 +7703,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -7890,7 +7890,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -7937,7 +7937,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
@@ -8094,7 +8094,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -8247,7 +8247,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -8541,7 +8541,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -8655,7 +8655,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -8728,7 +8728,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -9008,7 +9008,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -9195,7 +9195,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -9328,7 +9328,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -9413,7 +9413,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -9566,7 +9566,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -9860,7 +9860,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -9974,7 +9974,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -10047,7 +10047,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -10327,7 +10327,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -10514,7 +10514,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -10647,7 +10647,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -10800,7 +10800,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -11094,7 +11094,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -11208,7 +11208,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -11281,7 +11281,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -11561,7 +11561,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -11748,7 +11748,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -11881,7 +11881,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -12034,7 +12034,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -12328,7 +12328,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -12442,7 +12442,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -12515,7 +12515,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -12795,7 +12795,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -12982,7 +12982,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -13158,7 +13158,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -13289,6 +13289,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-28 12:11*
+*Rendered on 2022-07-29 19:30*
 
 
