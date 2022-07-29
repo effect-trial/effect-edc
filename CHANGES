@@ -1,8 +1,8 @@
 Changes
 =======
 
-[unreleased]
-------------
+[0.1.16]
+--------
 - updates to Health Economics Event CRF (#451):
     - add 'admitted' question
     - move 'routine_activities_disrupted_days' into "Loss of productivity and earnings" section
