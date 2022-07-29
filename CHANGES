@@ -1,6 +1,10 @@
 Changes
 =======
 
+[unreleased]
+------------
+- bump to edc 0.4.0
+
 [0.1.15]
 --------
 - updates to End of Study CRF:
