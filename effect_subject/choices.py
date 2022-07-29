@@ -177,6 +177,12 @@ FUNDOSCOPY_CHOICES = (
     (NO_EXAM, "Exam not performed"),
 )
 
+LOST_INCOME_CHOICES = (
+    (YES, "Yes"),
+    (NO, "No (employed but did not lose earnings)"),
+    (NOT_APPLICABLE, "Not applicable (includes not employed)"),
+)
+
 LP_REASON = (
     ("scheduled_per_protocol", "Scheduled per protocol"),
     ("clincal_deterioration", "Suspected Cryptococcal meningitis / Suspected IRIS"),
@@ -296,6 +302,12 @@ TB_TX_TYPES = (
     ("latent_tb", "Latent TB (HR: Isoniazid + Rifampicin)"),
     ("ipt", "IPT (Isoniazid Preventive Therapy)"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+TIME_OFF_WORK_CHOICES = (
+    (YES, "Yes"),
+    (NO, "No (employed but did not take time off)"),
+    (NOT_APPLICABLE, "Not applicable (includes not employed)"),
 )
 
 TRANSPORT_CHOICES = (

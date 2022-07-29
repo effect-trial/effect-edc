@@ -27,7 +27,6 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
                     "health_activities_detail",
                     "health_activities_spend",
                     "health_activities_payee",
-                    "routine_activities_disrupted_days",
                     "healthcare_month",
                 ),
             },
@@ -36,6 +35,7 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
             "Loss of productivity and earnings",
             {
                 "fields": (
+                    "routine_activities_disrupted_days",
                     "routine_activities",
                     "routine_activities_other",
                     "time_off_days",
@@ -80,6 +80,7 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
             "Hospital stay",
             {
                 "fields": (
+                    "admitted",
                     "admitted_admin",
                     "admitted_admin_spend",
                     "admitted_investigations",
@@ -113,6 +114,7 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
     ]
 
     radio_fields = {
+        "admitted": admin.VERTICAL,
         "admitted_admin": admin.VERTICAL,
         "admitted_investigations": admin.VERTICAL,
         "admitted_kith_kin_time_off": admin.VERTICAL,

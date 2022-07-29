@@ -1,6 +1,16 @@
 Changes
 =======
 
+[0.1.16]
+--------
+- updates to Health Economics Event CRF (#451):
+    - add 'admitted' question
+    - move 'routine_activities_disrupted_days' into "Loss of productivity and earnings" section
+    - add "Not applicable" option, and updated choice text to be less ambiguous
+      to 'lost_income', 'admitted_time_off', and 'admitted_kith_kin_time_off' questions
+- updated Forms Reference documentation: https://github.com/effect-trial/effect-edc/blob/develop/docs/forms_reference.md
+- bump to edc 0.4.0
+
 [0.1.15]
 --------
 - updates to End of Study CRF:
