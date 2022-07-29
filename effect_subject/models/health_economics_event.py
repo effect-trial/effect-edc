@@ -10,8 +10,10 @@ from effect_lists.models import Transport
 from ..choices import (
     ACTIVITY_CHOICES,
     ACTIVITY_CHOICES_NA,
+    LOST_INCOME_CHOICES,
     PAYEE_CHOICES_ACTIVITIES,
     PAYEE_CHOICES_DRUGS,
+    TIME_OFF_WORK_CHOICES,
 )
 from ..model_mixins import CrfModelMixin
 
@@ -142,7 +144,8 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
     lost_income = models.CharField(
         verbose_name="Did you lose earnings as a result?",
         max_length=15,
-        choices=YES_NO,
+        choices=LOST_INCOME_CHOICES,
+        default=NOT_APPLICABLE,
     )
 
     lost_income_amount = models.IntegerField(
@@ -274,6 +277,14 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="In rands or shillings",
     )
 
+    admitted = models.CharField(
+        verbose_name="Was the participant admitted as part of this health event?",
+        max_length=15,
+        choices=YES_NO,
+        null=True,
+        blank=False,
+    )
+
     admitted_admin = models.CharField(
         verbose_name=(
             "Did you pay for any administrative fees/charges at the hospital when "
@@ -326,7 +337,8 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
     admitted_time_off = models.CharField(
         verbose_name="Did you have to take time off work because of being admitted?",
         max_length=15,
-        choices=YES_NO,
+        choices=TIME_OFF_WORK_CHOICES,
+        default=NOT_APPLICABLE,
     )
 
     admitted_carers = models.IntegerField(
@@ -349,7 +361,8 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
             "or to come see you during your hospital stay?"
         ),
         max_length=15,
-        choices=YES_NO,
+        choices=TIME_OFF_WORK_CHOICES,
+        default=NOT_APPLICABLE,
     )
 
     admitted_kith_kin_month = models.IntegerField(
