@@ -6,44 +6,54 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0068_remove_historicalfollowup_action_item_and_more'),
+        ("effect_subject", "0068_remove_historicalfollowup_action_item_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='historicalmedicalhistory',
-            name='hiv_dx_date',
+            model_name="historicalmedicalhistory",
+            name="hiv_dx_date",
         ),
         migrations.RemoveField(
-            model_name='historicalmedicalhistory',
-            name='new_hiv_dx',
+            model_name="historicalmedicalhistory",
+            name="new_hiv_dx",
         ),
         migrations.RemoveField(
-            model_name='historicalpatienthistory',
-            name='abnormal_lung_exam',
+            model_name="historicalpatienthistory",
+            name="abnormal_lung_exam",
         ),
         migrations.RemoveField(
-            model_name='medicalhistory',
-            name='hiv_dx_date',
+            model_name="medicalhistory",
+            name="hiv_dx_date",
         ),
         migrations.RemoveField(
-            model_name='medicalhistory',
-            name='new_hiv_dx',
+            model_name="medicalhistory",
+            name="new_hiv_dx",
         ),
         migrations.RemoveField(
-            model_name='patienthistory',
-            name='abnormal_lung_exam',
+            model_name="patienthistory",
+            name="abnormal_lung_exam",
         ),
         migrations.AddField(
-            model_name='historicalvitalsigns',
-            name='abnormal_lung_exam',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=5, verbose_name='Abnormal lung exam:'),
+            model_name="historicalvitalsigns",
+            name="abnormal_lung_exam",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="-",
+                max_length=5,
+                verbose_name="Abnormal lung exam:",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='vitalsigns',
-            name='abnormal_lung_exam',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No')], default='-', max_length=5, verbose_name='Abnormal lung exam:'),
+            model_name="vitalsigns",
+            name="abnormal_lung_exam",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No")],
+                default="-",
+                max_length=5,
+                verbose_name="Abnormal lung exam:",
+            ),
             preserve_default=False,
         ),
     ]

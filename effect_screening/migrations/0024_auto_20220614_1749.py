@@ -7,68 +7,110 @@ import edc_model.validators.date
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0023_auto_20220607_1547'),
+        ("effect_screening", "0023_auto_20220607_1547"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_ago',
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_ago",
         ),
         migrations.RemoveField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_date',
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_date",
         ),
         migrations.RemoveField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_date_is_estimated',
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_date_is_estimated",
         ),
         migrations.RemoveField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_estimated_date',
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_estimated_date",
         ),
         migrations.RemoveField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_new',
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_new",
         ),
         migrations.RemoveField(
-            model_name='subjectscreening',
-            name='hiv_dx_ago',
+            model_name="subjectscreening",
+            name="hiv_dx_ago",
         ),
         migrations.RemoveField(
-            model_name='subjectscreening',
-            name='hiv_dx_date',
+            model_name="subjectscreening",
+            name="hiv_dx_date",
         ),
         migrations.RemoveField(
-            model_name='subjectscreening',
-            name='hiv_dx_date_is_estimated',
+            model_name="subjectscreening",
+            name="hiv_dx_date_is_estimated",
         ),
         migrations.RemoveField(
-            model_name='subjectscreening',
-            name='hiv_dx_estimated_date',
+            model_name="subjectscreening",
+            name="hiv_dx_estimated_date",
         ),
         migrations.RemoveField(
-            model_name='subjectscreening',
-            name='hiv_dx_new',
+            model_name="subjectscreening",
+            name="hiv_dx_new",
         ),
         migrations.AddField(
-            model_name='historicalsubjectscreening',
-            name='hiv_confirmed_date',
-            field=models.DateField(blank=True, null=True, validators=[edc_model.validators.date.date_not_future], verbose_name='If YES, on what date was HIV positivity confirmed?'),
+            model_name="historicalsubjectscreening",
+            name="hiv_confirmed_date",
+            field=models.DateField(
+                blank=True,
+                null=True,
+                validators=[edc_model.validators.date.date_not_future],
+                verbose_name="If YES, on what date was HIV positivity confirmed?",
+            ),
         ),
         migrations.AddField(
-            model_name='historicalsubjectscreening',
-            name='hiv_confirmed_method',
-            field=models.CharField(choices=[('site_rapid_test', 'Rapid test by site'), ('historical_lab_result', 'Historical lab result (ELISA/PCR/unsuppressed HIVVL)'), ('historical_clinical_note_rapid_test_result', 'Historical clinical note/rapid test result'), ('N/A', 'Not applicable')], default='N/A', max_length=50, verbose_name='If YES, method?'),
+            model_name="historicalsubjectscreening",
+            name="hiv_confirmed_method",
+            field=models.CharField(
+                choices=[
+                    ("site_rapid_test", "Rapid test by site"),
+                    (
+                        "historical_lab_result",
+                        "Historical lab result (ELISA/PCR/unsuppressed HIVVL)",
+                    ),
+                    (
+                        "historical_clinical_note_rapid_test_result",
+                        "Historical clinical note/rapid test result",
+                    ),
+                    ("N/A", "Not applicable"),
+                ],
+                default="N/A",
+                max_length=50,
+                verbose_name="If YES, method?",
+            ),
         ),
         migrations.AddField(
-            model_name='subjectscreening',
-            name='hiv_confirmed_date',
-            field=models.DateField(blank=True, null=True, validators=[edc_model.validators.date.date_not_future], verbose_name='If YES, on what date was HIV positivity confirmed?'),
+            model_name="subjectscreening",
+            name="hiv_confirmed_date",
+            field=models.DateField(
+                blank=True,
+                null=True,
+                validators=[edc_model.validators.date.date_not_future],
+                verbose_name="If YES, on what date was HIV positivity confirmed?",
+            ),
         ),
         migrations.AddField(
-            model_name='subjectscreening',
-            name='hiv_confirmed_method',
-            field=models.CharField(choices=[('site_rapid_test', 'Rapid test by site'), ('historical_lab_result', 'Historical lab result (ELISA/PCR/unsuppressed HIVVL)'), ('historical_clinical_note_rapid_test_result', 'Historical clinical note/rapid test result'), ('N/A', 'Not applicable')], default='N/A', max_length=50, verbose_name='If YES, method?'),
+            model_name="subjectscreening",
+            name="hiv_confirmed_method",
+            field=models.CharField(
+                choices=[
+                    ("site_rapid_test", "Rapid test by site"),
+                    (
+                        "historical_lab_result",
+                        "Historical lab result (ELISA/PCR/unsuppressed HIVVL)",
+                    ),
+                    (
+                        "historical_clinical_note_rapid_test_result",
+                        "Historical clinical note/rapid test result",
+                    ),
+                    ("N/A", "Not applicable"),
+                ],
+                default="N/A",
+                max_length=50,
+                verbose_name="If YES, method?",
+            ),
         ),
     ]

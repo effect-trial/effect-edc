@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0022_auto_20220527_1351'),
+        ("effect_screening", "0022_auto_20220527_1351"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='historicalsubjectscreening',
-            name='hiv_dx_new',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='Is this a new HIV diagnosis?'),
+            model_name="historicalsubjectscreening",
+            name="hiv_dx_new",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("N/A", "Not applicable")],
+                default="N/A",
+                max_length=15,
+                verbose_name="Is this a new HIV diagnosis?",
+            ),
         ),
         migrations.AddField(
-            model_name='subjectscreening',
-            name='hiv_dx_new',
-            field=models.CharField(choices=[('Yes', 'Yes'), ('No', 'No'), ('N/A', 'Not applicable')], default='N/A', max_length=15, verbose_name='Is this a new HIV diagnosis?'),
+            model_name="subjectscreening",
+            name="hiv_dx_new",
+            field=models.CharField(
+                choices=[("Yes", "Yes"), ("No", "No"), ("N/A", "Not applicable")],
+                default="N/A",
+                max_length=15,
+                verbose_name="Is this a new HIV diagnosis?",
+            ),
         ),
     ]
