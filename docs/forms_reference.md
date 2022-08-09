@@ -137,10 +137,10 @@
 - type: CharField
 - length: 25
 - responses:
-  - `-`: *No* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `-`: *No*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **Section: ARV treatment and monitoring**
@@ -151,8 +151,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Was the patient on ART <u>prior</u> to CrAg test?
@@ -161,8 +161,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **7.0.** When did the patient <u>start</u> ART for the first time?
@@ -180,11 +180,11 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **9.0.** Which drugs were prescribed for their <u>first</u> (or <u>only</u>) ART regimen?
@@ -192,43 +192,43 @@
 - column: initial_art_regimen
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `ABC_3TC/FTC`: *ABC + 3TC/FTC* 
-  - `ABC_3TC_ATV_r`: *ABC + 3TC + ATV/r* 
-  - `ABC_3TC_DTG`: *ABC + 3TC + DTG* 
-  - `ABC_3TC_EFV`: *ABC + 3TC + EFV* 
-  - `ABC_3TC_LPV_r`: *ABC + 3TC + LPV/r* 
-  - `AZT_3TC_ATV_r`: *AZT + 3TC + ATV/r* 
-  - `AZT_3TC_DTG`: *AZT + 3TC + DTG* 
-  - `AZT_3TC_EFV`: *AZT + 3TC + EFV* 
-  - `AZT_3TC_LPV_r`: *AZT + 3TC + LPV/r* 
-  - `AZT_3TC_NVP`: *AZT + 3TC + NVP* 
-  - `AZT_FTC/3TC`: *AZT + FTC/3TC* 
-  - `D4T_3TC_NVP`: *D4T + 3TC + NVP* 
-  - `DTG_ABC/3TC_ATV_r`: *DTG + (ABC/3TC) + ATV/r* 
-  - `TDF_3TC_ATV_r`: *TDF + 3TC + ATV/r* 
-  - `TDF_3TC_DTG`: *TDF + 3TC + DTG* 
-  - `TDF_3TC_EFV`: *TDF + 3TC + EFV* 
-  - `TDF_3TC_LPV_r`: *TDF + 3TC + LPV/r* 
-  - `TDF_3TC_NVP`: *TDF + 3TC + NVP* 
-  - `TDF_FTC/3TC`: *TDF + FTC/3TC* 
-  - `TDF_FTC_ATV_r`: *TDF + FTC + ATV/r* 
-  - `TDF_FTC_DTG`: *TDF + FTC + DTG* 
-  - `TDF_FTC_EFV`: *TDF + FTC + EFV* 
-  - `TDF_FTC_LPV_r`: *TDF + FTC + LPV/r* 
-  - `TDF_FTC_NVP`: *TDF + FTC + NVP* 
-  - `ZDV_3TC_EFV`: *ZDV + 3TC + EFV* 
-  - `ZDV_3TC_NVP`: *ZDV + 3TC + NVP* 
-  - `ZDV_LPV_NVP`: *ZDV + LPV + NVP* 
-  - `EFV`: *EFV* 
-  - `NVP`: *NVP* 
-  - `DTG`: *DTG* 
-  - `ATZ_r`: *ATZ/r* 
-  - `DRV_r`: *DRV/r* 
-  - `lopinavir_r`: *Lopinavir/r* 
-  - `abacavir`: *Abacavir* 
-  - `unknown`: *Unknown* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `ABC_3TC/FTC`: *ABC + 3TC/FTC*
+  - `ABC_3TC_ATV_r`: *ABC + 3TC + ATV/r*
+  - `ABC_3TC_DTG`: *ABC + 3TC + DTG*
+  - `ABC_3TC_EFV`: *ABC + 3TC + EFV*
+  - `ABC_3TC_LPV_r`: *ABC + 3TC + LPV/r*
+  - `AZT_3TC_ATV_r`: *AZT + 3TC + ATV/r*
+  - `AZT_3TC_DTG`: *AZT + 3TC + DTG*
+  - `AZT_3TC_EFV`: *AZT + 3TC + EFV*
+  - `AZT_3TC_LPV_r`: *AZT + 3TC + LPV/r*
+  - `AZT_3TC_NVP`: *AZT + 3TC + NVP*
+  - `AZT_FTC/3TC`: *AZT + FTC/3TC*
+  - `D4T_3TC_NVP`: *D4T + 3TC + NVP*
+  - `DTG_ABC/3TC_ATV_r`: *DTG + (ABC/3TC) + ATV/r*
+  - `TDF_3TC_ATV_r`: *TDF + 3TC + ATV/r*
+  - `TDF_3TC_DTG`: *TDF + 3TC + DTG*
+  - `TDF_3TC_EFV`: *TDF + 3TC + EFV*
+  - `TDF_3TC_LPV_r`: *TDF + 3TC + LPV/r*
+  - `TDF_3TC_NVP`: *TDF + 3TC + NVP*
+  - `TDF_FTC/3TC`: *TDF + FTC/3TC*
+  - `TDF_FTC_ATV_r`: *TDF + FTC + ATV/r*
+  - `TDF_FTC_DTG`: *TDF + FTC + DTG*
+  - `TDF_FTC_EFV`: *TDF + FTC + EFV*
+  - `TDF_FTC_LPV_r`: *TDF + FTC + LPV/r*
+  - `TDF_FTC_NVP`: *TDF + FTC + NVP*
+  - `ZDV_3TC_EFV`: *ZDV + 3TC + EFV*
+  - `ZDV_3TC_NVP`: *ZDV + 3TC + NVP*
+  - `ZDV_LPV_NVP`: *ZDV + LPV + NVP*
+  - `EFV`: *EFV*
+  - `NVP`: *NVP*
+  - `DTG`: *DTG*
+  - `ATZ_r`: *ATZ/r*
+  - `DRV_r`: *DRV/r*
+  - `lopinavir_r`: *Lopinavir/r*
+  - `abacavir`: *Abacavir*
+  - `unknown`: *Unknown*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **9.1.** If other, please specify ...
@@ -245,9 +245,9 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** If switched, when was their <u>current or most recent</u> ART regimen started?
@@ -265,11 +265,11 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **13.0.** If switched, what is their current (or most recent) ART regimen?
@@ -277,43 +277,43 @@
 - column: current_art_regimen
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `ABC_3TC/FTC`: *ABC + 3TC/FTC* 
-  - `ABC_3TC_ATV_r`: *ABC + 3TC + ATV/r* 
-  - `ABC_3TC_DTG`: *ABC + 3TC + DTG* 
-  - `ABC_3TC_EFV`: *ABC + 3TC + EFV* 
-  - `ABC_3TC_LPV_r`: *ABC + 3TC + LPV/r* 
-  - `AZT_3TC_ATV_r`: *AZT + 3TC + ATV/r* 
-  - `AZT_3TC_DTG`: *AZT + 3TC + DTG* 
-  - `AZT_3TC_EFV`: *AZT + 3TC + EFV* 
-  - `AZT_3TC_LPV_r`: *AZT + 3TC + LPV/r* 
-  - `AZT_3TC_NVP`: *AZT + 3TC + NVP* 
-  - `AZT_FTC/3TC`: *AZT + FTC/3TC* 
-  - `D4T_3TC_NVP`: *D4T + 3TC + NVP* 
-  - `DTG_ABC/3TC_ATV_r`: *DTG + (ABC/3TC) + ATV/r* 
-  - `TDF_3TC_ATV_r`: *TDF + 3TC + ATV/r* 
-  - `TDF_3TC_DTG`: *TDF + 3TC + DTG* 
-  - `TDF_3TC_EFV`: *TDF + 3TC + EFV* 
-  - `TDF_3TC_LPV_r`: *TDF + 3TC + LPV/r* 
-  - `TDF_3TC_NVP`: *TDF + 3TC + NVP* 
-  - `TDF_FTC/3TC`: *TDF + FTC/3TC* 
-  - `TDF_FTC_ATV_r`: *TDF + FTC + ATV/r* 
-  - `TDF_FTC_DTG`: *TDF + FTC + DTG* 
-  - `TDF_FTC_EFV`: *TDF + FTC + EFV* 
-  - `TDF_FTC_LPV_r`: *TDF + FTC + LPV/r* 
-  - `TDF_FTC_NVP`: *TDF + FTC + NVP* 
-  - `ZDV_3TC_EFV`: *ZDV + 3TC + EFV* 
-  - `ZDV_3TC_NVP`: *ZDV + 3TC + NVP* 
-  - `ZDV_LPV_NVP`: *ZDV + LPV + NVP* 
-  - `EFV`: *EFV* 
-  - `NVP`: *NVP* 
-  - `DTG`: *DTG* 
-  - `ATZ_r`: *ATZ/r* 
-  - `DRV_r`: *DRV/r* 
-  - `lopinavir_r`: *Lopinavir/r* 
-  - `abacavir`: *Abacavir* 
-  - `unknown`: *Unknown* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `ABC_3TC/FTC`: *ABC + 3TC/FTC*
+  - `ABC_3TC_ATV_r`: *ABC + 3TC + ATV/r*
+  - `ABC_3TC_DTG`: *ABC + 3TC + DTG*
+  - `ABC_3TC_EFV`: *ABC + 3TC + EFV*
+  - `ABC_3TC_LPV_r`: *ABC + 3TC + LPV/r*
+  - `AZT_3TC_ATV_r`: *AZT + 3TC + ATV/r*
+  - `AZT_3TC_DTG`: *AZT + 3TC + DTG*
+  - `AZT_3TC_EFV`: *AZT + 3TC + EFV*
+  - `AZT_3TC_LPV_r`: *AZT + 3TC + LPV/r*
+  - `AZT_3TC_NVP`: *AZT + 3TC + NVP*
+  - `AZT_FTC/3TC`: *AZT + FTC/3TC*
+  - `D4T_3TC_NVP`: *D4T + 3TC + NVP*
+  - `DTG_ABC/3TC_ATV_r`: *DTG + (ABC/3TC) + ATV/r*
+  - `TDF_3TC_ATV_r`: *TDF + 3TC + ATV/r*
+  - `TDF_3TC_DTG`: *TDF + 3TC + DTG*
+  - `TDF_3TC_EFV`: *TDF + 3TC + EFV*
+  - `TDF_3TC_LPV_r`: *TDF + 3TC + LPV/r*
+  - `TDF_3TC_NVP`: *TDF + 3TC + NVP*
+  - `TDF_FTC/3TC`: *TDF + FTC/3TC*
+  - `TDF_FTC_ATV_r`: *TDF + FTC + ATV/r*
+  - `TDF_FTC_DTG`: *TDF + FTC + DTG*
+  - `TDF_FTC_EFV`: *TDF + FTC + EFV*
+  - `TDF_FTC_LPV_r`: *TDF + FTC + LPV/r*
+  - `TDF_FTC_NVP`: *TDF + FTC + NVP*
+  - `ZDV_3TC_EFV`: *ZDV + 3TC + EFV*
+  - `ZDV_3TC_NVP`: *ZDV + 3TC + NVP*
+  - `ZDV_LPV_NVP`: *ZDV + LPV + NVP*
+  - `EFV`: *EFV*
+  - `NVP`: *NVP*
+  - `DTG`: *DTG*
+  - `ATZ_r`: *ATZ/r*
+  - `DRV_r`: *DRV/r*
+  - `lopinavir_r`: *Lopinavir/r*
+  - `abacavir`: *Abacavir*
+  - `unknown`: *Unknown*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **13.1.** If other, please specify ...
@@ -334,9 +334,9 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** If `defaulted`, on what date did they default from their <u>current</u> ART regimen?
@@ -354,11 +354,11 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **17.0.** If the patient is currently on ART, are they <u>adherent</u> to their <u>current</u> ART regimen?
@@ -367,9 +367,9 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **18.0.** If not `adherent`, how many doses missed in the last month?
@@ -386,9 +386,9 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `art_continued`: *ART continued* 
-  - `art_stopped`: *ART stopped* 
+  - `N/A`: *Not applicable*
+  - `art_continued`: *ART continued*
+  - `art_stopped`: *ART stopped*
 ---
 
 **Section: Viral load**
@@ -399,8 +399,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **21.0.** Viral load result
@@ -426,11 +426,11 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **Section: CD4 count**
@@ -458,10 +458,10 @@
 - type: CharField
 - length: 25
 - responses:
-  - `-`: *No* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `-`: *No*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 
@@ -501,8 +501,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, number of days Fluconazole taken:
@@ -519,10 +519,10 @@
 - type: CharField
 - length: 25
 - responses:
-  - `1200_mg_d`: *Fluconazole, 1200 mg/d* 
-  - `800_mg_d`: *Fluconazole, 800 mg/d* 
-  - `OTHER`: *Other (specify dose and reason below ...)* 
-  - `N/A`: *Not applicable* 
+  - `1200_mg_d`: *Fluconazole, 1200 mg/d*
+  - `800_mg_d`: *Fluconazole, 800 mg/d*
+  - `OTHER`: *Other (specify dose and reason below ...)*
+  - `N/A`: *Not applicable*
 ---
 
 **5.1.** Other Fluconazole dose (if taken < 1 week prior to randomisation):
@@ -551,8 +551,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **7.0.** Details of neurological abnormality?
@@ -569,8 +569,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **9.0.** If YES, give date
@@ -588,11 +588,11 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **11.0.** If YES, site of TB?
@@ -601,10 +601,10 @@
 - type: CharField
 - length: 15
 - responses:
-  - `pulmonary`: *Pulmonary* 
-  - `extra_pulmonary`: *Extra-pulmonary* 
-  - `both`: *Both* 
-  - `N/A`: *Not applicable* 
+  - `pulmonary`: *Pulmonary*
+  - `extra_pulmonary`: *Extra-pulmonary*
+  - `both`: *Both*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: TB prevention/treatment**
@@ -615,8 +615,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** If YES, please specify type?
@@ -627,10 +627,10 @@
 - type: CharField
 - length: 15
 - responses:
-  - `active_tb`: *Active TB* 
-  - `latent_tb`: *Latent TB (HR: Isoniazid + Rifampicin)* 
-  - `ipt`: *IPT (Isoniazid Preventive Therapy)* 
-  - `N/A`: *Not applicable* 
+  - `active_tb`: *Active TB*
+  - `latent_tb`: *Latent TB (HR: Isoniazid + Rifampicin)*
+  - `ipt`: *IPT (Isoniazid Preventive Therapy)*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** If 'Active TB', which treatment?
@@ -638,23 +638,23 @@
 - column: active_tb_tx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `AM`: *Am - Amikacin* 
-  - `BDQ`: *BDQ - Bedaquiline* 
-  - `CFZ`: *CFZ - Clofazimine* 
-  - `DLM`: *DLM - Delamanid* 
-  - `E`: *E - Ethambutol* 
-  - `H`: *H - Isoniazid* 
-  - `HR`: *HR - Isoniazid + Rifampicin* 
-  - `HRZE`: *HRZE - Isoniazid + Rifampicin + Pyrazinamide + Ethambutol* 
-  - `LFX`: *LFX - Levofloxacin* 
-  - `LZD`: *LZD - Linezolid* 
-  - `MPM`: *Mpm - Meropenem* 
-  - `PAS`: *PAS - Para-aminosalicylic acid* 
-  - `PTO`: *PTO - Prothionamide* 
-  - `S`: *S - Streptomycin* 
-  - `TRD`: *TRD - Terizidone* 
-  - `Z`: *Z - Pyrazinamide* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `AM`: *Am - Amikacin*
+  - `BDQ`: *BDQ - Bedaquiline*
+  - `CFZ`: *CFZ - Clofazimine*
+  - `DLM`: *DLM - Delamanid*
+  - `E`: *E - Ethambutol*
+  - `H`: *H - Isoniazid*
+  - `HR`: *HR - Isoniazid + Rifampicin*
+  - `HRZE`: *HRZE - Isoniazid + Rifampicin + Pyrazinamide + Ethambutol*
+  - `LFX`: *LFX - Levofloxacin*
+  - `LZD`: *LZD - Linezolid*
+  - `MPM`: *Mpm - Meropenem*
+  - `PAS`: *PAS - Para-aminosalicylic acid*
+  - `PTO`: *PTO - Prothionamide*
+  - `S`: *S - Streptomycin*
+  - `TRD`: *TRD - Terizidone*
+  - `Z`: *Z - Pyrazinamide*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **Section: Other opportunistic infections**
@@ -665,8 +665,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **16.0.** If YES, specify opportunistic infection name?
@@ -692,8 +692,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **19.0.** specify medications
@@ -701,66 +701,66 @@
 - column: specify_medications
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `TMP-SMX`: *TMP-SMX* 
-  - `steroids`: *Steroids, please specify type and dose below ...* 
-  - `actrapid`: *Actrapid* 
-  - `actrophane`: *Actrophane* 
-  - `allopurinol`: *Allopurinol* 
-  - `amitriptyline`: *Amitriptyline* 
-  - `amlodipine`: *Amlodipine* 
-  - `atenalol`: *Atenalol* 
-  - `atorvastatin`: *Atorvastatin* 
-  - `budesonide`: *Budesonide* 
-  - `budesonide_formoterol`: *Budesonide/Formoterol (Symbicord)* 
-  - `carbamazepine`: *Carbamazepine* 
-  - `carvedilol`: *Carvedilol* 
-  - `cetirizine`: *Cetirizine (Texa)* 
-  - `chlorpheniramine`: *Chlorpheniramine (Allergex)* 
-  - `chlorpromazine`: *Chlorpromazine* 
-  - `citalopram`: *Citalopram* 
-  - `clozapine`: *Clozapine* 
-  - `colchecine`: *Colchecine* 
-  - `diclofenac`: *Diclofenac (Voltaren)* 
-  - `doxazosin`: *Doxazosin (Cardura)* 
-  - `enalapril`: *Enalapril* 
-  - `fluanxil`: *Fluanxil* 
-  - `fluoxetine`: *Fluoxetine (Prozac)* 
-  - `follic_acid`: *Follic Acid* 
-  - `furosemide`: *Furosemide (Lasix)* 
-  - `glimepiride`: *Glimepiride* 
-  - `hctz`: *HCTZ (Ridaq)* 
-  - `humalog`: *Humalog* 
-  - `ibuprofen`: *Ibuprofen* 
-  - `iron`: *Iron (FeSO4/ FeGluconate)* 
-  - `lamotrigine`: *Lamotrigine* 
-  - `lansoprazole`: *Lansoprazole* 
-  - `loperamide`: *Loperamide (Imodium)* 
-  - `losartan`: *Losartan* 
-  - `metformin`: *Metformin* 
-  - `montelukaust`: *Montelukaust* 
-  - `nystatin`: *Nystatin* 
-  - `olanzapine`: *Olanzapine* 
-  - `omeprazole`: *Omeprazole* 
-  - `pantoprazole`: *Pantoprazole* 
-  - `paracetamol`: *Paracetamol* 
-  - `phenytoin`: *Phenytoin* 
-  - `pioglitazone`: *Pioglitazone* 
-  - `prednisone`: *Prednisone* 
-  - `protophane`: *Protophane* 
-  - `pyridoxine`: *Pyridoxine* 
-  - `quetiapine`: *Quetiapine* 
-  - `ranitidine`: *Ranitidine* 
-  - `risperidone`: *Risperidone* 
-  - `salbutamol`: *Salbutamol* 
-  - `salmeterol_fluticasone`: *Salmeterol/Fluticasone (Foxair/Sereflo)* 
-  - `simvastatin`: *Simvastatin* 
-  - `spirinolactone`: *Spirinolactone* 
-  - `tramadol`: *Tramadol* 
-  - `valproate`: *Valproate (Epilim)* 
-  - `venlafaxine`: *Venlafaxine* 
-  - `vitamin_c`: *Vitamin C* 
-  - `OTHER`: *Other medication, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `TMP-SMX`: *TMP-SMX*
+  - `steroids`: *Steroids, please specify type and dose below ...*
+  - `actrapid`: *Actrapid*
+  - `actrophane`: *Actrophane*
+  - `allopurinol`: *Allopurinol*
+  - `amitriptyline`: *Amitriptyline*
+  - `amlodipine`: *Amlodipine*
+  - `atenalol`: *Atenalol*
+  - `atorvastatin`: *Atorvastatin*
+  - `budesonide`: *Budesonide*
+  - `budesonide_formoterol`: *Budesonide/Formoterol (Symbicord)*
+  - `carbamazepine`: *Carbamazepine*
+  - `carvedilol`: *Carvedilol*
+  - `cetirizine`: *Cetirizine (Texa)*
+  - `chlorpheniramine`: *Chlorpheniramine (Allergex)*
+  - `chlorpromazine`: *Chlorpromazine*
+  - `citalopram`: *Citalopram*
+  - `clozapine`: *Clozapine*
+  - `colchecine`: *Colchecine*
+  - `diclofenac`: *Diclofenac (Voltaren)*
+  - `doxazosin`: *Doxazosin (Cardura)*
+  - `enalapril`: *Enalapril*
+  - `fluanxil`: *Fluanxil*
+  - `fluoxetine`: *Fluoxetine (Prozac)*
+  - `follic_acid`: *Follic Acid*
+  - `furosemide`: *Furosemide (Lasix)*
+  - `glimepiride`: *Glimepiride*
+  - `hctz`: *HCTZ (Ridaq)*
+  - `humalog`: *Humalog*
+  - `ibuprofen`: *Ibuprofen*
+  - `iron`: *Iron (FeSO4/ FeGluconate)*
+  - `lamotrigine`: *Lamotrigine*
+  - `lansoprazole`: *Lansoprazole*
+  - `loperamide`: *Loperamide (Imodium)*
+  - `losartan`: *Losartan*
+  - `metformin`: *Metformin*
+  - `montelukaust`: *Montelukaust*
+  - `nystatin`: *Nystatin*
+  - `olanzapine`: *Olanzapine*
+  - `omeprazole`: *Omeprazole*
+  - `pantoprazole`: *Pantoprazole*
+  - `paracetamol`: *Paracetamol*
+  - `phenytoin`: *Phenytoin*
+  - `pioglitazone`: *Pioglitazone*
+  - `prednisone`: *Prednisone*
+  - `protophane`: *Protophane*
+  - `pyridoxine`: *Pyridoxine*
+  - `quetiapine`: *Quetiapine*
+  - `ranitidine`: *Ranitidine*
+  - `risperidone`: *Risperidone*
+  - `salbutamol`: *Salbutamol*
+  - `salmeterol_fluticasone`: *Salmeterol/Fluticasone (Foxair/Sereflo)*
+  - `simvastatin`: *Simvastatin*
+  - `spirinolactone`: *Spirinolactone*
+  - `tramadol`: *Tramadol*
+  - `valproate`: *Valproate (Epilim)*
+  - `venlafaxine`: *Venlafaxine*
+  - `vitamin_c`: *Vitamin C*
+  - `OTHER`: *Other medication, please specify below ...*
 ---
 
 **19.1.** If STEROID, specify type and dose of steroid ...
@@ -822,8 +822,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `measured`: *Measured (weighed)* 
-  - `estimated`: *Estimated* 
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
 ---
 
 **5.0.** Blood pressure: systolic
@@ -872,8 +872,8 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **Section: Action**
@@ -914,9 +914,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **16.0.** Has the patient been admitted due to any of the above?
@@ -927,9 +927,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -969,8 +969,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -979,8 +979,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -989,8 +989,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -1001,9 +1001,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -1014,9 +1014,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -1025,14 +1025,14 @@
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -1041,12 +1041,12 @@
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -1067,9 +1067,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -1080,9 +1080,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -1122,9 +1122,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -1132,37 +1132,37 @@
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -1179,9 +1179,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -1191,37 +1191,37 @@
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -1284,9 +1284,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -1297,9 +1297,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -1310,9 +1310,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -1325,9 +1325,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -1338,9 +1338,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -1416,8 +1416,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please explain
@@ -1455,9 +1455,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** If NO, please explain
@@ -1549,7 +1549,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `g/dL`: *g/dL* 
+  - `g/dL`: *g/dL*
 ---
 
 **7.0.** abnormal
@@ -1558,8 +1558,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** reportable
@@ -1568,12 +1568,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: WBC**
@@ -1590,8 +1590,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
-  - `cells/mm^3`: *cells/mm<sup>3</sup>* 
+  - `10^9/L`: *10^9/L*
+  - `cells/mm^3`: *cells/mm<sup>3</sup>*
 ---
 
 **11.0.** abnormal
@@ -1600,8 +1600,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** reportable
@@ -1610,12 +1610,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Platelets**
@@ -1632,8 +1632,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
-  - `cells/mm^3`: *cells/mm<sup>3</sup>* 
+  - `10^9/L`: *10^9/L*
+  - `cells/mm^3`: *cells/mm<sup>3</sup>*
 ---
 
 **15.0.** abnormal
@@ -1642,8 +1642,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **16.0.** reportable
@@ -1652,12 +1652,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Neutrophil absolute count**
@@ -1674,7 +1674,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
+  - `10^9/L`: *10^9/L*
 ---
 
 **19.0.** abnormal
@@ -1683,8 +1683,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **20.0.** reportable
@@ -1693,12 +1693,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Neutrophils differential count**
@@ -1715,7 +1715,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `%`: *%* 
+  - `%`: *%*
 ---
 
 **23.0.** abnormal
@@ -1724,8 +1724,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **24.0.** reportable
@@ -1734,12 +1734,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Lymphocyte absolute count**
@@ -1756,7 +1756,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
+  - `10^9/L`: *10^9/L*
 ---
 
 **27.0.** abnormal
@@ -1765,8 +1765,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **28.0.** reportable
@@ -1775,12 +1775,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Lymphocyte differential count**
@@ -1797,7 +1797,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `%`: *%* 
+  - `%`: *%*
 ---
 
 **31.0.** abnormal
@@ -1806,8 +1806,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **32.0.** reportable
@@ -1816,12 +1816,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Conclusion**
@@ -1832,8 +1832,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **34.0.** If any results are abnormal, are results within grade 3 or above?
@@ -1844,9 +1844,9 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Summary**
@@ -1917,7 +1917,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *IU/L* 
+  - `IU/L`: *IU/L*
 ---
 
 **7.0.** abnormal
@@ -1926,8 +1926,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** reportable
@@ -1936,12 +1936,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: CREATININE**
@@ -1958,8 +1958,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `umol/L`: *μmol/L (micromoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `umol/L`: *μmol/L (micromoles/L)*
 ---
 
 **11.0.** abnormal
@@ -1968,8 +1968,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** reportable
@@ -1978,12 +1978,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: ALBUMIN**
@@ -2000,8 +2000,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `g/dL`: *g/dL* 
-  - `g/L`: *g/L* 
+  - `g/dL`: *g/dL*
+  - `g/L`: *g/L*
 ---
 
 **15.0.** abnormal
@@ -2010,8 +2010,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **16.0.** reportable
@@ -2020,12 +2020,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: ALP**
@@ -2042,7 +2042,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *IU/L* 
+  - `IU/L`: *IU/L*
 ---
 
 **19.0.** abnormal
@@ -2051,8 +2051,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **20.0.** reportable
@@ -2061,12 +2061,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: AST**
@@ -2083,7 +2083,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *IU/L* 
+  - `IU/L`: *IU/L*
 ---
 
 **23.0.** abnormal
@@ -2092,8 +2092,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **24.0.** reportable
@@ -2102,12 +2102,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: C-Reactive Protein**
@@ -2124,8 +2124,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `umol/L`: *μmol/L (micromoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `umol/L`: *μmol/L (micromoles/L)*
 ---
 
 **27.0.** abnormal
@@ -2134,8 +2134,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **28.0.** reportable
@@ -2144,12 +2144,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: EGFR**
@@ -2166,7 +2166,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mL/min/1.73m2`: *mL/min/1.73m2* 
+  - `mL/min/1.73m2`: *mL/min/1.73m2*
 ---
 
 **31.0.** abnormal
@@ -2175,8 +2175,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **32.0.** reportable
@@ -2185,12 +2185,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: MAGNESIUM**
@@ -2207,8 +2207,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mmol/L`: *mmol/L (millimoles/L)* 
-  - `mg/dL`: *mg/dL* 
+  - `mmol/L`: *mmol/L (millimoles/L)*
+  - `mg/dL`: *mg/dL*
 ---
 
 **35.0.** abnormal
@@ -2217,8 +2217,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **36.0.** reportable
@@ -2227,12 +2227,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: POTASSIUM**
@@ -2249,7 +2249,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **39.0.** abnormal
@@ -2258,8 +2258,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **40.0.** reportable
@@ -2268,12 +2268,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: GGT**
@@ -2290,7 +2290,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `IU/L`: *IU/L* 
+  - `IU/L`: *IU/L*
 ---
 
 **43.0.** abnormal
@@ -2299,8 +2299,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **44.0.** reportable
@@ -2309,12 +2309,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: UREA**
@@ -2331,7 +2331,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **47.0.** abnormal
@@ -2340,8 +2340,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **48.0.** reportable
@@ -2350,12 +2350,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Total Bilirubin**
@@ -2372,7 +2372,7 @@
 - type: CharField
 - length: 15
 - responses:
-  - `mg/dL`: *mg/dL* 
+  - `mg/dL`: *mg/dL*
 ---
 
 **51.0.** abnormal
@@ -2381,8 +2381,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **52.0.** reportable
@@ -2391,12 +2391,12 @@
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Conclusion**
@@ -2407,8 +2407,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **54.0.** If any results are abnormal, are results within grade 3 or above?
@@ -2419,9 +2419,9 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Summary**
@@ -2469,8 +2469,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -2485,12 +2485,12 @@
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -2542,8 +2542,8 @@
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -2559,8 +2559,8 @@
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -2579,7 +2579,7 @@
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -2595,9 +2595,9 @@
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -2606,10 +2606,10 @@
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -2618,10 +2618,10 @@
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -2630,10 +2630,10 @@
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -2642,9 +2642,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -2653,9 +2653,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -2689,11 +2689,11 @@
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -2726,8 +2726,8 @@
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -2744,8 +2744,8 @@
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -2762,8 +2762,8 @@
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -2780,9 +2780,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -2822,8 +2822,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -2839,9 +2839,9 @@
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -2850,13 +2850,13 @@
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -2877,9 +2877,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -2895,10 +2895,10 @@
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -2909,9 +2909,9 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -2927,10 +2927,10 @@
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -2941,9 +2941,9 @@
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -2959,9 +2959,9 @@
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -3023,17 +3023,17 @@
 - type: CharField
 - length: 50
 - responses:
-  - `no_schooling_completed`: *No schooling completed* 
-  - `nursery_to_8th_grade`: *Nursery school to 8th grade* 
-  - `some_high_school_no_diploma`: *Some high school, no diploma* 
-  - `high_school_grad_diploma_or_equiv`: *High school graduate, diploma or the equivalent (for example: GED)* 
-  - `some_college_no_degree`: *Some college credit, no degree* 
-  - `trade_technical_vocational_training`: *Trade/technical/vocational training* 
-  - `associate_degree`: *Associate degree* 
-  - `bachelors_degree`: *Bachelor's degree* 
-  - `masters_degree`: *Master's degree* 
-  - `professional_degree`: *Professional degree* 
-  - `doctorate_degree`: *Doctorate degree* 
+  - `no_schooling_completed`: *No schooling completed*
+  - `nursery_to_8th_grade`: *Nursery school to 8th grade*
+  - `some_high_school_no_diploma`: *Some high school, no diploma*
+  - `high_school_grad_diploma_or_equiv`: *High school graduate, diploma or the equivalent (for example: GED)*
+  - `some_college_no_degree`: *Some college credit, no degree*
+  - `trade_technical_vocational_training`: *Trade/technical/vocational training*
+  - `associate_degree`: *Associate degree*
+  - `bachelors_degree`: *Bachelor's degree*
+  - `masters_degree`: *Master's degree*
+  - `professional_degree`: *Professional degree*
+  - `doctorate_degree`: *Doctorate degree*
 ---
 
 **6.0.** Did you go to primary/elementary school?
@@ -3042,8 +3042,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **7.0.** If YES, for how many years?
@@ -3058,8 +3058,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **9.0.** If YES, for how many years?
@@ -3074,8 +3074,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **11.0.** If YES, for how many years?
@@ -3092,8 +3092,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** What is the total income in your household per month?
@@ -3110,8 +3110,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **15.0.** If NO, what is the profession of the person who earns the highest income?
@@ -3185,8 +3185,8 @@
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Comments
@@ -3230,8 +3230,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -3248,8 +3248,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** If NO, please specify reason ...
@@ -3313,8 +3313,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -3323,8 +3323,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -3333,8 +3333,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -3345,9 +3345,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -3358,9 +3358,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -3369,14 +3369,14 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -3385,12 +3385,12 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -3411,9 +3411,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -3424,9 +3424,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -3466,9 +3466,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -3476,37 +3476,37 @@ Adherence CRF completed at baseline (in-person).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -3523,9 +3523,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -3535,37 +3535,37 @@ Adherence CRF completed at baseline (in-person).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -3628,9 +3628,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -3641,9 +3641,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -3654,9 +3654,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -3669,9 +3669,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -3682,9 +3682,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -3762,8 +3762,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -3780,8 +3780,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -3789,16 +3789,16 @@ Adherence CRF completed at baseline (in-person).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -3819,9 +3819,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -3832,9 +3832,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -3874,8 +3874,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -3890,12 +3890,12 @@ Adherence CRF completed at baseline (in-person).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -3947,8 +3947,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -3964,8 +3964,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -3984,7 +3984,7 @@ Adherence CRF completed at baseline (in-person).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -4000,9 +4000,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -4011,10 +4011,10 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -4023,10 +4023,10 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -4035,10 +4035,10 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -4047,9 +4047,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -4058,9 +4058,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -4094,11 +4094,11 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -4131,8 +4131,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -4149,8 +4149,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -4167,8 +4167,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -4185,9 +4185,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -4227,8 +4227,8 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -4244,9 +4244,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -4255,13 +4255,13 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -4282,9 +4282,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -4300,10 +4300,10 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -4314,9 +4314,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -4332,10 +4332,10 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -4346,9 +4346,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -4364,9 +4364,9 @@ Adherence CRF completed at baseline (in-person).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -4412,8 +4412,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -4432,9 +4432,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **6.0.** If YES, number of Fluconazole doses missed since last visit:
@@ -4451,9 +4451,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **8.0.** If YES, number of Flucytosine doses missed since last visit:
@@ -4513,8 +4513,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -4523,8 +4523,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -4533,8 +4533,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -4545,9 +4545,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -4558,9 +4558,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -4569,14 +4569,14 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -4585,12 +4585,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -4611,9 +4611,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -4624,9 +4624,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -4666,9 +4666,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -4676,37 +4676,37 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -4723,9 +4723,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -4735,37 +4735,37 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -4828,9 +4828,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -4841,9 +4841,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -4854,9 +4854,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -4869,9 +4869,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -4882,9 +4882,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -4962,8 +4962,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -4980,8 +4980,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -4989,16 +4989,16 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -5019,9 +5019,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -5032,9 +5032,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -5074,8 +5074,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -5090,12 +5090,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -5147,8 +5147,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -5164,8 +5164,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -5184,7 +5184,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -5200,9 +5200,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -5211,10 +5211,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -5223,10 +5223,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -5235,10 +5235,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -5247,9 +5247,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -5258,9 +5258,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -5294,11 +5294,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -5331,8 +5331,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -5349,8 +5349,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -5367,8 +5367,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -5385,9 +5385,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -5427,8 +5427,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -5444,9 +5444,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -5455,13 +5455,13 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -5482,9 +5482,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -5500,10 +5500,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -5514,9 +5514,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -5532,10 +5532,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -5546,9 +5546,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -5564,9 +5564,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -5612,8 +5612,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -5632,9 +5632,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **6.0.** If YES, number of Fluconazole doses missed since last visit:
@@ -5651,9 +5651,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **8.0.** If YES, number of Flucytosine doses missed since last visit:
@@ -5711,8 +5711,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **Section: Fluconazole**
@@ -5806,8 +5806,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `measured`: *Measured (weighed)* 
-  - `estimated`: *Estimated* 
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
 ---
 
 **5.0.** Blood pressure: systolic
@@ -5856,8 +5856,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **Section: Action**
@@ -5898,9 +5898,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **16.0.** Has the patient been admitted due to any of the above?
@@ -5911,9 +5911,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -5953,8 +5953,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -5963,8 +5963,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -5973,8 +5973,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -5985,9 +5985,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -5998,9 +5998,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -6009,14 +6009,14 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -6025,12 +6025,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -6051,9 +6051,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -6064,9 +6064,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -6106,9 +6106,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -6116,37 +6116,37 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -6163,9 +6163,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -6175,37 +6175,37 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -6268,9 +6268,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -6281,9 +6281,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -6294,9 +6294,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -6309,9 +6309,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -6322,9 +6322,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -6402,8 +6402,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -6420,8 +6420,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -6429,16 +6429,16 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -6459,9 +6459,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -6472,9 +6472,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -6516,8 +6516,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, on an ART regimen, has the patient adhered to this ART regimen?
@@ -6528,9 +6528,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **5.0.** Has ART been held/stopped this clinical episode?
@@ -6539,9 +6539,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** Date held or stopped?
@@ -6557,9 +6557,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Current ART regimen?
@@ -6616,8 +6616,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Cryptococcal meningitis confirmed?
@@ -6626,9 +6626,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **5.0.** Cryptococcal meningitis treatment administered?
@@ -6637,9 +6637,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If YES, treatment given?
@@ -6648,9 +6648,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `1w_amb_5fc`: *1 week AmB + 5FC* 
-  - `OTHER`: *Other, please specify below ...* 
-  - `N/A`: *Not applicable* 
+  - `1w_amb_5fc`: *1 week AmB + 5FC*
+  - `OTHER`: *Other, please specify below ...*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** If other, please specify ...
@@ -6669,8 +6669,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** If YES, give date
@@ -6688,11 +6688,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **10.0.** If YES, which treatment?
@@ -6700,23 +6700,23 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: tb_tx_given
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `AM`: *Am - Amikacin* 
-  - `BDQ`: *BDQ - Bedaquiline* 
-  - `CFZ`: *CFZ - Clofazimine* 
-  - `DLM`: *DLM - Delamanid* 
-  - `E`: *E - Ethambutol* 
-  - `H`: *H - Isoniazid* 
-  - `HR`: *HR - Isoniazid + Rifampicin* 
-  - `HRZE`: *HRZE - Isoniazid + Rifampicin + Pyrazinamide + Ethambutol* 
-  - `LFX`: *LFX - Levofloxacin* 
-  - `LZD`: *LZD - Linezolid* 
-  - `MPM`: *Mpm - Meropenem* 
-  - `PAS`: *PAS - Para-aminosalicylic acid* 
-  - `PTO`: *PTO - Prothionamide* 
-  - `S`: *S - Streptomycin* 
-  - `TRD`: *TRD - Terizidone* 
-  - `Z`: *Z - Pyrazinamide* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `AM`: *Am - Amikacin*
+  - `BDQ`: *BDQ - Bedaquiline*
+  - `CFZ`: *CFZ - Clofazimine*
+  - `DLM`: *DLM - Delamanid*
+  - `E`: *E - Ethambutol*
+  - `H`: *H - Isoniazid*
+  - `HR`: *HR - Isoniazid + Rifampicin*
+  - `HRZE`: *HRZE - Isoniazid + Rifampicin + Pyrazinamide + Ethambutol*
+  - `LFX`: *LFX - Levofloxacin*
+  - `LZD`: *LZD - Linezolid*
+  - `MPM`: *Mpm - Meropenem*
+  - `PAS`: *PAS - Para-aminosalicylic acid*
+  - `PTO`: *PTO - Prothionamide*
+  - `S`: *S - Streptomycin*
+  - `TRD`: *TRD - Terizidone*
+  - `Z`: *Z - Pyrazinamide*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **10.1.** If other, please specify ...
@@ -6733,10 +6733,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 30
 - responses:
-  - `deferred_local_clinic`: *Deferred to local clinic* 
-  - `contraindicated`: *Contraindicated* 
-  - `OTHER`: *Other, please specify below ...* 
-  - `N/A`: *Not applicable* 
+  - `deferred_local_clinic`: *Deferred to local clinic*
+  - `contraindicated`: *Contraindicated*
+  - `OTHER`: *Other, please specify below ...*
+  - `N/A`: *Not applicable*
 ---
 
 **11.1.** If other, please specify ...
@@ -6755,8 +6755,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** If YES, give date
@@ -6774,11 +6774,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **15.0.** If YES, which steroids?
@@ -6787,10 +6787,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 35
 - responses:
-  - `oral_prednisolone`: *Oral prednisolone* 
-  - `iv_dexamethasone`: *IV Dexamethasone* 
-  - `OTHER`: *Other, please specify below ...* 
-  - `N/A`: *Not applicable* 
+  - `oral_prednisolone`: *Oral prednisolone*
+  - `iv_dexamethasone`: *IV Dexamethasone*
+  - `OTHER`: *Other, please specify below ...*
+  - `N/A`: *Not applicable*
 ---
 
 **15.1.** If other, please specify ...
@@ -6817,8 +6817,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **18.0.** If YES, give date
@@ -6836,11 +6836,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **20.0.** If NO, give reason
@@ -6849,10 +6849,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 30
 - responses:
-  - `deferred_local_clinic`: *Deferred to local clinic* 
-  - `contraindicated`: *Contraindicated* 
-  - `OTHER`: *Other, please specify below ...* 
-  - `N/A`: *Not applicable* 
+  - `deferred_local_clinic`: *Deferred to local clinic*
+  - `contraindicated`: *Contraindicated*
+  - `OTHER`: *Other, please specify below ...*
+  - `N/A`: *Not applicable*
 ---
 
 **20.1.** If other, please specify ...
@@ -6871,8 +6871,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **22.0.** If YES, give date
@@ -6890,11 +6890,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **24.0.** If YES, which antibiotics?
@@ -6902,16 +6902,16 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: antibiotics_given
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `amoxicillin`: *Amoxicillin* 
-  - `ampicillin`: *Ampicillin* 
-  - `flucloxacillin`: *Flucloxacillin* 
-  - `doxycycline`: *Doxycycline* 
-  - `ceftriaxone`: *Ceftriaxone* 
-  - `ciprofloxacin`: *Ciprofloxacin (NB avoid on concomitant high dose fluconazole)* 
-  - `coamoxiclav`: *Coamoxiclav (amoxicillin/clavulanate)* 
-  - `erythromycin`: *Erythromycin (NB contra-indicated on concomitant high dose fluconazole)* 
-  - `gentamicin`: *Gentamicin* 
-  - `OTHER`: *Other antibiotic, (NB avoid with concomitant high dose fluconazole), please specify below ...* 
+  - `amoxicillin`: *Amoxicillin*
+  - `ampicillin`: *Ampicillin*
+  - `flucloxacillin`: *Flucloxacillin*
+  - `doxycycline`: *Doxycycline*
+  - `ceftriaxone`: *Ceftriaxone*
+  - `ciprofloxacin`: *Ciprofloxacin (NB avoid on concomitant high dose fluconazole)*
+  - `coamoxiclav`: *Coamoxiclav (amoxicillin/clavulanate)*
+  - `erythromycin`: *Erythromycin (NB contra-indicated on concomitant high dose fluconazole)*
+  - `gentamicin`: *Gentamicin*
+  - `OTHER`: *Other antibiotic, (NB avoid with concomitant high dose fluconazole), please specify below ...*
 ---
 
 **24.1.** If other, please specify ...
@@ -6930,8 +6930,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **25.0.** If YES, give date
@@ -6949,11 +6949,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `not_estimated`: *No.* 
-  - `D`: *Yes, estimated the Day* 
-  - `MD`: *Yes, estimated Month and Day* 
-  - `YMD`: *Yes, estimated Year, Month and Day* 
+  - `N/A`: *Not applicable*
+  - `not_estimated`: *No.*
+  - `D`: *Yes, estimated the Day*
+  - `MD`: *Yes, estimated Month and Day*
+  - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
 **27.0.** If YES, which drugs/interventions?
@@ -6961,14 +6961,14 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: other_drugs_given
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `k`: *K* 
-  - `mg`: *Mg* 
-  - `sodium`: *Sodium* 
-  - `vitamins`: *Vitamins* 
-  - `tmp_smx_cotrimoxazole`: *TMP-SMX/Cotrimoxazole* 
-  - `anticonvulsants`: *Anticonvulsants* 
-  - `antimalarials`: *Antimalarials* 
-  - `OTHER`: *Other drug/intervention, please specify below ...* 
+  - `k`: *K*
+  - `mg`: *Mg*
+  - `sodium`: *Sodium*
+  - `vitamins`: *Vitamins*
+  - `tmp_smx_cotrimoxazole`: *TMP-SMX/Cotrimoxazole*
+  - `anticonvulsants`: *Anticonvulsants*
+  - `antimalarials`: *Antimalarials*
+  - `OTHER`: *Other drug/intervention, please specify below ...*
 ---
 
 **27.1.** If other, please specify ...
@@ -7039,7 +7039,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `g/dL`: *g/dL* 
+  - `g/dL`: *g/dL*
 ---
 
 **7.0.** abnormal
@@ -7048,8 +7048,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** reportable
@@ -7058,12 +7058,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: WBC**
@@ -7080,8 +7080,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
-  - `cells/mm^3`: *cells/mm<sup>3</sup>* 
+  - `10^9/L`: *10^9/L*
+  - `cells/mm^3`: *cells/mm<sup>3</sup>*
 ---
 
 **11.0.** abnormal
@@ -7090,8 +7090,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** reportable
@@ -7100,12 +7100,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Platelets**
@@ -7122,8 +7122,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
-  - `cells/mm^3`: *cells/mm<sup>3</sup>* 
+  - `10^9/L`: *10^9/L*
+  - `cells/mm^3`: *cells/mm<sup>3</sup>*
 ---
 
 **15.0.** abnormal
@@ -7132,8 +7132,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **16.0.** reportable
@@ -7142,12 +7142,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Neutrophil absolute count**
@@ -7164,7 +7164,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
+  - `10^9/L`: *10^9/L*
 ---
 
 **19.0.** abnormal
@@ -7173,8 +7173,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **20.0.** reportable
@@ -7183,12 +7183,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Neutrophils differential count**
@@ -7205,7 +7205,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `%`: *%* 
+  - `%`: *%*
 ---
 
 **23.0.** abnormal
@@ -7214,8 +7214,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **24.0.** reportable
@@ -7224,12 +7224,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Lymphocyte absolute count**
@@ -7246,7 +7246,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `10^9/L`: *10^9/L* 
+  - `10^9/L`: *10^9/L*
 ---
 
 **27.0.** abnormal
@@ -7255,8 +7255,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **28.0.** reportable
@@ -7265,12 +7265,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Lymphocyte differential count**
@@ -7287,7 +7287,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `%`: *%* 
+  - `%`: *%*
 ---
 
 **31.0.** abnormal
@@ -7296,8 +7296,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **32.0.** reportable
@@ -7306,12 +7306,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `N/A`: *Not applicable* 
-  - `3`: *Yes, grade 3* 
-  - `4`: *Yes, grade 4* 
-  - `No`: *Not reportable* 
-  - `Already reported`: *Already reported* 
-  - `present_at_baseline`: *Present at baseline* 
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
 ---
 
 **Section: Conclusion**
@@ -7322,8 +7322,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **34.0.** If any results are abnormal, are results within grade 3 or above?
@@ -7334,9 +7334,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Summary**
@@ -7384,8 +7384,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -7400,12 +7400,12 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -7457,8 +7457,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -7474,8 +7474,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -7494,7 +7494,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -7510,9 +7510,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -7521,10 +7521,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -7533,10 +7533,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -7545,10 +7545,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -7557,9 +7557,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -7568,9 +7568,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -7604,11 +7604,11 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -7641,8 +7641,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -7659,8 +7659,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -7677,8 +7677,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -7695,9 +7695,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -7737,8 +7737,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -7754,9 +7754,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -7765,13 +7765,13 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -7792,9 +7792,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -7810,10 +7810,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -7824,9 +7824,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -7842,10 +7842,10 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -7856,9 +7856,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -7874,9 +7874,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -7924,8 +7924,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Comments
@@ -7969,8 +7969,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -7989,9 +7989,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **6.0.** If YES, number of Fluconazole doses missed since last visit:
@@ -8008,9 +8008,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **8.0.** If YES, number of Flucytosine doses missed since last visit:
@@ -8029,8 +8029,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **10.0.** If NO, please specify reason ...
@@ -8047,8 +8047,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** If NO, please specify reason ...
@@ -8065,8 +8065,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **14.0.** If NO, please specify reason ...
@@ -8128,8 +8128,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -8138,8 +8138,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -8148,8 +8148,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -8160,9 +8160,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -8173,9 +8173,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -8184,14 +8184,14 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -8200,12 +8200,12 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -8226,9 +8226,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -8239,9 +8239,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -8281,9 +8281,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -8291,37 +8291,37 @@ Adherence CRF completed at d14 (in-person).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -8338,9 +8338,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -8350,37 +8350,37 @@ Adherence CRF completed at d14 (in-person).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -8443,9 +8443,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -8456,9 +8456,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -8469,9 +8469,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -8484,9 +8484,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -8497,9 +8497,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -8577,8 +8577,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -8595,8 +8595,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -8604,16 +8604,16 @@ Adherence CRF completed at d14 (in-person).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -8634,9 +8634,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -8647,9 +8647,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -8689,8 +8689,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -8705,12 +8705,12 @@ Adherence CRF completed at d14 (in-person).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -8762,8 +8762,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -8779,8 +8779,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -8799,7 +8799,7 @@ Adherence CRF completed at d14 (in-person).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -8815,9 +8815,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -8826,10 +8826,10 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -8838,10 +8838,10 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -8850,10 +8850,10 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -8862,9 +8862,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -8873,9 +8873,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -8909,11 +8909,11 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -8946,8 +8946,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -8964,8 +8964,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -8982,8 +8982,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -9000,9 +9000,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -9042,8 +9042,8 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -9059,9 +9059,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -9070,13 +9070,13 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -9097,9 +9097,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -9115,10 +9115,10 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -9129,9 +9129,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -9147,10 +9147,10 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -9161,9 +9161,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -9179,9 +9179,9 @@ Adherence CRF completed at d14 (in-person).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -9227,8 +9227,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -9247,8 +9247,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** If NO, please specify reason ...
@@ -9265,8 +9265,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** If NO, please specify reason ...
@@ -9283,8 +9283,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **10.0.** If NO, please specify reason ...
@@ -9301,8 +9301,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
@@ -9311,8 +9311,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** Medication adherence narrative:
@@ -9360,8 +9360,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **Section: Fluconazole**
@@ -9447,8 +9447,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -9457,8 +9457,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -9467,8 +9467,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -9479,9 +9479,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -9492,9 +9492,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -9503,14 +9503,14 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -9519,12 +9519,12 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -9545,9 +9545,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -9558,9 +9558,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -9600,9 +9600,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -9610,37 +9610,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -9657,9 +9657,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -9669,37 +9669,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -9762,9 +9762,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -9775,9 +9775,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -9788,9 +9788,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -9803,9 +9803,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -9816,9 +9816,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -9896,8 +9896,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -9914,8 +9914,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -9923,16 +9923,16 @@ Adherence CRF completed after d14 (telephone).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -9953,9 +9953,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -9966,9 +9966,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -10008,8 +10008,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -10024,12 +10024,12 @@ Adherence CRF completed after d14 (telephone).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -10081,8 +10081,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -10098,8 +10098,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -10118,7 +10118,7 @@ Adherence CRF completed after d14 (telephone).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -10134,9 +10134,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -10145,10 +10145,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -10157,10 +10157,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -10169,10 +10169,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -10181,9 +10181,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -10192,9 +10192,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -10228,11 +10228,11 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -10265,8 +10265,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -10283,8 +10283,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -10301,8 +10301,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -10319,9 +10319,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -10361,8 +10361,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -10378,9 +10378,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -10389,13 +10389,13 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -10416,9 +10416,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -10434,10 +10434,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -10448,9 +10448,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -10466,10 +10466,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -10480,9 +10480,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -10498,9 +10498,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -10546,8 +10546,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -10566,8 +10566,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** If NO, please specify reason ...
@@ -10584,8 +10584,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** If NO, please specify reason ...
@@ -10602,8 +10602,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **10.0.** If NO, please specify reason ...
@@ -10620,8 +10620,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
@@ -10630,8 +10630,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** Medication adherence narrative:
@@ -10681,8 +10681,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -10691,8 +10691,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -10701,8 +10701,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -10713,9 +10713,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -10726,9 +10726,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -10737,14 +10737,14 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -10753,12 +10753,12 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -10779,9 +10779,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -10792,9 +10792,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -10834,9 +10834,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -10844,37 +10844,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -10891,9 +10891,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -10903,37 +10903,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -10996,9 +10996,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -11009,9 +11009,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -11022,9 +11022,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -11037,9 +11037,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -11050,9 +11050,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -11130,8 +11130,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -11148,8 +11148,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -11157,16 +11157,16 @@ Adherence CRF completed after d14 (telephone).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -11187,9 +11187,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -11200,9 +11200,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -11242,8 +11242,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -11258,12 +11258,12 @@ Adherence CRF completed after d14 (telephone).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -11315,8 +11315,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -11332,8 +11332,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -11352,7 +11352,7 @@ Adherence CRF completed after d14 (telephone).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -11368,9 +11368,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -11379,10 +11379,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -11391,10 +11391,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -11403,10 +11403,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -11415,9 +11415,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -11426,9 +11426,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -11462,11 +11462,11 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -11499,8 +11499,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -11517,8 +11517,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -11535,8 +11535,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -11553,9 +11553,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -11595,8 +11595,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -11612,9 +11612,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -11623,13 +11623,13 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -11650,9 +11650,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -11668,10 +11668,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -11682,9 +11682,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -11700,10 +11700,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -11714,9 +11714,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -11732,9 +11732,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -11780,8 +11780,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -11800,8 +11800,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** If NO, please specify reason ...
@@ -11818,8 +11818,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** If NO, please specify reason ...
@@ -11836,8 +11836,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **10.0.** If NO, please specify reason ...
@@ -11854,8 +11854,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
@@ -11864,8 +11864,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** Medication adherence narrative:
@@ -11915,8 +11915,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** Behaviour change?
@@ -11925,8 +11925,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **5.0.** Confusion?
@@ -11935,8 +11935,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Does the participant require help from anybody for everyday activities?
@@ -11947,9 +11947,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.1.** Has the illness left the participant with any other problems?
@@ -11960,9 +11960,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **7.0.** Modified Rankin Score
@@ -11971,14 +11971,14 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] No symptoms* 
-  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.* 
-  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.* 
-  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.* 
-  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.* 
-  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.* 
-  - `6`: *[6] Dead* 
-  - `not_done`: *Not done* 
+  - `0`: *[0] No symptoms*
+  - `1`: *[1] No significant disability. Able to carry out usual activities, despite some symptoms.*
+  - `2`: *[2] Slight disability. Able to look after own affairs without assistance, but unable to carry out all previous activities.*
+  - `3`: *[3] Moderate disability. Requires some help, but able to walk unassisted.*
+  - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
+  - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
+  - `6`: *[6] Dead*
+  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -11987,12 +11987,12 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction* 
-  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work* 
-  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours * 
-  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours* 
-  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair* 
-  - `5`: *[5] Deceased* 
+  - `0`: *[0] Fully active, able to carry on all pre-disease performance without restriction*
+  - `1`: *[1] Restricted in physically strenuous activity but ambulatory and able to carry out work of a light or sedentary nature, e.g., light house work, office work*
+  - `2`: *[2] Ambulatory and capable of all self-care but unable to carry out any work activities; up and about more than 50% of waking hours *
+  - `3`: *[3] Capable of only limited self-care; confined to bed or chair more than 50% of waking hours*
+  - `4`: *[4] Completely disabled; cannot carry on any self-care; totally confined to bed or chair*
+  - `5`: *[5] Deceased*
 ---
 
 **9.0.** Glasgow Coma Score
@@ -12013,9 +12013,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Has the patient been admitted due to these symptoms?
@@ -12026,9 +12026,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -12068,9 +12068,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `unknown`: *Unknown* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
 ---
 
 **4.0.** Is patient currently experiencing any of the following signs/symptoms?
@@ -12078,37 +12078,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **4.1.** If other, please specify ...
@@ -12125,9 +12125,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
@@ -12137,37 +12137,37 @@ Adherence CRF completed after d14 (telephone).
 - column: current_sx_gte_g3
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `cough`: *Cough* 
-  - `double_vision`: *Double vision* 
-  - `drowsiness`: *Drowsiness* 
-  - `fever`: *Fever* 
-  - `focal_weakness`: *Focal weakness* 
-  - `headache`: *Headache* 
-  - `hearing_loss`: *Hearing loss* 
-  - `jaundice`: *Jaundice* 
-  - `nausea`: *Nausea* 
-  - `night_sweats`: *Night sweats* 
-  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)* 
-  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)* 
-  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)* 
-  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)* 
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...* 
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...* 
-  - `focal_seizures_left`: *Neuro - Focal seizures (left)* 
-  - `focal_seizures_right`: *Neuro - Focal seizures (right)* 
-  - `hemiplegia_left`: *Neuro - Hemiplegia (left)* 
-  - `hemiplegia_right`: *Neuro - Hemiplegia (right)* 
-  - `meningism`: *Neuro - Meningism* 
-  - `papilloedema`: *Neuro - Papilloedema* 
-  - `visual_field_disturbance`: *Neuro - Visual field disturbance* 
-  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...* 
-  - `shortness_of_breath`: *Shortness of breath* 
-  - `skin_lesions`: *Skin lesions* 
-  - `visual_loss`: *Visual loss* 
-  - `vomiting`: *Vomiting* 
-  - `weight_loss`: *Weight loss* 
-  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `cough`: *Cough*
+  - `double_vision`: *Double vision*
+  - `drowsiness`: *Drowsiness*
+  - `fever`: *Fever*
+  - `focal_weakness`: *Focal weakness*
+  - `headache`: *Headache*
+  - `hearing_loss`: *Hearing loss*
+  - `jaundice`: *Jaundice*
+  - `nausea`: *Nausea*
+  - `night_sweats`: *Night sweats*
+  - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
+  - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
+  - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
+  - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
+  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `focal_seizures_left`: *Neuro - Focal seizures (left)*
+  - `focal_seizures_right`: *Neuro - Focal seizures (right)*
+  - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
+  - `hemiplegia_right`: *Neuro - Hemiplegia (right)*
+  - `meningism`: *Neuro - Meningism*
+  - `papilloedema`: *Neuro - Papilloedema*
+  - `visual_field_disturbance`: *Neuro - Visual field disturbance*
+  - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `shortness_of_breath`: *Shortness of breath*
+  - `skin_lesions`: *Skin lesions*
+  - `visual_loss`: *Visual loss*
+  - `vomiting`: *Vomiting*
+  - `weight_loss`: *Weight loss*
+  - `OTHER`: *Other sign(s)/symptom(s), please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -12230,9 +12230,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **10.0.** Was a lumbar puncture performed?
@@ -12243,9 +12243,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** Was a urinary LAM performed?
@@ -12256,9 +12256,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Reporting**
@@ -12271,9 +12271,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** Has the patient been admitted due to any of these signs or symptoms?
@@ -12284,9 +12284,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Calculated values**
@@ -12364,8 +12364,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, please give details
@@ -12382,8 +12382,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** Please select all diagnoses that are relevant
@@ -12391,16 +12391,16 @@ Adherence CRF completed after d14 (telephone).
 - column: diagnoses
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `N/A`: *--Not applicable* 
-  - `bacteraemia`: *Bacteraemia* 
-  - `bacterial_pneumonia`: *Bacterial pneumonia* 
-  - `cm`: *Cryptococcal meningitis* 
-  - `diarrhoeal_wasting`: *Diarrhoeal wasting* 
-  - `kaposi_sarcoma`: *Kaposi’s sarcoma* 
-  - `malaria`: *Malaria* 
-  - `tb_extrapulmonary`: *TB extrapulmonary* 
-  - `tb_pulmonary`: *TB pulmonary* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `N/A`: *--Not applicable*
+  - `bacteraemia`: *Bacteraemia*
+  - `bacterial_pneumonia`: *Bacterial pneumonia*
+  - `cm`: *Cryptococcal meningitis*
+  - `diarrhoeal_wasting`: *Diarrhoeal wasting*
+  - `kaposi_sarcoma`: *Kaposi’s sarcoma*
+  - `malaria`: *Malaria*
+  - `tb_extrapulmonary`: *TB extrapulmonary*
+  - `tb_pulmonary`: *TB pulmonary*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **6.1.** If other, please specify ...
@@ -12421,9 +12421,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **8.0.** Has the patient been admitted due to any of these diagnoses?
@@ -12434,9 +12434,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 
@@ -12476,8 +12476,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If YES, date performed?
@@ -12492,12 +12492,12 @@ Adherence CRF completed after d14 (telephone).
 - column: chest_xray_results
 - type: ManyToManyField
 - responses: *Select all that apply*
-  - `NORMAL`: *Normal* 
-  - `lymphadenopathy`: *Lymphadenopathy* 
-  - `consolidation`: *Consolidation* 
-  - `miliary_tb`: *Miliary TB* 
-  - `Infiltrates`: *Infiltrates* 
-  - `OTHER`: *Other, please specify below ...* 
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `Infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
 **5.1.** If other, please specify ...
@@ -12549,8 +12549,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol* 
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS* 
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
 ---
 
 **4.0.** LP Date and Time
@@ -12566,8 +12566,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** opening pressure
@@ -12586,7 +12586,7 @@ Adherence CRF completed after d14 (telephone).
 - type: IntegerField
 ---
 
-**8.0.** CSF amount removed 
+**8.0.** CSF amount removed
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
 - db_table: effect_subject_lpcsf
@@ -12602,9 +12602,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
 ---
 
 **10.0.** india ink
@@ -12613,10 +12613,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **11.0.** CrAg LFA
@@ -12625,10 +12625,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** SQ CrAg
@@ -12637,10 +12637,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **13.0.** SQ CrAg
@@ -12649,9 +12649,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `high`: *High* 
-  - `low`: *Low* 
-  - `N/A`: *Not applicable* 
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
 ---
 
 **14.0.** Was the CRF CrAg titre done
@@ -12660,9 +12660,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** crf crag titre
@@ -12696,11 +12696,11 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 18
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `awaiting_results`: *Awaiting results* 
-  - `not_done`: *Not done* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
 ---
 
 **19.0.** If YES, specify organism:
@@ -12733,8 +12733,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **23.0.** Differential neutrophil cell count:
@@ -12751,8 +12751,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mm3`: *mm<sup>3</sup>* 
-  - `%`: *%* 
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
 ---
 
 **25.0.** CSF glucose:
@@ -12769,8 +12769,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 6
 - responses:
-  - `mg/dL`: *mg/dL* 
-  - `mmol/L`: *mmol/L (millimoles/L)* 
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
 **27.0.** CSF protein:
@@ -12787,9 +12787,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `IND`: *Indeterminate* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
 ---
 
 
@@ -12829,8 +12829,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** urinary lam date
@@ -12846,9 +12846,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **6.0.** If Urinary LAM is positive, grade
@@ -12857,13 +12857,13 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 25
 - responses:
-  - `1`: *1+ (low)* 
-  - `2`: *2+* 
-  - `3`: *3+* 
-  - `4`: *4+* 
-  - `5`: *5+ (high)* 
-  - `unknown`: *Unknown / Grade not reported* 
-  - `N/A`: *Not applicable* 
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum requisition**
@@ -12884,9 +12884,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **9.0.** Sputum Gene-Xpert date
@@ -12902,10 +12902,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 45
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum culture**
@@ -12916,9 +12916,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **12.0.** sputum culture date
@@ -12934,10 +12934,10 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *MTB Positive* 
-  - `NEG`: *MTB Negative* 
-  - `IND`: *Indeterminate / contaminated* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Sputum AFB**
@@ -12948,9 +12948,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 5
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
-  - `N/A`: *Not applicable* 
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
 **15.0.** Sputum AFB date
@@ -12966,9 +12966,9 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 10
 - responses:
-  - `POS`: *Positive* 
-  - `NEG`: *Negative* 
-  - `N/A`: *Not applicable* 
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
 ---
 
 **Section: Comment**
@@ -13030,17 +13030,17 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 50
 - responses:
-  - `no_schooling_completed`: *No schooling completed* 
-  - `nursery_to_8th_grade`: *Nursery school to 8th grade* 
-  - `some_high_school_no_diploma`: *Some high school, no diploma* 
-  - `high_school_grad_diploma_or_equiv`: *High school graduate, diploma or the equivalent (for example: GED)* 
-  - `some_college_no_degree`: *Some college credit, no degree* 
-  - `trade_technical_vocational_training`: *Trade/technical/vocational training* 
-  - `associate_degree`: *Associate degree* 
-  - `bachelors_degree`: *Bachelor's degree* 
-  - `masters_degree`: *Master's degree* 
-  - `professional_degree`: *Professional degree* 
-  - `doctorate_degree`: *Doctorate degree* 
+  - `no_schooling_completed`: *No schooling completed*
+  - `nursery_to_8th_grade`: *Nursery school to 8th grade*
+  - `some_high_school_no_diploma`: *Some high school, no diploma*
+  - `high_school_grad_diploma_or_equiv`: *High school graduate, diploma or the equivalent (for example: GED)*
+  - `some_college_no_degree`: *Some college credit, no degree*
+  - `trade_technical_vocational_training`: *Trade/technical/vocational training*
+  - `associate_degree`: *Associate degree*
+  - `bachelors_degree`: *Bachelor's degree*
+  - `masters_degree`: *Master's degree*
+  - `professional_degree`: *Professional degree*
+  - `doctorate_degree`: *Doctorate degree*
 ---
 
 **6.0.** Did you go to primary/elementary school?
@@ -13049,8 +13049,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **7.0.** If YES, for how many years?
@@ -13065,8 +13065,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **9.0.** If YES, for how many years?
@@ -13081,8 +13081,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **11.0.** If YES, for how many years?
@@ -13099,8 +13099,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** What is the total income in your household per month?
@@ -13117,8 +13117,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **15.0.** If NO, what is the profession of the person who earns the highest income?
@@ -13190,8 +13190,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **4.0.** If NO, please specify reason ...
@@ -13210,8 +13210,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **6.0.** If NO, please specify reason ...
@@ -13228,8 +13228,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **8.0.** If NO, please specify reason ...
@@ -13246,8 +13246,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **10.0.** If NO, please specify reason ...
@@ -13264,8 +13264,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
@@ -13274,8 +13274,8 @@ Adherence CRF completed after d14 (telephone).
 - type: CharField
 - length: 15
 - responses:
-  - `Yes`: *Yes* 
-  - `No`: *No* 
+  - `Yes`: *Yes*
+  - `No`: *No*
 ---
 
 **13.0.** Medication adherence narrative:
