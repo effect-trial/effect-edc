@@ -6,38 +6,38 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0067_historicalsubjectvisit_document_status_comments_and_more'),
+        ("effect_subject", "0067_historicalsubjectvisit_document_status_comments_and_more"),
     ]
 
     operations = [
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='action_item',
+            model_name="historicalfollowup",
+            name="action_item",
         ),
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='history_user',
+            model_name="historicalfollowup",
+            name="history_user",
         ),
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='parent_action_item',
+            model_name="historicalfollowup",
+            name="parent_action_item",
         ),
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='related_action_item',
+            model_name="historicalfollowup",
+            name="related_action_item",
         ),
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='site',
+            model_name="historicalfollowup",
+            name="site",
         ),
         migrations.RemoveField(
-            model_name='historicalfollowup',
-            name='subject_visit',
+            model_name="historicalfollowup",
+            name="subject_visit",
         ),
         migrations.DeleteModel(
-            name='Followup',
+            name="Followup",
         ),
         migrations.DeleteModel(
-            name='HistoricalFollowup',
+            name="HistoricalFollowup",
         ),
     ]

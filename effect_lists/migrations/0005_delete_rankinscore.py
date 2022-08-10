@@ -6,11 +6,11 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_lists', '0004_auto_20220223_2142'),
+        ("effect_lists", "0004_auto_20220223_2142"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='RankinScore',
+            name="RankinScore",
         ),
     ]

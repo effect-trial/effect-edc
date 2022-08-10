@@ -9,38 +9,82 @@ import edc_model.validators.date
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0070_auto_20220614_1323'),
+        ("effect_subject", "0070_auto_20220614_1323"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='arvhistory',
-            name='cd4_date',
-            field=models.DateField(null=True, validators=[edc_model.validators.date.date_not_future], verbose_name='CD4 date'),
+            model_name="arvhistory",
+            name="cd4_date",
+            field=models.DateField(
+                null=True,
+                validators=[edc_model.validators.date.date_not_future],
+                verbose_name="CD4 date",
+            ),
         ),
         migrations.AlterField(
-            model_name='arvhistory',
-            name='cd4_date_estimated',
-            field=edc_model.models.fields.date_estimated.IsDateEstimatedField(choices=[('-', 'No'), ('D', 'Yes, estimated the Day'), ('MD', 'Yes, estimated Month and Day'), ('YMD', 'Yes, estimated Year, Month and Day')], help_text='If the exact date is not known, please indicate which part of the date is estimated.', max_length=25, verbose_name='Is the CD4 date estimated?'),
+            model_name="arvhistory",
+            name="cd4_date_estimated",
+            field=edc_model.models.fields.date_estimated.IsDateEstimatedField(
+                choices=[
+                    ("-", "No"),
+                    ("D", "Yes, estimated the Day"),
+                    ("MD", "Yes, estimated Month and Day"),
+                    ("YMD", "Yes, estimated Year, Month and Day"),
+                ],
+                help_text="If the exact date is not known, please indicate which part of the date is estimated.",
+                max_length=25,
+                verbose_name="Is the CD4 date estimated?",
+            ),
         ),
         migrations.AlterField(
-            model_name='arvhistory',
-            name='cd4_result',
-            field=models.IntegerField(help_text='mm<sup>3</sup>', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(9999)], verbose_name='CD4 result'),
+            model_name="arvhistory",
+            name="cd4_result",
+            field=models.IntegerField(
+                help_text="mm<sup>3</sup>",
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(9999),
+                ],
+                verbose_name="CD4 result",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalarvhistory',
-            name='cd4_date',
-            field=models.DateField(null=True, validators=[edc_model.validators.date.date_not_future], verbose_name='CD4 date'),
+            model_name="historicalarvhistory",
+            name="cd4_date",
+            field=models.DateField(
+                null=True,
+                validators=[edc_model.validators.date.date_not_future],
+                verbose_name="CD4 date",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalarvhistory',
-            name='cd4_date_estimated',
-            field=edc_model.models.fields.date_estimated.IsDateEstimatedField(choices=[('-', 'No'), ('D', 'Yes, estimated the Day'), ('MD', 'Yes, estimated Month and Day'), ('YMD', 'Yes, estimated Year, Month and Day')], help_text='If the exact date is not known, please indicate which part of the date is estimated.', max_length=25, verbose_name='Is the CD4 date estimated?'),
+            model_name="historicalarvhistory",
+            name="cd4_date_estimated",
+            field=edc_model.models.fields.date_estimated.IsDateEstimatedField(
+                choices=[
+                    ("-", "No"),
+                    ("D", "Yes, estimated the Day"),
+                    ("MD", "Yes, estimated Month and Day"),
+                    ("YMD", "Yes, estimated Year, Month and Day"),
+                ],
+                help_text="If the exact date is not known, please indicate which part of the date is estimated.",
+                max_length=25,
+                verbose_name="Is the CD4 date estimated?",
+            ),
         ),
         migrations.AlterField(
-            model_name='historicalarvhistory',
-            name='cd4_result',
-            field=models.IntegerField(help_text='mm<sup>3</sup>', null=True, validators=[django.core.validators.MinValueValidator(1), django.core.validators.MaxValueValidator(9999)], verbose_name='CD4 result'),
+            model_name="historicalarvhistory",
+            name="cd4_result",
+            field=models.IntegerField(
+                help_text="mm<sup>3</sup>",
+                null=True,
+                validators=[
+                    django.core.validators.MinValueValidator(1),
+                    django.core.validators.MaxValueValidator(9999),
+                ],
+                verbose_name="CD4 result",
+            ),
         ),
     ]

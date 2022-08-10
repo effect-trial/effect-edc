@@ -7,26 +7,26 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0073_auto_20220615_1311'),
+        ("effect_subject", "0073_auto_20220615_1311"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='arvhistory',
-            old_name='cd4_result',
-            new_name='cd4_value',
+            model_name="arvhistory",
+            old_name="cd4_result",
+            new_name="cd4_value",
         ),
         migrations.RemoveField(
-            model_name='arvhistory',
-            name='has_cd4_result',
+            model_name="arvhistory",
+            name="has_cd4_result",
         ),
         migrations.RenameField(
-            model_name='historicalarvhistory',
-            old_name='cd4_result',
-            new_name='cd4_value',
+            model_name="historicalarvhistory",
+            old_name="cd4_result",
+            new_name="cd4_value",
         ),
         migrations.RemoveField(
-            model_name='historicalarvhistory',
-            name='has_cd4_result',
+            model_name="historicalarvhistory",
+            name="has_cd4_result",
         ),
     ]

@@ -6,18 +6,28 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_subject', '0066_auto_20220512_1728'),
+        ("effect_subject", "0066_auto_20220512_1728"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='historicalsubjectvisit',
-            name='document_status_comments',
-            field=models.TextField(blank=True, help_text='for example, why some data is still pending', null=True, verbose_name='Any comments related to status of this document'),
+            model_name="historicalsubjectvisit",
+            name="document_status_comments",
+            field=models.TextField(
+                blank=True,
+                help_text="for example, why some data is still pending",
+                null=True,
+                verbose_name="Any comments related to status of this document",
+            ),
         ),
         migrations.AddField(
-            model_name='subjectvisit',
-            name='document_status_comments',
-            field=models.TextField(blank=True, help_text='for example, why some data is still pending', null=True, verbose_name='Any comments related to status of this document'),
+            model_name="subjectvisit",
+            name="document_status_comments",
+            field=models.TextField(
+                blank=True,
+                help_text="for example, why some data is still pending",
+                null=True,
+                verbose_name="Any comments related to status of this document",
+            ),
         ),
     ]
