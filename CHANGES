@@ -1,6 +1,9 @@
 Changes
 =======
 
+[unreleased]
+- bump to edc 0.4.1
+
 [0.1.16]
 --------
 - updates to Health Economics Event CRF (#451):
