@@ -71,7 +71,6 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 DEFENDER_ENABLED = env("DEFENDER_ENABLED")
 
 INSTALLED_APPS = [
-    # "django.contrib.admin",
     "effect_edc.apps.AdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -84,8 +83,6 @@ INSTALLED_APPS = [
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "django_extensions",
-    "django_celery_results",
-    "django_celery_beat",
     "logentry_admin",
     "simple_history",
     "storages",
