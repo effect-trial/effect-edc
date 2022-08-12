@@ -83,8 +83,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "django_revision.apps.AppConfig",
         # "debug_toolbar",
         "django_extensions",
-        "django_celery_results",
-        "django_celery_beat",
         "logentry_admin",
         "simple_history",
         "storages",
