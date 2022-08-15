@@ -11,17 +11,12 @@
 
 - SAE CRF:
     - validate Flucytosine only applicable if it is a study drug (i.e. on that arm of trial)
-    - make Subject Identifier, and Action Identifier fields read only
     - if hospitalized
         - Lab CRF
         - Clinical Assessment CRF
 
-- AE Follow-up Form:
-    - make Subject Identifier, and Action Identifier fields read only
-
 - TMG Form:
-    - make Subject Identifier, and Action Identifier fields read only
-        - should Original Report be read only?
+    - should Original Report be read only?
 
 - Death CRF:
     - reconcile with provided CRF (09_Death_Form_110821_V0.5.pdf)
