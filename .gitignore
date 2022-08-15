@@ -1,7 +1,6 @@
 _version.py
 log/
 *.ipynb
-.env
 .etc/
 .pydevproject
 .project
