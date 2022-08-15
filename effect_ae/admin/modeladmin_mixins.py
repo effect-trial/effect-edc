@@ -6,7 +6,7 @@ from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.utils.html import format_html
 from edc_action_item import action_fieldset_tuple
-from edc_action_item.modeladmin_mixins import ModelAdminActionItemMixin
+from edc_action_item.modeladmin_mixins import ActionItemModelAdminMixin
 from edc_adverse_event.forms import AeFollowupForm
 from edc_adverse_event.modeladmin_mixins import (
     AdverseEventModelAdminMixin,
@@ -25,7 +25,7 @@ class AeReviewModelAdminMixin(
     ModelAdminSubjectDashboardMixin,
     NonAeInitialModelAdminMixin,
     AdverseEventModelAdminMixin,
-    ModelAdminActionItemMixin,
+    ActionItemModelAdminMixin,
 ):
 
     form = AeFollowupForm
