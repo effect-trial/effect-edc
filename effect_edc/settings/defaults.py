@@ -103,6 +103,7 @@ INSTALLED_APPS = [
     "edc_dashboard.apps.AppConfig",
     "edc_data_manager.apps.AppConfig",
     "edc_document_status.apps.AppConfig",
+    "edc_egfr.apps.AppConfig",
     "edc_export.apps.AppConfig",
     "edc_facility.apps.AppConfig",
     "edc_fieldsets.apps.AppConfig",
