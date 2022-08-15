@@ -1,3 +1,5 @@
+from typing import Tuple
+
 from django.contrib import admin
 from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
@@ -17,5 +19,5 @@ class OnScheduleAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     list_filter = ("onschedule_datetime",)
 
-    def get_readonly_fields(self, request, obj=None):
-        return ["subject_identifier", "onschedule_datetime"]
+    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+        return ("onschedule_datetime",)
