@@ -1,7 +1,7 @@
 from datetime import datetime
+from zoneinfo import ZoneInfo
 
 from django.test import TestCase, tag
-from edc_utils import to_utc
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.visit_schedules import schedule, visit_schedule
@@ -196,16 +196,16 @@ class TestVisitSchedule(TestCase):
 @tag("vsched")
 class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
     def test_generated_visit_dates_as_expected(self):
-        consent_date = to_utc(datetime(year=2022, month=3, day=10, hour=9))
+        consent_date = datetime(year=2022, month=3, day=10, hour=9, tzinfo=ZoneInfo("UTC"))
         expected = {
-            "1000": to_utc(consent_date),
-            "1003": to_utc(datetime(year=2022, month=3, day=12, hour=9)),
-            "1009": to_utc(datetime(year=2022, month=3, day=18, hour=9)),
-            "1014": to_utc(datetime(year=2022, month=3, day=23, hour=9)),
-            "1028": to_utc(datetime(year=2022, month=4, day=7, hour=9)),
-            "1070": to_utc(datetime(year=2022, month=5, day=19, hour=9)),
-            "1112": to_utc(datetime(year=2022, month=6, day=30, hour=9)),
-            "1168": to_utc(datetime(year=2022, month=8, day=25, hour=9)),
+            "1000": consent_date,
+            "1003": datetime(year=2022, month=3, day=12, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1009": datetime(year=2022, month=3, day=18, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1014": datetime(year=2022, month=3, day=23, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1028": datetime(year=2022, month=4, day=7, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1070": datetime(year=2022, month=5, day=19, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1112": datetime(year=2022, month=6, day=30, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1168": datetime(year=2022, month=8, day=25, hour=9, tzinfo=ZoneInfo("UTC")),
         }
 
         actual = {

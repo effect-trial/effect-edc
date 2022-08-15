@@ -71,7 +71,6 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 DEFENDER_ENABLED = env("DEFENDER_ENABLED")
 
 INSTALLED_APPS = [
-    # "django.contrib.admin",
     "effect_edc.apps.AdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -84,8 +83,6 @@ INSTALLED_APPS = [
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "django_extensions",
-    "django_celery_results",
-    "django_celery_beat",
     "logentry_admin",
     "simple_history",
     "storages",
@@ -146,7 +143,6 @@ EFFECT_APPS = [
     "effect_lists.apps.AppConfig",
     "effect_dashboard.apps.AppConfig",
     "effect_labs.apps.AppConfig",
-    # "effect_metadata_rules.apps.AppConfig",
     "effect_subject.apps.AppConfig",
     "effect_visit_schedule.apps.AppConfig",
     "effect_ae.apps.AppConfig",
@@ -253,13 +249,6 @@ WSGI_APPLICATION = f"{APP_NAME}.wsgi.application"
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = ["edc_auth.backends.ModelBackendWithSite"]
-
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
-]
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
@@ -463,7 +452,7 @@ DATA_DICTIONARY_APP_LABELS = [
 EDC_PROTOCOL = env.str("EDC_PROTOCOL")
 EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
 EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
-EDC_PROTOCOL_PROJECT_NAME = env.str("EDC_PROTOCOL_PROJECT_NAME")
+
 EDC_PROTOCOL_PROJECT_NAME = "EFFECT"
 EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
     *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")

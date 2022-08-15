@@ -2,7 +2,8 @@ Changes
 =======
 
 [unreleased]
-- bump to edc 0.4.1
+- bump to edc 0.4.6
+- add edc-egfr, update imports
 
 [0.1.16]
 --------
