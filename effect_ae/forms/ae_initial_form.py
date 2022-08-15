@@ -10,13 +10,13 @@ class AeInitialForm(AeInitialModelFormMixin, forms.ModelForm):
 
     form_validator_cls = AeInitialFormValidator
 
-    class Meta:
+    class Meta(AeInitialModelFormMixin.Meta):
         model = AeInitial
         fields = "__all__"
         labels = {
             "ae_cause": _("Has any cause other than study medication been identified?"),
         }
-        help_texts = {
+        help_texts = AeInitialModelFormMixin.Meta.help_texts | {
             "ae_description": _(
                 "Record Diagnosis if available. "
                 "Include anatomical location, if applicable. "

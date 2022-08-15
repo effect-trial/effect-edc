@@ -1,4 +1,4 @@
-from copy import copy
+from typing import Tuple
 
 from django.contrib import admin
 from django.utils.html import format_html
@@ -77,8 +77,7 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
 
     search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
 
-    def get_readonly_fields(self, request, obj=None):
-        fields = super().get_readonly_fields(request, obj)
-        action_flds = copy(list(action_fields))
-        fields = list(action_flds) + list(fields)
-        return fields
+    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+        readonly_fields = super().get_readonly_fields(request, obj=obj)
+        action_flds = tuple(fld for fld in action_fields if fld != "action_identifier")
+        return tuple(set(action_flds + readonly_fields))
