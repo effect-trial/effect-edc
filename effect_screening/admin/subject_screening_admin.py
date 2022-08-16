@@ -198,7 +198,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     list_display = (
         "screening_identifier",
-        "eligiblity_status",
+        "eligibility_status",
         "demographics",
         "reasons",
         "report_datetime",
@@ -247,7 +247,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         return ScreeningEligibility(obj)
 
     @staticmethod
-    def eligiblity_status(obj=None):
+    def eligibility_status(obj=None):
         eligibility = ScreeningEligibility(obj)
         return mark_safe(eligibility.display_label)
 
