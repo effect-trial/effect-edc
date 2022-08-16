@@ -1,7 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
@@ -131,7 +130,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     art_decision = models.CharField(
-        verbose_name=mark_safe(
+        verbose_name=format_html(
             "What decision was made at enrolment regarding their <u>current</u> ART regimen?"
         ),
         max_length=25,

@@ -1,7 +1,7 @@
 from django.apps import apps as django_apps
 from django.conf import settings
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from edc_action_item import ActionWithNotification, site_action_items
 from edc_adverse_event.constants import (
     AE_FOLLOWUP_ACTION,
@@ -36,10 +36,11 @@ class AeFollowupAction(ActionWithNotification):
     create_by_user = False
     show_link_to_changelist = True
     admin_site_name = "effect_ae_admin"
-    instructions = mark_safe(
+    instructions = format_html(
         "Upon submission the TMG group will be notified "
-        f'by email at <a href="mailto:{settings.EMAIL_CONTACTS.get("tmg") or "#"}">'
-        f'{settings.EMAIL_CONTACTS.get("tmg") or "unknown"}</a>'
+        'by email at <a href="mailto:{}">{}</a>',
+        settings.EMAIL_CONTACTS.get("tmg") or "#",
+        settings.EMAIL_CONTACTS.get("tmg") or "unknown",
     )
     priority = HIGH_PRIORITY
 
@@ -175,7 +176,7 @@ class AeTmgAction(ActionWithNotification):
     color_style = "info"
     show_link_to_changelist = True
     admin_site_name = "effect_ae_admin"
-    instructions = mark_safe("This report is to be completed by the TMG only.")
+    instructions = format_html("This report is to be completed by the TMG only.")
     priority = HIGH_PRIORITY
 
     def close_action_item_on_save(self):
@@ -232,7 +233,7 @@ class DeathReportTmgAction(ActionWithNotification):
     color_style = "info"
     show_link_to_changelist = True
     admin_site_name = "effect_ae_admin"
-    instructions = mark_safe("This report is to be completed by the TMG only.")
+    instructions = format_html("This report is to be completed by the TMG only.")
 
     def reopen_action_item_on_change(self):
         """Do not reopen if status is CLOSED."""
