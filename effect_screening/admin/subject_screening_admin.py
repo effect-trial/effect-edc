@@ -244,7 +244,8 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     @staticmethod
     def reasons(obj=None):
-        return ScreeningEligibility(obj)
+        eligibility = ScreeningEligibility(obj)
+        return mark_safe(eligibility.formatted_reasons_ineligible())
 
     @staticmethod
     def eligibility_status(obj=None):
