@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.contrib import admin
-from django.utils.safestring import mark_safe
+from django.utils.html import format_html
 from django_audit_fields import audit_fieldset_tuple
 from edc_action_item import action_fieldset_tuple
 from edc_adverse_event.modeladmin_mixins import (
@@ -23,9 +23,11 @@ class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
 
     form = AeInitialForm
     email_contact = settings.EMAIL_CONTACTS.get("ae_reports")
-    additional_instructions = mark_safe(
+    additional_instructions = format_html(
         "Complete the initial AE report and forward to the TMG. "
-        f'Email to <a href="mailto:{email_contact}">{email_contact}</a>'
+        'Email to <a href="mailto:{}">{}</a>',
+        email_contact,
+        email_contact,
     )
 
     fieldsets = (
