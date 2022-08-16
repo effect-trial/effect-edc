@@ -11,6 +11,7 @@ Changes
     - Hospitalisation Form
     - Loss to Follow-up
     - Protocol Deviation/Violation Form
+- fix Subject Screening Admin server error on load, reasons not displayed, typo (#332)
 
 [0.1.16]
 --------
