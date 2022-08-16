@@ -249,7 +249,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
     @staticmethod
     def eligiblity_status(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return mark_safe(eligibility.eligibility_display_label)
+        return mark_safe(eligibility.display_label)
 
     def dashboard(self, obj=None, label=None):
         try:
