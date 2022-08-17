@@ -26,13 +26,13 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     on_art_at_crag = models.CharField(
-        verbose_name="Was the patient on ART <u>at time of</u> CrAg test?",
+        verbose_name=format_html("Was the patient on ART <u>at time of</u> CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
 
     ever_on_art = models.CharField(
-        verbose_name="Was the patient on ART <u>prior</u> to CrAg test?",
+        verbose_name=format_html("Was the patient on ART <u>prior</u> to CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
@@ -60,7 +60,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen_other = edc_models.OtherCharField()
 
     has_switched_art_regimen = models.CharField(
-        verbose_name="Has the patient ever <u>switched</u> ART regimen?",
+        verbose_name=format_html("Has the patient ever <u>switched</u> ART regimen?"),
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
