@@ -2,7 +2,7 @@ Changes
 =======
 
 [unreleased]
-- bump to edc 0.4.6
+- bump to edc 0.4.12
 - add edc-egfr, update imports
 - add treatment arm/summary to subject dashboard
 - make Subject Identifier, and Action Identifier fields read only, in:
