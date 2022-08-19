@@ -2,7 +2,6 @@ Changes
 =======
 
 [unreleased]
-- bump to edc 0.4.6
 - add edc-egfr, update imports
 - add treatment arm/summary to subject dashboard
 - make Subject Identifier, and Action Identifier fields read only, in:
@@ -14,6 +13,7 @@ Changes
     - Protocol Deviation/Violation Form
 - fix Subject Screening Admin server error on load, reasons not displayed, typo (#332)
 - fix (via bump to edc>=0.4.1) permissions error when attempting to add an unscheduled appointment (#466)
+- bump to edc 0.4.11
 
 [0.1.16]
 --------
