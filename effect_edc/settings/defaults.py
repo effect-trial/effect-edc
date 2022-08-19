@@ -5,6 +5,7 @@ from pathlib import Path
 import environ
 from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_constants.constants import COMPLETE
+from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_utils import get_datetime_from_env
 
 BASE_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
@@ -373,11 +374,14 @@ EDC_FACILITY_USE_DEFAULTS = True
 # edc_randomization
 EDC_RANDOMIZATION_LIST_PATH = env.str("EDC_RANDOMIZATION_LIST_PATH")
 EDC_RANDOMIZATION_UNBLINDED_USERS = env.list("EDC_RANDOMIZATION_UNBLINDED_USERS")
-EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER = env(
-    "EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER"
-)
+EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER = True
 EDC_RANDOMIZATION_SKIP_VERIFY_CHECKS = True
 EDC_RANDOMIZATION_ASSIGNMENT_MAP = env.dict("EDC_RANDOMIZATION_ASSIGNMENT_MAP")
+EDC_RANDOMIZATION_ASSIGNMENT_DESCRIPTION_MAP = {
+    INTERVENTION: "2 weeks fluconazole plus flucytosine",
+    CONTROL: "2 weeks fluconazole alone",
+}
+
 # edc-sites
 EDC_SITES_MODULE_NAME = env.str("EDC_SITES_MODULE_NAME")
 
