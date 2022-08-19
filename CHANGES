@@ -4,6 +4,7 @@ Changes
 [unreleased]
 - bump to edc 0.4.6
 - add edc-egfr, update imports
+- add treatment arm/summary to subject dashboard
 - make Subject Identifier, and Action Identifier fields read only, in:
     - AE Initial Form, AE Follow-up Form, AE TMG Form
     - Death Report Form, Death Report TMG (2nd), Death Report TMG Form
