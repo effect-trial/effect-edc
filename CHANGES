@@ -1,7 +1,8 @@
 Changes
 =======
 
-[unreleased]
+[0.1.17]
+--------
 - add edc-egfr, update imports
 - add treatment arm/summary to subject dashboard
 - add (via edc-auth 0.3.45) 'last_login' and 'is_active' (account enabled) status to user admin list
