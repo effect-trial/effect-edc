@@ -13,7 +13,7 @@ Changes
     - Protocol Deviation/Violation Form
 - fix Subject Screening Admin server error on load, reasons not displayed, typo (#332)
 - fix (via bump to edc>=0.4.1) permissions error when attempting to add an unscheduled appointment (#466)
-- bump to edc 0.4.11
+- bump to edc 0.4.12
 
 [0.1.16]
 --------
