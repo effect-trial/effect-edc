@@ -32,10 +32,8 @@ omit = ["requirements.txt"]
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{39,310}-dj{32,40}-edc{prod},
-    py{39,310}-dj{32,40}-edc{dev},
-#    FIXME: Disable testing djdev env until failing testrunner issue resolved
-#    py{39,310}-dj{32,40,dev}-edc{dev},
+    py{39,310}-dj{32,40,41}-edc{prod},
+    py{39,310}-dj{32,40,41,dev}-edc{dev},
     lint
 
 isolated_build = true
@@ -49,6 +47,7 @@ python =
 DJANGO =
     3.2: dj32, lint
     4.0: dj40
+    4.1: dj41
     dev: djdev
 EDC_CODEBASE =
     Prod: edcprod, lint
@@ -61,6 +60,7 @@ deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
     dj32: Django>=3.2,<3.3
     dj40: Django>=4.0,<4.1
+    dj41: Django>=4.1,<4.2
     djdev: https://github.com/django/django/tarball/main
 
 commands =

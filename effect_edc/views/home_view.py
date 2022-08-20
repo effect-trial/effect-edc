@@ -13,7 +13,7 @@ class HomeView(EdcViewMixin, NavbarViewMixin, TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        randomizer_cls = site_randomizers.get_by_model()
+        randomizer_cls = site_randomizers.get("default")
         edc_randomization_url_name = (
             "edc_randomization_admin:"
             f"{randomizer_cls.model_cls()._meta.label_lower.replace('.', '_')}_changelist"

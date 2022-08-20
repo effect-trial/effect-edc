@@ -1,4 +1,5 @@
 from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_egfr.model_mixins import EgfrModelMixin
 from edc_lab.model_mixins import CrfWithRequisitionModelMixin
 from edc_lab_results.model_mixins import (
     AlbuminModelMixin,
@@ -9,7 +10,6 @@ from edc_lab_results.model_mixins import (
     BloodResultsModelMixin,
     CreatinineModelMixin,
     CrpModelMixin,
-    EgfrModelMixin,
     GgtModelMixin,
     MagnesiumModelMixin,
     PotassiumModelMixin,

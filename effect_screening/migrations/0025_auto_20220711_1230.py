@@ -6,17 +6,22 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_screening', '0024_auto_20220614_1749'),
+        ("effect_screening", "0024_auto_20220614_1749"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='historicalsubjectscreening',
-            options={'get_latest_by': ('history_date', 'history_id'), 'ordering': ('-history_date', '-history_id'), 'verbose_name': 'historical Subject Screening', 'verbose_name_plural': 'historical Subject Screening'},
+            name="historicalsubjectscreening",
+            options={
+                "get_latest_by": ("history_date", "history_id"),
+                "ordering": ("-history_date", "-history_id"),
+                "verbose_name": "historical Subject Screening",
+                "verbose_name_plural": "historical Subject Screening",
+            },
         ),
         migrations.AlterField(
-            model_name='historicalsubjectscreening',
-            name='history_date',
+            model_name="historicalsubjectscreening",
+            name="history_date",
             field=models.DateTimeField(db_index=True),
         ),
     ]

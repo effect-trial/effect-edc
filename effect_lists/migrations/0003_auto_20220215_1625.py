@@ -6,16 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('effect_lists', '0002_bloodtests'),
-        ('effect_subject', '0005_auto_20220215_1625'),
+        ("effect_lists", "0002_bloodtests"),
+        ("effect_subject", "0005_auto_20220215_1625"),
     ]
 
     operations = [
         migrations.DeleteModel(
-            name='FocalNeurologicDeficits',
+            name="FocalNeurologicDeficits",
         ),
         migrations.AddIndex(
-            model_name='bloodtests',
-            index=models.Index(fields=['id', 'display_name', 'display_index'], name='effect_list_id_cefc46_idx'),
+            model_name="bloodtests",
+            index=models.Index(
+                fields=["id", "display_name", "display_index"],
+                name="effect_list_id_cefc46_idx",
+            ),
         ),
     ]

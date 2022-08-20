@@ -1,7 +1,6 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
-from django.utils.safestring import mark_safe
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
@@ -27,13 +26,13 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     on_art_at_crag = models.CharField(
-        verbose_name="Was the patient on ART <u>at time of</u> CrAg test?",
+        verbose_name=format_html("Was the patient on ART <u>at time of</u> CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
 
     ever_on_art = models.CharField(
-        verbose_name="Was the patient on ART <u>prior</u> to CrAg test?",
+        verbose_name=format_html("Was the patient on ART <u>prior</u> to CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
@@ -61,7 +60,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen_other = edc_models.OtherCharField()
 
     has_switched_art_regimen = models.CharField(
-        verbose_name="Has the patient ever <u>switched</u> ART regimen?",
+        verbose_name=format_html("Has the patient ever <u>switched</u> ART regimen?"),
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -131,7 +130,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     art_decision = models.CharField(
-        verbose_name=mark_safe(
+        verbose_name=format_html(
             "What decision was made at enrolment regarding their <u>current</u> ART regimen?"
         ),
         max_length=25,

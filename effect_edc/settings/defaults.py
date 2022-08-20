@@ -5,6 +5,7 @@ from pathlib import Path
 import environ
 from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_constants.constants import COMPLETE
+from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_utils import get_datetime_from_env
 
 BASE_DIR = str(Path(os.path.dirname(os.path.abspath(__file__))).parent.parent)
@@ -71,7 +72,6 @@ LOGOUT_REDIRECT_URL = "/accounts/login/"
 DEFENDER_ENABLED = env("DEFENDER_ENABLED")
 
 INSTALLED_APPS = [
-    # "django.contrib.admin",
     "effect_edc.apps.AdminConfig",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -84,8 +84,6 @@ INSTALLED_APPS = [
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "django_extensions",
-    "django_celery_results",
-    "django_celery_beat",
     "logentry_admin",
     "simple_history",
     "storages",
@@ -103,6 +101,7 @@ INSTALLED_APPS = [
     "edc_dashboard.apps.AppConfig",
     "edc_data_manager.apps.AppConfig",
     "edc_document_status.apps.AppConfig",
+    "edc_egfr.apps.AppConfig",
     "edc_export.apps.AppConfig",
     "edc_facility.apps.AppConfig",
     "edc_fieldsets.apps.AppConfig",
@@ -145,7 +144,6 @@ EFFECT_APPS = [
     "effect_lists.apps.AppConfig",
     "effect_dashboard.apps.AppConfig",
     "effect_labs.apps.AppConfig",
-    # "effect_metadata_rules.apps.AppConfig",
     "effect_subject.apps.AppConfig",
     "effect_visit_schedule.apps.AppConfig",
     "effect_ae.apps.AppConfig",
@@ -252,13 +250,6 @@ WSGI_APPLICATION = f"{APP_NAME}.wsgi.application"
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
 
 AUTHENTICATION_BACKENDS = ["edc_auth.backends.ModelBackendWithSite"]
-
-AUTH_PASSWORD_VALIDATORS = [
-    {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
-    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
-    {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
-    {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
-]
 
 PASSWORD_HASHERS = [
     "django.contrib.auth.hashers.Argon2PasswordHasher",
@@ -383,11 +374,14 @@ EDC_FACILITY_USE_DEFAULTS = True
 # edc_randomization
 EDC_RANDOMIZATION_LIST_PATH = env.str("EDC_RANDOMIZATION_LIST_PATH")
 EDC_RANDOMIZATION_UNBLINDED_USERS = env.list("EDC_RANDOMIZATION_UNBLINDED_USERS")
-EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER = env(
-    "EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER"
-)
+EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER = True
 EDC_RANDOMIZATION_SKIP_VERIFY_CHECKS = True
 EDC_RANDOMIZATION_ASSIGNMENT_MAP = env.dict("EDC_RANDOMIZATION_ASSIGNMENT_MAP")
+EDC_RANDOMIZATION_ASSIGNMENT_DESCRIPTION_MAP = {
+    CONTROL: "2 weeks fluconazole alone",
+    INTERVENTION: "2 weeks fluconazole plus flucytosine",
+}
+
 # edc-sites
 EDC_SITES_MODULE_NAME = env.str("EDC_SITES_MODULE_NAME")
 
@@ -462,7 +456,7 @@ DATA_DICTIONARY_APP_LABELS = [
 EDC_PROTOCOL = env.str("EDC_PROTOCOL")
 EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
 EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
-EDC_PROTOCOL_PROJECT_NAME = env.str("EDC_PROTOCOL_PROJECT_NAME")
+
 EDC_PROTOCOL_PROJECT_NAME = "EFFECT"
 EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
     *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")

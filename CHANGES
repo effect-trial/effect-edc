@@ -1,6 +1,23 @@
 Changes
 =======
 
+[0.1.17]
+--------
+- add edc-egfr, update imports
+- add treatment arm/summary to subject dashboard
+- add (via edc-auth 0.3.45) 'last_login' and 'is_active' (account enabled) status to user admin list
+- make Subject Identifier, and Action Identifier fields read only, in:
+    - AE Initial Form, AE Follow-up Form, AE TMG Form
+    - Death Report Form, Death Report TMG (2nd), Death Report TMG Form
+    - End of Study Form
+    - Hospitalisation Form
+    - Loss to Follow-up
+    - Protocol Deviation/Violation Form
+- fix Subject Screening Admin server error on load, reasons not displayed, typo (#332)
+- fix (via bump to edc>=0.4.1) permissions error when attempting to add an unscheduled appointment (#466)
+- bump to edc 0.4.12
+- bump to edc-csf 0.1.10
+
 [0.1.16]
 --------
 - updates to Health Economics Event CRF (#451):

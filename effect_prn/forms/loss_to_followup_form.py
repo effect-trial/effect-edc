@@ -22,12 +22,6 @@ class LossToFollowupForm(
 
     form_validator_cls = LossToFollowupFormValidator
 
-    subject_identifier = forms.CharField(
-        label="Subject Identifier",
-        required=False,
-        widget=forms.TextInput(attrs={"readonly": "readonly"}),
-    )
-
-    class Meta:
+    class Meta(ActionItemFormMixin.Meta):
         model = LossToFollowup
         fields = "__all__"

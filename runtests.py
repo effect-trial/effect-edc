@@ -8,6 +8,7 @@ from zoneinfo import ZoneInfo
 import django
 from django.conf import settings
 from django.test.runner import DiscoverRunner
+from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_test_utils import DefaultTestSettings
 from multisite import SiteID
 
@@ -17,8 +18,6 @@ base_dir = dirname(abspath(__file__))
 
 DEFAULT_SETTINGS = DefaultTestSettings(
     calling_file=__file__,
-    EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=True,
-    EDC_RANDOMIZATION_ASSIGNMENT_MAP={"control": 1, "intervention": 2},
     ROOT_URLCONF="effect_edc.urls",
     EDC_AUTH_CODENAMES_WARN_ONLY=True,
     EDC_DX_REVIEW_LIST_MODEL_APP_LABEL="edc_dx_review",
@@ -70,6 +69,12 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     HOLIDAY_FILE=join(base_dir, "effect_edc", "tests", "holidays.csv"),
     LIVE_SYSTEM=False,
     EDC_RANDOMIZATION_LIST_PATH=join(base_dir, "effect_edc", "tests", "etc"),
+    EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=True,
+    EDC_RANDOMIZATION_ASSIGNMENT_MAP={CONTROL: 1, INTERVENTION: 2},
+    EDC_RANDOMIZATION_ASSIGNMENT_DESCRIPTION_MAP={
+        CONTROL: "2 weeks fluconazole alone",
+        INTERVENTION: "2 weeks fluconazole plus flucytosine",
+    },
     EDC_SITES_MODULE_NAME="effect_sites",
     INSTALLED_APPS=[
         "django.contrib.admin",
@@ -81,18 +86,10 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "django.contrib.sites",
         "django_crypto_fields.apps.AppConfig",
         "django_revision.apps.AppConfig",
-        # "debug_toolbar",
         "django_extensions",
-        "django_celery_results",
-        "django_celery_beat",
         "logentry_admin",
         "simple_history",
         "storages",
-        # "corsheaders",
-        "rest_framework",
-        "rest_framework.authtoken",
-        # "django_collect_offline.apps.AppConfig",
-        # "django_collect_offline_files.apps.AppConfig",
         "edc_action_item.apps.AppConfig",
         "edc_adverse_event.apps.AppConfig",
         "edc_appointment.apps.AppConfig",
@@ -125,7 +122,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_visit_schedule.apps.AppConfig",
         "edc_pdutils.apps.AppConfig",
         "edc_pharmacy.apps.AppConfig",
-        # "edc_pharmacy_dashboard.apps.AppConfig",
         "edc_prn.apps.AppConfig",
         "edc_randomization.apps.AppConfig",
         "edc_registration.apps.AppConfig",

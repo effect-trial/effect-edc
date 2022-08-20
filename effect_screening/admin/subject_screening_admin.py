@@ -2,8 +2,7 @@ from django.contrib import admin
 from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.urls.exceptions import NoReverseMatch
-from django.utils.html import format_html
-from django.utils.safestring import mark_safe
+from django.utils.html import conditional_escape, format_html
 from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
@@ -198,7 +197,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     list_display = (
         "screening_identifier",
-        "eligiblity_status",
+        "eligibility_status",
         "demographics",
         "reasons",
         "report_datetime",
@@ -237,19 +236,22 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
 
     @staticmethod
     def demographics(obj=None):
-        return mark_safe(
-            f"{obj.get_gender_display()} {obj.age_in_years}yrs<BR>"
-            f"Initials: {obj.initials.upper()}<BR><BR>"
+        return format_html(
+            "{} {}yrs<BR>Initials: {}<BR><BR>",
+            obj.get_gender_display(),
+            obj.age_in_years,
+            obj.initials.upper(),
         )
 
     @staticmethod
     def reasons(obj=None):
-        return ScreeningEligibility(obj)
+        eligibility = ScreeningEligibility(obj)
+        return format_html(conditional_escape(eligibility.formatted_reasons_ineligible()))
 
     @staticmethod
-    def eligiblity_status(obj=None):
+    def eligibility_status(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return mark_safe(eligibility.eligibility_display_label)
+        return format_html(conditional_escape(eligibility.display_label))
 
     def dashboard(self, obj=None, label=None):
         try:

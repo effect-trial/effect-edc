@@ -11,11 +11,10 @@ from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
-from edc_randomization import Randomizer
-from edc_randomization.randomization_list_importer import RandomizationListImporter
+from edc_randomization.site_randomizers import site_randomizers
 from edc_sites import add_or_update_django_sites, get_sites_by_country
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
-from edc_utils.date import get_utcnow
+from edc_utils.date import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule import site_visit_schedules
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
@@ -79,6 +78,8 @@ class EffectTestCaseMixin(
 
     sid_count = 10
 
+    randomizer_name = "default"
+
     @classmethod
     def setUpTestData(cls):
         super().setUpTestData()
@@ -88,10 +89,8 @@ class EffectTestCaseMixin(
         site_list_data.autodiscover()
         site_visit_schedules._registry = {}
         site_visit_schedules.register(visit_schedule=visit_schedule)
-        importer = RandomizationListImporter(
-            randomizer_cls=Randomizer, sid_count_for_tests=cls.sid_count
-        )
-        importer.import_list()
+        randomizer_cls = site_randomizers.get(cls.randomizer_name)
+        randomizer_cls.import_list(sid_count_for_tests=cls.sid_count)
 
     def get_subject_screening(
         self,
@@ -135,7 +134,7 @@ class EffectTestCaseMixin(
             screening_identifier=subject_screening.screening_identifier,
             initials=subject_screening.initials,
             gender=subject_screening.gender,
-            dob=(get_utcnow().date() - relativedelta(years=subject_screening.age_in_years)),
+            dob=(get_utcnow_as_date() - relativedelta(years=subject_screening.age_in_years)),
             site=Site.objects.get(id=site_id or settings.SITE_ID),
             consent_datetime=consent_datetime or subject_screening.report_datetime,
         )
