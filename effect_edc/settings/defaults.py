@@ -81,6 +81,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "defender",
     "multisite",
+    "fontawesomefree",
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "django_extensions",
@@ -182,7 +183,6 @@ MIDDLEWARE.extend(
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
         "edc_adverse_event.middleware.DashboardMiddleware",
-        # 'simple_history.middleware.HistoryRequestMiddleware'
     ]
 )
 
@@ -199,6 +199,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "edc_model_admin.context_processors.admin_theme",
             ]
         },
     }
