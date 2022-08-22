@@ -1,6 +1,14 @@
 Changes
 =======
 
+unreleased
+----------
+- bump to edc 0.4.12
+- bump to edc-csf 0.1.11
+- set themes for live and test
+- update urls for changes in edc-auth
+
+
 [0.1.17]
 --------
 - add edc-egfr, update imports

@@ -1,8 +1,9 @@
 from django.contrib import admin
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_appointment.models import Appointment
 from edc_constants.constants import IN_PERSON, NO, PATIENT
 from edc_document_status.fieldsets import document_status_fieldset_tuple
-from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
+from edc_model_admin import SimpleHistoryAdmin
 from edc_visit_schedule.constants import DAY1
 from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple
 from edc_visit_tracking.modeladmin_mixins import VisitModelAdminMixin

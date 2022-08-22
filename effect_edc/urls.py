@@ -19,9 +19,10 @@ handler404 = "edc_dashboard.views.edc_handler404"
 handler500 = "edc_dashboard.views.edc_handler500"
 
 urlpatterns = [
-    path("accounts/", include("edc_auth.urls")),
+    path("accounts/", include("edc_auth.urls_for_accounts", namespace="auth")),
     path("administration/", AdministrationView.as_view(), name="administration_url"),
     path("subject/", include("effect_dashboard.urls")),
+    *paths_for_urlpatterns("edc_auth"),
     *paths_for_urlpatterns("edc_action_item"),
     *paths_for_urlpatterns("edc_adverse_event"),
     *paths_for_urlpatterns("edc_appointment"),
