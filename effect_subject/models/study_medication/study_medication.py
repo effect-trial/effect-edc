@@ -18,7 +18,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucon_initiated = models.CharField(
-        verbose_name="Was the patient started on Fluconazole?",
+        verbose_name="Was the participant started on Fluconazole?",
         max_length=15,
         choices=YES_NO,
         null=True,
@@ -52,7 +52,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucyt_initiated = models.CharField(
-        verbose_name="Was the patient started on Flucytosine?",
+        verbose_name="Was the participant started on Flucytosine?",
         max_length=15,
         choices=YES_NO_NA,
         null=True,
@@ -73,7 +73,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         help_text=(
             "Validate against weight and rando arm "
             "100mg/kg, round down to nearest 500mg total "
-            "e.g. 47kg = 4700mg, patient gets 4500mg daily"
+            "e.g. 47kg = 4700mg, participant gets 4500mg daily"
         ),
     )
 
