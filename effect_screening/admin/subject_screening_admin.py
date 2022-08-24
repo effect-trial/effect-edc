@@ -6,8 +6,8 @@ from django.utils.html import conditional_escape, format_html
 from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
-from edc_model_admin import SimpleHistoryAdmin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from effect_screening.eligibility import ScreeningEligibility
 
