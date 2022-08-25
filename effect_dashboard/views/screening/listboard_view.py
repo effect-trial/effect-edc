@@ -2,12 +2,9 @@ import re
 
 from django.db.models import Q
 from edc_constants.constants import ABNORMAL
-from edc_dashboard.view_mixins import (
-    EdcViewMixin,
-    ListboardFilterViewMixin,
-    SearchFormViewMixin,
-)
-from edc_dashboard.views import ListboardView as BaseListboardView
+from edc_dashboard.view_mixins import EdcViewMixin
+from edc_listboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
+from edc_listboard.views import ListboardView as BaseListboardView
 from edc_navbar import NavbarViewMixin
 from edc_screening.model_wrappers import SubjectScreeningModelWrapper
 
@@ -28,7 +25,7 @@ class ListboardView(
     listboard_fa_icon = "fa-user-plus"
     listboard_view_filters = ListboardViewFilters()
     listboard_model = "effect_screening.subjectscreening"
-    listboard_view_permission_codename = "edc_dashboard.view_screening_listboard"
+    listboard_view_permission_codename = "edc_listboard.view_screening_listboard"
 
     alternate_search_attr = "screening_identifier"
 

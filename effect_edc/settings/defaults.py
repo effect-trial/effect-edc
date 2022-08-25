@@ -200,6 +200,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "edc_model_admin.context_processors.admin_theme",
+                "edc_constants.context_processor.constants",
             ]
         },
     }
