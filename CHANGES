@@ -3,8 +3,8 @@ Changes
 
 unreleased
 ----------
-- bump to edc 0.4.12
-- bump to edc-csf 0.1.11
+- bump to edc 0.4.19
+- bump to edc-csf 0.1.12
 - set themes for live and test
 - update urls for changes in edc-auth
 
