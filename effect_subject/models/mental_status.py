@@ -74,7 +74,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Has the patient been admitted due to these symptoms?",
+        verbose_name="Has the participant been admitted due to these symptoms?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,

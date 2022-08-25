@@ -26,19 +26,21 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     on_art_at_crag = models.CharField(
-        verbose_name=format_html("Was the patient on ART <u>at time of</u> CrAg test?"),
+        verbose_name=format_html("Was the participant on ART <u>at time of</u> CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
 
     ever_on_art = models.CharField(
-        verbose_name=format_html("Was the patient on ART <u>prior</u> to CrAg test?"),
+        verbose_name=format_html("Was the participant on ART <u>prior</u> to CrAg test?"),
         max_length=5,
         choices=YES_NO,
     )
 
     initial_art_date = models.DateField(
-        verbose_name=format_html("When did the patient <u>start</u> ART for the first time?"),
+        verbose_name=format_html(
+            "When did the participant <u>start</u> ART for the first time?"
+        ),
         validators=[date_not_future],
         null=True,
         blank=True,
@@ -60,7 +62,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen_other = edc_models.OtherCharField()
 
     has_switched_art_regimen = models.CharField(
-        verbose_name=format_html("Has the patient ever <u>switched</u> ART regimen?"),
+        verbose_name=format_html("Has the participant ever <u>switched</u> ART regimen?"),
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -90,7 +92,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     has_defaulted = models.CharField(
         verbose_name=format_html(
-            "Has the patient <u>now</u> defaulted from their <u>current</u> ART regimen?"
+            "Has the participant <u>now</u> defaulted from their <u>current</u> ART regimen?"
         ),
         max_length=5,
         choices=YES_NO_NA,
@@ -114,7 +116,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     is_adherent = models.CharField(
         verbose_name=format_html(
-            "If the patient is currently on ART, are they <u>adherent</u> to "
+            "If the participant is currently on ART, are they <u>adherent</u> to "
             "their <u>current</u> ART regimen?"
         ),
         max_length=5,

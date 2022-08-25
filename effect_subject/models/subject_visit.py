@@ -97,7 +97,7 @@ class SubjectVisit(
     )
 
     hospitalized = models.CharField(
-        verbose_name="Has the patient been hospitalized since the last assessment?",
+        verbose_name="Has the participant been hospitalized since the last assessment?",
         max_length=15,
         choices=YES_NO_UNKNOWN_NA_MISSED,
         # TODO: If yes, trigger AE Initial

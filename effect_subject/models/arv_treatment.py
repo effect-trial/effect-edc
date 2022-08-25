@@ -11,18 +11,20 @@ from ..model_mixins import CrfModelMixin
 class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     on_arv_regimen = models.CharField(
-        verbose_name="Is the patient currently on an ART regimen?",
+        verbose_name="Is the participant currently on an ART regimen?",
         max_length=15,
         choices=YES_NO,
         help_text="If ART regimen is on hold, answer yes and clarify below",
     )
 
     adherent = models.CharField(
-        verbose_name="If YES, on an ART regimen, has the patient adhered to this ART regimen?",
+        verbose_name=(
+            "If YES, on an ART regimen, has the participant adhered to this ART regimen?"
+        ),
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
-        help_text="In the opinion of the clinican, is the patient at least 90% adherent",
+        help_text="In the opinion of the clinician, is the participant at least 90% adherent",
     )
 
     # TODO: what do they want to know here?
@@ -41,7 +43,9 @@ class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
     arv_regimen_changed = models.CharField(
         # TODO: determine and display date of last study assessment
-        verbose_name="Has the patient's ART regimen changed since the last study assessment",
+        verbose_name=(
+            "Has the participant's ART regimen changed since the last study assessment"
+        ),
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,

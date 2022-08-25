@@ -14,7 +14,7 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
     # Diagnoses CRF (p3)
     # TODO: Move gi_side_effects into SiSx
     gi_side_effects = models.CharField(
-        verbose_name="Has the patient experienced any gastrointestinal side effects?",
+        verbose_name="Has the participant experienced any gastrointestinal side effects?",
         max_length=15,
         # TODO: If yes, prompt for SAE form (where appropriate???)
         choices=YES_NO,
@@ -61,7 +61,7 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Has the patient been admitted due to any of these diagnoses?",
+        verbose_name="Has the participant been admitted due to any of these diagnoses?",
         max_length=15,
         # TODO: If yes, prompt for SAE form
         choices=YES_NO_NA,
