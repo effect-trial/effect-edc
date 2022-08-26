@@ -7,6 +7,23 @@ unreleased
 - bump to edc-csf 0.1.11
 - set themes for live and test
 - update urls for changes in edc-auth
+- replace usages of 'patient' with 'participant' (#446) on:
+    - AE form
+    - ARV History form
+    - ARV Treatment form
+    - Adherence form
+    - Adherence D1 form
+    - Adherence D14 form
+    - Adherence D14+ form
+    - Mental Status form
+    - Patient History form
+    - Patient Treatment form
+    - Significant Diagnoses form
+    - Signs and Symptoms form
+    - Study Medication Baseline form
+    - Study Medication Follow-up form
+    - Subject Visit form
+    - Vital Signs form
 
 
 [0.1.17]
