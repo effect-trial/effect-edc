@@ -8,15 +8,16 @@ from edc_offstudy.model_mixins import OffstudyVisitModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
 from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.models import SiteModelMixin
-from edc_visit_tracking.choices import (
-    ASSESSMENT_TYPES,
-    ASSESSMENT_WHO_CHOICES,
-    VISIT_INFO_SOURCE2,
-)
+from edc_visit_tracking.choices import ASSESSMENT_TYPES
 from edc_visit_tracking.managers import VisitModelManager as BaseVisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
-from ..choices import VISIT_REASON, VISIT_UNSCHEDULED_REASON
+from ..choices import (
+    ASSESSMENT_WHO_CHOICES,
+    VISIT_INFO_SOURCE2,
+    VISIT_REASON,
+    VISIT_UNSCHEDULED_REASON,
+)
 from ..constants import IF_ADMITTED_COMPLETE_REPORTS
 
 

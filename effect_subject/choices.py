@@ -3,7 +3,9 @@ from edc_constants.constants import (
     AWAITING_RESULTS,
     DEAD,
     FREE_OF_CHARGE,
+    HOSPITAL_NOTES,
     MICROSCOPY,
+    NEXT_OF_KIN,
     NO,
     NO_EXAM,
     NORMAL,
@@ -11,6 +13,9 @@ from edc_constants.constants import (
     NOT_DONE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    OUTPATIENT_CARDS,
+    PATIENT,
+    PATIENT_REPRESENTATIVE,
     PRESENT,
     RAPID_TEST,
     YES,
@@ -80,6 +85,13 @@ ARV_DECISION = (
     (NOT_APPLICABLE, "Not applicable"),
     (ART_CONTINUED, "ART continued"),
     (ART_STOPPED, "ART stopped"),
+)
+
+ASSESSMENT_WHO_CHOICES = (
+    (PATIENT, "Participant"),
+    (NEXT_OF_KIN, "Next of kin"),
+    (NOT_APPLICABLE, "Not applicable (if missed)"),
+    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
 )
 
 CM_TX_CHOICES = (
@@ -175,6 +187,18 @@ FUNDOSCOPY_CHOICES = (
     ("proliferative_retinopathy", "Proliferative retinopathy"),
     ("maculopathy", "Maculopathy"),
     (NO_EXAM, "Exam not performed"),
+)
+
+VISIT_INFO_SOURCE2 = (
+    (PATIENT, "Participant"),
+    (
+        PATIENT_REPRESENTATIVE,
+        "Participant representative (e.g., next of kin, relative, guardian)",
+    ),
+    (HOSPITAL_NOTES, "Hospital notes"),
+    (OUTPATIENT_CARDS, "Outpatient cards"),
+    (NOT_APPLICABLE, "Not applicable (if missed)"),
+    (OTHER, "Other"),
 )
 
 LOST_INCOME_CHOICES = (
@@ -338,8 +362,8 @@ VIBRATION_PERCEPTION_CHOICES = (
 )
 
 VISIT_UNSCHEDULED_REASON = (
-    ("patient_unwell_outpatient", "Patient unwell (outpatient)"),
-    ("patient_hospitalised", "Patient hospitalised"),
+    ("patient_unwell_outpatient", "Participant unwell (outpatient)"),
+    ("patient_hospitalised", "Participant hospitalised"),
     ("routine_non_study", "Routine appointment (non-study)"),
     ("recurrence_symptoms", "Recurrence of symptoms"),
     (OTHER, "Other"),
