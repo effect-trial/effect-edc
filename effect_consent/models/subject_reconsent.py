@@ -7,10 +7,7 @@ from edc_action_item.models import ActionModelMixin
 from edc_consent.field_mixins import ReviewFieldsMixin
 from edc_constants.constants import ABNORMAL
 from edc_identifier.managers import SubjectIdentifierManager
-from edc_identifier.model_mixins import (
-    TrackingModelMixin,
-    UniqueSubjectIdentifierModelMixin,
-)
+from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
 from edc_model.models import BaseUuidModel
 from edc_registration.models import RegisteredSubject
 from edc_sites.models import SiteModelMixin
@@ -27,7 +24,6 @@ class SubjectReconsent(
     ReviewFieldsMixin,
     SearchSlugModelMixin,
     ActionModelMixin,
-    TrackingModelMixin,
     BaseUuidModel,
 ):
 
@@ -40,8 +36,6 @@ class SubjectReconsent(
     subject_screening_model = "effect_screening.subjectscreening"
 
     subject_consent_model = "effect_consent.subjectconsent"
-
-    tracking_identifier_prefix = "SR"
 
     action_name = RECONSENT_ACTION
 

@@ -32,7 +32,6 @@ class BloodResultsFbc(
     edc_models.BaseUuidModel,
 ):
     action_name = BLOOD_RESULTS_FBC_ACTION
-    tracking_identifier_prefix = "FB"
 
     lab_panel = fbc_panel
 

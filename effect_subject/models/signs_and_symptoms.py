@@ -11,13 +11,8 @@ from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACT
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
+
     action_name = SX_ACTION
-
-    tracking_identifier_prefix = "SX"
-
-    action_identifier = models.CharField(max_length=50, unique=True, null=True)
-
-    tracking_identifier = models.CharField(max_length=30, unique=True, null=True)
 
     any_sx = models.CharField(
         verbose_name=(

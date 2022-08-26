@@ -47,7 +47,7 @@ class BloodResultsChem(
     edc_models.BaseUuidModel,
 ):
     action_name = BLOOD_RESULTS_CHEM_ACTION
-    tracking_identifier_prefix = "CH"
+
     lab_panel = chemistry_panel
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

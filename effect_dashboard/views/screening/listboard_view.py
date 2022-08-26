@@ -25,7 +25,7 @@ class ListboardView(
     listboard_fa_icon = "fa-user-plus"
     listboard_view_filters = ListboardViewFilters()
     listboard_model = "effect_screening.subjectscreening"
-    listboard_view_permission_codename = "edc_listboard.view_screening_listboard"
+    listboard_view_permission_codename = "edc_screening.view_screening_listboard"
 
     alternate_search_attr = "screening_identifier"
 

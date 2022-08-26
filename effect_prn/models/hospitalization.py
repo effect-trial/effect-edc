@@ -3,10 +3,7 @@ from django.db import models
 from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_identifier.model_mixins import (
-    NonUniqueSubjectIdentifierFieldMixin,
-    TrackingModelMixin,
-)
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_model import models as edc_models
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_protocol.validators import (
@@ -21,13 +18,10 @@ from effect_prn.constants import HOSPITALIZATION_ACTION
 class Hospitalization(
     NonUniqueSubjectIdentifierFieldMixin,
     ActionModelMixin,
-    TrackingModelMixin,
     edc_models.BaseUuidModel,
 ):
 
     action_name = HOSPITALIZATION_ACTION
-
-    tracking_identifier_prefix = "HZ"
 
     report_datetime = models.DateTimeField(
         verbose_name="Report Date",
