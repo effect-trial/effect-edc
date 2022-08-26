@@ -124,18 +124,6 @@ FLUCONAZOLE_DOSES_D14 = (
     ("taken_off_study_drug", "No, taken off study drug"),
 )
 
-VISIT_INFO_SOURCE2 = (
-    (PATIENT, "Participant"),
-    (
-        PATIENT_REPRESENTATIVE,
-        "Participant representative (e.g., next of kin, relative, guardian)",
-    ),
-    (HOSPITAL_NOTES, "Hospital notes"),
-    (OUTPATIENT_CARDS, "Outpatient cards"),
-    (NOT_APPLICABLE, "Not applicable (if missed)"),
-    (OTHER, "Other"),
-)
-
 LOST_INCOME_CHOICES = (
     (YES, "Yes"),
     (NO, "No (employed but did not lose earnings)"),
@@ -236,6 +224,24 @@ TIME_OFF_WORK_CHOICES = (
     (NOT_APPLICABLE, "Not applicable (includes not employed)"),
 )
 
+VISIT_INFO_SOURCE2 = (
+    (PATIENT, "Participant"),
+    (
+        PATIENT_REPRESENTATIVE,
+        "Participant representative (e.g., next of kin, relative, guardian)",
+    ),
+    (HOSPITAL_NOTES, "Hospital notes"),
+    (OUTPATIENT_CARDS, "Outpatient cards"),
+    (NOT_APPLICABLE, "Not applicable (if missed)"),
+    (OTHER, "Other"),
+)
+
+VISIT_REASON = (
+    (SCHEDULED, "Scheduled visit"),
+    (UNSCHEDULED, "Unscheduled visit"),
+    (MISSED_VISIT, "Missed visit"),
+)
+
 VISIT_UNSCHEDULED_REASON = (
     ("patient_unwell_outpatient", "Participant unwell (outpatient)"),
     ("patient_hospitalised", "Participant hospitalised"),
@@ -243,10 +249,4 @@ VISIT_UNSCHEDULED_REASON = (
     ("recurrence_symptoms", "Recurrence of symptoms"),
     (OTHER, "Other"),
     (NOT_APPLICABLE, "Not applicable"),
-)
-
-VISIT_REASON = (
-    (SCHEDULED, "Scheduled visit"),
-    (UNSCHEDULED, "Unscheduled visit"),
-    (MISSED_VISIT, "Missed visit"),
 )
