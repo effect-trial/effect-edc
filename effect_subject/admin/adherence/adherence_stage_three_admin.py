@@ -31,7 +31,7 @@ class AdherenceStageThreeAdmin(CrfModelAdmin):
             missed_doses_fieldset_tuple[1]
             | {
                 "description": (
-                    "Missed doses must be checked against the patient's pill "
+                    "Missed doses must be checked against the participant's pill "
                     "count and adherence diary."
                 )
             },

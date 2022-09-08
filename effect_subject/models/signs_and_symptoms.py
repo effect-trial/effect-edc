@@ -34,7 +34,9 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     current_sx = models.ManyToManyField(
         SiSx,
         related_name="sx",
-        verbose_name="Is patient currently experiencing any of the following signs/symptoms?",
+        verbose_name=(
+            "Is participant currently experiencing any of the following signs/symptoms?"
+        ),
     )
 
     current_sx_other = models.TextField(
@@ -60,7 +62,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
 
     headache_duration = edc_models.DurationDHField(
         verbose_name=(
-            "If patient currently has headache, for what duration have they had it for"
+            "If participant currently has headache, for what duration have they had it for"
         ),
         help_text="In days and/or hours.  Note: 1 day equivalent to 24 hours.</br>",
         null=True,
@@ -99,7 +101,9 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Has the patient been admitted due to any of these signs or symptoms?",
+        verbose_name=(
+            "Has the participant been admitted due to any of these signs or symptoms?"
+        ),
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,

@@ -48,7 +48,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
             },
         ),
         (
-            "Patient status",
+            "Participant status",
             {
                 "fields": (
                     "survival_status",

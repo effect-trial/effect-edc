@@ -23,7 +23,7 @@ class AeEffectModelMixin(models.Model):
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Was the patient admitted?",
+        verbose_name="Was the participant admitted?",
         max_length=15,
         choices=YES_NO,
     )

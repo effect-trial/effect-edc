@@ -60,7 +60,7 @@ class VitalSigns(
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Has the patient been admitted due to any of the above?",
+        verbose_name="Has the participant been admitted due to any of the above?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
