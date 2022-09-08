@@ -15,7 +15,6 @@ class Urinalysis(
     edc_models.BaseUuidModel,
 ):
     action_name = URINALYSIS_ACTION
-    tracking_identifier_prefix = "URN"
 
     lab_panel = urinalysis_panel
 

@@ -183,6 +183,7 @@ MIDDLEWARE.extend(
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
         "edc_adverse_event.middleware.DashboardMiddleware",
+        "edc_review_dashboard.middleware.DashboardMiddleware",
     ]
 )
 
@@ -201,6 +202,8 @@ TEMPLATES = [
                 "django.contrib.messages.context_processors.messages",
                 "edc_model_admin.context_processors.admin_theme",
                 "edc_constants.context_processor.constants",
+                "edc_appointment.context_processors.constants",
+                "edc_visit_tracking.context_processors.constants",
             ]
         },
     }
