@@ -184,6 +184,7 @@ MIDDLEWARE.extend(
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
         "edc_adverse_event.middleware.DashboardMiddleware",
+        "edc_listboard.middleware.DashboardMiddleware",
         "edc_review_dashboard.middleware.DashboardMiddleware",
     ]
 )
