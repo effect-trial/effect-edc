@@ -110,6 +110,7 @@ INSTALLED_APPS = [
     "edc_lab_dashboard.apps.AppConfig",
     "edc_label.apps.AppConfig",
     "edc_list_data.apps.AppConfig",
+    "edc_listboard.apps.AppConfig",
     "edc_identifier.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata.apps.AppConfig",
@@ -183,6 +184,8 @@ MIDDLEWARE.extend(
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
         "edc_adverse_event.middleware.DashboardMiddleware",
+        "edc_listboard.middleware.DashboardMiddleware",
+        "edc_review_dashboard.middleware.DashboardMiddleware",
     ]
 )
 
@@ -200,6 +203,9 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
                 "edc_model_admin.context_processors.admin_theme",
+                "edc_constants.context_processor.constants",
+                "edc_appointment.context_processors.constants",
+                "edc_visit_tracking.context_processors.constants",
             ]
         },
     }

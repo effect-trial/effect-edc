@@ -54,7 +54,7 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         audit_fieldset_tuple,
     )
 
-    list_display = ("subject_identifier", "tracking_identifier", "action_identifier")
+    list_display = ("subject_identifier", "action_identifier")
 
     radio_fields = {
         "admitted_date_estimated": admin.VERTICAL,
@@ -65,7 +65,7 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         "lp_performed": admin.VERTICAL,
     }
 
-    search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
+    search_fields = ("subject_identifier", "action_identifier")
 
     def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)

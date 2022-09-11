@@ -52,7 +52,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
         initial_data = super().get_changeform_initial_data(request)
         try:
             subject_visit = get_subject_visit_model_cls().objects.get(
-                id=request.GET.get(self.model.visit_model_attr())
+                id=request.GET.get(self.model.related_visit_model_attr())
             )
         except ObjectDoesNotExist:
             pass

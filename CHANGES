@@ -3,8 +3,9 @@ Changes
 
 unreleased
 ----------
-- bump to edc 0.4.12
-- bump to edc-csf 0.1.11
+- bump to edc 0.4.24
+- bump to edc-csf 0.1.12
+- bump to edc-microbiology 0.1.7
 - set themes for live and test
 - update urls for changes in edc-auth
 - replace usages of 'patient' with 'participant' (#446) on:
@@ -24,7 +25,9 @@ unreleased
     - Study Medication Follow-up form
     - Subject Visit form
     - Vital Signs form
-
+- remove `tracking_identifier` field from models and admin
+- replace `visit_model_attr` with `related_visit_model_attr`
+- add new context_processors and middleware to default settings
 
 [0.1.17]
 --------

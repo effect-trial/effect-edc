@@ -87,7 +87,6 @@ class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHis
         "status",
         "action_required",
         "report_type",
-        "tracking_identifier",
         "action_identifier",
         "user_created",
     )
@@ -98,7 +97,6 @@ class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHis
         "subject_identifier",
         "action_identifier",
         "short_description",
-        "tracking_identifier",
     ]
 
     def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:

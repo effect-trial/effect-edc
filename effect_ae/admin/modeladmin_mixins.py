@@ -69,7 +69,6 @@ class AeReviewModelAdminMixin(
 
     search_fields = [
         "action_identifier",
-        "ae_initial__tracking_identifier",
         "ae_initial__subject_identifier",
         "ae_initial__action_identifier",
     ]

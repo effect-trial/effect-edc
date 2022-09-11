@@ -10,6 +10,7 @@ class DashboardView(SubjectDashboardView):
     consent_model = "effect_consent.subjectconsent"
     navbar_selected_item = "consented_subject"
     visit_model = "effect_subject.subjectvisit"
+    history_button_label = "Audit"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
