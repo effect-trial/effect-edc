@@ -73,7 +73,9 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_returned = models.CharField(
-        verbose_name="Was participant adherence diary received and stored in patient records?",
+        verbose_name=(
+            "Was participant adherence diary received and stored in participant records?"
+        ),
         max_length=15,
         choices=YES_NO,
         null=False,
