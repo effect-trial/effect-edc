@@ -99,6 +99,12 @@ list_data = {
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
+    "effect_lists.dosemodificationreasons": [
+        ("per_protocol", "Per protocol"),
+        ("renal_adjustment", "Renal adjustment"),
+        ("toxicity", "Toxicity"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
     "effect_lists.drugs": [
         ("k", "K"),
         ("mg", "Mg"),

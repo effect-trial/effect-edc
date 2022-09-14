@@ -13,13 +13,27 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
     form = StudyMedicationFollowupForm
 
     fieldsets = (
-        (None, {"fields": ("subject_visit", "report_datetime", "modifications")}),
+        (
+            None,
+            {"fields": ("subject_visit", "report_datetime")},
+        ),
+        (
+            "Modifications",
+            {
+                "fields": (
+                    "modifications",
+                    "modifications_reason",
+                    "modifications_reason_other",
+                )
+            },
+        ),
         (
             "Fluconazole",
             {
                 "fields": (
-                    "flucon_dose",
+                    "flucon_modified",
                     "flucon_dose_datetime",
+                    "flucon_dose_rx",
                     "flucon_notes",
                 ),
             },
@@ -28,8 +42,13 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
             "Flucytosine",
             {
                 "fields": (
-                    "flucyt_dose",
+                    "flucyt_modified",
                     "flucyt_dose_datetime",
+                    "flucyt_dose_rx",
+                    "flucyt_dose_0400",
+                    "flucyt_dose_1000",
+                    "flucyt_dose_1600",
+                    "flucyt_dose_2200",
                     "flucyt_notes",
                 ),
             },
@@ -39,4 +58,8 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
 
     radio_fields = {
         "modifications": admin.VERTICAL,
+        "flucon_modified": admin.VERTICAL,
+        "flucyt_modified": admin.VERTICAL,
     }
+
+    filter_horizontal = ("modifications_reason",)
