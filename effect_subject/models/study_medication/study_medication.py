@@ -122,7 +122,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    flucyt_dose_rx = models.IntegerField(
+    flucyt_dose = models.IntegerField(
         verbose_name="Flucytosine dose prescribed",
         validators=[MinValueValidator(0)],
         null=True,

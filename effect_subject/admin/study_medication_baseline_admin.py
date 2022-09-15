@@ -42,7 +42,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
                     "flucyt_not_initiated_reason",
                     "flucyt_dose_datetime",
                     "flucyt_dose_expected",
-                    "flucyt_dose_rx",
+                    "flucyt_dose",
                     "flucyt_dose_0400",
                     "flucyt_dose_1000",
                     "flucyt_dose_1600",
