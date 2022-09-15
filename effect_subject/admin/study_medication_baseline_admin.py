@@ -29,7 +29,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
                     "flucon_initiated",
                     "flucon_not_initiated_reason",
                     "flucon_dose_datetime",
-                    "flucon_dose_rx",
+                    "flucon_dose",
                     "flucon_notes",
                 ),
             },

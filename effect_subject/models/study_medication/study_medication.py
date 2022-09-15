@@ -59,7 +59,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
 
-    flucon_dose_rx = models.IntegerField(
+    flucon_dose = models.IntegerField(
         verbose_name="Fluconazole dose",
         validators=[MinValueValidator(0), MaxValueValidator(1200)],
         null=True,

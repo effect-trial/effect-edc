@@ -33,7 +33,7 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
                 "fields": (
                     "flucon_modified",
                     "flucon_dose_datetime",
-                    "flucon_dose_rx",
+                    "flucon_dose",
                     "flucon_notes",
                 ),
             },
