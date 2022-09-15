@@ -11,7 +11,7 @@ from edc_constants.constants import (
 )
 
 CM_ON_CSF_METHODS = (
-    ("india_ink", "Positive microscopy with India Ink"),
+    ("india_ink", "Positive microscopy with India Ink or other method"),
     ("culture", "Positive culture"),
     (OTHER, "Other, please specify"),
     (NOT_APPLICABLE, "Not applicable"),
@@ -59,7 +59,7 @@ CSF_YES_NO_PENDING_NA = (
     (YES, YES),
     (NO, NO),
     (PENDING, "Pending results"),
-    (NOT_TESTED, "Additional testing not done"),
+    (NOT_TESTED, "No further testing done"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
