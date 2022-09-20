@@ -29,6 +29,10 @@ unreleased
 - remove `tracking_identifier` field from models and admin
 - replace `visit_model_attr` with `related_visit_model_attr`
 - add new context_processors and middleware to default settings
+- updates to Study Medication Baseline/Follow-up forms (towards #395)
+    - add 'flucon_next_dose' and 'flucyt_next_dose' fields
+    - add 'flucyt_dose_expected', 'flucyt_dose_0400/1000/1600/2200' fields
+    - add 'modifications_reason' and 'modifications_reason_other' fields (follow-up)
 
 [0.1.17]
 --------
