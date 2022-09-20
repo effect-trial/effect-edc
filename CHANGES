@@ -6,6 +6,7 @@ unreleased
 - bump to edc 0.4.24
 - bump to edc-csf 0.1.12
 - bump to edc-microbiology 0.1.7
+- bump to effect-form-validators 0.1.20
 - set themes for live and test
 - update urls for changes in edc-auth
 - replace usages of 'patient' with 'participant' (#446) on:
