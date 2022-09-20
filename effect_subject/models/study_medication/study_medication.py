@@ -6,6 +6,7 @@ from edc_model import models as edc_models
 
 from effect_lists.models import DoseModificationReasons
 
+from ...choices import FLUCON_NEXT_DOSE_CHOICES, FLUCYT_NEXT_DOSE_CHOICES
 from ...model_mixins import CrfModelMixin
 
 
@@ -73,6 +74,13 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
+    flucon_next_dose = models.CharField(
+        verbose_name="First fluconazole dose administered",
+        max_length=15,
+        choices=FLUCON_NEXT_DOSE_CHOICES,
+        default=NOT_APPLICABLE,
+    )
+
     flucon_notes = models.TextField(
         verbose_name="Fluconazole notes (if any)",
         max_length=250,
@@ -131,7 +139,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucyt_dose_0400 = models.IntegerField(
-        verbose_name="4 am dose",
+        verbose_name="Dose at 04:00",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
@@ -139,7 +147,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucyt_dose_1000 = models.IntegerField(
-        verbose_name="10 am dose",
+        verbose_name="Dose at 10:00",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
@@ -147,7 +155,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucyt_dose_1600 = models.IntegerField(
-        verbose_name="4 pm dose",
+        verbose_name="Dose at 16:00",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
@@ -155,11 +163,18 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucyt_dose_2200 = models.IntegerField(
-        verbose_name="10 pm dose",
+        verbose_name="Dose at 22:00",
         validators=[MinValueValidator(0)],
         null=True,
         blank=True,
         help_text="in mg",
+    )
+
+    flucyt_next_dose = models.CharField(
+        verbose_name="First flucytosine dose administered",
+        max_length=5,
+        choices=FLUCYT_NEXT_DOSE_CHOICES,
+        default=NOT_APPLICABLE,
     )
 
     flucyt_notes = models.TextField(

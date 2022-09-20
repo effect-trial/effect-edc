@@ -30,6 +30,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
                     "flucon_not_initiated_reason",
                     "flucon_dose_datetime",
                     "flucon_dose",
+                    "flucon_next_dose",
                     "flucon_notes",
                 ),
             },
@@ -47,6 +48,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
                     "flucyt_dose_1000",
                     "flucyt_dose_1600",
                     "flucyt_dose_2200",
+                    "flucyt_next_dose",
                     "flucyt_notes",
                 ),
             },
@@ -55,8 +57,10 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
-        "flucyt_initiated": admin.VERTICAL,
         "flucon_initiated": admin.VERTICAL,
+        "flucon_next_dose": admin.VERTICAL,
+        "flucyt_initiated": admin.VERTICAL,
+        "flucyt_next_dose": admin.VERTICAL,
     }
 
     def get_changeform_initial_data(self, request):

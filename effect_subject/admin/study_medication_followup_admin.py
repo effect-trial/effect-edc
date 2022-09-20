@@ -34,6 +34,7 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
                     "flucon_modified",
                     "flucon_dose_datetime",
                     "flucon_dose",
+                    "flucon_next_dose",
                     "flucon_notes",
                 ),
             },
@@ -49,6 +50,7 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
                     "flucyt_dose_1000",
                     "flucyt_dose_1600",
                     "flucyt_dose_2200",
+                    "flucyt_next_dose",
                     "flucyt_notes",
                 ),
             },
@@ -57,9 +59,11 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
     )
 
     radio_fields = {
-        "modifications": admin.VERTICAL,
+        "flucon_next_dose": admin.VERTICAL,
         "flucon_modified": admin.VERTICAL,
+        "flucyt_next_dose": admin.VERTICAL,
         "flucyt_modified": admin.VERTICAL,
+        "modifications": admin.VERTICAL,
     }
 
     filter_horizontal = ("modifications_reason",)
