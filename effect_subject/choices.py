@@ -1,3 +1,4 @@
+from edc_appointment.constants import TODAY, TOMORROW
 from edc_constants.constants import (
     FREE_OF_CHARGE,
     HOSPITAL_NOTES,
@@ -122,6 +123,20 @@ FLUCONAZOLE_DOSES_D14 = (
     ("800_mg_d", "Fluconazole, 800 mg/d (as per protocol)"),
     (OTHER, "Other (specify dose and reason below ...)"),
     ("taken_off_study_drug", "No, taken off study drug"),
+)
+
+FLUCON_NEXT_DOSE_CHOICES = (
+    (TODAY, "Today"),
+    (TOMORROW, "Tomorrow"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+FLUCYT_NEXT_DOSE_CHOICES = (
+    ("0400", "at 04:00"),
+    ("1000", "at 10:00"),
+    ("1600", "at 16:00"),
+    ("2200", "at 22:00"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 LOST_INCOME_CHOICES = (
