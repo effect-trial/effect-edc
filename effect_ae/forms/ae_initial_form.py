@@ -1,6 +1,6 @@
 from django import forms
 from django.utils.translation import gettext_lazy as _
-from edc_adverse_event.forms import AeInitialModelFormMixin
+from edc_adverse_event.modelform_mixins import AeInitialModelFormMixin
 
 from ..form_validators import AeInitialFormValidator
 from ..models import AeInitial

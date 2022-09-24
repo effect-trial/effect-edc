@@ -30,7 +30,7 @@ from effect_lists.models import SiSx
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
-from effect_subject.models import SubjectVisit
+from effect_subject.models import SignsAndSymptoms, SubjectVisit
 from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
 from effect_visit_schedule.constants import DAY01, DAY14
 
@@ -74,7 +74,8 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
 @tag("sisx")
 class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = SignsAndSymptomsFormValidator
+    form_validator_cls = SignsAndSymptomsFormValidator
+    form_validator_model_cls = SignsAndSymptoms
 
     def setUp(self):
         super().setUp()
@@ -955,8 +956,9 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             }
         )
 
-        form_cls = self.form_validator_default_form_cls
-        form_validator = form_cls(cleaned_data=cleaned_data)
+        form_validator = self.form_validator_cls(
+            cleaned_data=cleaned_data, model=SignsAndSymptoms
+        )
         form_validator.validate()
         self.assertDictEqual({}, form_validator._errors)
 
@@ -970,6 +972,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
+    @tag("1")
     def test_reportable_as_ae_not_required_if_sx_unknown_at_d14(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
             visit_code=DAY14, assessment_type=TELEPHONE
@@ -982,7 +985,9 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
                 "reportable_as_ae": NOT_APPLICABLE,
             }
         )
-        form_validator = SignsAndSymptomsFormValidator(cleaned_data=cleaned_data)
+        form_validator = self.form_validator_cls(
+            cleaned_data=cleaned_data, model=SignsAndSymptoms
+        )
         try:
             form_validator.validate()
         except forms.ValidationError as e:

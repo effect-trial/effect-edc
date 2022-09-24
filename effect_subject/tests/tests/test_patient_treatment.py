@@ -32,7 +32,8 @@ class TestPatientTreatment(EffectTestCaseMixin, TestCase):
 
 class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = PatientTreatmentFormValidator
+    form_validator_cls = PatientTreatmentFormValidator
+    form_validator_model_cls = PatientTreatment
 
     def setUp(self) -> None:
         super().setUp()
