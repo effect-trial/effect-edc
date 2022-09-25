@@ -972,7 +972,6 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             form_validator=self.validate_form_validator(cleaned_data)
         )
 
-    @tag("1")
     def test_reportable_as_ae_not_required_if_sx_unknown_at_d14(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
             visit_code=DAY14, assessment_type=TELEPHONE
