@@ -30,7 +30,8 @@ from effect_visit_schedule.constants import DAY01, DAY03, DAY14
 
 class TestSubjectVisitFormValidation(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = SubjectVisitFormValidator
+    form_validator_cls = SubjectVisitFormValidator
+    form_validator_model_cls = SubjectVisit
 
     def setUp(self) -> None:
         super().setUp()

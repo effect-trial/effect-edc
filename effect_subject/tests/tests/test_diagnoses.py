@@ -37,7 +37,8 @@ class TestDiagnoses(EffectTestCaseMixin, TestCase):
 
 class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = DiagnosesFormValidator
+    form_validator_cls = DiagnosesFormValidator
+    form_validator_model_cls = Diagnoses
 
     def setUp(self) -> None:
         super().setUp()
@@ -52,6 +53,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code or DAY14)
         cleaned_data = {
             "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
             "gi_side_effects": NO,
             "gi_side_effects_details": "",
             "has_diagnoses": NO,

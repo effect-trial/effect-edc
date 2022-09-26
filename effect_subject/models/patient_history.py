@@ -141,6 +141,6 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If OTHER, specify ...", max_length=150, blank=True, null=True
     )
 
-    class Meta(CrfModelMixin.Meta):
+    class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Patient History"
         verbose_name_plural = "Patient History"

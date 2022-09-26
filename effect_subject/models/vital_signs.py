@@ -2,7 +2,7 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_model import models as edc_models
 from edc_vitals.model_mixins import SimpleBloodPressureModelMixin
 from edc_vitals.models import WeightField

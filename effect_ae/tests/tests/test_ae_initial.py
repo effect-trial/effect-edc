@@ -14,13 +14,15 @@ from edc_utils import get_utcnow_as_date
 
 from effect_ae.choices import INPATIENT_STATUSES
 from effect_ae.form_validators import AeInitialFormValidator
+from effect_ae.models import AeInitial
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
 @tag("ae")
 class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
-    form_validator_default_form_cls = AeInitialFormValidator
+    form_validator_cls = AeInitialFormValidator
+    form_validator_model_cls = AeInitial
 
     inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
     study_drugs = ["flucon", "flucyt"]

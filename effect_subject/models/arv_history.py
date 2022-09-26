@@ -187,6 +187,6 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Is the CD4 date estimated?"
     )
 
-    class Meta(CrfModelMixin.Meta):
+    class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "ARV History"
         verbose_name_plural = "ARV History"
