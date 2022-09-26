@@ -2,7 +2,7 @@ from copy import deepcopy
 from typing import Optional
 
 from django.db.models import Q
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
 from edc_test_utils.validate_fields_exists_or_raise import (
     validate_fields_exists_or_raise,
