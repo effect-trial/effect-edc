@@ -28,7 +28,7 @@ class Migration(migrations.Migration):
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("effect_lists", "0001_initial"),
         ("edc_action_item", "0028_auto_20210203_0706"),
-        ("edc_protocol_violation", "0003_auto_20211104_1456"),
+        ("edc_protocol_incident", "0003_auto_20211104_1456"),
         ("sites", "0002_alter_domain_unique"),
     ]
 
@@ -353,7 +353,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.PROTECT,
                         related_name="+",
-                        to="edc_protocol_violation.actionsrequired",
+                        to="edc_protocol_incident.actionsrequired",
                     ),
                 ),
                 (
@@ -392,7 +392,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.PROTECT,
                         related_name="+",
-                        to="edc_protocol_violation.protocolviolations",
+                        to="edc_protocol_incident.protocolviolations",
                         verbose_name="Type of violation",
                     ),
                 ),
@@ -1054,7 +1054,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.DO_NOTHING,
                         related_name="+",
-                        to="edc_protocol_violation.actionsrequired",
+                        to="edc_protocol_incident.actionsrequired",
                     ),
                 ),
                 (
@@ -1108,7 +1108,7 @@ class Migration(migrations.Migration):
                         null=True,
                         on_delete=django.db.models.deletion.DO_NOTHING,
                         related_name="+",
-                        to="edc_protocol_violation.protocolviolations",
+                        to="edc_protocol_incident.protocolviolations",
                         verbose_name="Type of violation",
                     ),
                 ),

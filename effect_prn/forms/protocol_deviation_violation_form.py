@@ -1,5 +1,5 @@
 from django import forms
-from edc_protocol_violation.forms import ProtocolDeviationViolationForm as Base
+from edc_protocol_incident.forms import ProtocolDeviationViolationForm as Base
 
 from ..models import ProtocolDeviationViolation
 
