@@ -6,6 +6,7 @@ from edc_constants.constants import (
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    PER_PROTOCOL,
     STEROIDS,
     UNKNOWN,
     VISUAL_LOSS,
@@ -100,7 +101,7 @@ list_data = {
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.dosemodificationreasons": [
-        ("per_protocol", "Per protocol"),
+        (PER_PROTOCOL, "Per protocol"),
         ("renal_adjustment", "Renal adjustment"),
         ("toxicity", "Toxicity"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
