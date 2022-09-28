@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-unreleased
-----------
+[0.1.18]
+--------
 - bump to edc 0.4.34
 - bump to edc-csf 0.1.12
 - bump to edc-microbiology 0.1.8
@@ -30,7 +30,7 @@ unreleased
 - remove `tracking_identifier` field from models and admin
 - replace `visit_model_attr` with `related_visit_model_attr`
 - add new context_processors and middleware to default settings
-- updated Subject Screening form question choices for 'cm_in_csf' and 'cm_in_csf_method' (towards #440)
+- updates to Subject Screening form question choices for 'cm_in_csf' and 'cm_in_csf_method' (towards #440)
 - updates to Study Medication Baseline/Follow-up forms (towards #395, fixes #433)
     - add 'flucon_next_dose' and 'flucyt_next_dose' fields
     - add 'flucyt_dose_expected', 'flucyt_dose_0400/1000/1600/2200' fields
