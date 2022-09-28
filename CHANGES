@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- fix 'Screening' and 'Subjects' links missing from navbar
+
 [0.1.18]
 --------
 - bump to edc 0.4.34
