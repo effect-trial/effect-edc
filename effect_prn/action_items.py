@@ -5,7 +5,7 @@ from edc_adverse_event.constants import DEATH_REPORT_ACTION
 from edc_constants.constants import HIGH_PRIORITY, TBD, YES
 from edc_ltfu.constants import LTFU_ACTION
 from edc_offstudy.constants import END_OF_STUDY_ACTION
-from edc_protocol_violation.action_items import (
+from edc_protocol_incident.action_items import (
     ProtocolDeviationViolationAction as BaseProtocolDeviationViolationAction,
 )
 
