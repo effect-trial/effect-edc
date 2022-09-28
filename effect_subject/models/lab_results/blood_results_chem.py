@@ -1,4 +1,4 @@
-from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_egfr.model_mixins import EgfrModelMixin
 from edc_lab.model_mixins import CrfWithRequisitionModelMixin
 from edc_lab_results.model_mixins import (
@@ -28,6 +28,7 @@ from ...constants import BLOOD_RESULTS_CHEM_ACTION
 
 class BloodResultsChem(
     CrfWithActionModelMixin,
+    CrfWithRequisitionModelMixin,
     AlbuminModelMixin,
     AlpModelMixin,
     AltModelMixin,
@@ -42,12 +43,11 @@ class BloodResultsChem(
     UreaModelMixin,
     UricAcidModelMixin,
     GgtModelMixin,
-    CrfWithRequisitionModelMixin,
     BloodResultsModelMixin,
     edc_models.BaseUuidModel,
 ):
     action_name = BLOOD_RESULTS_CHEM_ACTION
-    tracking_identifier_prefix = "CH"
+
     lab_panel = chemistry_panel
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

@@ -6,6 +6,7 @@ from edc_constants.constants import (
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
+    PER_PROTOCOL,
     STEROIDS,
     UNKNOWN,
     VISUAL_LOSS,
@@ -97,6 +98,12 @@ list_data = {
         ("lopinavir_r", "Lopinavir/r"),
         ("abacavir", "Abacavir"),
         (UNKNOWN, "Unknown"),
+        (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
+    ],
+    "effect_lists.dosemodificationreasons": [
+        (PER_PROTOCOL, "Per protocol"),
+        ("renal_adjustment", "Renal adjustment"),
+        ("toxicity", "Toxicity"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],
     "effect_lists.drugs": [

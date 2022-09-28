@@ -11,7 +11,7 @@ from edc_adverse_event.modeladmin_mixins.ae_initial import (
     fieldset_part_four,
     fieldset_part_three,
 )
-from edc_model_admin import SimpleHistoryAdmin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from ..admin_site import effect_ae_admin
 from ..forms import AeInitialForm

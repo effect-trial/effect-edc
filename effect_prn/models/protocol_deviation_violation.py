@@ -1,13 +1,10 @@
 from django.db import models
 from edc_action_item.models import ActionItem, ActionModelMixin
 from edc_constants.choices import NOT_APPLICABLE
-from edc_identifier.model_mixins import (
-    NonUniqueSubjectIdentifierFieldMixin,
-    TrackingModelMixin,
-)
+from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel
-from edc_protocol_violation.constants import PROTOCOL_DEVIATION_VIOLATION_ACTION
-from edc_protocol_violation.model_mixins import ProtocolDeviationViolationModelMixin
+from edc_protocol_incident.constants import PROTOCOL_DEVIATION_VIOLATION_ACTION
+from edc_protocol_incident.model_mixins import ProtocolDeviationViolationModelMixin
 from edc_sites.models import SiteModelMixin
 
 from ..choices import ACTION_REQUIRED, PROTOCOL_VIOLATION
@@ -18,7 +15,6 @@ class ProtocolDeviationViolation(
     NonUniqueSubjectIdentifierFieldMixin,
     SiteModelMixin,
     ActionModelMixin,
-    TrackingModelMixin,
     BaseUuidModel,
 ):
 

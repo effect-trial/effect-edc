@@ -31,8 +31,6 @@ env = environ.Env(
     DEFENDER_ENABLED=(bool, False),
     EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=(bool, True),
     EDC_LABEL_BROWSER_PRINT_PAGE_AUTO_BACK=(bool, True),
-    SIMPLE_HISTORY_PERMISSIONS_ENABLED=(bool, False),
-    SIMPLE_HISTORY_REVERT_DISABLED=(bool, False),
     TWILIO_ENABLED=(bool, False),
 )
 
@@ -81,6 +79,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "defender",
     "multisite",
+    "fontawesomefree",
     "django_crypto_fields.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "django_extensions",
@@ -109,6 +108,7 @@ INSTALLED_APPS = [
     "edc_lab_dashboard.apps.AppConfig",
     "edc_label.apps.AppConfig",
     "edc_list_data.apps.AppConfig",
+    "edc_listboard.apps.AppConfig",
     "edc_identifier.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata.apps.AppConfig",
@@ -122,7 +122,7 @@ INSTALLED_APPS = [
     "edc_pharmacy.apps.AppConfig",
     "edc_pdutils.apps.AppConfig",
     "edc_protocol.apps.AppConfig",
-    "edc_protocol_violation.apps.AppConfig",
+    "edc_protocol_incident.apps.AppConfig",
     "edc_prn.apps.AppConfig",
     "edc_randomization.apps.AppConfig",
     "edc_reference.apps.AppConfig",
@@ -182,7 +182,8 @@ MIDDLEWARE.extend(
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
         "edc_adverse_event.middleware.DashboardMiddleware",
-        # 'simple_history.middleware.HistoryRequestMiddleware'
+        "edc_listboard.middleware.DashboardMiddleware",
+        "edc_review_dashboard.middleware.DashboardMiddleware",
     ]
 )
 
@@ -199,6 +200,10 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "edc_model_admin.context_processors.admin_theme",
+                "edc_constants.context_processor.constants",
+                "edc_appointment.context_processors.constants",
+                "edc_visit_tracking.context_processors.constants",
             ]
         },
     }
@@ -385,9 +390,6 @@ EDC_RANDOMIZATION_ASSIGNMENT_DESCRIPTION_MAP = {
 # edc-sites
 EDC_SITES_MODULE_NAME = env.str("EDC_SITES_MODULE_NAME")
 
-# django-simple-history
-SIMPLE_HISTORY_REVERT_ENABLED = False
-
 # django-multisite
 CACHE_MULTISITE_KEY_PREFIX = APP_NAME
 SILENCED_SYSTEM_CHECKS = ["sites.E101"]
@@ -430,8 +432,7 @@ AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
 EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or os.path.expanduser("~/")
 
 # django_simple_history
-SIMPLE_HISTORY_PERMISSIONS_ENABLED = env.str("SIMPLE_HISTORY_PERMISSIONS_ENABLED")
-SIMPLE_HISTORY_REVERT_DISABLED = env.str("SIMPLE_HISTORY_REVERT_DISABLED")
+SIMPLE_HISTORY_ENFORCE_HISTORY_MODEL_PERMISSIONS = True
 
 FQDN = env.str("DJANGO_FQDN")  # ???
 INDEX_PAGE = env.str("DJANGO_INDEX_PAGE")

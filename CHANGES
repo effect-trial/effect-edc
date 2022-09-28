@@ -1,5 +1,42 @@
 Changes
-=======
++++++++
+
+[0.1.18]
+--------
+- bump to edc 0.4.34
+- bump to edc-csf 0.1.12
+- bump to edc-microbiology 0.1.8
+- bump to effect-form-validators 0.1.21
+- set themes for live and test
+- update urls for changes in edc-auth
+- replace usages of 'patient' with 'participant' (#446) on:
+    - AE form
+    - ARV History form
+    - ARV Treatment form
+    - Adherence form
+    - Adherence D1 form
+    - Adherence D14 form
+    - Adherence D14+ form
+    - Mental Status form
+    - Patient History form
+    - Patient Treatment form
+    - Significant Diagnoses form
+    - Signs and Symptoms form
+    - Study Medication Baseline form
+    - Study Medication Follow-up form
+    - Subject Visit form
+    - Vital Signs form
+- fix Day 1 forms prompting "This field is required" for Action identifier (#470)
+- remove `tracking_identifier` field from models and admin
+- replace `visit_model_attr` with `related_visit_model_attr`
+- add new context_processors and middleware to default settings
+- updates to Subject Screening form question choices for 'cm_in_csf' and 'cm_in_csf_method' (towards #440)
+- updates to Study Medication Baseline/Follow-up forms (towards #395, fixes #433)
+    - add 'flucon_next_dose' and 'flucyt_next_dose' fields
+    - add 'flucyt_dose_expected', 'flucyt_dose_0400/1000/1600/2200' fields
+    - add 'modifications_reason' and 'modifications_reason_other' fields (follow-up)
+    - allow 'flucyt_modified' to be NA, or flucytosine dose to be dropped to 0 at Day 14
+    - additional validation checks
 
 [0.1.17]
 --------

@@ -117,7 +117,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_navbar.apps.AppConfig",
         "edc_notification.apps.AppConfig",
         "edc_offstudy.apps.AppConfig",
-        "edc_protocol_violation.apps.AppConfig",
+        "edc_protocol_incident.apps.AppConfig",
         "edc_visit_tracking.apps.AppConfig",
         "edc_visit_schedule.apps.AppConfig",
         "edc_pdutils.apps.AppConfig",

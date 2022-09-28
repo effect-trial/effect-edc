@@ -1,9 +1,10 @@
 from django.contrib import admin
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 from edc_identifier import SubjectIdentifierError, is_subject_identifier_or_raise
-from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from effect_screening.models.subject_screening import SubjectScreening
 from effect_subject.models import SubjectVisit

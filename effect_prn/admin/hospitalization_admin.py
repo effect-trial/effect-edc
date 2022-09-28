@@ -1,9 +1,10 @@
 from typing import Tuple
 
 from django.contrib import admin
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
-from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from ..admin_site import effect_prn_admin
 from ..forms import HospitalizationForm
@@ -53,7 +54,7 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         audit_fieldset_tuple,
     )
 
-    list_display = ("subject_identifier", "tracking_identifier", "action_identifier")
+    list_display = ("subject_identifier", "action_identifier")
 
     radio_fields = {
         "admitted_date_estimated": admin.VERTICAL,
@@ -64,7 +65,7 @@ class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         "lp_performed": admin.VERTICAL,
     }
 
-    search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
+    search_fields = ("subject_identifier", "action_identifier")
 
     def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)

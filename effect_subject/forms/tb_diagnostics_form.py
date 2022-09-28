@@ -1,6 +1,6 @@
 from django import forms
+from edc_crf.crf_form_validator import CrfFormValidator
 from edc_crf.modelform_mixins import CrfModelFormMixin
-from edc_form_validators import FormValidator
 from edc_form_validators.extra_mixins import StudyDayFormValidatorMixin
 from edc_microbiology.form_validators import (
     BloodCultureFormValidatorMixin,
@@ -22,7 +22,7 @@ class TbDiagnosticsFormValidator(
     SputumAfbFormValidatorMixin,
     BloodCultureFormValidatorMixin,
     HistopathologyFormValidatorMixin,
-    FormValidator,
+    CrfFormValidator,
 ):
     def clean(self):
         self.validate_study_day_with_datetime(

@@ -2,9 +2,10 @@ from typing import Tuple
 
 from django.contrib import admin
 from django.utils.html import format_html
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
-from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from effect_ae.models import DeathReport
 
@@ -64,7 +65,6 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         "subject_identifier",
         "dashboard",
         "offschedule_datetime",
-        "tracking_identifier",
         "action_identifier",
     )
 
@@ -75,7 +75,7 @@ class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
         "transferred_consent": admin.VERTICAL,
     }
 
-    search_fields = ("subject_identifier", "action_identifier", "tracking_identifier")
+    search_fields = ("subject_identifier", "action_identifier")
 
     def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)

@@ -5,6 +5,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import render_to_string
 from django.urls.base import reverse
 from django.utils.html import format_html
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fieldset_tuple
 from edc_action_item.modeladmin_mixins import ActionItemModelAdminMixin
 from edc_adverse_event.forms import AeFollowupForm
@@ -17,7 +18,6 @@ from edc_adverse_event.templatetags.edc_adverse_event_extras import (
     select_description_template,
 )
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
-from edc_model_admin import audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 
 
@@ -69,7 +69,6 @@ class AeReviewModelAdminMixin(
 
     search_fields = [
         "action_identifier",
-        "ae_initial__tracking_identifier",
         "ae_initial__subject_identifier",
         "ae_initial__action_identifier",
     ]

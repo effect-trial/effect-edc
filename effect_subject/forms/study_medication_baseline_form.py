@@ -11,3 +11,9 @@ class StudyMedicationBaselineForm(CrfModelFormMixin, forms.ModelForm):
     class Meta:
         model = StudyMedicationBaseline
         fields = "__all__"
+        help_texts = {
+            "flucyt_dose": (
+                "in mg/d. If differs from expected dose, "
+                "please specify reason(s) in `Flucytosine notes`."
+            ),
+        }

@@ -22,7 +22,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_issued = models.CharField(
-        verbose_name="Was an adherence diary issued to the patient?",
+        verbose_name="Was an adherence diary issued to the participant?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -73,7 +73,9 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_returned = models.CharField(
-        verbose_name="Was patient adherence diary received and stored in patient records?",
+        verbose_name=(
+            "Was participant adherence diary received and stored in participant records?"
+        ),
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -83,7 +85,9 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     diary_returned_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     diary_match_medication = models.CharField(
-        verbose_name="Did the patient adherence diary match the medication reconciliation?",
+        verbose_name=(
+            "Did the participant adherence diary match the medication reconciliation?"
+        ),
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -95,7 +99,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     linked_local_clinic = models.CharField(
-        verbose_name="Has the patient linked up with their local clinic?",
+        verbose_name="Has the participant linked up with their local clinic?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -107,7 +111,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     on_flucon = models.CharField(
-        verbose_name="Is the patient receiving Fluconazole?",
+        verbose_name="Is the participant receiving Fluconazole?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -117,7 +121,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     on_flucon_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     on_arv = models.CharField(
-        verbose_name="Is the patient receiving ARVs?",
+        verbose_name="Is the participant receiving ARVs?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -127,7 +131,9 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     on_arv_reason_no = edc_models.OtherCharField(verbose_name=IF_NO_SPECIFY_REASON)
 
     opinion_flucon_adherent = models.CharField(
-        verbose_name="In the clinician’s opinion, is the patient 90% adherent to Fluconazole?",
+        verbose_name=(
+            "In the clinician’s opinion, is the participant 90% adherent to fluconazole?"
+        ),
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -135,7 +141,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     opinion_arv_adherent = models.CharField(
-        verbose_name="In the clinician’s opinion, is the patient 90% adherent to ART?",
+        verbose_name="In the clinician’s opinion, is the participant 90% adherent to ART?",
         max_length=15,
         choices=YES_NO,
         null=False,

@@ -1,37 +1,28 @@
+from edc_appointment.constants import TODAY, TOMORROW
 from edc_constants.constants import (
-    ABSENT,
-    AWAITING_RESULTS,
-    DEAD,
     FREE_OF_CHARGE,
-    MICROSCOPY,
+    HOSPITAL_NOTES,
+    NEXT_OF_KIN,
     NO,
-    NO_EXAM,
-    NORMAL,
     NOT_APPLICABLE,
     NOT_DONE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
-    PRESENT,
-    RAPID_TEST,
+    OUTPATIENT_CARDS,
+    PATIENT,
+    PATIENT_REPRESENTATIVE,
     YES,
 )
-from edc_reportable.constants import GRADE3, GRADE4
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
 from .constants import (
-    ALIVE_UNWELL,
-    APPT,
-    APPT_OTHER,
     ART_CONTINUED,
     ART_STOPPED,
     CARING_FOR_CHILDREN,
-    DECREASED,
     HOUSE_MAINTENANCE,
     INSURANCE,
     NOTHING,
     OWN_CASH,
-    PRESENT_WITH_REINFORCEMENT,
-    REDUCED,
     RELATIVE,
     STUDYING,
     WORKING,
@@ -56,41 +47,21 @@ ACTIVITY_CHOICES_NA = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-ANKLE_REFLEX_CHOICES = (
-    (PRESENT, "Present"),
-    (PRESENT_WITH_REINFORCEMENT, "Present/Reinforcement"),
-    (ABSENT, "Absent"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
-ANTIBIOTIC_CHOICES = (
-    ("amoxicillin", "Amoxicillin"),
-    ("ceftriaxone", "Ceftriaxone"),
-    ("ciprofloxacin", "Ciprofloxacin"),
-    ("doxycycline", "Doxycycline"),
-    ("erythromycin", "Erythromycin (contraindicated with high dose fluconazole)"),
-    ("flucloxacillin", "Flucloxacillin"),
-    (
-        OTHER,
-        "Other (avoid with concomitant high dose fluconazole), please specify below ...",
-    ),
-)
-
 ARV_DECISION = (
     (NOT_APPLICABLE, "Not applicable"),
     (ART_CONTINUED, "ART continued"),
     (ART_STOPPED, "ART stopped"),
 )
 
-CM_TX_CHOICES = (
-    ("1w_amb_5fc", "1 week AmB + 5FC"),
+ASSESSMENT_WHO_CHOICES = (
+    (PATIENT, "Participant"),
+    (NEXT_OF_KIN, "Next of kin"),
+    (NOT_APPLICABLE, "Not applicable (if missed)"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-    (NOT_APPLICABLE, "Not applicable"),
 )
 
-DYSLIPIDAEMIA_RX_CHOICES = (
-    ("atorvastatin", "Atorvastatin"),
-    ("rosuvastatin", "Rosuvastatin"),
+CM_TX_CHOICES = (
+    ("1w_amb_5fc", "1 week AmB + 5FC"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
@@ -154,27 +125,18 @@ FLUCONAZOLE_DOSES_D14 = (
     ("taken_off_study_drug", "No, taken off study drug"),
 )
 
-FOLLOWUP_REASONS = (
-    (APPT, "Study appointment"),
-    (APPT_OTHER, "Other routine appointment"),
-    (UNSCHEDULED, "Unschedule visit"),
-    (OTHER, "Other reason, specify below ..."),
-)
-
-GRADE34_CHOICES = (
-    (GRADE3, "Grade 3"),
-    (GRADE4, "Grade 4"),
+FLUCON_NEXT_DOSE_CHOICES = (
+    (TODAY, "Today"),
+    (TOMORROW, "Tomorrow"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-
-FUNDOSCOPY_CHOICES = (
-    ("no_retinopathy", "No retinopathy"),
-    ("background_retinopathy", "Background retinopathy"),
-    ("pre_proliferative_retinopathy", "Pre-proliferative retinopathy"),
-    ("proliferative_retinopathy", "Proliferative retinopathy"),
-    ("maculopathy", "Maculopathy"),
-    (NO_EXAM, "Exam not performed"),
+FLUCYT_NEXT_DOSE_CHOICES = (
+    ("0400", "at 04:00"),
+    ("1000", "at 10:00"),
+    ("1600", "at 16:00"),
+    ("2200", "at 22:00"),
+    (NOT_APPLICABLE, "Not applicable"),
 )
 
 LOST_INCOME_CHOICES = (
@@ -186,12 +148,6 @@ LOST_INCOME_CHOICES = (
 LP_REASON = (
     ("scheduled_per_protocol", "Scheduled per protocol"),
     ("clincal_deterioration", "Suspected Cryptococcal meningitis / Suspected IRIS"),
-)
-
-MALARIA_TEST_CHOICES = (
-    (RAPID_TEST, "Rapid test"),
-    (MICROSCOPY, "Microscopy"),
-    (NOT_APPLICABLE, "Not applicable"),
 )
 
 MEASURED_EST_CHOICES = (("measured", "Measured (weighed)"), ("estimated", "Estimated"))
@@ -233,13 +189,6 @@ MODIFIED_RANKIN_SCORE_CHOICES = (
     (NOT_DONE, "Not done"),
 )
 
-MONOFILAMENT_CHOICES = (
-    (NORMAL, "Normal"),
-    (REDUCED, "Reduced"),
-    (ABSENT, "Absent"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
 NEGATIVE_TX_CHOICES = (
     ("deferred_local_clinic", "Deferred to local clinic"),
     ("contraindicated", "Contraindicated"),
@@ -261,26 +210,6 @@ PAYEE_CHOICES_DRUGS = (
     (RELATIVE, "Relative or others paying for drugs"),
     (FREE_OF_CHARGE, "Free drugs from the pharmacy"),
     (NOT_APPLICABLE, "Not applicable"),
-)
-
-PRESENT_ABSENT_NOEXAM = (
-    (PRESENT, "Present"),
-    (ABSENT, "Absent"),
-    (NO_EXAM, "Exam not performed"),
-)
-
-PRESENT_ABSENT_NOEXAM_NDS = (
-    (PRESENT, "Present"),
-    (PRESENT_WITH_REINFORCEMENT, "Present with reinforcement"),
-    (ABSENT, "Absent"),
-    (NO_EXAM, "Exam not performed"),
-)
-# 0 = Present   1 = Present with reinforcement   2 = Absent
-
-PATIENT_STATUSES = (
-    ("alive_well", "Alive and well"),
-    (ALIVE_UNWELL, "Alive, but unwell"),
-    (DEAD, "Deceased"),
 )
 
 STEROID_CHOICES = (
@@ -310,40 +239,16 @@ TIME_OFF_WORK_CHOICES = (
     (NOT_APPLICABLE, "Not applicable (includes not employed)"),
 )
 
-TRANSPORT_CHOICES = (
-    ("bus", "Bus"),
-    ("train", "Train"),
-    ("ambulance", "Ambulance"),
-    ("private_taxi", "Private taxi"),
-    ("own_bicycle", "Own bicycle"),
-    ("hired_motorbike", "Hired motorbike"),
-    ("own_car", "Own car"),
-    ("own_motorbike", "Own motorbike"),
-    ("hired_bicycle", "Hired bicycle"),
-    ("foot", "Foot"),
-    (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
-)
-
-ULCERATION_CHOICES = (
-    (ABSENT, "Absent"),
-    (PRESENT, "Present"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
-VIBRATION_PERCEPTION_CHOICES = (
-    (PRESENT, "Present"),
-    (DECREASED, "Decreased"),
-    (ABSENT, "Absent"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
-VISIT_UNSCHEDULED_REASON = (
-    ("patient_unwell_outpatient", "Patient unwell (outpatient)"),
-    ("patient_hospitalised", "Patient hospitalised"),
-    ("routine_non_study", "Routine appointment (non-study)"),
-    ("recurrence_symptoms", "Recurrence of symptoms"),
+VISIT_INFO_SOURCE2 = (
+    (PATIENT, "Participant"),
+    (
+        PATIENT_REPRESENTATIVE,
+        "Participant representative (e.g., next of kin, relative, guardian)",
+    ),
+    (HOSPITAL_NOTES, "Hospital notes"),
+    (OUTPATIENT_CARDS, "Outpatient cards"),
+    (NOT_APPLICABLE, "Not applicable (if missed)"),
     (OTHER, "Other"),
-    (NOT_APPLICABLE, "Not applicable"),
 )
 
 VISIT_REASON = (
@@ -352,17 +257,11 @@ VISIT_REASON = (
     (MISSED_VISIT, "Missed visit"),
 )
 
-WEIGHT_DETERMINATION = (("estimated", "Estimated"), ("measured", "Measured"))
-
-YES_NO_AWAITING_RESULTS = (
-    (YES, YES),
-    (NO, NO),
-    (AWAITING_RESULTS, "Awaiting results"),
-)
-
-
-YES_NO_NO_EXAM = (
-    (YES, YES),
-    (NO, NO),
-    (NO_EXAM, "Exam not performed"),
+VISIT_UNSCHEDULED_REASON = (
+    ("patient_unwell_outpatient", "Participant unwell (outpatient)"),
+    ("patient_hospitalised", "Participant hospitalised"),
+    ("routine_non_study", "Routine appointment (non-study)"),
+    ("recurrence_symptoms", "Recurrence of symptoms"),
+    (OTHER, "Other"),
+    (NOT_APPLICABLE, "Not applicable"),
 )

@@ -1,7 +1,7 @@
 from django.db import models
 from edc_constants.choices import YES_NO_NA, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE
-from edc_crf.crf_with_action_model_mixin import CrfWithActionModelMixin
+from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_model import models as edc_models
 from edc_model.utils import timedelta_from_duration_dh_field
 
@@ -11,13 +11,8 @@ from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACT
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
+
     action_name = SX_ACTION
-
-    tracking_identifier_prefix = "SX"
-
-    action_identifier = models.CharField(max_length=50, unique=True, null=True)
-
-    tracking_identifier = models.CharField(max_length=30, unique=True, null=True)
 
     any_sx = models.CharField(
         verbose_name=(
@@ -39,7 +34,9 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     current_sx = models.ManyToManyField(
         SiSx,
         related_name="sx",
-        verbose_name="Is patient currently experiencing any of the following signs/symptoms?",
+        verbose_name=(
+            "Is participant currently experiencing any of the following signs/symptoms?"
+        ),
     )
 
     current_sx_other = models.TextField(
@@ -65,7 +62,7 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
 
     headache_duration = edc_models.DurationDHField(
         verbose_name=(
-            "If patient currently has headache, for what duration have they had it for"
+            "If participant currently has headache, for what duration have they had it for"
         ),
         help_text="In days and/or hours.  Note: 1 day equivalent to 24 hours.</br>",
         null=True,
@@ -104,7 +101,9 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
     )
 
     patient_admitted = models.CharField(
-        verbose_name="Has the patient been admitted due to any of these signs or symptoms?",
+        verbose_name=(
+            "Has the participant been admitted due to any of these signs or symptoms?"
+        ),
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,

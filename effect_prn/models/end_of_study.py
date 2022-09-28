@@ -2,7 +2,6 @@ from django.db import models
 from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_identifier.model_mixins import TrackingModelMixin
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_offstudy.constants import END_OF_STUDY_ACTION
@@ -12,11 +11,9 @@ from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 from effect_lists.models import LateExclusionCriteria, OffstudyReasons
 
 
-class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, TrackingModelMixin, BaseUuidModel):
+class EndOfStudy(OffScheduleModelMixin, ActionModelMixin, BaseUuidModel):
 
     action_name = END_OF_STUDY_ACTION
-
-    tracking_identifier_prefix = "ST"
 
     offschedule_datetime = models.DateTimeField(
         verbose_name="Date participant was terminated from the study",

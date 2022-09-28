@@ -2,10 +2,11 @@ from typing import Tuple
 
 from django.contrib import admin
 from django.utils.html import format_html
+from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_constants.constants import CLOSED, OPEN
-from edc_model_admin import SimpleHistoryAdmin, audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
+from edc_model_admin.history import SimpleHistoryAdmin
 
 from ..admin_site import effect_prn_admin
 from ..forms import ProtocolDeviationViolationForm
@@ -86,7 +87,6 @@ class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHis
         "status",
         "action_required",
         "report_type",
-        "tracking_identifier",
         "action_identifier",
         "user_created",
     )
@@ -97,7 +97,6 @@ class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHis
         "subject_identifier",
         "action_identifier",
         "short_description",
-        "tracking_identifier",
     ]
 
     def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:

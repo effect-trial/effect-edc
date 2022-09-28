@@ -4,10 +4,12 @@ from edc_visit_schedule.constants import DAY1
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms.clinical_note_form import ClinicalNoteFormValidator
+from effect_subject.models import ClinicalNote
 
 
 class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
-    form_validator_default_form_cls = ClinicalNoteFormValidator
+    form_validator_cls = ClinicalNoteFormValidator
+    form_validator_model_cls = ClinicalNote
 
     def get_cleaned_data(self, visit_code: str):
         subject_visit = self.get_subject_visit(visit_code=visit_code)
