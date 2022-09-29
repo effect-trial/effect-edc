@@ -11,9 +11,9 @@ from effect_subject.choices import CM_TX_CHOICES, NEGATIVE_TX_CHOICES, STEROID_C
 from ..model_mixins import CrfModelMixin
 
 
-class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
+class ParticipantTreatment(CrfModelMixin, edc_models.BaseUuidModel):
 
-    # Patient Treatment CRF (p4)
+    # Participant Treatment CRF (p4)
     lp_completed = models.CharField(
         verbose_name="LP completed?",
         max_length=15,
@@ -191,5 +191,5 @@ class PatientTreatment(CrfModelMixin, edc_models.BaseUuidModel):
     other_drugs_given_other = edc_models.OtherCharField()
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Patient Treatment"
-        verbose_name_plural = "Patient Treatment"
+        verbose_name = "Participant Treatment"
+        verbose_name_plural = "Participant Treatment"

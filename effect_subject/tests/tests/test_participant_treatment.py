@@ -11,12 +11,14 @@ from model_bakery import baker
 
 from effect_lists.models import Antibiotics, Drugs, TbTreatments
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_subject.forms import PatientTreatmentForm
-from effect_subject.forms.patient_treatment_form import PatientTreatmentFormValidator
-from effect_subject.models import PatientTreatment, SubjectVisit
+from effect_subject.forms import ParticipantTreatmentForm
+from effect_subject.forms.participant_treatment_form import (
+    ParticipantTreatmentFormValidator,
+)
+from effect_subject.models import ParticipantTreatment, SubjectVisit
 
 
-class TestPatientTreatment(EffectTestCaseMixin, TestCase):
+class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
         self.subject_visit = self.get_subject_visit()
@@ -25,15 +27,17 @@ class TestPatientTreatment(EffectTestCaseMixin, TestCase):
         subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
         subject_visit = self.get_next_subject_visit(subject_visit)  # d9
         subject_visit = self.get_next_subject_visit(subject_visit)  # d14
-        obj = baker.make_recipe("effect_subject.patienttreatment", subject_visit=subject_visit)
-        form = PatientTreatmentForm(instance=obj)
+        obj = baker.make_recipe(
+            "effect_subject.participanttreatment", subject_visit=subject_visit
+        )
+        form = ParticipantTreatmentForm(instance=obj)
         form.is_valid()
 
 
-class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
+class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
-    form_validator_cls = PatientTreatmentFormValidator
-    form_validator_model_cls = PatientTreatment
+    form_validator_cls = ParticipantTreatmentFormValidator
+    form_validator_model_cls = ParticipantTreatment
 
     def setUp(self) -> None:
         super().setUp()
@@ -84,7 +88,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs_given_other": "",
         }
 
-        validate_fields_exists_or_raise(cleaned_data, PatientTreatment)
+        validate_fields_exists_or_raise(cleaned_data, ParticipantTreatment)
 
         return cleaned_data
 
@@ -130,7 +134,7 @@ class TestPatientTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             "other_drugs_given_other": "",
         }
 
-        validate_fields_exists_or_raise(cleaned_data, PatientTreatment)
+        validate_fields_exists_or_raise(cleaned_data, ParticipantTreatment)
 
         return cleaned_data
 
