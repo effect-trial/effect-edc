@@ -53,7 +53,7 @@ crfs_missed = FormsCollection(
 
 crfs_d01 = FormsCollection(
     Crf(show_order=50, model="effect_subject.arvhistory"),
-    Crf(show_order=60, model="effect_subject.patienthistory"),
+    Crf(show_order=60, model="effect_subject.participanthistory"),
     Crf(show_order=70, model="effect_subject.vitalsigns"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),

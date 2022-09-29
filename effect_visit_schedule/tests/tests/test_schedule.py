@@ -90,7 +90,7 @@ class TestVisitSchedule(TestCase):
         expected = {
             "1000": [
                 "effect_subject.arvhistory",
-                "effect_subject.patienthistory",
+                "effect_subject.participanthistory",
                 "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
