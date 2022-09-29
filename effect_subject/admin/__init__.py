@@ -19,7 +19,7 @@ from .lab_results import BloodResultsChemAdmin, BloodResultsFbcAdmin
 from .lp_csf_admin import LpCsfAdmin
 from .medication_adherence_admin import MedicationAdherenceAdmin
 from .mental_status_admin import MentalStatusAdmin
-from .patient_history_admin import PatientHistoryAdmin
+from .participant_history_admin import ParticipantHistoryAdmin
 from .patient_treatment_admin import PatientTreatmentAdmin
 from .signs_and_symptoms_admin import SignsAndSymptomsAdmin
 from .study_medication_baseline_admin import StudyMedicationBaselineAdmin
