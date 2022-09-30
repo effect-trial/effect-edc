@@ -6,9 +6,9 @@ from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model import models as edc_models
 from edc_offstudy.model_mixins import OffstudyNonCrfModelMixin
 from edc_reference.model_mixins import ReferenceModelMixin
-from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.models import SiteModelMixin
 from edc_visit_tracking.choices import ASSESSMENT_TYPES
+from edc_visit_tracking.managers import VisitCurrentSiteManager
 from edc_visit_tracking.managers import VisitModelManager as BaseVisitModelManager
 from edc_visit_tracking.model_mixins import VisitModelMixin
 
@@ -21,20 +21,16 @@ from ..choices import (
 from ..constants import IF_ADMITTED_COMPLETE_REPORTS
 
 
-class CurrentSiteManager(BaseVisitModelManager, BaseCurrentSiteManager):
-    pass
-
-
 class VisitModelManager(BaseVisitModelManager):
     def create_missed_extras(self) -> dict:
         return dict(assessment_type=NOT_APPLICABLE, assessment_who=NOT_APPLICABLE)
 
 
 class SubjectVisit(
+    SiteModelMixin,
     VisitModelMixin,
     ReferenceModelMixin,
     CreatesMetadataModelMixin,
-    SiteModelMixin,
     RequiresConsentFieldsModelMixin,
     OffstudyNonCrfModelMixin,
     edc_models.BaseUuidModel,
@@ -106,7 +102,7 @@ class SubjectVisit(
         default=NOT_APPLICABLE,
     )
 
-    on_site = CurrentSiteManager()
+    on_site = VisitCurrentSiteManager()
 
     objects = VisitModelManager()
 

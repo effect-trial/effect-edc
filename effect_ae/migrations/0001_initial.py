@@ -326,7 +326,7 @@ class Migration(migrations.Migration):
             },
             managers=[
                 ("on_site", edc_action_item.managers.ActionIdentifierSiteManager()),
-                ("objects", edc_action_item.managers.ActionIdentifierManager()),
+                ("objects", edc_action_item.managers.ActionIdentifierModelManager()),
             ],
         ),
         migrations.CreateModel(
@@ -610,7 +610,7 @@ class Migration(migrations.Migration):
             },
             managers=[
                 ("on_site", edc_action_item.managers.ActionIdentifierSiteManager()),
-                ("objects", edc_action_item.managers.ActionIdentifierManager()),
+                ("objects", edc_action_item.managers.ActionIdentifierModelManager()),
             ],
         ),
         migrations.CreateModel(
@@ -2968,7 +2968,7 @@ class Migration(migrations.Migration):
             },
             managers=[
                 ("on_site", edc_action_item.managers.ActionIdentifierSiteManager()),
-                ("objects", edc_action_item.managers.ActionIdentifierManager()),
+                ("objects", edc_action_item.managers.ActionIdentifierModelManager()),
             ],
         ),
         migrations.CreateModel(
@@ -3155,7 +3155,7 @@ class Migration(migrations.Migration):
             },
             managers=[
                 ("on_site", edc_action_item.managers.ActionIdentifierSiteManager()),
-                ("objects", edc_action_item.managers.ActionIdentifierManager()),
+                ("objects", edc_action_item.managers.ActionIdentifierModelManager()),
             ],
         ),
         migrations.CreateModel(
@@ -3754,7 +3754,7 @@ class Migration(migrations.Migration):
             },
             managers=[
                 ("on_site", edc_action_item.managers.ActionIdentifierSiteManager()),
-                ("objects", edc_action_item.managers.ActionIdentifierManager()),
+                ("objects", edc_action_item.managers.ActionIdentifierModelManager()),
             ],
         ),
         migrations.CreateModel(

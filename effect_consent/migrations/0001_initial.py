@@ -269,7 +269,7 @@ class Migration(migrations.Migration):
                 "verbose_name": "Subject re-consent",
             },
             managers=[
-                ("on_site", edc_visit_tracking.managers.CurrentSiteManager()),
+                ("on_site", edc_visit_tracking.managers.CrfCurrentSiteManager()),
                 ("objects", edc_identifier.managers.SubjectIdentifierManager()),
             ],
         ),
@@ -746,7 +746,7 @@ class Migration(migrations.Migration):
                 "default_permissions": ("add", "change", "delete", "view", "export", "import"),
             },
             managers=[
-                ("on_site", edc_visit_tracking.managers.CurrentSiteManager()),
+                ("on_site", edc_visit_tracking.managers.CrfCurrentSiteManager()),
             ],
         ),
         migrations.CreateModel(
