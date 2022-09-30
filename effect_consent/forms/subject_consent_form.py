@@ -51,6 +51,7 @@ class SubjectConsentForm(
     class Meta:
         model = SubjectConsent
         fields = "__all__"
+        labels = {"gender": "Sex"}
         help_texts = {
             "identity": (
                 "Use Country ID Number, Passport number, driver's license "
