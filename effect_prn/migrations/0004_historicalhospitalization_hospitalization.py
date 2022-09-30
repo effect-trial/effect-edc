@@ -10,6 +10,7 @@ import django_audit_fields.fields.userfield
 import django_audit_fields.fields.uuid_auto_field
 import django_audit_fields.models.audit_model_mixin
 import django_revision.revision_field
+import edc_action_item.managers
 import edc_action_item.models.action_model_mixin
 import edc_model.models.fields.date_estimated
 import edc_model.validators.date
@@ -268,7 +269,7 @@ class Migration(migrations.Migration):
             managers=[
                 (
                     "objects",
-                    edc_action_item.models.action_model_mixin.ActionItemModelManager(),
+                    edc_action_item.managers.ActionIdentifierModelManager(),
                 ),
             ],
         ),
