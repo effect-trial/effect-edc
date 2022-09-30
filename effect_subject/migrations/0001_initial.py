@@ -338,7 +338,7 @@ class Migration(migrations.Migration):
                 "default_permissions": ("add", "change", "delete", "view", "export", "import"),
             },
             managers=[
-                ("on_site", effect_subject.models.subject_visit.CurrentSiteManager()),
+                ("on_site", edc_visit_tracking.managers.VisitCurrentSiteManager()),
                 ("objects", edc_visit_tracking.managers.VisitModelManager()),
             ],
         ),
