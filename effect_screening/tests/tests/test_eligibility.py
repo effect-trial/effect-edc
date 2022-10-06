@@ -294,6 +294,50 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(obj.reasons_ineligible, {})
         self.assertTrue(obj.is_eligible)
 
+    def test_csf_crag_value_pending_ineligible(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=PENDING,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(obj.reasons_ineligible, {"csf_crag_value": "CSF CrAg pending"})
+        self.assertFalse(obj.is_eligible)
+
+    def test_csf_crag_value_positive_ineligible(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=POS,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual(obj.reasons_ineligible, {"csf_crag_value": "CSF CrAg (+)"})
+
+    def test_csf_crag_value_negative_ok(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(csf_crag_value=NEG)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertTrue(obj.is_eligible)
+        self.assertEqual(obj.reasons_ineligible, {})
+
     def test_eligible_cd4_values_ok(self):
         opts = self.get_valid_opts()
         eligible_cd4_values = [0, 1, 80, 99]

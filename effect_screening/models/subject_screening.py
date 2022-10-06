@@ -160,9 +160,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         choices=POS_NEG_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
-        help_text=(
-            "If result is `pending`, report on DAY 1 / baseline visit or when available."
-        ),
     )
 
     prior_cm_episode = models.CharField(
