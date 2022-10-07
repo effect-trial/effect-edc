@@ -35,7 +35,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
             getattr(self.model_obj, attr, None)
             for attr in [
                 "hiv_pos",
-                "cd4_value",
                 "cd4_date",
                 "serum_crag_value",
                 "serum_crag_date",
@@ -44,11 +43,17 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "csf_crag_value",
             ]
         ]
-        if not all(criteria):
+        if (
+            not all(criteria)
+            or getattr(self.model_obj, "age_in_years", None) is None
+            or getattr(self.model_obj, "cd4_value", None) is None
+        ):
             reasons_ineligible.update(inclusion_criteria="Incomplete inclusion criteria")
+        if self.model_obj.age_in_years is not None and self.model_obj.age_in_years < 18:
+            reasons_ineligible.update(age_in_years="Age not >= 18")
         if self.model_obj.hiv_pos != YES:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
-        if self.model_obj.cd4_value and self.model_obj.cd4_value >= 100:
+        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
             reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
         reasons_ineligible = self.review_crag(reasons_ineligible)
         return reasons_ineligible
@@ -63,7 +68,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
             elif self.model_obj.csf_crag_value == IND:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (IND)")
-            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == NO:
+            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
                 reasons_ineligible.update(lp_done="LP not done")
                 reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
