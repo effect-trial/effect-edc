@@ -8,9 +8,10 @@ Changes
 - rename 'gender' to 'sex' in Subject Screening forms, Subject Consent form,
   and Screening Listboard (#443)
 - remove help text from 'csf_crag_value' in Subject Screening (#458)
-- bump to edc 0.4.41
+- bump to edc 0.4.43
 - bump to edc-csf 0.1.13
 - bump to effect-form-validators 0.1.22
+- add edc_protocol middleware
 
 [0.1.19]
 --------
