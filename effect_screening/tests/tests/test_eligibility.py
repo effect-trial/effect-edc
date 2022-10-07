@@ -8,6 +8,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_TESTED,
     PENDING,
     POS,
     YES,
@@ -230,34 +231,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual({}, obj.reasons_ineligible)
                 self.assertTrue(obj.is_eligible)
-
-    def test_mg_ssx_ineligible(self):
-        for mg_ssx in [
-            "mg_severe_headache",
-            "mg_headache_nuchal_rigidity",
-            "mg_headache_vomiting",
-            "mg_seizures",
-            "mg_gcs_lt_15",
-            "any_other_mg_ssx",
-        ]:
-            with self.subTest(mg_ssx=mg_ssx):
-                model_obj = SubjectScreening.objects.create(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
-                setattr(model_obj, mg_ssx, YES)
-                obj = ScreeningEligibility(model_obj=model_obj)
-                self.assertFalse(obj.is_eligible)
-                self.assertDictEqual(
-                    {mg_ssx: "Signs of symptomatic meningitis"},
-                    obj.reasons_ineligible,
-                )
-
-                setattr(model_obj, mg_ssx, NO)
-                obj = ScreeningEligibility(model_obj=model_obj)
-                self.assertTrue(obj.is_eligible)
-                self.assertDictEqual({}, obj.reasons_ineligible)
 
     def test_valid_opts_eligible(self):
         obj = SubjectScreening.objects.create(**self.get_valid_opts())
@@ -695,3 +668,188 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertNotIn("any_other_mg_ssx_other", form._errors)
         self.assertDictEqual({}, form._errors)
+
+    def test_exclusion_prior_cm_episode_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(prior_cm_episode=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"prior_cm_episode": "Prior episode of CM"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_prior_cm_episode_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(prior_cm_episode=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_pregnant_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(pregnant=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({"pregnant": "Pregnant"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_pregnant_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(pregnant=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_breast_feeding_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(breast_feeding=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({"breast_feeding": "Breastfeeding"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_breast_feeding_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(breast_feeding=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_reaction_to_study_drugs_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(reaction_to_study_drugs=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"reaction_to_study_drugs": "Serious reaction to flucytosine or fluconazole"},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_reaction_to_study_drugs_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(reaction_to_study_drugs=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_on_flucon_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(on_flucon=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({"on_flucon": "On fluconazole"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_on_flucon_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(on_flucon=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_contraindicated_meds_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(contraindicated_meds=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"contraindicated_meds": "Contraindicated concomitant medications"},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_contraindicated_meds_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(contraindicated_meds=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_mg_ssx_yes_ineligible(self):
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            with self.subTest(mg_ssx=mg_ssx):
+                model_obj = SubjectScreening.objects.create(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                setattr(model_obj, mg_ssx, YES)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertFalse(obj.is_eligible)
+                self.assertDictEqual(
+                    {mg_ssx: "Signs of symptomatic meningitis"},
+                    obj.reasons_ineligible,
+                )
+
+                setattr(model_obj, mg_ssx, NO)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertTrue(obj.is_eligible)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+
+    def test_exclusion_mg_ssx_no_ok(self):
+        for mg_ssx in [
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+        ]:
+            with self.subTest(mg_ssx=mg_ssx):
+                opts = self.get_valid_opts()
+                opts.update({mg_ssx: NO})
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_jaundice_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(jaundice=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({"jaundice": "Jaundice"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_jaundice_no_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(jaundice=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_exclusion_cm_in_csf_yes_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(cm_in_csf=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"cm_in_csf": "Positive evidence of CM on CSF"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_cm_in_csf_not_yes_ok(self):
+        for answ in [NO, PENDING, NOT_TESTED, NOT_APPLICABLE]:
+            with self.subTest(cm_in_csf=answ):
+                opts = self.get_valid_opts()
+                opts.update(cm_in_csf=answ)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
