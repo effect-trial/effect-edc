@@ -95,7 +95,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             reaction_to_study_drugs=NO,
         )
 
-    def get_valid_opts(self) -> Dict:
+    def get_eligible_opts(self) -> Dict:
         return dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
@@ -151,11 +151,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
     def test_inclusion_age_lt_18_ineligible(self):
         for age_in_years in [-1, 0, 1, 10, 15, 17]:
             with self.subTest(age_in_years=age_in_years):
-                opts = dict(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
+                opts = self.get_eligible_opts()
                 opts.update(age_in_years=age_in_years)
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -165,11 +161,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
     def test_inclusion_age_gte_18_ok(self):
         for age_in_years in [18, 19, 30, 60, 99, 110]:
             with self.subTest(age_in_years=age_in_years):
-                opts = dict(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
+                opts = self.get_eligible_opts()
                 opts.update(age_in_years=age_in_years)
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -177,11 +169,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertTrue(obj.is_eligible)
 
     def test_inclusion_hiv_pos_no_ineligible(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(hiv_pos=NEG)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -189,11 +177,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_inclusion_hiv_pos_yes_ok(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(hiv_pos=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -204,11 +188,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         ineligible_cd4_values = [100, 101, 120, 200]
         for cd4_value in ineligible_cd4_values:
             with self.subTest(cd4_value=cd4_value):
-                opts = dict(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
+                opts = self.get_eligible_opts()
                 opts.update(cd4_value=cd4_value)
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -221,11 +201,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         eligible_cd4_values = [0, 1, 80, 99]
         for cd4_value in eligible_cd4_values:
             with self.subTest(cd4_value=cd4_value):
-                opts = dict(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
+                opts = self.get_eligible_opts()
                 opts.update(cd4_value=cd4_value)
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -233,14 +209,14 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertTrue(obj.is_eligible)
 
     def test_valid_opts_eligible(self):
-        obj = SubjectScreening.objects.create(**self.get_valid_opts())
+        obj = SubjectScreening.objects.create(**self.get_eligible_opts())
 
         elig_obj = ScreeningEligibility(model_obj=obj)
         self.assertDictEqual({}, elig_obj.reasons_ineligible)
         self.assertTrue(elig_obj.is_eligible)
 
     def test_valid_opts_ok(self):
-        form = SubjectScreeningForm(data=self.get_valid_opts())
+        form = SubjectScreeningForm(data=self.get_eligible_opts())
         form.is_valid()
         self.assertDictEqual({}, form._errors)
 
@@ -339,11 +315,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("breast_feeding", form._errors)
 
     def test_inclusion_csf_crag_value_pending_ineligible(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(
             lp_done=YES,
             lp_date=(get_utcnow() - relativedelta(days=6)).date(),
@@ -355,11 +327,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_inclusion_csf_crag_value_positive_ineligible(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(
             lp_done=YES,
             lp_date=(get_utcnow() - relativedelta(days=6)).date(),
@@ -371,11 +339,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual({"csf_crag_value": "CSF CrAg (+)"}, obj.reasons_ineligible)
 
     def test_inclusion_csf_crag_value_negative_ok(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(csf_crag_value=NEG)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -383,11 +347,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual({}, obj.reasons_ineligible)
 
     def test_inclusion_lp_done_no_lp_declined_no_ineligible(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(
             lp_done=NO,
             lp_date=None,
@@ -403,11 +363,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_inclusion_lp_done_no_lp_declined_yes_ok(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(
             lp_done=NO,
             lp_date=None,
@@ -420,11 +376,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_inclusion_willing_to_participate_no_ineligible(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(willing_to_participate=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -434,11 +386,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_inclusion_willing_to_participate_yes_ok(self):
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
+        opts = self.get_eligible_opts()
         opts.update(willing_to_participate=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -446,7 +394,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_eligible_cd4_values_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         eligible_cd4_values = [0, 1, 80, 99]
         for cd4_value in eligible_cd4_values:
             with self.subTest(cd4_value=cd4_value):
@@ -456,7 +404,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertDictEqual({}, form._errors)
 
     def test_ineligible_cd4_value_raises_validation_error(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         ineligible_cd4_values = [-1, 100, 120, 200]
         for cd4_value in ineligible_cd4_values:
             with self.subTest(cd4_value=cd4_value):
@@ -480,7 +428,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, form._errors)
 
     def test_cd4_value_required(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         for cd4_value in [None, ""]:
             with self.subTest(cd4_value=cd4_value):
                 opts.update(cd4_value=cd4_value)
@@ -509,7 +457,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, form._errors)
 
     def test_serum_crag_negative_raises_validation_error(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(serum_crag_value=NEG)
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
@@ -524,7 +472,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
 
     def test_serum_crag_date_required(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(serum_crag_date="")
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
@@ -541,7 +489,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, form._errors)
 
     def test_serum_crag_date_within_14_days(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         report_datetime = opts.get("report_datetime")
         cd4_date = report_datetime - relativedelta(days=20)
 
@@ -639,7 +587,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_any_other_mg_ssx_other(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(any_other_mg_ssx=YES, any_other_mg_ssx_other="")
 
         form = SubjectScreeningForm(data=opts)
@@ -657,7 +605,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, form._errors)
 
     def test_exclusion_prior_cm_episode_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(prior_cm_episode=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -667,7 +615,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_prior_cm_episode_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(prior_cm_episode=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -675,7 +623,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_exclusion_pregnant_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(
             gender=FEMALE,
             pregnant=YES,
@@ -688,7 +636,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
     def test_exclusion_pregnant_no_ok(self):
         for answ in [NO, NOT_APPLICABLE]:
             with self.subTest(pregnant=answ):
-                opts = self.get_valid_opts()
+                opts = self.get_eligible_opts()
                 opts.update(
                     gender=FEMALE,
                     pregnant=NO,
@@ -699,7 +647,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertTrue(obj.is_eligible)
 
     def test_exclusion_breast_feeding_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(
             gender=FEMALE,
             breast_feeding=YES,
@@ -710,7 +658,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_breast_feeding_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(
             gender=FEMALE,
             breast_feeding=NO,
@@ -721,7 +669,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_exclusion_reaction_to_study_drugs_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(reaction_to_study_drugs=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -732,7 +680,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_reaction_to_study_drugs_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(reaction_to_study_drugs=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -740,7 +688,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_exclusion_on_flucon_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(on_flucon=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -748,7 +696,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_on_flucon_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(on_flucon=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -756,7 +704,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_exclusion_contraindicated_meds_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(contraindicated_meds=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -767,7 +715,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_contraindicated_meds_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(contraindicated_meds=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -784,7 +732,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "any_other_mg_ssx",
         ]:
             with self.subTest(mg_ssx=mg_ssx):
-                opts = self.get_valid_opts()
+                opts = self.get_eligible_opts()
                 opts.update({mg_ssx: YES})
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -810,7 +758,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "any_other_mg_ssx",
         ]:
             with self.subTest(mg_ssx=mg_ssx):
-                opts = self.get_valid_opts()
+                opts = self.get_eligible_opts()
                 opts.update({mg_ssx: NO})
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -818,7 +766,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertTrue(obj.is_eligible)
 
     def test_exclusion_jaundice_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(jaundice=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -826,7 +774,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_jaundice_no_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(jaundice=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -834,7 +782,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertTrue(obj.is_eligible)
 
     def test_exclusion_cm_in_csf_yes_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(cm_in_csf=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -846,7 +794,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
     def test_exclusion_cm_in_csf_not_yes_ok(self):
         for answ in [NO, PENDING, NOT_TESTED, NOT_APPLICABLE]:
             with self.subTest(cm_in_csf=answ):
-                opts = self.get_valid_opts()
+                opts = self.get_eligible_opts()
                 opts.update(cm_in_csf=answ)
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
@@ -854,7 +802,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertTrue(obj.is_eligible)
 
     def test_consent_ability_no_ineligible(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(consent_ability=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
@@ -864,7 +812,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_consent_ability_yes_ok(self):
-        opts = self.get_valid_opts()
+        opts = self.get_eligible_opts()
         opts.update(consent_ability=YES)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
