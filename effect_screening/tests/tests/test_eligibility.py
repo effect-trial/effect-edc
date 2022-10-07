@@ -147,6 +147,90 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
+    def test_inclusion_age_lt_18_ineligible(self):
+        for age_in_years in [-1, 0, 1, 10, 15, 17]:
+            with self.subTest(age_in_years=age_in_years):
+                opts = dict(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                opts.update(age_in_years=age_in_years)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({"age_in_years": "Age not >= 18"}, obj.reasons_ineligible)
+                self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_age_gte_18_ok(self):
+        for age_in_years in [18, 19, 30, 60, 99, 110]:
+            with self.subTest(age_in_years=age_in_years):
+                opts = dict(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                opts.update(age_in_years=age_in_years)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
+
+    def test_inclusion_hiv_pos_no_ineligible(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(hiv_pos=NEG)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({"hiv_pos": "Not HIV sero-positive"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_hiv_pos_yes_ok(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(hiv_pos=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_inclusion_cd4_gte_100_ineligible(self):
+        ineligible_cd4_values = [100, 101, 120, 200]
+        for cd4_value in ineligible_cd4_values:
+            with self.subTest(cd4_value=cd4_value):
+                opts = dict(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                opts.update(cd4_value=cd4_value)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual(
+                    {"cd4_value": "CD4 not <100 cells/μL"}, obj.reasons_ineligible
+                )
+                self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_cd4_lt_100_ok(self):
+        eligible_cd4_values = [0, 1, 80, 99]
+        for cd4_value in eligible_cd4_values:
+            with self.subTest(cd4_value=cd4_value):
+                opts = dict(
+                    **self.inclusion_criteria,
+                    **self.exclusion_criteria,
+                    **self.get_basic_opts(),
+                )
+                opts.update(cd4_value=cd4_value)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
+
     def test_mg_ssx_ineligible(self):
         for mg_ssx in [
             "mg_severe_headache",
@@ -294,7 +378,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(obj.reasons_ineligible, {})
         self.assertTrue(obj.is_eligible)
 
-    def test_csf_crag_value_pending_ineligible(self):
+    def test_inclusion_csf_crag_value_pending_ineligible(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
@@ -307,10 +391,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual(obj.reasons_ineligible, {"csf_crag_value": "CSF CrAg pending"})
+        self.assertEqual({"csf_crag_value": "CSF CrAg pending"}, obj.reasons_ineligible)
         self.assertFalse(obj.is_eligible)
 
-    def test_csf_crag_value_positive_ineligible(self):
+    def test_inclusion_csf_crag_value_positive_ineligible(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
@@ -324,9 +408,9 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertFalse(obj.is_eligible)
-        self.assertEqual(obj.reasons_ineligible, {"csf_crag_value": "CSF CrAg (+)"})
+        self.assertEqual({"csf_crag_value": "CSF CrAg (+)"}, obj.reasons_ineligible)
 
-    def test_csf_crag_value_negative_ok(self):
+    def test_inclusion_csf_crag_value_negative_ok(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
@@ -336,7 +420,70 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertTrue(obj.is_eligible)
-        self.assertEqual(obj.reasons_ineligible, {})
+        self.assertEqual({}, obj.reasons_ineligible)
+
+    def test_inclusion_lp_done_no_lp_declined_no_ineligible(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(
+            lp_done=NO,
+            lp_date=None,
+            lp_declined=NO,
+            csf_crag_value=NOT_APPLICABLE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(
+            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_lp_done_no_lp_declined_yes_ok(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(
+            lp_done=NO,
+            lp_date=None,
+            lp_declined=YES,
+            csf_crag_value=NOT_APPLICABLE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_inclusion_willing_to_participate_no_ineligible(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(willing_to_participate=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(
+            {"willing_to_participate": "Unwilling to participate"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_willing_to_participate_yes_ok(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        opts.update(willing_to_participate=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
 
     def test_eligible_cd4_values_ok(self):
         opts = self.get_valid_opts()
