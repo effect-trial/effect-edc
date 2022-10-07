@@ -148,6 +148,18 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
 
+    def test_valid_opts_eligible(self):
+        obj = SubjectScreening.objects.create(**self.get_eligible_opts())
+
+        elig_obj = ScreeningEligibility(model_obj=obj)
+        self.assertDictEqual({}, elig_obj.reasons_ineligible)
+        self.assertTrue(elig_obj.is_eligible)
+
+    def test_valid_opts_ok(self):
+        form = SubjectScreeningForm(data=self.get_eligible_opts())
+        form.is_valid()
+        self.assertDictEqual({}, form._errors)
+
     def test_inclusion_age_lt_18_ineligible(self):
         for age_in_years in [-1, 0, 1, 10, 15, 17]:
             with self.subTest(age_in_years=age_in_years):
@@ -208,17 +220,84 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertDictEqual({}, obj.reasons_ineligible)
                 self.assertTrue(obj.is_eligible)
 
-    def test_valid_opts_eligible(self):
-        obj = SubjectScreening.objects.create(**self.get_eligible_opts())
+    def test_inclusion_csf_crag_value_pending_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=PENDING,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual({"csf_crag_value": "CSF CrAg pending"}, obj.reasons_ineligible)
+        self.assertFalse(obj.is_eligible)
 
-        elig_obj = ScreeningEligibility(model_obj=obj)
-        self.assertDictEqual({}, elig_obj.reasons_ineligible)
-        self.assertTrue(elig_obj.is_eligible)
+    def test_inclusion_csf_crag_value_positive_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=POS,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual({"csf_crag_value": "CSF CrAg (+)"}, obj.reasons_ineligible)
 
-    def test_valid_opts_ok(self):
-        form = SubjectScreeningForm(data=self.get_eligible_opts())
-        form.is_valid()
-        self.assertDictEqual({}, form._errors)
+    def test_inclusion_csf_crag_value_negative_ok(self):
+        opts = self.get_eligible_opts()
+        opts.update(csf_crag_value=NEG)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertTrue(obj.is_eligible)
+        self.assertEqual({}, obj.reasons_ineligible)
+
+    def test_inclusion_lp_done_no_lp_declined_no_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=NO,
+            lp_date=None,
+            lp_declined=NO,
+            csf_crag_value=NOT_APPLICABLE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(
+            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_lp_done_no_lp_declined_yes_ok(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=NO,
+            lp_date=None,
+            lp_declined=YES,
+            csf_crag_value=NOT_APPLICABLE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
+
+    def test_inclusion_willing_to_participate_no_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(willing_to_participate=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual(
+            {"willing_to_participate": "Unwilling to participate"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_inclusion_willing_to_participate_yes_ok(self):
+        opts = self.get_eligible_opts()
+        opts.update(willing_to_participate=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
 
     @tag("preg")
     def test_male_preg_raises(self):
@@ -313,85 +392,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("pregnant", form._errors)
         self.assertNotIn("preg_test_date", form._errors)
         self.assertNotIn("breast_feeding", form._errors)
-
-    def test_inclusion_csf_crag_value_pending_ineligible(self):
-        opts = self.get_eligible_opts()
-        opts.update(
-            lp_done=YES,
-            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
-            csf_crag_value=PENDING,
-        )
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual({"csf_crag_value": "CSF CrAg pending"}, obj.reasons_ineligible)
-        self.assertFalse(obj.is_eligible)
-
-    def test_inclusion_csf_crag_value_positive_ineligible(self):
-        opts = self.get_eligible_opts()
-        opts.update(
-            lp_done=YES,
-            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
-            csf_crag_value=POS,
-        )
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertFalse(obj.is_eligible)
-        self.assertEqual({"csf_crag_value": "CSF CrAg (+)"}, obj.reasons_ineligible)
-
-    def test_inclusion_csf_crag_value_negative_ok(self):
-        opts = self.get_eligible_opts()
-        opts.update(csf_crag_value=NEG)
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertTrue(obj.is_eligible)
-        self.assertEqual({}, obj.reasons_ineligible)
-
-    def test_inclusion_lp_done_no_lp_declined_no_ineligible(self):
-        opts = self.get_eligible_opts()
-        opts.update(
-            lp_done=NO,
-            lp_date=None,
-            lp_declined=NO,
-            csf_crag_value=NOT_APPLICABLE,
-        )
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual(
-            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
-            obj.reasons_ineligible,
-        )
-        self.assertFalse(obj.is_eligible)
-
-    def test_inclusion_lp_done_no_lp_declined_yes_ok(self):
-        opts = self.get_eligible_opts()
-        opts.update(
-            lp_done=NO,
-            lp_date=None,
-            lp_declined=YES,
-            csf_crag_value=NOT_APPLICABLE,
-        )
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual({}, obj.reasons_ineligible)
-        self.assertTrue(obj.is_eligible)
-
-    def test_inclusion_willing_to_participate_no_ineligible(self):
-        opts = self.get_eligible_opts()
-        opts.update(willing_to_participate=NO)
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual(
-            {"willing_to_participate": "Unwilling to participate"}, obj.reasons_ineligible
-        )
-        self.assertFalse(obj.is_eligible)
-
-    def test_inclusion_willing_to_participate_yes_ok(self):
-        opts = self.get_eligible_opts()
-        opts.update(willing_to_participate=YES)
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual({}, obj.reasons_ineligible)
-        self.assertTrue(obj.is_eligible)
 
     def test_eligible_cd4_values_ok(self):
         opts = self.get_eligible_opts()
