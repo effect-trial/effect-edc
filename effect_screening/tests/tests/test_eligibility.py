@@ -338,19 +338,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("preg_test_date", form._errors)
         self.assertNotIn("breast_feeding", form._errors)
 
-    def test_crags_and_lp(self):
-        # TODO: Is this ok?
-        opts = dict(
-            **self.inclusion_criteria,
-            **self.exclusion_criteria,
-            **self.get_basic_opts(),
-        )
-        opts.update(lp_done=PENDING)
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertEqual(obj.reasons_ineligible, {})
-        self.assertTrue(obj.is_eligible)
-
     def test_inclusion_csf_crag_value_pending_ineligible(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -689,7 +676,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_exclusion_pregnant_yes_ineligible(self):
         opts = self.get_valid_opts()
-        opts.update(pregnant=YES)
+        opts.update(
+            gender=FEMALE,
+            pregnant=YES,
+        )
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({"pregnant": "Pregnant"}, obj.reasons_ineligible)
@@ -699,7 +689,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         for answ in [NO, NOT_APPLICABLE]:
             with self.subTest(pregnant=answ):
                 opts = self.get_valid_opts()
-                opts.update(pregnant=NO)
+                opts.update(
+                    gender=FEMALE,
+                    pregnant=NO,
+                )
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual({}, obj.reasons_ineligible)
@@ -707,7 +700,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_exclusion_breast_feeding_yes_ineligible(self):
         opts = self.get_valid_opts()
-        opts.update(breast_feeding=YES)
+        opts.update(
+            gender=FEMALE,
+            breast_feeding=YES,
+        )
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({"breast_feeding": "Breastfeeding"}, obj.reasons_ineligible)
@@ -715,7 +711,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_exclusion_breast_feeding_no_ok(self):
         opts = self.get_valid_opts()
-        opts.update(breast_feeding=NO)
+        opts.update(
+            gender=FEMALE,
+            breast_feeding=NO,
+        )
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
@@ -853,3 +852,21 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual({}, obj.reasons_ineligible)
                 self.assertTrue(obj.is_eligible)
+
+    def test_consent_ability_no_ineligible(self):
+        opts = self.get_valid_opts()
+        opts.update(consent_ability=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"consent_ability": "Incapable of consenting"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_consent_ability_yes_ok(self):
+        opts = self.get_valid_opts()
+        opts.update(consent_ability=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)

@@ -1,5 +1,4 @@
 from edc_constants.constants import (
-    IND,
     NEG,
     NO,
     NOT_APPLICABLE,
@@ -26,14 +25,6 @@ HIV_CONFIRMATION_METHODS = (
     ),
     (NOT_APPLICABLE, "Not applicable"),
 )
-REFUSAL_REASONS = (
-    ("dont_have_time", "I don't have time"),
-    ("must_consult_spouse", "I need to consult my spouse"),
-    ("dont_want_blood_drawn", "I don't want to have the blood drawn"),
-    ("dont_want_to_join", "I don't want to take part"),
-    ("need_to_think_about_it", "I haven't had a chance to think about it"),
-    (OTHER, "Other, please specify"),
-)
 
 POS_NEG = (
     (POS, "Positive"),
@@ -43,14 +34,6 @@ POS_NEG = (
 POS_NEG_PENDING_NA = (
     (POS, "Positive"),
     (NEG, "Negative"),
-    (PENDING, "Pending"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
-POS_NEG_IND_PENDING_NA = (
-    (POS, "Positive"),
-    (NEG, "Negative"),
-    (IND, "Indeterminate"),
     (PENDING, "Pending"),
     (NOT_APPLICABLE, "Not applicable"),
 )

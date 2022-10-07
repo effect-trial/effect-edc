@@ -1,6 +1,6 @@
 from typing import Any
 
-from edc_constants.constants import IND, NO, PENDING, POS, TBD, YES
+from edc_constants.constants import NO, PENDING, POS, TBD, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
@@ -66,8 +66,6 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(csf_crag_value="CSF CrAg pending")
             elif self.model_obj.csf_crag_value == POS:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
-            elif self.model_obj.csf_crag_value == IND:
-                reasons_ineligible.update(csf_crag_value="CSF CrAg (IND)")
             elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
                 reasons_ineligible.update(lp_done="LP not done")
                 reasons_ineligible.update(lp_declined="LP not declined")
