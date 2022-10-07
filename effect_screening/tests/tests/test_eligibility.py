@@ -696,12 +696,14 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
 
     def test_exclusion_pregnant_no_ok(self):
-        opts = self.get_valid_opts()
-        opts.update(pregnant=NO)
-        model_obj = SubjectScreening.objects.create(**opts)
-        obj = ScreeningEligibility(model_obj=model_obj)
-        self.assertDictEqual({}, obj.reasons_ineligible)
-        self.assertTrue(obj.is_eligible)
+        for answ in [NO, NOT_APPLICABLE]:
+            with self.subTest(pregnant=answ):
+                opts = self.get_valid_opts()
+                opts.update(pregnant=NO)
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
 
     def test_exclusion_breast_feeding_yes_ineligible(self):
         opts = self.get_valid_opts()
@@ -783,12 +785,9 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "any_other_mg_ssx",
         ]:
             with self.subTest(mg_ssx=mg_ssx):
-                model_obj = SubjectScreening.objects.create(
-                    **self.inclusion_criteria,
-                    **self.exclusion_criteria,
-                    **self.get_basic_opts(),
-                )
-                setattr(model_obj, mg_ssx, YES)
+                opts = self.get_valid_opts()
+                opts.update({mg_ssx: YES})
+                model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertFalse(obj.is_eligible)
                 self.assertDictEqual(
@@ -796,7 +795,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                     obj.reasons_ineligible,
                 )
 
-                setattr(model_obj, mg_ssx, NO)
+                opts.update({mg_ssx: NO})
+                model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertTrue(obj.is_eligible)
                 self.assertDictEqual({}, obj.reasons_ineligible)
