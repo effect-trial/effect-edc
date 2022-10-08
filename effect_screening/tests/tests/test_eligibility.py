@@ -818,3 +818,21 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
+
+    def test_unsuitable_for_study_yes_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(unsuitable_for_study=YES)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"unsuitable_for_study": "Deemed unsuitable other reason"}, obj.reasons_ineligible
+        )
+        self.assertFalse(obj.is_eligible)
+
+    def test_unsuitable_for_study_no_ok(self):
+        opts = self.get_eligible_opts()
+        opts.update(unsuitable_for_study=NO)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual({}, obj.reasons_ineligible)
+        self.assertTrue(obj.is_eligible)
