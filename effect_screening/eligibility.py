@@ -14,6 +14,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
+        if self.model_obj.unsuitable_for_study == YES:
+            reasons_ineligible.update(unsuitable_for_study="Deemed unsuitable other reason")
+
         if self.model_obj.csf_crag_value == PENDING:
             self.eligible = PENDING
         else:
