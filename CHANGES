@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.20]
+--------
 - rename Patient History CRF to Participant History (#446)
 - rename Patient Treatment CRF to Participant Treatment (#446)
 - rename 'gender' to 'sex' in Subject Screening forms, Subject Consent form,
