@@ -2,6 +2,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_EVALUATED,
     NOT_TESTED,
     OTHER,
     PENDING,
@@ -46,8 +47,9 @@ CSF_YES_NO_PENDING_NA = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-PREG_YES_NO_NA = (
+PREG_YES_NO_NOT_EVALUATED_NA = (
     (YES, "Yes"),
     (NO, "No"),
-    (NOT_APPLICABLE, "Not Applicable: e.g. male or post-menopausal"),
+    (NOT_APPLICABLE, "Not applicable: e.g. male or post-menopausal"),
+    (NOT_EVALUATED, "Not evaluated"),
 )
