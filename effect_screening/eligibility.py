@@ -1,6 +1,6 @@
 from typing import Any
 
-from edc_constants.constants import IND, NO, PENDING, POS, TBD, YES
+from edc_constants.constants import NO, NOT_EVALUATED, PENDING, POS, TBD, YES
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
@@ -14,6 +14,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
+
         if self.model_obj.csf_crag_value == PENDING:
             self.eligible = PENDING
         else:
@@ -27,15 +28,12 @@ class ScreeningEligibility(BaseScreeningEligibility):
         self.model_obj.reasons_ineligible = self.reasons_ineligible
 
     def review_inclusion(self: Any, reasons_ineligible: dict) -> dict:
-        if self.model_obj.willing_to_participate != YES:
-            reasons_ineligible.update(willing_to_participate="Unwilling to participate")
-        if self.model_obj.consent_ability != YES:
-            reasons_ineligible.update(consent_ability="Incapable of consenting")
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
+                "willing_to_participate",
+                "consent_ability",
                 "hiv_pos",
-                "cd4_value",
                 "cd4_date",
                 "serum_crag_value",
                 "serum_crag_date",
@@ -44,11 +42,22 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "csf_crag_value",
             ]
         ]
-        if not all(criteria):
+        if (
+            not all(criteria)
+            or NOT_EVALUATED in criteria
+            or getattr(self.model_obj, "age_in_years", None) is None
+            or getattr(self.model_obj, "cd4_value", None) is None
+        ):
             reasons_ineligible.update(inclusion_criteria="Incomplete inclusion criteria")
-        if self.model_obj.hiv_pos != YES:
+        if self.model_obj.willing_to_participate == NO:
+            reasons_ineligible.update(willing_to_participate="Unwilling to participate")
+        if self.model_obj.consent_ability == NO:
+            reasons_ineligible.update(consent_ability="Incapable of consenting")
+        if self.model_obj.age_in_years is not None and self.model_obj.age_in_years < 18:
+            reasons_ineligible.update(age_in_years="Age not >= 18")
+        if self.model_obj.hiv_pos == NO:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
-        if self.model_obj.cd4_value and self.model_obj.cd4_value >= 100:
+        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
             reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
         reasons_ineligible = self.review_crag(reasons_ineligible)
         return reasons_ineligible
@@ -56,19 +65,17 @@ class ScreeningEligibility(BaseScreeningEligibility):
     def review_crag(self: Any, reasons_ineligible: dict) -> dict:
         if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(serum_crag_value="Serum CrAg not (+)")
-        elif self.model_obj.serum_crag_value == POS:
+        else:
             if self.model_obj.csf_crag_value == PENDING:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg pending")
             elif self.model_obj.csf_crag_value == POS:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
-            elif self.model_obj.csf_crag_value == IND:
-                reasons_ineligible.update(csf_crag_value="CSF CrAg (IND)")
-            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined == NO:
+            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
                 reasons_ineligible.update(lp_done="LP not done")
                 reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
 
-    def review_exclusion(self: Any, reasons_ineligible: dict) -> dict:
+    def review_exclusion(self: Any, reasons_ineligible: dict) -> dict:  # noqa C901
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
@@ -86,9 +93,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 "any_other_mg_ssx",
                 "jaundice",
                 "cm_in_csf",
+                "unsuitable_for_study",
             ]
         ]
-        if not all(criteria):
+        if not all(criteria) or NOT_EVALUATED in criteria:
             reasons_ineligible.update(exclusion_criteria="Incomplete exclusion criteria")
         if self.model_obj.contraindicated_meds == YES:
             reasons_ineligible.update(
@@ -111,6 +119,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
             )
         reasons_ineligible = self.review_mg_ssx(reasons_ineligible)
+        if self.model_obj.unsuitable_for_study == YES:
+            reasons_ineligible.update(unsuitable_for_study="Deemed unsuitable other reason")
+
         return reasons_ineligible
 
     def review_mg_ssx(self: Any, reasons_ineligible: dict) -> dict:
