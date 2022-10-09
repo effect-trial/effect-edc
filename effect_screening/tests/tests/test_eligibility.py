@@ -8,6 +8,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_EVALUATED,
     NOT_TESTED,
     PENDING,
     POS,
@@ -182,7 +183,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_inclusion_hiv_pos_no_ineligible(self):
         opts = self.get_eligible_opts()
-        opts.update(hiv_pos=NEG)
+        opts.update(hiv_pos=NO)
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({"hiv_pos": "Not HIV sero-positive"}, obj.reasons_ineligible)
@@ -836,3 +837,49 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual({}, obj.reasons_ineligible)
         self.assertTrue(obj.is_eligible)
+
+    def test_inclusion_answer_not_evaluated_ineligible(self):
+        for fld in [
+            "hiv_pos",
+            "willing_to_participate",
+            "consent_ability",
+        ]:
+            with self.subTest(fld=fld):
+                opts = self.get_eligible_opts()
+                opts.update({fld: NOT_EVALUATED})
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual(
+                    {"inclusion_criteria": "Incomplete inclusion criteria"},
+                    obj.reasons_ineligible,
+                )
+                self.assertFalse(obj.is_eligible)
+
+    def test_exclusion_answer_not_evaluated_ineligible(self):
+        for fld in [
+            "prior_cm_episode",
+            "reaction_to_study_drugs",
+            "on_flucon",
+            "contraindicated_meds",
+            "mg_severe_headache",
+            "mg_headache_nuchal_rigidity",
+            "mg_headache_vomiting",
+            "mg_seizures",
+            "mg_gcs_lt_15",
+            "any_other_mg_ssx",
+            "pregnant",
+            "breast_feeding",
+            "unsuitable_for_study",
+            "jaundice",
+        ]:
+            with self.subTest(fld=fld):
+                opts = self.get_eligible_opts()
+                opts.update({fld: NOT_EVALUATED})
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+
+                self.assertDictEqual(
+                    {"exclusion_criteria": "Incomplete exclusion criteria"},
+                    obj.reasons_ineligible,
+                )
+                self.assertFalse(obj.is_eligible)
