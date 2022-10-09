@@ -15,7 +15,7 @@ Changes
     - increase test coverage
 - bump to edc 0.4.44
 - bump to edc-csf 0.1.13
-- bump to effect-form-validators 0.1.22
+- bump to effect-form-validators 0.1.23
 - add edc_protocol middleware
 
 [0.1.19]
