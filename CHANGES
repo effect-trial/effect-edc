@@ -13,9 +13,10 @@ Changes
     - fix patient remains eligible even if deemed unsuitable for study
     - improvements to coverage of eligibility checks
     - increase test coverage
-- bump to edc 0.4.41
+- bump to edc 0.4.44
 - bump to edc-csf 0.1.13
 - bump to effect-form-validators 0.1.22
+- add edc_protocol middleware
 
 [0.1.19]
 --------

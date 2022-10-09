@@ -178,6 +178,7 @@ if not DEFENDER_ENABLED:
 
 MIDDLEWARE.extend(
     [
+        "edc_protocol.middleware.ProtocolMiddleware",
         "edc_dashboard.middleware.DashboardMiddleware",
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
