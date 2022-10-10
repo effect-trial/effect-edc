@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.21]
+--------
 - fix error raised when running update_forms_reference
 - bump to edc 0.4.46
 
