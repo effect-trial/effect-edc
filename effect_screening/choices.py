@@ -1,8 +1,8 @@
 from edc_constants.constants import (
-    IND,
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_EVALUATED,
     NOT_TESTED,
     OTHER,
     PENDING,
@@ -26,14 +26,6 @@ HIV_CONFIRMATION_METHODS = (
     ),
     (NOT_APPLICABLE, "Not applicable"),
 )
-REFUSAL_REASONS = (
-    ("dont_have_time", "I don't have time"),
-    ("must_consult_spouse", "I need to consult my spouse"),
-    ("dont_want_blood_drawn", "I don't want to have the blood drawn"),
-    ("dont_want_to_join", "I don't want to take part"),
-    ("need_to_think_about_it", "I haven't had a chance to think about it"),
-    (OTHER, "Other, please specify"),
-)
 
 POS_NEG = (
     (POS, "Positive"),
@@ -47,14 +39,6 @@ POS_NEG_PENDING_NA = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-POS_NEG_IND_PENDING_NA = (
-    (POS, "Positive"),
-    (NEG, "Negative"),
-    (IND, "Indeterminate"),
-    (PENDING, "Pending"),
-    (NOT_APPLICABLE, "Not applicable"),
-)
-
 CSF_YES_NO_PENDING_NA = (
     (YES, YES),
     (NO, NO),
@@ -63,8 +47,9 @@ CSF_YES_NO_PENDING_NA = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 
-PREG_YES_NO_NA = (
+PREG_YES_NO_NOT_EVALUATED_NA = (
     (YES, "Yes"),
     (NO, "No"),
-    (NOT_APPLICABLE, "Not Applicable: e.g. male or post-menopausal"),
+    (NOT_APPLICABLE, "Not applicable: e.g. male or post-menopausal"),
+    (NOT_EVALUATED, "Not evaluated"),
 )

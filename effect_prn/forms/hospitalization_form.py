@@ -1,6 +1,7 @@
 from django import forms
 from edc_action_item.forms import ActionItemFormMixin
 from edc_form_validators import FormValidatorMixin
+from edc_model_form.mixins import BaseModelFormMixin
 from edc_sites.forms import SiteModelFormMixin
 from effect_form_validators.effect_prn import HospitalizationFormValidator as Base
 
@@ -15,6 +16,7 @@ class HospitalizationForm(
     SiteModelFormMixin,
     FormValidatorMixin,
     ActionItemFormMixin,
+    BaseModelFormMixin,
     forms.ModelForm,
 ):
 

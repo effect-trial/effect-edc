@@ -1,8 +1,13 @@
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
-from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
+from edc_constants.choices import (
+    YES_NO,
+    YES_NO_NA,
+    YES_NO_NOT_EVALUATED,
+    YES_NO_NOT_EVALUATED_NA,
+)
+from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
@@ -18,7 +23,7 @@ from ..choices import (
     HIV_CONFIRMATION_METHODS,
     POS_NEG,
     POS_NEG_PENDING_NA,
-    PREG_YES_NO_NA,
+    PREG_YES_NO_NOT_EVALUATED_NA,
 )
 from ..eligibility import ScreeningEligibility
 
@@ -46,7 +51,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     willing_to_participate = models.CharField(
         verbose_name="Is the patient willing to participate in the study if found eligible?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
     )
 
     consent_ability = models.CharField(
@@ -54,13 +60,15 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
             "Does the patient have capacity to provide informed consent for participation?"
         ),
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
     )
 
     hiv_pos = models.CharField(
         verbose_name="Is the patient CONFIRMED HIV sero-positive?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         null=True,
         blank=False,
     )
@@ -98,7 +106,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     pregnant = models.CharField(
         verbose_name="Is the patient pregnant?",
         max_length=15,
-        choices=PREG_YES_NO_NA,
+        choices=PREG_YES_NO_NOT_EVALUATED_NA,
         default=NOT_APPLICABLE,
     )
 
@@ -110,7 +118,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     breast_feeding = models.CharField(
         verbose_name="Is the patient breastfeeding?",
         max_length=15,
-        choices=YES_NO_NA,
+        choices=YES_NO_NOT_EVALUATED_NA,
         default=NOT_APPLICABLE,
     )
 
@@ -160,22 +168,21 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         choices=POS_NEG_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
-        help_text=(
-            "If result is `pending`, report on DAY 1 / baseline visit or when available."
-        ),
     )
 
     prior_cm_episode = models.CharField(
         verbose_name="Has the patient had a prior episode of CM?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
     reaction_to_study_drugs = models.CharField(
         verbose_name="Has the patient had any serious reaction to flucytosine or fluconazole?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -187,7 +194,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
             "(800-1200 mg/day) for ≥1 week?"
         ),
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -195,7 +203,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     contraindicated_meds = models.CharField(
         verbose_name="Is the patient taking any contraindicated " "concomitant medications?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
         help_text="Refer to the protocol for a complete list",
     )
@@ -204,7 +213,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     mg_severe_headache = models.CharField(
         verbose_name="a progressively severe headache?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -212,7 +222,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     mg_headache_nuchal_rigidity = models.CharField(
         verbose_name="a headache and marked nuchal rigidity?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -220,7 +231,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     mg_headache_vomiting = models.CharField(
         verbose_name="a headache and vomiting?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -228,7 +240,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     mg_seizures = models.CharField(
         verbose_name="seizures?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -236,7 +249,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     mg_gcs_lt_15 = models.CharField(
         verbose_name="a Glasgow Coma Scale (GCS) score of <15?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -244,7 +258,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     any_other_mg_ssx = models.CharField(
         verbose_name="any other clinical symptoms/signs of symptomatic meningitis?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -258,7 +273,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     jaundice = models.CharField(
         verbose_name="Based on clinical examination, does the patient have jaundice?",
         max_length=25,
-        choices=YES_NO,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
         blank=False,
     )
 
@@ -288,6 +304,16 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     cm_in_csf_method_other = OtherCharField()
+
+    unsuitable_for_study = models.CharField(
+        verbose_name=(
+            "Is there any other reason the patient is deemed to not be suitable for the study?"
+        ),
+        max_length=15,
+        choices=YES_NO_NOT_EVALUATED,
+        default=NOT_EVALUATED,
+        help_text="If YES, patient NOT eligible, please give reason below.",
+    )
 
     class Meta:
         verbose_name = "Subject Screening"

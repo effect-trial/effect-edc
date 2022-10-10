@@ -53,7 +53,7 @@ crfs_missed = FormsCollection(
 
 crfs_d01 = FormsCollection(
     Crf(show_order=50, model="effect_subject.arvhistory"),
-    Crf(show_order=60, model="effect_subject.patienthistory"),
+    Crf(show_order=60, model="effect_subject.participanthistory"),
     Crf(show_order=70, model="effect_subject.vitalsigns"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -100,7 +100,7 @@ crfs_d14 = FormsCollection(
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
     Crf(show_order=110, model="effect_subject.arvtreatment"),
-    Crf(show_order=120, model="effect_subject.patienttreatment"),
+    Crf(show_order=120, model="effect_subject.participanttreatment"),
     Crf(show_order=200, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=230, model="effect_subject.chestxray", required=False),
     Crf(show_order=240, model="effect_subject.lpcsf", required=False),

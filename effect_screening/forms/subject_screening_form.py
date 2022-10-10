@@ -32,6 +32,7 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
         model = SubjectScreening
         fields = "__all__"
         labels = {
+            "gender": "Sex",
             "unsuitable_agreed": (
                 "Does the study clinician agree that the patient is not "
                 "suitable for the study?"

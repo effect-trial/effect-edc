@@ -1,8 +1,25 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.20]
+--------
+- rename Patient History CRF to Participant History (#446)
+- rename Patient Treatment CRF to Participant Treatment (#446)
+- rename 'gender' to 'sex' in Subject Screening forms, Subject Consent form,
+  and Screening Listboard (#443)
+- updates to Subject Screening form (#440, #458)
+    - add 'Not evaluated' choices to a number of screening questions (#440)
+    - remove help text from 'csf_crag_value'(#458)
+    - fix patient remains eligible even if deemed unsuitable for study
+    - improvements to coverage of eligibility checks
+    - increase test coverage
+- bump to edc 0.4.44
+- bump to edc-csf 0.1.13
+- bump to effect-form-validators 0.1.23
+- add edc_protocol middleware
+
+[0.1.19]
+--------
 - fix 'Screening' and 'Subjects' links missing from navbar
 
 [0.1.18]

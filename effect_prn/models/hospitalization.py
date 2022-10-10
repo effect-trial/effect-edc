@@ -10,12 +10,14 @@ from edc_protocol.validators import (
     date_not_before_study_start,
     datetime_not_before_study_start,
 )
+from edc_sites.models import SiteModelMixin
 from edc_utils import get_utcnow
 
 from effect_prn.constants import HOSPITALIZATION_ACTION
 
 
 class Hospitalization(
+    SiteModelMixin,
     NonUniqueSubjectIdentifierFieldMixin,
     ActionModelMixin,
     edc_models.BaseUuidModel,

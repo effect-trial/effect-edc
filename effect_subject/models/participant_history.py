@@ -11,7 +11,7 @@ from ..choices import FLUCONAZOLE_DOSES, TB_SITE_CHOICES, TB_TX_TYPES
 from ..model_mixins import CrfModelMixin
 
 
-class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
+class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     flucon_1w_prior_rando = models.CharField(
         verbose_name="Fluconazole taken within 1 week prior to randomization?",
@@ -142,5 +142,5 @@ class PatientHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Patient History"
-        verbose_name_plural = "Patient History"
+        verbose_name = "Participant History"
+        verbose_name_plural = "Participant History"

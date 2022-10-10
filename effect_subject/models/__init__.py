@@ -12,8 +12,8 @@ from .lab_results import BloodResultsChem, BloodResultsFbc, Urinalysis
 from .lp_csf import LpCsf
 from .medication_adherence import MedicationAdherence
 from .mental_status import MentalStatus
-from .patient_history import PatientHistory
-from .patient_treatment import PatientTreatment
+from .participant_history import ParticipantHistory
+from .participant_treatment import ParticipantTreatment
 from .proxy_models import (
     AdherenceStageFour,
     AdherenceStageOne,

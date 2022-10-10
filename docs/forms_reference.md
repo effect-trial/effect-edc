@@ -4,7 +4,7 @@
 
 <a href="#user-content-1000">**1000.**</a>
 1. <a href="#user-content-arv-history">Arv History</a>
-2. <a href="#user-content-patient-history">Patient History</a>
+2. <a href="#user-content-participant-history">Participant History</a>
 3. <a href="#user-content-vital-signs">Vital Signs</a>
 4. <a href="#user-content-mental-status">Mental Status</a>
 5. <a href="#user-content-signs-and-symptoms">Signs And Symptoms</a>
@@ -43,7 +43,7 @@
 4. <a href="#user-content-signs-and-symptoms-3">Signs And Symptoms</a>
 5. <a href="#user-content-significant-diagnoses-2">Significant Diagnoses</a>
 6. <a href="#user-content-arv-treatment">Arv Treatment</a>
-7. <a href="#user-content-patient-treatment">Patient Treatment</a>
+7. <a href="#user-content-participant-treatment">Participant Treatment</a>
 8. <a href="#user-content-blood-result-fbc-1">Blood Result: Fbc</a>
 9. <a href="#user-content-chest-x-ray-3">Chest X-Ray</a>
 10. <a href="#user-content-lumbar-puncturecsf-3">Lumbar Puncture/Csf</a>
@@ -94,7 +94,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Arv History
 *[missing model class docstring]*
@@ -145,7 +145,7 @@
 
 **Section: ARV treatment and monitoring**
 
-**5.0.** Was the patient on ART <u>at time of</u> CrAg test?
+**5.0.** Was the participant on ART <u>at time of</u> CrAg test?
 - db_table: effect_subject_arvhistory
 - column: on_art_at_crag
 - type: CharField
@@ -155,7 +155,7 @@
   - `No`: *No*
 ---
 
-**6.0.** Was the patient on ART <u>prior</u> to CrAg test?
+**6.0.** Was the participant on ART <u>prior</u> to CrAg test?
 - db_table: effect_subject_arvhistory
 - column: ever_on_art
 - type: CharField
@@ -165,7 +165,7 @@
   - `No`: *No*
 ---
 
-**7.0.** When did the patient <u>start</u> ART for the first time?
+**7.0.** When did the participant <u>start</u> ART for the first time?
 - db_table: effect_subject_arvhistory
 - column: initial_art_date
 - type: DateField
@@ -239,7 +239,7 @@
 - responses: *free text*
 ---
 
-**10.0.** Has the patient ever <u>switched</u> ART regimen?
+**10.0.** Has the participant ever <u>switched</u> ART regimen?
 - db_table: effect_subject_arvhistory
 - column: has_switched_art_regimen
 - type: CharField
@@ -326,7 +326,7 @@
 
 **Section: ART adherence**
 
-**14.0.** Has the patient <u>now</u> defaulted from their <u>current</u> ART regimen?
+**14.0.** Has the participant <u>now</u> defaulted from their <u>current</u> ART regimen?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Defaulted means no ART for at least one month.*
 - db_table: effect_subject_arvhistory
@@ -361,7 +361,7 @@
   - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
-**17.0.** If the patient is currently on ART, are they <u>adherent</u> to their <u>current</u> ART regimen?
+**17.0.** If the participant is currently on ART, are they <u>adherent</u> to their <u>current</u> ART regimen?
 - db_table: effect_subject_arvhistory
 - column: is_adherent
 - type: CharField
@@ -467,9 +467,9 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
-#### Patient History
+#### Participant History
 *[missing model class docstring]*
 
 
@@ -479,7 +479,7 @@
 **Section: Main**
 
 **1.0.** subject visit
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: subject_visit
 - type: OneToOneField
 ---
@@ -487,7 +487,7 @@
 **2.0.** Report Date
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: report_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
@@ -496,7 +496,7 @@
 **Section: Fluconazole**
 
 **3.0.** Fluconazole taken within 1 week prior to randomization?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: flucon_1w_prior_rando
 - type: CharField
 - length: 5
@@ -506,7 +506,7 @@
 ---
 
 **4.0.** If YES, number of days Fluconazole taken:
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: flucon_days
 - type: IntegerField
 ---
@@ -514,7 +514,7 @@
 **5.0.** If YES, Fluconazole dose (if taken < 1 week prior to randomisation):
 
 &nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: flucon_dose
 - type: CharField
 - length: 25
@@ -528,13 +528,13 @@
 **5.1.** Other Fluconazole dose (if taken < 1 week prior to randomisation):
 
 &nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: flucon_dose_other
 - type: IntegerField
 ---
 
 **5.199999999999999.** Other Fluconazole dose reason:
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: flucon_dose_other_reason
 - type: CharField
 - length: 35
@@ -546,7 +546,7 @@
 **6.0.** Is there any reported neurological abnormality following examination by a medical practitioner?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Must be confirmed as not related to CM*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: reported_neuro_abnormality
 - type: CharField
 - length: 5
@@ -556,7 +556,7 @@
 ---
 
 **7.0.** Details of neurological abnormality?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: neuro_abnormality_details
 - type: TextField
 ---
@@ -564,7 +564,7 @@
 **Section: TB diagnosis**
 
 **8.0.** Previous diagnosis of Tuberculosis?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: tb_prev_dx
 - type: CharField
 - length: 5
@@ -574,7 +574,7 @@
 ---
 
 **9.0.** If YES, give date
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: tb_dx_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -583,7 +583,7 @@
 **10.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: tb_dx_date_estimated
 - type: CharField
 - length: 25
@@ -596,7 +596,7 @@
 ---
 
 **11.0.** If YES, site of TB?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: tb_site
 - type: CharField
 - length: 15
@@ -610,7 +610,7 @@
 **Section: TB prevention/treatment**
 
 **12.0.** Is the participant currently taking TB treatment?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: on_tb_tx
 - type: CharField
 - length: 5
@@ -622,7 +622,7 @@
 **13.0.** If YES, please specify type?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If 'Active TB' please specify treatment below ...*
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: tb_tx_type
 - type: CharField
 - length: 15
@@ -634,7 +634,7 @@
 ---
 
 **14.0.** If 'Active TB', which treatment?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: active_tb_tx
 - type: ManyToManyField
 - responses: *Select all that apply*
@@ -660,7 +660,7 @@
 **Section: Other opportunistic infections**
 
 **15.0.** Previous opportunistic infection other than TB?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: previous_oi
 - type: CharField
 - length: 5
@@ -670,7 +670,7 @@
 ---
 
 **16.0.** If YES, specify opportunistic infection name?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: previous_oi_name
 - type: CharField
 - length: 35
@@ -678,7 +678,7 @@
 ---
 
 **17.0.** If YES, what was the date of the previous opportunistic infection diagnosis?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: previous_oi_dx_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -687,7 +687,7 @@
 **Section: Other medication**
 
 **18.0.** Other medication?
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: any_medications
 - type: CharField
 - length: 5
@@ -697,7 +697,7 @@
 ---
 
 **19.0.** specify medications
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: specify_medications
 - type: ManyToManyField
 - responses: *Select all that apply*
@@ -764,14 +764,14 @@
 ---
 
 **19.1.** If STEROID, specify type and dose of steroid ...
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: specify_steroid_other
 - type: TextField
 - length: 150
 ---
 
 **19.200000000000003.** If OTHER, specify ...
-- db_table: effect_subject_patienthistory
+- db_table: effect_subject_participanthistory
 - column: specify_medications_other
 - type: TextField
 - length: 150
@@ -780,7 +780,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -919,7 +919,7 @@
   - `N/A`: *Not applicable*
 ---
 
-**16.0.** Has the patient been admitted due to any of the above?
+**16.0.** Has the participant been admitted due to any of the above?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_vitalsigns
@@ -935,7 +935,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -1072,7 +1072,7 @@
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -1088,7 +1088,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -1127,7 +1127,7 @@
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -1234,7 +1234,7 @@
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -1330,7 +1330,7 @@
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -1382,13 +1382,15 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
 
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+*Additional instructions*: Please ensure the baseline Vital Signs form has been completed for participant <strong>before</strong> starting this form.
 
 
 **Section: Main**
@@ -1410,7 +1412,7 @@
 
 **Section: Fluconazole**
 
-**3.0.** Was the patient started on Fluconazole?
+**3.0.** Was the participant started on Fluconazole?
 - db_table: effect_subject_studymedication
 - column: flucon_initiated
 - type: CharField
@@ -1427,20 +1429,33 @@
 - length: 250
 ---
 
-**5.0.** Fluconazole dose (mg)
-- db_table: effect_subject_studymedication
-- column: flucon_dose
-- type: IntegerField
----
-
-**6.0.** Date and time of first Fluconazole dose
+**5.0.** Date and time first fluconazole dose administered
 - db_table: effect_subject_studymedication
 - column: flucon_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**7.0.** Fluconazole notes (if any)
+**6.0.** Fluconazole dose
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucon_dose
+- type: IntegerField
+---
+
+**7.0.** First fluconazole dose administered
+- db_table: effect_subject_studymedication
+- column: flucon_next_dose
+- type: CharField
+- length: 15
+- responses:
+  - `today`: *Today*
+  - `tomorrow`: *Tomorrow*
+  - `N/A`: *Not applicable*
+---
+
+**8.0.** Fluconazole notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucon_notes
 - type: TextField
@@ -1449,7 +1464,7 @@
 
 **Section: Flucytosine**
 
-**8.0.** Was the patient started on Flucytosine?
+**9.0.** Was the participant started on Flucytosine?
 - db_table: effect_subject_studymedication
 - column: flucyt_initiated
 - type: CharField
@@ -1460,29 +1475,82 @@
   - `N/A`: *Not applicable*
 ---
 
-**9.0.** If NO, please explain
+**10.0.** If NO, please explain
 - db_table: effect_subject_studymedication
 - column: flucyt_not_initiated_reason
 - type: TextField
 - length: 250
 ---
 
-**10.0.** Flucytosine dose (mg)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Validate against weight and rando arm 100mg/kg, round down to nearest 500mg total e.g. 47kg = 4700mg, patient gets 4500mg daily*
-- db_table: effect_subject_studymedication
-- column: flucyt_dose
-- type: IntegerField
----
-
-**11.0.** Date and time of first Flucytosine dose
+**11.0.** Date and time first flucytosine dose administered
 - db_table: effect_subject_studymedication
 - column: flucyt_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**12.0.** Flucytosine notes (if any)
+**12.0.** Flucytosine dose expected
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d. Validate against weight and rando arm 100mg/kg, round down to nearest 500mg total e.g. 47kg = 4700mg, participant gets 4500mg daily*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_expected
+- type: IntegerField
+---
+
+**13.0.** Flucytosine dose prescribed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose
+- type: IntegerField
+---
+
+**14.0.** Dose at 04:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_0400
+- type: IntegerField
+---
+
+**15.0.** Dose at 10:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1000
+- type: IntegerField
+---
+
+**16.0.** Dose at 16:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1600
+- type: IntegerField
+---
+
+**17.0.** Dose at 22:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_2200
+- type: IntegerField
+---
+
+**18.0.** First flucytosine dose administered
+- db_table: effect_subject_studymedication
+- column: flucyt_next_dose
+- type: CharField
+- length: 5
+- responses:
+  - `0400`: *at 04:00*
+  - `1000`: *at 10:00*
+  - `1600`: *at 16:00*
+  - `2200`: *at 22:00*
+  - `N/A`: *Not applicable*
+---
+
+**19.0.** Flucytosine notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucyt_notes
 - type: TextField
@@ -1492,7 +1560,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -1528,7 +1596,7 @@
 - type: ForeignKey
 ---
 
-**4.0.** Result Report Date and Time
+**4.0.** Result assay date and time
 - db_table: effect_subject_bloodresultsfbc
 - column: assay_datetime
 - type: DateTimeField
@@ -1860,7 +1928,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Blood Result: Chemistry
 *[missing model class docstring]*
@@ -1896,7 +1964,7 @@
 - type: ForeignKey
 ---
 
-**4.0.** Result Report Date and Time
+**4.0.** Result assay date and time
 - db_table: effect_subject_bloodresultschem
 - column: assay_datetime
 - type: DateTimeField
@@ -2435,7 +2503,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -2508,7 +2576,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -2788,7 +2856,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -2975,7 +3043,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -3151,7 +3219,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -3198,7 +3266,7 @@
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
@@ -3242,7 +3310,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *free text*
 ---
 
-**5.0.** Was an adherence diary issued to the patient?
+**5.0.** Was an adherence diary issued to the participant?
 - db_table: effect_subject_adherence
 - column: diary_issued
 - type: CharField
@@ -3279,7 +3347,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -3416,7 +3484,7 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -3432,7 +3500,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -3471,7 +3539,7 @@ Adherence CRF completed at baseline (in-person).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -3578,7 +3646,7 @@ Adherence CRF completed at baseline (in-person).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -3674,7 +3742,7 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -3726,7 +3794,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -3754,7 +3822,7 @@ Adherence CRF completed at baseline (in-person).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -3824,7 +3892,7 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -3840,7 +3908,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -3913,7 +3981,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -4193,7 +4261,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -4380,7 +4448,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -4479,7 +4547,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -4616,7 +4684,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -4632,7 +4700,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -4671,7 +4739,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -4778,7 +4846,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -4874,7 +4942,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -4926,7 +4994,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -4954,7 +5022,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -5024,7 +5092,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -5040,7 +5108,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -5113,7 +5181,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -5393,7 +5461,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -5580,7 +5648,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -5679,7 +5747,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -5705,7 +5773,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**3.0.** Have there been any modifications to study medication since the last report
+**Section: Modifications**
+
+**3.0.** Have there been any modifications to study medication since the last report?
 - db_table: effect_subject_studymedication
 - column: modifications
 - type: CharField
@@ -5715,22 +5785,66 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `No`: *No*
 ---
 
-**Section: Fluconazole**
+**4.0.** Reason for dose change
 
-**4.0.** Fluconazole dose (mg)
+&nbsp;&nbsp;&nbsp;&nbsp; *Select all that apply.*
 - db_table: effect_subject_studymedication
-- column: flucon_dose
-- type: IntegerField
+- column: modifications_reason
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `per_protocol`: *Per protocol*
+  - `renal_adjustment`: *Renal adjustment*
+  - `toxicity`: *Toxicity*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
-**5.0.** Date and time of first Fluconazole dose
+**4.1.** If other reason, please provide details ...
+- db_table: effect_subject_studymedication
+- column: modifications_reason_other
+- type: TextField
+- length: 250
+---
+
+**Section: Fluconazole**
+
+**5.0.** Have there been any modifications to fluconazole dose since the last report?
+- db_table: effect_subject_studymedication
+- column: flucon_modified
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** Date and time first fluconazole dose administered
 - db_table: effect_subject_studymedication
 - column: flucon_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**6.0.** Fluconazole notes (if any)
+**7.0.** Fluconazole dose
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucon_dose
+- type: IntegerField
+---
+
+**8.0.** First fluconazole dose administered
+- db_table: effect_subject_studymedication
+- column: flucon_next_dose
+- type: CharField
+- length: 15
+- responses:
+  - `today`: *Today*
+  - `tomorrow`: *Tomorrow*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Fluconazole notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucon_notes
 - type: TextField
@@ -5739,22 +5853,78 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Flucytosine**
 
-**7.0.** Flucytosine dose (mg)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Validate against weight and rando arm 100mg/kg, round down to nearest 500mg total e.g. 47kg = 4700mg, patient gets 4500mg daily*
+**10.0.** Have there been any modifications to flucytosine dose since the last report?
 - db_table: effect_subject_studymedication
-- column: flucyt_dose
-- type: IntegerField
+- column: flucyt_modified
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
-**8.0.** Date and time of first Flucytosine dose
+**11.0.** Date and time first flucytosine dose administered
 - db_table: effect_subject_studymedication
 - column: flucyt_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**9.0.** Flucytosine notes (if any)
+**12.0.** Flucytosine dose prescribed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose
+- type: IntegerField
+---
+
+**13.0.** Dose at 04:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_0400
+- type: IntegerField
+---
+
+**14.0.** Dose at 10:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1000
+- type: IntegerField
+---
+
+**15.0.** Dose at 16:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1600
+- type: IntegerField
+---
+
+**16.0.** Dose at 22:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_2200
+- type: IntegerField
+---
+
+**17.0.** First flucytosine dose administered
+- db_table: effect_subject_studymedication
+- column: flucyt_next_dose
+- type: CharField
+- length: 5
+- responses:
+  - `0400`: *at 04:00*
+  - `1000`: *at 10:00*
+  - `1600`: *at 16:00*
+  - `2200`: *at 22:00*
+  - `N/A`: *Not applicable*
+---
+
+**18.0.** Flucytosine notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucyt_notes
 - type: TextField
@@ -5764,7 +5934,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -5903,7 +6073,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**16.0.** Has the patient been admitted due to any of the above?
+**16.0.** Has the participant been admitted due to any of the above?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_vitalsigns
@@ -5919,7 +6089,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -6056,7 +6226,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -6072,7 +6242,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -6111,7 +6281,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -6218,7 +6388,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -6314,7 +6484,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -6366,7 +6536,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -6394,7 +6564,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -6464,7 +6634,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -6480,7 +6650,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Arv Treatment
 *[missing model class docstring]*
@@ -6508,7 +6678,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: ARV Treatment**
 
-**3.0.** Is the patient currently on an ART regimen?
+**3.0.** Is the participant currently on an ART regimen?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If ART regimen is on hold, answer yes and clarify below*
 - db_table: effect_subject_arvtreatment
@@ -6520,9 +6690,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `No`: *No*
 ---
 
-**4.0.** If YES, on an ART regimen, has the patient adhered to this ART regimen?
+**4.0.** If YES, on an ART regimen, has the participant adhered to this ART regimen?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *In the opinion of the clinican, is the patient at least 90% adherent*
+&nbsp;&nbsp;&nbsp;&nbsp; *In the opinion of the clinician, is the participant at least 90% adherent*
 - db_table: effect_subject_arvtreatment
 - column: adherent
 - type: CharField
@@ -6551,7 +6721,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - format: YYYY-MM-DD
 ---
 
-**7.0.** Has the patient's ART regimen changed since the last study assessment
+**7.0.** Has the participant's ART regimen changed since the last study assessment
 - db_table: effect_subject_arvtreatment
 - column: arv_regimen_changed
 - type: CharField
@@ -6580,9 +6750,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
-#### Patient Treatment
+#### Participant Treatment
 *[missing model class docstring]*
 
 
@@ -6592,7 +6762,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **Section: Main**
 
 **1.0.** subject visit
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: subject_visit
 - type: OneToOneField
 ---
@@ -6600,7 +6770,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **2.0.** Report Date
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: report_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
@@ -6611,7 +6781,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **3.0.** LP completed?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete laboratory results*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: lp_completed
 - type: CharField
 - length: 15
@@ -6621,7 +6791,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **4.0.** Cryptococcal meningitis confirmed?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: cm_confirmed
 - type: CharField
 - length: 15
@@ -6632,7 +6802,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **5.0.** Cryptococcal meningitis treatment administered?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: on_cm_tx
 - type: CharField
 - length: 15
@@ -6643,7 +6813,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **6.0.** If YES, treatment given?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: cm_tx_given
 - type: CharField
 - length: 15
@@ -6654,7 +6824,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **6.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: cm_tx_given_other
 - type: CharField
 - length: 35
@@ -6663,8 +6833,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Tuberculosis**
 
-**7.0.** Has the patient been put on TB preventive therapy?
-- db_table: effect_subject_patienttreatment
+**7.0.** Has the participant been put on TB preventive therapy?
+- db_table: effect_subject_participanttreatment
 - column: on_tb_tx
 - type: CharField
 - length: 15
@@ -6674,7 +6844,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **8.0.** If YES, give date
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -6683,7 +6853,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **9.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_date_estimated
 - type: CharField
 - length: 25
@@ -6696,7 +6866,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **10.0.** If YES, which treatment?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_given
 - type: ManyToManyField
 - responses: *Select all that apply*
@@ -6720,7 +6890,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **10.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_given_other
 - type: CharField
 - length: 35
@@ -6728,7 +6898,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **11.0.** If NO, give reason
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_reason_no
 - type: CharField
 - length: 30
@@ -6740,7 +6910,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **11.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: tb_tx_reason_no_other
 - type: CharField
 - length: 35
@@ -6749,8 +6919,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Steroids**
 
-**12.0.** Were steroids administered to the patient?
-- db_table: effect_subject_patienttreatment
+**12.0.** Were steroids administered to the participant?
+- db_table: effect_subject_participanttreatment
 - column: on_steroids
 - type: CharField
 - length: 15
@@ -6760,7 +6930,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **13.0.** If YES, give date
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: steroids_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -6769,7 +6939,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **14.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: steroids_date_estimated
 - type: CharField
 - length: 25
@@ -6782,7 +6952,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **15.0.** If YES, which steroids?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: steroids_given
 - type: CharField
 - length: 35
@@ -6794,7 +6964,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **15.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: steroids_given_other
 - type: CharField
 - length: 35
@@ -6804,15 +6974,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 **16.0.** Length of steroid course?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *in days*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: steroids_course
 - type: IntegerField
 ---
 
 **Section: Co-trimixazole**
 
-**17.0.** Has the patient been prescribed co-trimoxazole?
-- db_table: effect_subject_patienttreatment
+**17.0.** Has the participant been prescribed co-trimoxazole?
+- db_table: effect_subject_participanttreatment
 - column: on_co_trimoxazole
 - type: CharField
 - length: 15
@@ -6822,7 +6992,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **18.0.** If YES, give date
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: co_trimoxazole_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -6831,7 +7001,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **19.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: co_trimoxazole_date_estimated
 - type: CharField
 - length: 25
@@ -6844,7 +7014,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **20.0.** If NO, give reason
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: co_trimoxazole_reason_no
 - type: CharField
 - length: 30
@@ -6856,7 +7026,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **20.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: co_trimoxazole_reason_no_other
 - type: CharField
 - length: 35
@@ -6865,8 +7035,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Antibiotics**
 
-**21.0.** Has the patient been prescribed antibiotics?
-- db_table: effect_subject_patienttreatment
+**21.0.** Has the participant been prescribed antibiotics?
+- db_table: effect_subject_participanttreatment
 - column: on_antibiotics
 - type: CharField
 - length: 15
@@ -6876,7 +7046,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **22.0.** If YES, give date
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: antibiotics_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -6885,7 +7055,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **23.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: antibiotics_date_estimated
 - type: CharField
 - length: 25
@@ -6898,7 +7068,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **24.0.** If YES, which antibiotics?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: antibiotics_given
 - type: ManyToManyField
 - responses: *Select all that apply*
@@ -6915,7 +7085,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **24.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: antibiotics_given_other
 - type: CharField
 - length: 35
@@ -6924,8 +7094,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Other drugs**
 
-**24.200000000000003.** Has the patient been prescribed any other drugs/interventions?
-- db_table: effect_subject_patienttreatment
+**24.200000000000003.** Has the participant been prescribed any other drugs/interventions?
+- db_table: effect_subject_participanttreatment
 - column: on_other_drugs
 - type: CharField
 - length: 15
@@ -6935,7 +7105,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **25.0.** If YES, give date
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: other_drugs_date
 - type: DateField
 - format: YYYY-MM-DD
@@ -6944,7 +7114,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 **26.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: other_drugs_date_estimated
 - type: CharField
 - length: 25
@@ -6957,7 +7127,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **27.0.** If YES, which drugs/interventions?
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: other_drugs_given
 - type: ManyToManyField
 - responses: *Select all that apply*
@@ -6972,7 +7142,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **27.1.** If other, please specify ...
-- db_table: effect_subject_patienttreatment
+- db_table: effect_subject_participanttreatment
 - column: other_drugs_given_other
 - type: CharField
 - length: 35
@@ -6982,7 +7152,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -7018,7 +7188,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ForeignKey
 ---
 
-**4.0.** Result Report Date and Time
+**4.0.** Result assay date and time
 - db_table: effect_subject_bloodresultsfbc
 - column: assay_datetime
 - type: DateTimeField
@@ -7350,7 +7520,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -7423,7 +7593,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -7703,7 +7873,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -7890,7 +8060,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -7937,7 +8107,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
@@ -8041,7 +8211,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *free text*
 ---
 
-**11.0.** Was patient adherence diary received and stored in patient records?
+**11.0.** Was participant adherence diary received and stored in participant records?
 - db_table: effect_subject_adherence
 - column: diary_returned
 - type: CharField
@@ -8059,7 +8229,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *free text*
 ---
 
-**13.0.** Did the patient adherence diary match the medication reconciliation?
+**13.0.** Did the participant adherence diary match the medication reconciliation?
 - db_table: effect_subject_adherence
 - column: diary_match_medication
 - type: CharField
@@ -8094,7 +8264,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -8231,7 +8401,7 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -8247,7 +8417,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -8286,7 +8456,7 @@ Adherence CRF completed at d14 (in-person).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -8393,7 +8563,7 @@ Adherence CRF completed at d14 (in-person).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -8489,7 +8659,7 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -8541,7 +8711,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -8569,7 +8739,7 @@ Adherence CRF completed at d14 (in-person).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -8639,7 +8809,7 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -8655,7 +8825,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -8728,7 +8898,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -9008,7 +9178,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -9195,7 +9365,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -9241,7 +9411,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Adherence summary**
 
-**5.0.** Has the patient linked up with their local clinic?
+**5.0.** Has the participant linked up with their local clinic?
 - db_table: effect_subject_adherence
 - column: linked_local_clinic
 - type: CharField
@@ -9259,7 +9429,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.0.** Is the patient receiving Fluconazole?
+**7.0.** Is the participant receiving Fluconazole?
 - db_table: effect_subject_adherence
 - column: on_flucon
 - type: CharField
@@ -9277,7 +9447,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**9.0.** Is the patient receiving ARVs?
+**9.0.** Is the participant receiving ARVs?
 - db_table: effect_subject_adherence
 - column: on_arv
 - type: CharField
@@ -9295,7 +9465,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**11.0.** In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
+**11.0.** In the clinician’s opinion, is the participant 90% adherent to fluconazole?
 - db_table: effect_subject_adherence
 - column: opinion_flucon_adherent
 - type: CharField
@@ -9305,7 +9475,7 @@ Adherence CRF completed after d14 (telephone).
   - `No`: *No*
 ---
 
-**12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
+**12.0.** In the clinician’s opinion, is the participant 90% adherent to ART?
 - db_table: effect_subject_adherence
 - column: opinion_arv_adherent
 - type: CharField
@@ -9328,7 +9498,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -9354,7 +9524,9 @@ Adherence CRF completed after d14 (telephone).
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**3.0.** Have there been any modifications to study medication since the last report
+**Section: Modifications**
+
+**3.0.** Have there been any modifications to study medication since the last report?
 - db_table: effect_subject_studymedication
 - column: modifications
 - type: CharField
@@ -9364,22 +9536,66 @@ Adherence CRF completed after d14 (telephone).
   - `No`: *No*
 ---
 
-**Section: Fluconazole**
+**4.0.** Reason for dose change
 
-**4.0.** Fluconazole dose (mg)
+&nbsp;&nbsp;&nbsp;&nbsp; *Select all that apply.*
 - db_table: effect_subject_studymedication
-- column: flucon_dose
-- type: IntegerField
+- column: modifications_reason
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `per_protocol`: *Per protocol*
+  - `renal_adjustment`: *Renal adjustment*
+  - `toxicity`: *Toxicity*
+  - `OTHER`: *Other, please specify below ...*
 ---
 
-**5.0.** Date and time of first Fluconazole dose
+**4.1.** If other reason, please provide details ...
+- db_table: effect_subject_studymedication
+- column: modifications_reason_other
+- type: TextField
+- length: 250
+---
+
+**Section: Fluconazole**
+
+**5.0.** Have there been any modifications to fluconazole dose since the last report?
+- db_table: effect_subject_studymedication
+- column: flucon_modified
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** Date and time first fluconazole dose administered
 - db_table: effect_subject_studymedication
 - column: flucon_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**6.0.** Fluconazole notes (if any)
+**7.0.** Fluconazole dose
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucon_dose
+- type: IntegerField
+---
+
+**8.0.** First fluconazole dose administered
+- db_table: effect_subject_studymedication
+- column: flucon_next_dose
+- type: CharField
+- length: 15
+- responses:
+  - `today`: *Today*
+  - `tomorrow`: *Tomorrow*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Fluconazole notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucon_notes
 - type: TextField
@@ -9388,22 +9604,78 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Flucytosine**
 
-**7.0.** Flucytosine dose (mg)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Validate against weight and rando arm 100mg/kg, round down to nearest 500mg total e.g. 47kg = 4700mg, patient gets 4500mg daily*
+**10.0.** Have there been any modifications to flucytosine dose since the last report?
 - db_table: effect_subject_studymedication
-- column: flucyt_dose
-- type: IntegerField
+- column: flucyt_modified
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
 ---
 
-**8.0.** Date and time of first Flucytosine dose
+**11.0.** Date and time first flucytosine dose administered
 - db_table: effect_subject_studymedication
 - column: flucyt_dose_datetime
 - type: DateTimeField
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**9.0.** Flucytosine notes (if any)
+**12.0.** Flucytosine dose prescribed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose
+- type: IntegerField
+---
+
+**13.0.** Dose at 04:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_0400
+- type: IntegerField
+---
+
+**14.0.** Dose at 10:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1000
+- type: IntegerField
+---
+
+**15.0.** Dose at 16:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_1600
+- type: IntegerField
+---
+
+**16.0.** Dose at 22:00
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mg*
+- db_table: effect_subject_studymedication
+- column: flucyt_dose_2200
+- type: IntegerField
+---
+
+**17.0.** First flucytosine dose administered
+- db_table: effect_subject_studymedication
+- column: flucyt_next_dose
+- type: CharField
+- length: 5
+- responses:
+  - `0400`: *at 04:00*
+  - `1000`: *at 10:00*
+  - `1600`: *at 16:00*
+  - `2200`: *at 22:00*
+  - `N/A`: *Not applicable*
+---
+
+**18.0.** Flucytosine notes (if any)
 - db_table: effect_subject_studymedication
 - column: flucyt_notes
 - type: TextField
@@ -9413,7 +9685,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -9550,7 +9822,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -9566,7 +9838,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -9605,7 +9877,7 @@ Adherence CRF completed after d14 (telephone).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -9712,7 +9984,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -9808,7 +10080,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -9860,7 +10132,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -9888,7 +10160,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -9958,7 +10230,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -9974,7 +10246,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -10047,7 +10319,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -10327,7 +10599,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -10514,7 +10786,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -10560,7 +10832,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Adherence summary**
 
-**5.0.** Has the patient linked up with their local clinic?
+**5.0.** Has the participant linked up with their local clinic?
 - db_table: effect_subject_adherence
 - column: linked_local_clinic
 - type: CharField
@@ -10578,7 +10850,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.0.** Is the patient receiving Fluconazole?
+**7.0.** Is the participant receiving Fluconazole?
 - db_table: effect_subject_adherence
 - column: on_flucon
 - type: CharField
@@ -10596,7 +10868,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**9.0.** Is the patient receiving ARVs?
+**9.0.** Is the participant receiving ARVs?
 - db_table: effect_subject_adherence
 - column: on_arv
 - type: CharField
@@ -10614,7 +10886,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**11.0.** In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
+**11.0.** In the clinician’s opinion, is the participant 90% adherent to fluconazole?
 - db_table: effect_subject_adherence
 - column: opinion_flucon_adherent
 - type: CharField
@@ -10624,7 +10896,7 @@ Adherence CRF completed after d14 (telephone).
   - `No`: *No*
 ---
 
-**12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
+**12.0.** In the clinician’s opinion, is the participant 90% adherent to ART?
 - db_table: effect_subject_adherence
 - column: opinion_arv_adherent
 - type: CharField
@@ -10647,7 +10919,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -10784,7 +11056,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -10800,7 +11072,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -10839,7 +11111,7 @@ Adherence CRF completed after d14 (telephone).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -10946,7 +11218,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -11042,7 +11314,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -11094,7 +11366,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -11122,7 +11394,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -11192,7 +11464,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -11208,7 +11480,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -11281,7 +11553,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -11561,7 +11833,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -11748,7 +12020,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -11794,7 +12066,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Adherence summary**
 
-**5.0.** Has the patient linked up with their local clinic?
+**5.0.** Has the participant linked up with their local clinic?
 - db_table: effect_subject_adherence
 - column: linked_local_clinic
 - type: CharField
@@ -11812,7 +12084,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.0.** Is the patient receiving Fluconazole?
+**7.0.** Is the participant receiving Fluconazole?
 - db_table: effect_subject_adherence
 - column: on_flucon
 - type: CharField
@@ -11830,7 +12102,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**9.0.** Is the patient receiving ARVs?
+**9.0.** Is the participant receiving ARVs?
 - db_table: effect_subject_adherence
 - column: on_arv
 - type: CharField
@@ -11848,7 +12120,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**11.0.** In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
+**11.0.** In the clinician’s opinion, is the participant 90% adherent to fluconazole?
 - db_table: effect_subject_adherence
 - column: opinion_flucon_adherent
 - type: CharField
@@ -11858,7 +12130,7 @@ Adherence CRF completed after d14 (telephone).
   - `No`: *No*
 ---
 
-**12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
+**12.0.** In the clinician’s opinion, is the participant 90% adherent to ART?
 - db_table: effect_subject_adherence
 - column: opinion_arv_adherent
 - type: CharField
@@ -11881,7 +12153,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -12018,7 +12290,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the patient been admitted due to these symptoms?
+**11.0.** Has the participant been admitted due to these symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
@@ -12034,7 +12306,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -12073,7 +12345,7 @@ Adherence CRF completed after d14 (telephone).
   - `unknown`: *Unknown*
 ---
 
-**4.0.** Is patient currently experiencing any of the following signs/symptoms?
+**4.0.** Is participant currently experiencing any of the following signs/symptoms?
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx
 - type: ManyToManyField
@@ -12180,7 +12452,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Additional details**
 
-**7.0.** If patient currently has headache, for what duration have they had it for
+**7.0.** If participant currently has headache, for what duration have they had it for
 
 &nbsp;&nbsp;&nbsp;&nbsp; *In days and/or hours.  Note: 1 day equivalent to 24 hours.</br> Format is `DDdHHh`, `DDd` or `HHh`. For example 1d23h, 15d9h ... or 20d, or 5h ...*
 - db_table: effect_subject_signsandsymptoms
@@ -12276,7 +12548,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the patient been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been admitted due to any of these signs or symptoms?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
@@ -12328,7 +12600,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -12356,7 +12628,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Gastrointestinal side effects**
 
-**3.0.** Has the patient experienced any gastrointestinal side effects?
+**3.0.** Has the participant experienced any gastrointestinal side effects?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete SAE report where appropriate*
 - db_table: effect_subject_diagnoses
@@ -12426,7 +12698,7 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the patient been admitted due to any of these diagnoses?
+**8.0.** Has the participant been admitted due to any of these diagnoses?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
@@ -12442,7 +12714,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -12515,7 +12787,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -12795,7 +13067,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -12982,7 +13254,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -13158,7 +13430,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -13204,7 +13476,7 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Adherence summary**
 
-**5.0.** Has the patient linked up with their local clinic?
+**5.0.** Has the participant linked up with their local clinic?
 - db_table: effect_subject_adherence
 - column: linked_local_clinic
 - type: CharField
@@ -13222,7 +13494,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.0.** Is the patient receiving Fluconazole?
+**7.0.** Is the participant receiving Fluconazole?
 - db_table: effect_subject_adherence
 - column: on_flucon
 - type: CharField
@@ -13240,7 +13512,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**9.0.** Is the patient receiving ARVs?
+**9.0.** Is the participant receiving ARVs?
 - db_table: effect_subject_adherence
 - column: on_arv
 - type: CharField
@@ -13258,7 +13530,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**11.0.** In the clinician’s opinion, is the patient 90% adherent to Fluconazole?
+**11.0.** In the clinician’s opinion, is the participant 90% adherent to fluconazole?
 - db_table: effect_subject_adherence
 - column: opinion_flucon_adherent
 - type: CharField
@@ -13268,7 +13540,7 @@ Adherence CRF completed after d14 (telephone).
   - `No`: *No*
 ---
 
-**12.0.** In the clinician’s opinion, is the patient 90% adherent to ART?
+**12.0.** In the clinician’s opinion, is the participant 90% adherent to ART?
 - db_table: effect_subject_adherence
 - column: opinion_arv_adherent
 - type: CharField
@@ -13289,6 +13561,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-07-29 19:30*
+*Rendered on 2022-10-10 00:37*
 
 

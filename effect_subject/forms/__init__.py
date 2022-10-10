@@ -18,8 +18,8 @@ from .lab_results import BloodResultsChemForm, BloodResultsFbcForm, UrinalysisFo
 from .lp_csf_form import LpCsfForm
 from .medication_adherence_form import MedicationAdherenceForm
 from .mental_status_form import MentalStatusForm
-from .patient_history_form import PatientHistoryForm
-from .patient_treatment_form import PatientTreatmentForm
+from .participant_history_form import ParticipantHistoryForm
+from .participant_treatment_form import ParticipantTreatmentForm
 from .signs_and_symptoms_form import SignsAndSymptomsForm
 from .study_medication_baseline_form import StudyMedicationBaselineForm
 from .study_medication_followup_form import StudyMedicationFollowupForm
