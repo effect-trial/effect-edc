@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+[0.1.21]
+--------
+- fix error raised when running update_forms_reference
+- bump to edc 0.4.46
+
 [0.1.20]
 --------
 - rename Patient History CRF to Participant History (#446)
