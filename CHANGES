@@ -1,6 +1,13 @@
 Changes
 +++++++
 
+[unreleased]
+-----------
+- update form validator mixins
+- update subject-visit modelform mixins
+- add INCOMPLETE status to eligibility
+- color screen listboard eligibility button according to eligibility status
+ 
 [0.1.21]
 --------
 - fix error raised when running update_forms_reference

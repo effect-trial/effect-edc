@@ -4,7 +4,9 @@ from django.utils.translation import gettext_lazy as _
 from edc_action_item.models import ActionItem
 from edc_constants.constants import DEAD
 from edc_form_validators import FormValidatorMixin
+from edc_offstudy.modelform_mixins import OffstudyNonCrfModelFormMixin
 from edc_sites.forms import SiteModelFormMixin
+from edc_visit_tracking.modelform_mixins import VisitTrackingModelFormMixin
 from effect_form_validators.effect_subject import SubjectVisitFormValidator
 
 from effect_ae.action_items import DeathReportAction
@@ -12,7 +14,13 @@ from effect_ae.action_items import DeathReportAction
 from ..models import SubjectVisit
 
 
-class SubjectVisitForm(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
+class SubjectVisitForm(
+    SiteModelFormMixin,
+    VisitTrackingModelFormMixin,
+    OffstudyNonCrfModelFormMixin,
+    FormValidatorMixin,
+    forms.ModelForm,
+):
 
     form_validator_cls = SubjectVisitFormValidator
 

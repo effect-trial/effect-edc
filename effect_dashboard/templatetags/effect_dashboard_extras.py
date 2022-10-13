@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 from django import template
 from django.conf import settings
-from edc_constants.constants import NO, PENDING, TBD, YES
+from edc_constants.constants import INCOMPLETE, NO, PENDING, TBD, YES
 from edc_dashboard.url_names import url_names
 
 from effect_screening.eligibility import ScreeningEligibility
@@ -39,6 +39,9 @@ def eligibility_button(subject_screening_model_wrapper):
         comment = list(set(comment))
         comment.sort()
     eligibility = ScreeningEligibility(obj, update_model=False)
+    button_css_cls = (
+        "warning" if eligibility.display_label in [PENDING, INCOMPLETE] else "default"
+    )
     soup = BeautifulSoup(eligibility.display_label, features="html.parser")
     return dict(
         eligible=eligibility.is_eligible,
@@ -47,6 +50,7 @@ def eligibility_button(subject_screening_model_wrapper):
         comment=comment,
         tooltip=tooltip,
         TBD=TBD,
+        button_css_cls=button_css_cls,
     )
 
 
