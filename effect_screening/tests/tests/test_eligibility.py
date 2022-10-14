@@ -16,7 +16,11 @@ from edc_constants.constants import (
 )
 from edc_utils.date import get_utcnow
 
-from effect_screening.eligibility import ScreeningEligibility
+from effect_screening.eligibility import (
+    INCOMPLETE_EXCLUSION,
+    INCOMPLETE_INCLUSION,
+    ScreeningEligibility,
+)
 from effect_screening.forms import SubjectScreeningForm
 from effect_screening.models import SubjectScreening
 
@@ -883,3 +887,68 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                     obj.reasons_ineligible,
                 )
                 self.assertFalse(obj.is_eligible)
+
+    def test_assessment_is_incomplete_true_if_reasons_ineligible_all_incomplete(self):
+        for reasons_ineligible in (
+            {"inclusion_criteria": INCOMPLETE_INCLUSION},
+            {"exclusion_criteria": INCOMPLETE_EXCLUSION},
+            {
+                "inclusion_criteria": INCOMPLETE_INCLUSION,
+                "exclusion_criteria": INCOMPLETE_EXCLUSION,
+            },
+            {
+                "exclusion_criteria": INCOMPLETE_EXCLUSION,
+                "inclusion_criteria": INCOMPLETE_INCLUSION,
+            },
+        ):
+            with self.subTest(reasons_ineligible=reasons_ineligible):
+                self.assertTrue(
+                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible)
+                )
+
+    def test_assessment_is_incomplete_false_if_reasons_ineligible_empty(self):
+        self.assertFalse(ScreeningEligibility.assessment_is_incomplete({}))
+
+    def test_assessment_is_incomplete_false_if_reasons_ineligible_not_all_incomplete(self):
+        for reasons_ineligible in (
+            {"inclusion_criteria": INCOMPLETE_INCLUSION, "willing_to_participate": NO},
+            {"reaction_to_study_drugs": YES, "exclusion_criteria": INCOMPLETE_EXCLUSION},
+            # Failed inclusion
+            {"hiv_pos": "Not HIV sero-positive"},
+            {"cd4_value": "CD4 not <100 cells/μL"},
+            {"csf_crag_value": "CSF CrAg pending"},
+            {"csf_crag_value": "CSF CrAg (+)"},
+            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
+            # Failed exclusion
+            {"cm_in_csf": "Positive evidence of CM on CSF"},
+            {"jaundice": "Jaundice"},
+            {"on_flucon": "On fluconazole"},
+            {"pregnant": "Pregnant"},
+            {"breast_feeding": "Breastfeeding"},
+            # Failed inclusion & exclusion
+            {"csf_crag_value": "CSF CrAg (+)", "on_flucon": "On fluconazole"},
+            {"pregnant": "Pregnant", "cd4_value": "CD4 not <100 cells/μL"},
+            # Missing + failed
+            {
+                "inclusion_criteria": INCOMPLETE_INCLUSION,
+                "exclusion_criteria": INCOMPLETE_EXCLUSION,
+                "mg_severe_headache": "Signs of symptomatic meningitis",
+            },
+            {
+                "mg_severe_headache": "Signs of symptomatic meningitis",
+                "exclusion_criteria": INCOMPLETE_EXCLUSION,
+                "inclusion_criteria": INCOMPLETE_INCLUSION,
+            },
+            {
+                "mg_severe_headache": "Signs of symptomatic meningitis",
+                "exclusion_criteria": INCOMPLETE_EXCLUSION,
+            },
+            {
+                "inclusion_criteria": INCOMPLETE_INCLUSION,
+                "mg_severe_headache": "Signs of symptomatic meningitis",
+            },
+        ):
+            with self.subTest(reasons_ineligible=reasons_ineligible):
+                self.assertFalse(
+                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible)
+                )
