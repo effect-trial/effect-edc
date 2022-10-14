@@ -9,6 +9,8 @@ Changes
 - color screen listboard eligibility button according to eligibility status
 - drop Python 3.9 support
 - drop Django 3.2 support
+- add edc-egfr as dependency; modify admin to display eGFR as read only in
+  BloodResultChem; validate in form to expect weight before calculating eGFR.
 
 [0.1.21]
 --------

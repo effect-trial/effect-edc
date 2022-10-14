@@ -17,6 +17,6 @@ class BloodResultsFbcForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.Model
 
     form_validator_cls = BloodResultsFbcFormValidator
 
-    class Meta:
+    class Meta(ActionItemCrfFormMixin.Meta):
         model = BloodResultsFbc
         fields = "__all__"

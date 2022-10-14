@@ -97,11 +97,13 @@ class EffectTestCaseMixin(
         report_datetime=None,
         eligibility_datetime=None,
         gender=None,
+        age_in_years=None,
     ):
         eligible_options = deepcopy(get_eligible_options())
         if report_datetime:
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]
+        eligible_options["age_in_years"] = age_in_years or eligible_options["age_in_years"]
 
         subject_screening = SubjectScreening.objects.create(
             user_created="erikvw", user_modified="erikvw", **eligible_options
@@ -126,7 +128,7 @@ class EffectTestCaseMixin(
         return subject_screening
 
     @staticmethod
-    def get_subject_consent(subject_screening, consent_datetime=None, site_id=None):
+    def get_subject_consent(subject_screening, consent_datetime=None, site_id=None, dob=None):
         return baker.make_recipe(
             "effect_consent.subjectconsent",
             user_created="erikvw",
@@ -134,7 +136,8 @@ class EffectTestCaseMixin(
             screening_identifier=subject_screening.screening_identifier,
             initials=subject_screening.initials,
             gender=subject_screening.gender,
-            dob=(get_utcnow_as_date() - relativedelta(years=subject_screening.age_in_years)),
+            dob=dob
+            or (get_utcnow_as_date() - relativedelta(years=subject_screening.age_in_years)),
             site=Site.objects.get(id=site_id or settings.SITE_ID),
             consent_datetime=consent_datetime or subject_screening.report_datetime,
         )
@@ -148,10 +151,18 @@ class EffectTestCaseMixin(
         reason=None,
         appt_datetime=None,
         gender=None,
+        age_in_years=None,
     ):
         reason = reason or SCHEDULED
-        subject_screening = subject_screening or self.get_subject_screening(gender=gender)
-        subject_consent = subject_consent or self.get_subject_consent(subject_screening)
+        subject_screening = subject_screening or self.get_subject_screening(
+            gender=gender, age_in_years=age_in_years
+        )
+        dob = None
+        if age_in_years:
+            dob = get_utcnow() - relativedelta(years=age_in_years)
+        subject_consent = subject_consent or self.get_subject_consent(
+            subject_screening, dob=dob
+        )
         options = dict(
             subject_identifier=subject_consent.subject_identifier,
             visit_code=visit_code or DAY01,
