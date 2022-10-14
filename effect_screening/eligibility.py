@@ -1,33 +1,65 @@
-from typing import Any
+from __future__ import annotations
 
-from edc_constants.constants import NO, NOT_EVALUATED, PENDING, POS, TBD, YES
+from typing import TYPE_CHECKING, Any
+
+from edc_constants.constants import (
+    INCOMPLETE,
+    NO,
+    NOT_EVALUATED,
+    PENDING,
+    POS,
+    TBD,
+    YES,
+)
 from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
 )
 
+if TYPE_CHECKING:
+    from effect_screening.models import SubjectScreening
+
+CSF_CRAG_PENDING = "CSF CrAg pending"
+INCOMPLETE_INCLUSION = "Incomplete inclusion criteria"
+INCOMPLETE_EXCLUSION = "Incomplete exclusion criteria"
+
 
 class ScreeningEligibility(BaseScreeningEligibility):
-    eligible_values_list: list = [YES, NO, TBD, PENDING]
+    eligible_values_list: list = [YES, NO, TBD, PENDING, INCOMPLETE]
 
-    def assess_eligibility(self: Any) -> None:
-        reasons_ineligible = {}
+    incomplete_value = INCOMPLETE
+    incomplete_display_label = INCOMPLETE
+
+    def __init__(self, model_obj: SubjectScreening = None, **kwargs):
+        super().__init__(model_obj=model_obj, **kwargs)
+
+    def assess_eligibility(self) -> None:
+        reasons_ineligible: dict[str, str] = {}
         reasons_ineligible.update(**self.review_inclusion(reasons_ineligible))
         reasons_ineligible.update(**self.review_exclusion(reasons_ineligible))
 
         if self.model_obj.csf_crag_value == PENDING:
-            self.eligible = PENDING
+            self.eligible = PENDING  # pending csf crag
+        elif self.assessment_is_incomplete(reasons_ineligible):
+            self.eligible = INCOMPLETE
         else:
             self.eligible = (
                 self.is_ineligible_value if reasons_ineligible else self.is_eligible_value
             )
         self.reasons_ineligible = reasons_ineligible
 
-    def update_model(self: Any) -> None:
+    @staticmethod
+    def assessment_is_incomplete(reasons_ineligible: dict[str, str]) -> bool:
+        reasons_as_set = set(reasons_ineligible.values())
+        return reasons_as_set and reasons_as_set.issubset(
+            {INCOMPLETE_INCLUSION, INCOMPLETE_EXCLUSION}
+        )
+
+    def update_model(self) -> None:
         self.model_obj.eligible = self.is_eligible
         self.model_obj.reasons_ineligible = self.reasons_ineligible
 
-    def review_inclusion(self: Any, reasons_ineligible: dict) -> dict:
+    def review_inclusion(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
@@ -48,7 +80,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             or getattr(self.model_obj, "age_in_years", None) is None
             or getattr(self.model_obj, "cd4_value", None) is None
         ):
-            reasons_ineligible.update(inclusion_criteria="Incomplete inclusion criteria")
+            reasons_ineligible.update(inclusion_criteria=INCOMPLETE_INCLUSION)
         if self.model_obj.willing_to_participate == NO:
             reasons_ineligible.update(willing_to_participate="Unwilling to participate")
         if self.model_obj.consent_ability == NO:
@@ -62,12 +94,12 @@ class ScreeningEligibility(BaseScreeningEligibility):
         reasons_ineligible = self.review_crag(reasons_ineligible)
         return reasons_ineligible
 
-    def review_crag(self: Any, reasons_ineligible: dict) -> dict:
+    def review_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
         if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(serum_crag_value="Serum CrAg not (+)")
         else:
             if self.model_obj.csf_crag_value == PENDING:
-                reasons_ineligible.update(csf_crag_value="CSF CrAg pending")
+                reasons_ineligible.update(csf_crag_value=CSF_CRAG_PENDING)
             elif self.model_obj.csf_crag_value == POS:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
             elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
@@ -75,7 +107,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
 
-    def review_exclusion(self: Any, reasons_ineligible: dict) -> dict:  # noqa C901
+    def review_exclusion(  # noqa C901
+        self,
+        reasons_ineligible: dict[str, str],
+    ) -> dict[str, str]:
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
@@ -97,7 +132,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             ]
         ]
         if not all(criteria) or NOT_EVALUATED in criteria:
-            reasons_ineligible.update(exclusion_criteria="Incomplete exclusion criteria")
+            reasons_ineligible.update(exclusion_criteria=INCOMPLETE_EXCLUSION)
         if self.model_obj.contraindicated_meds == YES:
             reasons_ineligible.update(
                 contraindicated_meds="Contraindicated concomitant medications"
@@ -124,7 +159,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
 
         return reasons_ineligible
 
-    def review_mg_ssx(self: Any, reasons_ineligible: dict) -> dict:
+    def review_mg_ssx(self: Any, reasons_ineligible: dict[str, str]) -> dict[str, str]:
         """Exclusion for clinical symptoms/signs of symptomatic meningitis."""
         for mg_ssx in [
             "mg_severe_headache",
@@ -137,3 +172,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
             if getattr(self.model_obj, mg_ssx, None) == YES:
                 reasons_ineligible.update({mg_ssx: "Signs of symptomatic meningitis"})
         return reasons_ineligible
+
+    @property
+    def display_label(self) -> str:
+        display_label = super().display_label
+        if self.eligible == self.incomplete_value:
+            display_label = self.incomplete_display_label
+        return display_label
