@@ -2,3 +2,8 @@
 include = effect_*/*
 omit = effect_*/tests/*
 branch = 1
+
+[report]
+exclude_lines =
+  pragma: no cover
+  if TYPE_CHECKING:
