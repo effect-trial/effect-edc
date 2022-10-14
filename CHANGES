@@ -3,10 +3,11 @@ Changes
 
 [unreleased]
 -----------
-- update form validator mixins
+- update form validator mixins, fixes 'Server Error on submission of FBC and chemistry results' (#477)
 - update subject-visit modelform mixins
 - add INCOMPLETE status to eligibility
 - color screen listboard eligibility button according to eligibility status
+- bump to edc 0.4.47
 - drop Python 3.9 support
 - drop Django 3.2 support
 - add edc-egfr as dependency; modify admin to display eGFR as read only in

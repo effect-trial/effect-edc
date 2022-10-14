@@ -50,11 +50,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
 
     @staticmethod
     def assessment_is_incomplete(reasons_ineligible: dict[str, str]) -> bool:
-        reasons_as_list = list(set(reasons_ineligible.values()))
-        return (
-            [INCOMPLETE_INCLUSION] == reasons_as_list
-            or [INCOMPLETE_EXCLUSION] == reasons_as_list
-            or [INCOMPLETE_INCLUSION, INCOMPLETE_EXCLUSION] == reasons_as_list
+        reasons_as_set = set(reasons_ineligible.values())
+        return reasons_as_set and reasons_as_set.issubset(
+            {INCOMPLETE_INCLUSION, INCOMPLETE_EXCLUSION}
         )
 
     def update_model(self) -> None:
@@ -109,7 +107,10 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
 
-    def review_exclusion(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
+    def review_exclusion(  # noqa C901
+        self,
+        reasons_ineligible: dict[str, str],
+    ) -> dict[str, str]:
         criteria = [
             getattr(self.model_obj, attr, None)
             for attr in [
