@@ -9,6 +9,6 @@ from ..models import VitalSigns
 class VitalSignsForm(CrfModelFormMixin, ActionItemCrfFormMixin, forms.ModelForm):
     form_validator_cls = VitalSignsFormValidator
 
-    class Meta:
+    class Meta(ActionItemCrfFormMixin.Meta):
         model = VitalSigns
         fields = "__all__"

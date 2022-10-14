@@ -17,6 +17,6 @@ class UrinalysisForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm)
 
     form_validator_cls = UrinalysisFormValidator
 
-    class Meta:
+    class Meta(ActionItemCrfFormMixin.Meta):
         model = Urinalysis
         fields = "__all__"

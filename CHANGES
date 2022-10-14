@@ -7,9 +7,11 @@ Changes
 - update subject-visit modelform mixins
 - add INCOMPLETE status to eligibility
 - color screen listboard eligibility button according to eligibility status
-- bump to edc 0.4.47
+- bump to edc 0.4.48
 - drop Python 3.9 support
 - drop Django 3.2 support
+- add edc-egfr as dependency; modify admin to display eGFR as read only in
+  BloodResultChem; validate in form to expect weight before calculating eGFR.
 
 [0.1.21]
 --------
