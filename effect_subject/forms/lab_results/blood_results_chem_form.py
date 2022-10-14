@@ -1,5 +1,3 @@
-from typing import Any
-
 from django import forms
 from django.utils.safestring import mark_safe
 from edc_action_item.forms import ActionItemCrfFormMixin
