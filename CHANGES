@@ -1,16 +1,16 @@
 Changes
 +++++++
 
-[unreleased]
------------
+[0.1.22]
+--------
 - update form validator mixins, fixes 'Server Error on submission of FBC and chemistry results' (#477)
 - update subject-visit modelform mixins
 - add INCOMPLETE status to eligibility
 - color screen listboard eligibility button according to eligibility status
 - updates to Subject Screening form (#468, towards #478)
     - update (validation and help text) to allow 'lp_date' to be at most 3 days before 'serum_crag_date' (#468, #478)
-    - update 'serum_crag_date' and 'prior_cm_episode' and question wording
-    - update 'cm_in_csf' help text
+    - update 'serum_crag_date' and 'prior_cm_episode' and question wording (#478)
+    - update 'cm_in_csf' help text (#478)
 - bump to edc 0.4.48
 - bump to effect-form-validators 0.1.24
 - drop Python 3.9 support
