@@ -131,7 +131,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     serum_crag_date = models.DateField(
-        verbose_name="Date of serum/plasma CrAg result",
+        verbose_name="Serum/plasma CrAg sample collection date",
         validators=[date_not_future],
         null=True,
         blank=False,
@@ -171,7 +171,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     prior_cm_episode = models.CharField(
-        verbose_name="Has the patient had a prior episode of CM?",
+        verbose_name="Has the patient had a prior episode of CM or cryptococcal antigenaemia?",
         max_length=25,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
@@ -288,7 +288,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text=format_html(
             "At any time between the CrAg test and screening for eligibility. "
             "<BR>If results on tests on CSF are `pending`, report on "
-            "DAY 1 / baseline visit or when available.",
+            "DAY 1 visit or when available.",
         ),
     )
 
