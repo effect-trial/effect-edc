@@ -92,7 +92,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         validators=[MinValueValidator(0), MaxValueValidator(99)],
         null=True,
         blank=False,
-        help_text=f"Eligible if CD4 count <100 {CELLS_PER_MICROLITER}",
+        help_text=f"Eligible if CD4 count <100 {CELLS_PER_MICROLITER}.",
     )
 
     cd4_date = models.DateField(
@@ -131,11 +131,11 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     serum_crag_date = models.DateField(
-        verbose_name="Date of serum/plasma CrAg result",
+        verbose_name="Serum/plasma CrAg sample collection date",
         validators=[date_not_future],
         null=True,
         blank=False,
-        help_text="Test must have been performed within the last 14 days",
+        help_text="Test must have been performed within the last 14 days.",
     )
 
     lp_done = models.CharField(
@@ -144,14 +144,17 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         choices=YES_NO,
         null=True,
         blank=False,
-        help_text="If YES, provide date below",
+        help_text="If YES, provide date below ...",
     )
 
     lp_date = models.DateField(
         verbose_name="LP date",
         null=True,
         blank=True,
-        help_text="LP date must be after AFTER serum/plasma CrAg result",
+        help_text=(
+            "LP should be done AFTER serum/plasma CrAg, "
+            "but may be done no more than 3 days before the serum/plasma CrAg."
+        ),
     )
 
     lp_declined = models.CharField(
@@ -171,7 +174,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     prior_cm_episode = models.CharField(
-        verbose_name="Has the patient had a prior episode of CM?",
+        verbose_name="Has the patient had a prior episode of CM or cryptococcal antigenaemia?",
         max_length=25,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
@@ -206,7 +209,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
         blank=False,
-        help_text="Refer to the protocol for a complete list",
+        help_text="Refer to the protocol for a complete list.",
     )
 
     # exclusion
@@ -288,7 +291,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text=format_html(
             "At any time between the CrAg test and screening for eligibility. "
             "<BR>If results on tests on CSF are `pending`, report on "
-            "DAY 1 / baseline visit or when available.",
+            "DAY 1 visit or when available.",
         ),
     )
 
@@ -312,7 +315,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=15,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
-        help_text="If YES, patient NOT eligible, please give reason below.",
+        help_text="If YES, patient NOT eligible, please give reason below ...",
     )
 
     class Meta:

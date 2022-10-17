@@ -7,7 +7,12 @@ Changes
 - update subject-visit modelform mixins
 - add INCOMPLETE status to eligibility
 - color screen listboard eligibility button according to eligibility status
+- updates to Subject Screening form (#468, towards #478)
+    - update (validation and help text) to allow 'lp_date' to be at most 3 days before 'serum_crag_date' (#468, #478)
+    - update 'serum_crag_date' and 'prior_cm_episode' and question wording
+    - update 'cm_in_csf' help text
 - bump to edc 0.4.48
+- bump to effect-form-validators 0.1.24
 - drop Python 3.9 support
 - drop Django 3.2 support
 - add edc-egfr as dependency; modify admin to display eGFR as read only in
