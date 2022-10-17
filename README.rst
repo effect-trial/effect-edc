@@ -31,7 +31,7 @@ Create a virtualenv, clone the main repo and checkout master
 
 .. code-block:: bash
 
-  conda create -n edc python=3.9
+  conda create -n edc python=3.10
   conda activate edc
 
 

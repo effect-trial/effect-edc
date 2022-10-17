@@ -1,12 +1,12 @@
 from django import forms
 from edc_constants.constants import NO, NOT_APPLICABLE, OTHER, YES
+from edc_crf.crf_form_validator import CrfFormValidator
 from edc_crf.modelform_mixins import CrfModelFormMixin
-from edc_form_validators import FormValidator
 
 from ..models import SubjectVisitMissed
 
 
-class SubjectVisitMissedFormValidator(FormValidator):
+class SubjectVisitMissedFormValidator(CrfFormValidator):
     def clean(self):
         self.required_if(
             YES, field="contact_attempted", field_required="contact_attempts_count"

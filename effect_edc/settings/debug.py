@@ -21,6 +21,7 @@ ALLOWED_HOSTS = [
 
 SECURE_SSL_REDIRECT = False
 AUTO_CREATE_KEYS = False
+EDC_MODEL_ADMIN_CSS_THEME = "edc_indigo"
 
 # if os.path.exists(BASE_DIR) and not os.path.exists(KEY_PATH):  # noqa
 #     os.makedirs(KEY_PATH)  # noqa

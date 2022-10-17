@@ -1,6 +1,6 @@
 {% if not eligible %}
 <div class="btn-group">
-    <a type="button" class="btn btn-sm btn-default dropdown-toggle" data-toggle="dropdown">
+    <a type="button" class="btn btn-sm btn-{{ button_css_cls }} dropdown-toggle" data-toggle="dropdown">
         {{ display_label }}{% if comment %} <span class="caret"></span>{% endif %}
     </a>
     {% if comment %}
