@@ -151,7 +151,10 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         verbose_name="LP date",
         null=True,
         blank=True,
-        help_text="LP date must be after AFTER serum/plasma CrAg result",
+        help_text=(
+            "LP should be done AFTER serum/plasma CrAg, "
+            "but may be done no more than 3 days before the serum/plasma CrAg."
+        ),
     )
 
     lp_declined = models.CharField(
