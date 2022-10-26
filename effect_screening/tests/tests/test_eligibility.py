@@ -1,6 +1,8 @@
 from typing import Dict
 
 from dateutil.relativedelta import relativedelta
+from django.conf import settings
+from django.contrib.sites.models import Site
 from django.test import TestCase, tag
 from edc_constants.constants import (
     FEMALE,
@@ -53,6 +55,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
     @staticmethod
     def get_basic_opts():
         return {
+            "site": Site.objects.get(id=settings.SITE_ID),
             "screening_consent": YES,
             "willing_to_participate": YES,
             "consent_ability": YES,

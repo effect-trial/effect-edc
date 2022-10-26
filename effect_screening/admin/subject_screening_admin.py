@@ -8,6 +8,7 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.modeladmin_mixins import SiteModelAdminMixin
 
 from effect_screening.eligibility import ScreeningEligibility
 
@@ -17,7 +18,9 @@ from ..models import SubjectScreening
 
 
 @admin.register(SubjectScreening, site=effect_screening_admin)
-class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class SubjectScreeningAdmin(
+    ModelAdminSubjectDashboardMixin, SiteModelAdminMixin, SimpleHistoryAdmin
+):
 
     form = SubjectScreeningForm
 
@@ -33,10 +36,7 @@ class SubjectScreeningAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin)
         [
             None,
             {
-                "fields": (
-                    "screening_identifier",
-                    "report_datetime",
-                ),
+                "fields": ("screening_identifier", "report_datetime", "site"),
             },
         ],
         ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
