@@ -1,14 +1,16 @@
-from typing import Any
-
 from django import forms
 from edc_form_validators import FormValidatorMixin
 from edc_screening.modelform_mixins import AlreadyConsentedFormMixin
+from edc_sites.modelform_mixins import SiteModelFormMixin
+from edc_sites.widgets import SiteField
 from effect_form_validators.effect_screening import SubjectScreeningFormValidator
 
 from ..models import SubjectScreening
 
 
-class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.ModelForm):
+class SubjectScreeningForm(
+    AlreadyConsentedFormMixin, SiteModelFormMixin, FormValidatorMixin, forms.ModelForm
+):
 
     form_validator_cls = SubjectScreeningFormValidator
 
@@ -24,9 +26,7 @@ class SubjectScreeningForm(AlreadyConsentedFormMixin, FormValidatorMixin, forms.
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
     )
 
-    def clean(self: Any) -> dict:
-        cleaned_data = super().clean()
-        return cleaned_data
+    site = SiteField()
 
     class Meta:
         model = SubjectScreening

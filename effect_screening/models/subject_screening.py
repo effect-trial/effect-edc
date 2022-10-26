@@ -1,3 +1,4 @@
+from django.contrib.sites.models import Site
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from django.utils.html import format_html
@@ -38,6 +39,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     eligibility_cls = ScreeningEligibility
 
     identifier_cls = ScreeningIdentifier
+
+    site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, related_name="+")
 
     screening_consent = models.CharField(
         verbose_name=(
