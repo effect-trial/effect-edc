@@ -1,6 +1,19 @@
 Changes
 +++++++
 
+[0.1.24]
+--------
+- add migrations introduced in 0.1.23
+
+[0.1.23]
+--------
+- add question for current 'site' to Subject Screening form
+- bump to edc 0.4.49
+- bump to edc-microbiology==0.1.10
+- bump to edc-csf==0.1.14
+- bump to edc-egfr==0.1.10
+- bump to effect-form-validators==0.1.25
+
 [0.1.22]
 --------
 - update form validator mixins, fixes 'Server Error on submission of FBC and chemistry results' (#477)
