@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- add 'Not done' choice to 'csf_crag_result' Subject Screening form question (#499)
+
 [0.1.24]
 --------
 - add migrations introduced in 0.1.23

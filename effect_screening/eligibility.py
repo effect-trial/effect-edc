@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Any
 from edc_constants.constants import (
     INCOMPLETE,
     NO,
+    NOT_DONE,
     NOT_EVALUATED,
     PENDING,
     POS,
@@ -102,6 +103,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
                 reasons_ineligible.update(csf_crag_value=CSF_CRAG_PENDING)
             elif self.model_obj.csf_crag_value == POS:
                 reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
+            elif self.model_obj.csf_crag_value == NOT_DONE:
+                reasons_ineligible.update(lp_done="LP done")
+                reasons_ineligible.update(csf_crag_value="CSF CrAg not done")
             elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
                 reasons_ineligible.update(lp_done="LP not done")
                 reasons_ineligible.update(lp_declined="LP not declined")
