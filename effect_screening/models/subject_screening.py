@@ -309,7 +309,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         default=NOT_APPLICABLE,
     )
 
-    cm_in_csf_method_other = OtherCharField()
+    cm_in_csf_method_other = OtherCharField(max_length=50)
 
     unsuitable_for_study = models.CharField(
         verbose_name=(
