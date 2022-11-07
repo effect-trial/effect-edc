@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - add 'Not done' choice to 'csf_crag_result' Subject Screening form question (#499)
+- update ARV History form 'cd4_value' help text (units) to 'cells/μL' (#490)
 
 [0.1.24]
 --------
