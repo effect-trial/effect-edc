@@ -11,6 +11,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_DONE,
     NOT_EVALUATED,
     NOT_TESTED,
     PENDING,
@@ -273,6 +274,26 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(NO, obj.eligible)
         self.assertEqual("INELIGIBLE", obj.display_label)
 
+    def test_inclusion_csf_crag_value_not_done_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=NOT_DONE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {
+                "lp_done": "LP done",
+                "csf_crag_value": "CSF CrAg not done",
+            },
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual(NO, obj.eligible)
+        self.assertEqual("INELIGIBLE", obj.display_label)
+
     def test_inclusion_csf_crag_value_negative_ok(self):
         opts = self.get_eligible_opts()
         opts.update(csf_crag_value=NEG)
@@ -294,7 +315,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertEqual(
-            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
+            {
+                "lp_done": "LP not done",
+                "lp_declined": "LP not declined",
+            },
             obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)

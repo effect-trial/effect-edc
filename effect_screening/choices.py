@@ -2,6 +2,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_DONE,
     NOT_EVALUATED,
     NOT_TESTED,
     OTHER,
@@ -32,10 +33,11 @@ POS_NEG = (
     (NEG, "Negative"),
 )
 
-POS_NEG_PENDING_NA = (
+CSF_CRAG_RESULT_CHOICES = (
     (POS, "Positive"),
     (NEG, "Negative"),
     (PENDING, "Pending"),
+    (NOT_DONE, "Not done"),
     (NOT_APPLICABLE, "Not applicable"),
 )
 
