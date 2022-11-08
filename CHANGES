@@ -3,7 +3,8 @@ Changes
 
 [unreleased]
 ------------
-- updates to Subject Screening form (#498, #499)
+- updates to Subject Screening form (#488, #498, #499)
+        - allow form to save 'serum_crag_date' > 14 days (though patient to be ineligible) (#488)
     - increase 'cm_in_csf_method_other' char limit to 50 (#498)
     - add 'Not done' choice to 'csf_crag_result' question (#499)
 - update ARV History form 'cd4_value' help text (units) to 'cells/μL' (#490)
