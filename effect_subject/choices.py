@@ -1,4 +1,3 @@
-from edc_appointment.constants import TODAY, TOMORROW
 from edc_constants.constants import (
     FREE_OF_CHARGE,
     HOSPITAL_NOTES,
@@ -11,6 +10,8 @@ from edc_constants.constants import (
     OUTPATIENT_CARDS,
     PATIENT,
     PATIENT_REPRESENTATIVE,
+    TODAY,
+    TOMORROW,
     YES,
 )
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
