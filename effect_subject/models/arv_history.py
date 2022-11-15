@@ -9,7 +9,7 @@ from edc_reportable import CELLS_PER_MICROLITER
 
 from effect_lists.models import ArvRegimens
 
-from ..choices import ARV_DECISION
+from ..choices import ARV_DECISION, YES_NO_DEFAULTED_NA
 from ..model_mixins import CrfModelMixin
 
 
@@ -120,14 +120,14 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
             "If the participant is currently on ART, are they <u>adherent</u> to "
             "their <u>current</u> ART regimen?"
         ),
-        max_length=5,
-        choices=YES_NO_NA,
+        max_length=10,
+        choices=YES_NO_DEFAULTED_NA,
         default=NOT_APPLICABLE,
     )
 
     art_doses_missed = models.IntegerField(
         verbose_name="If not `adherent`, how many doses missed in the last month?",
-        validators=[MinValueValidator(0), MaxValueValidator(31)],
+        validators=[MinValueValidator(1), MaxValueValidator(31)],
         null=True,
         blank=True,
     )
