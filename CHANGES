@@ -8,7 +8,7 @@ Changes
     - increase 'cm_in_csf_method_other' char limit to 50 (#498)
     - add 'Not done' choice to 'csf_crag_result' question (#499)
 - update ARV History form 'cd4_value' help text (units) to 'cells/μL' (#490)
-- bump to edc 0.4.51
+- bump to edc 0.4.52
 - bump to effect-form-validators 0.1.26
 
 
