@@ -36,8 +36,8 @@ exclude_lines = [
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{310}-dj{40,41}-edc{prod},
-    py{310}-dj{40,41,dev}-edc{dev},
+    py{310,311}-dj{40,41}-edc{prod},
+    py{310,311}-dj{40,41,dev}-edc{dev},
     lint
 
 isolated_build = true
@@ -45,6 +45,7 @@ isolated_build = true
 [gh-actions]
 python =
     3.10: py310, lint
+    3.11: py311
 
 [gh-actions:env]
 DJANGO =
