@@ -13,8 +13,7 @@ Changes
     - fix validation preventing 'is_adherent' from being answered when applicable (#479, #506)
     - other validation improvements/fixes
 - bump to edc 0.4.52
-- bump to effect-form-validators 0.1.26
-
+- bump to effect-form-validators 0.1.27
 
 [0.1.24]
 --------
