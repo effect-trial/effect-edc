@@ -15,6 +15,7 @@ Changes
 - bump to edc 0.4.52
 - bump to effect-form-validators 0.1.27
 - expand test matrix to include Py: 3.11
+- update forms reference doc
 
 [0.1.24]
 --------
