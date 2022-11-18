@@ -1,6 +1,7 @@
 ALIVE_UNWELL = "alive_unwell"
 APPT = "appt"
 APPT_OTHER = "other_routine_appt"
+# TODO: Move ART_* to edc-constants (or somewhere effect-form-validators can access them)
 ART_CONTINUED = "art_continued"
 ART_STOPPED = "art_stopped"
 BLOOD_RESULTS_CHEM_ACTION = "abnormal-blood-results-chem"
