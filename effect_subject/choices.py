@@ -1,4 +1,5 @@
 from edc_constants.constants import (
+    DEFAULTED,
     FREE_OF_CHARGE,
     HOSPITAL_NOTES,
     NEXT_OF_KIN,
@@ -264,5 +265,12 @@ VISIT_UNSCHEDULED_REASON = (
     ("routine_non_study", "Routine appointment (non-study)"),
     ("recurrence_symptoms", "Recurrence of symptoms"),
     (OTHER, "Other"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
+
+YES_NO_DEFAULTED_NA = (
+    (YES, YES),
+    (NO, NO),
+    (DEFAULTED, "Defaulted"),
     (NOT_APPLICABLE, "Not applicable"),
 )
