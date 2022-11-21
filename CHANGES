@@ -4,7 +4,7 @@ Changes
 [0.1.25]
 --------
 - updates to Subject Screening form (#488, #498, #499)
-        - allow form to save 'serum_crag_date' > 14 days (though patient to be ineligible) (#488)
+    - allow form to save 'serum_crag_date' > 14 days (though patient to be ineligible) (#488)
     - increase 'cm_in_csf_method_other' char limit to 50 (#498)
     - add 'Not done' choice to 'csf_crag_result' question (#499)
 - updates to ARV History form (#375, #479, #490, #506)
