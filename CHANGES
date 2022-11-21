@@ -1,6 +1,22 @@
 Changes
 +++++++
 
+[0.1.25]
+--------
+- updates to Subject Screening form (#488, #498, #499)
+        - allow form to save 'serum_crag_date' > 14 days (though patient to be ineligible) (#488)
+    - increase 'cm_in_csf_method_other' char limit to 50 (#498)
+    - add 'Not done' choice to 'csf_crag_result' question (#499)
+- updates to ARV History form (#375, #479, #490, #506)
+    - improve validation for applicability of 'art_decision' question (#375)
+    - change cd4_value' help text (units) to 'cells/μL' (#490)
+    - fix validation preventing 'is_adherent' from being answered when applicable (#479, #506)
+    - other validation improvements/fixes
+- bump to edc 0.4.52
+- bump to effect-form-validators 0.1.27
+- expand test matrix to include Py: 3.11
+- update forms reference doc
+
 [0.1.24]
 --------
 - add migrations introduced in 0.1.23

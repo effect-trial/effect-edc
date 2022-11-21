@@ -20,10 +20,10 @@ from edc_screening.screening_identifier import (
 
 from ..choices import (
     CM_ON_CSF_METHODS,
+    CSF_CRAG_RESULT_CHOICES,
     CSF_YES_NO_PENDING_NA,
     HIV_CONFIRMATION_METHODS,
     POS_NEG,
-    POS_NEG_PENDING_NA,
     PREG_YES_NO_NOT_EVALUATED_NA,
 )
 from ..eligibility import ScreeningEligibility
@@ -171,7 +171,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     csf_crag_value = models.CharField(
         verbose_name="CSF CrAg result",
         max_length=15,
-        choices=POS_NEG_PENDING_NA,
+        choices=CSF_CRAG_RESULT_CHOICES,
         default=NOT_APPLICABLE,
         blank=False,
     )
@@ -309,7 +309,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         default=NOT_APPLICABLE,
     )
 
-    cm_in_csf_method_other = OtherCharField()
+    cm_in_csf_method_other = OtherCharField(max_length=50)
 
     unsuitable_for_study = models.CharField(
         verbose_name=(

@@ -11,6 +11,7 @@ from edc_constants.constants import (
     NEG,
     NO,
     NOT_APPLICABLE,
+    NOT_DONE,
     NOT_EVALUATED,
     NOT_TESTED,
     PENDING,
@@ -245,6 +246,43 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertEqual(YES, obj.eligible)
                 self.assertEqual("ELIGIBLE", obj.display_label)
 
+    def test_inclusion_serum_crag_date_gt_14_days_ineligible(self):
+        for days_ago in [-21, -20, -15, 15, 20, 21]:
+            with self.subTest(days_ago=days_ago):
+                opts = self.get_eligible_opts()
+                report_datetime = opts.get("report_datetime")
+                cd4_date = report_datetime - relativedelta(days=20)
+                opts.update(
+                    cd4_date=cd4_date,
+                    serum_crag_date=report_datetime.date() - relativedelta(days=days_ago),
+                )
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual(
+                    {"serum_crag_date": "Serum CrAg > 14 days"},
+                    obj.reasons_ineligible,
+                )
+                self.assertFalse(obj.is_eligible)
+                self.assertEqual(NO, obj.eligible)
+                self.assertEqual("INELIGIBLE", obj.display_label)
+
+    def test_inclusion_serum_crag_date_lte_14_days_ok(self):
+        for days_ago in [0, 1, 7, 13, 14]:
+            with self.subTest(days_ago=days_ago):
+                opts = self.get_eligible_opts()
+                report_datetime = opts.get("report_datetime")
+                cd4_date = report_datetime - relativedelta(days=20)
+                opts.update(
+                    cd4_date=cd4_date,
+                    serum_crag_date=report_datetime.date() - relativedelta(days=days_ago),
+                )
+                model_obj = SubjectScreening.objects.create(**opts)
+                obj = ScreeningEligibility(model_obj=model_obj)
+                self.assertDictEqual({}, obj.reasons_ineligible)
+                self.assertTrue(obj.is_eligible)
+                self.assertEqual(YES, obj.eligible)
+                self.assertEqual("ELIGIBLE", obj.display_label)
+
     def test_inclusion_csf_crag_value_pending_ineligible(self):
         opts = self.get_eligible_opts()
         opts.update(
@@ -273,6 +311,26 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(NO, obj.eligible)
         self.assertEqual("INELIGIBLE", obj.display_label)
 
+    def test_inclusion_csf_crag_value_not_done_ineligible(self):
+        opts = self.get_eligible_opts()
+        opts.update(
+            lp_done=YES,
+            lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+            csf_crag_value=NOT_DONE,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {
+                "lp_done": "LP done",
+                "csf_crag_value": "CSF CrAg not done",
+            },
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual(NO, obj.eligible)
+        self.assertEqual("INELIGIBLE", obj.display_label)
+
     def test_inclusion_csf_crag_value_negative_ok(self):
         opts = self.get_eligible_opts()
         opts.update(csf_crag_value=NEG)
@@ -294,7 +352,10 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertEqual(
-            {"lp_done": "LP not done", "lp_declined": "LP not declined"},
+            {
+                "lp_done": "LP not done",
+                "lp_declined": "LP not declined",
+            },
             obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
@@ -525,45 +586,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertNotIn("serum_crag_date", form._errors)
-        self.assertDictEqual({}, form._errors)
-
-    def test_serum_crag_date_within_14_days(self):
-        opts = self.get_eligible_opts()
-        report_datetime = opts.get("report_datetime")
-        cd4_date = report_datetime - relativedelta(days=20)
-
-        opts.update(
-            cd4_date=cd4_date,
-            serum_crag_date=report_datetime - relativedelta(days=14 + 1),
-        )
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertIn("serum_crag_date", form._errors)
-        self.assertDictEqual(
-            {
-                "serum_crag_date": [
-                    "Invalid. Cannot be more than 14 days before the report date"
-                ]
-            },
-            form._errors,
-        )
-
-        opts.update(
-            cd4_date=cd4_date,
-            serum_crag_date=report_datetime - relativedelta(days=14),
-        )
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertNotIn("cd4_date", form._errors)
-        self.assertDictEqual({}, form._errors)
-
-        opts.update(
-            cd4_date=cd4_date,
-            serum_crag_date=report_datetime - relativedelta(days=14 - 1),
-        )
-        form = SubjectScreeningForm(data=opts)
-        form.is_valid()
-        self.assertNotIn("cd4_date", form._errors)
         self.assertDictEqual({}, form._errors)
 
     def test_serum_crag_date_not_before_cd4_date(self):
@@ -1193,6 +1215,37 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertFalse(obj.is_eligible)
         self.assertEqual(INCOMPLETE, obj.eligible)
         self.assertEqual(INCOMPLETE, obj.display_label)
+
+    def test_status_incomplete_if_missing_cd4_value(self):
+        opts = self.get_eligible_opts()
+        opts.update(cd4_value=None)
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"inclusion_criteria": INCOMPLETE_INCLUSION},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual(INCOMPLETE, obj.eligible)
+        self.assertEqual("INCOMPLETE", obj.display_label)
+
+    def test_status_incomplete_if_missing_serum_crag_date(self):
+        opts = self.get_eligible_opts()
+        report_datetime = opts.get("report_datetime")
+        cd4_date = report_datetime - relativedelta(days=20)
+        opts.update(
+            cd4_date=cd4_date,
+            serum_crag_date=None,
+        )
+        model_obj = SubjectScreening.objects.create(**opts)
+        obj = ScreeningEligibility(model_obj=model_obj)
+        self.assertDictEqual(
+            {"inclusion_criteria": INCOMPLETE_INCLUSION},
+            obj.reasons_ineligible,
+        )
+        self.assertFalse(obj.is_eligible)
+        self.assertEqual(INCOMPLETE, obj.eligible)
+        self.assertEqual("INCOMPLETE", obj.display_label)
 
     def test_status_incomplete_if_eligible_other_than_missing_inclusion_and_exclusion_criteria(
         self,

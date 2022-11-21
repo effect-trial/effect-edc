@@ -94,7 +94,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Arv History
 *[missing model class docstring]*
@@ -365,10 +365,11 @@
 - db_table: effect_subject_arvhistory
 - column: is_adherent
 - type: CharField
-- length: 5
+- length: 10
 - responses:
   - `Yes`: *Yes*
   - `No`: *No*
+  - `defaulted`: *Defaulted*
   - `N/A`: *Not applicable*
 ---
 
@@ -437,7 +438,7 @@
 
 **24.0.** CD4 result
 
-&nbsp;&nbsp;&nbsp;&nbsp; *mm<sup>3</sup>*
+&nbsp;&nbsp;&nbsp;&nbsp; *cells/μL*
 - db_table: effect_subject_arvhistory
 - column: cd4_value
 - type: IntegerField
@@ -467,7 +468,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Participant History
 *[missing model class docstring]*
@@ -733,6 +734,7 @@
   - `humalog`: *Humalog*
   - `ibuprofen`: *Ibuprofen*
   - `iron`: *Iron (FeSO4/ FeGluconate)*
+  - `lamotriginepyridoxine`: *LamotriginePyridoxine*
   - `lamotrigine`: *Lamotrigine*
   - `lansoprazole`: *Lansoprazole*
   - `loperamide`: *Loperamide (Imodium)*
@@ -780,7 +782,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -935,7 +937,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -1088,7 +1090,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -1147,8 +1149,8 @@
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -1206,8 +1208,8 @@
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -1382,7 +1384,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
@@ -1560,7 +1562,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -1928,7 +1930,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Blood Result: Chemistry
 *[missing model class docstring]*
@@ -2054,15 +2056,38 @@
   - `present_at_baseline`: *Present at baseline*
 ---
 
+**Section: Calculated eGFR**
+
+**13.0.** eGFR
+- db_table: effect_subject_bloodresultschem
+- column: egfr_value
+- type: DecimalField
+---
+
+**14.0.** units
+- db_table: effect_subject_bloodresultschem
+- column: egfr_units
+- type: CharField
+- length: 15
+- responses:
+  - `mL/min/1.73m2`: *mL/min/1.73m2*
+---
+
+**15.0.** Grade
+- db_table: effect_subject_bloodresultschem
+- column: egfr_grade
+- type: IntegerField
+---
+
 **Section: ALBUMIN**
 
-**13.0.** Serum albumin
+**16.0.** Serum albumin
 - db_table: effect_subject_bloodresultschem
 - column: albumin_value
 - type: DecimalField
 ---
 
-**14.0.** units
+**17.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: albumin_units
 - type: CharField
@@ -2072,7 +2097,7 @@
   - `g/L`: *g/L*
 ---
 
-**15.0.** abnormal
+**18.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: albumin_abnormal
 - type: CharField
@@ -2082,7 +2107,7 @@
   - `No`: *No*
 ---
 
-**16.0.** reportable
+**19.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: albumin_reportable
 - type: CharField
@@ -2098,13 +2123,13 @@
 
 **Section: ALP**
 
-**17.0.** ALP
+**20.0.** ALP
 - db_table: effect_subject_bloodresultschem
 - column: alp_value
 - type: DecimalField
 ---
 
-**18.0.** units
+**21.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: alp_units
 - type: CharField
@@ -2113,7 +2138,7 @@
   - `IU/L`: *IU/L*
 ---
 
-**19.0.** abnormal
+**22.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: alp_abnormal
 - type: CharField
@@ -2123,7 +2148,7 @@
   - `No`: *No*
 ---
 
-**20.0.** reportable
+**23.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: alp_reportable
 - type: CharField
@@ -2139,13 +2164,13 @@
 
 **Section: AST**
 
-**21.0.** AST
+**24.0.** AST
 - db_table: effect_subject_bloodresultschem
 - column: ast_value
 - type: DecimalField
 ---
 
-**22.0.** units
+**25.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: ast_units
 - type: CharField
@@ -2154,7 +2179,7 @@
   - `IU/L`: *IU/L*
 ---
 
-**23.0.** abnormal
+**26.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: ast_abnormal
 - type: CharField
@@ -2164,7 +2189,7 @@
   - `No`: *No*
 ---
 
-**24.0.** reportable
+**27.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: ast_reportable
 - type: CharField
@@ -2180,13 +2205,13 @@
 
 **Section: C-Reactive Protein**
 
-**25.0.** C-reactive protein
+**28.0.** C-reactive protein
 - db_table: effect_subject_bloodresultschem
 - column: crp_value
 - type: DecimalField
 ---
 
-**26.0.** units
+**29.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: crp_units
 - type: CharField
@@ -2196,7 +2221,7 @@
   - `umol/L`: *μmol/L (micromoles/L)*
 ---
 
-**27.0.** abnormal
+**30.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: crp_abnormal
 - type: CharField
@@ -2206,7 +2231,7 @@
   - `No`: *No*
 ---
 
-**28.0.** reportable
+**31.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: crp_reportable
 - type: CharField
@@ -2220,56 +2245,15 @@
   - `present_at_baseline`: *Present at baseline*
 ---
 
-**Section: EGFR**
-
-**29.0.** eGFR
-- db_table: effect_subject_bloodresultschem
-- column: egfr_value
-- type: DecimalField
----
-
-**30.0.** units
-- db_table: effect_subject_bloodresultschem
-- column: egfr_units
-- type: CharField
-- length: 15
-- responses:
-  - `mL/min/1.73m2`: *mL/min/1.73m2*
----
-
-**31.0.** abnormal
-- db_table: effect_subject_bloodresultschem
-- column: egfr_abnormal
-- type: CharField
-- length: 25
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**32.0.** reportable
-- db_table: effect_subject_bloodresultschem
-- column: egfr_reportable
-- type: CharField
-- length: 25
-- responses:
-  - `N/A`: *Not applicable*
-  - `3`: *Yes, grade 3*
-  - `4`: *Yes, grade 4*
-  - `No`: *Not reportable*
-  - `Already reported`: *Already reported*
-  - `present_at_baseline`: *Present at baseline*
----
-
 **Section: MAGNESIUM**
 
-**33.0.** Magnesium
+**32.0.** Magnesium
 - db_table: effect_subject_bloodresultschem
 - column: magnesium_value
 - type: DecimalField
 ---
 
-**34.0.** units
+**33.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: magnesium_units
 - type: CharField
@@ -2279,7 +2263,7 @@
   - `mg/dL`: *mg/dL*
 ---
 
-**35.0.** abnormal
+**34.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: magnesium_abnormal
 - type: CharField
@@ -2289,7 +2273,7 @@
   - `No`: *No*
 ---
 
-**36.0.** reportable
+**35.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: magnesium_reportable
 - type: CharField
@@ -2305,13 +2289,13 @@
 
 **Section: POTASSIUM**
 
-**37.0.** Potassium
+**36.0.** Potassium
 - db_table: effect_subject_bloodresultschem
 - column: potassium_value
 - type: DecimalField
 ---
 
-**38.0.** units
+**37.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: potassium_units
 - type: CharField
@@ -2320,7 +2304,7 @@
   - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
-**39.0.** abnormal
+**38.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: potassium_abnormal
 - type: CharField
@@ -2330,7 +2314,7 @@
   - `No`: *No*
 ---
 
-**40.0.** reportable
+**39.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: potassium_reportable
 - type: CharField
@@ -2346,13 +2330,13 @@
 
 **Section: GGT**
 
-**41.0.** GGT
+**40.0.** GGT
 - db_table: effect_subject_bloodresultschem
 - column: ggt_value
 - type: DecimalField
 ---
 
-**42.0.** units
+**41.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: ggt_units
 - type: CharField
@@ -2361,7 +2345,7 @@
   - `IU/L`: *IU/L*
 ---
 
-**43.0.** abnormal
+**42.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: ggt_abnormal
 - type: CharField
@@ -2371,7 +2355,7 @@
   - `No`: *No*
 ---
 
-**44.0.** reportable
+**43.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: ggt_reportable
 - type: CharField
@@ -2387,13 +2371,13 @@
 
 **Section: UREA**
 
-**45.0.** Urea (BUN)
+**44.0.** Urea (BUN)
 - db_table: effect_subject_bloodresultschem
 - column: urea_value
 - type: DecimalField
 ---
 
-**46.0.** units
+**45.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: urea_units
 - type: CharField
@@ -2402,7 +2386,7 @@
   - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
-**47.0.** abnormal
+**46.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: urea_abnormal
 - type: CharField
@@ -2412,7 +2396,7 @@
   - `No`: *No*
 ---
 
-**48.0.** reportable
+**47.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: urea_reportable
 - type: CharField
@@ -2428,13 +2412,13 @@
 
 **Section: Total Bilirubin**
 
-**49.0.** Total Bilirubin
+**48.0.** Total Bilirubin
 - db_table: effect_subject_bloodresultschem
 - column: tbil_value
 - type: DecimalField
 ---
 
-**50.0.** units
+**49.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: tbil_units
 - type: CharField
@@ -2443,7 +2427,7 @@
   - `mg/dL`: *mg/dL*
 ---
 
-**51.0.** abnormal
+**50.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: tbil_abnormal
 - type: CharField
@@ -2453,7 +2437,7 @@
   - `No`: *No*
 ---
 
-**52.0.** reportable
+**51.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: tbil_reportable
 - type: CharField
@@ -2469,7 +2453,7 @@
 
 **Section: Conclusion**
 
-**53.0.** Are any of the above results abnormal?
+**52.0.** Are any of the above results abnormal?
 - db_table: effect_subject_bloodresultschem
 - column: results_abnormal
 - type: CharField
@@ -2479,7 +2463,7 @@
   - `No`: *No*
 ---
 
-**54.0.** If any results are abnormal, are results within grade 3 or above?
+**53.0.** If any results are abnormal, are results within grade 3 or above?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form.*
 - db_table: effect_subject_bloodresultschem
@@ -2494,16 +2478,44 @@
 
 **Section: Summary**
 
-**55.0.** summary
+**54.0.** summary
 - db_table: effect_subject_bloodresultschem
 - column: summary
 - type: TextField
 ---
 
+**Section: Action**
+
+**55.0.** action identifier
+- db_table: effect_subject_bloodresultschem
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**56.0.** action item
+- db_table: effect_subject_bloodresultschem
+- column: action_item
+- type: ForeignKey
+---
+
+**57.0.** parent action item
+- db_table: effect_subject_bloodresultschem
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**58.0.** related action item
+- db_table: effect_subject_bloodresultschem
+- column: related_action_item
+- type: ForeignKey
+---
 
 
 
-*Rendered on 2022-10-10 00:37*
+
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -2557,7 +2569,7 @@
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -2576,7 +2588,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -2856,7 +2868,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -3043,7 +3055,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -3219,7 +3231,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -3266,7 +3278,7 @@
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
@@ -3347,7 +3359,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -3500,7 +3512,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -3559,8 +3571,8 @@ Adherence CRF completed at baseline (in-person).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -3618,8 +3630,8 @@ Adherence CRF completed at baseline (in-person).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -3794,7 +3806,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -3908,7 +3920,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -3962,7 +3974,7 @@ Adherence CRF completed at baseline (in-person).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -3981,7 +3993,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -4261,7 +4273,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -4448,7 +4460,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -4547,7 +4559,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -4700,7 +4712,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -4759,8 +4771,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -4818,8 +4830,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -4994,7 +5006,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -5108,7 +5120,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -5162,7 +5174,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -5181,7 +5193,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -5461,7 +5473,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -5648,7 +5660,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -5747,7 +5759,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -5934,7 +5946,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -6089,7 +6101,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -6242,7 +6254,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -6301,8 +6313,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -6360,8 +6372,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -6536,7 +6548,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -6650,7 +6662,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Arv Treatment
 *[missing model class docstring]*
@@ -6750,7 +6762,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Participant Treatment
 *[missing model class docstring]*
@@ -7135,7 +7147,6 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `mg`: *Mg*
   - `sodium`: *Sodium*
   - `vitamins`: *Vitamins*
-  - `tmp_smx_cotrimoxazole`: *TMP-SMX/Cotrimoxazole*
   - `anticonvulsants`: *Anticonvulsants*
   - `antimalarials`: *Antimalarials*
   - `OTHER`: *Other drug/intervention, please specify below ...*
@@ -7152,7 +7163,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -7520,7 +7531,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -7574,7 +7585,7 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -7593,7 +7604,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -7873,7 +7884,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -8060,7 +8071,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -8107,7 +8118,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
@@ -8264,7 +8275,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -8417,7 +8428,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -8476,8 +8487,8 @@ Adherence CRF completed at d14 (in-person).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -8535,8 +8546,8 @@ Adherence CRF completed at d14 (in-person).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -8711,7 +8722,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -8825,7 +8836,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -8879,7 +8890,7 @@ Adherence CRF completed at d14 (in-person).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -8898,7 +8909,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -9178,7 +9189,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -9365,7 +9376,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -9498,7 +9509,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -9685,7 +9696,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -9838,7 +9849,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -9897,8 +9908,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -9956,8 +9967,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -10132,7 +10143,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -10246,7 +10257,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -10300,7 +10311,7 @@ Adherence CRF completed after d14 (telephone).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -10319,7 +10330,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -10599,7 +10610,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -10786,7 +10797,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -10919,7 +10930,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -11072,7 +11083,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -11131,8 +11142,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -11190,8 +11201,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -11366,7 +11377,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -11480,7 +11491,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -11534,7 +11545,7 @@ Adherence CRF completed after d14 (telephone).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -11553,7 +11564,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -11833,7 +11844,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -12020,7 +12031,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -12153,7 +12164,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -12306,7 +12317,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -12365,8 +12376,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -12424,8 +12435,8 @@ Adherence CRF completed after d14 (telephone).
   - `CN_VI_palsy_right`: *Neuro - Cranial Nerve VI palsy (right)*
   - `CN_VII_palsy_left`: *Neuro - Cranial Nerve VII palsy (left)*
   - `CN_VII_palsy_right`: *Neuro - Cranial Nerve VII palsy (right)*
-  - `CN_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
-  - `CN_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
+  - `cn_palsy_left_other`: *Neuro - Other cranial nerve palsy (left), please specify below ...*
+  - `cn_palsy_right_other`: *Neuro - Other cranial nerve palsy (right), please specify below ...*
   - `focal_seizures_left`: *Neuro - Focal seizures (left)*
   - `focal_seizures_right`: *Neuro - Focal seizures (right)*
   - `hemiplegia_left`: *Neuro - Hemiplegia (left)*
@@ -12600,7 +12611,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -12714,7 +12725,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -12768,7 +12779,7 @@ Adherence CRF completed after d14 (telephone).
   - `lymphadenopathy`: *Lymphadenopathy*
   - `consolidation`: *Consolidation*
   - `miliary_tb`: *Miliary TB*
-  - `Infiltrates`: *Infiltrates*
+  - `infiltrates`: *Infiltrates*
   - `OTHER`: *Other, please specify below ...*
 ---
 
@@ -12787,7 +12798,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -13067,7 +13078,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -13254,7 +13265,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -13430,7 +13441,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -13561,6 +13572,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2022-10-10 00:37*
+*Rendered on 2022-11-18 22:16*
 
 

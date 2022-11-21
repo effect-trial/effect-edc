@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING, Any
 from edc_constants.constants import (
     INCOMPLETE,
     NO,
+    NOT_DONE,
     NOT_EVALUATED,
     PENDING,
     POS,
@@ -15,6 +16,7 @@ from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
 )
+from edc_utils.date import to_local
 
 if TYPE_CHECKING:
     from effect_screening.models import SubjectScreening
@@ -91,20 +93,35 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
         if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
             reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
-        reasons_ineligible = self.review_crag(reasons_ineligible)
+        reasons_ineligible = self.review_serum_crag(reasons_ineligible)
+        reasons_ineligible = self.review_lp_csf_crag(reasons_ineligible)
         return reasons_ineligible
 
-    def review_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
+    def review_serum_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
+        report_datetime = getattr(self.model_obj, "report_datetime", None)
+        serum_crag_date = getattr(self.model_obj, "serum_crag_date", None)
+
         if self.model_obj.serum_crag_value != POS:
             reasons_ineligible.update(serum_crag_value="Serum CrAg not (+)")
-        else:
-            if self.model_obj.csf_crag_value == PENDING:
-                reasons_ineligible.update(csf_crag_value=CSF_CRAG_PENDING)
-            elif self.model_obj.csf_crag_value == POS:
-                reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
-            elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
-                reasons_ineligible.update(lp_done="LP not done")
-                reasons_ineligible.update(lp_declined="LP not declined")
+        elif (
+            report_datetime
+            and serum_crag_date
+            and abs((to_local(report_datetime).date() - serum_crag_date).days) > 14
+        ):
+            reasons_ineligible.update(serum_crag_date="Serum CrAg > 14 days")
+        return reasons_ineligible
+
+    def review_lp_csf_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
+        if self.model_obj.csf_crag_value == PENDING:
+            reasons_ineligible.update(csf_crag_value=CSF_CRAG_PENDING)
+        elif self.model_obj.csf_crag_value == POS:
+            reasons_ineligible.update(csf_crag_value="CSF CrAg (+)")
+        elif self.model_obj.csf_crag_value == NOT_DONE:
+            reasons_ineligible.update(lp_done="LP done")
+            reasons_ineligible.update(csf_crag_value="CSF CrAg not done")
+        elif self.model_obj.lp_done == NO and self.model_obj.lp_declined != YES:
+            reasons_ineligible.update(lp_done="LP not done")
+            reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
 
     def review_exclusion(  # noqa C901
