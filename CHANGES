@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- bump to edc 0.4.54
+
 [0.1.25]
 --------
 - updates to Subject Screening form (#488, #498, #499)
