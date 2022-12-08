@@ -48,6 +48,17 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         lg="Luganda",
         rny="Runyankore",
     ),
+    LANGUAGES=[
+        ["en", "English"],
+        ["af", "Afrikaans"],
+        ["mas", "Maasai"],
+        ["st", "Sotho"],
+        ["sw", "Swahili"],
+        ["tn", "Tswana"],
+        ["vie", "Vietnamese"],
+        ["xh", "Xhosa"],
+        ["zu", "Zulu"],
+    ],
     DASHBOARD_BASE_TEMPLATES=dict(
         edc_base_template="edc_dashboard/base.html",
         listboard_base_template="effect_edc/base.html",
