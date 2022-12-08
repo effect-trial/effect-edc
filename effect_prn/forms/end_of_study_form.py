@@ -11,14 +11,16 @@ from ..models import EndOfStudy
 
 class EndOfStudyForm(
     SiteModelFormMixin,
-    FormValidatorMixin,
     ActionItemFormMixin,
     OffScheduleModelFormMixin,
     BaseModelFormMixin,
+    FormValidatorMixin,
     forms.ModelForm,
 ):
 
     form_validator_cls = EndOfStudyFormValidator
+
+    report_datetime_field_attr: str = "offschedule_datetime"
 
     class Meta(ActionItemFormMixin.Meta):
         model = EndOfStudy
