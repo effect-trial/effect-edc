@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.26]
+--------
 - add custom language choices to consent form based on country of site currently logged into
 - limit requisition choices for lab results to only include relevant requisitions
 - fixes 'Server error on End of Study form' (#516)
