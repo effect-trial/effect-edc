@@ -7,6 +7,7 @@ Changes
 - limit requisition choices for lab results to only include relevant requisitions
 - fixes 'Server error on End of Study form' (#516)
 - fixes 'Server Error on submission of Reportable blood chemistry result' (#425)
+- update forms reference doc
 - bump to edc 0.4.60
 - bump to edc-csf 0.1.15
 
