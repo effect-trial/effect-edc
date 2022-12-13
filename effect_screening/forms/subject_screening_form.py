@@ -30,7 +30,6 @@ class SubjectScreeningForm(
 
     class Meta:
         model = SubjectScreening
-        fields = "__all__"
         labels = {
             "gender": "Sex",
             "unsuitable_agreed": (
@@ -38,3 +37,8 @@ class SubjectScreeningForm(
                 "suitable for the study?"
             ),
         }
+        exclude = [
+            "eligibility_datetime",
+            "real_eligibility_datetime",
+            "reasons_ineligible",
+        ]

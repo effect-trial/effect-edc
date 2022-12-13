@@ -1,6 +1,17 @@
 from edc_sites.single_site import SingleSite
 
 fqdn = "effect.clinicedc.org"
+sa_languages = {
+    "en": "English",
+    "af": "Afrikaans",
+    "st": "Sotho",
+    "sw": "Swahili",
+    "tn": "Tswana",
+    "xh": "Xhosa",
+    "zu": "Zulu",
+}
+tz_languages = {"sw": "Swahili", "en": "English", "mas": "Maasai"}
+vie_languages = {"vie": "Vietnamese", "en": "English"}
 
 all_sites = {
     "south_africa": (
@@ -10,6 +21,7 @@ all_sites = {
             title="UCT: Khayelitsha and Mitchell’s Plain (Cape Town)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"capetown.sa.{fqdn}",
         ),
         SingleSite(
@@ -18,6 +30,7 @@ all_sites = {
             title="Wits: Chris Hani Baragwanath (Soweto)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"baragwanath.sa.{fqdn}",
         ),
         SingleSite(
@@ -26,6 +39,7 @@ all_sites = {
             title="Wits: Helen Joseph (Johannesburg)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"helen-joseph.sa.{fqdn}",
         ),
         SingleSite(
@@ -34,6 +48,7 @@ all_sites = {
             title="Wits: Tshepong (Klerksdorp)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"tshepong.sa.{fqdn}",
         ),
         SingleSite(
@@ -42,6 +57,7 @@ all_sites = {
             title="UKZN: King Edward VIII (Durban)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"king-edward.sa.{fqdn}",
         ),
         SingleSite(
@@ -50,6 +66,7 @@ all_sites = {
             title="UKZN: Harry Gwala (Pietermaritzburg)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"harry-gwala.sa.{fqdn}",
         ),
         SingleSite(
@@ -58,6 +75,7 @@ all_sites = {
             title="WSU: Livingstone (Gqeberha)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"livingstone.sa.{fqdn}",
         ),
         SingleSite(
@@ -66,6 +84,7 @@ all_sites = {
             title="WSU: Dora Nginza (Gqeberha)",
             country="south_africa",
             country_code="sa",
+            languages=sa_languages,
             domain=f"dora-nginza.sa.{fqdn}",
         ),
     ),
@@ -76,6 +95,7 @@ all_sites = {
             title="Amana Hospital",
             country="tanzania",
             country_code="tz",
+            languages=tz_languages,
             domain=f"amana.tz.{fqdn}",
         ),
         SingleSite(
@@ -84,6 +104,7 @@ all_sites = {
             title="Temeke Hospital",
             country="tanzania",
             country_code="tz",
+            languages=tz_languages,
             domain=f"temeke.tz.{fqdn}",
         ),
         SingleSite(
@@ -92,7 +113,19 @@ all_sites = {
             title="Mwananyamala Hospital",
             country="tanzania",
             country_code="tz",
+            languages=tz_languages,
             domain=f"mwananyamala.tz.{fqdn}",
         ),
     ),
+    # "vietnam": (
+    #     SingleSite(
+    #         300,
+    #         "amana",
+    #         title="Hospital",
+    #         country="vietnam",
+    #         country_code="vie",
+    #         languages=vie_languages,
+    #         domain=f"???.vie.{fqdn}",
+    #     ),
+    # ),
 }

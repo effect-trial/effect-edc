@@ -2,10 +2,11 @@ from __future__ import annotations
 
 from decimal import Decimal
 
+from django.db import models
 from edc_crf.model_mixins import CrfWithActionModelMixin
 from edc_egfr.egfr import Egfr as BaseEgfr
 from edc_egfr.model_mixins import EgfrModelMixin
-from edc_lab.model_mixins import CrfWithRequisitionModelMixin
+from edc_lab.model_mixins import CrfWithRequisitionModelMixin, requisition_fk_options
 from edc_lab_results.model_mixins import (
     AlbuminModelMixin,
     AlpModelMixin,
@@ -63,6 +64,10 @@ class BloodResultsChem(
 
     egfr_formula_name: str = "cockcroft-gault"
     egfr_cls = Egfr
+
+    requisition = models.ForeignKey(
+        limit_choices_to={"panel__name": chemistry_panel.name}, **requisition_fk_options
+    )
 
     def get_weight_in_kgs_for_egfr(self) -> Decimal | None:
         """Override method from EgfrModelMixin"""

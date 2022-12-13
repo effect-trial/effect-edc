@@ -5,6 +5,7 @@ from edc_consent.modeladmin_mixins import ModelAdminConsentMixin
 from edc_identifier import SubjectIdentifierError, is_subject_identifier_or_raise
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.modeladmin_mixins import SiteModelAdminMixin
 
 from effect_screening.models.subject_screening import SubjectScreening
 from effect_subject.models import SubjectVisit
@@ -16,7 +17,10 @@ from ..models import SubjectConsent
 
 @admin.register(SubjectConsent, site=effect_consent_admin)
 class SubjectConsentAdmin(
-    ModelAdminConsentMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminConsentMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
 
     form = SubjectConsentForm
