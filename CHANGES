@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- fix 'Server error loading AE TMG Report' (#519)
+
+
 [0.1.26]
 --------
 - add "Adverse event report withdrawn after TMG review" option to AE follow up
