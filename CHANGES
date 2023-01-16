@@ -1,9 +1,10 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.27]
+--------
 - fix 'Server error loading AE TMG Report' (#519)
+- fix 'Server error on participant history form (with previous opportunistic infection)' (#515)
 - update forms reference doc
 - bump to edc 0.4.61
 - bump to effect-form-validators 0.1.28
