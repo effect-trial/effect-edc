@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - fix 'Server error loading AE TMG Report' (#519)
+- bump to effect-form-validators 0.1.28
 
 
 [0.1.26]
