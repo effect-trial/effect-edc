@@ -8,7 +8,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
-
     chest_xray = models.CharField(
         verbose_name="Was a chest x-ray performed?",
         max_length=15,

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_consent", "0002_auto_20220112_0015"),
     ]

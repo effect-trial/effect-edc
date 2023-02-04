@@ -13,7 +13,6 @@ from ..models import LossToFollowup
 
 @admin.register(LossToFollowup, site=effect_prn_admin)
 class LossToFollowupAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-
     form = LossToFollowupForm
 
     fieldsets = (

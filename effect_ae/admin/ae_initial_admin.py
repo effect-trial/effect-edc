@@ -20,7 +20,6 @@ from ..models import AeInitial
 
 @admin.register(AeInitial, site=effect_ae_admin)
 class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
-
     form = AeInitialForm
     email_contact = settings.EMAIL_CONTACTS.get("ae_reports")
     additional_instructions = format_html(

@@ -11,7 +11,6 @@ class SubjectVisitMissed(
     SubjectVisitMissedModelMixin,
     edc_models.BaseUuidModel,
 ):
-
     missed_reasons = models.ManyToManyField(
         SubjectVisitMissedReasons, blank=True, related_name="effect_missed_reasons"
     )

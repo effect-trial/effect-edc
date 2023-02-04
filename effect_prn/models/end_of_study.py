@@ -13,7 +13,6 @@ from effect_lists.models import LateExclusionCriteria, OffstudyReasons
 
 
 class EndOfStudy(SiteModelMixin, OffScheduleModelMixin, ActionModelMixin, BaseUuidModel):
-
     action_name = END_OF_STUDY_ACTION
 
     offschedule_datetime = models.DateTimeField(

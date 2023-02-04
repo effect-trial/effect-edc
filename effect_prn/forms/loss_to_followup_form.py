@@ -24,7 +24,6 @@ class LossToFollowupForm(
     BaseModelFormMixin,
     forms.ModelForm,
 ):
-
     form_validator_cls = LossToFollowupFormValidator
 
     class Meta(ActionItemFormMixin.Meta):

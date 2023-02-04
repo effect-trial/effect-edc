@@ -14,7 +14,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
-
     hiv_dx_date = models.DateField(
         verbose_name="Date HIV diagnosis first known",
         validators=[date_not_future],

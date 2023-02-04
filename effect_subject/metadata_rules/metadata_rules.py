@@ -5,7 +5,6 @@ from edc_metadata.metadata_rules import CrfRule, CrfRuleGroup, P, register
 
 @register()
 class SignsAndSymptomsRuleGroup(CrfRuleGroup):
-
     chest_xray = CrfRule(
         predicate=P("xray_performed", "eq", YES),
         consequence=REQUIRED,

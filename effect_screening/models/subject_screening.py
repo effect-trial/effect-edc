@@ -30,12 +30,10 @@ from ..eligibility import ScreeningEligibility
 
 
 class ScreeningIdentifier(BaseScreeningIdentifier):
-
     template = "S{random_string}"
 
 
 class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel):
-
     eligibility_cls = ScreeningEligibility
 
     identifier_cls = ScreeningIdentifier

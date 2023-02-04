@@ -20,7 +20,6 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 @tag("ae")
 class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
-
     form_validator_cls = AeInitialFormValidator
     form_validator_model_cls = AeInitial
 

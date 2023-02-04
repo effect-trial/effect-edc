@@ -21,7 +21,6 @@ from ..models import SubjectScreening
 class SubjectScreeningAdmin(
     ModelAdminSubjectDashboardMixin, SiteModelAdminMixin, SimpleHistoryAdmin
 ):
-
     form = SubjectScreeningForm
 
     post_url_on_delete_name = "screening_listboard_url"

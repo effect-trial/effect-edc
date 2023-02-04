@@ -21,7 +21,6 @@ class EndOfStudyFormValidator(
     ltfu_date_field = "ltfu_date"
 
     def clean(self):
-
         self.validate_death_report_if_deceased()
 
         self.validate_ltfu()

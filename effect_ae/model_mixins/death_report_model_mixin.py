@@ -7,7 +7,6 @@ from edc_protocol.validators import date_not_before_study_start
 
 
 class DeathReportModelMixin(models.Model):
-
     hospitalization_date = models.DateField(
         verbose_name="If YES, date of hospitalisation",
         validators=[date_not_future, date_not_before_study_start],

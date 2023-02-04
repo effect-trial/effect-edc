@@ -21,7 +21,6 @@ from ..radio_fields import (
 
 @admin.register(Adherence, site=effect_subject_admin)
 class AdherenceAdmin(CrfModelAdmin):
-
     form = AdherenceForm
 
     fieldsets = (

@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_screening", "0004_auto_20211119_1937"),
     ]

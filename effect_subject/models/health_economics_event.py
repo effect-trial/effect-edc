@@ -19,7 +19,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
-
     buy_meds = models.CharField(
         verbose_name=(
             "Over the past period since your treatment, did you buy any drugs or "

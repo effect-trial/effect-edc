@@ -22,7 +22,6 @@ class SubjectConsentAdmin(
     ModelAdminSubjectDashboardMixin,
     SimpleHistoryAdmin,
 ):
-
     form = SubjectConsentForm
 
     fieldsets = (

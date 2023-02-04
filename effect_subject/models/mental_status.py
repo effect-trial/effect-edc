@@ -10,7 +10,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
-
     recent_seizure = models.CharField(
         verbose_name="Recent seizure (<72 hours)?",
         max_length=15,

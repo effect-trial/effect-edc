@@ -73,7 +73,6 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
 
 @tag("sisx")
 class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
-
     form_validator_cls = SignsAndSymptomsFormValidator
     form_validator_model_cls = SignsAndSymptoms
 

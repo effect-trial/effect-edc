@@ -9,5 +9,4 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(MedicationAdherence, site=effect_subject_admin)
 class MedicationAdherenceAdmin(MedicationAdherenceAdminMixin, CrfModelAdmin):
-
     form = MedicationAdherenceForm

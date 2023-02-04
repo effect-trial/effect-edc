@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(HealthEconomics, site=effect_subject_admin)
 class HealthEconomicsAdmin(CrfModelAdmin):
-
     form = HealthEconomicsForm
 
     fieldsets = (

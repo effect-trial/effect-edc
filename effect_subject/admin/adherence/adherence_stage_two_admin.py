@@ -15,7 +15,6 @@ from ..radio_fields import adherence_counselling_radio_fields, missed_doses_radi
 
 @admin.register(AdherenceStageTwo, site=effect_subject_admin)
 class AdherenceStageTwoAdmin(CrfModelAdmin):
-
     form = AdherenceStageTwoForm
 
     fieldsets = (

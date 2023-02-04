@@ -20,7 +20,6 @@ class VitalSignsAdmin(
     ActionItemModelAdminMixin,
     SimpleHistoryAdmin,
 ):
-
     form = VitalSignsForm
 
     fieldsets = (

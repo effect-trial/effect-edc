@@ -6,7 +6,6 @@ import edc_identifier.managers
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_consent", "0005_auto_20220910_2045"),
     ]

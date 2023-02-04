@@ -12,7 +12,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(StudyMedicationBaseline, site=effect_subject_admin)
 class StudyMedicationBaselineAdmin(CrfModelAdmin):
-
     form = StudyMedicationBaselineForm
 
     additional_instructions = format_html(

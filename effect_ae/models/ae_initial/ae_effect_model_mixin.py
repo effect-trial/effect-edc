@@ -7,7 +7,6 @@ from ...choices import INPATIENT_STATUSES
 
 
 class AeEffectModelMixin(models.Model):
-
     flucon_relation = models.CharField(
         verbose_name="Relationship to study drugs: Fluconazole:",
         max_length=25,
