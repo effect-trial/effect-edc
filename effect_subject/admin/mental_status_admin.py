@@ -10,7 +10,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(MentalStatus, site=effect_subject_admin)
 class MentalStatusAdmin(CrfModelAdmin):
-
     form = MentalStatusForm
 
     fieldsets = (

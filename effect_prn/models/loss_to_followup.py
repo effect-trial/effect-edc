@@ -22,7 +22,6 @@ class LossToFollowup(
     ActionModelMixin,
     edc_models.BaseUuidModel,
 ):
-
     action_name = LTFU_ACTION
 
     report_datetime = models.DateTimeField(

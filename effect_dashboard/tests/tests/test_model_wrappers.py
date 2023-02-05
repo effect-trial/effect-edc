@@ -24,7 +24,6 @@ class ScreeningModelWrapperTestHelper(ModelWrapperTestHelper):
 
 
 class TestModelWrappers(EffectTestCaseMixin, TestCase):
-
     model_wrapper_helper_cls = SubjectModelWrapperTestHelper
 
     def setUp(self):

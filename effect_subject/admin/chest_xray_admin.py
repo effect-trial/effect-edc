@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(ChestXray, site=effect_subject_admin)
 class ChestXrayAdmin(CrfModelAdmin):
-
     form = ChestXrayForm
 
     fieldsets = (

@@ -13,7 +13,6 @@ from ..models import Hospitalization
 
 @admin.register(Hospitalization, site=effect_prn_admin)
 class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-
     form = HospitalizationForm
 
     fieldsets = (

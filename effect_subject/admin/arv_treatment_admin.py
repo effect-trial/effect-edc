@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(ArvTreatment, site=effect_subject_admin)
 class ArvTreatmentAdmin(CrfModelAdmin):
-
     form = ArvTreatmentForm
 
     autocomplete_fields = ["arv_regimen"]

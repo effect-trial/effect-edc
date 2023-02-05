@@ -6,7 +6,6 @@ import edc_model_fields.fields.other_charfield
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("edc_adverse_event", "0010_auto_20220913_2139"),
         ("effect_ae", "0011_auto_20220910_2045"),

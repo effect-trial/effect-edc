@@ -13,7 +13,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class OffStudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
-
     # flucon_dose
     # flucyt_dose
 

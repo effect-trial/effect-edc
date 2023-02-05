@@ -7,7 +7,6 @@ from ..models import AeInitial
 
 
 class AeInitialForm(AeInitialModelFormMixin, forms.ModelForm):
-
     form_validator_cls = AeInitialFormValidator
 
     class Meta(AeInitialModelFormMixin.Meta):

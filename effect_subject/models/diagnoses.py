@@ -10,7 +10,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
-
     # Diagnoses CRF (p3)
     # TODO: Move gi_side_effects into SiSx
     gi_side_effects = models.CharField(

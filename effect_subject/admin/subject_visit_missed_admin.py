@@ -11,7 +11,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(SubjectVisitMissed, site=effect_subject_admin)
 class SubjectVisitMissedAdmin(CrfModelAdmin, FormLabelModelAdminMixin, SimpleHistoryAdmin):
-
     form = SubjectVisitMissedForm
 
     fieldsets = (

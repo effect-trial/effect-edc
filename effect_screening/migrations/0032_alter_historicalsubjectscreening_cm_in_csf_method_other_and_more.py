@@ -5,7 +5,6 @@ import edc_model_fields.fields.other_charfield
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_screening", "0031_alter_historicalsubjectscreening_csf_crag_value_and_more"),
     ]

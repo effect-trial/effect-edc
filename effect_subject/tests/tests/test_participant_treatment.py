@@ -35,7 +35,6 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
 
 
 class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
-
     form_validator_cls = ParticipantTreatmentFormValidator
     form_validator_model_cls = ParticipantTreatment
 

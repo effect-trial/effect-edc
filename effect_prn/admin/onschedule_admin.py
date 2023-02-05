@@ -10,7 +10,6 @@ from ..models import OnSchedule
 
 @admin.register(OnSchedule, site=effect_prn_admin)
 class OnScheduleAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-
     instructions = None
 
     fields = ("subject_identifier", "onschedule_datetime")

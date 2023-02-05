@@ -11,7 +11,6 @@ class DeathReportFormValidator(StudyDayFormValidatorMixin, FormValidator):
         return django_apps.get_model("edc_adverse_event.causeofdeath")
 
     def clean(self):
-
         self.validate_study_day_with_datetime(
             study_day=self.cleaned_data.get("study_day"),
             compare_date=self.cleaned_data.get("death_datetime"),

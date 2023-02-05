@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(StudyMedicationFollowup, site=effect_subject_admin)
 class StudyMedicationFollowupAdmin(CrfModelAdmin):
-
     form = StudyMedicationFollowupForm
 
     fieldsets = (

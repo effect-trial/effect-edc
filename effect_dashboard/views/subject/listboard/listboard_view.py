@@ -15,7 +15,6 @@ class ListboardView(
     SearchFormViewMixin,
     BaseListboardView,
 ):
-
     listboard_template = "subject_listboard_template"
     listboard_url = "subject_listboard_url"
     listboard_panel_style = "success"

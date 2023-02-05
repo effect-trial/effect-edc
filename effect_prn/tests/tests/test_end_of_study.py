@@ -20,7 +20,6 @@ from effect_prn.forms.end_of_study_form import EndOfStudyFormValidator
 
 @tag("eos")
 class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
-
     form_validator_cls = EndOfStudyFormValidator
 
     def mock_validate_ltfu(self):

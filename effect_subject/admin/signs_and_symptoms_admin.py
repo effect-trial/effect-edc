@@ -21,7 +21,6 @@ class SignsAndSymptomsAdmin(
     ActionItemModelAdminMixin,
     SimpleHistoryAdmin,
 ):
-
     form = SignsAndSymptomsForm
 
     fieldsets = (

@@ -14,7 +14,6 @@ class UrinalysisFormValidator(BloodResultsFormValidatorMixin, CrfFormValidator):
 
 
 class UrinalysisForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm):
-
     form_validator_cls = UrinalysisFormValidator
 
     class Meta(ActionItemCrfFormMixin.Meta):

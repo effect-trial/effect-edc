@@ -6,7 +6,6 @@ import edc_protocol.validators
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_lists", "0010_auto_20220719_1325"),
         ("effect_prn", "0008_auto_20220712_1239"),

@@ -16,7 +16,6 @@ from ..models import EndOfStudy, LossToFollowup
 
 @admin.register(EndOfStudy, site=effect_prn_admin)
 class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-
     form = EndOfStudyForm
 
     additional_instructions = format_html(

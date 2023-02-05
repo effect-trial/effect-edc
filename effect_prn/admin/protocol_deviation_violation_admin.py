@@ -15,7 +15,6 @@ from ..models import ProtocolDeviationViolation
 
 @admin.register(ProtocolDeviationViolation, site=effect_prn_admin)
 class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
-
     form = ProtocolDeviationViolationForm
 
     fieldsets = (

@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(ClinicalNote, site=effect_subject_admin)
 class ClinicalNoteAdmin(CrfModelAdmin):
-
     form = ClinicalNoteForm
 
     fieldsets = (

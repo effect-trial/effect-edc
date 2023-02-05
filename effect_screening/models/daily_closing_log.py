@@ -35,7 +35,6 @@ class DailyClosingLogManager(BaseCurrentSiteManager):
 
 
 class DailyClosingLog(SiteModelMixin, BaseUuidModel):
-
     site = models.ForeignKey(
         Site,
         on_delete=models.PROTECT,

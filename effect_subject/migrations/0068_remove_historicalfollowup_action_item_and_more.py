@@ -4,7 +4,6 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_subject", "0067_historicalsubjectvisit_document_status_comments_and_more"),
     ]

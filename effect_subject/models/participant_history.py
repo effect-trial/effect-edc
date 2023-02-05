@@ -12,7 +12,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
-
     flucon_1w_prior_rando = models.CharField(
         verbose_name="Fluconazole taken within 1 week prior to randomization?",
         max_length=5,
