@@ -7,7 +7,6 @@ import edc_sites.models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("sites", "0002_alter_domain_unique"),
         ("effect_prn", "0011_auto_20220910_2045"),

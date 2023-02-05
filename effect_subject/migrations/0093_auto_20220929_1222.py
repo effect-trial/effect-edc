@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_lists", "0013_auto_20220927_1831"),
         ("sites", "0002_alter_domain_unique"),

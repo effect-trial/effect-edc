@@ -6,7 +6,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ClinicalNote(CrfModelMixin, edc_models.BaseUuidModel):
-
     has_comment = models.CharField(
         verbose_name="Are there any comments on the clinical care or assessment plan",
         max_length=15,

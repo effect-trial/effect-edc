@@ -2,5 +2,4 @@ from edc_adverse_event.model_wrappers import AeInitialModelWrapper as ModelWrapp
 
 
 class AeInitialModelWrapper(ModelWrapper):
-
     model = "effect_ae.aeinitial"

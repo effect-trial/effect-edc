@@ -67,7 +67,6 @@ def get_eligible_options():
 class EffectTestCaseMixin(
     AppointmentTestCaseMixin, FormValidatorTestCaseMixin, SiteTestCaseMixin
 ):
-
     fqdn = fqdn
 
     default_sites = get_sites_by_country("tanzania")

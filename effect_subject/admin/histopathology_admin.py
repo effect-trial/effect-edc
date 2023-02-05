@@ -24,7 +24,6 @@ def get_histopathology_fieldset():
 
 @admin.register(Histopathology, site=effect_subject_admin)
 class HistopathologyAdmin(HistopathologyModelAdminMixin, CrfModelAdmin):
-
     form = HistopathologyForm
 
     autocomplete_fields = ["requisition"]

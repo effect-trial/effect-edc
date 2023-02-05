@@ -20,7 +20,6 @@ class TbDiagnostics(
     CrfModelMixin,
     edc_models.BaseUuidModel,
 ):
-
     sputum_requisition = models.ForeignKey(
         get_requisition_model_name(),
         on_delete=PROTECT,

@@ -22,7 +22,6 @@ class Hospitalization(
     ActionModelMixin,
     edc_models.BaseUuidModel,
 ):
-
     action_name = HOSPITALIZATION_ACTION
 
     report_datetime = models.DateTimeField(

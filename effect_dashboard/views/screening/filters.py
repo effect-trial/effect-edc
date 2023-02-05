@@ -2,7 +2,6 @@ from edc_listboard.filters import ListboardFilter, ListboardViewFilters
 
 
 class ListboardViewFilters(ListboardViewFilters):
-
     all = ListboardFilter(name="all", label="All", lookup={})
 
     eligible = ListboardFilter(label="Eligible", position=10, lookup={"eligible": True})

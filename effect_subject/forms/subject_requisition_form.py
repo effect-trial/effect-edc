@@ -8,7 +8,6 @@ from ..models import SubjectRequisition
 
 
 class SubjectRequisitionForm(RequisitionFormMixin, RequisitionModelFormMixin, forms.ModelForm):
-
     form_validator_cls = RequisitionFormValidator
 
     requisition_identifier = forms.CharField(

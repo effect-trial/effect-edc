@@ -20,7 +20,6 @@ from ..radio_fields import (
 
 @admin.register(AdherenceStageThree, site=effect_subject_admin)
 class AdherenceStageThreeAdmin(CrfModelAdmin):
-
     form = AdherenceStageThreeForm
 
     fieldsets = (

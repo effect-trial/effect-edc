@@ -14,7 +14,6 @@ from ..radio_fields import adherence_counselling_baseline_radio_fields
 
 @admin.register(AdherenceStageOne, site=effect_subject_admin)
 class AdherenceStageOneAdmin(CrfModelAdmin):
-
     form = AdherenceStageOneForm
 
     fieldsets = (

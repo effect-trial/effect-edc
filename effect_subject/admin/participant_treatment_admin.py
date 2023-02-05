@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(ParticipantTreatment, site=effect_subject_admin)
 class ParticipantTreatmentAdmin(CrfModelAdmin):
-
     form = ParticipantTreatmentForm
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

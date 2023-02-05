@@ -4,5 +4,4 @@ from .pdf_report_mixin import CrfReportMixin
 
 
 class AeReport(CrfReportMixin, BaseAeReport):
-
     pass

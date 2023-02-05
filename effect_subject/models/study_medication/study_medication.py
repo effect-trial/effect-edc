@@ -11,7 +11,6 @@ from ...model_mixins import CrfModelMixin
 
 
 class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
-
     modifications = models.CharField(
         verbose_name=(
             "Have there been any modifications to study medication since the last report?"

@@ -9,7 +9,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
-
     on_arv_regimen = models.CharField(
         verbose_name="Is the participant currently on an ART regimen?",
         max_length=15,

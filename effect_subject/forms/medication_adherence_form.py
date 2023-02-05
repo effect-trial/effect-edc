@@ -9,7 +9,6 @@ from ..models import MedicationAdherence
 class MedicationAdherenceForm(
     MedicationAdherenceFormMixin, CrfModelFormMixin, forms.ModelForm
 ):
-
     form_validator_cls = MedicationAdherenceFormValidator
 
     class Meta:

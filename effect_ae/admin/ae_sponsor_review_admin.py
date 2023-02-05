@@ -9,5 +9,4 @@ from .modeladmin_mixins import AeReviewModelAdminMixin
 
 @admin.register(AeSponsorReview, site=effect_ae_admin)
 class AeSponsorReviewAdmin(AeReviewModelAdminMixin, SimpleHistoryAdmin):
-
     form = AeSponsorReviewForm

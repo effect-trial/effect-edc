@@ -15,7 +15,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(LpCsf, site=effect_subject_admin)
 class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
-
     form = LpCsfForm
 
     autocomplete_fields = ["csf_requisition"]

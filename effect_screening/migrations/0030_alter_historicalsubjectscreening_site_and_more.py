@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("sites", "0002_alter_domain_unique"),
         ("effect_screening", "0029_alter_historicalsubjectscreening_cd4_value_and_more"),

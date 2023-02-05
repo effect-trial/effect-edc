@@ -30,7 +30,6 @@ import effect_subject.models.subject_visit
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [

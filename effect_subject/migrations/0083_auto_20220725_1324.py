@@ -21,7 +21,6 @@ import uuid
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
         ("effect_lists", "0011_auto_20220725_1324"),

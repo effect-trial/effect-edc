@@ -5,7 +5,6 @@ import edc_model.validators.date
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_subject", "0095_auto_20220930_1306"),
     ]
