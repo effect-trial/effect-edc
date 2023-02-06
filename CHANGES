@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- update visit schedule windows (towards #480)
+
 [0.1.27]
 --------
 - fix 'Server error loading AE TMG Report' (#519)
