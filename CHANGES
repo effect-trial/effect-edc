@@ -4,6 +4,7 @@ Changes
 [unreleased]
 ------------
 - update visit schedule windows (towards #480)
+- bump to edc 0.4.61
 
 [0.1.27]
 --------
