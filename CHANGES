@@ -1,9 +1,10 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.28]
+--------
 - update visit schedule windows (towards #480)
+- add migration (introduced in 0.1.27)
 - bump to edc 0.4.69
 
 [0.1.27]
