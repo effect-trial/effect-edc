@@ -8,7 +8,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class BloodCulture(BloodCultureModelMixin, CrfModelMixin, edc_models.BaseUuidModel):
-
     requisition = models.ForeignKey(
         get_requisition_model_name(),
         on_delete=PROTECT,

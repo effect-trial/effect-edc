@@ -12,7 +12,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class ParticipantTreatment(CrfModelMixin, edc_models.BaseUuidModel):
-
     # Participant Treatment CRF (p4)
     lp_completed = models.CharField(
         verbose_name="LP completed?",

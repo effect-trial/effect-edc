@@ -9,7 +9,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(ParticipantHistory, site=effect_subject_admin)
 class ParticipantHistoryAdmin(CrfModelAdmin):
-
     form = ParticipantHistoryForm
 
     fieldsets = (

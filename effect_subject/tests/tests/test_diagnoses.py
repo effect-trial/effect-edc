@@ -36,7 +36,6 @@ class TestDiagnoses(EffectTestCaseMixin, TestCase):
 
 
 class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
-
     form_validator_cls = DiagnosesFormValidator
     form_validator_model_cls = Diagnoses
 

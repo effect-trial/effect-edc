@@ -6,7 +6,6 @@ from ..constants import VIOLATION
 
 class ProtocolDeviationViolationFormValidator(FormValidator):
     def clean(self):
-
         self.applicable_if(VIOLATION, field="report_type", field_applicable="safety_impact")
 
         self.applicable_if(

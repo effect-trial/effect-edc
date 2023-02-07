@@ -17,7 +17,6 @@ class ProtocolDeviationViolation(
     ActionModelMixin,
     BaseUuidModel,
 ):
-
     action_name = PROTOCOL_DEVIATION_VIOLATION_ACTION
 
     action_item = models.ForeignKey(

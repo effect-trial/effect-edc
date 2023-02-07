@@ -24,7 +24,6 @@ def get_blood_culture_fieldset():
 
 @admin.register(BloodCulture, site=effect_subject_admin)
 class BloodCultureAdmin(BloodCultureModelAdminMixin, CrfModelAdmin):
-
     form = BloodCultureForm
 
     autocomplete_fields = ["requisition"]

@@ -16,7 +16,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(TbDiagnostics, site=effect_subject_admin)
 class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
-
     form = TbDiagnosticsForm
 
     autocomplete_fields = ["sputum_requisition"]

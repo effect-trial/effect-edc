@@ -21,7 +21,6 @@ from ..fields.temperature import TemperatureField
 class VitalSigns(
     SimpleBloodPressureModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
 ):
-
     action_name = VITAL_SIGNS_ACTION
 
     weight = WeightField(null=True)

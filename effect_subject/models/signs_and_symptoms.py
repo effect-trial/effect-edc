@@ -11,7 +11,6 @@ from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACT
 
 
 class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
-
     action_name = SX_ACTION
 
     any_sx = models.CharField(

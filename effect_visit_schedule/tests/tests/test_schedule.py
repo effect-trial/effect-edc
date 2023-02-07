@@ -1,7 +1,9 @@
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
+from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
+from edc_utils import get_utcnow
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_visit_schedule.visit_schedules import schedule, visit_schedule
@@ -195,24 +197,142 @@ class TestVisitSchedule(TestCase):
 
 @tag("vsched")
 class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
-    def test_generated_visit_dates_as_expected(self):
-        consent_date = datetime(year=2022, month=3, day=10, hour=9, tzinfo=ZoneInfo("UTC"))
-        expected = {
+    def test_generated_visit_dates_against_dates_relative_to_consent(self):
+        consent_date = get_utcnow()
+        expected_appts = {
             "1000": consent_date,
-            "1003": datetime(year=2022, month=3, day=12, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1009": datetime(year=2022, month=3, day=18, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1014": datetime(year=2022, month=3, day=23, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1028": datetime(year=2022, month=4, day=7, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1070": datetime(year=2022, month=5, day=19, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1112": datetime(year=2022, month=6, day=30, hour=9, tzinfo=ZoneInfo("UTC")),
-            "1168": datetime(year=2022, month=8, day=25, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1003": consent_date + relativedelta(days=3 - 1),
+            "1009": consent_date + relativedelta(days=9 - 1),
+            "1014": consent_date + relativedelta(days=14 - 1),
+            "1028": consent_date + relativedelta(weeks=4),
+            "1070": consent_date + relativedelta(weeks=10),
+            "1112": consent_date + relativedelta(weeks=16),
+            "1168": consent_date + relativedelta(weeks=24),
         }
 
-        actual = {
-            visit.code: visit_date
-            for visit, visit_date in self.get_subject_visit()
-            .visits.timepoint_dates(dt=consent_date)
-            .items()
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                self.assertEqual(visit.timepoint_datetime, expected_appts.get(visit.code))
+
+        actual = {visit.code: visit.dates.base for visit in visits}
+        self.assertDictEqual(expected_appts, actual)
+
+    def test_generated_visit_dates_against_absolute_dates(self):
+        consent_date = datetime(year=2022, month=3, day=9, hour=9, tzinfo=ZoneInfo("UTC"))
+        expected_appts = {
+            "1000": consent_date,
+            "1003": datetime(year=2022, month=3, day=11, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1009": datetime(year=2022, month=3, day=17, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1014": datetime(year=2022, month=3, day=22, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1028": datetime(year=2022, month=4, day=6, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1070": datetime(year=2022, month=5, day=18, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1112": datetime(year=2022, month=6, day=29, hour=9, tzinfo=ZoneInfo("UTC")),
+            "1168": datetime(year=2022, month=8, day=24, hour=9, tzinfo=ZoneInfo("UTC")),
         }
 
-        self.assertDictEqual(expected, actual)
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                self.assertEqual(visit.timepoint_datetime, expected_appts.get(visit.code))
+
+        actual = {visit.code: visit.dates.base for visit in visits}
+        self.assertDictEqual(expected_appts, actual)
+
+    def test_visit_window_floors_against_dates_relative_to_consent(self):
+        consent_date = get_utcnow()
+        expected_visit_window_floors = {
+            "1000": consent_date,
+            "1003": consent_date
+            + relativedelta(days=2 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1009": consent_date
+            + relativedelta(days=8 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1014": consent_date
+            + relativedelta(days=14 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1028": consent_date
+            + relativedelta(days=22 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1070": consent_date
+            + relativedelta(days=64 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1112": consent_date
+            + relativedelta(days=106 - 1, hour=0, minute=0, second=0, microsecond=0),
+            "1168": consent_date
+            + relativedelta(days=162 - 1, hour=0, minute=0, second=0, microsecond=0),
+        }
+
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                expected_visit_floor = expected_visit_window_floors.get(visit.code)
+                self.assertEqual(visit.dates.lower, expected_visit_floor)
+
+    def test_visit_window_floors_against_absolute_dates(self):
+        consent_date = datetime(
+            year=2022, month=3, day=9, hour=9, minute=25, tzinfo=ZoneInfo("UTC")
+        )
+        expected_visit_window_floors = {
+            "1000": consent_date,
+            "1003": datetime(year=2022, month=3, day=10, tzinfo=ZoneInfo("UTC")),
+            "1009": datetime(year=2022, month=3, day=16, tzinfo=ZoneInfo("UTC")),
+            "1014": datetime(year=2022, month=3, day=22, tzinfo=ZoneInfo("UTC")),
+            "1028": datetime(year=2022, month=3, day=30, tzinfo=ZoneInfo("UTC")),
+            "1070": datetime(year=2022, month=5, day=11, tzinfo=ZoneInfo("UTC")),
+            "1112": datetime(year=2022, month=6, day=22, tzinfo=ZoneInfo("UTC")),
+            "1168": datetime(year=2022, month=8, day=17, tzinfo=ZoneInfo("UTC")),
+        }
+
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                expected_visit_floor = expected_visit_window_floors.get(visit.code)
+                self.assertEqual(visit.dates.lower, expected_visit_floor)
+
+    def test_visit_window_ceilings_against_dates_relative_to_consent(self):
+        consent_date = get_utcnow()
+        expected_visit_window_ceilings = {
+            "1000": consent_date.replace(hour=23, minute=59, second=59, microsecond=999999),
+            "1003": consent_date
+            + relativedelta(days=7 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1009": consent_date
+            + relativedelta(days=13 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1014": consent_date
+            + relativedelta(days=21 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1028": consent_date
+            + relativedelta(days=63 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1070": consent_date
+            + relativedelta(days=105 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1112": consent_date
+            + relativedelta(days=161 - 1, hour=23, minute=59, second=59, microsecond=999999),
+            "1168": consent_date
+            + relativedelta(days=224 - 1, hour=23, minute=59, second=59, microsecond=999999),
+        }
+
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                expected_visit_ceiling = expected_visit_window_ceilings.get(visit.code)
+                self.assertEqual(visit.dates.upper, expected_visit_ceiling)
+
+    def test_visit_window_ceilings_against_absolute_dates(self):
+        consent_date = datetime(
+            year=2022, month=3, day=9, hour=9, minute=25, tzinfo=ZoneInfo("UTC")
+        )
+        expected_visit_window_ceilings = {
+            "1000": consent_date,
+            "1003": datetime(year=2022, month=3, day=15, tzinfo=ZoneInfo("UTC")),
+            "1009": datetime(year=2022, month=3, day=21, tzinfo=ZoneInfo("UTC")),
+            "1014": datetime(year=2022, month=3, day=29, tzinfo=ZoneInfo("UTC")),
+            "1028": datetime(year=2022, month=5, day=10, tzinfo=ZoneInfo("UTC")),
+            "1070": datetime(year=2022, month=6, day=21, tzinfo=ZoneInfo("UTC")),
+            "1112": datetime(year=2022, month=8, day=16, tzinfo=ZoneInfo("UTC")),
+            "1168": datetime(year=2022, month=10, day=18, tzinfo=ZoneInfo("UTC")),
+        }
+        for visit_code in expected_visit_window_ceilings:
+            expected_visit_window_ceilings[visit_code] = expected_visit_window_ceilings[
+                visit_code
+            ].replace(hour=23, minute=59, second=59, microsecond=999999)
+
+        visits = self.get_subject_visit().visits.timepoint_dates(dt=consent_date)
+        for visit in visits:
+            with self.subTest(visit_code=visit.code):
+                expected_visit_ceiling = expected_visit_window_ceilings.get(visit.code)
+                self.assertEqual(visit.dates.upper, expected_visit_ceiling)

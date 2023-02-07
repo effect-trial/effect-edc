@@ -19,7 +19,6 @@ class HospitalizationForm(
     BaseModelFormMixin,
     forms.ModelForm,
 ):
-
     form_validator_cls = HospitalizationFormValidator
 
     class Meta(ActionItemFormMixin.Meta):

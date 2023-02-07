@@ -18,7 +18,6 @@ class ListboardView(
     SearchFormViewMixin,
     BaseListboardView,
 ):
-
     listboard_template = "screening_listboard_template"
     listboard_url = "screening_listboard_url"
     listboard_panel_style = "info"

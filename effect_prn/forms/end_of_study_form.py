@@ -17,7 +17,6 @@ class EndOfStudyForm(
     FormValidatorMixin,
     forms.ModelForm,
 ):
-
     form_validator_cls = EndOfStudyFormValidator
 
     report_datetime_field_attr: str = "offschedule_datetime"

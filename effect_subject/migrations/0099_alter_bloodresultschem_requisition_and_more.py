@@ -5,7 +5,6 @@ import django.db.models.deletion
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_subject", "0098_alter_arvhistory_art_doses_missed_and_more"),
     ]

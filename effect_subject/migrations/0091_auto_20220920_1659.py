@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_lists", "0012_auto_20220920_1659"),
         ("effect_subject", "0090_auto_20220915_1612"),

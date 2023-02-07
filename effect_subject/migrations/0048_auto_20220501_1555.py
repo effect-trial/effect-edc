@@ -7,7 +7,6 @@ import effect_subject.models.subject_visit
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_subject", "0047_auto_20220501_1554"),
     ]

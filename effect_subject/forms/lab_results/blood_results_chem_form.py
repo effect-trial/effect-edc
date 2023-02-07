@@ -26,7 +26,6 @@ class BloodResultsChemFormValidator(BloodResultsFormValidatorMixin, CrfFormValid
 
 
 class BloodResultsChemForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm):
-
     form_validator_cls = BloodResultsChemFormValidator
 
     class Meta(ActionItemCrfFormMixin.Meta):

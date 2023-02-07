@@ -10,7 +10,6 @@ from .modeladmin import CrfModelAdmin
 
 @admin.register(Diagnoses, site=effect_subject_admin)
 class DiagnosesAdmin(CrfModelAdmin):
-
     form = DiagnosesForm
 
     fieldsets = (

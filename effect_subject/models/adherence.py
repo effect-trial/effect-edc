@@ -9,7 +9,6 @@ from ..model_mixins import CrfModelMixin
 
 
 class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
-
     adherence_counselling = models.CharField(
         verbose_name="Has appropriate adherence counselling been given as per the trial SOP?",
         max_length=15,

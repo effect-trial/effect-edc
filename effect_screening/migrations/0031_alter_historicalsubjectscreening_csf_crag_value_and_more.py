@@ -4,7 +4,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_screening", "0030_alter_historicalsubjectscreening_site_and_more"),
     ]

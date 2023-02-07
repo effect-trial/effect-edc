@@ -5,7 +5,6 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_lists", "0005_delete_rankinscore"),
         ("sites", "0002_alter_domain_unique"),
