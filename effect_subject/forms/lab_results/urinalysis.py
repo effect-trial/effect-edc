@@ -12,9 +12,14 @@ from ...models import Urinalysis
 class UrinalysisFormValidator(BloodResultsFormValidatorMixin, CrfFormValidator):
     panel = urinalysis_panel
 
+    def datetime_in_window_or_raise(self, *args):
+        pass
+
 
 class UrinalysisForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = UrinalysisFormValidator
+
+    report_datetime_allowance = 7
 
     class Meta(ActionItemCrfFormMixin.Meta):
         model = Urinalysis

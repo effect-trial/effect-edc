@@ -12,9 +12,14 @@ from ...models import BloodResultsFbc
 class BloodResultsFbcFormValidator(BloodResultsFormValidatorMixin, CrfFormValidator):
     panel = fbc_panel
 
+    def datetime_in_window_or_raise(self, *args):
+        pass
+
 
 class BloodResultsFbcForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = BloodResultsFbcFormValidator
+
+    report_datetime_allowance = 7
 
     class Meta(ActionItemCrfFormMixin.Meta):
         model = BloodResultsFbc
