@@ -13,6 +13,9 @@ from ...utils import get_weight_in_kgs
 class BloodResultsChemFormValidator(BloodResultsFormValidatorMixin, CrfFormValidator):
     panel = BloodResultsChem.lab_panel
 
+    def datetime_in_window_or_raise(self, *args):
+        pass
+
     def clean(self) -> None:
         if self.cleaned_data.get("creatinine_value") and not get_weight_in_kgs(
             subject_visit=self.related_visit
@@ -27,6 +30,8 @@ class BloodResultsChemFormValidator(BloodResultsFormValidatorMixin, CrfFormValid
 
 class BloodResultsChemForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = BloodResultsChemFormValidator
+
+    report_datetime_allowance = 7
 
     class Meta(ActionItemCrfFormMixin.Meta):
         model = BloodResultsChem
