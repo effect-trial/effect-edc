@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[0.1.29]
+--------
+- fix report datetime validation issues on FBC and Chem blood results forms (#485)
+
 [0.1.28]
 --------
 - update visit schedule windows (towards #480)
