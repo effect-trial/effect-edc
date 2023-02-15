@@ -97,12 +97,16 @@ class EffectTestCaseMixin(
         eligibility_datetime=None,
         gender=None,
         age_in_years=None,
+        serum_crag_date=None,
     ):
         eligible_options = deepcopy(get_eligible_options())
         if report_datetime:
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]
         eligible_options["age_in_years"] = age_in_years or eligible_options["age_in_years"]
+        eligible_options["serum_crag_date"] = (
+            serum_crag_date or eligible_options["serum_crag_date"]
+        )
 
         subject_screening = SubjectScreening.objects.create(
             user_created="erikvw", user_modified="erikvw", **eligible_options
