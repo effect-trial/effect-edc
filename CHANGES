@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+--------
+- drop Django 4.0 support
+
 [0.1.29]
 --------
 - fix report datetime validation issues on FBC and Chem blood results forms (#485)
