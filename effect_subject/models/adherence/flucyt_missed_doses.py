@@ -2,6 +2,7 @@ from django.db import models
 from edc_crf.model_mixins import CrfInlineModelMixin
 from edc_model import models as edc_models
 from edc_model.models import HistoricalRecords
+from edc_sites.model_mixins import CurrentSiteManager
 
 from ...choices import DOSES_MISSED
 from .missed_doses_manager import MissedDosesManager
@@ -11,8 +12,8 @@ from .missed_doses_model_mixin import MissedDosesModelMixin
 class FlucytMissedDoses(MissedDosesModelMixin, CrfInlineModelMixin, edc_models.BaseUuidModel):
     doses_missed = models.IntegerField(verbose_name="Doses missed:", choices=DOSES_MISSED)
 
+    on_site = CurrentSiteManager()
     objects = MissedDosesManager()
-
     history = HistoricalRecords()
 
     def natural_key(self):
