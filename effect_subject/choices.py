@@ -7,17 +7,21 @@ from edc_constants.constants import (
     NO,
     NOT_APPLICABLE,
     NOT_DONE,
+    NOT_REQUIRED,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
     OUTPATIENT_CARDS,
     OWN_CASH,
     PATIENT,
     PATIENT_REPRESENTATIVE,
+    REFUSED,
     RELATIVE,
     TODAY,
     TOMORROW,
+    TOXICITY,
     YES,
 )
+from edc_metadata.constants import MISSED
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 
 from .constants import (
@@ -67,6 +71,26 @@ CM_TX_CHOICES = (
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
+
+DAYS_MISSED = (
+    (1, "Day 1"),
+    (2, "Day 2"),
+    (3, "Day 3"),
+    (4, "Day 4"),
+    (5, "Day 5"),
+    (6, "Day 6"),
+    (7, "Day 7"),
+    (8, "Day 8"),
+    (9, "Day 9"),
+    (10, "Day 10"),
+    (11, "Day 11"),
+    (12, "Day 12"),
+    (13, "Day 13"),
+    (14, "Day 14"),
+    (15, "Day 15"),
+)
+
+DOSES_MISSED = ((1, "1 Dose"), (2, "2 Doses"), (3, "3 Doses"), (4, "4 Doses"))
 
 ECOG_SCORES = (
     (
@@ -212,6 +236,14 @@ PAYEE_CHOICES_DRUGS = (
     (RELATIVE, "Relative or others paying for drugs"),
     (FREE_OF_CHARGE, "Free drugs from the pharmacy"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+REASON_DRUG_MISSED = (
+    (TOXICITY, "Toxicity"),
+    (MISSED, "Missed"),
+    (REFUSED, "Refused"),
+    (NOT_REQUIRED, "Not required according to protocol"),
+    (OTHER, "Other"),
 )
 
 STEROID_CHOICES = (
