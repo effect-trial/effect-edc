@@ -1,4 +1,5 @@
 from django import forms
+from edc_constants.constants import NOT_REQUIRED
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_model_form.mixins import InlineModelFormMixin
@@ -20,11 +21,9 @@ class AdherenceStageThreeForm(InlineModelFormMixin, CrfModelFormMixin, forms.Mod
             inline_model="effect_subject.fluconmisseddoses",
             field_label="Fluconazole day missed",
         )
-        self.validate_flucon_d1_and_d15_not_both_filled(
-            field="day_missed",
-            inline_model="effect_subject.fluconmisseddoses",
-            field_label="Fluconazole day missed",
-        )
+
+        self.validate_flucon_d15_against_d1()
+
         self.unique_inline_values_or_raise(
             field="day_missed",
             inline_model="effect_subject.flucytmisseddoses",
@@ -32,20 +31,32 @@ class AdherenceStageThreeForm(InlineModelFormMixin, CrfModelFormMixin, forms.Mod
         )
         return cleaned_data
 
-    def validate_flucon_d1_and_d15_not_both_filled(
-        self,
-        field: str = None,
-        inline_model: str = None,
-        field_label: str = None,
-    ) -> None:
-        self.field_exists_or_raise(field, inline_model)
+    def validate_flucon_d15_against_d1(self) -> None:
+        inline_model = "effect_subject.fluconmisseddoses"
         inline_set = f"{inline_model.split('.')[1]}_set"
-        items = self.get_inline_field_values(field=field, inline_set=inline_set)
-        if "1" in items and "15" in items:
-            field_label = field_label or field
+        total_forms = int(self.data.get(f"{inline_set}-TOTAL_FORMS"))
+        day_15_answered = False
+        day_1_set_to_protocol_not_required = False
+
+        for i in range(0, total_forms):
+            if self.data.get(f"{inline_set}-{i}-DELETE") == "on":
+                pass
+            else:
+                day_missed_field = f"{inline_set}-{i}-day_missed"
+                missed_reason_field = f"{inline_set}-{i}-missed_reason"
+
+                if self.data[day_missed_field] == "15":
+                    day_15_answered = True
+                elif (
+                    self.data[day_missed_field] == "1"
+                    and self.data[missed_reason_field] == NOT_REQUIRED
+                ):
+                    day_1_set_to_protocol_not_required = True
+
+        if day_15_answered and not day_1_set_to_protocol_not_required:
             raise forms.ValidationError(
-                f"{field_label}: Invalid. Cannot have missed doses on both "
-                "`Day 1` and `Day 15` (of 14 day fluconazole treatment intervention)."
+                "Fluconazole day missed: Invalid. `Day 15` dose only applicable "
+                "if `Day 1` is `Not required according to protocol`."
             )
 
     class Meta:
