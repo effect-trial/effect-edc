@@ -5,8 +5,9 @@ from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
 from django.test import TestCase
-from edc_constants.constants import NO, NOT_APPLICABLE
+from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
+from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
 from edc_utils import convert_php_dateformat, formatted_datetime, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
@@ -331,4 +332,170 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             f"{self.format_visit_date(subject_visit_d9)}. "
                         ],
                         form.errors.get("report_datetime"),
+                    )
+
+    def test_0_lte_neutrophil_value_lt_1_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+            with self.subTest(value=value):
+                panel_results_data.update(
+                    {
+                        "neutrophil_value": value,
+                        "neutrophil_units": TEN_X_9_PER_LITER,
+                        "neutrophil_abnormal": YES,
+                        "neutrophil_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form = BloodResultsFbcForm(panel_results_data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Expected form to be valid. Got: {form.errors.as_data()}",
+                )
+
+                form_validator = BloodResultsFbcFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_0_lte_neutrophil_diff_value_lt_1_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+            with self.subTest(value=value):
+                panel_results_data.update(
+                    {
+                        "neutrophil_diff_value": value,
+                        "neutrophil_diff_units": PERCENT,
+                        "neutrophil_diff_abnormal": YES,
+                        "neutrophil_diff_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form = BloodResultsFbcForm(panel_results_data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Expected form to be valid. Got: {form.errors.as_data()}",
+                )
+
+                form_validator = BloodResultsFbcFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_0_lte_lymphocyte_value_lt_1_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+            with self.subTest(value=value):
+                panel_results_data.update(
+                    {
+                        "lymphocyte_value": value,
+                        "lymphocyte_units": TEN_X_9_PER_LITER,
+                        "lymphocyte_abnormal": YES,
+                        "lymphocyte_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form = BloodResultsFbcForm(panel_results_data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Expected form to be valid. Got: {form.errors.as_data()}",
+                )
+
+                form_validator = BloodResultsFbcFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_0_lte_lymphocyte_diff_value_lt_1_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+            with self.subTest(value=value):
+                panel_results_data.update(
+                    {
+                        "lymphocyte_diff_value": value,
+                        "lymphocyte_diff_units": PERCENT,
+                        "lymphocyte_diff_abnormal": YES,
+                        "lymphocyte_diff_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form = BloodResultsFbcForm(panel_results_data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Expected form to be valid. Got: {form.errors.as_data()}",
+                )
+
+                form_validator = BloodResultsFbcFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_negative_values_lt_0_for_neutrophil_lymphocyte_raises(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for result_type in ["neutrophil", "neutrophil_diff", "lymphocyte", "lymphocyte_diff"]:
+            for value in [-0.01, -0.02, -0.1, -0.2, -1, -9999]:
+                with self.subTest(result_type=result_type, value=value):
+                    units = PERCENT if result_type.endswith("_diff") else TEN_X_9_PER_LITER
+                    panel_results_data.update(
+                        {
+                            f"{result_type}_value": value,
+                            f"{result_type}_units": units,
+                            f"{result_type}_abnormal": YES,
+                            f"{result_type}_reportable": GRADE4,
+                            "results_abnormal": YES,
+                            "results_reportable": YES,
+                        }
+                    )
+                    form = BloodResultsFbcForm(panel_results_data)
+                    self.assertFalse(form.is_valid(), "Expected form to be invalid.")
+                    self.assertIn(f"{result_type}_value", form.errors)
+                    self.assertEqual(
+                        ["Ensure this value is greater than or equal to 0."],
+                        form.errors.get(f"{result_type}_value"),
                     )
