@@ -4,8 +4,8 @@ from edc_constants.choices import YES_NO, YES_NO_UNKNOWN
 from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
-from ..constants import IF_NO_SPECIFY_REASON
-from ..model_mixins import CrfModelMixin
+from ...constants import IF_NO_SPECIFY_REASON
+from ...model_mixins import CrfModelMixin
 
 
 class Adherence(CrfModelMixin, edc_models.BaseUuidModel):

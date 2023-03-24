@@ -3,7 +3,9 @@ Changes
 
 [unreleased]
 --------
+- add missed days/doses missed (for flucon and flucyt) to Adherence Day 14 form (towards #422)
 - drop Django 4.0 support
+- bump to effect-form-validators 0.1.29
 
 [0.1.29]
 --------

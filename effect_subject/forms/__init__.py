@@ -4,6 +4,8 @@ from .adherence import (
     AdherenceStageOneForm,
     AdherenceStageThreeForm,
     AdherenceStageTwoForm,
+    FluconMissedDosesForm,
+    FlucytMissedDosesForm,
 )
 from .arv_history_form import ArvHistoryForm
 from .arv_treatment_form import ArvTreatmentForm

@@ -8,7 +8,7 @@ class TestManagers(TestCase):
     def test_models(self):
         app_label = "effect_subject"
         app_config = django_apps.get_app_config(app_label)
-        inlines = []
+        inlines = [f"{app_label}.fluconmisseddoses", f"{app_label}.flucytmisseddoses"]
         visit_model = f"{app_label}.subjectvisit"
         for model_cls in app_config.get_models():
             if model_cls._meta.label_lower in inlines:
