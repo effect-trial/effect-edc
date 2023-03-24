@@ -4,7 +4,10 @@ Changes
 [unreleased]
 --------
 - add missed days/doses missed (for flucon and flucyt) to Adherence Day 14 form (towards #422)
+- fix 'Blood results: FBC lymphocyte and neutrophil validation error' (#486, #507)
+- fix 'Refused status on Subject Screening not auto-updating after subject refusal' (#532)
 - drop Django 4.0 support
+- bump to edc 0.4.72
 - bump to effect-form-validators 0.1.29
 
 [0.1.29]
