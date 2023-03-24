@@ -27,6 +27,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     INDEX_PAGE="localhost:8000",
     EXPORT_FOLDER=join(base_dir, "tests", "export"),
     SUBJECT_APP_LABEL="effect_subject",
+    SUBJECT_REFUSAL_MODEL="edc_refusal.subjectrefusal",
     SUBJECT_SCREENING_MODEL="effect_screening.subjectscreening",
     SUBJECT_VISIT_MODEL="effect_subject.subjectvisit",
     SUBJECT_VISIT_MISSED_MODEL="effect_subject.subjectvisitmissed",
