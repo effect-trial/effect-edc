@@ -16,11 +16,17 @@ from ..radio_fields import (
     missed_doses_radio_fields,
     pill_count_diary_review_radio_fields,
 )
+from .missed_doses_admin import FluconMissedDosesInline, FlucytMissedDosesInline
 
 
 @admin.register(AdherenceStageThree, site=effect_subject_admin)
 class AdherenceStageThreeAdmin(CrfModelAdmin):
     form = AdherenceStageThreeForm
+
+    inlines = [
+        FluconMissedDosesInline,
+        FlucytMissedDosesInline,
+    ]
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

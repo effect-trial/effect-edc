@@ -1,4 +1,4 @@
-from .adherence import Adherence
+from .adherence import Adherence, FluconMissedDoses, FlucytMissedDoses
 from .arv_history import ArvHistory
 from .arv_treatment import ArvTreatment
 from .blood_culture import BloodCulture
