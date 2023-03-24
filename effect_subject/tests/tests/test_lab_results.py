@@ -496,6 +496,6 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Expected form to be invalid.")
                     self.assertIn(f"{result_type}_value", form.errors)
                     self.assertEqual(
-                        ["Ensure this value is greater than or equal to 0."],
+                        ["Ensure this value is greater than or equal to 0.0."],
                         form.errors.get(f"{result_type}_value"),
                     )
