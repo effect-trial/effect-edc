@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-[unreleased]
+[0.1.30]
 --------
 - add missed days/doses missed (for flucon and flucyt) to Adherence Day 14 form (towards #422)
 - fix 'Blood results: FBC lymphocyte and neutrophil validation error' (#486, #507)
