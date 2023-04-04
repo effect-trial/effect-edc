@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+[0.1.31]
+--------
+- fix 'Server error on ARV history form' (missing subject_screening property, #535)
+- bump to effect-form-validators 0.1.30
+
 [0.1.30]
 --------
 - add missed days/doses missed (for flucon and flucyt) to Adherence Day 14 form (towards #422)
