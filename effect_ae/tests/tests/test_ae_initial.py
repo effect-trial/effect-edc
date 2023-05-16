@@ -6,6 +6,9 @@ from edc_adverse_event.constants import (
     DISCHARGED,
     INPATIENT,
     NOT_RELATED,
+    POSSIBLY_RELATED,
+    PROBABLY_RELATED,
+    UNLIKELY_RELATED,
 )
 from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
 from edc_constants.utils import get_display
@@ -245,35 +248,89 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
-    def test_study_relation_yes_valid_with_all_study_drug_choices(self):
+    def test_study_relation_not_yes_with_poss_prob_def_related_raises(self):
         for study_drug in self.study_drugs:
-            for choice in self.study_drug_relationships_choices:
+            for study_drug_relation_choice in [
+                POSSIBLY_RELATED,
+                PROBABLY_RELATED,
+                DEFINITELY_RELATED,
+            ]:
+                for study_relation_choice in [NO, UNKNOWN]:
+                    with self.subTest(
+                        study_drug=study_drug,
+                        study_drug_relation_choice=study_drug_relation_choice,
+                        study_relation_choice=study_relation_choice,
+                    ):
+                        cleaned_data = {
+                            f"{study_drug}_relation": study_drug_relation_choice,
+                            "ae_study_relation_possibility": study_relation_choice,
+                        }
+                        study_drug_relationship_label = get_display(
+                            STUDY_DRUG_RELATIONSHIP, study_drug_relation_choice
+                        )
+                        self.assertFormValidatorError(
+                            field="ae_study_relation_possibility",
+                            expected_msg=(
+                                f"Invalid. Cannot be '{study_relation_choice.title()}' if "
+                                f"'{study_drug_relationship_label}' "
+                                f"to study drug: {study_drug.title()}"
+                            ),
+                            form_validator=self.validate_form_validator(cleaned_data),
+                        )
+
+    def test_study_relation_yes_with_poss_prob_def_related_ok(self):
+        for study_drug in self.study_drugs:
+            for choice in [POSSIBLY_RELATED, PROBABLY_RELATED, DEFINITELY_RELATED]:
                 with self.subTest(study_drug=study_drug, choice=choice):
                     cleaned_data = {
-                        "ae_study_relation_possibility": YES,
                         f"{study_drug}_relation": choice,
+                        "ae_study_relation_possibility": YES,
                     }
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data)
                     )
 
-    def test_study_relation_no_valid_with_study_drug_not_related(self):
+    # As defined in #465, but superseded by #537
+    # def test_study_relation_yes_not_valid_if_not_or_unlikely_related(self):
+    #     for study_drug in self.study_drugs:
+    #         for choice in [NOT_RELATED, UNLIKELY_RELATED]:
+    #             with self.subTest(study_drug=study_drug, choice=choice):
+    #                 cleaned_data = {
+    #                     f"{study_drug}_relation": choice,
+    #                     "ae_study_relation_possibility": YES,
+    #                 }
+    #                 self.assertFormValidatorError(
+    #                     field="ae_study_relation_possibility",
+    #                     expected_msg="Invalid. Cannot be 'Yes' if "
+    #                     f"'{get_display(STUDY_DRUG_RELATIONSHIP, choice)}' "
+    #                     f"to study drug: {study_drug.title()}",
+    #                     form_validator=self.validate_form_validator(cleaned_data),
+    #                 )
+    #
+    def test_study_relation_no_with_study_drug_not_related_ok(self):
         for study_drug in self.study_drugs:
             with self.subTest(study_drug=study_drug):
                 cleaned_data = {
-                    "ae_study_relation_possibility": NO,
                     f"{study_drug}_relation": NOT_RELATED,
+                    "ae_study_relation_possibility": NO,
                 }
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data)
                 )
 
-    def test_study_relation_no_invalid_with_study_drug_relation_not_ruled_out(self):
-        choices_subset = [
-            value
-            for value in self.study_drug_relationships_choices
-            if value != NOT_RELATED and value != NOT_APPLICABLE
-        ]
+    def test_study_relation_no_with_study_drug_unlikely_ok(self):
+        for study_drug in self.study_drugs:
+            with self.subTest(study_drug=study_drug):
+                cleaned_data = {
+                    f"{study_drug}_relation": UNLIKELY_RELATED,
+                    "ae_study_relation_possibility": NO,
+                }
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data)
+                )
+
+    def test_study_relation_no_with_poss_prob_def_related_raises(self):
+        choices_subset = [POSSIBLY_RELATED, PROBABLY_RELATED, DEFINITELY_RELATED]
         for study_drug in self.study_drugs:
             for choice in choices_subset:
                 with self.subTest(study_drug=study_drug, choice=choice):
@@ -289,30 +346,28 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                         form_validator=self.validate_form_validator(cleaned_data),
                     )
 
-    def test_study_relation_unknown_invalid_with_definite_study_drug_relation_choice(
+    def test_study_relation_unknown_with_poss_prob_def_related_choice_raises(
         self,
     ):
         for study_drug in self.study_drugs:
-            with self.subTest(study_drug=study_drug):
-                cleaned_data = {
-                    f"{study_drug}_relation": DEFINITELY_RELATED,
-                    "ae_study_relation_possibility": UNKNOWN,
-                }
-                self.assertFormValidatorError(
-                    field="ae_study_relation_possibility",
-                    expected_msg="Invalid. Cannot be 'Unknown' if 'Definitely related' "
-                    f"to study drug: {study_drug.title()}",
-                    form_validator=self.validate_form_validator(cleaned_data),
-                )
+            for choice in [POSSIBLY_RELATED, PROBABLY_RELATED, DEFINITELY_RELATED]:
+                with self.subTest(study_drug=study_drug, choice=choice):
+                    cleaned_data = {
+                        f"{study_drug}_relation": choice,
+                        "ae_study_relation_possibility": UNKNOWN,
+                    }
+                    self.assertFormValidatorError(
+                        field="ae_study_relation_possibility",
+                        expected_msg="Invalid. Cannot be 'Unknown' if "
+                        f"'{get_display(STUDY_DRUG_RELATIONSHIP, choice)}' "
+                        f"to study drug: {study_drug.title()}",
+                        form_validator=self.validate_form_validator(cleaned_data),
+                    )
 
-    def test_study_relation_unknown_valid_with_non_definite_study_drug_relation_choices(
+    def test_study_relation_unknown_if_not_or_unlikely_related_ok(
         self,
     ):
-        choices_subset = [
-            value
-            for value in self.study_drug_relationships_choices
-            if value != DEFINITELY_RELATED
-        ]
+        choices_subset = [NOT_RELATED, UNLIKELY_RELATED]
         for study_drug in self.study_drugs:
             for choice in choices_subset:
                 with self.subTest(study_drug=study_drug, choice=choice):
@@ -323,3 +378,22 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     self.assertFormValidatorNoError(
                         form_validator=self.validate_form_validator(cleaned_data),
                     )
+
+    def test_study_relation_yes_no_unknown_if_not_or_unlikely_related_ok(
+        self,
+    ):
+        for study_drug in self.study_drugs:
+            for study_drug_relation_choice in [NOT_RELATED, UNLIKELY_RELATED]:
+                for study_relation_choice in [YES, NO, UNKNOWN]:
+                    with self.subTest(
+                        study_drug=study_drug,
+                        study_drug_relation_choice=study_drug_relation_choice,
+                        study_relation_choice=study_relation_choice,
+                    ):
+                        cleaned_data = {
+                            f"{study_drug}_relation": study_drug_relation_choice,
+                            "ae_study_relation_possibility": study_relation_choice,
+                        }
+                        self.assertFormValidatorNoError(
+                            form_validator=self.validate_form_validator(cleaned_data),
+                        )

@@ -6,11 +6,10 @@ from edc_adverse_event.constants import (
     INPATIENT,
     POSSIBLY_RELATED,
     PROBABLY_RELATED,
-    UNLIKELY_RELATED,
 )
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import DECEASED, NO, UNKNOWN, YES
+from edc_constants.constants import DECEASED, YES
 from edc_constants.utils import get_display
 from edc_reportable import GRADE5
 
@@ -85,17 +84,20 @@ class AeInitialFormValidator(FormValidator):
     def validate_study_relation_possibility(self):
         for study_drug in ["flucon", "flucyt"]:
             if (
-                self.cleaned_data.get("ae_study_relation_possibility") == NO
-                and self.cleaned_data.get(f"{study_drug}_relation")
+                self.cleaned_data.get(f"{study_drug}_relation")
                 in [
-                    UNLIKELY_RELATED,
                     POSSIBLY_RELATED,
                     PROBABLY_RELATED,
                     DEFINITELY_RELATED,
                 ]
-            ) or (
-                self.cleaned_data.get("ae_study_relation_possibility") == UNKNOWN
-                and (self.cleaned_data.get(f"{study_drug}_relation") == DEFINITELY_RELATED)
+                and self.cleaned_data.get("ae_study_relation_possibility") != YES
+                # ) or (
+                #     self.cleaned_data.get(f"{study_drug}_relation")
+                #     in [
+                #         NOT_RELATED,
+                #         UNLIKELY_RELATED,
+                #     ]
+                #     and self.cleaned_data.get("ae_study_relation_possibility") == YES
             ):
                 study_relation_display = get_display(
                     choices=YES_NO_UNKNOWN,
