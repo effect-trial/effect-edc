@@ -1,3 +1,4 @@
+from edc_adverse_event.constants import DISCHARGED, INPATIENT
 from edc_constants.constants import DECEASED, NOT_APPLICABLE, OTHER, UNKNOWN
 
 AE_TYPE = (
@@ -32,8 +33,8 @@ INFORMANT_RELATIONSHIP = (
 )
 
 INPATIENT_STATUSES = (
-    ("inpatient", "Currently an inpatient"),
-    ("discharged", "Discharged"),
+    (INPATIENT, "Currently an inpatient"),
+    (DISCHARGED, "Discharged"),
     (DECEASED, "Died during hospitalization"),
     (NOT_APPLICABLE, "Not applicable"),
 )
