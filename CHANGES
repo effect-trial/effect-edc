@@ -3,6 +3,7 @@ Changes
 
 [unreleased]
 ------------
+- fix AE initial validation (relationship to study drugs/involvement in study, #465, #537)
 - bump to edc-microbiology 0.1.11
 - bump to edc 0.4.92
 
