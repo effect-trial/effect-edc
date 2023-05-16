@@ -9,8 +9,12 @@ from edc_adverse_event.constants import (
 )
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import DECEASED, YES
+from edc_constants.constants import CONTROL, DECEASED, YES
 from edc_constants.utils import get_display
+from edc_randomization.utils import (
+    get_assignment_description_for_subject,
+    get_assignment_for_subject,
+)
 from edc_reportable import GRADE5
 
 from effect_ae.choices import INPATIENT_STATUSES
@@ -25,6 +29,7 @@ class AeInitialFormValidator(FormValidator):
         self.validate_date_discharged()
 
         self.validate_study_relation_possibility()
+        self.validate_flucyt_against_study_arm()
 
         self.required_if(YES, field="ae_cause", field_required="ae_cause_other")
 
@@ -117,6 +122,18 @@ class AeInitialFormValidator(FormValidator):
                     }
                 )
 
-    def validate_relationship_to_study_drug(self):
-        # TODO: Flucytosine only applicable if a study drug (i.e. on that arm of trial)
-        pass
+    def validate_flucyt_against_study_arm(self):
+        assignment = get_assignment_for_subject(
+            subject_identifier=self.cleaned_data.get("subject_identifier"),
+            randomizer_name="default",
+        )
+        assignment_description = get_assignment_description_for_subject(
+            subject_identifier=self.cleaned_data.get("subject_identifier"),
+            randomizer_name="default",
+        )
+
+        self.not_applicable_if_true(
+            assignment == CONTROL,
+            field_applicable="flucyt_relation",
+            not_applicable_msg=f"Participant is on {CONTROL} arm ({assignment_description}).",
+        )

@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
@@ -10,7 +12,15 @@ from edc_adverse_event.constants import (
     PROBABLY_RELATED,
     UNLIKELY_RELATED,
 )
-from edc_constants.constants import DECEASED, NO, NOT_APPLICABLE, UNKNOWN, YES
+from edc_constants.constants import (
+    CONTROL,
+    DECEASED,
+    INTERVENTION,
+    NO,
+    NOT_APPLICABLE,
+    UNKNOWN,
+    YES,
+)
 from edc_constants.utils import get_display
 from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_utils import get_utcnow_as_date
@@ -29,6 +39,27 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
     study_drugs = ["flucon", "flucyt"]
     study_drug_relationships_choices = [choice[0] for choice in STUDY_DRUG_RELATIONSHIP]
+
+    def setUp(self) -> None:
+        super().setUp()
+
+        # Patch, to allow assumption participant on intervention arm for all
+        # tests (unless explicitly overridden)
+        assignment_patcher = patch(
+            "effect_ae.form_validators.ae_initial.get_assignment_for_subject"
+        )
+        self.addCleanup(assignment_patcher.stop)
+        self.mock_get_assignment_for_subject = assignment_patcher.start()
+        self.mock_get_assignment_for_subject.return_value = INTERVENTION
+
+        assignment_descr_patcher = patch(
+            "effect_ae.form_validators.ae_initial.get_assignment_description_for_subject"
+        )
+        self.addCleanup(assignment_descr_patcher.stop)
+        self.mock_get_assignment_description_for_subject = assignment_descr_patcher.start()
+        self.mock_get_assignment_description_for_subject.return_value = (
+            "2 weeks fluconazole plus flucytosine"
+        )
 
     def test_date_admitted_required_if_patient_admitted(self):
         cleaned_data = {"patient_admitted": YES, "date_admitted": None}
@@ -397,3 +428,61 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                         self.assertFormValidatorNoError(
                             form_validator=self.validate_form_validator(cleaned_data),
                         )
+
+    def test_flucyt_relation_not_applicable_if_on_control_arm(self):
+        self.mock_get_assignment_for_subject.return_value = CONTROL
+        self.mock_get_assignment_description_for_subject.return_value = (
+            "2 weeks fluconazole alone"
+        )
+        choices_subset = [
+            ch for ch in self.study_drug_relationships_choices if ch != NOT_APPLICABLE
+        ]
+        for choice in choices_subset:
+            with self.subTest(flucyt_relation=choice):
+                cleaned_data = {
+                    "flucyt_relation": choice,
+                    "ae_study_relation_possibility": YES,
+                }
+                self.assertFormValidatorError(
+                    field="flucyt_relation",
+                    expected_msg="This field is not applicable. "
+                    "Participant is on control arm (2 weeks fluconazole alone).",
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
+
+        cleaned_data = {
+            "flucyt_relation": NOT_APPLICABLE,
+            "ae_study_relation_possibility": YES,
+        }
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+    def test_flucyt_relation_applicable_if_on_intervention_arm(self):
+        self.mock_get_assignment_for_subject.return_value = INTERVENTION
+        self.mock_get_assignment_description_for_subject.return_value = (
+            "2 weeks fluconazole plus flucytosine"
+        )
+        cleaned_data = {
+            "flucyt_relation": NOT_APPLICABLE,
+            "ae_study_relation_possibility": YES,
+        }
+
+        self.assertFormValidatorError(
+            field="flucyt_relation",
+            expected_msg="This field is applicable.",
+            form_validator=self.validate_form_validator(cleaned_data),
+        )
+
+        choices_subset = [
+            ch for ch in self.study_drug_relationships_choices if ch != NOT_APPLICABLE
+        ]
+        for choice in choices_subset:
+            with self.subTest(flucyt_relation=choice):
+                cleaned_data = {
+                    "flucyt_relation": choice,
+                    "ae_study_relation_possibility": YES,
+                }
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
