@@ -21,13 +21,13 @@ class AeInitialFormValidator(FormValidator):
     def clean(self):
         self.validate_other_specify(field="ae_classification")
 
-        self.required_if(YES, field="ae_cause", field_required="ae_cause_other")
-
         self.required_if(YES, field="patient_admitted", field_required="date_admitted")
         self.validate_inpatient_status()
         self.validate_date_discharged()
 
         self.validate_study_relation_possibility()
+
+        self.required_if(YES, field="ae_cause", field_required="ae_cause_other")
 
         super().clean()
 
