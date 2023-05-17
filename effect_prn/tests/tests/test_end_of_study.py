@@ -303,7 +303,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
 
     def test_offschedule_reason_not_selected_does_not_raise_attribute_error(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update({"offschedule_reason": OffstudyReasons.objects.none()}),
+        cleaned_data.update({"offschedule_reason": None}),
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
             form_validator.validate()

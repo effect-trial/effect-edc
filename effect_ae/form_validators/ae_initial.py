@@ -6,12 +6,15 @@ from edc_adverse_event.constants import (
     INPATIENT,
     POSSIBLY_RELATED,
     PROBABLY_RELATED,
-    UNLIKELY_RELATED,
 )
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import DECEASED, NO, UNKNOWN, YES
+from edc_constants.constants import CONTROL, DECEASED, YES
 from edc_constants.utils import get_display
+from edc_randomization.utils import (
+    get_assignment_description_for_subject,
+    get_assignment_for_subject,
+)
 from edc_reportable import GRADE5
 
 from effect_ae.choices import INPATIENT_STATUSES
@@ -21,13 +24,14 @@ class AeInitialFormValidator(FormValidator):
     def clean(self):
         self.validate_other_specify(field="ae_classification")
 
-        self.required_if(YES, field="ae_cause", field_required="ae_cause_other")
-
         self.required_if(YES, field="patient_admitted", field_required="date_admitted")
         self.validate_inpatient_status()
         self.validate_date_discharged()
 
         self.validate_study_relation_possibility()
+        self.validate_flucyt_against_study_arm()
+
+        self.required_if(YES, field="ae_cause", field_required="ae_cause_other")
 
         super().clean()
 
@@ -85,17 +89,20 @@ class AeInitialFormValidator(FormValidator):
     def validate_study_relation_possibility(self):
         for study_drug in ["flucon", "flucyt"]:
             if (
-                self.cleaned_data.get("ae_study_relation_possibility") == NO
-                and self.cleaned_data.get(f"{study_drug}_relation")
+                self.cleaned_data.get(f"{study_drug}_relation")
                 in [
-                    UNLIKELY_RELATED,
                     POSSIBLY_RELATED,
                     PROBABLY_RELATED,
                     DEFINITELY_RELATED,
                 ]
-            ) or (
-                self.cleaned_data.get("ae_study_relation_possibility") == UNKNOWN
-                and (self.cleaned_data.get(f"{study_drug}_relation") == DEFINITELY_RELATED)
+                and self.cleaned_data.get("ae_study_relation_possibility") != YES
+                # ) or (
+                #     self.cleaned_data.get(f"{study_drug}_relation")
+                #     in [
+                #         NOT_RELATED,
+                #         UNLIKELY_RELATED,
+                #     ]
+                #     and self.cleaned_data.get("ae_study_relation_possibility") == YES
             ):
                 study_relation_display = get_display(
                     choices=YES_NO_UNKNOWN,
@@ -115,6 +122,18 @@ class AeInitialFormValidator(FormValidator):
                     }
                 )
 
-    def validate_relationship_to_study_drug(self):
-        # TODO: Flucytosine only applicable if a study drug (i.e. on that arm of trial)
-        pass
+    def validate_flucyt_against_study_arm(self):
+        assignment = get_assignment_for_subject(
+            subject_identifier=self.cleaned_data.get("subject_identifier"),
+            randomizer_name="default",
+        )
+        assignment_description = get_assignment_description_for_subject(
+            subject_identifier=self.cleaned_data.get("subject_identifier"),
+            randomizer_name="default",
+        )
+
+        self.not_applicable_if_true(
+            assignment == CONTROL,
+            field_applicable="flucyt_relation",
+            not_applicable_msg=f"Participant is on {CONTROL} arm ({assignment_description}).",
+        )
