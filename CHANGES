@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+[0.1.32]
+--------
 - update AE Classifiers list (#524)
 - fix AE initial validation (relationship to study drugs/involvement in study, #465, #537)
 - bump to edc-microbiology 0.1.11
