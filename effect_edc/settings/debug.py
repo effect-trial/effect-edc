@@ -9,12 +9,12 @@ print(f"Settings file {__file__}")  # noqa
 # SA Sites
 # SITE_ID = SiteID(default=110)  # Capetown (Khayelitsha & Mitchell’s Plain)
 # SITE_ID = SiteID(default=160)  # Harry Gwala (Pietermaritzburg)
-# SITE_ID = SiteID(default=150)  # King Edward VII
+SITE_ID = SiteID(default=150)  # King Edward VII
 # SITE_ID = SiteID(default=120)  # Baragwanath
 # SITE_ID = SiteID(default=130)  # Helen Joseph
 # SITE_ID = SiteID(default=140)  # Tshepong (Klerksdorp)
 # SITE_ID = SiteID(default=170)  # Livingstone (Gqeberha)
-SITE_ID = SiteID(default=180)  # Dora Nginza (Gqeberha)
+# SITE_ID = SiteID(default=180)  # Dora Nginza (Gqeberha)
 
 # TZ Sites
 # SITE_ID = SiteID(default=200)  # Amana
