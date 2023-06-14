@@ -49,7 +49,7 @@ python =
 
 [gh-actions:env]
 DJANGO =
-    4.1: dj41, lint
+    4.1: dj41
     4.2: dj42, lint
     dev: djdev
 EDC_CODEBASE =
