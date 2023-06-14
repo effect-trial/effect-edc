@@ -12,6 +12,21 @@ from ..model_mixins import CrfModelMixin
 
 
 class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
+    inpatient = models.CharField(
+        verbose_name="Is the participant currently an inpatient?",
+        max_length=5,
+        choices=YES_NO,
+        null=True,
+        help_text="(answer NO if admission purely for screening LP)",
+    )
+
+    admission_indication = models.CharField(
+        verbose_name="If YES, what is the indication for admission?",
+        max_length=50,
+        null=True,
+        blank=True,
+    )
+
     flucon_1w_prior_rando = models.CharField(
         verbose_name="Fluconazole taken within 1 week prior to randomization?",
         max_length=5,
