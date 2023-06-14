@@ -1,6 +1,13 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- bump to edc 0.4.96
+- bump to edc-microbiology 0.1.12
+- bump to edc-csf 0.1.16
+- remove explicitly defined edc-egfr dependency (part of edc)
+
 [0.1.32]
 --------
 - update AE Classifiers list (#524)
