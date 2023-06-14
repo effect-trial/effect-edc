@@ -13,6 +13,7 @@ class ParticipantHistoryAdmin(CrfModelAdmin):
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
+        ("Inpatient status", {"fields": ("inpatient", "admission_indication")}),
         (
             "Fluconazole",
             {
@@ -75,6 +76,7 @@ class ParticipantHistoryAdmin(CrfModelAdmin):
         "any_medications": admin.VERTICAL,
         "flucon_1w_prior_rando": admin.VERTICAL,
         "flucon_dose": admin.VERTICAL,
+        "inpatient": admin.VERTICAL,
         "on_tb_tx": admin.VERTICAL,
         "previous_oi": admin.VERTICAL,
         "reported_neuro_abnormality": admin.VERTICAL,
