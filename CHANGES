@@ -8,6 +8,7 @@ Changes
 - bump to edc-microbiology 0.1.12
 - bump to edc-csf 0.1.16
 - remove explicitly defined edc-egfr dependency (part of edc)
+- bump to effect-form-validators 0.1.31
 
 [0.1.32]
 --------
