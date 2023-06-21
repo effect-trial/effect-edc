@@ -94,7 +94,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Arv History
 *[missing model class docstring]*
@@ -468,7 +468,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Participant History
 *[missing model class docstring]*
@@ -494,9 +494,31 @@
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
+**Section: Inpatient status**
+
+**3.0.** Is the participant currently an inpatient?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *(answer NO if admission purely for screening LP)*
+- db_table: effect_subject_participanthistory
+- column: inpatient
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If YES, what is the indication for admission?
+- db_table: effect_subject_participanthistory
+- column: admission_indication
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
 **Section: Fluconazole**
 
-**3.0.** Fluconazole taken within 1 week prior to randomization?
+**5.0.** Fluconazole taken within 1 week prior to randomization?
 - db_table: effect_subject_participanthistory
 - column: flucon_1w_prior_rando
 - type: CharField
@@ -506,13 +528,13 @@
   - `No`: *No*
 ---
 
-**4.0.** If YES, number of days Fluconazole taken:
+**6.0.** If YES, number of days Fluconazole taken:
 - db_table: effect_subject_participanthistory
 - column: flucon_days
 - type: IntegerField
 ---
 
-**5.0.** If YES, Fluconazole dose (if taken < 1 week prior to randomisation):
+**7.0.** If YES, Fluconazole dose (if taken < 1 week prior to randomisation):
 
 &nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
 - db_table: effect_subject_participanthistory
@@ -526,7 +548,7 @@
   - `N/A`: *Not applicable*
 ---
 
-**5.1.** Other Fluconazole dose (if taken < 1 week prior to randomisation):
+**7.1.** Other Fluconazole dose (if taken < 1 week prior to randomisation):
 
 &nbsp;&nbsp;&nbsp;&nbsp; *in mg/d*
 - db_table: effect_subject_participanthistory
@@ -534,7 +556,7 @@
 - type: IntegerField
 ---
 
-**5.199999999999999.** Other Fluconazole dose reason:
+**7.199999999999999.** Other Fluconazole dose reason:
 - db_table: effect_subject_participanthistory
 - column: flucon_dose_other_reason
 - type: CharField
@@ -544,7 +566,7 @@
 
 **Section: Neurological**
 
-**6.0.** Is there any reported neurological abnormality following examination by a medical practitioner?
+**8.0.** Is there any reported neurological abnormality following examination by a medical practitioner?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Must be confirmed as not related to CM*
 - db_table: effect_subject_participanthistory
@@ -556,7 +578,7 @@
   - `No`: *No*
 ---
 
-**7.0.** Details of neurological abnormality?
+**9.0.** Details of neurological abnormality?
 - db_table: effect_subject_participanthistory
 - column: neuro_abnormality_details
 - type: TextField
@@ -564,7 +586,7 @@
 
 **Section: TB diagnosis**
 
-**8.0.** Previous diagnosis of Tuberculosis?
+**10.0.** Previous diagnosis of Tuberculosis?
 - db_table: effect_subject_participanthistory
 - column: tb_prev_dx
 - type: CharField
@@ -574,14 +596,14 @@
   - `No`: *No*
 ---
 
-**9.0.** If YES, give date
+**11.0.** If YES, give date
 - db_table: effect_subject_participanthistory
 - column: tb_dx_date
 - type: DateField
 - format: YYYY-MM-DD
 ---
 
-**10.0.** If YES, is this date estimated?
+**12.0.** If YES, is this date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
 - db_table: effect_subject_participanthistory
@@ -596,7 +618,7 @@
   - `YMD`: *Yes, estimated Year, Month and Day*
 ---
 
-**11.0.** If YES, site of TB?
+**13.0.** If YES, site of TB?
 - db_table: effect_subject_participanthistory
 - column: tb_site
 - type: CharField
@@ -610,7 +632,7 @@
 
 **Section: TB prevention/treatment**
 
-**12.0.** Is the participant currently taking TB treatment?
+**14.0.** Is the participant currently taking TB treatment?
 - db_table: effect_subject_participanthistory
 - column: on_tb_tx
 - type: CharField
@@ -620,7 +642,7 @@
   - `No`: *No*
 ---
 
-**13.0.** If YES, please specify type?
+**15.0.** If YES, please specify type?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If 'Active TB' please specify treatment below ...*
 - db_table: effect_subject_participanthistory
@@ -634,7 +656,7 @@
   - `N/A`: *Not applicable*
 ---
 
-**14.0.** If 'Active TB', which treatment?
+**16.0.** If 'Active TB', which treatment?
 - db_table: effect_subject_participanthistory
 - column: active_tb_tx
 - type: ManyToManyField
@@ -660,7 +682,7 @@
 
 **Section: Other opportunistic infections**
 
-**15.0.** Previous opportunistic infection other than TB?
+**17.0.** Previous opportunistic infection other than TB?
 - db_table: effect_subject_participanthistory
 - column: previous_oi
 - type: CharField
@@ -670,7 +692,7 @@
   - `No`: *No*
 ---
 
-**16.0.** If YES, specify opportunistic infection name?
+**18.0.** If YES, specify opportunistic infection name?
 - db_table: effect_subject_participanthistory
 - column: previous_oi_name
 - type: CharField
@@ -678,7 +700,7 @@
 - responses: *free text*
 ---
 
-**17.0.** If YES, what was the date of the previous opportunistic infection diagnosis?
+**19.0.** If YES, what was the date of the previous opportunistic infection diagnosis?
 - db_table: effect_subject_participanthistory
 - column: previous_oi_dx_date
 - type: DateField
@@ -687,7 +709,7 @@
 
 **Section: Other medication**
 
-**18.0.** Other medication?
+**20.0.** Other medication?
 - db_table: effect_subject_participanthistory
 - column: any_medications
 - type: CharField
@@ -697,7 +719,7 @@
   - `No`: *No*
 ---
 
-**19.0.** specify medications
+**21.0.** specify medications
 - db_table: effect_subject_participanthistory
 - column: specify_medications
 - type: ManyToManyField
@@ -765,14 +787,14 @@
   - `OTHER`: *Other medication, please specify below ...*
 ---
 
-**19.1.** If STEROID, specify type and dose of steroid ...
+**21.1.** If STEROID, specify type and dose of steroid ...
 - db_table: effect_subject_participanthistory
 - column: specify_steroid_other
 - type: TextField
 - length: 150
 ---
 
-**19.200000000000003.** If OTHER, specify ...
+**21.200000000000003.** If OTHER, specify ...
 - db_table: effect_subject_participanthistory
 - column: specify_medications_other
 - type: TextField
@@ -782,7 +804,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -937,7 +959,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -1090,7 +1112,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -1384,7 +1406,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
@@ -1562,7 +1584,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -1588,7 +1610,7 @@
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**Section: fbc**
+**Section: Requisition and Result Date**
 
 **3.0.** Requisition
 
@@ -1897,6 +1919,8 @@
 **Section: Conclusion**
 
 **33.0.** Are any of the above results abnormal?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Abnormal results present at baseline or continuing from baseline not included.*
 - db_table: effect_subject_bloodresultsfbc
 - column: results_abnormal
 - type: CharField
@@ -1908,7 +1932,7 @@
 
 **34.0.** If any results are abnormal, are results within grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form.*
+&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form. Grade 3 and 4 results present at baseline or continuing from baseline not included*
 - db_table: effect_subject_bloodresultsfbc
 - column: results_reportable
 - type: CharField
@@ -1930,7 +1954,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Chemistry
 *[missing model class docstring]*
@@ -1956,7 +1980,7 @@
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**Section: chemistry**
+**Section: Requisition and Result Date**
 
 **3.0.** Requisition
 
@@ -2454,6 +2478,8 @@
 **Section: Conclusion**
 
 **52.0.** Are any of the above results abnormal?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Abnormal results present at baseline or continuing from baseline not included.*
 - db_table: effect_subject_bloodresultschem
 - column: results_abnormal
 - type: CharField
@@ -2465,7 +2491,7 @@
 
 **53.0.** If any results are abnormal, are results within grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form.*
+&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form. Grade 3 and 4 results present at baseline or continuing from baseline not included*
 - db_table: effect_subject_bloodresultschem
 - column: results_reportable
 - type: CharField
@@ -2515,7 +2541,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -2588,7 +2614,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -2868,7 +2894,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -3055,7 +3081,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -3231,7 +3257,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -3278,7 +3304,7 @@
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
@@ -3359,7 +3385,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -3512,7 +3538,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -3806,7 +3832,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -3920,7 +3946,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -3993,7 +4019,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -4273,7 +4299,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -4460,7 +4486,7 @@ Adherence CRF completed at baseline (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -4559,7 +4585,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -4712,7 +4738,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -5006,7 +5032,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -5120,7 +5146,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -5193,7 +5219,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -5473,7 +5499,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -5660,7 +5686,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -5759,7 +5785,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -5946,7 +5972,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -6101,7 +6127,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -6254,7 +6280,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -6548,7 +6574,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -6662,7 +6688,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Arv Treatment
 *[missing model class docstring]*
@@ -6762,7 +6788,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Participant Treatment
 *[missing model class docstring]*
@@ -7163,7 +7189,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -7189,7 +7215,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
 ---
 
-**Section: fbc**
+**Section: Requisition and Result Date**
 
 **3.0.** Requisition
 
@@ -7498,6 +7524,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 **Section: Conclusion**
 
 **33.0.** Are any of the above results abnormal?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Abnormal results present at baseline or continuing from baseline not included.*
 - db_table: effect_subject_bloodresultsfbc
 - column: results_abnormal
 - type: CharField
@@ -7509,7 +7537,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **34.0.** If any results are abnormal, are results within grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form.*
+&nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form. Grade 3 and 4 results present at baseline or continuing from baseline not included*
 - db_table: effect_subject_bloodresultsfbc
 - column: results_reportable
 - type: CharField
@@ -7531,7 +7559,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -7604,7 +7632,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -7884,7 +7912,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -8071,7 +8099,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Clinical Note
 *[missing model class docstring]*
@@ -8118,7 +8146,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
@@ -8275,7 +8303,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -8428,7 +8456,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -8722,7 +8750,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -8836,7 +8864,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -8909,7 +8937,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -9189,7 +9217,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -9376,7 +9404,7 @@ Adherence CRF completed at d14 (in-person).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -9509,7 +9537,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -9696,7 +9724,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -9849,7 +9877,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -10143,7 +10171,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -10257,7 +10285,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -10330,7 +10358,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -10610,7 +10638,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -10797,7 +10825,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -10930,7 +10958,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -11083,7 +11111,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -11377,7 +11405,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -11491,7 +11519,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -11564,7 +11592,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -11844,7 +11872,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -12031,7 +12059,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -12164,7 +12192,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -12317,7 +12345,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -12611,7 +12639,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Significant Diagnoses
 *[missing model class docstring]*
@@ -12725,7 +12753,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Chest X-Ray
 *[missing model class docstring]*
@@ -12798,7 +12826,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -13078,7 +13106,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Tb Diagnostics
 *[missing model class docstring]*
@@ -13265,7 +13293,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -13441,7 +13469,7 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -13572,6 +13600,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-01-16 21:57*
+*Rendered on 2023-06-21 16:28*
 
 
