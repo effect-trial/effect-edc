@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+[unreleased]
+------------
+- bump to edc 0.4.99
+
 [0.1.33]
 --------
 - add 'inpatient' and 'admission_indication' fields to Participant History form (#540)
