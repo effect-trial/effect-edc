@@ -27,6 +27,10 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 
+# TODO: import DIARRHOEA from edc_constants.disease_constants, and remove from
+#  effect_lists.constants after next edc release > 0.4.99
+from effect_lists.constants import DIARRHOEA
+
 list_data = {
     "effect_lists.nonadherencereasons": [
         ("forget_to_take", "I sometimes forget to take my pills"),
@@ -212,6 +216,7 @@ list_data = {
     "effect_lists.sisx": [
         (NOT_APPLICABLE, "--Not applicable"),
         ("cough", "Cough"),
+        (DIARRHOEA, "Diarrhoea"),
         ("double_vision", "Double vision"),
         ("drowsiness", "Drowsiness"),
         ("fever", "Fever"),
