@@ -1,4 +1,4 @@
-# Forms Reference
+# EFFECT-EDC Forms Reference
 ## Table of contents
 
 
@@ -91,10 +91,6 @@
 
 
 ### 1000
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Arv History
 *[missing model class docstring]*
@@ -466,10 +462,6 @@
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Participant History
 *[missing model class docstring]*
 
@@ -556,7 +548,7 @@
 - type: IntegerField
 ---
 
-**7.199999999999999.** Other Fluconazole dose reason:
+**7.2.** Other Fluconazole dose reason:
 - db_table: effect_subject_participanthistory
 - column: flucon_dose_other_reason
 - type: CharField
@@ -794,17 +786,13 @@
 - length: 150
 ---
 
-**21.200000000000003.** If OTHER, specify ...
+**21.2.** If OTHER, specify ...
 - db_table: effect_subject_participanthistory
 - column: specify_medications_other
 - type: TextField
 - length: 150
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -957,10 +945,6 @@
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -1109,10 +1093,6 @@
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -1276,7 +1256,7 @@
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -1284,7 +1264,7 @@
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -1403,10 +1383,6 @@
 - type: ForeignKey
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
@@ -1581,10 +1557,6 @@
 - length: 250
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -1951,10 +1923,6 @@
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Chemistry
 *[missing model class docstring]*
@@ -2539,10 +2507,6 @@
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -2611,10 +2575,6 @@
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -2892,10 +2852,6 @@
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -3078,10 +3034,6 @@
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -3255,10 +3207,6 @@
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Clinical Note
 *[missing model class docstring]*
 
@@ -3301,10 +3249,6 @@
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
@@ -3382,10 +3326,6 @@ Adherence CRF completed at baseline (in-person).
 * chemistry
 
 ### 1003
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Mental Status
 *[missing model class docstring]*
@@ -3535,10 +3475,6 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -3702,7 +3638,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -3710,7 +3646,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -3830,10 +3766,6 @@ Adherence CRF completed at baseline (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -3944,10 +3876,6 @@ Adherence CRF completed at baseline (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -4016,10 +3944,6 @@ Adherence CRF completed at baseline (in-person).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -4297,10 +4221,6 @@ Adherence CRF completed at baseline (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -4483,10 +4403,6 @@ Adherence CRF completed at baseline (in-person).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
@@ -4583,10 +4499,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 ### 1009
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -4735,10 +4647,6 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -4902,7 +4810,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -4910,7 +4818,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -5030,10 +4938,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -5144,10 +5048,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -5216,10 +5116,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -5497,10 +5393,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -5684,10 +5576,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
@@ -5782,10 +5670,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Requisitions
 
 ### 1014
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -5970,10 +5854,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Vital Signs
 *[missing model class docstring]*
 
@@ -6125,10 +6005,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -6277,10 +6153,6 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -6444,7 +6316,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -6452,7 +6324,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -6572,10 +6444,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -6686,10 +6554,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Arv Treatment
 *[missing model class docstring]*
 
@@ -6785,10 +6649,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - format: YYYY-MM-DD
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Participant Treatment
 *[missing model class docstring]*
@@ -7132,7 +6992,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Other drugs**
 
-**24.200000000000003.** Has the participant been prescribed any other drugs/interventions?
+**24.2.** Has the participant been prescribed any other drugs/interventions?
 - db_table: effect_subject_participanttreatment
 - column: on_other_drugs
 - type: CharField
@@ -7186,10 +7046,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *free text*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
@@ -7557,10 +7413,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -7629,10 +7481,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -7910,10 +7758,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -8097,10 +7941,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Clinical Note
 *[missing model class docstring]*
 
@@ -8143,10 +7983,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
@@ -8301,10 +8137,6 @@ Adherence CRF completed at d14 (in-person).
 
 ### 1028
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -8453,10 +8285,6 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -8620,7 +8448,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -8628,7 +8456,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -8748,10 +8576,6 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -8862,10 +8686,6 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -8934,10 +8754,6 @@ Adherence CRF completed at d14 (in-person).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -9215,10 +9031,6 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -9402,10 +9214,6 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
@@ -9534,10 +9342,6 @@ Adherence CRF completed after d14 (telephone).
 #### Requisitions
 
 ### 1070
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Study Medication
 *[missing model class docstring]*
@@ -9722,10 +9526,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -9874,10 +9674,6 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -10041,7 +9837,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -10049,7 +9845,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -10169,10 +9965,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -10283,10 +10075,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -10355,10 +10143,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -10636,10 +10420,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -10822,10 +10602,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -10956,10 +10732,6 @@ Adherence CRF completed after d14 (telephone).
 
 ### 1112
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -11108,10 +10880,6 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -11275,7 +11043,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -11283,7 +11051,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -11403,10 +11171,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -11517,10 +11281,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -11589,10 +11349,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -11870,10 +11626,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -12056,10 +11808,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
@@ -12190,10 +11938,6 @@ Adherence CRF completed after d14 (telephone).
 
 ### 1168
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -12342,10 +12086,6 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Signs And Symptoms
 *[missing model class docstring]*
@@ -12509,7 +12249,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.199999999999999.** If other cranial nerve palsy (right), please specify ...
+**7.2.** If other cranial nerve palsy (right), please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: cn_palsy_right_other
 - type: CharField
@@ -12517,7 +12257,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *free text*
 ---
 
-**7.299999999999999.** If other focal neurologic deficit, please specify ...
+**7.3.** If other focal neurologic deficit, please specify ...
 - db_table: effect_subject_signsandsymptoms
 - column: focal_neurologic_deficit_other
 - type: CharField
@@ -12637,10 +12377,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Significant Diagnoses
 *[missing model class docstring]*
 
@@ -12751,10 +12487,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -12823,10 +12555,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
@@ -13104,10 +12832,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Tb Diagnostics
 *[missing model class docstring]*
 
@@ -13290,10 +13014,6 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-
-
-*Rendered on 2023-06-21 16:28*
 
 #### Health Economics
 *[missing model class docstring]*
@@ -13467,10 +13187,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-
-
-*Rendered on 2023-06-21 16:28*
-
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
@@ -13600,6 +13316,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-06-21 16:28*
+*Rendered on 2023-06-21 16:53*
 
 
