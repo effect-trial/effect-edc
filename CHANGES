@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-unreleased
-----------
+0.1.34
+------
 - add 'diarrhoea' to Signs and Symptoms form (#365, #637)
 - require Lumbar Puncture/CSF form at baseline if screening LP done (#639)
 - update forms reference doc
