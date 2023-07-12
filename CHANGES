@@ -1,15 +1,15 @@
 Changes
 +++++++
 
-[unreleased]
-------------
+unreleased
+----------
 - add 'diarrhoea' to Signs and Symptoms form (#365, #637)
 - require Lumbar Puncture/CSF form at baseline if screening LP done (#639)
 - update forms reference doc
 - bump to edc 0.4.99
 
-[0.1.33]
---------
+0.1.33
+------
 - add 'inpatient' and 'admission_indication' fields to Participant History form (#540)
 - bump to edc 0.4.96
 - bump to edc-microbiology 0.1.12
@@ -17,20 +17,20 @@ Changes
 - remove explicitly defined edc-egfr dependency (part of edc)
 - bump to effect-form-validators 0.1.31
 
-[0.1.32]
---------
+0.1.32
+------
 - update AE Classifiers list (#524)
 - fix AE initial validation (relationship to study drugs/involvement in study, #465, #537)
 - bump to edc-microbiology 0.1.11
 - bump to edc 0.4.92
 
-[0.1.31]
---------
+0.1.31
+------
 - fix 'Server error on ARV history form' (missing subject_screening property, #535)
 - bump to effect-form-validators 0.1.30
 
-[0.1.30]
---------
+0.1.30
+------
 - add missed days/doses missed (for flucon and flucyt) to Adherence Day 14 form (towards #422)
 - fix 'Blood results: FBC lymphocyte and neutrophil validation error' (#486, #507)
 - fix 'Refused status on Subject Screening not auto-updating after subject refusal' (#532)
@@ -38,18 +38,18 @@ Changes
 - bump to edc 0.4.72
 - bump to effect-form-validators 0.1.29
 
-[0.1.29]
---------
+0.1.29
+------
 - fix report datetime validation issues on FBC and Chem blood results forms (#485)
 
-[0.1.28]
---------
+0.1.28
+------
 - update visit schedule windows (towards #480)
 - add migration (introduced in 0.1.27)
 - bump to edc 0.4.69
 
-[0.1.27]
---------
+0.1.27
+------
 - fix 'Server error loading AE TMG Report' (#519)
 - fix 'Server error on participant history form (with previous opportunistic infection)' (#515)
 - update forms reference doc
@@ -57,8 +57,8 @@ Changes
 - bump to effect-form-validators 0.1.28
 
 
-[0.1.26]
---------
+0.1.26
+------
 - add "Adverse event report withdrawn after TMG review" option to AE follow up
 - add custom language choices to Subject Consent form based on country of site
   currently logged into
@@ -70,8 +70,8 @@ Changes
 - bump to edc 0.4.60
 - bump to edc-csf 0.1.15
 
-[0.1.25]
---------
+0.1.25
+------
 - updates to Subject Screening form (#488, #498, #499)
     - allow form to save 'serum_crag_date' > 14 days (though patient to be ineligible) (#488)
     - increase 'cm_in_csf_method_other' char limit to 50 (#498)
@@ -86,12 +86,12 @@ Changes
 - expand test matrix to include Py: 3.11
 - update forms reference doc
 
-[0.1.24]
---------
+0.1.24
+------
 - add migrations introduced in 0.1.23
 
-[0.1.23]
---------
+0.1.23
+------
 - add question for current 'site' to Subject Screening form
 - bump to edc 0.4.49
 - bump to edc-microbiology==0.1.10
@@ -99,8 +99,8 @@ Changes
 - bump to edc-egfr==0.1.10
 - bump to effect-form-validators==0.1.25
 
-[0.1.22]
---------
+0.1.22
+------
 - update form validator mixins, fixes 'Server Error on submission of FBC and chemistry results' (#477)
 - update subject-visit modelform mixins
 - add INCOMPLETE status to eligibility
@@ -116,13 +116,13 @@ Changes
 - add edc-egfr as dependency; modify admin to display eGFR as read only in
   BloodResultChem; validate in form to expect weight before calculating eGFR.
 
-[0.1.21]
---------
+0.1.21
+------
 - fix error raised when running update_forms_reference
 - bump to edc 0.4.46
 
-[0.1.20]
---------
+0.1.20
+------
 - rename Patient History CRF to Participant History (#446)
 - rename Patient Treatment CRF to Participant Treatment (#446)
 - rename 'gender' to 'sex' in Subject Screening forms, Subject Consent form,
@@ -138,12 +138,12 @@ Changes
 - bump to effect-form-validators 0.1.23
 - add edc_protocol middleware
 
-[0.1.19]
---------
+0.1.19
+------
 - fix 'Screening' and 'Subjects' links missing from navbar
 
-[0.1.18]
---------
+0.1.18
+------
 - bump to edc 0.4.34
 - bump to edc-csf 0.1.12
 - bump to edc-microbiology 0.1.8
@@ -179,8 +179,8 @@ Changes
     - allow 'flucyt_modified' to be NA, or flucytosine dose to be dropped to 0 at Day 14
     - additional validation checks
 
-[0.1.17]
---------
+0.1.17
+------
 - add edc-egfr, update imports
 - add treatment arm/summary to subject dashboard
 - add (via edc-auth 0.3.45) 'last_login' and 'is_active' (account enabled) status to user admin list
@@ -196,8 +196,8 @@ Changes
 - bump to edc 0.4.12
 - bump to edc-csf 0.1.10
 
-[0.1.16]
---------
+0.1.16
+------
 - updates to Health Economics Event CRF (#451):
     - add 'admitted' question
     - move 'routine_activities_disrupted_days' into "Loss of productivity and earnings" section
@@ -206,8 +206,8 @@ Changes
 - updated Forms Reference documentation: https://github.com/effect-trial/effect-edc/blob/develop/docs/forms_reference.md
 - bump to edc 0.4.0
 
-[0.1.15]
---------
+0.1.15
+------
 - updates to End of Study CRF:
     - update 'offschedule_reason' list to reflect (#404#note-3, #380)
     - add link to End of Study form to "Add Action linked PRN" pop-up (#388)
@@ -226,8 +226,8 @@ Changes
 - bump to edc-microbiology 0.1.5
 - bump to edc-csf 0.1.9
 
-[0.1.14]
---------
+0.1.14
+------
 - updates to Mental Status CRF:
     - add 'require_help' and 'any_other_problems' questions (#423)
     - validate all symptoms must now be negative at baseline visit (#439)
@@ -235,16 +235,16 @@ Changes
 - update Patient History CRF 'on_tb_tx' question wording to direct at clinician not participant (#444)
 - bump to edc 0.3.89
 
-[0.1.13]
---------
+0.1.13
+------
 - change chest_xray_results_other from char to text field on Chest X-ray CRF (#430)
 - update TB section on Patient History CRF (#437):
     - add 'tb_dx_date', 'tb_dx_date_estimated', 'tb_tx_type', 'active_tb_tx'
     - remove 'tb_dx_ago', 'on_rifampicin', 'rifampicin_start_date'
 - bump to effect-form-validators 0.1.16
 
-[0.1.12]
---------
+0.1.12
+------
 - updates to Mental Status CRF:
     - fix unable to specify "Not applicable" if no symptoms to report on D3 (#402, #370)
 - add "Coamoxiclav (amoxicillin/clavulanate)" to antibiotics list on Patient Treatment CRF (#431)
