@@ -2,6 +2,10 @@ from edc_constants.constants import YES
 from edc_metadata import NOT_REQUIRED, REQUIRED
 from edc_metadata.metadata_rules import CrfRule, CrfRuleGroup, P, register
 
+from .predicates import Predicates
+
+pc = Predicates()
+
 
 @register()
 class SignsAndSymptomsRuleGroup(CrfRuleGroup):
@@ -13,7 +17,7 @@ class SignsAndSymptomsRuleGroup(CrfRuleGroup):
     )
 
     lp_csf = CrfRule(
-        predicate=P("lp_performed", "eq", YES),
+        predicate=pc.lpcsf_crf_required,
         consequence=REQUIRED,
         alternative=NOT_REQUIRED,
         target_models=["lpcsf"],
