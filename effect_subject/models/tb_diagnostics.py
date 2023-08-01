@@ -1,6 +1,6 @@
 from django.db import models
-from django.db.models import PROTECT
-from edc_lab.utils import get_requisition_model_name
+from edc_lab.model_mixins import requisition_fk_options
+from edc_lab_panel.panels import sputum_panel
 from edc_microbiology.model_mixins import (
     SputumAfbModelMixin,
     SputumCultureModelMixin,
@@ -21,13 +21,9 @@ class TbDiagnostics(
     edc_models.BaseUuidModel,
 ):
     sputum_requisition = models.ForeignKey(
-        get_requisition_model_name(),
-        on_delete=PROTECT,
-        related_name="+",
         verbose_name="Sputum requisition",
-        null=True,
-        blank=True,
-        help_text="Start typing the requisition identifier or select one from this visit",
+        limit_choices_to={"panel__name": sputum_panel.name},
+        **{k: v for k, v in requisition_fk_options.items() if k != "verbose_name"},
     )
 
     comment = models.TextField(verbose_name="Any additional comment", null=True, blank=True)
