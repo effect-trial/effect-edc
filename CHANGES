@@ -4,6 +4,8 @@ Changes
 unreleased
 ------
 - fix requisitions not filtering correctly in TB Diagnostics and LP/CSF forms (#659)
+- add additional help text to ARV History, ARV Treatment, Participant History,
+  Participant Treatment forms (#656)
 
 0.1.34
 ------

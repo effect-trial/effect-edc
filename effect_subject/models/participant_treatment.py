@@ -48,6 +48,10 @@ class ParticipantTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Has the participant been put on TB preventive therapy?",
         max_length=15,
         choices=YES_NO,
+        help_text=(
+            "Select NO if started pre-enrolment or on day 1, and captured on day 1. "
+            "Select YES if started today."
+        ),
     )
 
     tb_tx_date = models.DateField(
@@ -117,6 +121,7 @@ class ParticipantTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Has the participant been prescribed co-trimoxazole?",
         max_length=15,
         choices=YES_NO,
+        help_text="Select YES if currently on co-trimoxazole, or prescribed today.",
     )
 
     co_trimoxazole_date = models.DateField(
