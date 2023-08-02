@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+unreleased
+------
+- fix requisitions not filtering correctly in TB Diagnostics and LP/CSF forms (#659)
+
 0.1.34
 ------
 - add 'diarrhoea' to Signs and Symptoms form (#365, #637)
