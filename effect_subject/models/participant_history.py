@@ -103,6 +103,10 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Is the participant currently taking TB treatment?",
         max_length=5,
         choices=YES_NO,
+        help_text=(
+            "Includes treatment for active TB, latent TB, and TB prevention. "
+            "Select YES if started today."
+        ),
     )
 
     tb_tx_type = models.CharField(

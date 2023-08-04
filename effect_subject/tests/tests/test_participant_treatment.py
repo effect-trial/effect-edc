@@ -1,11 +1,19 @@
 from typing import Optional
 
+from dateutil.relativedelta import relativedelta
 from django.test import TestCase
-from edc_constants.constants import NO, NOT_APPLICABLE, NOT_ESTIMATED, OTHER, YES
+from edc_constants.constants import (
+    COMPLETE,
+    NO,
+    NOT_APPLICABLE,
+    NOT_ESTIMATED,
+    OTHER,
+    YES,
+)
 from edc_test_utils.validate_fields_exists_or_raise import (
     validate_fields_exists_or_raise,
 )
-from edc_utils import get_utcnow_as_date
+from edc_utils import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.constants import DAY01
 from model_bakery import baker
 
@@ -21,17 +29,176 @@ from effect_subject.models import ParticipantTreatment, SubjectVisit
 class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
-        self.subject_visit = self.get_subject_visit()
+        # define subject screening in past to allow us to test up to and
+        # including day 14 visit
+        subject_screening = self.get_subject_screening(
+            report_datetime=get_utcnow() - relativedelta(days=14)
+        )
+        self.subject_visit = self.get_subject_visit(subject_screening=subject_screening)
+
+    def get_data(self, subject_visit) -> dict:
+        return {
+            "subject_visit": subject_visit,
+            "report_datetime": subject_visit.report_datetime,
+            "lp_completed": NO,
+            "cm_confirmed": NOT_APPLICABLE,
+            "on_cm_tx": NOT_APPLICABLE,
+            "cm_tx_given": NOT_APPLICABLE,
+            "cm_tx_given_other": "",
+            "on_tb_tx": NO,
+            "tb_tx_date": None,
+            "tb_tx_date_estimated": NOT_APPLICABLE,
+            "tb_tx_given": TbTreatments.objects.none(),
+            "tb_tx_given_other": "",
+            "tb_tx_reason_no": "contraindicated",
+            "tb_tx_reason_no_other": "",
+            "on_steroids": NO,
+            "steroids_date": None,
+            "steroids_date_estimated": NOT_APPLICABLE,
+            "steroids_given": NOT_APPLICABLE,
+            "steroids_given_other": "",
+            "steroids_course": None,
+            "on_co_trimoxazole": NO,
+            "co_trimoxazole_date": None,
+            "co_trimoxazole_date_estimated": NOT_APPLICABLE,
+            "co_trimoxazole_reason_no": "deferred_local_clinic",
+            "co_trimoxazole_reason_no_other": "",
+            "on_antibiotics": NO,
+            "antibiotics_date": None,
+            "antibiotics_date_estimated": NOT_APPLICABLE,
+            "antibiotics_given": Antibiotics.objects.none(),
+            "antibiotics_given_other": "",
+            "on_other_drugs": NO,
+            "other_drugs_date": None,
+            "other_drugs_date_estimated": NOT_APPLICABLE,
+            "other_drugs_given": Drugs.objects.none(),
+            "other_drugs_given_other": "",
+            "crf_status": COMPLETE,  # ???
+        }
 
     def test_ok(self):
+        subject_visit = self.subject_visit  # d1
+        obj = baker.make_recipe(
+            "effect_subject.participanthistory", subject_visit=self.subject_visit
+        )
+        obj.save()
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
+
+        data = self.get_data(subject_visit=subject_visit)
+        form = ParticipantTreatmentForm(data=data)
+        form.is_valid()
+        self.assertEqual({}, form._errors)
+
+    def test_missing_participant_history_raises(self):
         subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
         subject_visit = self.get_next_subject_visit(subject_visit)  # d9
         subject_visit = self.get_next_subject_visit(subject_visit)  # d14
-        obj = baker.make_recipe(
-            "effect_subject.participanttreatment", subject_visit=subject_visit
+
+        data = self.get_data(subject_visit=subject_visit)
+        form = ParticipantTreatmentForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("__all__", form._errors)
+        self.assertIn(
+            "Please complete the Day 1 Participant History form first.",
+            form._errors.get("__all__")[0],
         )
-        form = ParticipantTreatmentForm(instance=obj)
+
+    def test_completed_participant_history_ok(self):
+        subject_visit = self.subject_visit  # d1
+        obj = baker.make_recipe(
+            "effect_subject.participanthistory", subject_visit=self.subject_visit
+        )
+        obj.save()
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
+
+        data = self.get_data(subject_visit=subject_visit)
+        form = ParticipantTreatmentForm(data=data)
         form.is_valid()
+        self.assertNotIn("__all__", form._errors)
+
+    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_YES_raises(self):
+        obj = baker.make_recipe(
+            "effect_subject.participanthistory", subject_visit=self.subject_visit
+        )
+        obj.on_tb_tx = YES
+        obj.save()
+
+        subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
+
+        data = self.get_data(subject_visit=subject_visit)
+        data.update(
+            {
+                "on_tb_tx": YES,
+                "tb_tx_date": subject_visit.report_datetime - relativedelta(days=3),
+                "tb_tx_date_estimated": NO,
+                "tb_tx_given": TbTreatments.objects.filter(name="H"),
+                "tb_tx_given_other": "",
+                "tb_tx_reason_no": NOT_APPLICABLE,
+                "tb_tx_reason_no_other": "",
+            }
+        )
+        form = ParticipantTreatmentForm(data=data)
+        self.assertFalse(form.is_valid())
+        self.assertIn("on_tb_tx", form._errors)
+        self.assertIn(
+            "Invalid. "
+            "Participant indicated taking TB treatment in Participant History "
+            "form on Day 1 visit. Expected NO.",
+            form._errors.get("on_tb_tx")[0],
+        )
+
+    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_NO_ok(self):
+        obj = baker.make_recipe(
+            "effect_subject.participanthistory", subject_visit=self.subject_visit
+        )
+        obj.on_tb_tx = NO
+        obj.save()
+
+        subject_visit = self.get_next_subject_visit(self.subject_visit)  # d3
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+        subject_visit = self.get_next_subject_visit(subject_visit)  # d14
+
+        data = self.get_data(subject_visit=subject_visit)
+        data.update(
+            {
+                "on_tb_tx": YES,
+                "tb_tx_date": subject_visit.report_datetime - relativedelta(days=3),
+                "tb_tx_date_estimated": NO,
+                "tb_tx_given": TbTreatments.objects.filter(name="H"),
+                "tb_tx_given_other": "",
+                "tb_tx_reason_no": NOT_APPLICABLE,
+                "tb_tx_reason_no_other": "",
+            }
+        )
+        form = ParticipantTreatmentForm(data=data)
+        form.is_valid()
+        self.assertNotIn("on_tb_tx", form._errors)
+
+    def test_d14_ph_on_tb_tx_NO_ok(self):
+        for ph_answ in [YES, NO]:
+            with self.subTest(ph_answ=ph_answ):
+                subject_visit = self.get_subject_visit()  # d1
+                obj = baker.make_recipe(
+                    "effect_subject.participanthistory", subject_visit=subject_visit
+                )
+                obj.on_tb_tx = ph_answ
+                obj.save()
+
+                subject_visit = self.get_next_subject_visit(subject_visit)  # d3
+                subject_visit = self.get_next_subject_visit(subject_visit)  # d9
+                subject_visit = self.get_next_subject_visit(subject_visit)  # d14
+
+                data = self.get_data(subject_visit=subject_visit)
+                data.update({"on_tb_tx": NO})
+                form = ParticipantTreatmentForm(data=data)
+                form.is_valid()
+                self.assertNotIn("on_tb_tx", form._errors)
 
 
 class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
