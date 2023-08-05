@@ -1,5 +1,4 @@
 from django.db import models
-from django.db.models import PROTECT
 from edc_constants.choices import YES_NO
 from edc_csf.model_mixins import (
     CsfCultureModelMixin,
@@ -7,8 +6,10 @@ from edc_csf.model_mixins import (
     LpModelMixin,
     QuantitativeCultureModelMixin,
 )
-from edc_lab.utils import get_requisition_model_name
+from edc_lab.model_mixins import requisition_fk_options
 from edc_model import models as edc_models
+
+from effect_labs.panels import csf_culture_panel
 
 from ..choices import LP_REASON
 from ..model_mixins import CrfModelMixin
@@ -35,13 +36,14 @@ class LpCsf(
     )
 
     csf_requisition = models.ForeignKey(
-        get_requisition_model_name(),
-        on_delete=PROTECT,
         related_name="csfrequisition",
         verbose_name="CSF Requisition",
-        null=True,
-        blank=True,
-        help_text="Start typing the requisition identifier or select one from this visit",
+        limit_choices_to={"panel__name": csf_culture_panel.name},
+        **{
+            k: v
+            for k, v in requisition_fk_options.items()
+            if k not in ["related_name", "verbose_name"]
+        },
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

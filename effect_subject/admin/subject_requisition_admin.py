@@ -46,6 +46,7 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
             or "histopathology" in path
             or "bloodculture" in path
             or "lpcsf" in path
+            or "tbdiagnostics" in path
         ):
             attrs = parse_qs(query)
             try:

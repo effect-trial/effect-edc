@@ -142,6 +142,8 @@
 **Section: ARV treatment and monitoring**
 
 **5.0.** Was the participant on ART <u>at time of</u> CrAg test?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Also applies if ART started on the day of CrAg test (Test and Treat) or since CrAg test, but before enrolment.*
 - db_table: effect_subject_arvhistory
 - column: on_art_at_crag
 - type: CharField
@@ -625,6 +627,8 @@
 **Section: TB prevention/treatment**
 
 **14.0.** Is the participant currently taking TB treatment?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Includes treatment for active TB, latent TB, and TB prevention. Select YES if started today.*
 - db_table: effect_subject_participanthistory
 - column: on_tb_tx
 - type: CharField
@@ -747,8 +751,8 @@
   - `hctz`: *HCTZ (Ridaq)*
   - `humalog`: *Humalog*
   - `ibuprofen`: *Ibuprofen*
-  - `iron`: *Iron (FeSO4/ FeGluconate)*
   - `lamotriginepyridoxine`: *LamotriginePyridoxine*
+  - `iron`: *Iron (FeSO4/ FeGluconate)*
   - `lamotrigine`: *Lamotrigine*
   - `lansoprazole`: *Lansoprazole*
   - `loperamide`: *Loperamide (Imodium)*
@@ -1138,6 +1142,7 @@
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -1197,6 +1202,7 @@
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -3520,6 +3526,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -3579,6 +3586,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -4692,6 +4700,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -4751,6 +4760,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -6198,6 +6208,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -6257,6 +6268,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -6582,7 +6594,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **3.0.** Is the participant currently on an ART regimen?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If ART regimen is on hold, answer yes and clarify below*
+&nbsp;&nbsp;&nbsp;&nbsp; *If ART regimen is on hold, answer YES and clarify below*
 - db_table: effect_subject_arvtreatment
 - column: on_arv_regimen
 - type: CharField
@@ -6624,6 +6636,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 **7.0.** Has the participant's ART regimen changed since the last study assessment
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Also applies if ART started/re-started since enrolment, including at this visit.*
 - db_table: effect_subject_arvtreatment
 - column: arv_regimen_changed
 - type: CharField
@@ -6732,6 +6746,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 **Section: Tuberculosis**
 
 **7.0.** Has the participant been put on TB preventive therapy?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Select NO if started pre-enrolment or on day 1, and captured on day 1. Select YES if started today.*
 - db_table: effect_subject_participanttreatment
 - column: on_tb_tx
 - type: CharField
@@ -6880,6 +6896,8 @@ Adherence CRF completed at d3 and d9 (telephone).
 **Section: Co-trimixazole**
 
 **17.0.** Has the participant been prescribed co-trimoxazole?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Select YES if currently on co-trimoxazole, or prescribed today.*
 - db_table: effect_subject_participanttreatment
 - column: on_co_trimoxazole
 - type: CharField
@@ -8330,6 +8348,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -8389,6 +8408,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -9719,6 +9739,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -9778,6 +9799,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -10925,6 +10947,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -10984,6 +11007,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -12131,6 +12155,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -12190,6 +12215,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `cough`: *Cough*
+  - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
   - `fever`: *Fever*
@@ -13316,6 +13342,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-06-21 16:53*
+*Rendered on 2023-08-05 12:08*
 
 

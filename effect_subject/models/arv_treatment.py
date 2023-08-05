@@ -13,7 +13,7 @@ class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Is the participant currently on an ART regimen?",
         max_length=15,
         choices=YES_NO,
-        help_text="If ART regimen is on hold, answer yes and clarify below",
+        help_text="If ART regimen is on hold, answer YES and clarify below",
     )
 
     adherent = models.CharField(
@@ -48,6 +48,9 @@ class ArvTreatment(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
+        help_text=(
+            "Also applies if ART started/re-started since enrolment, including at this visit."
+        ),
     )
 
     arv_regimen_start_date = models.DateField(

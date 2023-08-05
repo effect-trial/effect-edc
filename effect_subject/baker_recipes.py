@@ -6,6 +6,7 @@ from .models import (
     ChestXray,
     Diagnoses,
     MentalStatus,
+    ParticipantHistory,
     ParticipantTreatment,
     SignsAndSymptoms,
     SubjectRequisition,
@@ -20,6 +21,8 @@ chestxray = Recipe(ChestXray)
 diagnoses = Recipe(Diagnoses)
 
 mentalstatus = Recipe(MentalStatus)
+
+participanthistory = Recipe(ParticipantHistory)
 
 participanttreatment = Recipe(ParticipantTreatment)
 

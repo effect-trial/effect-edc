@@ -29,6 +29,10 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name=format_html("Was the participant on ART <u>at time of</u> CrAg test?"),
         max_length=5,
         choices=YES_NO,
+        help_text=(
+            "Also applies if ART started on the day of CrAg test (Test and Treat) "
+            "or since CrAg test, but before enrolment."
+        ),
     )
 
     ever_on_art = models.CharField(
