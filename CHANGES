@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+unreleased
+------
+- updates to Mental Status form (#455, #482)
+    - remove 'Not done' choice for Modified Rankin (as per #455-7)
+
 0.1.35
 ------
 - fix requisitions not filtering correctly in TB Diagnostics and LP/CSF forms (#659)
