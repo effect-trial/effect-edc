@@ -5,6 +5,7 @@ unreleased
 ------
 - updates to Mental Status form (#455, #482)
     - remove 'Not done' choice for Modified Rankin (as per #455-7)
+- drop Python 3.10 support
 
 0.1.35
 ------
