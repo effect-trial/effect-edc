@@ -11,7 +11,6 @@ from ..model_mixins import CrfModelMixin
 
 class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
     # Diagnoses CRF (p3)
-    # TODO: Move gi_side_effects into SiSx
     gi_side_effects = models.CharField(
         verbose_name="Has the participant experienced any gastrointestinal side effects?",
         max_length=15,
@@ -20,28 +19,17 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="If YES, complete SAE report where appropriate",
     )
 
-    # TODO: Move gi_side_effects_other into SiSx
     gi_side_effects_details = models.TextField(
         verbose_name="If YES, please give details",
         null=True,
         blank=True,
     )
 
-    # any_significant_new_diagnoses = models.CharField(
-    #     # TODO: determine and display date of last visit
-    #     verbose_name="Other significant new diagnoses since last visit?",
-    #     max_length=15,
-    #     choices=YES_NO,
-    # )
-
     has_diagnoses = models.CharField(
         verbose_name="Are there any new significant diagnoses to report since last visit?",
         choices=YES_NO,
         max_length=15,
     )
-
-    # TODO: ???If yes, date of diagnosis?
-    # TODO: Request to handle one date per diagnosis
 
     # Significant Diagnoses CRF (p3)
     diagnoses = models.ManyToManyField(
