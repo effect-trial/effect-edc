@@ -25,21 +25,11 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    # any_significant_new_diagnoses = models.CharField(
-    #     # TODO: determine and display date of last visit
-    #     verbose_name="Other significant new diagnoses since last visit?",
-    #     max_length=15,
-    #     choices=YES_NO,
-    # )
-
     has_diagnoses = models.CharField(
         verbose_name="Are there any new significant diagnoses to report since last visit?",
         choices=YES_NO,
         max_length=15,
     )
-
-    # TODO: ???If yes, date of diagnosis?
-    # TODO: Request to handle one date per diagnosis
 
     # Significant Diagnoses CRF (p3)
     diagnoses = models.ManyToManyField(
