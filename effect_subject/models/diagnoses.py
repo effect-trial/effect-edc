@@ -11,7 +11,6 @@ from ..model_mixins import CrfModelMixin
 
 class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
     # Diagnoses CRF (p3)
-    # TODO: Move gi_side_effects into SiSx
     gi_side_effects = models.CharField(
         verbose_name="Has the participant experienced any gastrointestinal side effects?",
         max_length=15,
@@ -20,7 +19,6 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="If YES, complete SAE report where appropriate",
     )
 
-    # TODO: Move gi_side_effects_other into SiSx
     gi_side_effects_details = models.TextField(
         verbose_name="If YES, please give details",
         null=True,
