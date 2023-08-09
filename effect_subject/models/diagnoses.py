@@ -36,7 +36,12 @@ class Diagnoses(CrfModelMixin, edc_models.BaseUuidModel):
         Dx, verbose_name="Please select all diagnoses that are relevant"
     )
 
-    diagnoses_other = edc_models.OtherCharField()
+    diagnoses_other = models.TextField(
+        verbose_name="If other, please specify ...",
+        max_length=150,
+        null=True,
+        blank=True,
+    )
 
     reportable_as_ae = models.CharField(
         verbose_name="Are any of these diagnoses Grade 3 or above?",
