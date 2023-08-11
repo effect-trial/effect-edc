@@ -5,6 +5,8 @@ unreleased
 ------
 - updates to Mental Status form (#455, #482)
     - remove 'Not done' choice for Modified Rankin (as per #455-7)
+- update and standardise reporting questions, used by: Significant Diagnoses, Mental Status,
+  Signs and Symptoms, Subject Visit and Vital Signs forms  (#536)
 - convert 'diagnoses_other' to TextField in Significant Diagnoses form
   increasing max_length to 150 chars (#390)
 - drop Python 3.10 support

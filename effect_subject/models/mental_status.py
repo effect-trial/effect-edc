@@ -5,11 +5,10 @@ from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
 from ..choices import ECOG_SCORES, MODIFIED_RANKIN_SCORE_CHOICES
-from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE
-from ..model_mixins import CrfModelMixin
+from ..model_mixins import CrfModelMixin, ReportingFieldsModelMixin
 
 
-class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
+class MentalStatus(ReportingFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidModel):
     recent_seizure = models.CharField(
         verbose_name="Recent seizure (<72 hours)?",
         max_length=15,
@@ -63,23 +62,7 @@ class MentalStatus(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="/15",
     )
 
-    reportable_as_ae = models.CharField(
-        verbose_name="Are any of these symptoms Grade 3 or above?",
-        max_length=15,
-        # TODO: If yes, prompt for SAE
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_AE,
-    )
-
-    patient_admitted = models.CharField(
-        verbose_name="Has the participant been admitted due to these symptoms?",
-        max_length=15,
-        # TODO: If yes, prompt for SAE form
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text=IF_ADMITTED_COMPLETE_REPORTS,
-    )
+    # TODO: If not baseline, AND reportable_as_ae OR patient_admitted YES, prompt for SAE
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Mental Status"
