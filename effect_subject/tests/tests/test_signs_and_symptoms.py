@@ -1,6 +1,6 @@
 from copy import deepcopy
 from datetime import timedelta
-from typing import Optional
+from typing import Any, Optional
 
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
@@ -31,7 +31,6 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 from effect_subject.forms import SignsAndSymptomsForm
 from effect_subject.forms.signs_and_symptoms_form import SignsAndSymptomsFormValidator
 from effect_subject.models import SignsAndSymptoms, SubjectVisit
-from effect_subject.tests.tests.mixins import ReportingFieldsetBaselineTestCaseMixin
 from effect_visit_schedule.constants import DAY01, DAY14
 
 # TODO: Migrate to effect-form-validator
@@ -71,7 +70,6 @@ class TestSignsAndSymptoms(EffectTestCaseMixin, TestCase):
         self.assertIsNone(obj.calculated_headache_duration)
 
 
-@tag("sisx")
 class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
     form_validator_cls = SignsAndSymptomsFormValidator
     form_validator_model_cls = SignsAndSymptoms
@@ -187,8 +185,8 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "xray_performed": YES,
             "lp_performed": YES,
             "urinary_lam_performed": YES,
-            "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else NO,
-            "patient_admitted": NOT_APPLICABLE if visit_code == DAY01 else NO,
+            "reportable_as_ae": NO,
+            "patient_admitted": NO,
         }
 
     def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
@@ -199,7 +197,7 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3_other": "",
-                "reportable_as_ae": NOT_APPLICABLE if visit_code == DAY01 else YES,
+                "reportable_as_ae": YES,
             }
         )
         return cleaned_data
@@ -939,12 +937,57 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     )
 
 
+@tag("sisx2")
 class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
-    ReportingFieldsetBaselineTestCaseMixin,
     TestSignsAndSymptomsFormValidationBase,
 ):
     def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
         return self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code)
+
+    def test_baseline_cleaned_data_valid(self: Any):
+        """Test that the test data we're working with is valid."""
+        cleaned_data = self.default_cleaned_data(visit_code=DAY01)
+        self.assertFormValidatorNoError(
+            form_validator=self.validate_form_validator(cleaned_data)
+        )
+
+    def test_reportable_as_ae_can_be_applicable_at_baseline(self: Any):
+        for response in [YES, NO]:
+            with self.subTest(reportable_as_ae=response):
+                cleaned_data = self.default_cleaned_data(visit_code=DAY01)
+                cleaned_data.update(
+                    {
+                        "current_sx": SiSx.objects.filter(name="fever"),
+                        "current_sx_gte_g3": (
+                            SiSx.objects.filter(name="fever")
+                            if response == YES
+                            else SiSx.objects.filter(name=NOT_APPLICABLE)
+                        ),
+                        "reportable_as_ae": response,
+                        "patient_admitted": NO,
+                    }
+                )
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
+
+    def test_patient_admitted_can_be_applicable_at_baseline(self: Any):
+        for response in [YES, NO]:
+            with self.subTest(patient_admitted=response):
+                cleaned_data = self.default_cleaned_data(visit_code=DAY01)
+                cleaned_data.update(
+                    {
+                        "current_sx": SiSx.objects.filter(name="fever"),
+                        "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
+                        "reportable_as_ae": NO,
+                        "patient_admitted": response,
+                    }
+                )
+
+                cleaned_data.update({"patient_admitted": response})
+                self.assertFormValidatorNoError(
+                    form_validator=self.validate_form_validator(cleaned_data),
+                )
 
     def test_reportable_as_ae_allowed_at_d14(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
