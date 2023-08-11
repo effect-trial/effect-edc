@@ -10,9 +10,15 @@ DECREASED = "decreased"
 FOLLOWUP_ACTION = "follow_up"
 FOLLOWUP_EXAMINATION_ACTION = "followup-examination-ae"
 HOUSE_MAINTENANCE = "house_maintenance"
-IF_ADMITTED_COMPLETE_REPORTS = "If YES, complete Hospitalization and AE Initial reports."
+IF_ADMITTED_COMPLETE_REPORTS = (
+    "Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>"
+    "If YES (and not baseline), complete Hospitalization and AE Initial reports."
+)
 IF_NO_SPECIFY_REASON = "If NO, please specify reason ..."
-IF_YES_COMPLETE_AE = "If YES, complete AE Initial report."
+IF_YES_COMPLETE_AE = (
+    "Only answer YES if this is NEWLY reportable (or present at baseline).<br/>"
+    "If YES (and not baseline), complete AE Initial report."
+)
 LOW_EGFR_ACTION = "low-egfr"
 LP_ACTION = "submit_lp_result"
 NOTHING = "nothing"

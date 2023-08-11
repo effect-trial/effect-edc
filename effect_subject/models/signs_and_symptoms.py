@@ -7,10 +7,13 @@ from edc_model.utils import timedelta_from_duration_dh_field
 
 from effect_lists.models import SiSx
 
-from ..constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE, SX_ACTION
+from ..constants import IF_YES_COMPLETE_AE, SX_ACTION
+from ..model_mixins import ReportingFieldsModelMixin
 
 
-class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
+class SignsAndSymptoms(
+    ReportingFieldsModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
+):
     action_name = SX_ACTION
 
     any_sx = models.CharField(
@@ -89,24 +92,6 @@ class SignsAndSymptoms(CrfWithActionModelMixin, edc_models.BaseUuidModel):
         verbose_name="If visual field loss, please provide details ...",
         null=True,
         blank=True,
-    )
-
-    reportable_as_ae = models.CharField(
-        verbose_name="Are any of these signs or symptoms Grade 3 or above?",
-        max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text=IF_YES_COMPLETE_AE,
-    )
-
-    patient_admitted = models.CharField(
-        verbose_name=(
-            "Has the participant been admitted due to any of these signs or symptoms?"
-        ),
-        max_length=15,
-        choices=YES_NO_NA,
-        default=NOT_APPLICABLE,
-        help_text=IF_ADMITTED_COMPLETE_REPORTS,
     )
 
     xray_performed = models.CharField(
