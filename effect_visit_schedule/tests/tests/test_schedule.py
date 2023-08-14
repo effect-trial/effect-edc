@@ -88,6 +88,7 @@ class TestVisitSchedule(TestCase):
             "effect_subject.lpcsf",
             "effect_subject.tbdiagnostics",
             "effect_subject.studymedicationfollowup",
+            "effect_subject.clinicalnote",
         ]
         expected = {
             "1000": [

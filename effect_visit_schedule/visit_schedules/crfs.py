@@ -21,6 +21,7 @@ crfs_prn = FormsCollection(
     Crf(show_order=340, model="effect_subject.bloodculture"),
     Crf(show_order=360, model="effect_subject.histopathology"),
     Crf(show_order=400, model="effect_subject.healtheconomicsevent"),
+    Crf(show_order=500, model="effect_subject.clinicalnote"),
     name="prn",
 )
 
