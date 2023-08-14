@@ -11,6 +11,7 @@ unreleased
   to YES_NO (#418)
 - convert 'diagnoses_other' to TextField in Significant Diagnoses form
   increasing max_length to 150 chars (#390)
+- add Clinical Note to list of available PRNs (#520)
 - retire ReportingFieldsetBaselineTestCaseMixin
 - drop Python 3.10 support
 - bump to effect-form-validators 0.1.32
