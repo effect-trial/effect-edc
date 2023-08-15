@@ -13,6 +13,7 @@ from effect_visit_schedule.constants import (
 
 crfs_prn = FormsCollection(
     Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
+    Crf(show_order=70, model="effect_subject.vitalsigns"),
     Crf(show_order=100, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=240, model="effect_subject.bloodresultschem"),
     Crf(show_order=300, model="effect_subject.chestxray"),

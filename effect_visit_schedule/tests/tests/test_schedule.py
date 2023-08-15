@@ -79,6 +79,7 @@ class TestVisitSchedule(TestCase):
 
     def test_crfs(self):
         prn = [
+            "effect_subject.vitalsigns",
             "effect_subject.bloodculture",
             "effect_subject.bloodresultsfbc",
             "effect_subject.bloodresultschem",
