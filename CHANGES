@@ -12,7 +12,7 @@ unreleased
 - require Vital Signs form only for in person visits (#412, #496)
 - convert 'diagnoses_other' to TextField in Significant Diagnoses form
   increasing max_length to 150 chars (#390)
-- add Clinical Note to list of available PRNs (#520)
+- add Vital Signs and Clinical Note to list of available PRNs (#520)
 - fix Blood Result: Chemistry eGFR calculation not finding most recent weight
   if no Vital Signs recorded at current visit (#518)
 - retire ReportingFieldsetBaselineTestCaseMixin
