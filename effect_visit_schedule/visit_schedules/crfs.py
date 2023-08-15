@@ -26,7 +26,7 @@ crfs_prn = FormsCollection(
 )
 
 crfs_unscheduled = FormsCollection(
-    Crf(show_order=70, model="effect_subject.vitalsigns"),
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
@@ -71,6 +71,7 @@ crfs_d01 = FormsCollection(
 )
 
 crfs_d03 = FormsCollection(
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     # TODO: ???Remove ECOG/CGS symptoms for tel visits
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     # TODO: ???Remove neurological symptoms for tel visits
@@ -84,6 +85,7 @@ crfs_d03 = FormsCollection(
 )
 
 crfs_d09 = FormsCollection(
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
@@ -95,7 +97,7 @@ crfs_d09 = FormsCollection(
 )
 
 crfs_d14 = FormsCollection(
-    Crf(show_order=70, model="effect_subject.vitalsigns"),
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -112,6 +114,7 @@ crfs_d14 = FormsCollection(
 )
 
 crfs_w04 = FormsCollection(
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
@@ -123,7 +126,8 @@ crfs_w04 = FormsCollection(
 )
 
 crfs_w10 = FormsCollection(
-    Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
+    Crf(show_order=75, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
@@ -135,6 +139,7 @@ crfs_w10 = FormsCollection(
 )
 
 crfs_w16 = FormsCollection(
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
@@ -146,6 +151,7 @@ crfs_w16 = FormsCollection(
 )
 
 crfs_w24 = FormsCollection(
+    Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
