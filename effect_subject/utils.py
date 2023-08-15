@@ -25,7 +25,7 @@ def get_weight_in_kgs(subject_visit: SubjectVisit | None) -> Decimal | None:
         if obj := (
             django_apps.get_model("effect_subject.vitalsigns")
             .objects.filter(
-                subject_visit__subject_identifier=subject_visit,
+                subject_visit__subject_identifier=subject_visit.subject_identifier,
                 report_datetime__lt=subject_visit.report_datetime,
             )
             .order_by("report_datetime")
