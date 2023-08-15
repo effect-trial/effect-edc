@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.36
 ------
 - updates to Mental Status form (#455, #482)
     - remove 'Not done' choice for Modified Rankin (as per #455-7)
