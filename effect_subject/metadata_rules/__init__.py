@@ -1,1 +1,1 @@
-from .metadata_rules import SignsAndSymptomsRuleGroup
+from .metadata_rules import SignsAndSymptomsRuleGroup, SubjectVisitRuleGroup

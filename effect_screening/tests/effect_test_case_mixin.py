@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
-from edc_constants.constants import FEMALE, NEG, NO, NOT_APPLICABLE, POS, YES
+from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
@@ -153,6 +153,7 @@ class EffectTestCaseMixin(
         subject_consent=None,
         reason=None,
         appt_datetime=None,
+        assessment_type=None,
         gender=None,
         age_in_years=None,
     ):
@@ -181,10 +182,14 @@ class EffectTestCaseMixin(
             appointment=appointment,
             reason=SCHEDULED,
             report_datetime=appointment.appt_datetime,
+            assessment_type=assessment_type or IN_PERSON,
         )
 
     @staticmethod
-    def get_next_subject_visit(subject_visit):
+    def get_next_subject_visit(
+        subject_visit,
+        assessment_type=None,
+    ):
         appointment = subject_visit.appointment
         appointment.appt_status = INCOMPLETE_APPT
         appointment.save()
@@ -196,6 +201,7 @@ class EffectTestCaseMixin(
             appointment=next_appointment,
             reason=SCHEDULED,
             report_datetime=next_appointment.appt_datetime,
+            assessment_type=assessment_type or IN_PERSON,
         )
 
     @staticmethod

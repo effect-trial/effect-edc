@@ -33,3 +33,17 @@ class SignsAndSymptomsRuleGroup(CrfRuleGroup):
     class Meta:
         app_label = "effect_subject"
         source_model = "effect_subject.signsandsymptoms"
+
+
+@register()
+class SubjectVisitRuleGroup(CrfRuleGroup):
+    vitalsigns = CrfRule(
+        predicate=pc.vitalsigns_crf_required,
+        consequence=REQUIRED,
+        alternative=NOT_REQUIRED,
+        target_models=["vitalsigns"],
+    )
+
+    class Meta:
+        app_label = "effect_subject"
+        source_model = "effect_subject.subjectvisit"

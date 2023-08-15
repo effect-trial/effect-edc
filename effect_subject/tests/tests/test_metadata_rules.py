@@ -4,7 +4,15 @@ from typing import TYPE_CHECKING
 
 from django.test import TestCase
 from edc_appointment.models import Appointment
-from edc_constants.constants import NEG, NO, NOT_APPLICABLE, YES
+from edc_constants.constants import (
+    IN_PERSON,
+    NEG,
+    NO,
+    NOT_APPLICABLE,
+    OTHER,
+    TELEPHONE,
+    YES,
+)
 from edc_metadata import KEYED, REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_visit_schedule.constants import DAY01, DAY03
@@ -476,7 +484,221 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.lpcsf", models)
 
             try:
-                subject_visit = self.get_next_subject_visit(subject_visit)
+                subject_visit = self.get_next_subject_visit(
+                    subject_visit,
+                    assessment_type=IN_PERSON,
+                )
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
+
+    def test_vitalsigns_crf_always_required_at_baseline(self):
+        """In practice, baseline would always be IN_PERSON.
+
+        This test ensures if for any reason that is not the case
+        (e.g. the validation enforcing IN_PERSON at baseline is changed)
+        that the Vital Signs form is still required.
+        """
+        for assessment_type in [IN_PERSON, TELEPHONE, OTHER]:
+            with self.subTest(assessment_type=assessment_type):
+                subject_screening = self.get_subject_screening()
+                subject_consent = self.get_subject_consent(subject_screening=subject_screening)
+
+                # Baseline
+                subject_visit = self.get_subject_visit(
+                    subject_screening=subject_screening,
+                    subject_consent=subject_consent,
+                    assessment_type=assessment_type,
+                )
+                self.assertEqual(subject_visit.assessment_type, assessment_type)
+                models = self.get_metadata_models(subject_visit)
+                # expect vital signs present at baseline, regardless of assessment type
+                self.assertIn("effect_subject.vitalsigns", models)
+
+    def test_vitalsigns_crf_required_if_visit_assessment_type_IN_PERSON(self):
+        subject_screening = self.get_subject_screening()
+        subject_consent = self.get_subject_consent(subject_screening=subject_screening)
+
+        # Baseline
+        subject_visit = self.get_subject_visit(
+            subject_screening=subject_screening,
+            subject_consent=subject_consent,
+            assessment_type=IN_PERSON,
+        )
+        self.assertEqual(subject_visit.assessment_type, IN_PERSON)
+        models = self.get_metadata_models(subject_visit)
+        self.assertIn("effect_subject.vitalsigns", models)
+
+        # Post baseline
+        subject_visit = self.get_next_subject_visit(subject_visit, assessment_type=IN_PERSON)
+        self.assertEqual(subject_visit.visit_code, DAY03)
+        self.assertEqual(subject_visit.assessment_type, IN_PERSON)
+
+        for obj in (
+            Appointment.objects.filter(subject_identifier=subject_visit.subject_identifier)
+            .exclude(visit_code=DAY01)
+            .order_by("visit_code")
+        ):
+            self.assertEqual(obj.visit_code, subject_visit.visit_code)
+            self.assertEqual(subject_visit.visit_code_sequence, 0)
+            self.assertEqual(subject_visit.assessment_type, IN_PERSON)
+
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                models = self.get_metadata_models(subject_visit)
+                self.assertIn("effect_subject.vitalsigns", models)
+
+                # Test on unscheduled visit
+                unscheduled_appt = self.create_unscheduled_appointment(
+                    appointment=subject_visit.appointment
+                )
+                self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
+
+                unscheduled_visit = self.get_subject_visit(
+                    visit_code=obj.visit_code,
+                    visit_code_sequence=1,
+                    subject_screening=subject_screening,
+                    subject_consent=subject_consent,
+                    assessment_type=IN_PERSON,
+                )
+                self.assertEqual(unscheduled_visit.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_visit.visit_code_sequence, 1)
+                self.assertEqual(subject_visit.assessment_type, IN_PERSON)
+
+                models = self.get_metadata_models(unscheduled_visit)
+                self.assertIn("effect_subject.vitalsigns", models)
+
+            try:
+                subject_visit = self.get_next_subject_visit(
+                    subject_visit,
+                    assessment_type=IN_PERSON,
+                )
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
+
+    def test_vitalsigns_crf_not_required_if_visit_assessment_type_TELEPHONE(self):
+        subject_screening = self.get_subject_screening()
+        subject_consent = self.get_subject_consent(subject_screening=subject_screening)
+
+        # Baseline
+        subject_visit = self.get_subject_visit(
+            subject_screening=subject_screening,
+            subject_consent=subject_consent,
+            assessment_type=IN_PERSON,  # expect IN_PERSON at baseline
+        )
+        self.assertEqual(subject_visit.assessment_type, IN_PERSON)
+        models = self.get_metadata_models(subject_visit)
+        # expect vital signs present at baseline, regardless of assessment type
+        self.assertIn("effect_subject.vitalsigns", models)
+
+        # Post baseline
+        subject_visit = self.get_next_subject_visit(subject_visit, assessment_type=TELEPHONE)
+        self.assertEqual(subject_visit.visit_code, DAY03)
+        self.assertEqual(subject_visit.assessment_type, TELEPHONE)
+
+        for obj in (
+            Appointment.objects.filter(subject_identifier=subject_visit.subject_identifier)
+            .exclude(visit_code=DAY01)
+            .order_by("visit_code")
+        ):
+            self.assertEqual(obj.visit_code, subject_visit.visit_code)
+            self.assertEqual(subject_visit.visit_code_sequence, 0)
+            self.assertEqual(subject_visit.assessment_type, TELEPHONE)
+
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                models = self.get_metadata_models(subject_visit)
+                self.assertNotIn("effect_subject.vitalsigns", models)
+
+                # Test on unscheduled visit
+                unscheduled_appt = self.create_unscheduled_appointment(
+                    appointment=subject_visit.appointment
+                )
+                self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
+
+                unscheduled_visit = self.get_subject_visit(
+                    visit_code=obj.visit_code,
+                    visit_code_sequence=1,
+                    subject_screening=subject_screening,
+                    subject_consent=subject_consent,
+                    assessment_type=TELEPHONE,
+                )
+                self.assertEqual(unscheduled_visit.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_visit.visit_code_sequence, 1)
+                self.assertEqual(subject_visit.assessment_type, TELEPHONE)
+
+                models = self.get_metadata_models(unscheduled_visit)
+                self.assertNotIn("effect_subject.vitalsigns", models)
+
+            try:
+                subject_visit = self.get_next_subject_visit(
+                    subject_visit,
+                    assessment_type=TELEPHONE,
+                )
+            except AttributeError:
+                # Hit here after calling get_next_subject_visit() on last visit
+                break
+
+    def test_vitalsigns_crf_not_required_if_visit_assessment_type_OTHER(self):
+        subject_screening = self.get_subject_screening()
+        subject_consent = self.get_subject_consent(subject_screening=subject_screening)
+
+        # Baseline
+        subject_visit = self.get_subject_visit(
+            subject_screening=subject_screening,
+            subject_consent=subject_consent,
+            assessment_type=OTHER,  # expect OTHER at baseline
+        )
+        self.assertEqual(subject_visit.assessment_type, OTHER)
+        models = self.get_metadata_models(subject_visit)
+        # expect vital signs present at baseline, regardless of assessment type
+        self.assertIn("effect_subject.vitalsigns", models)
+
+        # Post baseline
+        subject_visit = self.get_next_subject_visit(subject_visit, assessment_type=OTHER)
+        self.assertEqual(subject_visit.visit_code, DAY03)
+        self.assertEqual(subject_visit.assessment_type, OTHER)
+
+        for obj in (
+            Appointment.objects.filter(subject_identifier=subject_visit.subject_identifier)
+            .exclude(visit_code=DAY01)
+            .order_by("visit_code")
+        ):
+            self.assertEqual(obj.visit_code, subject_visit.visit_code)
+            self.assertEqual(subject_visit.visit_code_sequence, 0)
+            self.assertEqual(subject_visit.assessment_type, OTHER)
+
+            with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
+                models = self.get_metadata_models(subject_visit)
+                self.assertNotIn("effect_subject.vitalsigns", models)
+
+                # Test on unscheduled visit
+                unscheduled_appt = self.create_unscheduled_appointment(
+                    appointment=subject_visit.appointment
+                )
+                self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
+
+                unscheduled_visit = self.get_subject_visit(
+                    visit_code=obj.visit_code,
+                    visit_code_sequence=1,
+                    subject_screening=subject_screening,
+                    subject_consent=subject_consent,
+                    assessment_type=OTHER,
+                )
+                self.assertEqual(unscheduled_visit.visit_code, obj.visit_code)
+                self.assertEqual(unscheduled_visit.visit_code_sequence, 1)
+                self.assertEqual(subject_visit.assessment_type, OTHER)
+
+                models = self.get_metadata_models(unscheduled_visit)
+                self.assertNotIn("effect_subject.vitalsigns", models)
+
+            try:
+                subject_visit = self.get_next_subject_visit(
+                    subject_visit,
+                    assessment_type=OTHER,
+                )
             except AttributeError:
                 # Hit here after calling get_next_subject_visit() on last visit
                 break
