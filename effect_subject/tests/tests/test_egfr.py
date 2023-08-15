@@ -104,6 +104,42 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
 
         self.assertEqual(round(obj.egfr_value), 90)
 
+    def test_no_vital_signs_at_this_visit_but_exist_at_previous_visit_ok(self):
+        subject_visit_d3 = self.get_next_subject_visit(subject_visit=self.subject_visit)
+        requisition_d3 = SubjectRequisition.objects.create(
+            subject_visit=subject_visit_d3,
+            report_datetime=subject_visit_d3.report_datetime,
+            panel=Panel.objects.get(name=BloodResultsChem.lab_panel.name),
+        )
+        obj = BloodResultsChem(
+            subject_visit=subject_visit_d3,
+            requisition=requisition_d3,
+            report_datetime=subject_visit_d3.report_datetime,
+            assay_datetime=requisition_d3.report_datetime + relativedelta(days=1),
+            creatinine_value=Decimal("100.0"),
+            creatinine_units=MICROMOLES_PER_LITER,
+        )
+        # creatinine entered and no weight from vital signs raises
+        self.assertRaises(EgfrCalculatorError, obj.save)
+
+        # create vital signs at previous visit, and retest
+        self.create_vital_signs(self.subject_visit, weight=80)
+        try:
+            obj.save()
+        except EgfrCalculatorError:
+            self.fail("EgfrCalculatorError unexpectedly raised")
+
+        self.assertEqual(round(obj.egfr_value), 90)
+
+        # create vital signs at this visit, and retest
+        self.create_vital_signs(subject_visit_d3, weight=60)
+        try:
+            obj.save()
+        except EgfrCalculatorError:
+            self.fail("EgfrCalculatorError unexpectedly raised")
+
+        self.assertEqual(round(obj.egfr_value), 67)
+
     def test_form_validator(self):
         cleaned_data = dict(
             subject_visit=self.subject_visit,
