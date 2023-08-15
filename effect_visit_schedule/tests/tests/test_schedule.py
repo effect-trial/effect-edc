@@ -79,6 +79,7 @@ class TestVisitSchedule(TestCase):
 
     def test_crfs(self):
         prn = [
+            "effect_subject.vitalsigns",
             "effect_subject.bloodculture",
             "effect_subject.bloodresultsfbc",
             "effect_subject.bloodresultschem",
@@ -88,6 +89,7 @@ class TestVisitSchedule(TestCase):
             "effect_subject.lpcsf",
             "effect_subject.tbdiagnostics",
             "effect_subject.studymedicationfollowup",
+            "effect_subject.clinicalnote",
         ]
         expected = {
             "1000": [
@@ -107,6 +109,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestageone",
             ],
             "1003": [
+                "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -116,6 +119,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagetwo",
             ],
             "1009": [
+                "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -140,6 +144,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagethree",
             ],
             "1028": [
+                "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -149,6 +154,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1070": [
+                "effect_subject.vitalsigns",
                 "effect_subject.studymedicationfollowup",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
@@ -159,6 +165,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1112": [
+                "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",
@@ -168,6 +175,7 @@ class TestVisitSchedule(TestCase):
                 "effect_subject.adherencestagefour",
             ],
             "1168": [
+                "effect_subject.vitalsigns",
                 "effect_subject.mentalstatus",
                 "effect_subject.signsandsymptoms",
                 "effect_subject.diagnoses",

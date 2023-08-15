@@ -6,7 +6,6 @@ from edc_constants.constants import (
     NEXT_OF_KIN,
     NO,
     NOT_APPLICABLE,
-    NOT_DONE,
     NOT_REQUIRED,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
@@ -212,7 +211,6 @@ MODIFIED_RANKIN_SCORE_CHOICES = (
         ),
     ),
     ("6", "[6] Dead"),
-    (NOT_DONE, "Not done"),
 )
 
 NEGATIVE_TX_CHOICES = (

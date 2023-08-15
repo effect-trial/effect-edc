@@ -1,11 +1,15 @@
+from __future__ import annotations
+
 from copy import deepcopy
+from datetime import date, datetime
+from typing import TYPE_CHECKING
 
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
-from edc_constants.constants import FEMALE, NEG, NO, NOT_APPLICABLE, POS, YES
+from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
@@ -26,8 +30,11 @@ from effect_visit_schedule.visit_schedules import visit_schedule
 
 from ..models import SubjectScreening
 
+if TYPE_CHECKING:
+    from effect_consent.models import SubjectConsent
 
-def get_eligible_options():
+
+def get_eligible_options() -> dict:
     return dict(
         screening_consent=YES,
         willing_to_participate=YES,
@@ -93,12 +100,12 @@ class EffectTestCaseMixin(
 
     def get_subject_screening(
         self,
-        report_datetime=None,
-        eligibility_datetime=None,
-        gender=None,
-        age_in_years=None,
-        serum_crag_date=None,
-    ):
+        report_datetime: datetime | None = None,
+        eligibility_datetime: datetime | None = None,
+        gender: str | None = None,
+        age_in_years: int | None = None,
+        serum_crag_date: date = None,
+    ) -> SubjectScreening:
         eligible_options = deepcopy(get_eligible_options())
         if report_datetime:
             eligible_options.update(report_datetime=report_datetime)
@@ -131,7 +138,12 @@ class EffectTestCaseMixin(
         return subject_screening
 
     @staticmethod
-    def get_subject_consent(subject_screening, consent_datetime=None, site_id=None, dob=None):
+    def get_subject_consent(
+        subject_screening: SubjectScreening,
+        consent_datetime: datetime | None = None,
+        site_id: int | None = None,
+        dob: date | None = None,
+    ) -> SubjectConsent:
         return baker.make_recipe(
             "effect_consent.subjectconsent",
             user_created="erikvw",
@@ -147,15 +159,16 @@ class EffectTestCaseMixin(
 
     def get_subject_visit(
         self,
-        visit_code=None,
-        visit_code_sequence=None,
-        subject_screening=None,
-        subject_consent=None,
-        reason=None,
-        appt_datetime=None,
-        gender=None,
-        age_in_years=None,
-    ):
+        visit_code: str | None = None,
+        visit_code_sequence: int | None = None,
+        subject_screening: SubjectScreening | None = None,
+        subject_consent: SubjectConsent | None = None,
+        reason: str | None = None,
+        appt_datetime: datetime | None = None,
+        gender: str | None = None,
+        age_in_years: int | None = None,
+        assessment_type: str | None = None,
+    ) -> SubjectVisit:
         reason = reason or SCHEDULED
         subject_screening = subject_screening or self.get_subject_screening(
             gender=gender, age_in_years=age_in_years
@@ -181,10 +194,14 @@ class EffectTestCaseMixin(
             appointment=appointment,
             reason=SCHEDULED,
             report_datetime=appointment.appt_datetime,
+            assessment_type=assessment_type or IN_PERSON,
         )
 
     @staticmethod
-    def get_next_subject_visit(subject_visit):
+    def get_next_subject_visit(
+        subject_visit: SubjectVisit,
+        assessment_type: str | None = None,
+    ) -> SubjectVisit:
         appointment = subject_visit.appointment
         appointment.appt_status = INCOMPLETE_APPT
         appointment.save()
@@ -196,10 +213,11 @@ class EffectTestCaseMixin(
             appointment=next_appointment,
             reason=SCHEDULED,
             report_datetime=next_appointment.appt_datetime,
+            assessment_type=assessment_type or IN_PERSON,
         )
 
     @staticmethod
-    def get_crf_metadata(subject_visit):
+    def get_crf_metadata(subject_visit: SubjectVisit) -> CrfMetadata:
         return CrfMetadata.objects.filter(
             subject_identifier=subject_visit.subject_identifier,
             visit_code=subject_visit.visit_code,

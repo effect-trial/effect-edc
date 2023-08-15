@@ -1,8 +1,9 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
-from edc_constants.constants import YES
+from edc_constants.constants import IN_PERSON, YES
 from edc_metadata.metadata_rules import PredicateCollection
 from edc_visit_schedule.constants import DAY01
+from edc_visit_schedule.utils import is_baseline
 
 
 def screening_lp_performed(subject_identifier: str):
@@ -45,4 +46,10 @@ class Predicates(PredicateCollection):
             pass
         else:
             required = True
+        return required
+
+    @staticmethod
+    def vitalsigns_crf_required(visit, **kwargs) -> bool:
+        """Require at baseline and at any other IN_PERSON visit."""
+        required = is_baseline(instance=visit) or visit.assessment_type == IN_PERSON
         return required

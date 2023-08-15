@@ -1,6 +1,25 @@
 Changes
 +++++++
 
+0.1.36
+------
+- updates to Mental Status form (#455, #482)
+    - remove 'Not done' choice for Modified Rankin (as per #455-7)
+- update and standardise reporting questions, used by: Significant Diagnoses, Mental Status,
+  Signs and Symptoms, Subject Visit and Vital Signs forms  (#536)
+- restrict Vital Signs form field choices for 'reportable_as_ae' and 'patient_admitted'
+  to YES_NO (#418)
+- require Vital Signs form only for in person visits (#412, #496)
+- convert 'diagnoses_other' to TextField in Significant Diagnoses form
+  increasing max_length to 150 chars (#390)
+- add Vital Signs and Clinical Note to list of available PRNs (#520)
+- fix Blood Result: Chemistry eGFR calculation not finding most recent weight
+  if no Vital Signs recorded at current visit (#518)
+- retire ReportingFieldsetBaselineTestCaseMixin
+- update forms reference doc
+- drop Python 3.10 support
+- bump to effect-form-validators 0.1.32
+
 0.1.35
 ------
 - fix requisitions not filtering correctly in TB Diagnostics and LP/CSF forms (#659)

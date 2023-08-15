@@ -8,3 +8,8 @@ site_reference_configs.add_fields_to_config(
     name="effect_subject.signsandsymptoms",
     fields=["xray_performed", "lp_performed", "urinary_lam_performed"],
 )
+
+site_reference_configs.add_fields_to_config(
+    name="effect_subject.subjectvisit",
+    fields=["assessment_type"],
+)
