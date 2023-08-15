@@ -16,6 +16,7 @@ unreleased
 - fix Blood Result: Chemistry eGFR calculation not finding most recent weight
   if no Vital Signs recorded at current visit (#518)
 - retire ReportingFieldsetBaselineTestCaseMixin
+- update forms reference doc
 - drop Python 3.10 support
 - bump to effect-form-validators 0.1.32
 

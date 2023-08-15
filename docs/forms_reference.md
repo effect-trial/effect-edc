@@ -19,26 +19,28 @@
 14. <a href="#user-content-adherence-day-1">Adherence: Day 1</a>
 
 <a href="#user-content-1003">**1003.**</a>
-1. <a href="#user-content-mental-status-1">Mental Status</a>
-2. <a href="#user-content-signs-and-symptoms-1">Signs And Symptoms</a>
-3. <a href="#user-content-significant-diagnoses">Significant Diagnoses</a>
-4. <a href="#user-content-chest-x-ray-1">Chest X-Ray</a>
-5. <a href="#user-content-lumbar-puncturecsf-1">Lumbar Puncture/Csf</a>
-6. <a href="#user-content-tb-diagnostics-1">Tb Diagnostics</a>
-7. <a href="#user-content-adherence-on-study">Adherence: On Study</a>
+1. <a href="#user-content-vital-signs-1">Vital Signs</a>
+2. <a href="#user-content-mental-status-1">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-1">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses">Significant Diagnoses</a>
+5. <a href="#user-content-chest-x-ray-1">Chest X-Ray</a>
+6. <a href="#user-content-lumbar-puncturecsf-1">Lumbar Puncture/Csf</a>
+7. <a href="#user-content-tb-diagnostics-1">Tb Diagnostics</a>
+8. <a href="#user-content-adherence-on-study">Adherence: On Study</a>
 
 <a href="#user-content-1009">**1009.**</a>
-1. <a href="#user-content-mental-status-2">Mental Status</a>
-2. <a href="#user-content-signs-and-symptoms-2">Signs And Symptoms</a>
-3. <a href="#user-content-significant-diagnoses-1">Significant Diagnoses</a>
-4. <a href="#user-content-chest-x-ray-2">Chest X-Ray</a>
-5. <a href="#user-content-lumbar-puncturecsf-2">Lumbar Puncture/Csf</a>
-6. <a href="#user-content-tb-diagnostics-2">Tb Diagnostics</a>
-7. <a href="#user-content-adherence-on-study-1">Adherence: On Study</a>
+1. <a href="#user-content-vital-signs-2">Vital Signs</a>
+2. <a href="#user-content-mental-status-2">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-2">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-1">Significant Diagnoses</a>
+5. <a href="#user-content-chest-x-ray-2">Chest X-Ray</a>
+6. <a href="#user-content-lumbar-puncturecsf-2">Lumbar Puncture/Csf</a>
+7. <a href="#user-content-tb-diagnostics-2">Tb Diagnostics</a>
+8. <a href="#user-content-adherence-on-study-1">Adherence: On Study</a>
 
 <a href="#user-content-1014">**1014.**</a>
 1. <a href="#user-content-study-medication">Study Medication</a>
-2. <a href="#user-content-vital-signs-1">Vital Signs</a>
+2. <a href="#user-content-vital-signs-3">Vital Signs</a>
 3. <a href="#user-content-mental-status-3">Mental Status</a>
 4. <a href="#user-content-signs-and-symptoms-3">Signs And Symptoms</a>
 5. <a href="#user-content-significant-diagnoses-2">Significant Diagnoses</a>
@@ -52,42 +54,46 @@
 13. <a href="#user-content-adherence-day-14">Adherence: Day 14</a>
 
 <a href="#user-content-1028">**1028.**</a>
-1. <a href="#user-content-mental-status-4">Mental Status</a>
-2. <a href="#user-content-signs-and-symptoms-4">Signs And Symptoms</a>
-3. <a href="#user-content-significant-diagnoses-3">Significant Diagnoses</a>
-4. <a href="#user-content-chest-x-ray-4">Chest X-Ray</a>
-5. <a href="#user-content-lumbar-puncturecsf-4">Lumbar Puncture/Csf</a>
-6. <a href="#user-content-tb-diagnostics-4">Tb Diagnostics</a>
-7. <a href="#user-content-adherence-day-14-1">Adherence: Day 14+</a>
+1. <a href="#user-content-vital-signs-4">Vital Signs</a>
+2. <a href="#user-content-mental-status-4">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-4">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-3">Significant Diagnoses</a>
+5. <a href="#user-content-chest-x-ray-4">Chest X-Ray</a>
+6. <a href="#user-content-lumbar-puncturecsf-4">Lumbar Puncture/Csf</a>
+7. <a href="#user-content-tb-diagnostics-4">Tb Diagnostics</a>
+8. <a href="#user-content-adherence-day-14-1">Adherence: Day 14+</a>
 
 <a href="#user-content-1070">**1070.**</a>
 1. <a href="#user-content-study-medication-1">Study Medication</a>
-2. <a href="#user-content-mental-status-5">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-5">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses-4">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-5">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-5">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-5">Tb Diagnostics</a>
-8. <a href="#user-content-adherence-day-14-2">Adherence: Day 14+</a>
+2. <a href="#user-content-vital-signs-5">Vital Signs</a>
+3. <a href="#user-content-mental-status-5">Mental Status</a>
+4. <a href="#user-content-signs-and-symptoms-5">Signs And Symptoms</a>
+5. <a href="#user-content-significant-diagnoses-4">Significant Diagnoses</a>
+6. <a href="#user-content-chest-x-ray-5">Chest X-Ray</a>
+7. <a href="#user-content-lumbar-puncturecsf-5">Lumbar Puncture/Csf</a>
+8. <a href="#user-content-tb-diagnostics-5">Tb Diagnostics</a>
+9. <a href="#user-content-adherence-day-14-2">Adherence: Day 14+</a>
 
 <a href="#user-content-1112">**1112.**</a>
-1. <a href="#user-content-mental-status-6">Mental Status</a>
-2. <a href="#user-content-signs-and-symptoms-6">Signs And Symptoms</a>
-3. <a href="#user-content-significant-diagnoses-5">Significant Diagnoses</a>
-4. <a href="#user-content-chest-x-ray-6">Chest X-Ray</a>
-5. <a href="#user-content-lumbar-puncturecsf-6">Lumbar Puncture/Csf</a>
-6. <a href="#user-content-tb-diagnostics-6">Tb Diagnostics</a>
-7. <a href="#user-content-adherence-day-14-3">Adherence: Day 14+</a>
+1. <a href="#user-content-vital-signs-6">Vital Signs</a>
+2. <a href="#user-content-mental-status-6">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-6">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-5">Significant Diagnoses</a>
+5. <a href="#user-content-chest-x-ray-6">Chest X-Ray</a>
+6. <a href="#user-content-lumbar-puncturecsf-6">Lumbar Puncture/Csf</a>
+7. <a href="#user-content-tb-diagnostics-6">Tb Diagnostics</a>
+8. <a href="#user-content-adherence-day-14-3">Adherence: Day 14+</a>
 
 <a href="#user-content-1168">**1168.**</a>
-1. <a href="#user-content-mental-status-7">Mental Status</a>
-2. <a href="#user-content-signs-and-symptoms-7">Signs And Symptoms</a>
-3. <a href="#user-content-significant-diagnoses-6">Significant Diagnoses</a>
-4. <a href="#user-content-chest-x-ray-7">Chest X-Ray</a>
-5. <a href="#user-content-lumbar-puncturecsf-7">Lumbar Puncture/Csf</a>
-6. <a href="#user-content-tb-diagnostics-7">Tb Diagnostics</a>
-7. <a href="#user-content-health-economics-1">Health Economics</a>
-8. <a href="#user-content-adherence-day-14-4">Adherence: Day 14+</a>
+1. <a href="#user-content-vital-signs-7">Vital Signs</a>
+2. <a href="#user-content-mental-status-7">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-7">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-6">Significant Diagnoses</a>
+5. <a href="#user-content-chest-x-ray-7">Chest X-Ray</a>
+6. <a href="#user-content-lumbar-puncturecsf-7">Lumbar Puncture/Csf</a>
+7. <a href="#user-content-tb-diagnostics-7">Tb Diagnostics</a>
+8. <a href="#user-content-health-economics-1">Health Economics</a>
+9. <a href="#user-content-adherence-day-14-4">Adherence: Day 14+</a>
 
 
 ### 1000
@@ -922,9 +928,9 @@
 
 **Section: Reporting**
 
-**15.0.** Are any of the above reportable as Grade 3 or above?
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_vitalsigns
 - column: reportable_as_ae
 - type: CharField
@@ -935,9 +941,9 @@
   - `N/A`: *Not applicable*
 ---
 
-**16.0.** Has the participant been admitted due to any of the above?
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_vitalsigns
 - column: patient_admitted
 - type: CharField
@@ -1044,7 +1050,6 @@
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -1071,9 +1076,9 @@
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -1084,9 +1089,9 @@
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -1195,7 +1200,7 @@
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -1327,9 +1332,9 @@
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -1340,9 +1345,9 @@
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -3333,6 +3338,157 @@ Adherence CRF completed at baseline (in-person).
 
 ### 1003
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -3428,7 +3584,6 @@ Adherence CRF completed at baseline (in-person).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -3455,9 +3610,9 @@ Adherence CRF completed at baseline (in-person).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -3468,9 +3623,9 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -3579,7 +3734,7 @@ Adherence CRF completed at baseline (in-person).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -3711,9 +3866,9 @@ Adherence CRF completed at baseline (in-person).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -3724,9 +3879,9 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -3850,16 +4005,15 @@ Adherence CRF completed at baseline (in-person).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -3870,9 +4024,9 @@ Adherence CRF completed at baseline (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -4507,6 +4661,157 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 ### 1009
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -4602,7 +4907,6 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -4629,9 +4933,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -4642,9 +4946,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -4753,7 +5057,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -4885,9 +5189,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -4898,9 +5202,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -5024,16 +5328,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -5044,9 +5347,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -5988,9 +6291,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Reporting**
 
-**15.0.** Are any of the above reportable as Grade 3 or above?
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_vitalsigns
 - column: reportable_as_ae
 - type: CharField
@@ -6001,9 +6304,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**16.0.** Has the participant been admitted due to any of the above?
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_vitalsigns
 - column: patient_admitted
 - type: CharField
@@ -6110,7 +6413,6 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -6137,9 +6439,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -6150,9 +6452,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -6261,7 +6563,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -6393,9 +6695,9 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -6406,9 +6708,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -6532,16 +6834,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -6552,9 +6853,9 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -8155,6 +8456,157 @@ Adherence CRF completed at d14 (in-person).
 
 ### 1028
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -8250,7 +8702,6 @@ Adherence CRF completed at d14 (in-person).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -8277,9 +8728,9 @@ Adherence CRF completed at d14 (in-person).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -8290,9 +8741,9 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -8401,7 +8852,7 @@ Adherence CRF completed at d14 (in-person).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -8533,9 +8984,9 @@ Adherence CRF completed at d14 (in-person).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -8546,9 +8997,9 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -8672,16 +9123,15 @@ Adherence CRF completed at d14 (in-person).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -8692,9 +9142,9 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -9546,6 +9996,157 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -9641,7 +10242,6 @@ Adherence CRF completed after d14 (telephone).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -9668,9 +10268,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -9681,9 +10281,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -9792,7 +10392,7 @@ Adherence CRF completed after d14 (telephone).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -9924,9 +10524,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -9937,9 +10537,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -10063,16 +10663,15 @@ Adherence CRF completed after d14 (telephone).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -10083,9 +10682,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -10754,6 +11353,157 @@ Adherence CRF completed after d14 (telephone).
 
 ### 1112
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -10849,7 +11599,6 @@ Adherence CRF completed after d14 (telephone).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -10876,9 +11625,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -10889,9 +11638,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -11000,7 +11749,7 @@ Adherence CRF completed after d14 (telephone).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -11132,9 +11881,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -11145,9 +11894,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -11271,16 +12020,15 @@ Adherence CRF completed after d14 (telephone).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -11291,9 +12039,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -11962,6 +12710,157 @@ Adherence CRF completed after d14 (telephone).
 
 ### 1168
 
+#### Vital Signs
+*[missing model class docstring]*
+
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Mental Status
 *[missing model class docstring]*
 
@@ -12057,7 +12956,6 @@ Adherence CRF completed after d14 (telephone).
   - `4`: *[4] Moderately severe disability. Unable to attend to own bodily needs without assistance, and unable to walk unassisted.*
   - `5`: *[5] Severe disability. Requires constant nursing care and attention, bedridden, incontinent.*
   - `6`: *[6] Dead*
-  - `not_done`: *Not done*
 ---
 
 **8.0.** ECOG score
@@ -12084,9 +12982,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**10.0.** Are any of these symptoms Grade 3 or above?
+**10.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_mentalstatus
 - column: reportable_as_ae
 - type: CharField
@@ -12097,9 +12995,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**11.0.** Has the participant been admitted due to these symptoms?
+**11.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_mentalstatus
 - column: patient_admitted
 - type: CharField
@@ -12208,7 +13106,7 @@ Adherence CRF completed after d14 (telephone).
 
 **6.0.** For these signs/symptoms, were any Grade 3 or above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.</br>*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.</br>*
 - db_table: effect_subject_signsandsymptoms
 - column: current_sx_gte_g3
 - type: ManyToManyField
@@ -12340,9 +13238,9 @@ Adherence CRF completed after d14 (telephone).
 
 **Section: Reporting**
 
-**12.0.** Are any of these signs or symptoms Grade 3 or above?
+**12.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_signsandsymptoms
 - column: reportable_as_ae
 - type: CharField
@@ -12353,9 +13251,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**13.0.** Has the participant been admitted due to any of these signs or symptoms?
+**13.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_signsandsymptoms
 - column: patient_admitted
 - type: CharField
@@ -12479,16 +13377,15 @@ Adherence CRF completed after d14 (telephone).
 **6.1.** If other, please specify ...
 - db_table: effect_subject_diagnoses
 - column: diagnoses_other
-- type: CharField
-- length: 35
-- responses: *free text*
+- type: TextField
+- length: 150
 ---
 
 **Section: Reporting**
 
-**7.0.** Are any of these diagnoses Grade 3 or above?
+**7.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete AE Initial report.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
 - db_table: effect_subject_diagnoses
 - column: reportable_as_ae
 - type: CharField
@@ -12499,9 +13396,9 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
-**8.0.** Has the participant been admitted due to any of these diagnoses?
+**8.0.** Has the participant been NEWLY admitted due to any of the above?
 
-&nbsp;&nbsp;&nbsp;&nbsp; *If YES, complete Hospitalization and AE Initial reports.*
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
 - db_table: effect_subject_diagnoses
 - column: patient_admitted
 - type: CharField
@@ -13342,6 +14239,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-08-05 12:08*
+*Rendered on 2023-08-16 01:47*
 
 
