@@ -126,8 +126,8 @@ crfs_w04 = FormsCollection(
 )
 
 crfs_w10 = FormsCollection(
+    Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
-    Crf(show_order=75, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
     Crf(show_order=100, model="effect_subject.diagnoses"),
