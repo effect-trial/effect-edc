@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.37
 ------
 - re-add Python 3.10 support
 - bump to effect-form-validators 0.1.33
