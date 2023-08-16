@@ -1,6 +1,12 @@
 Changes
 +++++++
 
+unreleased
+------
+- re-add Python 3.10 support
+- bump to effect-form-validators 0.1.33
+
+
 0.1.36
 ------
 - updates to Mental Status form (#455, #482)
