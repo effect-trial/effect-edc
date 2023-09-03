@@ -4,14 +4,14 @@
 EFFECT Edc
 ----------
 
-Fluconazole plus flucytosine vs. fluconazole alone for cryptococcal antigen-positive patients identified through screening:
-A phase III randomised controlled trial
-
-EFFECT - Efficacy of Flucytosine and Fluconazole as Early Cryptococcal Treatment
-
 |effect_logo|
 
 The EFFECT Trial
+
+Fluconazole plus flucytosine vs. fluconazole alone for cryptococcal antigen-positive patients identified through screening:
+A phase III randomised controlled trial
+
+(EFFECT - Efficacy of Flucytosine and Fluconazole as Early Cryptococcal Treatment)
 
 https://www.isrctn.com/ISRCTN30579828
 
