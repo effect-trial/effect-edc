@@ -18,6 +18,7 @@ from edc_constants.disease_constants import (
     CN_PALSY_LEFT_OTHER,
     CN_PALSY_RIGHT_OTHER,
     CRYPTOCOCCAL_MENINGITIS,
+    DIARRHOEA,
     DIARRHOEAL_WASTING,
     FOCAL_NEUROLOGIC_DEFICIT_OTHER,
     TB_EXTRAPULMONARY,
@@ -26,10 +27,6 @@ from edc_constants.disease_constants import (
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
-
-# TODO: import DIARRHOEA from edc_constants.disease_constants, and remove from
-#  effect_lists.constants after next edc release > 0.4.99
-from effect_lists.constants import DIARRHOEA
 
 list_data = {
     "effect_lists.nonadherencereasons": [
