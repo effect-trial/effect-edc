@@ -3,6 +3,7 @@ Changes
 
 unreleased
 ------
+- updates to better support internationalization
 - bump to edc 0.5.28
 
 0.1.37
