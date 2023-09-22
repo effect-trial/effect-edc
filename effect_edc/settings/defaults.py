@@ -2,9 +2,11 @@ import os
 import sys
 from pathlib import Path
 
+import django.conf.locale
 import environ
 from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_constants.constants import COMPLETE
+from edc_constants.internationalization import EXTRA_LANG_INFO
 from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_utils import get_datetime_from_env
 
@@ -163,6 +165,7 @@ if not DEFENDER_ENABLED:
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
     "django.middleware.common.CommonMiddleware",
     "multisite.middleware.DynamicSiteMiddleware",
     "django.contrib.sites.middleware.CurrentSiteMiddleware",
@@ -273,34 +276,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
+
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = env.str("DJANGO_LANGUAGE_CODE")
+USE_I18N = True  # set to False to turn off translation
+USE_L10N = True  # set to False so DATE formats below are used (Deprecated)
+USE_TZ = True
 
-# see also effect_sites module
-# LANGUAGES = [x.split(":") for x in env.list("DJANGO_LANGUAGES")] or (("en", "English"),)
-LANGUAGES = [
-    ("en", "English"),
-    ("af", "Afrikaans"),
-    ("mas", "Maasai"),
-    ("st", "Sotho"),
-    ("sw", "Swahili"),
-    ("tn", "Tswana"),
-    ("vie", "Vietnamese"),
-    ("xh", "Xhosa"),
-    ("zu", "Zulu"),
-]
+# Add custom languages not provided by Django
+LANG_INFO = dict(django.conf.locale.LANG_INFO, **EXTRA_LANG_INFO)
+django.conf.locale.LANG_INFO = LANG_INFO
+
+LANGUAGE_CODE = "en-gb"
+LANGUAGE_LIST = ["en-gb", "en", "af", "mas", "st", "sw", "tn", "vi", "xh", "zu"]
+LANGUAGES = [(code, LANG_INFO[code]["name"]) for code in LANGUAGE_LIST]
 
 TIME_ZONE = env.str("DJANGO_TIME_ZONE")
-
-USE_I18N = env("DJANGO_USE_I18N")
-
-# set to False so DATE formats below are used
-USE_L10N = env("DJANGO_USE_L10N")
-
-USE_TZ = env("DJANGO_USE_TZ")
-
 DATE_INPUT_FORMATS = ["%Y-%m-%d", "%d/%m/%Y"]
 DATETIME_INPUT_FORMATS = [
     "%Y-%m-%d %H:%M:%S",  # '2006-10-25 14:30:59'
