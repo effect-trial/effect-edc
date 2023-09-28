@@ -5,6 +5,7 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_prn_admin
 from ..forms import HospitalizationForm
@@ -12,7 +13,9 @@ from ..models import Hospitalization
 
 
 @admin.register(Hospitalization, site=effect_prn_admin)
-class HospitalizationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class HospitalizationAdmin(
+    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+):
     form = HospitalizationForm
 
     fieldsets = (

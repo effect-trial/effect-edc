@@ -7,7 +7,7 @@ from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin
 
 
-class ModelAdminMixin(ModelAdminSubjectDashboardMixin):
+class ModelAdminMixin(SiteModelAdminMixin, ModelAdminSubjectDashboardMixin):
     pass
 
 
