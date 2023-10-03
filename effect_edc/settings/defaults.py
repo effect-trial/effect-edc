@@ -325,7 +325,7 @@ with open(os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSI
 # Note: will cause "CSRF verification failed. Request aborted"
 #       if DEBUG=False and https not configured.
 if not DEBUG:
-    # CSFR cookies
+    # CSRF cookies
     CSRF_COOKIE_SECURE = env.str("DJANGO_CSRF_COOKIE_SECURE")
     SECURE_PROXY_SSL_HEADER = env.tuple("DJANGO_SECURE_PROXY_SSL_HEADER")
     SESSION_COOKIE_SECURE = env.str("DJANGO_SESSION_COOKIE_SECURE")
