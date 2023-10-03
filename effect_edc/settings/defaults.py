@@ -4,7 +4,6 @@ from pathlib import Path
 
 import django.conf.locale
 import environ
-from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_constants.constants import COMPLETE
 from edc_constants.internationalization import EXTRA_LANG_INFO
 from edc_randomization.constants import CONTROL, INTERVENTION
@@ -527,12 +526,6 @@ if CELERY_ENABLED:
         #     CELERY_ROUTES = {
         #         'edc_data_manager.tasks.*': {'queue': 'normal'},
         #     }
-
-EDC_APPOINTMENT_APPT_REASON_CHOICES = (
-    (SCHEDULED_APPT, "Scheduled visit (study)"),
-    (UNSCHEDULED_APPT, "Routine / Unscheduled (non-study)"),
-)
-
 
 if "test" in sys.argv:
 
