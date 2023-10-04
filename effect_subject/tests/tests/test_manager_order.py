@@ -1,7 +1,11 @@
 from django.apps import apps as django_apps
 from django.test import TestCase
-from edc_sites.models import CurrentSiteManager as DefaultCurrentSiteManager
-from edc_visit_tracking.managers import CrfCurrentSiteManager, VisitCurrentSiteManager
+from edc_lab.managers import RequisitionManager
+from edc_model.models.historical_records import SerializableModelManager
+from edc_visit_tracking.managers import CrfModelManager
+
+from effect_subject.models.adherence.missed_doses_manager import MissedDosesManager
+from effect_subject.models.subject_visit import VisitModelManager
 
 
 class TestManagers(TestCase):
@@ -9,23 +13,36 @@ class TestManagers(TestCase):
         app_label = "effect_subject"
         app_config = django_apps.get_app_config(app_label)
         inlines = [f"{app_label}.fluconmisseddoses", f"{app_label}.flucytmisseddoses"]
+        requisition_model = f"{app_label}.subjectrequisition"
         visit_model = f"{app_label}.subjectvisit"
         for model_cls in app_config.get_models():
             if model_cls._meta.label_lower in inlines:
                 self.assertEqual(
                     model_cls._default_manager.__class__,
-                    DefaultCurrentSiteManager,
+                    MissedDosesManager,
                     msg=f"Model is {model_cls}",
                 )
             elif model_cls._meta.label_lower == visit_model:
                 self.assertEqual(
                     model_cls._default_manager.__class__,
-                    VisitCurrentSiteManager,
+                    VisitModelManager,
                     msg=f"Model is {model_cls}",
                 )
-            elif "historical" not in model_cls._meta.label_lower:
+            elif model_cls._meta.label_lower == requisition_model:
                 self.assertEqual(
                     model_cls._default_manager.__class__,
-                    CrfCurrentSiteManager,
+                    RequisitionManager,
+                    msg=f"Model is {model_cls}",
+                )
+            elif "historical" in model_cls._meta.label_lower:
+                self.assertEqual(
+                    model_cls._default_manager.__class__,
+                    SerializableModelManager,
+                    msg=f"Model is {model_cls}",
+                )
+            else:
+                self.assertEqual(
+                    model_cls._default_manager.__class__,
+                    CrfModelManager,
                     msg=f"Model is {model_cls}",
                 )
