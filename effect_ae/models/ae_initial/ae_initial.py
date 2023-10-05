@@ -5,5 +5,5 @@ from .ae_effect_model_mixin import AeEffectModelMixin
 
 
 class AeInitial(AeInitialModelMixin, AeEffectModelMixin, BaseUuidModel):
-    class Meta(AeInitialModelMixin.Meta):
+    class Meta(AeInitialModelMixin.Meta, BaseUuidModel.Meta):
         pass

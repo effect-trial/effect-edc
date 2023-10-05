@@ -1,10 +1,10 @@
-from edc_model import models as edc_models
+from edc_model.models import BaseUuidModel
 
 from ..model_mixins import AeReviewModelMixin
 
 
-class AeSponsorReview(AeReviewModelMixin, edc_models.BaseUuidModel):
+class AeSponsorReview(AeReviewModelMixin, BaseUuidModel):
     """Not used"""
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "AE Sponsor Review"
