@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from typing import Any
-
 from django.contrib import admin
 from edc_appointment.admin import AppointmentAdmin as BaseAdmin
 from edc_appointment.admin_site import edc_appointment_admin
@@ -14,5 +12,5 @@ edc_appointment_admin.unregister(Appointment)
 
 @admin.register(Appointment, site=edc_appointment_admin)
 class AppointmentAdmin(BaseAdmin):
-    def get_appt_reason_choices(self, request) -> tuple[Any, ...]:
+    def get_appt_reason_choices(self, request) -> tuple[str, str]:
         return APPT_REASON_CHOICES
