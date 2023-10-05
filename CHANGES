@@ -4,6 +4,7 @@ Changes
 unreleased
 ------
 - default model manager changed from `on_site` to `objects`
+- renamed 'Edc Metadata' to 'Data Collection Status'
 - updates to better support internationalization
 - add SiteModelAdminMixin to various model admin classes (to restrict
   to viewing entries only from current site)
