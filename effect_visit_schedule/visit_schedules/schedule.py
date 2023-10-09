@@ -1,6 +1,6 @@
 from dateutil.relativedelta import relativedelta
-from edc_visit_schedule import Schedule
-from edc_visit_schedule import Visit as BaseVisit
+from edc_visit_schedule.schedule import Schedule
+from edc_visit_schedule.visit import Visit as BaseVisit
 
 from ..constants import DAY01, DAY03, DAY09, DAY14, WEEK04, WEEK10, WEEK16, WEEK24
 from .crfs import crfs_d01, crfs_d03, crfs_d09, crfs_d14, crfs_missed

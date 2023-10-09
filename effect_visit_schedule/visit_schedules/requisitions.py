@@ -1,5 +1,5 @@
 from edc_lab_panel.panels import sputum_panel
-from edc_visit_schedule import FormsCollection, Requisition
+from edc_visit_schedule.visit import FormsCollection, Requisition
 
 from effect_labs.panels import (
     blood_culture_panel,
