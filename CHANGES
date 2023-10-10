@@ -20,6 +20,7 @@ unreleased
         `manage.py migrate`
   - reset metadata and references, and update:
         `manage.py update_metadata --delete_metadata --delete_references`
+- drop Python 3.10 support
 - bump to edc 0.5.35
 
 0.1.37
