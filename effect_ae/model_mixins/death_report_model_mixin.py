@@ -1,7 +1,7 @@
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
-from edc_model import models as edc_models
+from edc_model.models import IsDateEstimatedFieldNa
 from edc_model.validators import date_not_future
 from edc_protocol.validators import date_not_before_study_start
 
@@ -14,7 +14,7 @@ class DeathReportModelMixin(models.Model):
         blank=True,
     )
 
-    hospitalization_date_estimated = edc_models.IsDateEstimatedFieldNa(
+    hospitalization_date_estimated = IsDateEstimatedFieldNa(
         verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
     )
 
@@ -50,7 +50,7 @@ class DeathReportModelMixin(models.Model):
         blank=True,
     )
 
-    date_first_unwell_estimated = edc_models.IsDateEstimatedFieldNa(
+    date_first_unwell_estimated = IsDateEstimatedFieldNa(
         verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
     )
 

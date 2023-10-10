@@ -1,9 +1,9 @@
-from edc_adverse_event.pdf_reports import DeathReport
+from edc_adverse_event.pdf_reports import DeathPdfReport
 from edc_adverse_event.view_mixins import DeathReportListboardViewMixin
 from reportlab.lib.units import cm
 
 
-class CustomDeathReport(DeathReport):
+class CustomDeathReport(DeathPdfReport):
     logo_data = {
         "app_label": "effect_edc",
         "filename": "effect_logo.png",

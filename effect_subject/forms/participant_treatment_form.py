@@ -5,7 +5,7 @@ from edc_constants.constants import YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators import INVALID_ERROR
 from edc_visit_schedule.constants import DAY01
-from edc_visit_tracking.utils import get_subject_visit_model_cls
+from edc_visit_tracking.utils import get_related_visit_model_cls
 from effect_form_validators.effect_subject import ParticipantTreatmentFormValidator
 
 from ..models import ParticipantTreatment
@@ -23,9 +23,7 @@ class ParticipantTreatmentForm(CrfModelFormMixin, forms.ModelForm):
         return django_apps.get_model("effect_subject.participanthistory")
 
     def validate_on_tb_tx_against_baseline(self):
-        # TODO: get_subject_visit_model_cls() to be deprecated,
-        #       use get_related_visit_model_cls() once bumped edc version in use
-        baseline_visit = get_subject_visit_model_cls().objects.get(
+        baseline_visit = get_related_visit_model_cls().objects.get(
             subject_identifier=self.related_visit.subject_identifier,
             visit_code=DAY01,
             visit_code_sequence=0,

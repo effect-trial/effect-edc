@@ -1,9 +1,9 @@
-from edc_adverse_event.pdf_reports import AeReport
+from edc_adverse_event.pdf_reports import AePdfReport
 from edc_adverse_event.view_mixins import AeListboardViewMixin
 from reportlab.lib.units import cm
 
 
-class CustomAeReport(AeReport):
+class CustomAeReport(AePdfReport):
     logo_data = {
         "app_label": "effect_edc",
         "filename": "effect_logo.png",

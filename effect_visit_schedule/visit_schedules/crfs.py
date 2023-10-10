@@ -1,4 +1,4 @@
-from edc_visit_schedule import Crf, FormsCollection
+from edc_visit_schedule.visit import Crf, FormsCollection
 
 from effect_visit_schedule.constants import (
     DAY01,

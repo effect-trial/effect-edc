@@ -1,11 +1,36 @@
 Changes
 +++++++
 
+unreleased
+------
+- default model manager changed from `on_site` to `objects`
+- renamed 'Edc Metadata' to 'Data Collection Status'
+- updates to better support internationalization
+- add SiteModelAdminMixin to various model admin classes (to restrict
+  to viewing entries only from current site)
+- override AppointmentAdmin to keep appt_reason choices
+- update mysqlclient dependency to be handled by core edc package
+  instead of explicitly pinning to mysqlclient 2.1.1
+- notes for migrations:
+  - drop edc-visit-tracking tables and reset migrations before migrate:
+        `drop table edc_visit_tracking_subjectvisitmissedreasons;`
+        `drop table edc_visit_tracking_visitreasons;`
+        `delete from django_migrations where app='edc_visit_tracking';`
+  - migrate:
+        `manage.py migrate`
+  - reset metadata and references, and update:
+        `manage.py update_metadata --delete_metadata --delete_references`
+- drop Python 3.10 support
+- drop Django 4.1 support
+- bump to edc 0.5.35
+- bump to edc-microbiology 0.1.15
+- bump to edc-csf 0.1.20
+- bump to effect-form-validators 0.1.34
+
 0.1.37
 ------
 - re-add Python 3.10 support
 - bump to effect-form-validators 0.1.33
-
 
 0.1.36
 ------

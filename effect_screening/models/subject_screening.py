@@ -319,6 +319,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text="If YES, patient NOT eligible, please give reason below ...",
     )
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Subject Screening"
         verbose_name_plural = "Subject Screening"

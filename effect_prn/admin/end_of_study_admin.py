@@ -6,6 +6,7 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from effect_ae.models import DeathReport
 
@@ -15,7 +16,9 @@ from ..models import EndOfStudy, LossToFollowup
 
 
 @admin.register(EndOfStudy, site=effect_prn_admin)
-class EndOfStudyAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class EndOfStudyAdmin(
+    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+):
     form = EndOfStudyForm
 
     additional_instructions = format_html(

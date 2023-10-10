@@ -12,6 +12,7 @@ from edc_adverse_event.modeladmin_mixins.ae_initial import (
     fieldset_part_three,
 )
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_ae_admin
 from ..forms import AeInitialForm
@@ -19,7 +20,7 @@ from ..models import AeInitial
 
 
 @admin.register(AeInitial, site=effect_ae_admin)
-class AeInitialAdmin(AeInitialModelAdminMixin, SimpleHistoryAdmin):
+class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistoryAdmin):
     form = AeInitialForm
     email_contact = settings.EMAIL_CONTACTS.get("ae_reports")
     additional_instructions = format_html(

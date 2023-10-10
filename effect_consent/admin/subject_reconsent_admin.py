@@ -9,6 +9,7 @@ from edc_consent.forms import SubjectReconsentForm
 from edc_dashboard.url_names import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from effect_subject.models import SubjectVisit
 
@@ -17,7 +18,9 @@ from ..models import SubjectReconsent
 
 
 @admin.register(SubjectReconsent, site=effect_consent_admin)
-class SubjectReconsentAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class SubjectReconsentAdmin(
+    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+):
     form = SubjectReconsentForm
 
     fieldsets = (
