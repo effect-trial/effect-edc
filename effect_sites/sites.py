@@ -1,17 +1,11 @@
 from edc_sites.single_site import SingleSite
 
 fqdn = "effect.clinicedc.org"
-sa_languages = {
-    "en": "English",
-    "af": "Afrikaans",
-    "st": "Sotho",
-    "sw": "Swahili",
-    "tn": "Tswana",
-    "xh": "Xhosa",
-    "zu": "Zulu",
-}
-tz_languages = {"sw": "Swahili", "en": "English", "mas": "Maasai"}
-vie_languages = {"vie": "Vietnamese", "en": "English"}
+sa_language_codes = ["en", "af", "st", "sw", "tn", "xh", "zu"]
+
+tz_language_codes = ["sw", "en", "mas"]
+
+vi_language_codes = ["vi", "en"]
 
 all_sites = {
     "south_africa": (
@@ -21,7 +15,7 @@ all_sites = {
             title="UCT: Khayelitsha and Mitchell’s Plain (Cape Town)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"capetown.sa.{fqdn}",
         ),
         SingleSite(
@@ -30,7 +24,7 @@ all_sites = {
             title="Wits: Chris Hani Baragwanath (Soweto)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"baragwanath.sa.{fqdn}",
         ),
         SingleSite(
@@ -39,7 +33,7 @@ all_sites = {
             title="Wits: Helen Joseph (Johannesburg)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"helen-joseph.sa.{fqdn}",
         ),
         SingleSite(
@@ -48,7 +42,7 @@ all_sites = {
             title="Wits: Tshepong (Klerksdorp)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"tshepong.sa.{fqdn}",
         ),
         SingleSite(
@@ -57,7 +51,7 @@ all_sites = {
             title="UKZN: King Edward VIII (Durban)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"king-edward.sa.{fqdn}",
         ),
         SingleSite(
@@ -66,7 +60,7 @@ all_sites = {
             title="UKZN: Harry Gwala (Pietermaritzburg)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"harry-gwala.sa.{fqdn}",
         ),
         SingleSite(
@@ -75,7 +69,7 @@ all_sites = {
             title="WSU: Livingstone (Gqeberha)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"livingstone.sa.{fqdn}",
         ),
         SingleSite(
@@ -84,7 +78,7 @@ all_sites = {
             title="WSU: Dora Nginza (Gqeberha)",
             country="south_africa",
             country_code="sa",
-            languages=sa_languages,
+            language_codes=sa_language_codes,
             domain=f"dora-nginza.sa.{fqdn}",
         ),
     ),
@@ -95,7 +89,7 @@ all_sites = {
             title="Amana Hospital",
             country="tanzania",
             country_code="tz",
-            languages=tz_languages,
+            language_codes=tz_language_codes,
             domain=f"amana.tz.{fqdn}",
         ),
         SingleSite(
@@ -104,7 +98,7 @@ all_sites = {
             title="Temeke Hospital",
             country="tanzania",
             country_code="tz",
-            languages=tz_languages,
+            language_codes=tz_language_codes,
             domain=f"temeke.tz.{fqdn}",
         ),
         SingleSite(
@@ -113,18 +107,18 @@ all_sites = {
             title="Mwananyamala Hospital",
             country="tanzania",
             country_code="tz",
-            languages=tz_languages,
+            language_codes=tz_language_codes,
             domain=f"mwananyamala.tz.{fqdn}",
         ),
     ),
     # "vietnam": (
     #     SingleSite(
     #         300,
-    #         "amana",
-    #         title="Hospital",
+    #         "??? name",
+    #         title="??? Hospital",
     #         country="vietnam",
-    #         country_code="vie",
-    #         languages=vie_languages,
+    #         country_code="vi",
+    #         language_codes=vi_language_codes,
     #         domain=f"???.vie.{fqdn}",
     #     ),
     # ),

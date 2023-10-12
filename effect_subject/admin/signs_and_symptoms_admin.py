@@ -1,26 +1,17 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_action_item import (
-    ActionItemModelAdminMixin,
-    action_fields,
-    action_fieldset_tuple,
-)
-from edc_model_admin.history import SimpleHistoryAdmin
+from edc_action_item import action_fields, action_fieldset_tuple
 
 from effect_subject.admin.fieldsets import reporting_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import SignsAndSymptomsForm
 from ..models import SignsAndSymptoms
-from .modeladmin import CrfModelAdminMixin
+from .modeladmin import CrfWithActionModelAdmin
 
 
 @admin.register(SignsAndSymptoms, site=effect_subject_admin)
-class SignsAndSymptomsAdmin(
-    CrfModelAdminMixin,
-    ActionItemModelAdminMixin,
-    SimpleHistoryAdmin,
-):
+class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
     form = SignsAndSymptomsForm
 
     fieldsets = (

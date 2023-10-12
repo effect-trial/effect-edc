@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import format_html
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_visit_tracking.utils import get_subject_visit_model_cls
+from edc_visit_tracking.utils import get_related_visit_model_cls
 
 from ..admin_site import effect_subject_admin
 from ..forms import StudyMedicationBaselineForm
@@ -65,7 +65,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
     def get_changeform_initial_data(self, request):
         initial_data = super().get_changeform_initial_data(request)
         try:
-            subject_visit = get_subject_visit_model_cls().objects.get(
+            subject_visit = get_related_visit_model_cls().objects.get(
                 id=request.GET.get(self.model.related_visit_model_attr())
             )
         except ObjectDoesNotExist:

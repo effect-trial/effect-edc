@@ -1,3 +1,4 @@
+from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_constants.constants import (
     DEFAULTED,
     FREE_OF_CHARGE,
@@ -56,6 +57,11 @@ ARV_DECISION = (
     (NOT_APPLICABLE, "Not applicable"),
     (ART_CONTINUED, "ART continued"),
     (ART_STOPPED, "ART stopped"),
+)
+
+APPT_REASON_CHOICES = (
+    (SCHEDULED_APPT, "Scheduled visit (study)"),
+    (UNSCHEDULED_APPT, "Routine / Unscheduled (non-study)"),
 )
 
 ASSESSMENT_WHO_CHOICES = (

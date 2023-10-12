@@ -3,6 +3,7 @@ from edc_adverse_event.model_mixins import (
     DeathReportTmgSecondManager,
     DeathReportTmgSecondSiteManager,
 )
+from edc_model.models import BaseUuidModel
 
 from .death_report_tmg import DeathReportTmg
 
@@ -14,7 +15,7 @@ class DeathReportTmgSecond(DeathReportTmg):
 
     objects = DeathReportTmgSecondManager()
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         proxy = True
         verbose_name = "Death Report TMG (2nd)"
         verbose_name_plural = "Death Report TMG (2nd)"

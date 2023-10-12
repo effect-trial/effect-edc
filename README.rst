@@ -4,10 +4,14 @@
 EFFECT Edc
 ----------
 
+|effect_logo|
+
+The EFFECT Trial
+
 Fluconazole plus flucytosine vs. fluconazole alone for cryptococcal antigen-positive patients identified through screening:
 A phase III randomised controlled trial
 
-The EFFECT Trial
+(EFFECT - Efficacy of Flucytosine and Fluconazole as Early Cryptococcal Treatment)
 
 https://www.isrctn.com/ISRCTN30579828
 
@@ -31,7 +35,7 @@ Create a virtualenv, clone the main repo and checkout master
 
 .. code-block:: bash
 
-  conda create -n edc python=3.10
+  conda create -n edc python=3.11
   conda activate edc
 
 
@@ -90,6 +94,8 @@ Login::
 
   http://localhost:8000
 
+.. |effect_logo| image:: https://github.com/effect-trial/effect-edc/blob/develop/docs/effect_logo_sm.jpg
+    :target: https://github.com/effect-trial/effect-edc
 
 .. |pypi| image:: https://img.shields.io/pypi/v/effect-edc.svg
     :target: https://pypi.python.org/pypi/effect-edc

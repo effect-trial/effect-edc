@@ -95,5 +95,5 @@ class SubjectReconsent(
         """Required for UpdatesOrCreatesRegistrationModelMixin."""
         return "subject_identifier"
 
-    class Meta:
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Subject re-consent"

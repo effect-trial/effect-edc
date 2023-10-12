@@ -5,6 +5,7 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_prn_admin
 from ..forms import LossToFollowupForm
@@ -12,7 +13,9 @@ from ..models import LossToFollowup
 
 
 @admin.register(LossToFollowup, site=effect_prn_admin)
-class LossToFollowupAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class LossToFollowupAdmin(
+    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+):
     form = LossToFollowupForm
 
     fieldsets = (

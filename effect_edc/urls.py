@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.conf.urls.i18n import i18n_patterns
 from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls.conf import include, path, re_path
@@ -78,6 +79,9 @@ urlpatterns += [
         name="switch_sites_url",
     ),
     path("home/", HomeView.as_view(), name="home_url"),
+    path("i18n/", include("django.conf.urls.i18n")),
     re_path(".", RedirectView.as_view(url="/"), name="home_url"),
     re_path("", HomeView.as_view(), name="home_url"),
 ]
+
+urlpatterns = i18n_patterns(*urlpatterns)

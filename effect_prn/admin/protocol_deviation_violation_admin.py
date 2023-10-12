@@ -7,6 +7,7 @@ from edc_action_item import action_fields, action_fieldset_tuple
 from edc_constants.constants import CLOSED, OPEN
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_prn_admin
 from ..forms import ProtocolDeviationViolationForm
@@ -14,7 +15,9 @@ from ..models import ProtocolDeviationViolation
 
 
 @admin.register(ProtocolDeviationViolation, site=effect_prn_admin)
-class ProtocolDeviationViolationAdmin(ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin):
+class ProtocolDeviationViolationAdmin(
+    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+):
     form = ProtocolDeviationViolationForm
 
     fieldsets = (

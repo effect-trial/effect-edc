@@ -4,7 +4,7 @@ from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
-from edc_model import models as edc_models
+from edc_model.models import BaseUuidModel, IsDateEstimatedField, IsDateEstimatedFieldNa
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_protocol.validators import (
     date_not_before_study_start,
@@ -20,7 +20,7 @@ class Hospitalization(
     SiteModelMixin,
     NonUniqueSubjectIdentifierFieldMixin,
     ActionModelMixin,
-    edc_models.BaseUuidModel,
+    BaseUuidModel,
 ):
     action_name = HOSPITALIZATION_ACTION
 
@@ -41,7 +41,7 @@ class Hospitalization(
         validators=[date_not_future, date_not_before_study_start],
     )
 
-    admitted_date_estimated = edc_models.IsDateEstimatedField(
+    admitted_date_estimated = IsDateEstimatedField(
         verbose_name="Is this date estimated?",
     )
 
@@ -58,7 +58,7 @@ class Hospitalization(
         blank=True,
     )
 
-    discharged_date_estimated = edc_models.IsDateEstimatedFieldNa(
+    discharged_date_estimated = IsDateEstimatedFieldNa(
         verbose_name="If YES, is this date estimated?",
         default=NOT_APPLICABLE,
     )
@@ -98,6 +98,6 @@ class Hospitalization(
         blank=True,
     )
 
-    class Meta(edc_models.BaseUuidModel.Meta):
+    class Meta(BaseUuidModel.Meta):
         verbose_name = "Hospitalization"
         verbose_name_plural = "Hospitalization"
