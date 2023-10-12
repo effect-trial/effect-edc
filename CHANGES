@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.38
 ------
 - default model manager changed from `on_site` to `objects`
 - renamed 'Edc Metadata' to 'Data Collection Status'
