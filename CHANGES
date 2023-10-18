@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+unreleased
+------
+- add Gunicorn and Nginx web config
+- add project (static HTML) landing pages
+
 0.1.38
 ------
 - default model manager changed from `on_site` to `objects`
