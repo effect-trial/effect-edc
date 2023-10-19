@@ -1,6 +1,15 @@
 Changes
 +++++++
 
+0.1.39
+------
+- fix Server error on saving StudyMedication and Adherence CRF proxy
+  models (#711)
+- fix 'CSF CRF culture requisition - field not required error' (#377)
+- add Gunicorn and Nginx web config
+- add project (static HTML) landing pages
+- bump to effect-form-validators 0.1.35
+
 0.1.38
 ------
 - default model manager changed from `on_site` to `objects`
