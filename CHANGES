@@ -3,6 +3,8 @@ Changes
 
 unreleased
 ------
+- fix Server error on saving StudyMedication and Adherence CRF proxy
+  models (#711)
 - add Gunicorn and Nginx web config
 - add project (static HTML) landing pages
 
