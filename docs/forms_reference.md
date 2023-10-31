@@ -185,7 +185,7 @@
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -270,7 +270,7 @@
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -359,7 +359,7 @@
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -432,7 +432,7 @@
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -612,7 +612,7 @@
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -7074,7 +7074,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -7160,7 +7160,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -7224,7 +7224,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -7278,7 +7278,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -7337,7 +7337,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - length: 25
 - responses:
   - `N/A`: *Not applicable*
-  - `not_estimated`: *No.*
+  - `not_estimated`: *No*
   - `D`: *Yes, estimated the Day*
   - `MD`: *Yes, estimated Month and Day*
   - `YMD`: *Yes, estimated Year, Month and Day*
@@ -14239,6 +14239,4 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-08-16 01:47*
-
-
+*Rendered on 2023-10-31 14:47*
