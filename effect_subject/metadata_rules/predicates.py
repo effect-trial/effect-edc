@@ -1,7 +1,6 @@
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import IN_PERSON, YES
-from edc_metadata.metadata_rules import PredicateCollection
 from edc_visit_schedule.constants import DAY01
 from edc_visit_schedule.utils import is_baseline
 
@@ -18,9 +17,8 @@ def screening_lp_performed(subject_identifier: str):
     return True
 
 
-class Predicates(PredicateCollection):
+class Predicates:
     app_label = "effect_subject"
-    visit_model = "effect_subject.subjectvisit"
 
     def lpcsf_crf_required(self, visit, **kwargs) -> bool:
         """Require at baseline if screening form indicates a screening LP was
