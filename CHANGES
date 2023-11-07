@@ -3,7 +3,11 @@ Changes
 
 unreleased
 ------
+- updates to Death Report form (#706)
+    - add 'blurred_vision' question to Death Report (#706)
+    - increase trial specific form validation
 - update forms reference doc
+- bump to effect-form-validators 0.1.36
 
 0.1.39
 ------
