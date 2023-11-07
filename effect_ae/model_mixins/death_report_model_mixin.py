@@ -75,6 +75,15 @@ class DeathReportModelMixin(models.Model):
         default=NOT_APPLICABLE,
     )
 
+    blurred_vision = models.CharField(
+        verbose_name="If YES, did they complain of blurred vision?",
+        max_length=25,
+        choices=YES_NO_UNKNOWN_NA,
+        null=True,
+        blank=False,
+        default=NOT_APPLICABLE,
+    )
+
     nok_narrative = models.TextField(
         verbose_name="Next of kin narrative",
         null=True,
