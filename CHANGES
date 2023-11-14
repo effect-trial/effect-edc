@@ -8,6 +8,9 @@ unreleased
     - increase trial specific form validation
 - fix Server error on clicking 'Add' Subject Visit in Subject admin (#531)
 - update forms reference doc
+- bump to edc 0.5.39
+- bump to edc-microbiology 0.3.1
+- bump to edc-csf 0.3.1
 - bump to effect-form-validators 0.1.36
 
 0.1.39
