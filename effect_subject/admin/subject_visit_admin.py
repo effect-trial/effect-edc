@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.core.exceptions import ObjectDoesNotExist
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_appointment.models import Appointment
 from edc_constants.constants import IN_PERSON, NO, PATIENT
@@ -76,11 +77,15 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
         # TODO: this could be more predictive for non-baseline visits
         initial_data = super().get_changeform_initial_data(request)
         appointment_id = request.GET.get("appointment")
-        appointment = Appointment.objects.get(id=appointment_id)
-        initial_data.update(
-            assessment_type=IN_PERSON if appointment.visit_code == DAY1 else None,
-            assessment_who=PATIENT if appointment.visit_code == DAY1 else None,
-            info_source=PATIENT if appointment.visit_code == DAY1 else None,
-            hospitalized=NO if appointment.visit_code == DAY1 else None,
-        )
+        try:
+            appointment = Appointment.objects.get(id=appointment_id)
+        except ObjectDoesNotExist:
+            pass
+        else:
+            initial_data.update(
+                assessment_type=IN_PERSON if appointment.visit_code == DAY1 else None,
+                assessment_who=PATIENT if appointment.visit_code == DAY1 else None,
+                info_source=PATIENT if appointment.visit_code == DAY1 else None,
+                hospitalized=NO if appointment.visit_code == DAY1 else None,
+            )
         return initial_data

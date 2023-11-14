@@ -19,7 +19,7 @@ class DeathReportModelMixin(models.Model):
     )
 
     clinical_notes_available = models.CharField(
-        verbose_name="If YES, are clinical notes available to study staff?",
+        verbose_name="If died as inpatient, are clinical notes available to study staff?",
         max_length=15,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -72,6 +72,15 @@ class DeathReportModelMixin(models.Model):
         verbose_name="If YES, did they have any seizures?",
         max_length=25,
         choices=YES_NO_UNKNOWN_NA,
+        default=NOT_APPLICABLE,
+    )
+
+    blurred_vision = models.CharField(
+        verbose_name="If YES, did they complain of blurred vision?",
+        max_length=25,
+        choices=YES_NO_UNKNOWN_NA,
+        null=True,
+        blank=False,
         default=NOT_APPLICABLE,
     )
 
