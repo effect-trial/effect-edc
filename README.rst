@@ -95,16 +95,16 @@ Login::
   http://localhost:8000
 
 .. |effect_logo| image:: https://github.com/effect-trial/effect-edc/blob/develop/docs/effect_logo_sm.jpg
-    :target: https://github.com/effect-trial/effect-edc
+   :target: https://github.com/effect-trial/effect-edc
 
 .. |pypi| image:: https://img.shields.io/pypi/v/effect-edc.svg
-    :target: https://pypi.python.org/pypi/effect-edc
+   :target: https://pypi.python.org/pypi/effect-edc
 
-.. |actions| image:: https://github.com/effect-trial/effect-edc/workflows/build/badge.svg?branch=develop
-  :target: https://github.com/effect-trial/effect-edc/actions?query=workflow:build
+.. |actions| image:: https://github.com/effect-trial/effect-edc/actions/workflows/build.yml/badge.svg
+   :target: https://github.com/effect-trial/effect-edc/actions/workflows/build.yml
 
 .. |codecov| image:: https://codecov.io/gh/effect-trial/effect-edc/branch/develop/graph/badge.svg
-  :target: https://codecov.io/gh/effect-trial/effect-edc
+   :target: https://codecov.io/gh/effect-trial/effect-edc
 
 .. |downloads| image:: https://pepy.tech/badge/effect-edc
    :target: https://pepy.tech/project/effect-edc
