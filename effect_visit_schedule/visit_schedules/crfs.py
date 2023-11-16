@@ -12,17 +12,17 @@ from effect_visit_schedule.constants import (
 )
 
 crfs_prn = FormsCollection(
-    Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
-    Crf(show_order=70, model="effect_subject.vitalsigns"),
-    Crf(show_order=200, model="effect_subject.bloodresultsfbc"),
-    Crf(show_order=210, model="effect_subject.bloodresultschem"),
-    Crf(show_order=230, model="effect_subject.chestxray"),
-    Crf(show_order=240, model="effect_subject.lpcsf"),
-    Crf(show_order=250, model="effect_subject.tbdiagnostics"),
-    Crf(show_order=340, model="effect_subject.bloodculture"),
-    Crf(show_order=360, model="effect_subject.histopathology"),
-    Crf(show_order=401, model="effect_subject.healtheconomicsevent"),
-    Crf(show_order=500, model="effect_subject.clinicalnote"),
+    Crf(show_order=55, model="effect_subject.studymedicationfollowup"),
+    Crf(show_order=75, model="effect_subject.vitalsigns"),
+    Crf(show_order=205, model="effect_subject.bloodresultsfbc"),
+    Crf(show_order=215, model="effect_subject.bloodresultschem"),
+    Crf(show_order=235, model="effect_subject.chestxray"),
+    Crf(show_order=245, model="effect_subject.lpcsf"),
+    Crf(show_order=255, model="effect_subject.tbdiagnostics"),
+    Crf(show_order=345, model="effect_subject.bloodculture"),
+    Crf(show_order=365, model="effect_subject.histopathology"),
+    Crf(show_order=406, model="effect_subject.healtheconomicsevent"),
+    Crf(show_order=505, model="effect_subject.clinicalnote"),
     name="prn",
 )
 
