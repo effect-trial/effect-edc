@@ -16,7 +16,6 @@ urlpatterns = [
     path("edc_export/", include("edc_export.urls")),
     path("edc_protocol/", include("edc_protocol.urls")),
     path("edc_randomization/", include("edc_randomization.urls")),
-    path("edc_reference/", include("edc_reference.urls")),
     path("edc_visit_schedule/", include("edc_visit_schedule.urls")),
     path("ae/", include("effect_ae.urls")),
     path("effect_consent/", include("effect_consent.urls")),

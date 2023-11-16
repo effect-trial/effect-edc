@@ -3,9 +3,9 @@ from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA_MISSED
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
-from edc_model import models as edc_models
+from edc_model.models import BaseUuidModel, HistoricalRecords
+from edc_model_fields.fields import OtherCharField
 from edc_offstudy.model_mixins import OffstudyNonCrfModelMixin
-from edc_reference.model_mixins import ReferenceModelMixin
 from edc_sites.models import SiteModelMixin
 from edc_visit_tracking.choices import ASSESSMENT_TYPES
 from edc_visit_tracking.managers import VisitCurrentSiteManager
@@ -29,11 +29,10 @@ class VisitModelManager(BaseVisitModelManager):
 class SubjectVisit(
     SiteModelMixin,
     VisitModelMixin,
-    ReferenceModelMixin,
     CreatesMetadataModelMixin,
     RequiresConsentFieldsModelMixin,
     OffstudyNonCrfModelMixin,
-    edc_models.BaseUuidModel,
+    BaseUuidModel,
 ):
 
     """A model completed by the user that captures the covering
@@ -76,7 +75,7 @@ class SubjectVisit(
         choices=ASSESSMENT_TYPES,
     )
 
-    assessment_type_other = edc_models.OtherCharField()
+    assessment_type_other = OtherCharField()
 
     assessment_who = models.CharField(
         verbose_name="Who did you speak to?",
@@ -84,7 +83,7 @@ class SubjectVisit(
         choices=ASSESSMENT_WHO_CHOICES,
     )
 
-    assessment_who_other = edc_models.OtherCharField()
+    assessment_who_other = OtherCharField()
 
     # override default
     info_source = models.CharField(
@@ -106,7 +105,7 @@ class SubjectVisit(
 
     objects = VisitModelManager()
 
-    history = edc_models.HistoricalRecords()
+    history = HistoricalRecords()
 
-    class Meta(VisitModelMixin.Meta, edc_models.BaseUuidModel.Meta):
+    class Meta(VisitModelMixin.Meta, BaseUuidModel.Meta):
         pass
