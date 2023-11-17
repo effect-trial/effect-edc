@@ -49,7 +49,6 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_protocol"),
     *paths_for_urlpatterns("edc_protocol_incident"),
     *paths_for_urlpatterns("edc_randomization"),
-    *paths_for_urlpatterns("edc_reference"),
     *paths_for_urlpatterns("edc_refusal"),
     *paths_for_urlpatterns("edc_registration"),
     # *paths_for_urlpatterns("edc_review_dashboard"),

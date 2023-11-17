@@ -121,7 +121,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_lab_dashboard.apps.AppConfig",
         "edc_label.apps.AppConfig",
         "edc_locator.apps.AppConfig",
-        "edc_reference.apps.AppConfig",
         "edc_pdf_reports.apps.AppConfig",
         "edc_identifier.apps.AppConfig",
         "edc_metadata.apps.AppConfig",

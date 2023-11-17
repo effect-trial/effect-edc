@@ -50,6 +50,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
                     "headache",
                     "drowsy_confused_altered_behaviour",
                     "seizures",
+                    "blurred_vision",
                     "nok_narrative",
                 )
             },
@@ -63,6 +64,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
     )
 
     radio_fields = {
+        "blurred_vision": admin.VERTICAL,
         "cause_of_death": admin.VERTICAL,
         "clinical_notes_available": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,

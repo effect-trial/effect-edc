@@ -48,6 +48,7 @@ class SubjectVisitForm(
                         )
                     }
                 )
+        return cleaned_data
 
     class Meta:
         model = SubjectVisit

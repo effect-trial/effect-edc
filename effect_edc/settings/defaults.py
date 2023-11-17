@@ -126,7 +126,6 @@ INSTALLED_APPS = [
     "edc_protocol_incident.apps.AppConfig",
     "edc_prn.apps.AppConfig",
     "edc_randomization.apps.AppConfig",
-    "edc_reference.apps.AppConfig",
     "edc_registration.apps.AppConfig",
     "edc_pdf_reports.apps.AppConfig",
     "edc_review_dashboard.apps.AppConfig",
