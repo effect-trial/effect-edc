@@ -6,7 +6,8 @@ Changes
 - updates to Death Report form (#706)
     - add 'blurred_vision' question to Death Report (#706)
     - increase trial specific form validation
-- fix 'Already captured requisition forms showing as new/required' (#710)
+- fix 'Keyed requisition forms showing as new/required, keyed PRNs not
+  showing at all' (#710)
 - fix Server error on clicking 'Add' Subject Visit in Subject admin (#531)
 - update forms reference doc
 - bump to edc 0.5.40
