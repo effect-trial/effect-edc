@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.40
 ------
 - updates to Death Report form (#706)
     - add 'blurred_vision' question to Death Report (#706)
