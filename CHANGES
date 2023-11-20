@@ -1,6 +1,12 @@
 Changes
 +++++++
 
+unreleased
+------
+- fix issue with overlapping CRFs/PRNs for a visit not showing as
+  required (see #710)
+- bump to edc 0.5.42
+
 0.1.40
 ------
 - updates to Death Report form (#706)
