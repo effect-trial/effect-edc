@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.41
 ------
 - fix issue with overlapping CRFs/PRNs for a visit not showing as
   required (see #710)
