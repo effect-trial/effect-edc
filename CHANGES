@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+0.1.42
+------
+- bump to edc 0.5.43
+
 0.1.41
 ------
 - fix issue with overlapping CRFs/PRNs for a visit not showing as
