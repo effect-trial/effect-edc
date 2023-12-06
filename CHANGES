@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+unreleased
+------
+- add Sodium field to Blood Result: Chemistry form (#521)
+
 0.1.42
 ------
 - bump to edc 0.5.43
