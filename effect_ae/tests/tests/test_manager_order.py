@@ -1,6 +1,6 @@
 from django.apps import apps as django_apps
 from django.db.models.manager import Manager
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_action_item.managers import ActionIdentifierModelManager
 from edc_adverse_event.model_mixins import DeathReportTmgSecondManager
 from edc_adverse_event.model_mixins.death_report import DeathReportTmgManager
@@ -8,6 +8,7 @@ from edc_model.models.historical_records import SerializableModelManager
 
 
 class TestManagers(TestCase):
+    @tag("1")
     def test_model_default_manager_names(self):
         app_label = "effect_ae"
         app_config = django_apps.get_app_config(app_label)

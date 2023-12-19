@@ -1,15 +1,15 @@
 from edc_crf.model_mixins import CrfInlineModelMixin
 from edc_model import models as edc_models
 from edc_model.models import HistoricalRecords
-from edc_sites.model_mixins import CurrentSiteManager
+from edc_sites.models import CurrentSiteManager
 
 from .missed_doses_manager import MissedDosesManager
 from .missed_doses_model_mixin import MissedDosesModelMixin
 
 
 class FluconMissedDoses(MissedDosesModelMixin, CrfInlineModelMixin, edc_models.BaseUuidModel):
-    on_site = CurrentSiteManager()
     objects = MissedDosesManager()
+    on_site = CurrentSiteManager()
     history = HistoricalRecords()
 
     def natural_key(self):

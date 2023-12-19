@@ -1,4 +1,5 @@
 import re
+from typing import Any
 
 from django.db.models import Q
 from edc_constants.constants import ABNORMAL
@@ -34,22 +35,28 @@ class ListboardView(
     paginate_by = 10
     search_form_url = "screening_listboard_url"
 
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update(
+    def get_context_data(self, **kwargs) -> dict[str, Any]:
+        kwargs.update(
             subject_screening_add_url=self.get_subject_screening_add_url(),
             ABNORMAL=ABNORMAL,
         )
-        return context
+        return super().get_context_data(**kwargs)
 
     def get_subject_screening_add_url(self):
         return self.listboard_model_cls().get_absolute_url()
 
-    def get_queryset_filter_options(self, request, *args, **kwargs):
-        options = super().get_queryset_filter_options(request, *args, **kwargs)
+    def get_queryset_filter_options(self, request, *args, **kwargs) -> tuple[Q, dict]:
+        q_object, options = super().get_queryset_filter_options(request, *args, **kwargs)
+
+        if re.match(r"^[A-Z\-]+$", self.search_term):
+            q_object |= Q(initials__exact=self.search_term.upper())
+            q_object |= Q(
+                screening_identifier__icontains=self.search_term.replace("-", "").upper()
+            )
+
         if kwargs.get("screening_identifier"):
             options.update({"screening_identifier": kwargs.get("screening_identifier")})
-        return options
+        return q_object, options
 
     def extra_search_options(self, search_term):
         q_objects = []

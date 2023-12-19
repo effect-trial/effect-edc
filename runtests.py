@@ -116,6 +116,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_facility.apps.AppConfig",
         "edc_fieldsets.apps.AppConfig",
         "edc_form_validators.apps.AppConfig",
+        "edc_form_runners.apps.AppConfig",
         "edc_reportable.apps.AppConfig",
         "edc_lab.apps.AppConfig",
         "edc_lab_dashboard.apps.AppConfig",

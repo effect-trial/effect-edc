@@ -3,9 +3,9 @@ from edc_appointment.models import Appointment
 from edc_model_wrapper.tests import ModelWrapperTestHelper
 from edc_subject_model_wrappers import (
     AppointmentModelWrapper,
+    RelatedVisitModelWrapper,
     SubjectConsentModelWrapper,
     SubjectLocatorModelWrapper,
-    SubjectVisitModelWrapper,
 )
 
 from effect_consent.models import SubjectConsent
@@ -65,6 +65,6 @@ class TestModelWrappers(EffectTestCaseMixin, TestCase):
             appointment=appointment, reason="scheduled"
         )
         helper = ModelWrapperTestHelper(
-            model_wrapper=SubjectVisitModelWrapper, model_obj=subject_visit
+            model_wrapper=RelatedVisitModelWrapper, model_obj=subject_visit
         )
         helper.test(self)

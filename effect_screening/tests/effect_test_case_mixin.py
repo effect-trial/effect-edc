@@ -16,14 +16,14 @@ from edc_list_data.site_list_data import site_list_data
 from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_randomization.site_randomizers import site_randomizers
-from edc_sites import add_or_update_django_sites, get_sites_by_country
+from edc_sites.site import sites
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
+from edc_sites.utils import add_or_update_django_sites
 from edc_utils.date import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
 
-from effect_sites import fqdn
 from effect_subject.models import SubjectVisit
 from effect_visit_schedule.constants import DAY01
 from effect_visit_schedule.visit_schedules import visit_schedule
@@ -74,9 +74,7 @@ def get_eligible_options() -> dict:
 class EffectTestCaseMixin(
     AppointmentTestCaseMixin, FormValidatorTestCaseMixin, SiteTestCaseMixin
 ):
-    fqdn = fqdn
-
-    default_sites = get_sites_by_country("tanzania")
+    default_sites = sites.get_by_country("tanzania", aslist=True)
 
     site_names = [s.name for s in default_sites]
 
@@ -88,8 +86,7 @@ class EffectTestCaseMixin(
 
     @classmethod
     def setUpTestData(cls):
-        super().setUpTestData()
-        add_or_update_django_sites(sites=get_sites_by_country("tanzania"))
+        add_or_update_django_sites(single_sites=cls.default_sites)
         import_holidays(test=True)
         site_list_data.initialize()
         site_list_data.autodiscover()

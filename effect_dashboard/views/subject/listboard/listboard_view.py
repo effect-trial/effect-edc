@@ -26,21 +26,19 @@ class ListboardView(
     navbar_selected_item = "consented_subject"
     search_form_url = "subject_listboard_url"
 
-    def get_queryset_filter_options(self, request, *args, **kwargs):
-        options = super().get_queryset_filter_options(request, *args, **kwargs)
+    def get_queryset_filter_options(self, request, *args, **kwargs) -> tuple[Q, dict]:
+        q_object, options = super().get_queryset_filter_options(request, *args, **kwargs)
+
+        if re.match(r"^[A-Za-z\-]+$", self.search_term):
+            q_object |= Q(initials__exact=self.search_term.upper())
+            q_object |= Q(first_name__exact=self.search_term.upper())
+            q_object |= Q(
+                screening_identifier__icontains=self.search_term.replace("-", "").upper()
+            )
+            q_object |= Q(subject_identifier__icontains=self.search_term)
+            if re.match(r"^[0-9]+$", self.search_term):
+                q_object |= Q(identity__exact=self.search_term)
+
         if kwargs.get("subject_identifier"):
             options.update({"subject_identifier": kwargs.get("subject_identifier")})
-        return options
-
-    def extra_search_options(self, search_term):
-        q_objects = []
-        if re.match(r"^[A-Za-z\-]+$", search_term):
-            q_objects.append(Q(initials__exact=search_term.upper()))
-            q_objects.append(Q(first_name__exact=search_term.upper()))
-            q_objects.append(
-                Q(screening_identifier__icontains=search_term.replace("-", "").upper())
-            )
-            q_objects.append(Q(subject_identifier__icontains=search_term))
-        if re.match(r"^[0-9]+$", search_term):
-            q_objects.append(Q(identity__exact=search_term))
-        return q_objects
+        return q_object, options
