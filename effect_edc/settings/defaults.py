@@ -106,6 +106,7 @@ INSTALLED_APPS = [
     "edc_facility.apps.AppConfig",
     "edc_fieldsets.apps.AppConfig",
     "edc_form_validators.apps.AppConfig",
+    "edc_form_runners.apps.AppConfig",
     "edc_lab_dashboard.apps.AppConfig",
     "edc_label.apps.AppConfig",
     "edc_list_data.apps.AppConfig",
@@ -312,12 +313,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # edc-pdutils
 EXPORT_FILENAME_TIMESTAMP_FORMAT = "%Y%m%d"
-
-# django_revision
-with open(os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSION")) as f:
-    REVISION = f.read().strip()
-
-# EDC_AUTH_SKIP_AUTH_UPDATER = True
 
 # enforce https if DEBUG=False!
 # Note: will cause "CSRF verification failed. Request aborted"
