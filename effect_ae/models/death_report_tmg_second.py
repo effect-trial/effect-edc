@@ -13,7 +13,7 @@ class DeathReportTmgSecond(DeathReportTmg):
     objects = DeathReportTmgSecondManager()
     on_site = DeathReportTmgSecondSiteManager()
 
-    class Meta(DeathReportTmg.Meta):
+    class Meta:
         proxy = True
         verbose_name = "Death Report TMG (2nd)"
         verbose_name_plural = "Death Report TMG (2nd)"
