@@ -5,7 +5,7 @@ from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel
 from edc_protocol_incident.constants import PROTOCOL_DEVIATION_VIOLATION_ACTION
 from edc_protocol_incident.model_mixins import ProtocolDeviationViolationModelMixin
-from edc_sites.models import SiteModelMixin
+from edc_sites.model_mixins import SiteModelMixin
 
 from ..choices import ACTION_REQUIRED, PROTOCOL_VIOLATION
 

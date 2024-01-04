@@ -5,10 +5,8 @@ from django_audit_fields import audit_fieldset_tuple
 from edc_action_item import action_fieldset_tuple
 from edc_adverse_event.modeladmin_mixins import (
     AeInitialModelAdminMixin,
-    fieldset_part_one,
-)
-from edc_adverse_event.modeladmin_mixins.ae_initial import (
     fieldset_part_four,
+    fieldset_part_one,
     fieldset_part_three,
 )
 from edc_model_admin.history import SimpleHistoryAdmin
@@ -22,6 +20,7 @@ from ..models import AeInitial
 @admin.register(AeInitial, site=effect_ae_admin)
 class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistoryAdmin):
     form = AeInitialForm
+
     email_contact = settings.EMAIL_CONTACTS.get("ae_reports")
     additional_instructions = format_html(
         "Complete the initial AE report and forward to the TMG. "
@@ -76,3 +75,9 @@ class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistor
         "susar": admin.VERTICAL,
         "susar_reported": admin.VERTICAL,
     }
+
+    def get_list_display(self, request):
+        fields = super().get_list_display(request)
+        fields = list(fields)
+        fields.remove("__str__")
+        return tuple(fields)

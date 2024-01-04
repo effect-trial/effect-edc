@@ -1,5 +1,5 @@
 from edc_model.models import HistoricalRecords
-from edc_sites.models import CurrentSiteManager as BaseCurrentSiteManager
+from edc_sites.managers import CurrentSiteManager as BaseCurrentSiteManager
 
 from .daily_closing_log import DailyClosingLog
 

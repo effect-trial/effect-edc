@@ -1,7 +1,7 @@
 from edc_crf.model_mixins import CrfInlineModelMixin
 from edc_model import models as edc_models
 from edc_model.models import HistoricalRecords
-from edc_sites.models import CurrentSiteManager
+from edc_sites.managers import CurrentSiteManager
 
 from .missed_doses_manager import MissedDosesManager
 from .missed_doses_model_mixin import MissedDosesModelMixin

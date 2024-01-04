@@ -8,7 +8,7 @@ from django.views.generic import RedirectView
 from edc_dashboard.views import AdministrationView
 from edc_utils.paths_for_urlpatterns import paths_for_urlpatterns
 
-from .views import HomeView
+from effect_edc.views import HomeView
 
 
 def trigger_error(request):
@@ -45,6 +45,7 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_microbiology"),
     *paths_for_urlpatterns("edc_notification"),
     *paths_for_urlpatterns("edc_offstudy"),
+    *paths_for_urlpatterns("edc_pdf_reports"),
     *paths_for_urlpatterns("edc_pdutils"),
     *paths_for_urlpatterns("edc_pharmacy"),
     *paths_for_urlpatterns("edc_protocol"),
@@ -70,6 +71,7 @@ if settings.DEFENDER_ENABLED:
     urlpatterns.append(
         path("defender/", include("defender.urls")),  # defender admin
     )
+
 
 urlpatterns += [
     path("admin/", admin.site.urls),

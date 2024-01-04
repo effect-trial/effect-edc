@@ -42,7 +42,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
     EDC_NAVBAR_DEFAULT="effect_dashboard",
     EDC_PROTOCOL_STUDY_OPEN_DATETIME=datetime(2019, 4, 30, 0, 0, 0, tzinfo=ZoneInfo("UTC")),
     EDC_PROTOCOL_STUDY_CLOSE_DATETIME=datetime(
-        2023, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("UTC")
+        2025, 12, 31, 23, 59, 59, tzinfo=ZoneInfo("UTC")
     ),
     DJANGO_LANGUAGES=dict(
         en="English",
