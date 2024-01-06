@@ -1,5 +1,3 @@
-import re
-
 from django.db.models import Q
 from edc_dashboard.view_mixins import EdcViewMixin
 from edc_listboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
@@ -25,20 +23,17 @@ class ListboardView(
     model_wrapper_cls = SubjectConsentModelWrapper
     navbar_selected_item = "consented_subject"
     search_form_url = "subject_listboard_url"
+    search_fields = [
+        "initials__exact",
+        "subject_identifier",
+        "screening_identifier",
+        "first_name__exact",
+        "last_name__exact",
+        "identity__exact",
+    ]
 
     def get_queryset_filter_options(self, request, *args, **kwargs) -> tuple[Q, dict]:
         q_object, options = super().get_queryset_filter_options(request, *args, **kwargs)
-
-        if re.match(r"^[A-Za-z\-]+$", self.search_term):
-            q_object |= Q(initials__exact=self.search_term.upper())
-            q_object |= Q(first_name__exact=self.search_term.upper())
-            q_object |= Q(
-                screening_identifier__icontains=self.search_term.replace("-", "").upper()
-            )
-            q_object |= Q(subject_identifier__icontains=self.search_term)
-            if re.match(r"^[0-9]+$", self.search_term):
-                q_object |= Q(identity__exact=self.search_term)
-
         if kwargs.get("subject_identifier"):
             options.update({"subject_identifier": kwargs.get("subject_identifier")})
         return q_object, options
