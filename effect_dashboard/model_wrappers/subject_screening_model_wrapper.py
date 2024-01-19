@@ -1,14 +1,16 @@
-from django.apps import apps as django_apps
-from django.core.exceptions import ObjectDoesNotExist
-from edc_consent import ConsentModelWrapperMixin
-from edc_model_wrapper import ModelWrapper
-from edc_refusal.model_wrappers import SubjectRefusalModelWrapper
+from edc_consent import site_consents
+from edc_consent.consent_definition import ConsentDefinition
+from edc_screening.model_wrappers import (
+    SubjectScreeningModelWrapper as BaseSubjectScreeningModelWrapper,
+)
 from edc_screening.utils import get_subject_screening_model
-from edc_subject_model_wrappers import SubjectConsentModelWrapper as BaseModelWrapper
-from edc_subject_model_wrappers import SubjectRefusalModelWrapperMixin
+from edc_sites import site_sites
+from edc_subject_model_wrappers import (
+    SubjectConsentModelWrapper as BaseSubjectConsentModelWrapper,
+)
 
 
-class SubjectConsentModelWrapper(BaseModelWrapper):
+class SubjectConsentModelWrapper(BaseSubjectConsentModelWrapper):
     @property
     def querystring(self):
         return (
@@ -17,41 +19,23 @@ class SubjectConsentModelWrapper(BaseModelWrapper):
         )
 
 
-class SubjectScreeningModelWrapper(
-    SubjectRefusalModelWrapperMixin, ConsentModelWrapperMixin, ModelWrapper
-):
-    consent_model_wrapper_cls = SubjectConsentModelWrapper
-    refusal_model_wrapper_cls = SubjectRefusalModelWrapper
+class SubjectScreeningModelWrapper(BaseSubjectScreeningModelWrapper):
     model = get_subject_screening_model()
-    next_url_attrs = ["screening_identifier"]
-    next_url_name = "screening_listboard_url"
-    querystring_attrs = ["gender"]
+
+    consent_model_wrapper_cls = SubjectConsentModelWrapper
 
     @property
-    def create_consent_options(self):
-        options = super().create_consent_options
-        options.update(screening_identifier=self.object.screening_identifier)
-        return options
+    def consent_definition(self) -> ConsentDefinition:
+        """Returns a consent definition relative to the wrapper's
+        `self.object` report_datetime and site.
 
-    @property
-    def consent_options(self):
-        return dict(screening_identifier=self.object.screening_identifier)
-
-    @property
-    def eligible(self) -> bool:
-        return self.object.eligible
-
-    @property
-    def consent_model_obj(self):
-        consent_model_cls = django_apps.get_model(self.consent_model_wrapper_cls.model)
-        try:
-            return consent_model_cls.objects.get(**self.consent_options)
-        except ObjectDoesNotExist:
-            return None
-
-    @property
-    def human_screening_identifier(self):
-        human = None
-        if self.screening_identifier:
-            human = f"{self.screening_identifier[0:4]}-{self.screening_identifier[4:]}"
-        return human or self.screening_identifier
+        In this case, `self.object` is an instance of the
+        subjectscreening model.
+        """
+        if not self._consent_definition:
+            self._consent_definition = site_consents.get_consent_definition(
+                # model=self.model_name,
+                report_datetime=self.report_datetime,
+                site=site_sites.get(self.object.site.id),
+            )
+        return self._consent_definition

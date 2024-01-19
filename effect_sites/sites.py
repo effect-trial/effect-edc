@@ -1,5 +1,7 @@
+from edc_sites import site_sites
 from edc_sites.single_site import SingleSite
-from edc_sites.site import sites
+
+__all__ = ["all_sites"]
 
 suffix = "effect.clinicedc.org"
 sa_language_codes = ["en", "af", "st", "sw", "tn", "xh", "zu"]
@@ -110,4 +112,4 @@ all_sites = [
     ),
 ]
 
-sites.register(*all_sites)
+site_sites.register(*all_sites)

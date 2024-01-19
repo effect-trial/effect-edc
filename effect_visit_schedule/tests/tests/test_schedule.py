@@ -4,25 +4,31 @@ from zoneinfo import ZoneInfo
 from dateutil.relativedelta import relativedelta
 from django.test import TestCase, tag
 from edc_utils import get_utcnow
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
-from effect_visit_schedule.visit_schedules import schedule, visit_schedule
+from effect_visit_schedule.constants import SCHEDULE, VISIT_SCHEDULE
 
 
 @tag("vsched")
 class TestVisitSchedule(TestCase):
     def test_visit_schedule_models(self):
+        visit_schedule = site_visit_schedules.get_visit_schedules(VISIT_SCHEDULE)
         self.assertEqual(visit_schedule.death_report_model, "effect_ae.deathreport")
         self.assertEqual(visit_schedule.offstudy_model, "edc_offstudy.subjectoffstudy")
         self.assertEqual(visit_schedule.locator_model, "edc_locator.subjectlocator")
 
     def test_schedule_models(self):
+        visit_schedule = site_visit_schedules.get_visit_schedules(VISIT_SCHEDULE)
+        schedule = visit_schedule.schedules.get(SCHEDULE)
         self.assertEqual(schedule.onschedule_model, "effect_prn.onschedule")
         self.assertEqual(schedule.offschedule_model, "effect_prn.endofstudy")
         self.assertEqual(schedule.consent_model, "effect_consent.subjectconsent")
         self.assertEqual(schedule.appointment_model, "edc_appointment.appointment")
 
     def test_visit_codes(self):
+        visit_schedule = site_visit_schedules.get_visit_schedules(VISIT_SCHEDULE)
+        schedule = visit_schedule.schedules.get(SCHEDULE)
         self.assertEqual(
             [
                 "1000",
@@ -38,6 +44,8 @@ class TestVisitSchedule(TestCase):
         )
 
     def test_requisitions(self):
+        visit_schedule = site_visit_schedules.get_visit_schedules(VISIT_SCHEDULE)
+        schedule = visit_schedule.schedules.get(SCHEDULE)
         prn = [
             "blood_culture",
             "csf_culture",
@@ -78,6 +86,8 @@ class TestVisitSchedule(TestCase):
                 )
 
     def test_crfs(self):
+        visit_schedule = site_visit_schedules.get_visit_schedules(VISIT_SCHEDULE)
+        schedule = visit_schedule.schedules.get(SCHEDULE)
         prn = [
             "effect_subject.vitalsigns",
             "effect_subject.bloodculture",

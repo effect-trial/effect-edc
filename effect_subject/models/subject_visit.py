@@ -1,5 +1,4 @@
 from django.db import models
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA_MISSED
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
@@ -30,7 +29,6 @@ class SubjectVisit(
     SiteModelMixin,
     VisitModelMixin,
     CreatesMetadataModelMixin,
-    RequiresConsentFieldsModelMixin,
     OffstudyNonCrfModelMixin,
     BaseUuidModel,
 ):

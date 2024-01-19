@@ -2,7 +2,19 @@ from dateutil.relativedelta import relativedelta
 from edc_visit_schedule.schedule import Schedule
 from edc_visit_schedule.visit import Visit as BaseVisit
 
-from ..constants import DAY01, DAY03, DAY09, DAY14, WEEK04, WEEK10, WEEK16, WEEK24
+from effect_consent.consents import consent_v1
+
+from ..constants import (
+    DAY01,
+    DAY03,
+    DAY09,
+    DAY14,
+    SCHEDULE,
+    WEEK04,
+    WEEK10,
+    WEEK16,
+    WEEK24,
+)
 from .crfs import crfs_d01, crfs_d03, crfs_d09, crfs_d14, crfs_missed
 from .crfs import crfs_prn as default_crfs_prn
 from .crfs import crfs_unscheduled as default_crfs_unscheduled
@@ -18,7 +30,7 @@ from .requisitions import requisitions_d01, requisitions_d14
 from .requisitions import requisitions_prn as default_requisitions_prn
 from .requisitions import requisitions_unscheduled as default_requisitions_unscheduled
 
-SCHEDULE = "schedule"
+__all__ = ["schedule"]
 
 
 class Visit(BaseVisit):
@@ -49,8 +61,7 @@ schedule = Schedule(
     verbose_name="Day 1 to Month 6 Follow-up",
     onschedule_model="effect_prn.onschedule",
     offschedule_model="effect_prn.endofstudy",
-    consent_model="effect_consent.subjectconsent",
-    appointment_model="edc_appointment.appointment",
+    consent_definitions=[consent_v1],
 )
 
 
@@ -154,7 +165,7 @@ visit070 = Visit(
 )
 
 
-visits = [
+for visit in [
     visit000,
     visit010,
     visit020,
@@ -163,6 +174,5 @@ visits = [
     visit050,
     visit060,
     visit070,
-]
-for visit in visits:
+]:
     schedule.add_visit(visit=visit)

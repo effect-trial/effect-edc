@@ -3,7 +3,7 @@ from edc_consent.site_consents import site_consents
 from edc_constants.constants import FEMALE, MALE
 from edc_protocol import Protocol
 
-v1 = ConsentDefinition(
+consent_v1 = ConsentDefinition(
     model="effect_consent.subjectconsent",
     version="1",
     start=Protocol().study_open_datetime,
@@ -14,4 +14,4 @@ v1 = ConsentDefinition(
     gender=[MALE, FEMALE],
 )
 
-site_consents.register(v1)
+site_consents.register(consent_v1)
