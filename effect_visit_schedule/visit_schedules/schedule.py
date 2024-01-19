@@ -15,8 +15,15 @@ from ..constants import (
     WEEK16,
     WEEK24,
 )
-from .crfs import crfs_d01, crfs_d03, crfs_d09, crfs_d14, crfs_missed
-from .crfs import crfs_prn as default_crfs_prn
+from .crfs import (
+    crfs_d01,
+    crfs_d03,
+    crfs_d09,
+    crfs_d14,
+    crfs_missed,
+    crfs_prn_baseline,
+    crfs_prn_followup,
+)
 from .crfs import crfs_unscheduled as default_crfs_unscheduled
 from .crfs import (
     crfs_unscheduled_gte_d14,
@@ -48,7 +55,7 @@ class Visit(BaseVisit):
             crfs_unscheduled=crfs_unscheduled or default_crfs_unscheduled,
             requisitions_unscheduled=requisitions_unscheduled
             or default_requisitions_unscheduled,
-            crfs_prn=crfs_prn or default_crfs_prn,
+            crfs_prn=crfs_prn or crfs_prn_followup,
             requisitions_prn=requisitions_prn or default_requisitions_prn,
             crfs_missed=crfs_missed,
             **kwargs,
@@ -74,6 +81,7 @@ visit000 = Visit(
     rupper=relativedelta(days=0),
     requisitions=requisitions_d01,
     crfs=crfs_d01,
+    crfs_prn=crfs_prn_baseline,
     crfs_unscheduled=crfs_unscheduled_lt_d14,
     facility_name="7-day-clinic",
 )
