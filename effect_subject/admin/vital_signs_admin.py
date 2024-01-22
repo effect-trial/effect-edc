@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
+from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import VitalSignsForm
@@ -32,6 +33,7 @@ class VitalSignsAdmin(CrfWithActionModelAdmin):
         ),
         action_fieldset_tuple,
         reporting_fieldset_tuple,
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

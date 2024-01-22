@@ -3,7 +3,8 @@ from edc_dashboard.view_mixins import EdcViewMixin
 from edc_listboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
 from edc_listboard.views import ListboardView as BaseListboardView
 from edc_navbar import NavbarViewMixin
-from edc_subject_model_wrappers import SubjectConsentModelWrapper
+
+# from edc_subject_model_wrappers import SubjectConsentModelWrapper
 
 
 class ListboardView(
@@ -20,7 +21,7 @@ class ListboardView(
     listboard_model = "effect_consent.subjectconsent"
     listboard_view_permission_codename = "edc_subject_dashboard.view_subject_listboard"
 
-    model_wrapper_cls = SubjectConsentModelWrapper
+    # model_wrapper_cls = SubjectConsentModelWrapper
     navbar_selected_item = "consented_subject"
     search_form_url = "subject_listboard_url"
     search_fields = [

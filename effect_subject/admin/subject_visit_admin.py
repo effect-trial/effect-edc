@@ -5,6 +5,7 @@ from edc_appointment.models import Appointment
 from edc_constants.constants import IN_PERSON, NO, PATIENT
 from edc_document_status.fieldsets import document_status_fieldset_tuple
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_sites.admin import site_fieldset_tuple
 from edc_visit_schedule.constants import DAY1
 from edc_visit_schedule.fieldsets import visit_schedule_fieldset_tuple
 from edc_visit_tracking.modeladmin_mixins import VisitModelAdminMixin
@@ -60,6 +61,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
         ("Comments", {"fields": ("comments",)}),
         visit_schedule_fieldset_tuple,
         document_status_fieldset_tuple,
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

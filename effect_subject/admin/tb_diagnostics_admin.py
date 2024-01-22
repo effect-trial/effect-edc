@@ -7,6 +7,7 @@ from edc_microbiology.fieldsets import (
     get_urinary_lam_fieldset,
 )
 from edc_microbiology.modeladmin_mixins import MicrobiologyModelAdminMixin
+from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import TbDiagnosticsForm
@@ -20,7 +21,7 @@ class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
 
     autocomplete_fields = ["sputum_requisition"]
 
-    fieldsets = (
+    fieldsets = [
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_urinary_lam_fieldset(),
         (
@@ -36,7 +37,8 @@ class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
         get_sputum_culture_fieldset(),
         get_sputum_afb_fieldset(),
         ("Comment", {"fields": ("comment",)}),
+        site_fieldset_tuple,
         audit_fieldset_tuple,
-    )
+    ]
 
     search_fields = ("subject_visit__subject_identifier",)
