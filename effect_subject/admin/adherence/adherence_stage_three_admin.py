@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_sites.admin import site_fieldset_tuple
 
 from ...admin_site import effect_subject_admin
 from ...forms import AdherenceStageThreeForm
@@ -43,6 +44,7 @@ class AdherenceStageThreeAdmin(CrfModelAdmin):
         ),
         medication_diary_review_fieldset_tuple,
         adherence_narrative_fieldset_tuple,
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

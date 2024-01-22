@@ -6,6 +6,7 @@ from edc_csf.fieldsets import (
     get_lp_fieldset,
 )
 from edc_csf.modeladmin_mixins import LpCsfModelAdminMixin
+from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import LpCsfForm
@@ -35,6 +36,7 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
                 )
             },
         ),
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

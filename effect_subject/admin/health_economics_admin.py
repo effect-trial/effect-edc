@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import HealthEconomicsForm
@@ -50,6 +51,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
                 ),
             },
         ),
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

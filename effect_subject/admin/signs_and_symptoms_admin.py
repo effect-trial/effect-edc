@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
+from edc_sites.admin import site_fieldset_tuple
 
 from effect_subject.admin.fieldsets import reporting_fieldset_tuple
 
@@ -57,6 +58,7 @@ class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
             {"classes": ("collapse",), "fields": ("calculated_headache_duration",)},
         ),
         action_fieldset_tuple,
+        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
