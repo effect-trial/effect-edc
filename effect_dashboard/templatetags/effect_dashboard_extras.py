@@ -5,6 +5,7 @@ from typing import TYPE_CHECKING
 from bs4 import BeautifulSoup
 from django import template
 from django.conf import settings
+from django.contrib.auth import get_permission_codename
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import INCOMPLETE, NO, PENDING, TBD, YES
 from edc_dashboard.url_names import url_names
@@ -85,7 +86,6 @@ def render_eligibility_button(subject_screening: SubjectScreening):
     takes_context=True,
 )
 def render_consent_button(context, subject_screening: SubjectScreening):
-    title = ["Consent subject to participate."]
     nq = NextQuerystring(
         next_url_name="screening_listboard_url",
         reverse_kwargs=dict(
@@ -110,7 +110,12 @@ def render_consent_button(context, subject_screening: SubjectScreening):
         url = f"{subject_consent.get_absolute_url()}?{nq.querystring}"
     fa_icon = "fa-pencil" if subject_consent else "fa-plus"
     title = "Edit consent" if subject_consent else "Consent subject to participate."
+    add_codename = get_permission_codename("add", model_cls._meta)
+    change_codename = get_permission_codename("change", model_cls._meta)
+    codenames = [f"effect_consent.{add_codename}", f"effect_consent.{change_codename}"]
+    disabled = "" if context["request"].user.has_perms(codenames) else "disabled"
     return dict(
+        disabled=disabled,
         perms=context["perms"],
         screening_identifier=subject_screening.screening_identifier,
         href=url,
