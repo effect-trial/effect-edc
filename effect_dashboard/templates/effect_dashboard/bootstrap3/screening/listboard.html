@@ -4,17 +4,10 @@
 {% load effect_dashboard_extras %}
 
 {% block listboard_panel %}
-
-    <a id="subjectscreening_add"
-        title="{% if perms.effect_screening.add_subjectscreening %}add screening{% else %}check your permissions{% endif %}"
-        class="btn btn-sm btn-default" role="button"
-        {% if not perms.effect_screening.add_subjectscreening %}disabled{% endif %}
-        href="{% if perms.effect_screening.add_subjectscreening %}{{ subject_screening_add_url }}?next={{ screening_listboard_url }}{% endif %}">
-            <i class="fas fa-plus fa-sm"></i> Add Subject Screening
+    <a id="subjectscreening_add" title="{% if perms.effect_screening.add_subjectscreening %}add screening{% else %}check your permissions{% endif %}" class="btn btn-sm btn-default" role="button" {% if not perms.effect_screening.add_subjectscreening %}disabled{% endif %} href="{% if perms.effect_screening.add_subjectscreening %}{{ subject_screening_add_url }}?next={{ screening_listboard_url }}{% endif %}">
+      <i class="fas fa-plus fa-sm"></i> Add Subject Screening
     </a>
-
 {% endblock listboard_panel %}
-
 
 {% block listboard_table_header %}
     <!-- begin results header -->
@@ -23,7 +16,7 @@
     <th>Screening ID</th>
     <th>Initials</th>
     <th>Age/Sex</th>
-    <th>Conditions</th>
+    <th>Assessed on</th>
     <th>Study ID</th>
     <th>User</th>
     <th>Modified</th>
@@ -35,13 +28,13 @@
 {% block listboard_table_button_column %}
     <td style="white-space: nowrap">
     <div class="btn-group">
-    {% screening_button result %}
-    {% eligibility_button result %}
-    {% if result.eligible is True %}
-        {% if result.consent %}
+    {% render_screening_button result %}
+    {% render_eligibility_button result %}
+    {% if result.eligible %}
+        {% if result.consented %}
             {% dashboard_button result %}
         {% else %}
-            {% refusal_button result %}{% if not result.refusal %}{% add_consent_button result %}{% endif %}
+            {% render_refusal_button result %}{% if not result.refusal %}{% render_consent_button result %}{% endif %}
         {% endif %}
     {% endif %}
     </div>
@@ -50,14 +43,12 @@
 
 
 {% block listboard_table_columns %}
-
-    <td>{{ result.human_screening_identifier }} </td>
+    <td>{{ result.human_readable_identifier }} </td>
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
-    <td nowrap>{% if result.qualifying_condition == YES %}HIV/DIA/HYP{%endif%}</td>
-    <td nowrap>{% if result.consent %}{{ result.consent.subject_identifier }}{% else %} -- {% endif %}</td>
+    <td nowrap>{% if result.eligible %}{{ result.real_eligibility_datetime|date:"SHORT_DATE_FORMAT" }}{% else %}{{ result.modified|date:"SHORT_DATE_FORMAT" }}{% endif %}</td>
+    <td nowrap>{% if result.consented %}{{ result.subject_identifier }}{% else %} -- {% endif %}</td>
     <td nowrap>{{ result.user_created }}</td>
-    <td nowrap>{{ result.object.modified|date:"SHORT_DATETIME_FORMAT" }}</td>
+    <td nowrap>{{ result.modified|date:"SHORT_DATETIME_FORMAT" }}</td>
     <td nowrap>{{ result.hostname_created }}</td>
-
 {% endblock listboard_table_columns %}
