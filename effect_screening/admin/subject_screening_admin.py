@@ -25,6 +25,7 @@ class SubjectScreeningAdmin(
 
     post_url_on_delete_name = "screening_listboard_url"
     subject_listboard_url_name = "screening_listboard_url"
+    subject_dashboard_url_name = "screening_listboard_url"
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
