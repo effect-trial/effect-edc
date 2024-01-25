@@ -3,7 +3,7 @@ from edc_action_item.auth_objects import (
     ACTION_ITEM_EXPORT,
     ACTION_ITEM_VIEW_ONLY,
 )
-from edc_adverse_event.auth_objects import (
+from edc_adverse_event.constants import (
     AE,
     AE_REVIEW,
     AE_SUPER,
