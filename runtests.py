@@ -107,7 +107,6 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "edc_adverse_event.apps.AppConfig",
         "edc_appointment.apps.AppConfig",
         "edc_auth.apps.AppConfig",
-        "edc_model_wrapper.apps.AppConfig",
         "edc_crf.apps.AppConfig",
         "edc_data_manager.apps.AppConfig",
         "edc_consent.apps.AppConfig",

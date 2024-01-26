@@ -11,20 +11,20 @@ from effect_dashboard.navbars import navbar as dashboard_navbar
 
 navbar = Navbar(name=settings.APP_NAME)
 
-navbar_item = copy([item for item in lab_navbar.items if item.name == "specimens"][0])
+navbar_item = copy([item for item in lab_navbar.navbar_items if item.name == "specimens"][0])
 navbar_item.active = False
 navbar_item.label = "Specimens"
 navbar.append_item(navbar_item)
 
 navbar.append_item(
-    [item for item in dashboard_navbar.items if item.name == "screened_subject"][0]
+    [item for item in dashboard_navbar.navbar_items if item.name == "screened_subject"][0]
 )
 
 navbar.append_item(
-    [item for item in dashboard_navbar.items if item.name == "consented_subject"][0]
+    [item for item in dashboard_navbar.navbar_items if item.name == "consented_subject"][0]
 )
 
-for item in review_navbar.items:
+for item in review_navbar.navbar_items:
     navbar.append_item(item)
 
 navbar.append_item(tmg_navbar_item)

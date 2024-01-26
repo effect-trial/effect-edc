@@ -157,6 +157,8 @@ EFFECT_APPS = [
 ]
 INSTALLED_APPS.extend(EFFECT_APPS)
 INSTALLED_APPS.append("edc_auth.apps.AppConfig")
+INSTALLED_APPS.append("edc_appconfig.apps.AppConfig")
+
 
 if not DEFENDER_ENABLED:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("defender"))
@@ -180,7 +182,7 @@ if not DEFENDER_ENABLED:
 
 MIDDLEWARE.extend(
     [
-        "edc_protocol.middleware.ProtocolMiddleware",
+        "edc_protocol.middleware.ResearchProtocolConfigMiddleware",
         "edc_dashboard.middleware.DashboardMiddleware",
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
