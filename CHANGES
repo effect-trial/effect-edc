@@ -9,7 +9,7 @@ unreleased
     - add urls from edc_pdf_reports
     - See edc_pdf_reports README
 - user is now redirected to effect_ae changelists instead of AE
-  listboards. Remove effect_ae from administraion section.
+  listboards. Remove effect_ae from administration section.
   (changes from edc-adverse-event)
 - migrations for indexes triggered from other modules e.g.
   edc-list-data, edc-model, etc
