@@ -15,6 +15,7 @@ unreleased
   edc-list-data, edc-model, etc
 - remove redundant edc-sites post-migrate signal
 - update edc_sites import paths
+- fix 'Server error when trying to delete a screening form' (#713)
 - fix 'Study medication followup (and baseline) appearing at baseline visit' (#734)
 - bump to edc 0.5.xx
 
