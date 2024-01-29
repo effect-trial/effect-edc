@@ -10,7 +10,6 @@ from edc_lab.admin import (
     requisition_status_fieldset,
     requisition_verify_fieldset,
 )
-from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import SubjectRequisitionForm
@@ -28,7 +27,6 @@ class SubjectRequisitionAdmin(RequisitionAdminMixin, CrfModelAdmin):
         requisition_status_fieldset,
         requisition_identifier_fieldset,
         requisition_verify_fieldset,
-        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

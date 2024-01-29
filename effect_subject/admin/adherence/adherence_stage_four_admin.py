@@ -1,6 +1,5 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_sites.admin import site_fieldset_tuple
 
 from ...admin_site import effect_subject_admin
 from ...forms import AdherenceStageFourForm
@@ -24,7 +23,6 @@ class AdherenceStageFourAdmin(CrfModelAdmin):
         (None, {"fields": ("subject_visit", "report_datetime")}),
         adherence_counselling_fieldset_tuple,
         adherence_summary_fieldset_tuple,
-        site_fieldset_tuple,
         audit_fieldset_tuple,
     )
 

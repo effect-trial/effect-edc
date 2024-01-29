@@ -1,7 +1,6 @@
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_microbiology.modeladmin_mixins import BloodCultureModelAdminMixin
-from edc_sites.admin import site_fieldset_tuple
 
 from ..admin_site import effect_subject_admin
 from ..forms import BloodCultureForm
@@ -33,6 +32,5 @@ class BloodCultureAdmin(BloodCultureModelAdminMixin, CrfModelAdmin):
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_blood_culture_fieldset(),
         ("Comment", {"fields": ("comment",)}),
-        site_fieldset_tuple,
         audit_fieldset_tuple,
     )

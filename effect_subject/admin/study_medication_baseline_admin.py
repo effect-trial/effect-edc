@@ -2,7 +2,6 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import format_html
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_sites.admin import site_fieldset_tuple
 from edc_visit_tracking.utils import get_related_visit_model_cls
 
 from ..admin_site import effect_subject_admin
@@ -53,7 +52,6 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
                 ),
             },
         ),
-        site_fieldset_tuple,
         audit_fieldset_tuple,
     ]
 
