@@ -76,6 +76,7 @@ DEFAULT_SETTINGS = DefaultTestSettings(
         "data_request": "someone@example.com",
         "data_manager": "someone@example.com",
         "tmg": "someone@example.com",
+        "ae_reports": "someone@example.com",
     },
     EMAIL_ENABLED=True,
     HOLIDAY_FILE=join(base_dir, "effect_edc", "tests", "holidays.csv"),
