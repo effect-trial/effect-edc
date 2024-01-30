@@ -17,7 +17,7 @@
     <th>Initials</th>
     <th>Age/Sex</th>
     <th>Assessed on</th>
-    {% if has_view_auditallsites %}<th>Site</th>{% endif %}
+    {% if request.user.userprofile.is_multisite_viewer %}<th>Site</th>{% endif %}
     <th>Study ID</th>
     <th>User</th>
     <th>Modified</th>
@@ -48,7 +48,7 @@
     <td nowrap>{{ result.initials }}</td>
     <td nowrap>{{ result.age_in_years }} yrs {{ result.gender }}</td>
     <td nowrap>{% if result.eligible %}{{ result.real_eligibility_datetime|date:"SHORT_DATE_FORMAT" }}{% else %}{{ result.modified|date:"SHORT_DATE_FORMAT" }}{% endif %}</td>
-    {% if has_view_auditallsites %}
+    {% if request.user.userprofile.is_multisite_viewer %}
       <td nowrap {% if request.site.id == result.site_id %}style="font-weight: bold"{% endif %}>{{ result.site_id }}</td>
     {% endif %}
     <td nowrap>{% if result.consented %}{{ result.subject_identifier }}{% else %} -- {% endif %}</td>
