@@ -1,7 +1,8 @@
 from edc_adverse_event.model_mixins import DeathReportTmgSecondModelMixin
-from edc_model.models import BaseUuidModel
+
+from effect_ae.models import DeathReportTmg
 
 
-class DeathReportTmgSecond(DeathReportTmgSecondModelMixin, BaseUuidModel):
-    class Meta(DeathReportTmgSecondModelMixin.Meta, BaseUuidModel.Meta):
-        pass
+class DeathReportTmgSecond(DeathReportTmgSecondModelMixin, DeathReportTmg):
+    class Meta(DeathReportTmgSecondModelMixin.Meta):
+        proxy = True
