@@ -1,10 +1,10 @@
 {% extends edc_listboard_template %}
 {% load admin_urls %}
-{% load edc_dashboard_extras %}
+{% load edc_dashboard_extras edc_subject_dashboard_extras %}
 {% load effect_dashboard_extras %}
 
 {% block listboard_panel %}
-    <a id="subjectscreening_add" title="{% if perms.effect_screening.add_subjectscreening %}add screening{% else %}check your permissions{% endif %}" class="btn btn-sm btn-default" role="button" {% if not perms.effect_screening.add_subjectscreening %}disabled{% endif %} href="{% if perms.effect_screening.add_subjectscreening %}{{ subject_screening_add_url }}?next={{ screening_listboard_url }}{% endif %}">
+    <a id="subjectscreening_add" title="{% if perms.effect_screening.add_subjectscreening %}add screening{% else %}disabled{% endif %}" class="btn btn-sm btn-default" role="button" {% if perms.effect_screening.add_subjectscreening %} href="{{ subject_screening_add_url }}?next={{ screening_listboard_url }}&site={{ request.site.id }}" {% else %} disabled {% endif %}>
       <i class="fas fa-plus fa-sm"></i> Add Subject Screening
     </a>
 {% endblock listboard_panel %}
@@ -35,7 +35,7 @@
         {% if result.consented %}
             {% dashboard_button result %}
         {% else %}
-            {% render_refusal_button result %}{% if not result.refusal %}{% render_consent_button result %}{% endif %}
+            {% render_refusal_button result %}{% if not result.refused %}{% render_subject_listboard_consent_button subject_screening=result %}{% endif %}
         {% endif %}
     {% endif %}
     </div>

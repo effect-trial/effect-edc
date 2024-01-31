@@ -1,13 +1,10 @@
 from django.contrib import admin
-from django.template.loader import render_to_string
-from django.urls.base import reverse
-from django.urls.exceptions import NoReverseMatch
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import conditional_escape, format_html
-from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
-from edc_dashboard.url_names import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
+from edc_model_admin.mixins import ModelAdminHideDeleteButtonOnCondition
 from edc_sites.admin import SiteModelAdminMixin
 
 from effect_screening.eligibility import ScreeningEligibility
@@ -19,13 +16,14 @@ from ..models import SubjectScreening
 
 @admin.register(SubjectScreening, site=effect_screening_admin)
 class SubjectScreeningAdmin(
-    ModelAdminSubjectDashboardMixin, SiteModelAdminMixin, SimpleHistoryAdmin
+    ModelAdminSubjectDashboardMixin,
+    ModelAdminHideDeleteButtonOnCondition,
+    SiteModelAdminMixin,
+    SimpleHistoryAdmin,
 ):
     form = SubjectScreeningForm
 
     post_url_on_delete_name = "screening_listboard_url"
-    subject_listboard_url_name = "screening_listboard_url"
-    subject_dashboard_url_name = "screening_listboard_url"
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
@@ -253,19 +251,9 @@ class SubjectScreeningAdmin(
         eligibility = ScreeningEligibility(obj)
         return format_html(conditional_escape(eligibility.display_label))
 
-    def dashboard(self, obj=None, label=None):
+    def hide_delete_button_on_condition(self, request, object_id) -> bool:
         try:
-            url = reverse(
-                self.get_subject_dashboard_url_name(),
-                kwargs=self.get_subject_dashboard_url_kwargs(obj),
-            )
-        except NoReverseMatch:
-            url = reverse(url_names.get("screening_listboard_url"), kwargs={})
-            context = dict(
-                title=_("Go to screening listboard"),
-                url=f"{url}?q={obj.screening_identifier}",
-                label=label,
-            )
-        else:
-            context = dict(title=_("Go to subject dashboard"), url=url, label=label)
-        return render_to_string("dashboard_button.html", context=context)
+            obj = SubjectScreening.objects.get(id=object_id)
+        except ObjectDoesNotExist:
+            return False
+        return obj.consented

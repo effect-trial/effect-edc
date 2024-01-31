@@ -11,6 +11,7 @@
     <th>Subject</th>
     <th>Age / Born</th>
     <th>Consented</th>
+    <th>Screening</th>
     <th>Modified</th>
     <th>Host</th>
     <!-- end results header -->
@@ -37,6 +38,7 @@
     </td>
     <td>{% age_in_years result.dob %}yrs {% if perms.edc_registration.display_dob %}{{ result.dob|date:"SHORT_DATE_FORMAT" }}{% else %}**/**/****{% endif %}</td>
     <td>{{ result.consent_datetime|date:"SHORT_DATE_FORMAT" }}</td>
+    <td><a data-toggle="tooltip" title="Go to screening" href="{% url "effect_dashboard:screening_listboard_url" %}?q={{ result.screening_identifier }}">{{ result.screening_identifier }}</a></td>
     <td>{{ result.modified|date:"SHORT_DATETIME_FORMAT" }}</td>
     <td>{{ result.hostname_created }}</td>
 {% endblock listboard_table_columns %}
