@@ -6,9 +6,7 @@ from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
 from edc_constants.constants import DEAD
 from edc_form_validators import FormValidatorMixin
 from edc_offstudy.modelform_mixins import OffstudyNonCrfModelFormMixin
-from edc_sites.forms import SiteModelFormMixin
 from edc_utils import formatted_date
-from edc_visit_schedule.modelform_mixins import VisitScheduleNonCrfModelFormMixin
 from edc_visit_tracking.modelform_mixins import VisitTrackingModelFormMixin
 from effect_form_validators.effect_subject import SubjectVisitFormValidator
 
@@ -19,9 +17,7 @@ from ..models import SubjectVisit
 
 class SubjectVisitForm(
     RequiresConsentModelFormMixin,
-    SiteModelFormMixin,
     VisitTrackingModelFormMixin,
-    VisitScheduleNonCrfModelFormMixin,
     OffstudyNonCrfModelFormMixin,
     FormValidatorMixin,
     forms.ModelForm,
