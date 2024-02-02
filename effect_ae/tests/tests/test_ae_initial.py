@@ -103,9 +103,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     {
                         "ae_grade": GRADE5 if status == DECEASED else GRADE3,
                         "inpatient_status": status,
-                        "date_discharged": get_utcnow_as_date()
-                        if status == DISCHARGED
-                        else None,
+                        "date_discharged": (
+                            get_utcnow_as_date() if status == DISCHARGED else None
+                        ),
                     }
                 )
                 self.assertFormValidatorNoError(

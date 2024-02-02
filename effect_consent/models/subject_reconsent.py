@@ -26,7 +26,6 @@ class SubjectReconsent(
     ActionModelMixin,
     BaseUuidModel,
 ):
-
     """A model completed by the user that updates the consent
     for those originally consented by next of kin.
     """

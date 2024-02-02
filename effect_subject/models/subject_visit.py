@@ -32,7 +32,6 @@ class SubjectVisit(
     OffstudyNonCrfModelMixin,
     BaseUuidModel,
 ):
-
     """A model completed by the user that captures the covering
     information for the data collected for this timepoint/appointment,
     e.g.report_datetime.

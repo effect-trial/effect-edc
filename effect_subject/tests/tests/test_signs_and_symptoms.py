@@ -483,9 +483,11 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             with self.subTest(answer=answer):
                 cleaned_data.update(
                     {
-                        "current_sx_gte_g3": SiSx.objects.filter(name="fever")
-                        if answer == YES
-                        else SiSx.objects.filter(name=NOT_APPLICABLE),
+                        "current_sx_gte_g3": (
+                            SiSx.objects.filter(name="fever")
+                            if answer == YES
+                            else SiSx.objects.filter(name=NOT_APPLICABLE)
+                        ),
                         "reportable_as_ae": answer,
                     }
                 )
@@ -799,9 +801,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
                 cleaned_data.update(
                     {
-                        other_field: "3d"
-                        if other_field == "headache_duration"
-                        else "Some other text"
+                        other_field: (
+                            "3d" if other_field == "headache_duration" else "Some other text"
+                        )
                     }
                 )
                 self.assertFormValidatorNoError(
