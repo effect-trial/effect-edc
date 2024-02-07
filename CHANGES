@@ -15,8 +15,15 @@ unreleased
   edc-list-data, edc-model, etc
 - remove redundant edc-sites post-migrate signal
 - update edc_sites import paths
+- fix inability to insert unscheduled visits in between existing
+  unscheduled visits (#527, #528, #529, #632, #736, #744)
+- fix '[Not all] TMG death report forms not showing on TMG
+  dashboard' (#642)
+- fix 'Not all AEs showing up in 'Adverse Events: AE Initial and
+  Follow-up Reports'' (#705)
 - fix 'Server error when trying to delete a screening form' (#713)
-- fix 'Study medication followup (and baseline) appearing at baseline visit' (#734)
+- fix 'Study medication followup (and baseline) appearing at baseline
+  visit' (#734)
 - bump to edc 0.5.63
 - bump to effect-form-validators 0.1.37
 
