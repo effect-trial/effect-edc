@@ -444,6 +444,9 @@ DATA_DICTIONARY_APP_LABELS = [
     "edc_appointment",
 ]
 
+# edc_form_runners
+EDC_FORM_RUNNERS_ENABLED = True
+
 # edc_protocol
 EDC_PROTOCOL = env.str("EDC_PROTOCOL")
 EDC_PROTOCOL_INSTITUTION_NAME = env.str("EDC_PROTOCOL_INSTITUTION_NAME")
