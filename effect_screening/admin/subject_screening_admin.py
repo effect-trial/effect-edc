@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import conditional_escape, format_html
 from django_audit_fields.admin import audit_fieldset_tuple
+from edc_dashboard import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_model_admin.mixins import ModelAdminHideDeleteButtonOnCondition
@@ -228,6 +229,9 @@ class SubjectScreeningAdmin(
         "consented",
         "refused",
     ]
+
+    def get_post_url_on_delete_name(self, request) -> str:
+        return url_names.get(self.post_url_on_delete_name)
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}
