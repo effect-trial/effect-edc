@@ -18,6 +18,8 @@ from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,
 )
 
+from effect_consent.consents import consent_v1
+
 from ..choices import (
     CM_ON_CSF_METHODS,
     CSF_CRAG_RESULT_CHOICES,
@@ -37,6 +39,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     eligibility_cls = ScreeningEligibility
 
     identifier_cls = ScreeningIdentifier
+
+    consent_definition = consent_v1
 
     site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, related_name="+")
 
@@ -318,6 +322,12 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         default=NOT_EVALUATED,
         help_text="If YES, patient NOT eligible, please give reason below ...",
     )
+
+    @property
+    def human_readable_identifier(self):
+        """Returns a humanized screening identifier."""
+        x = self.screening_identifier
+        return f"{x[0:4]}-{x[4:]}"
 
     class Meta(BaseUuidModel.Meta):
         verbose_name = "Subject Screening"

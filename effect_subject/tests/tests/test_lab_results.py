@@ -4,6 +4,7 @@ from typing import Any
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
+from django.contrib.sites.models import Site
 from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
@@ -79,6 +80,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             assay_datetime=requisition.requisition_datetime + relativedelta(days=1),
             results_abnormal=NO,
             results_reportable=NOT_APPLICABLE,
+            site=Site.objects.get(id=settings.SITE_ID).id,
         )
 
     @staticmethod
@@ -136,6 +138,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=1),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        site=Site.objects.get(id=settings.SITE_ID).id,
                     )
 
                     form = lab_panel.form(cleaned_data)

@@ -19,7 +19,7 @@ SITE_ID = SiteID(default=150)  # King Edward VII
 # TZ Sites
 # SITE_ID = SiteID(default=200)  # Amana
 # SITE_ID = SiteID(default=220)  # Mwananyamala
-# SITE_ID = SiteID(default=210)  # Dora Nginza
+# SITE_ID = SiteID(default=210)  # Temeke
 
 EDC_SITES_UAT_DOMAIN = False
 DEBUG = True

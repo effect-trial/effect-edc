@@ -1,12 +1,11 @@
 from django.db import models
-from edc_consent.model_mixins import RequiresConsentFieldsModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA_MISSED
 from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model_fields.fields import OtherCharField
 from edc_offstudy.model_mixins import OffstudyNonCrfModelMixin
-from edc_sites.models import SiteModelMixin
+from edc_sites.model_mixins import SiteModelMixin
 from edc_visit_tracking.choices import ASSESSMENT_TYPES
 from edc_visit_tracking.managers import VisitCurrentSiteManager
 from edc_visit_tracking.managers import VisitModelManager as BaseVisitModelManager
@@ -30,11 +29,9 @@ class SubjectVisit(
     SiteModelMixin,
     VisitModelMixin,
     CreatesMetadataModelMixin,
-    RequiresConsentFieldsModelMixin,
     OffstudyNonCrfModelMixin,
     BaseUuidModel,
 ):
-
     """A model completed by the user that captures the covering
     information for the data collected for this timepoint/appointment,
     e.g.report_datetime.

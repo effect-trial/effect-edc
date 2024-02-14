@@ -1,6 +1,8 @@
 from typing import Optional
 
 from dateutil.relativedelta import relativedelta
+from django.conf import settings
+from django.contrib.sites.models import Site
 from django.test import TestCase
 from edc_constants.constants import (
     COMPLETE,
@@ -74,6 +76,7 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
             "other_drugs_given": Drugs.objects.none(),
             "other_drugs_given_other": "",
             "crf_status": COMPLETE,  # ???
+            "site": Site.objects.get(id=settings.SITE_ID).id,
         }
 
     def test_ok(self):

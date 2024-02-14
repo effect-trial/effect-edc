@@ -6,7 +6,6 @@ No
 Notes on fluconazole
 ________________ (mandatory if C or D above)"""
 
-
 from edc_model import models as edc_models
 
 from ..model_mixins import CrfModelMixin

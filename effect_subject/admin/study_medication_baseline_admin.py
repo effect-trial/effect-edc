@@ -19,7 +19,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
         "participant <strong>before</strong> starting this form."
     )
 
-    fieldsets = (
+    fieldsets = [
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
             "Fluconazole",
@@ -53,7 +53,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
             },
         ),
         audit_fieldset_tuple,
-    )
+    ]
 
     radio_fields = {
         "flucon_initiated": admin.VERTICAL,

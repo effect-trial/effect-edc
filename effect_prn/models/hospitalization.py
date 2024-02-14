@@ -10,7 +10,7 @@ from edc_protocol.validators import (
     date_not_before_study_start,
     datetime_not_before_study_start,
 )
-from edc_sites.models import SiteModelMixin
+from edc_sites.model_mixins import SiteModelMixin
 from edc_utils import get_utcnow
 
 from effect_prn.constants import HOSPITALIZATION_ACTION

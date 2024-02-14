@@ -20,7 +20,7 @@ class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
 
     autocomplete_fields = ["sputum_requisition"]
 
-    fieldsets = (
+    fieldsets = [
         (None, {"fields": ("subject_visit", "report_datetime")}),
         get_urinary_lam_fieldset(),
         (
@@ -37,6 +37,6 @@ class TbDiagnosticsAdmin(MicrobiologyModelAdminMixin, CrfModelAdmin):
         get_sputum_afb_fieldset(),
         ("Comment", {"fields": ("comment",)}),
         audit_fieldset_tuple,
-    )
+    ]
 
     search_fields = ("subject_visit__subject_identifier",)

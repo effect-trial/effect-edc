@@ -515,9 +515,11 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertDictEqual(
                     {
                         "cd4_value": [
-                            "Ensure this value is less than or equal to 99."
-                            if cd4_value > 0
-                            else "Ensure this value is greater than or equal to 0."
+                            (
+                                "Ensure this value is less than or equal to 99."
+                                if cd4_value > 0
+                                else "Ensure this value is greater than or equal to 0."
+                            )
                         ]
                     },
                     form._errors,
