@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-unreleased
-----------
+0.1.43
+------
 - AE PDF reports for changes in edc_pdf_reports:
     - set `pdf_report_cls` on AE models (death report, AE initial)
     - update modeladmin changelist (death report, AE initial)
@@ -17,14 +17,15 @@ unreleased
 - update edc_sites import paths
 - fix inability to insert unscheduled visits in between existing
   unscheduled visits (#527, #528, #529, #632, #736, #744)
-- fix '[Not all] TMG death report forms not showing on TMG
-  dashboard' (#642)
+- fix '[Some] TMG death report forms not showing on TMG dashboard' (#642)
 - fix 'Not all AEs showing up in 'Adverse Events: AE Initial and
   Follow-up Reports'' (#705)
 - fix 'Server error when trying to delete a screening form' (#713)
 - fix 'Study medication followup (and baseline) appearing at baseline
   visit' (#734)
-- bump to edc 0.5.63
+- bump to edc 0.5.65
+- bump to edc-microbiology 0.3.7
+- bump to edc-csf 0.3.6
 - bump to effect-form-validators 0.1.37
 
 0.1.42
