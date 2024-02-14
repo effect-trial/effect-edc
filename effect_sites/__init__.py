@@ -1,1 +1,1 @@
-from .sites import all_sites, fqdn
+from .sites import all_sites, suffix

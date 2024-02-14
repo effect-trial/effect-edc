@@ -11,8 +11,7 @@ from effect_visit_schedule.constants import (
     WEEK24,
 )
 
-crfs_prn = FormsCollection(
-    Crf(show_order=55, model="effect_subject.studymedicationfollowup"),
+crfs_prn_baseline = FormsCollection(
     Crf(show_order=75, model="effect_subject.vitalsigns"),
     Crf(show_order=205, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=215, model="effect_subject.bloodresultschem"),
@@ -23,7 +22,13 @@ crfs_prn = FormsCollection(
     Crf(show_order=365, model="effect_subject.histopathology"),
     Crf(show_order=406, model="effect_subject.healtheconomicsevent"),
     Crf(show_order=505, model="effect_subject.clinicalnote"),
-    name="prn",
+    name="prn_baseline",
+)
+
+crfs_prn_followup = FormsCollection(
+    Crf(show_order=55, model="effect_subject.studymedicationfollowup"),
+    *[crf for crf in crfs_prn_baseline],
+    name="prn_followup",
 )
 
 crfs_unscheduled = FormsCollection(

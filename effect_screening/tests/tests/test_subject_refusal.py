@@ -1,5 +1,7 @@
 from typing import Dict
 
+from django.conf import settings
+from django.contrib.sites.models import Site
 from django.test import TestCase
 from edc_refusal.forms import SubjectRefusalForm
 from edc_refusal.models import RefusalReasons, SubjectRefusal
@@ -20,6 +22,7 @@ class TestSubjectRefusal(EffectTestCaseMixin, TestCase):
             "reason": refusal_reason,
             "other_reason": None,
             "comment": None,
+            "site": Site.objects.get(id=settings.SITE_ID).id,
         }
 
     def test_subject_refusal_ok(self):

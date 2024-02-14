@@ -1,21 +1,19 @@
 from edc_adverse_event.constants import DEATH_REPORT_TMG_SECOND_ACTION
 from edc_adverse_event.model_mixins import (
     DeathReportTmgSecondManager,
+    DeathReportTmgSecondModelMixin,
     DeathReportTmgSecondSiteManager,
 )
-from edc_model.models import BaseUuidModel
 
-from .death_report_tmg import DeathReportTmg
+from effect_ae.models import DeathReportTmg
 
 
-class DeathReportTmgSecond(DeathReportTmg):
+class DeathReportTmgSecond(DeathReportTmgSecondModelMixin, DeathReportTmg):
     action_name = DEATH_REPORT_TMG_SECOND_ACTION
-
-    on_site = DeathReportTmgSecondSiteManager()
 
     objects = DeathReportTmgSecondManager()
 
-    class Meta(BaseUuidModel.Meta):
+    on_site = DeathReportTmgSecondSiteManager()
+
+    class Meta(DeathReportTmgSecondModelMixin.Meta):
         proxy = True
-        verbose_name = "Death Report TMG (2nd)"
-        verbose_name_plural = "Death Report TMG (2nd)"

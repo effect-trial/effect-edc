@@ -6,7 +6,7 @@ from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_offstudy.constants import END_OF_STUDY_ACTION
 from edc_protocol.validators import date_not_before_study_start
-from edc_sites.models import SiteModelMixin
+from edc_sites.model_mixins import SiteModelMixin
 from edc_visit_schedule.model_mixins import OffScheduleModelMixin
 
 from effect_lists.models import LateExclusionCriteria, OffstudyReasons

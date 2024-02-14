@@ -3,7 +3,7 @@ from edc_action_item.auth_objects import (
     ACTION_ITEM_EXPORT,
     ACTION_ITEM_VIEW_ONLY,
 )
-from edc_adverse_event.auth_objects import (
+from edc_adverse_event.constants import (
     AE,
     AE_REVIEW,
     AE_SUPER,
@@ -16,7 +16,7 @@ from edc_appointment.auth_objects import (
     APPOINTMENT_EXPORT,
     APPOINTMENT_VIEW,
 )
-from edc_auth.auth_objects import (
+from edc_auth.constants import (
     AUDITOR,
     AUDITOR_ROLE,
     CLINIC,
@@ -30,7 +30,7 @@ from edc_data_manager.auth_objects import (
     DATA_MANAGER_ROLE,
     SITE_DATA_MANAGER_ROLE,
 )
-from edc_export.auth_objects import DATA_EXPORTER_ROLE
+from edc_export.constants import DATA_EXPORTER_ROLE
 from edc_label.auth_objects import LABELING
 from edc_offstudy.auth_objects import OFFSTUDY
 from edc_pharmacy.auth_objects import PHARMACIST_ROLE, SITE_PHARMACIST_ROLE

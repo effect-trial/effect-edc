@@ -1,9 +1,8 @@
+from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from edc_visit_schedule.visit_schedule import VisitSchedule
 
+from ..constants import VISIT_SCHEDULE
 from .schedule import schedule
-
-VISIT_SCHEDULE = "visit_schedule"
-
 
 visit_schedule = VisitSchedule(
     name=VISIT_SCHEDULE,
@@ -15,3 +14,4 @@ visit_schedule = VisitSchedule(
 )
 
 visit_schedule.add_schedule(schedule)
+site_visit_schedules.register(visit_schedule)

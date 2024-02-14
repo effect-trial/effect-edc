@@ -12,14 +12,9 @@ class TestManagers(TestCase):
         app_label = "effect_ae"
         app_config = django_apps.get_app_config(app_label)
         for model_cls in app_config.get_models():
-            if "historical" in model_cls._meta.label_lower:
-                self.assertIsNone(
-                    model_cls._meta.default_manager_name,
-                    msg=f"Model is {model_cls}",
-                )
-            else:
+            if "historical" not in model_cls._meta.label_lower:
                 self.assertEqual(
-                    model_cls._meta.default_manager_name,
+                    model_cls._meta.default_manager.name,
                     "objects",
                     msg=f"Model is {model_cls}",
                 )
