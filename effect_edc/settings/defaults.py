@@ -445,7 +445,7 @@ DATA_DICTIONARY_APP_LABELS = [
 ]
 
 # edc_form_runners
-EDC_FORM_RUNNERS_ENABLED = True
+EDC_FORM_RUNNERS_ENABLED = False
 
 # edc_protocol
 EDC_PROTOCOL = env.str("EDC_PROTOCOL")

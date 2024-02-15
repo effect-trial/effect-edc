@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+0.1.44
+------
+- disable form runners (temporary)
+- bump to edc 0.5.66
+
 0.1.43
 ------
 - AE PDF reports for changes in edc_pdf_reports:
