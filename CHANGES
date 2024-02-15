@@ -1,8 +1,8 @@
 Changes
 +++++++
 
-unreleased
-----------
+0.1.44
+------
 - disable form runners (temporary)
 - bump to edc 0.5.66
 
