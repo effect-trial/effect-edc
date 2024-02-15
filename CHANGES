@@ -3,6 +3,7 @@ Changes
 
 unreleased
 ----------
+- disable form runners (temporary)
 - bump to edc 0.5.66
 
 0.1.43
