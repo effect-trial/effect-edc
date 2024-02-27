@@ -1,4 +1,4 @@
-from edc_visit_schedule.visit import Crf, FormsCollection
+from edc_visit_schedule.visit import Crf, CrfCollection
 
 from effect_visit_schedule.constants import (
     DAY01,
@@ -11,7 +11,7 @@ from effect_visit_schedule.constants import (
     WEEK24,
 )
 
-crfs_prn_baseline = FormsCollection(
+crfs_prn_baseline = CrfCollection(
     Crf(show_order=75, model="effect_subject.vitalsigns"),
     Crf(show_order=205, model="effect_subject.bloodresultsfbc"),
     Crf(show_order=215, model="effect_subject.bloodresultschem"),
@@ -25,13 +25,13 @@ crfs_prn_baseline = FormsCollection(
     name="prn_baseline",
 )
 
-crfs_prn_followup = FormsCollection(
+crfs_prn_followup = CrfCollection(
     Crf(show_order=55, model="effect_subject.studymedicationfollowup"),
     *[crf for crf in crfs_prn_baseline],
     name="prn_followup",
 )
 
-crfs_unscheduled = FormsCollection(
+crfs_unscheduled = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -41,24 +41,24 @@ crfs_unscheduled = FormsCollection(
     name="unscheduled",
 )
 
-crfs_unscheduled_lt_d14 = FormsCollection(
+crfs_unscheduled_lt_d14 = CrfCollection(
     *[crf for crf in crfs_unscheduled],
     Crf(show_order=602, model="effect_subject.adherencestagetwo"),
     name="unscheduled_lt_d14",
 )
 
-crfs_unscheduled_gte_d14 = FormsCollection(
+crfs_unscheduled_gte_d14 = CrfCollection(
     *[crf for crf in crfs_unscheduled],
     Crf(show_order=604, model="effect_subject.adherencestagefour"),
     name="unscheduled_gte_d14",
 )
 
-crfs_missed = FormsCollection(
+crfs_missed = CrfCollection(
     Crf(show_order=10, model="effect_subject.subjectvisitmissed"),
     name="missed",
 )
 
-crfs_d01 = FormsCollection(
+crfs_d01 = CrfCollection(
     Crf(show_order=40, model="effect_subject.arvhistory"),
     Crf(show_order=60, model="effect_subject.participanthistory"),
     Crf(show_order=70, model="effect_subject.vitalsigns"),
@@ -76,7 +76,7 @@ crfs_d01 = FormsCollection(
     name=DAY01,
 )
 
-crfs_d03 = FormsCollection(
+crfs_d03 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     # TODO: ???Remove ECOG/CGS symptoms for tel visits
     Crf(show_order=80, model="effect_subject.mentalstatus"),
@@ -90,7 +90,7 @@ crfs_d03 = FormsCollection(
     name=DAY03,
 )
 
-crfs_d09 = FormsCollection(
+crfs_d09 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -102,7 +102,7 @@ crfs_d09 = FormsCollection(
     name=DAY09,
 )
 
-crfs_d14 = FormsCollection(
+crfs_d14 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
@@ -119,7 +119,7 @@ crfs_d14 = FormsCollection(
     name=DAY14,
 )
 
-crfs_w04 = FormsCollection(
+crfs_w04 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -131,7 +131,7 @@ crfs_w04 = FormsCollection(
     name=WEEK04,
 )
 
-crfs_w10 = FormsCollection(
+crfs_w10 = CrfCollection(
     Crf(show_order=50, model="effect_subject.studymedicationfollowup"),
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
@@ -144,7 +144,7 @@ crfs_w10 = FormsCollection(
     name=WEEK10,
 )
 
-crfs_w16 = FormsCollection(
+crfs_w16 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
@@ -156,7 +156,7 @@ crfs_w16 = FormsCollection(
     name=WEEK16,
 )
 
-crfs_w24 = FormsCollection(
+crfs_w24 = CrfCollection(
     Crf(show_order=70, model="effect_subject.vitalsigns", required=False),
     Crf(show_order=80, model="effect_subject.mentalstatus"),
     Crf(show_order=90, model="effect_subject.signsandsymptoms"),
