@@ -1,3 +1,7 @@
+from datetime import datetime
+from zoneinfo import ZoneInfo
+
+import time_machine
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from edc_action_item.models import ActionItem
@@ -14,6 +18,7 @@ from model_bakery import baker
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
+@time_machine.travel(datetime(2019, 6, 11, 8, 00, tzinfo=ZoneInfo("UTC")))
 class TestActions(EffectTestCaseMixin, TestCase):
     def test_ae_initial_creates_action(self):
         subject_screening = self.get_subject_screening()

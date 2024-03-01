@@ -18,7 +18,7 @@ from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,
 )
 
-from effect_consent.consents import consent_v1
+from effect_consent.consents import consent_v1, consent_v2
 
 from ..choices import (
     CM_ON_CSF_METHODS,
@@ -40,7 +40,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     identifier_cls = ScreeningIdentifier
 
-    consent_definition = consent_v1
+    consent_definitions = [consent_v1, consent_v2]
 
     site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, related_name="+")
 

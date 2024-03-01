@@ -26,9 +26,9 @@ class TestVisitSchedule(TestCase):
             for schedule in visit_schedule.schedules.values():
                 self.assertEqual(schedule.onschedule_model, "effect_prn.onschedule")
                 self.assertEqual(schedule.offschedule_model, "effect_prn.endofstudy")
-                self.assertEqual(len(schedule.consent_definitions), 1)
+                self.assertEqual(len(schedule.consent_definitions), 2)
                 self.assertEqual(
-                    schedule.consent_definitions[0].model, "effect_consent.subjectconsent"
+                    schedule.consent_definitions[0].model, "effect_consent.subjectconsentv1"
                 )
                 self.assertEqual(schedule.appointment_model, "edc_appointment.appointment")
 

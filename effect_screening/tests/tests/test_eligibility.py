@@ -558,6 +558,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("cd4_date", form._errors)
         self.assertDictEqual({}, form._errors)
 
+    @tag("1")
     def test_serum_crag_negative_raises_validation_error(self):
         opts = self.get_eligible_opts()
         opts.update(serum_crag_value=NEG)

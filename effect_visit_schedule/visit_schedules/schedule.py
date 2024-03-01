@@ -2,7 +2,7 @@ from dateutil.relativedelta import relativedelta
 from edc_visit_schedule.schedule import Schedule
 from edc_visit_schedule.visit import Visit as BaseVisit
 
-from effect_consent.consents import consent_v1
+from effect_consent.consents import consent_v1, consent_v2
 
 from ..constants import (
     DAY01,
@@ -60,16 +60,6 @@ class Visit(BaseVisit):
             crfs_missed=crfs_missed,
             **kwargs,
         )
-
-
-# schedule for new participants
-schedule = Schedule(
-    name=SCHEDULE,
-    verbose_name="Day 1 to Month 6 Follow-up",
-    onschedule_model="effect_prn.onschedule",
-    offschedule_model="effect_prn.endofstudy",
-    consent_definitions=[consent_v1],
-)
 
 
 visit000 = Visit(
@@ -170,6 +160,16 @@ visit070 = Visit(
     crfs=crfs_w24,
     crfs_unscheduled=crfs_unscheduled_gte_d14,
     facility_name="7-day-clinic",
+)
+
+
+# schedule for new participants
+schedule = Schedule(
+    name=SCHEDULE,
+    verbose_name="Day 1 to Month 6 Follow-up",
+    onschedule_model="effect_prn.onschedule",
+    offschedule_model="effect_prn.endofstudy",
+    consent_definitions=[consent_v1, consent_v2],
 )
 
 

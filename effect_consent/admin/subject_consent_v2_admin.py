@@ -6,12 +6,12 @@ from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_consent_admin
 from ..forms import SubjectConsentForm
-from ..models import SubjectConsent
+from ..models import SubjectConsentV2
 from .modeladmin_mixins import EffectSubjectConsentAdminMixin
 
 
-@admin.register(SubjectConsent, site=effect_consent_admin)
-class SubjectConsentAdmin(
+@admin.register(SubjectConsentV2, site=effect_consent_admin)
+class SubjectConsentV2Admin(
     EffectSubjectConsentAdminMixin,
     SiteModelAdminMixin,
     ModelAdminConsentMixin,
@@ -19,3 +19,5 @@ class SubjectConsentAdmin(
     SimpleHistoryAdmin,
 ):
     form = SubjectConsentForm
+
+    readonly_fields = []

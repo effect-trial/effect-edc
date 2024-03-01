@@ -9,7 +9,7 @@ from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
 from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
-from edc_utils import convert_php_dateformat, formatted_datetime, get_utcnow
+from edc_utils import convert_php_dateformat, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -227,13 +227,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
+                    self.assertIn(
+                        "Consent not found",
+                        str(form.errors.get("report_datetime")),
                     )
 
     def test_d9_report_datetime_before_consent_datetime_invalid(self):
@@ -277,14 +273,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
-                    )
+                    self.assertIn("Consent not found", str(form.errors.get("report_datetime")))
 
     def test_d9_report_datetime_before_visit_datetime_invalid(self):
         self.get_subject_visit(
