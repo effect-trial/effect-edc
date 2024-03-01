@@ -1,5 +1,5 @@
 from django.db import models
-from edc_constants.choices import YES_NO
+from edc_constants.choices import YES_NO, YES_NO_NA
 
 
 class SpecialConsentFieldsModelMixin(models.Model):
@@ -22,7 +22,11 @@ class SpecialConsentFieldsModelMixin(models.Model):
     sample_export = models.CharField(
         verbose_name="Does the participant agree to export of stored samples internationally?",
         max_length=15,
-        choices=YES_NO,
+        choices=YES_NO_NA,
+        help_text=(
+            "Select `Not applicable` if participant does not agree "
+            "to store samples in-country."
+        ),
     )
 
     hcw_data_sharing = models.CharField(
