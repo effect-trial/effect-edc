@@ -1,16 +1,12 @@
 from django import forms
 from django.utils.html import format_html
-from edc_consent.form_validators import SubjectConsentFormValidatorMixin
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_constants.constants import NO, YES
-from edc_form_validators import FormValidator, FormValidatorMixin
+from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
+from effect_form_validators.effect_consent import SubjectConsentFormValidator
 
 from ..models import SubjectConsent
-
-
-class SubjectConsentFormValidator(SubjectConsentFormValidatorMixin, FormValidator):
-    pass
 
 
 class SubjectConsentForm(

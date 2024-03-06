@@ -1,6 +1,12 @@
 Changes
 +++++++
 
+0.1.47 (unreleased)
+------
+- add validation for Consent Version 2 and Consent Version 2 (Update)
+  forms (#755)
+- bump to effect-form-validators 0.1.39
+
 0.1.44
 ------
 - disable form runners (temporary)
