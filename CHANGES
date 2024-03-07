@@ -9,7 +9,7 @@ Changes
 - add validation for Consent Version 2 and Consent Version 2 (Update)
   forms (#755)
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
-- bump to effect-form-validators 0.1.39
+- bump to effect-form-validators 0.1.40
 
 0.1.44
 ------
