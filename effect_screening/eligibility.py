@@ -91,10 +91,23 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(age_in_years="Age not >= 18")
         if self.model_obj.hiv_pos == NO:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
-        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
-            reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
+        reasons_ineligible = self.review_cd4(reasons_ineligible)
         reasons_ineligible = self.review_serum_crag(reasons_ineligible)
         reasons_ineligible = self.review_lp_csf_crag(reasons_ineligible)
+        return reasons_ineligible
+
+    def review_cd4(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
+        report_datetime = getattr(self.model_obj, "report_datetime", None)
+        cd4_date = getattr(self.model_obj, "cd4_date", None)
+
+        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
+            reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
+        elif (
+            report_datetime
+            and cd4_date
+            and abs((to_local(report_datetime).date() - cd4_date).days) > 60
+        ):
+            reasons_ineligible.update(cd4_date="CD4 > 60 days")
         return reasons_ineligible
 
     def review_serum_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:

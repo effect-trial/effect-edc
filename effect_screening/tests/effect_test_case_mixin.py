@@ -103,6 +103,7 @@ class EffectTestCaseMixin(
         eligibility_datetime: datetime | None = None,
         gender: str | None = None,
         age_in_years: int | None = None,
+        cd4_date: date = None,
         serum_crag_date: date = None,
     ) -> SubjectScreening:
         eligible_options = deepcopy(get_eligible_options())
@@ -110,6 +111,7 @@ class EffectTestCaseMixin(
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]
         eligible_options["age_in_years"] = age_in_years or eligible_options["age_in_years"]
+        eligible_options["cd4_date"] = cd4_date or eligible_options["cd4_date"]
         eligible_options["serum_crag_date"] = (
             serum_crag_date or eligible_options["serum_crag_date"]
         )
