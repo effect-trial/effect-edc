@@ -45,6 +45,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         self.subject_screening = self.get_subject_screening(
             report_datetime=screening_datetime,
             eligibility_datetime=screening_datetime,
+            cd4_date=(screening_datetime - relativedelta(days=7)).date(),
             serum_crag_date=(screening_datetime - relativedelta(days=6)).date(),
         )
         self.subject_consent = self.get_subject_consent(
