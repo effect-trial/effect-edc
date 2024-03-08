@@ -9,7 +9,6 @@ from edc_consent.field_mixins import (
     SampleCollectionFieldsMixin,
     VulnerabilityFieldsMixin,
 )
-from edc_consent.managers import ConsentManager
 from edc_consent.model_mixins import ConsentModelMixin
 from edc_constants.choices import YES_NO
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
@@ -71,8 +70,6 @@ class SubjectConsent(
     on_site = CurrentSiteManager()
 
     objects = SubjectConsentManager()
-
-    consent = ConsentManager()
 
     history = HistoricalRecords()
 
