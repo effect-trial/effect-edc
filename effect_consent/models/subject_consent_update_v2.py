@@ -22,6 +22,9 @@ class SubjectConsentUpdateV2(
         verbose_name="Consent date and time", default=get_utcnow
     )
 
+    def __str__(self):
+        return self.subject_identifier
+
     class Meta(ActionModelMixin.Meta, BaseUuidModel.Meta):
         verbose_name = "Consent Version 2 (Update)"
         verbose_name_plural = "Consent Version 2 (Update)"
