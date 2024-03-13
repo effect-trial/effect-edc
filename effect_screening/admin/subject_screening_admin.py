@@ -142,7 +142,8 @@ class SubjectScreeningAdmin(
             {
                 "fields": (
                     "unsuitable_for_study",
-                    "reasons_unsuitable",
+                    "unsuitable_reason",
+                    "unsuitable_reason_other",
                     "unsuitable_agreed",
                 ),
             },
@@ -191,6 +192,7 @@ class SubjectScreeningAdmin(
         "serum_crag_value": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,
         "unsuitable_for_study": admin.VERTICAL,
+        "unsuitable_reason": admin.VERTICAL,
         "willing_to_participate": admin.VERTICAL,
     }
 
@@ -208,6 +210,7 @@ class SubjectScreeningAdmin(
         "report_datetime",
         "gender",
         "eligible",
+        "unsuitable_for_study",
         "consented",
         "refused",
     )

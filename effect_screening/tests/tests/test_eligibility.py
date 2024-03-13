@@ -67,6 +67,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "hiv_confirmed_date": (get_utcnow() - relativedelta(days=28)).date(),
             "hiv_confirmed_method": "historical_lab_result",
             "unsuitable_for_study": NO,
+            "unsuitable_reason": NOT_APPLICABLE,
             "unsuitable_agreed": NOT_APPLICABLE,
             "any_other_mg_ssx_other": "",
         }

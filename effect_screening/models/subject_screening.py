@@ -27,6 +27,7 @@ from ..choices import (
     HIV_CONFIRMATION_METHODS,
     POS_NEG,
     PREG_YES_NO_NOT_EVALUATED_NA,
+    REASONS_UNSUITABLE,
 )
 from ..eligibility import ScreeningEligibility
 
@@ -320,7 +321,21 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=15,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
-        help_text="If YES, patient NOT eligible, please give reason below ...",
+        help_text="If YES, patient NOT eligible, please specify reason below ...",
+    )
+
+    unsuitable_reason = models.CharField(
+        verbose_name="If YES, reason not suitable for the study",
+        max_length=30,
+        choices=REASONS_UNSUITABLE,
+        default=NOT_APPLICABLE,
+    )
+
+    unsuitable_reason_other = models.TextField(
+        verbose_name="If other reason unsuitable, please specify ...",
+        max_length=150,
+        null=True,
+        blank=True,
     )
 
     @property
