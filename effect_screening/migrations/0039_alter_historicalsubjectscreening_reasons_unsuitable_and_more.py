@@ -15,6 +15,7 @@ class Migration(migrations.Migration):
             name="reasons_unsuitable",
             field=models.TextField(
                 default="QUESTION_RETIRED",
+                editable=False,
                 help_text="question_retired",
                 max_length=150,
                 verbose_name="Reason not suitable for the study",
@@ -25,6 +26,7 @@ class Migration(migrations.Migration):
             name="reasons_unsuitable",
             field=models.TextField(
                 default="QUESTION_RETIRED",
+                editable=False,
                 help_text="question_retired",
                 max_length=150,
                 verbose_name="Reason not suitable for the study",

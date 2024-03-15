@@ -343,7 +343,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         verbose_name="Reason not suitable for the study",
         max_length=150,
         default=QUESTION_RETIRED,
-        null=False,
+        editable=False,
         help_text="question_retired",
     )
 
