@@ -8,7 +8,7 @@ from edc_constants.choices import (
     YES_NO_NOT_EVALUATED,
     YES_NO_NOT_EVALUATED_NA,
 )
-from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED
+from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED, QUESTION_RETIRED
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
@@ -336,6 +336,15 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=150,
         null=True,
         blank=True,
+    )
+
+    # retired, overrides reasons_unsuitable in ScreeningFieldsModeMixin
+    reasons_unsuitable = models.TextField(
+        verbose_name="Reason not suitable for the study",
+        max_length=150,
+        default=QUESTION_RETIRED,
+        null=False,
+        help_text="question_retired",
     )
 
     @property
