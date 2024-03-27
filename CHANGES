@@ -6,8 +6,8 @@ Changes
 - updates to Subject Screening (#503)
     - allow CD4 count to be up to and incl. 60 days old, and remain eligible (#503, #488-10)
     - allow CD4 count date older than 60 days to be saved, but as ineligible (#503, #488-10)
-- add validation for Consent Version 2 and Consent Version 2 (Update)
-  forms (#755)
+- add Consent Version 2 and Consent Version 2 (Update) models/forms (#755)
+    - add "Submit version 2 consent" action item to those requiring it
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
 - bump to effect-form-validators 0.1.40
 - bump to edc 0.5.72
