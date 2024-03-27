@@ -323,6 +323,11 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text="If YES, patient NOT eligible, please give reason below ...",
     )
 
+    safe_save_id = models.UUIDField(
+        unique=True,
+        null=True,
+    )
+
     @property
     def human_readable_identifier(self):
         """Returns a humanized screening identifier."""
