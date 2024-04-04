@@ -7,6 +7,7 @@ from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_model_admin.mixins import ModelAdminHideDeleteButtonOnCondition
 from edc_sites.admin import SiteModelAdminMixin
+from edc_utils import get_uuid
 
 from effect_screening.eligibility import ScreeningEligibility
 
@@ -163,6 +164,14 @@ class SubjectScreeningAdmin(
                 ),
             },
         ],
+        [
+            # TODO: Integrate into audit_fieldset_tuple
+            "Safe save",
+            {
+                "classes": ("collapse",),
+                "fields": ("safe_save_id",),
+            },
+        ],
         audit_fieldset_tuple,
     )
 
@@ -264,3 +273,8 @@ class SubjectScreeningAdmin(
         except ObjectDoesNotExist:
             return False
         return obj.consented
+
+    def get_changeform_initial_data(self, request) -> dict:
+        initial_data = super().get_changeform_initial_data(request)
+        initial_data["safe_save_id"] = get_uuid()
+        return initial_data

@@ -347,6 +347,11 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text="question_retired",
     )
 
+    safe_save_id = models.UUIDField(
+        unique=True,
+        null=True,
+    )
+
     @property
     def human_readable_identifier(self):
         """Returns a humanized screening identifier."""

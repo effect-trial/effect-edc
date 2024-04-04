@@ -10,8 +10,22 @@ Changes
       ineligible (#503, #488-10)
     - add 'unsuitable_reason', 'unsuitable_reason_other' questions,
       retire 'reasons_unsuitable' (#731)
-- add validation for Consent Version 2 and Consent Version 2 (Update)
-  forms (#755)
+    - add 'safe_save_id' to prevent 'double-submission' of the same
+      Subject Screening form (at a single point in time).
+      - NOTE: will not protect against the same subject screening data
+        being entered twice, on two separate screening forms
+- add Consent Version 2 and Consent Version 2 (Update) models/forms (#755)
+    - add "Submit version 2 consent" action item to those requiring it
+      - NOTE: migration order important - post-migrate needs to run to
+        create action item before running 0022 (data migration to create
+        action items), e.g.,
+        ```
+        python manage.py migrate edc_data_manager && \
+            python manage.py migrate edc_locator && \
+            python manage.py migrate edc_visit_tracking && \
+            python manage.py migrate effect_consent 0017 && \
+            python manage.py migrate
+        ````
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
 - bump to effect-form-validators 0.1.40
 - bump to edc 0.5.72
