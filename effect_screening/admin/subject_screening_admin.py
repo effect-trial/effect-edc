@@ -27,6 +27,8 @@ class SubjectScreeningAdmin(
 
     post_url_on_delete_name = "screening_listboard_url"
 
+    skip_auto_numbering = ["safe_save_id"]
+
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
         "exclusion criteria in order to be considered eligible for enrolment"
@@ -164,14 +166,6 @@ class SubjectScreeningAdmin(
                 ),
             },
         ],
-        [
-            # TODO: Integrate into audit_fieldset_tuple
-            "Safe save",
-            {
-                "classes": ("collapse",),
-                "fields": ("safe_save_id",),
-            },
-        ],
         audit_fieldset_tuple,
     )
 
@@ -278,3 +272,13 @@ class SubjectScreeningAdmin(
         initial_data = super().get_changeform_initial_data(request)
         initial_data["safe_save_id"] = get_uuid()
         return initial_data
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj=obj)
+        fieldsets = list(fieldsets)
+        for index, (label, data) in enumerate(fieldsets):
+            if label == "Audit":
+                data["fields"] = tuple([f for f in data["fields"]] + ["safe_save_id"])
+                fieldsets[index] = (label, data)
+        fieldsets = tuple(fieldsets)
+        return fieldsets
