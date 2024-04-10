@@ -1,4 +1,4 @@
-# EFFECT_SUBJECT Forms Reference
+# EFFECT-EDC Forms Reference
 ## Table of contents
 
 
@@ -14239,6 +14239,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2024-02-01 03:48*
+*Rendered on 2024-04-10 15:43*
 
 
