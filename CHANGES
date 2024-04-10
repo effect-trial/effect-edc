@@ -3,17 +3,22 @@ Changes
 
 0.1.47 (unreleased)
 ------
-- updates to Subject Screening (#503)
-    - allow CD4 count to be up to and incl. 60 days old, and remain eligible (#503, #488-10)
-    - allow CD4 count date older than 60 days to be saved, but as ineligible (#503, #488-10)
+- updates to Subject Screening (#503, #731)
+    - allow CD4 count to be up to and incl. 60 days old, and remain
+      eligible (#503, #488-10)
+    - allow CD4 count date older than 60 days to be saved, but as
+      ineligible (#503, #488-10)
+    - add 'unsuitable_reason', 'unsuitable_reason_other' questions,
+      retire 'reasons_unsuitable' (#731)
     - add 'safe_save_id' to prevent 'double-submission' of the same
       Subject Screening form (at a single point in time).
       - NOTE: will not protect against the same subject screening data
         being entered twice, on two separate screening forms
 - add Consent Version 2 and Consent Version 2 (Update) models/forms (#755)
     - add "Submit version 2 consent" action item to those requiring it
-      - NOTE: migration order important - post-migrate needs to run to create action item,
-        before running 0022 (data migration to create action items), e.g.,
+      - NOTE: migration order important - post-migrate needs to run to
+        create action item before running 0022 (data migration to create
+        action items), e.g.,
         ```
         python manage.py migrate edc_data_manager && \
             python manage.py migrate edc_locator && \
