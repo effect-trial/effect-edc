@@ -7,6 +7,7 @@ from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_model_admin.mixins import ModelAdminHideDeleteButtonOnCondition
 from edc_sites.admin import SiteModelAdminMixin
+from edc_utils import get_uuid
 
 from effect_screening.eligibility import ScreeningEligibility
 
@@ -25,6 +26,8 @@ class SubjectScreeningAdmin(
     form = SubjectScreeningForm
 
     post_url_on_delete_name = "screening_listboard_url"
+
+    skip_auto_numbering = ["safe_save_id"]
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
@@ -142,7 +145,8 @@ class SubjectScreeningAdmin(
             {
                 "fields": (
                     "unsuitable_for_study",
-                    "reasons_unsuitable",
+                    "unsuitable_reason",
+                    "unsuitable_reason_other",
                     "unsuitable_agreed",
                 ),
             },
@@ -162,7 +166,13 @@ class SubjectScreeningAdmin(
                 ),
             },
         ],
-        audit_fieldset_tuple,
+        [
+            audit_fieldset_tuple[0],
+            {
+                "classes": audit_fieldset_tuple[1]["classes"],
+                "fields": tuple(audit_fieldset_tuple[1]["fields"] + ["safe_save_id"]),
+            },
+        ],
     )
 
     radio_fields = {
@@ -191,6 +201,7 @@ class SubjectScreeningAdmin(
         "serum_crag_value": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,
         "unsuitable_for_study": admin.VERTICAL,
+        "unsuitable_reason": admin.VERTICAL,
         "willing_to_participate": admin.VERTICAL,
     }
 
@@ -208,6 +219,7 @@ class SubjectScreeningAdmin(
         "report_datetime",
         "gender",
         "eligible",
+        "unsuitable_for_study",
         "consented",
         "refused",
     )
@@ -261,3 +273,8 @@ class SubjectScreeningAdmin(
         except ObjectDoesNotExist:
             return False
         return obj.consented
+
+    def get_changeform_initial_data(self, request) -> dict:
+        initial_data = super().get_changeform_initial_data(request)
+        initial_data["safe_save_id"] = get_uuid()
+        return initial_data

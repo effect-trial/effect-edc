@@ -1,6 +1,9 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
+import time_machine
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
@@ -9,7 +12,7 @@ from django.test import TestCase
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
 from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
-from edc_utils import convert_php_dateformat, formatted_datetime, get_utcnow
+from edc_utils import convert_php_dateformat, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -39,12 +42,14 @@ class LabPanelResultTestConfig:
         return self.name
 
 
+@time_machine.travel(datetime(2023, 1, 10, 8, 00, tzinfo=ZoneInfo("UTC")))
 class TestLabResults(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         screening_datetime = get_utcnow() - relativedelta(years=1)
         self.subject_screening = self.get_subject_screening(
             report_datetime=screening_datetime,
             eligibility_datetime=screening_datetime,
+            cd4_date=(screening_datetime - relativedelta(days=7)).date(),
             serum_crag_date=(screening_datetime - relativedelta(days=6)).date(),
         )
         self.subject_consent = self.get_subject_consent(
@@ -227,13 +232,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
+                    self.assertIn(
+                        "Consent not configured to update any previous versions.",
+                        str(form.errors.get("report_datetime")),
                     )
 
     def test_d9_report_datetime_before_consent_datetime_invalid(self):
@@ -277,13 +278,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
+                    self.assertIn(
+                        "Consent not configured to update any previous versions.",
+                        str(form.errors.get("report_datetime")),
                     )
 
     def test_d9_report_datetime_before_visit_datetime_invalid(self):

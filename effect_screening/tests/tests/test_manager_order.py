@@ -40,7 +40,7 @@ class TestManagers(TestCase):
             else:
                 self.fail(
                     msg=(
-                        "Unexpectedly got this far. Expected model to have"
+                        "Unexpectedly got this far. Expected model to have "
                         "matched with test assertion declared above. "
                         "Have you defined a case for it in this test? "
                         f"Model is {model_cls}"

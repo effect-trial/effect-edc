@@ -5,12 +5,17 @@ from edc_utils import get_utcnow
 from faker import Faker
 from model_bakery.recipe import Recipe, seq
 
-from .models import SubjectConsent, SubjectReconsent
+from .models import (
+    SubjectConsent,
+    SubjectConsentUpdateV2,
+    SubjectConsentV1,
+    SubjectConsentV2,
+    SubjectReconsent,
+)
 
 fake = Faker()
 
-subjectconsent = Recipe(
-    SubjectConsent,
+opts = dict(
     assessment_score=YES,
     confirm_identity=seq("12315678"),
     consent_copy=YES,
@@ -34,6 +39,10 @@ subjectconsent = Recipe(
     user_created="erikvw",
     user_modified="erikvw",
 )
+subjectconsent = Recipe(SubjectConsent, **opts)
+subjectconsentv1 = Recipe(SubjectConsentV1, **opts)
+subjectconsentv2 = Recipe(SubjectConsentV2, **opts)
+subjectconsentupdatev2 = Recipe(SubjectConsentUpdateV2, **opts)
 
 subjectreconsent = Recipe(
     SubjectReconsent,

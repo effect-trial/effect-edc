@@ -24,6 +24,12 @@ class SubjectScreeningForm(
         widget=forms.TextInput(attrs={"readonly": "readonly"}),
     )
 
+    safe_save_id = forms.UUIDField(
+        label="Safe save ID",
+        required=False,
+        widget=forms.TextInput(attrs={"readonly": "readonly"}),
+    )
+
     class Meta:
         model = SubjectScreening
         labels = {

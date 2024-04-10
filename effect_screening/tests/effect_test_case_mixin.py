@@ -9,6 +9,7 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
+from edc_consent import site_consents
 from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
 from edc_form_validators import FormValidatorTestCaseMixin
@@ -17,6 +18,7 @@ from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_randomization.site_randomizers import site_randomizers
 from edc_sites.site import sites
+from edc_sites.site import sites as site_sites
 from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_sites.utils import add_or_update_django_sites
 from edc_utils.date import get_utcnow, get_utcnow_as_date
@@ -101,6 +103,7 @@ class EffectTestCaseMixin(
         eligibility_datetime: datetime | None = None,
         gender: str | None = None,
         age_in_years: int | None = None,
+        cd4_date: date = None,
         serum_crag_date: date = None,
     ) -> SubjectScreening:
         eligible_options = deepcopy(get_eligible_options())
@@ -108,6 +111,7 @@ class EffectTestCaseMixin(
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]
         eligible_options["age_in_years"] = age_in_years or eligible_options["age_in_years"]
+        eligible_options["cd4_date"] = cd4_date or eligible_options["cd4_date"]
         eligible_options["serum_crag_date"] = (
             serum_crag_date or eligible_options["serum_crag_date"]
         )
@@ -141,8 +145,14 @@ class EffectTestCaseMixin(
         site_id: int | None = None,
         dob: date | None = None,
     ) -> SubjectConsent:
+        site = Site.objects.get(id=site_id or settings.SITE_ID)
+        single_site = site_sites.get(site.id)
+        consent_datetime = consent_datetime or subject_screening.report_datetime
+        cdef = site_consents.get_consent_definition(
+            site=single_site, report_datetime=consent_datetime
+        )
         return baker.make_recipe(
-            "effect_consent.subjectconsent",
+            cdef.model,
             user_created="erikvw",
             user_modified="erikvw",
             screening_identifier=subject_screening.screening_identifier,
@@ -150,8 +160,8 @@ class EffectTestCaseMixin(
             gender=subject_screening.gender,
             dob=dob
             or (get_utcnow_as_date() - relativedelta(years=subject_screening.age_in_years)),
-            site=Site.objects.get(id=site_id or settings.SITE_ID),
-            consent_datetime=consent_datetime or subject_screening.report_datetime,
+            site=site,
+            consent_datetime=consent_datetime,
         )
 
     def get_subject_visit(
