@@ -1,6 +1,9 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
+import time_machine
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
@@ -39,6 +42,7 @@ class LabPanelResultTestConfig:
         return self.name
 
 
+@time_machine.travel(datetime(2023, 1, 10, 8, 00, tzinfo=ZoneInfo("UTC")))
 class TestLabResults(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         screening_datetime = get_utcnow() - relativedelta(years=1)
@@ -229,7 +233,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
 
                     self.assertIn("report_datetime", form.errors)
                     self.assertIn(
-                        "Consent not found",
+                        "Consent not configured to update any previous versions.",
                         str(form.errors.get("report_datetime")),
                     )
 
@@ -274,7 +278,10 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertIn("Consent not found", str(form.errors.get("report_datetime")))
+                    self.assertIn(
+                        "Consent not configured to update any previous versions.",
+                        str(form.errors.get("report_datetime")),
+                    )
 
     def test_d9_report_datetime_before_visit_datetime_invalid(self):
         self.get_subject_visit(

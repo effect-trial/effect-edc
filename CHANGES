@@ -23,7 +23,7 @@ Changes
         ````
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
 - bump to effect-form-validators 0.1.40
-- bump to edc 0.5.72
+- bump to edc 0.5.80
 
 0.1.44
 ------
