@@ -166,7 +166,13 @@ class SubjectScreeningAdmin(
                 ),
             },
         ],
-        audit_fieldset_tuple,
+        [
+            audit_fieldset_tuple[0],
+            {
+                "classes": audit_fieldset_tuple[1]["classes"],
+                "fields": tuple(audit_fieldset_tuple[1]["fields"] + ["safe_save_id"]),
+            },
+        ],
     )
 
     radio_fields = {
@@ -272,13 +278,3 @@ class SubjectScreeningAdmin(
         initial_data = super().get_changeform_initial_data(request)
         initial_data["safe_save_id"] = get_uuid()
         return initial_data
-
-    def get_fieldsets(self, request, obj=None):
-        fieldsets = super().get_fieldsets(request, obj=obj)
-        fieldsets = list(fieldsets)
-        for index, (label, data) in enumerate(fieldsets):
-            if label == "Audit":
-                data["fields"] = tuple([f for f in data["fields"]] + ["safe_save_id"])
-                fieldsets[index] = (label, data)
-        fieldsets = tuple(fieldsets)
-        return fieldsets
