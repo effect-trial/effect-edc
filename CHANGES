@@ -14,7 +14,8 @@ Changes
       Subject Screening form (at a single point in time).
       - NOTE: will not protect against the same subject screening data
         being entered twice, on two separate screening forms
-- add Consent Version 2 and Consent Version 2 (Update) models/forms (#755)
+- add Consent Version 2 and Consent Version 2 (Update) models/forms
+  with 'Substudy, Specimens and Data Sharing' questions (#755)
     - add "Submit version 2 consent" action item to those requiring it
       - NOTE: migration order important - post-migrate needs to run to
         create action item before running 0022 (data migration to create
