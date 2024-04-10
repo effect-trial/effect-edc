@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("effect_screening", "0038_feat_731_unsuitable_reason_choices"),
+        ("effect_screening", "0040_feat_731_unsuitable_reason_choices"),
     ]
 
     operations = [

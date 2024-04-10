@@ -40,7 +40,7 @@ class Migration(migrations.Migration):
     dependencies = [
         (
             "effect_screening",
-            "0039_alter_historicalsubjectscreening_reasons_unsuitable_and_more",
+            "0041_alter_historicalsubjectscreening_reasons_unsuitable_and_more",
         ),
     ]
 

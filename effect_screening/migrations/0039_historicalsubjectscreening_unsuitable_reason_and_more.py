@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("effect_screening", "0036_alter_subjectscreening_options_and_more"),
+        ("effect_screening", "0038_populate_safe_save_id_values"),
     ]
 
     operations = [

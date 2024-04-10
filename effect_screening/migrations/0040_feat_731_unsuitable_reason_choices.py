@@ -76,7 +76,7 @@ def update_screening_unsuitable(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("effect_screening", "0037_historicalsubjectscreening_unsuitable_reason_and_more"),
+        ("effect_screening", "0039_historicalsubjectscreening_unsuitable_reason_and_more"),
     ]
 
     operations = [RunPython(update_screening_unsuitable)]
