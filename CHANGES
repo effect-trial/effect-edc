@@ -3,6 +3,7 @@ Changes
 
 0.1.48 (unreleased)
 ------
+- fix failing migration (effect_consent 0022)
 - bump to edc 0.5.82
 
 0.1.47
@@ -25,11 +26,11 @@ Changes
         create action item before running 0022 (data migration to create
         action items), e.g.,
         ```
-        python manage.py migrate edc_data_manager && \
-            python manage.py migrate edc_locator && \
-            python manage.py migrate edc_visit_tracking && \
-            python manage.py migrate effect_consent 0017 && \
-            python manage.py migrate
+        python manage.py migrate edc_data_manager --settings=effect_edc.settings.uat && \
+            python manage.py migrate edc_locator --settings=effect_edc.settings.uat && \
+            python manage.py migrate edc_visit_tracking --settings=effect_edc.settings.uat&& \
+            python manage.py migrate effect_consent 0017 --settings=effect_edc.settings.uat && \
+            python manage.py migrate --settings=effect_edc.settings.uat
         ````
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
 - bump to effect-form-validators 0.1.40
