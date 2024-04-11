@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+0.1.48 (unreleased)
+------
+- bump to edc 0.5.82
+
 0.1.47
 ------
 - updates to Subject Screening (#503, #731)
