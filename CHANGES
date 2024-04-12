@@ -4,7 +4,7 @@ Changes
 0.1.48 (unreleased)
 ------
 - fix failing migration (effect_consent 0022)
-- bump to edc 0.5.82
+- bump to edc 0.5.83
 
 0.1.47
 ------
