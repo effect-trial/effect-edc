@@ -6,6 +6,7 @@ Changes
 - fixes/improvements to failing migration (effect_consent 0022)
   - allows migration to be run without waiting for post-migrate
     signals to run as detailed in 0.1.47 release notes
+- extend 'unable_to_contact' data migration criteria (effect_screening 0040)
 - Update consent_v1 to end 2024-04-11 23:59:59 (UTC)
   and consent_v2 to start 2024-04-12 00:00:00 (UTC)
 - bump to edc 0.5.83

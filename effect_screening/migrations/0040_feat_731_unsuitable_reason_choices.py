@@ -20,9 +20,13 @@ def update_screening_unsuitable(apps, schema_editor):
             for reason in [
                 "unable to contact patient.",
                 "unable to contact patient",
+                "unable to contact patient..",
                 "unable to contact participant",
                 "unable to contact",
                 "cannot contact patient",
+                "cannot contact patient.",
+                "not able to contact the patient.",
+                "patient cannot be contacted.",
             ]
         ]:
             obj.unsuitable_reason = UNABLE_TO_CONTACT
