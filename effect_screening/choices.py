@@ -60,7 +60,7 @@ PREG_YES_NO_NOT_EVALUATED_NA = (
     (NOT_EVALUATED, "Not evaluated"),
 )
 
-REASONS_UNSUITABLE = (
+UNSUITABLE_REASONS = (
     (ACTIVE_SUBSTANCE_ADDICTION, "Active substance addiction"),
     (DECEASED, "Died prior to screening being completed"),
     (UNABLE_TO_CONTACT, "No reliable means of communicating with/ contacting/ following up"),
