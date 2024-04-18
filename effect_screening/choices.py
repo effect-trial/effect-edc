@@ -13,7 +13,12 @@ from edc_constants.constants import (
     YES,
 )
 
-from .constants import ACTIVE_SUBSTANCE_ADDICTION, RELOCATED, UNABLE_TO_CONTACT
+from .constants import (
+    ACTIVE_SUBSTANCE_ADDICTION,
+    G4_RAISED_CREATININE,
+    RELOCATED,
+    UNABLE_TO_CONTACT,
+)
 
 CM_ON_CSF_METHODS = (
     ("india_ink", "Positive microscopy with India Ink or other method"),
@@ -65,7 +70,7 @@ UNSUITABLE_REASONS = (
     (DECEASED, "Died prior to screening being completed"),
     ("g4_thrombocytopenia", "Known to have DAIDS grade 4 thrombocytopenia"),
     ("g4_neutropaenia", "Known to have DAIDS grade 4 neutropaenia"),
-    ("g4_raised_creatinine", "Known to have DAIDS grade 4 raised creatinine"),
+    (G4_RAISED_CREATININE, "Known to have DAIDS grade 4 raised creatinine"),
     (
         "no_reliable_followup",
         "No reliable means of communicating with/following up",
