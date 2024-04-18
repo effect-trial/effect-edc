@@ -10,6 +10,7 @@ Changes
 - Update consent_v1 to end 2024-04-11 23:59:59 (UTC)
   and consent_v2 to start 2024-04-12 00:00:00 (UTC)
 - bump to edc 0.5.83
+- bump to edc-microbiology 0.3.10
 
 0.1.47
 ------
