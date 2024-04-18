@@ -3,27 +3,15 @@ Changes
 
 0.1.48 (unreleased)
 ------
-- updates to Subject Screening (#730)
-    - add known (late exclusion) conditions to 'unsuitable_reason'
-      choices (#730)
-- fixes/improvements to failing migration (effect_consent 0022)
-  - allows migration to be run without waiting for post-migrate
-    signals to run as detailed in 0.1.47 release notes
-- extend 'unable_to_contact' data migration criteria (effect_screening 0040)
-- Update consent_v1 to end 2024-04-11 23:59:59 (UTC)
-  and consent_v2 to start 2024-04-12 00:00:00 (UTC)
-- bump to edc 0.5.83
-- bump to edc-microbiology 0.3.10
-
-0.1.47
-------
-- updates to Subject Screening (#503, #731)
+- updates to Subject Screening (#488-10, #503, #730, #731)
     - allow CD4 count to be up to and incl. 60 days old, and remain
       eligible (#503, #488-10)
     - allow CD4 count date older than 60 days to be saved, but as
       ineligible (#503, #488-10)
     - add 'unsuitable_reason', 'unsuitable_reason_other' questions,
       retire 'reasons_unsuitable' (#731)
+    - add known (late exclusion) conditions to 'unsuitable_reason'
+      choices (#730)
     - add 'safe_save_id' to prevent 'double-submission' of the same
       Subject Screening form (at a single point in time).
       - NOTE: will not protect against the same subject screening data
@@ -31,20 +19,16 @@ Changes
 - add Consent Version 2 and Consent Version 2 (Update) models/forms
   with 'Substudy, Specimens and Data Sharing' questions (#755)
     - add "Submit version 2 consent" action item to those requiring it
-      - NOTE: migration order important - post-migrate needs to run to
-        create action item before running 0022 (data migration to create
-        action items), e.g.,
-        ```
-        python manage.py migrate edc_data_manager --settings=effect_edc.settings.uat && \
-            python manage.py migrate edc_locator --settings=effect_edc.settings.uat && \
-            python manage.py migrate edc_visit_tracking --settings=effect_edc.settings.uat&& \
-            python manage.py migrate effect_consent 0017 --settings=effect_edc.settings.uat && \
-            python manage.py migrate --settings=effect_edc.settings.uat
-        ````
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
+- Update consent_v1 to end 2024-04-11 23:59:59 (UTC)
+  and consent_v2 to start 2024-04-12 00:00:00 (UTC)
+- bump to edc 0.5.83
+- bump to edc-microbiology 0.3.10
 - bump to effect-form-validators 0.1.40
-- bump to edc 0.5.80
-- bump to edc-microbiology 0.3.9
+
+0.1.47
+------
+yanked as invalid (changes rolled into 0.1.48)
 
 0.1.44
 ------
