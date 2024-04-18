@@ -66,8 +66,12 @@ UNSUITABLE_REASONS = (
     ("g4_thrombocytopenia", "Known to have DAIDS grade 4 thrombocytopenia"),
     ("g4_neutropaenia", "Known to have DAIDS grade 4 neutropaenia"),
     ("g4_raised_creatinine", "Known to have DAIDS grade 4 raised creatinine"),
-    (UNABLE_TO_CONTACT, "No reliable means of communicating with/ contacting/ following up"),
+    (
+        "no_reliable_followup",
+        "No reliable means of communicating with/following up",
+    ),
     (RELOCATED, "Relocated or planning to relocate within next 14 days to non-EFFECT site"),
+    (UNABLE_TO_CONTACT, "Unable to contact patient for screening"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )
