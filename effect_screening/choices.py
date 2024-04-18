@@ -63,6 +63,9 @@ PREG_YES_NO_NOT_EVALUATED_NA = (
 UNSUITABLE_REASONS = (
     (ACTIVE_SUBSTANCE_ADDICTION, "Active substance addiction"),
     (DECEASED, "Died prior to screening being completed"),
+    ("g4_thrombocytopenia", "Known to have DAIDS grade 4 thrombocytopenia"),
+    ("g4_neutropaenia", "Known to have DAIDS grade 4 neutropaenia"),
+    ("g4_raised_creatinine", "Known to have DAIDS grade 4 raised creatinine"),
     (UNABLE_TO_CONTACT, "No reliable means of communicating with/ contacting/ following up"),
     (RELOCATED, "Relocated or planning to relocate within next 14 days to non-EFFECT site"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
