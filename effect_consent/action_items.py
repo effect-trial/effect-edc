@@ -25,7 +25,7 @@ class ReconsentAction(Action):
 
 class ConsentUpdateV2Action(Action):
     name = CONSENT_V2_ACTION
-    display_name = "Submit version 2 consent"
+    display_name = "Submit Version 2 Consent"
     reference_model = "effect_consent.subjectconsentupdatev2"
     priority = HIGH_PRIORITY
     show_on_dashboard = True
