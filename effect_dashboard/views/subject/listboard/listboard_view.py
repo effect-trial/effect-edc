@@ -1,4 +1,4 @@
-from django.db.models import Q
+from django.db.models import Max, Q
 from edc_dashboard.view_mixins import EdcViewMixin
 from edc_listboard.view_mixins import ListboardFilterViewMixin, SearchFormViewMixin
 from edc_listboard.views import ListboardView as BaseListboardView
@@ -28,6 +28,17 @@ class ListboardView(
         "last_name__exact",
         "identity__exact",
     ]
+
+    def get_updated_queryset(self, queryset):
+        """Only return records with latest consent for each subject."""
+        sub_qs = queryset.values("subject_identifier").annotate(
+            max_consent_datetime=Max("consent_datetime")
+        )
+        queryset = queryset.filter(
+            subject_identifier__in=sub_qs.values("subject_identifier"),
+            consent_datetime__in=sub_qs.values("max_consent_datetime"),
+        )
+        return queryset
 
     def get_queryset_filter_options(self, request, *args, **kwargs) -> tuple[Q, dict]:
         q_object, options = super().get_queryset_filter_options(request, *args, **kwargs)
