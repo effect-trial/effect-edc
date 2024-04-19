@@ -18,7 +18,7 @@ Changes
         being entered twice, on two separate screening forms
 - add Consent Version 2 and Consent Version 2 (Update) models/forms
   with 'Substudy, Specimens and Data Sharing' questions (#755)
-    - add "Submit version 2 consent" action item to those requiring it
+    - add "Submit Version 2 Consent" action item to those requiring it
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
 - Update consent_v1 to end 2024-04-19 15:59:59 (UTC)
   and consent_v2 to start 2024-04-19 16:00:00 (UTC)
