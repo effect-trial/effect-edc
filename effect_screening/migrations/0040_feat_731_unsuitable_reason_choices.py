@@ -49,10 +49,19 @@ def matches_g4_raised_creatinine(reasons_unsuitable: str) -> bool:
                 "late exclusion criteria (renal function)",
                 "Renal failure",
                 "Renal failure - Grd 4 DAIDS",
+                "Met late exclusion criteria - Creatinine high",
+                "DAIDS Grade 4 Creatinine at screening.",
+                (
+                    "Meets late exclusion criteria: DAIDS grade 4 "
+                    "abnormalities of creatinine level"
+                ),
             ]
         ]
         or (
-            reasons_unsuitable.lower().startswith("Renal failure creat ".lower())
+            (
+                reasons_unsuitable.lower().startswith("Renal failure creat ".lower())
+                or reasons_unsuitable.lower().startswith("Creat ".lower())
+            )
             and reasons_unsuitable.lower().endswith(
                 ", will meet late exclusion criteria".lower()
             )
@@ -61,6 +70,12 @@ def matches_g4_raised_creatinine(reasons_unsuitable: str) -> bool:
             reasons_unsuitable.lower().startswith("Chronic renal failure creat ".lower())
             and reasons_unsuitable.lower().endswith(
                 ". Will meet late exclusion criteria.".lower()
+            )
+        )
+        or (
+            reasons_unsuitable.lower().startswith("Creatinine = ".lower())
+            and reasons_unsuitable.lower().endswith(
+                " (DAIDS Grade 4 - exclusion criteria)".lower()
             )
         )
     )
