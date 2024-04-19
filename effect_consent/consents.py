@@ -10,7 +10,7 @@ consent_v1 = ConsentDefinition(
     proxy_model="effect_consent.subjectconsentv1",
     version="1",
     start=ResearchProtocolConfig().study_open_datetime,
-    end=datetime(2024, 2, 22, 23, 59, 59, tzinfo=ZoneInfo("UTC")),
+    end=datetime(2024, 4, 19, 15, 59, 59, tzinfo=ZoneInfo("UTC")),
     age_min=18,
     age_is_adult=18,
     age_max=110,
@@ -21,7 +21,7 @@ consent_v1 = ConsentDefinition(
 consent_v2 = ConsentDefinition(
     proxy_model="effect_consent.subjectconsentv2",
     version="2",
-    start=datetime(2024, 2, 23, 0, 0, 0, tzinfo=ZoneInfo("UTC")),
+    start=datetime(2024, 4, 19, 16, 0, 0, tzinfo=ZoneInfo("UTC")),
     end=ResearchProtocolConfig().study_close_datetime,
     age_min=18,
     age_is_adult=18,

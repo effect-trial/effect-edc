@@ -20,8 +20,8 @@ Changes
   with 'Substudy, Specimens and Data Sharing' questions (#755)
     - add "Submit version 2 consent" action item to those requiring it
 - use CrfCollection and RequisitionCollection, replacing FormsCollection
-- Update consent_v1 to end 2024-04-11 23:59:59 (UTC)
-  and consent_v2 to start 2024-04-12 00:00:00 (UTC)
+- Update consent_v1 to end 2024-04-19 15:59:59 (UTC)
+  and consent_v2 to start 2024-04-19 16:00:00 (UTC)
 - bump to edc 0.5.85
 - bump to edc-microbiology 0.3.10
 - bump to effect-form-validators 0.1.40
