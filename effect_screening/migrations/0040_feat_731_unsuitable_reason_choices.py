@@ -55,6 +55,7 @@ def matches_g4_raised_creatinine(reasons_unsuitable: str) -> bool:
                     "Meets late exclusion criteria: DAIDS grade 4 "
                     "abnormalities of creatinine level"
                 ),
+                "known to have DAIDS g4 renal impairment",
             ]
         ]
         or (
