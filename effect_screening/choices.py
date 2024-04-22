@@ -13,7 +13,12 @@ from edc_constants.constants import (
     YES,
 )
 
-from .constants import ACTIVE_SUBSTANCE_ADDICTION, RELOCATED, UNABLE_TO_CONTACT
+from .constants import (
+    ACTIVE_SUBSTANCE_ADDICTION,
+    G4_RAISED_CREATININE,
+    RELOCATED,
+    UNABLE_TO_CONTACT,
+)
 
 CM_ON_CSF_METHODS = (
     ("india_ink", "Positive microscopy with India Ink or other method"),
@@ -60,11 +65,18 @@ PREG_YES_NO_NOT_EVALUATED_NA = (
     (NOT_EVALUATED, "Not evaluated"),
 )
 
-REASONS_UNSUITABLE = (
+UNSUITABLE_REASONS = (
     (ACTIVE_SUBSTANCE_ADDICTION, "Active substance addiction"),
     (DECEASED, "Died prior to screening being completed"),
-    (UNABLE_TO_CONTACT, "No reliable means of communicating with/ contacting/ following up"),
+    ("g4_thrombocytopenia", "Known to have DAIDS grade 4 thrombocytopenia"),
+    ("g4_neutropaenia", "Known to have DAIDS grade 4 neutropaenia"),
+    (G4_RAISED_CREATININE, "Known to have DAIDS grade 4 raised creatinine"),
+    (
+        "no_reliable_followup",
+        "No reliable means of communicating with/following up",
+    ),
     (RELOCATED, "Relocated or planning to relocate within next 14 days to non-EFFECT site"),
+    (UNABLE_TO_CONTACT, "Unable to contact patient for screening"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     (NOT_APPLICABLE, "Not applicable"),
 )

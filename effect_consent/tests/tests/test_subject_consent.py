@@ -3,7 +3,7 @@ from unittest import skip
 from zoneinfo import ZoneInfo
 
 import time_machine
-from django.test import TestCase, tag
+from django.test import TestCase
 from edc_utils import get_utcnow
 from model_bakery import baker
 
@@ -11,7 +11,7 @@ from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
 
 
 class TestSubjectConsent(EffectTestCaseMixin, TestCase):
-    @time_machine.travel(datetime(2024, 1, 1, 8, 00, tzinfo=ZoneInfo("UTC")))
+    @time_machine.travel(datetime(2024, 4, 22, 13, 59, tzinfo=ZoneInfo("UTC")))
     def test_v1(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
@@ -47,8 +47,7 @@ class TestSubjectConsent(EffectTestCaseMixin, TestCase):
         )
         self.assertEqual(subject_consent.version, "2")
 
-    @tag("2")
-    @time_machine.travel(datetime(2024, 4, 1, 8, 00, tzinfo=ZoneInfo("UTC")))
+    @time_machine.travel(datetime(2024, 4, 22, 14, 00, tzinfo=ZoneInfo("UTC")))
     def test_v2(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
