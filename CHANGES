@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-0.1.48 (unreleased)
+0.1.48
 ------
 - updates to Subject Screening (#488-10, #503, #730, #731)
     - allow CD4 count to be up to and incl. 60 days old, and remain
