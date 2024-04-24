@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+0.1.49
+------
+- bump edc==0.5.87
+
 0.1.48
 ------
 - updates to Subject Screening (#488-10, #503, #730, #731)
