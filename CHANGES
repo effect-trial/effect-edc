@@ -1,6 +1,18 @@
 Changes
 +++++++
 
+0.1.50
+------
+- configure screening listboard to use report datetime for "Assessed on"
+  if not eligible (#787)
+- fix 'Server error when completing Chest X-Ray form' (#786)
+- order subject listboard participants by date first consented (#785)
+- fix 'Treatment assignment and consent not visible once off schedule' (#756)
+- fix 'Server error when trying to delete a screening form' (#713)
+- bring in form validation for (#731)
+- bump to edc 0.5.88
+- bump to effect-form-validators 0.1.41
+
 0.1.49
 ------
 - bump edc==0.5.87
