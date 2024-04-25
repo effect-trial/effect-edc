@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+0.1.50 (unreleased)
+------
+- configure screening listboard to use report datetime for "Assessed on"
+  if not eligible (#787)
+
 0.1.49
 ------
 - bump edc==0.5.87
