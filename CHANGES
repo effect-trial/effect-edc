@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-0.1.50 (unreleased)
+0.1.50
 ------
 - configure screening listboard to use report datetime for "Assessed on"
   if not eligible (#787)
