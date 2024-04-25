@@ -5,6 +5,8 @@ Changes
 ------
 - configure screening listboard to use report datetime for "Assessed on"
   if not eligible (#787)
+- fix 'Treatment assignment and consent not visible once off schedule' (#756)
+- fix 'Server error when trying to delete a screening form' (#713)
 
 0.1.49
 ------
