@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+0.1.51
+------
+- minor, remove consent version number from Consented dates on subject
+  listboard
+
 0.1.50
 ------
 - configure screening listboard to use report datetime for "Assessed on"
