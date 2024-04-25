@@ -30,7 +30,7 @@ class ListboardView(
     ]
 
     def get_updated_queryset(self, queryset):
-        """Only return records with latest consent for each subject."""
+        """Only return records with first consent for each subject."""
         sub_qs = queryset.values("subject_identifier").annotate(
             min_consent_datetime=Min("consent_datetime")
         )
