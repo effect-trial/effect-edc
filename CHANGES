@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+0.1.52 (unreleased)
+------
+- add 'Account Management' link to home page ListGroup
+
 0.1.51
 ------
 - minor, remove consent version number from Consented dates on subject
