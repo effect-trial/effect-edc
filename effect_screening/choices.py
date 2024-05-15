@@ -75,6 +75,7 @@ UNSUITABLE_REASONS = (
         "no_reliable_followup",
         "No reliable means of communicating with/following up",
     ),
+    ("involuntary_incarceration", "Patient is under involuntary incarceration"),
     (RELOCATED, "Relocated or planning to relocate within next 14 days to non-EFFECT site"),
     (UNABLE_TO_CONTACT, "Unable to contact patient for screening"),
     (OTHER, OTHER_PLEASE_SPECIFY_TEXT),

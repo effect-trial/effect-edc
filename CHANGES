@@ -3,6 +3,8 @@ Changes
 
 0.1.52 (unreleased)
 ------
+- add "patient is under involuntary incarceration" choice to
+  Subject Screening form (#802)
 - updates to home page ListGroup
     - add 'Account Management' link
     - change Switch Sites and Logout items from get to post
