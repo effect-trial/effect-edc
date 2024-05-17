@@ -70,6 +70,17 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         default=NOT_EVALUATED,
     )
 
+    parent_guardian_consent = models.CharField(
+        verbose_name=(
+            "If patient is under 18, do you have consent from "
+            "the parent or legal guardian to capture this information?"
+        ),
+        max_length=25,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="( if 'No', STOP )",
+    )
+
     hiv_pos = models.CharField(
         verbose_name="Is the patient CONFIRMED HIV sero-positive?",
         max_length=15,
