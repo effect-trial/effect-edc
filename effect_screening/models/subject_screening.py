@@ -128,7 +128,10 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     preg_test_date = models.DateField(
-        verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
+        verbose_name="Pregnancy test date (Urine or serum βhCG)",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
     )
 
     # ineligible if YES
@@ -166,6 +169,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     lp_date = models.DateField(
         verbose_name="LP date",
+        validators=[date_not_future],
         null=True,
         blank=True,
         help_text=(

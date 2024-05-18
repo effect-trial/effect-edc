@@ -6,6 +6,7 @@ Changes
 - updates to Subject Screening form (#638, #802)
     - allow screening age < 18 with consent, though as ineligible (#638)
     - add "patient is under involuntary incarceration" choice (#802)
+    - tighten date validation
 - add "Submit Version 2 Consent" action item to Off Schedule Participants (#790)
 - add additional symptom choices to Signs and Symptoms form (#792)
 - updates to home page ListGroup
