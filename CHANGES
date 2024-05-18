@@ -12,7 +12,7 @@ Changes
 - updates to home page ListGroup
     - add 'Account Management' link
     - change Switch Sites and Logout items from get to post
-
+- bump to effect-form-validators 0.1.42
 
 0.1.51
 ------
