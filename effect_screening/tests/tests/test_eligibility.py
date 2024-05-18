@@ -629,21 +629,32 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("serum_crag_date", form._errors)
         self.assertDictEqual({}, form._errors)
 
-    def test_serum_crag_date_not_before_cd4_date(self):
+    def test_serum_crag_date_can_be_before_cd4_date(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
         report_datetime = opts.get("report_datetime")
-        opts.update(cd4_date=report_datetime - relativedelta(days=7))
-        opts.update(serum_crag_date=report_datetime - relativedelta(days=14))
+        opts.update(
+            cd4_date=report_datetime - relativedelta(days=7),
+            serum_crag_date=report_datetime - relativedelta(days=14),
+        )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
-        self.assertIn("serum_crag_date", form._errors)
+        self.assertDictEqual({}, form._errors)
 
-        opts.update(cd4_date=report_datetime - relativedelta(days=7))
-        opts.update(serum_crag_date=report_datetime - relativedelta(days=6))
+    def test_serum_crag_date_can_be_after_cd4_date(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        report_datetime = opts.get("report_datetime")
+        opts.update(
+            cd4_date=report_datetime - relativedelta(days=7),
+            serum_crag_date=report_datetime - relativedelta(days=6),
+        )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertDictEqual({}, form._errors)
