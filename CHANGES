@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-0.1.52 (unreleased)
+0.1.52
 ------
 - updates to Subject Screening form (#638, #802)
     - allow screening age < 18 with consent, though as ineligible (#638)
