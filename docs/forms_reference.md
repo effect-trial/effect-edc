@@ -1146,12 +1146,15 @@
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -1206,12 +1209,15 @@
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -3680,12 +3686,15 @@ Adherence CRF completed at baseline (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -3740,12 +3749,15 @@ Adherence CRF completed at baseline (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -5003,12 +5015,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -5063,12 +5078,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -6509,12 +6527,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -6569,12 +6590,15 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -8798,12 +8822,15 @@ Adherence CRF completed at d14 (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -8858,12 +8885,15 @@ Adherence CRF completed at d14 (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -10338,12 +10368,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -10398,12 +10431,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -11695,12 +11731,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -11755,12 +11794,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -13052,12 +13094,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -13112,12 +13157,15 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
   - `jaundice`: *Jaundice*
@@ -14239,6 +14287,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2024-04-10 15:43*
+*Rendered on 2024-05-20 13:48*
 
 

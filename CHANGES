@@ -1,6 +1,22 @@
 Changes
 +++++++
 
+0.1.52
+------
+- updates to Subject Screening form (#638, #802)
+    - allow screening age < 18 with consent, though as ineligible (#638)
+    - add "patient is under involuntary incarceration" choice (#802)
+    - tighten date validation
+- allow Chest X-ray date up to 7 days before consent date (#786-2)
+- add "Submit Version 2 Consent" action item to Off Schedule Participants (#790)
+- add additional symptom choices to Signs and Symptoms form (#792)
+- updates to home page ListGroup
+    - add 'Account Management' link
+    - change Switch Sites and Logout items from get to post
+- update forms reference doc
+- bump to edc 0.5.88
+- bump to effect-form-validators 0.1.42
+
 0.1.51
 ------
 - minor, remove consent version number from Consented dates on subject

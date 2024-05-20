@@ -41,7 +41,17 @@ class SubjectScreeningAdmin(
                 "fields": ("screening_identifier", "report_datetime", "site"),
             },
         ],
-        ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
+        [
+            "Demographics",
+            {
+                "fields": (
+                    "initials",
+                    "gender",
+                    "age_in_years",
+                    "parent_guardian_consent",
+                )
+            },
+        ],
         [
             "HIV",
             {
@@ -195,6 +205,7 @@ class SubjectScreeningAdmin(
         "mg_seizures": admin.VERTICAL,
         "mg_severe_headache": admin.VERTICAL,
         "on_flucon": admin.VERTICAL,
+        "parent_guardian_consent": admin.VERTICAL,
         "pregnant": admin.VERTICAL,
         "prior_cm_episode": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,

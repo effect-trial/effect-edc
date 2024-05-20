@@ -70,6 +70,17 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         default=NOT_EVALUATED,
     )
 
+    parent_guardian_consent = models.CharField(
+        verbose_name=(
+            "If patient is under 18, do you have consent from "
+            "the parent or legal guardian to capture this information?"
+        ),
+        max_length=25,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="( if 'No', STOP )",
+    )
+
     hiv_pos = models.CharField(
         verbose_name="Is the patient CONFIRMED HIV sero-positive?",
         max_length=15,
@@ -117,7 +128,10 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     preg_test_date = models.DateField(
-        verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
+        verbose_name="Pregnancy test date (Urine or serum βhCG)",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
     )
 
     # ineligible if YES
@@ -155,6 +169,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     lp_date = models.DateField(
         verbose_name="LP date",
+        validators=[date_not_future],
         null=True,
         blank=True,
         help_text=(

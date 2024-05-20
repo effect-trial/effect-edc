@@ -64,6 +64,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             "initials": "EW",
             "gender": FEMALE,
             "age_in_years": 25,
+            "parent_guardian_consent": NOT_APPLICABLE,
             "hiv_confirmed_date": (get_utcnow() - relativedelta(days=28)).date(),
             "hiv_confirmed_method": "historical_lab_result",
             "unsuitable_for_study": NO,
@@ -176,16 +177,22 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual({}, form._errors)
 
     def test_inclusion_age_lt_18_ineligible(self):
-        for age_in_years in [-1, 0, 1, 10, 15, 17]:
-            with self.subTest(age_in_years=age_in_years):
-                opts = self.get_eligible_opts()
-                opts.update(age_in_years=age_in_years)
-                model_obj = SubjectScreening.objects.create(**opts)
-                obj = ScreeningEligibility(model_obj=model_obj)
-                self.assertDictEqual({"age_in_years": "Age not >= 18"}, obj.reasons_ineligible)
-                self.assertFalse(obj.is_eligible)
-                self.assertEqual(NO, obj.eligible)
-                self.assertEqual("INELIGIBLE", obj.display_label)
+        for age_in_years in [-1, 0, 1, 10, 12, 15, 17]:
+            for consent_answ in [YES, NO, NOT_APPLICABLE]:
+                with self.subTest(age_in_years=age_in_years, consent_answ=consent_answ):
+                    opts = self.get_eligible_opts()
+                    opts.update(
+                        age_in_years=age_in_years,
+                        parent_guardian_consent=consent_answ,
+                    )
+                    model_obj = SubjectScreening.objects.create(**opts)
+                    obj = ScreeningEligibility(model_obj=model_obj)
+                    self.assertDictEqual(
+                        {"age_in_years": "Age not >= 18"}, obj.reasons_ineligible
+                    )
+                    self.assertFalse(obj.is_eligible)
+                    self.assertEqual(NO, obj.eligible)
+                    self.assertEqual("INELIGIBLE", obj.display_label)
 
     def test_inclusion_age_gte_18_ok(self):
         for age_in_years in [18, 19, 30, 60, 99, 110]:
@@ -622,21 +629,32 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertNotIn("serum_crag_date", form._errors)
         self.assertDictEqual({}, form._errors)
 
-    def test_serum_crag_date_not_before_cd4_date(self):
+    def test_serum_crag_date_can_be_before_cd4_date(self):
         opts = dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
         report_datetime = opts.get("report_datetime")
-        opts.update(cd4_date=report_datetime - relativedelta(days=7))
-        opts.update(serum_crag_date=report_datetime - relativedelta(days=14))
+        opts.update(
+            cd4_date=report_datetime - relativedelta(days=7),
+            serum_crag_date=report_datetime - relativedelta(days=14),
+        )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
-        self.assertIn("serum_crag_date", form._errors)
+        self.assertDictEqual({}, form._errors)
 
-        opts.update(cd4_date=report_datetime - relativedelta(days=7))
-        opts.update(serum_crag_date=report_datetime - relativedelta(days=6))
+    def test_serum_crag_date_can_be_after_cd4_date(self):
+        opts = dict(
+            **self.inclusion_criteria,
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
+        )
+        report_datetime = opts.get("report_datetime")
+        opts.update(
+            cd4_date=report_datetime - relativedelta(days=7),
+            serum_crag_date=report_datetime - relativedelta(days=6),
+        )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertDictEqual({}, form._errors)
