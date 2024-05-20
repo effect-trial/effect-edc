@@ -13,6 +13,7 @@ Changes
     - add 'Account Management' link
     - change Switch Sites and Logout items from get to post
 - update forms reference doc
+- bump to edc 0.5.88
 - bump to effect-form-validators 0.1.42
 
 0.1.51
