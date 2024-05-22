@@ -665,12 +665,22 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             **self.exclusion_criteria,
             **self.get_basic_opts(),
         )
-        opts.update(age_in_years=2)
+        opts.update(age_in_years=-1)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertIn("age_in_years", form._errors)
+
+        opts.update(age_in_years=120)
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertIn("age_in_years", form._errors)
 
         opts.update(age_in_years=18)
+        form = SubjectScreeningForm(data=opts)
+        form.is_valid()
+        self.assertNotIn("age_in_years", form._errors)
+
+        opts.update(age_in_years=12, parent_guardian_consent=YES)
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
         self.assertNotIn("age_in_years", form._errors)
