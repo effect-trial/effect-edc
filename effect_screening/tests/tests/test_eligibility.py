@@ -435,7 +435,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(YES, obj.eligible)
         self.assertEqual("ELIGIBLE", obj.display_label)
 
-    @tag("preg")
     def test_male_preg_raises(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -476,7 +475,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertDictEqual({}, form._errors)
 
-    @tag("preg")
     def test_female_preg_or_bf(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -592,7 +590,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("cd4_date", form._errors)
                 self.assertDictEqual({}, form._errors)
 
-    @tag("1")
     def test_serum_crag_negative_raises_validation_error(self):
         opts = self.get_eligible_opts()
         opts.update(serum_crag_value=NEG)
