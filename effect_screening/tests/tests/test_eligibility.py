@@ -586,11 +586,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
         for days_ago in [7, 21, 59, 60, 61, 100, 365]:
             with self.subTest(days_ago=days_ago):
-                opts.update(
-                    cd4_date=report_datetime.date() - relativedelta(days=days_ago),
-                    # TODO: review below after #488 changes applied
-                    serum_crag_date=report_datetime.date() - relativedelta(days=days_ago - 1),
-                )
+                opts.update(cd4_date=report_datetime.date() - relativedelta(days=days_ago))
                 form = SubjectScreeningForm(data=opts)
                 form.is_valid()
                 self.assertNotIn("cd4_date", form._errors)
