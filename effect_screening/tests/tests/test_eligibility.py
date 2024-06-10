@@ -496,7 +496,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         opts.update(
             gender=FEMALE,
             pregnant=YES,
-            preg_test_date=get_utcnow(),
+            preg_test_date=get_utcnow().date(),
             breast_feeding=NOT_APPLICABLE,
         )
         form = SubjectScreeningForm(data=opts)
@@ -508,7 +508,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         opts.update(
             gender=FEMALE,
             pregnant=YES,
-            preg_test_date=get_utcnow(),
+            preg_test_date=get_utcnow().date(),
             breast_feeding=YES,
         )
         form = SubjectScreeningForm(data=opts)
@@ -633,8 +633,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
         report_datetime = opts.get("report_datetime")
         opts.update(
-            cd4_date=report_datetime - relativedelta(days=7),
-            serum_crag_date=report_datetime - relativedelta(days=14),
+            cd4_date=report_datetime.date() - relativedelta(days=7),
+            serum_crag_date=report_datetime.date() - relativedelta(days=14),
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
@@ -648,8 +648,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
         report_datetime = opts.get("report_datetime")
         opts.update(
-            cd4_date=report_datetime - relativedelta(days=7),
-            serum_crag_date=report_datetime - relativedelta(days=6),
+            cd4_date=report_datetime.date() - relativedelta(days=7),
+            serum_crag_date=report_datetime.date() - relativedelta(days=6),
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
