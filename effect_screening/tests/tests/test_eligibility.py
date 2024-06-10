@@ -282,8 +282,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertEqual(YES, obj.eligible)
                 self.assertEqual("ELIGIBLE", obj.display_label)
 
-    def test_inclusion_serum_crag_date_gt_14_days_ineligible(self):
-        for days_ago in [-21, -20, -15, 15, 20, 21]:
+    def test_inclusion_serum_crag_date_gt_21_days_ineligible(self):
+        for days_ago in [-99, -30, -23, -22, 22, 23, 30, 99]:
             with self.subTest(days_ago=days_ago):
                 opts = self.get_eligible_opts()
                 report_datetime = opts.get("report_datetime")
@@ -295,15 +295,15 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual(
-                    {"serum_crag_date": "Serum CrAg > 14 days"},
+                    {"serum_crag_date": "Serum CrAg > 21 days"},
                     obj.reasons_ineligible,
                 )
                 self.assertFalse(obj.is_eligible)
                 self.assertEqual(NO, obj.eligible)
                 self.assertEqual("INELIGIBLE", obj.display_label)
 
-    def test_inclusion_serum_crag_date_lte_14_days_ok(self):
-        for days_ago in [0, 1, 7, 13, 14]:
+    def test_inclusion_serum_crag_date_lte_21_days_ok(self):
+        for days_ago in [-21, -20, -14, -13, -1, 0, 1, 13, 14, 20, 21]:
             with self.subTest(days_ago=days_ago):
                 opts = self.get_eligible_opts()
                 report_datetime = opts.get("report_datetime")
