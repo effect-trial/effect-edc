@@ -5,7 +5,7 @@ Changes
 ------
 - update Subject Screening to extend window for serum crag to be
   up to 21 days (#488-3)
-- bump to edc 0.5.91
+- bump to edc 0.5.92
 
 0.1.53
 ------
