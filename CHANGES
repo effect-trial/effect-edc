@@ -3,7 +3,7 @@ Changes
 
 0.1.54 (unreleased)
 ------
-- update Subject Screening to extend window for serum crag to be
+- update Subject Screening to extend window for serum CrAg to be
   up to 21 days (#488-3)
 - bump to edc 0.5.92
 
