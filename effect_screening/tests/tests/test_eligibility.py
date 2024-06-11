@@ -282,8 +282,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 self.assertEqual(YES, obj.eligible)
                 self.assertEqual("ELIGIBLE", obj.display_label)
 
-    def test_inclusion_serum_crag_date_gt_14_days_ineligible(self):
-        for days_ago in [-21, -20, -15, 15, 20, 21]:
+    def test_inclusion_serum_crag_date_gt_21_days_ineligible(self):
+        for days_ago in [-99, -30, -23, -22, 22, 23, 30, 99]:
             with self.subTest(days_ago=days_ago):
                 opts = self.get_eligible_opts()
                 report_datetime = opts.get("report_datetime")
@@ -295,15 +295,15 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual(
-                    {"serum_crag_date": "Serum CrAg > 14 days"},
+                    {"serum_crag_date": "Serum CrAg > 21 days"},
                     obj.reasons_ineligible,
                 )
                 self.assertFalse(obj.is_eligible)
                 self.assertEqual(NO, obj.eligible)
                 self.assertEqual("INELIGIBLE", obj.display_label)
 
-    def test_inclusion_serum_crag_date_lte_14_days_ok(self):
-        for days_ago in [0, 1, 7, 13, 14]:
+    def test_inclusion_serum_crag_date_lte_21_days_ok(self):
+        for days_ago in [-21, -20, -14, -13, -1, 0, 1, 13, 14, 20, 21]:
             with self.subTest(days_ago=days_ago):
                 opts = self.get_eligible_opts()
                 report_datetime = opts.get("report_datetime")
@@ -435,7 +435,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertEqual(YES, obj.eligible)
         self.assertEqual("ELIGIBLE", obj.display_label)
 
-    @tag("preg")
     def test_male_preg_raises(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -476,7 +475,6 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertDictEqual({}, form._errors)
 
-    @tag("preg")
     def test_female_preg_or_bf(self):
         opts = dict(
             **self.inclusion_criteria,
@@ -496,7 +494,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         opts.update(
             gender=FEMALE,
             pregnant=YES,
-            preg_test_date=get_utcnow(),
+            preg_test_date=get_utcnow().date(),
             breast_feeding=NOT_APPLICABLE,
         )
         form = SubjectScreeningForm(data=opts)
@@ -508,7 +506,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         opts.update(
             gender=FEMALE,
             pregnant=YES,
-            preg_test_date=get_utcnow(),
+            preg_test_date=get_utcnow().date(),
             breast_feeding=YES,
         )
         form = SubjectScreeningForm(data=opts)
@@ -586,17 +584,12 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
         for days_ago in [7, 21, 59, 60, 61, 100, 365]:
             with self.subTest(days_ago=days_ago):
-                opts.update(
-                    cd4_date=report_datetime.date() - relativedelta(days=days_ago),
-                    # TODO: review below after #488 changes applied
-                    serum_crag_date=report_datetime.date() - relativedelta(days=days_ago - 1),
-                )
+                opts.update(cd4_date=report_datetime.date() - relativedelta(days=days_ago))
                 form = SubjectScreeningForm(data=opts)
                 form.is_valid()
                 self.assertNotIn("cd4_date", form._errors)
                 self.assertDictEqual({}, form._errors)
 
-    @tag("1")
     def test_serum_crag_negative_raises_validation_error(self):
         opts = self.get_eligible_opts()
         opts.update(serum_crag_value=NEG)
@@ -637,8 +630,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
         report_datetime = opts.get("report_datetime")
         opts.update(
-            cd4_date=report_datetime - relativedelta(days=7),
-            serum_crag_date=report_datetime - relativedelta(days=14),
+            cd4_date=report_datetime.date() - relativedelta(days=7),
+            serum_crag_date=report_datetime.date() - relativedelta(days=14),
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
@@ -652,8 +645,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         )
         report_datetime = opts.get("report_datetime")
         opts.update(
-            cd4_date=report_datetime - relativedelta(days=7),
-            serum_crag_date=report_datetime - relativedelta(days=6),
+            cd4_date=report_datetime.date() - relativedelta(days=7),
+            serum_crag_date=report_datetime.date() - relativedelta(days=6),
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
