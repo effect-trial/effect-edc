@@ -119,9 +119,9 @@ class ScreeningEligibility(BaseScreeningEligibility):
         elif (
             report_datetime
             and serum_crag_date
-            and abs((to_local(report_datetime).date() - serum_crag_date).days) > 14
+            and abs((to_local(report_datetime).date() - serum_crag_date).days) > 21
         ):
-            reasons_ineligible.update(serum_crag_date="Serum CrAg > 14 days")
+            reasons_ineligible.update(serum_crag_date="Serum CrAg > 21 days")
         return reasons_ineligible
 
     def review_lp_csf_crag(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:

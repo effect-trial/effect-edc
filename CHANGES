@@ -1,6 +1,13 @@
 Changes
 +++++++
 
+0.1.54
+------
+- update Subject Screening to extend window for serum CrAg to be
+  up to 21 days (#488-3)
+- use default AE TMG action item classes
+- bump to edc 0.5.92
+
 0.1.53
 ------
 - update to Subject Screening form validation to allow screening
