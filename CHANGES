@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-0.1.54 (unreleased)
+0.1.54
 ------
 - update Subject Screening to extend window for serum CrAg to be
   up to 21 days (#488-3)
