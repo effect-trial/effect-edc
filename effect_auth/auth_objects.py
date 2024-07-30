@@ -1,13 +1,17 @@
 from django.apps import apps as django_apps
+from edc_auth.get_app_codenames import get_app_codenames
 
 EFFECT_AUDITOR = "EFFECT_AUDITOR"
 EFFECT_CLINIC = "EFFECT_CLINIC"
 EFFECT_CLINIC_SUPER = "EFFECT_CLINIC_SUPER"
 EFFECT_EXPORT = "EFFECT_EXPORT"
+EFFECT_REPORTS = "EFFECT_REPORTS"
+EFFECT_REPORTS_AUDIT = "EFFECT_REPORTS_AUDIT"
 
 clinic_codenames = []
 screening_codenames = []
 
+reports_codenames = [c for c in get_app_codenames("effect_reports")]
 
 for app_config in django_apps.get_app_configs():
     if app_config.name in [
