@@ -56,6 +56,7 @@ class CragDateDf:
                 site_id=row["site"],
                 screening_identifier=row["screening_identifier"],
                 serum_crag_date=row["serum_crag_date"],
+                serum_crag_value=row["serum_crag_value"],
                 report_model=row["report_model"],
                 report_date=row["report_date"],
                 created=now,
