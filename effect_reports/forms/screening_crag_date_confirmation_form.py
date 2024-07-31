@@ -1,11 +1,7 @@
 from django import forms
-from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
 from edc_form_validators import FormValidatorMixin
 from edc_model_form.mixins import BaseModelFormMixin
-from edc_offstudy.modelform_mixins import OffstudyCrfModelFormMixin
 from edc_sites.modelform_mixins import SiteModelFormMixin
-from edc_utils import get_utcnow
-from edc_visit_schedule.modelform_mixins import VisitScheduleCrfModelFormMixin
 from effect_form_validators.effect_reports import (
     ScreeningCragDateConfirmationFormValidator,
 )

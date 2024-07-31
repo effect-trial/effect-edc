@@ -1,3 +1,4 @@
+from .crag_date_confirmation_admin import CragDateConfirmationAdmin
 from .screening_crag_date_confirmation_admin import ScreeningCragDateConfirmationAdmin
 from .unmanaged import (
     Rm488ConsentedAdmin,

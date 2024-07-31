@@ -1,20 +1,17 @@
 from django.core.validators import (
     MaxLengthValidator,
-    MaxValueValidator,
     MinLengthValidator,
-    MinValueValidator,
     RegexValidator,
 )
 from django.db import models
 from django_crypto_fields.fields import EncryptedCharField
-from edc_constants.choices import GENDER, YES_NO
+from edc_constants.choices import GENDER
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model.validators import date_not_future, datetime_not_future
 from edc_protocol.research_protocol_config import ResearchProtocolConfig
 from edc_protocol.validators import datetime_not_before_study_start
 from edc_sites.model_mixins import SiteModelMixin
-from edc_utils import get_utcnow
 
 
 class ScreeningCragDateConfirmation(
