@@ -25,12 +25,14 @@ class CragDateConfirmationAdmin(
         "site",
         "report_date",
         "serum_crag_date",
+        "eligibility_date",
         "serum_crag_value",
     ]
 
     list_filter = (
         "report_date",
         "serum_crag_date",
+        "eligibility_date",
     )
 
     search_fields = [

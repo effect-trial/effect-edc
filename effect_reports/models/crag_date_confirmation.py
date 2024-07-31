@@ -14,6 +14,8 @@ class CragDateConfirmation(QaReportModelMixin, models.Model):
 
     serum_crag_date = models.DateField(null=True)
 
+    eligibility_date = models.DateField(null=True)
+
     serum_crag_value = models.CharField(
         verbose_name="CrAg",
         max_length=50,

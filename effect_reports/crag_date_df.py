@@ -33,12 +33,14 @@ class CragDateDf:
                 "screening_identifier",
                 "report_datetime",
                 "serum_crag_date",
+                "eligibility_datetime",
                 "serum_crag_value",
             ]
         ]
         df = df.reset_index(drop=True)
         df["report_date"] = df["report_datetime"].dt.date
-        df = df.drop(columns=["report_datetime"])
+        df["eligibility_date"] = df["eligibility_datetime"].dt.date
+        df = df.drop(columns=["report_datetime", "eligibility_datetime"])
 
         sites = {obj.domain: obj.id for obj in Site.objects.all()}
         df["site"] = df["site"].map(sites)
@@ -56,6 +58,7 @@ class CragDateDf:
                 site_id=row["site"],
                 screening_identifier=row["screening_identifier"],
                 serum_crag_date=row["serum_crag_date"],
+                eligibility_date=row["eligibility_date"],
                 serum_crag_value=row["serum_crag_value"],
                 report_model=row["report_model"],
                 report_date=row["report_date"],
