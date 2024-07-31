@@ -10,7 +10,8 @@ from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_reports_admin
-from ..forms import ScreeningCragDateConfirmationForm
+
+# from ..forms import ScreeningCragDateConfirmationForm
 from ..models import ScreeningCragDateConfirmation
 
 
@@ -21,7 +22,7 @@ class ScreeningCragDateConfirmationAdmin(
     ModelAdminDashboardMixin,  # ???
     SimpleHistoryAdmin,
 ):
-    form = ScreeningCragDateConfirmationForm
+    # form = ScreeningCragDateConfirmationForm
     ordering = ("subject_identifier",)
     fieldsets = (
         (

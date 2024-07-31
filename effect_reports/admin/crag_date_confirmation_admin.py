@@ -19,18 +19,32 @@ class CragDateConfirmationAdmin(
 ):
     ordering = ("subject_identifier",)
     list_display = [
-        "report_date",
-        "screening_identifier",
+        "dashboard",
+        "subject",
+        "screening",
         "site",
-        "subject_identifier",
+        "report_date",
         "serum_crag_date",
         "serum_crag_value",
     ]
+
+    list_filter = (
+        "report_date",
+        "serum_crag_date",
+    )
 
     search_fields = [
         "screening_identifier",
         "subject_identifier",
     ]
+
+    @admin.display(description="screening", ordering="screening_identifier")
+    def screening(self, obj=None):
+        return obj.screening_identifier
+
+    @admin.display(description="subject", ordering="subject_identifier")
+    def subject(self, obj=None):
+        return obj.subject_identifier
 
     def get_queryset(self, request):
         cls = CragDateDf()

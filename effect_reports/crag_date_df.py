@@ -14,11 +14,17 @@ if TYPE_CHECKING:
 
 class CragDateDf:
 
+    model = "effect_reports.cragdateconfirmation"
+
     def __init__(self):
-        self.model_cls = django_apps.get_model("effect_screening.subjectscreening")
+
+        self.subject_screening_model_cls = django_apps.get_model(
+            "effect_screening.subjectscreening"
+        )
+        self.model_cls = django_apps.get_model(self.model)
 
     def to_dataframe(self) -> pd.DataFrame:
-        qs = self.model_cls.objects.filter(consented=1)
+        qs = self.subject_screening_model_cls.objects.filter(consented=1)
         df = read_frame(qs)
         df = df[
             [
@@ -37,7 +43,7 @@ class CragDateDf:
         sites = {obj.domain: obj.id for obj in Site.objects.all()}
         df["site"] = df["site"].map(sites)
 
-        df["report_model"] = "effect_reports.cragdateconfirmation"
+        df["report_model"] = self.model
         return df
 
     def to_model(self) -> CragDateConfirmation:
