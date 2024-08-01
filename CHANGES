@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+unreleased
+------
+- drop Python 3.11 support
+
 0.1.54
 ------
 - update Subject Screening to extend window for serum CrAg to be
