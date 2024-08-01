@@ -6,12 +6,12 @@ version_file="_version.py"
 
 [tool.black]
 line-length = 95
-target-version = ["py311"]
+target-version = ["py312"]
 extend-exclude = '''^(.*\/)*\b(migrations)\b($|\/.*$)'''
 
 [tool.isort]
 profile = "black"
-py_version = "311"
+py_version = "312"
 skip = [".tox", ".eggs", "migrations"]
 
 [tool.coverage.run]
@@ -35,7 +35,7 @@ exclude_lines = [
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{311,312}-dj{42,50}-edc{prod,dev},
+    py{312}-dj{42,50}-edc{prod,dev},
     py{312}-dj{dev}-edc{dev},
     lint
 
@@ -43,8 +43,7 @@ isolated_build = true
 
 [gh-actions]
 python =
-    3.11: py311, lint
-    3.12: py312
+    3.12: py312, lint
 
 [gh-actions:env]
 DJANGO =
