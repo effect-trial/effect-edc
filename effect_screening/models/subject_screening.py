@@ -155,7 +155,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         validators=[date_not_future],
         null=True,
         blank=False,
-        help_text="Test must have been performed within the last 14 days.",
+        help_text="Test must have been performed within the last 21 days.",
     )
 
     lp_done = models.CharField(
