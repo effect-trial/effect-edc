@@ -9,12 +9,12 @@ from django_pandas.io import read_frame
 from edc_utils import get_utcnow
 
 if TYPE_CHECKING:
-    from effect_reports.models import CragDateConfirmation
+    from effect_reports.models import SerumCragDateConfirmation
 
 
 class CragDateDf:
 
-    model = "effect_reports.cragdateconfirmation"
+    model = "effect_reports.serumcragdateconfirmation"
 
     def __init__(self):
 
@@ -31,16 +31,14 @@ class CragDateDf:
                 "subject_identifier",
                 "site",
                 "screening_identifier",
-                "report_datetime",
                 "serum_crag_date",
                 "eligibility_datetime",
                 "serum_crag_value",
             ]
         ]
         df = df.reset_index(drop=True)
-        df["report_date"] = df["report_datetime"].dt.date
         df["eligibility_date"] = df["eligibility_datetime"].dt.date
-        df = df.drop(columns=["report_datetime", "eligibility_datetime"])
+        df = df.drop(columns=["eligibility_datetime"])
 
         sites = {obj.domain: obj.id for obj in Site.objects.all()}
         df["site"] = df["site"].map(sites)
@@ -48,9 +46,10 @@ class CragDateDf:
         df["report_model"] = self.model
         return df
 
-    def to_model(self) -> CragDateConfirmation:
-        df = self.to_dataframe()
+    def to_model(self) -> SerumCragDateConfirmation:
         self.model_cls.objects.all().delete()
+
+        df = self.to_dataframe()
         now = get_utcnow()
         data = [
             self.model_cls(
@@ -61,7 +60,6 @@ class CragDateDf:
                 eligibility_date=row["eligibility_date"],
                 serum_crag_value=row["serum_crag_value"],
                 report_model=row["report_model"],
-                report_date=row["report_date"],
                 created=now,
             )
             for _, row in df.iterrows()

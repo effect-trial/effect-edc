@@ -57,7 +57,7 @@ def initialise_screening_crag_date_confirmations(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ("effect_reports", "0010_screeningcragdateconfirmation"),
+        ("effect_reports", "0004_historicalscreeningcragdateconfirmation_and_more"),
     ]
 
     operations = [RunPython(initialise_screening_crag_date_confirmations)]

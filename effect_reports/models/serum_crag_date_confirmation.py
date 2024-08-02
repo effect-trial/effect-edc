@@ -2,7 +2,7 @@ from django.db import models
 from edc_qareports.models import QaReportModelMixin
 
 
-class CragDateConfirmation(QaReportModelMixin, models.Model):
+class SerumCragDateConfirmation(QaReportModelMixin, models.Model):
 
     screening_identifier = models.CharField(
         verbose_name="Screening ID",
@@ -25,5 +25,5 @@ class CragDateConfirmation(QaReportModelMixin, models.Model):
     objects = models.Manager()
 
     class Meta(QaReportModelMixin.Meta):
-        verbose_name = "Screening Crag Date Confirmation 2"
-        verbose_name_plural = "Screening Crag Date Confirmations 2"
+        verbose_name = "Redmine #488.1 Serum Crag Date Confirmation"
+        verbose_name_plural = "Redmine #488.1 Serum Crag Date Confirmations"

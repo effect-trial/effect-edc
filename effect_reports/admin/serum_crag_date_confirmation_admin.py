@@ -6,11 +6,11 @@ from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_reports_admin
 from ..crag_date_df import CragDateDf
-from ..models import CragDateConfirmation
+from ..models import SerumCragDateConfirmation
 
 
-@admin.register(CragDateConfirmation, site=effect_reports_admin)
-class CragDateConfirmationAdmin(
+@admin.register(SerumCragDateConfirmation, site=effect_reports_admin)
+class SerumCragDateConfirmationAdmin(
     QaReportWithNoteModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
@@ -23,16 +23,16 @@ class CragDateConfirmationAdmin(
         "subject",
         "screening",
         "site",
-        "report_date",
         "serum_crag_date",
         "eligibility_date",
         "serum_crag_value",
     ]
 
     list_filter = (
-        "report_date",
         "serum_crag_date",
         "eligibility_date",
+        "serum_crag_value",
+        "site",
     )
 
     search_fields = [
