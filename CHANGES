@@ -4,6 +4,7 @@ Changes
 unreleased
 ------
 - drop Python 3.11 support
+- bump to edc 0.5.96
 
 0.1.54
 ------
