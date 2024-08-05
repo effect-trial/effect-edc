@@ -5,12 +5,12 @@ from edc_qareports.admin import QaReportWithNoteModelAdminMixin
 from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_reports_admin
-from ..crag_date_df import CragDateDf
-from ..models import SerumCragDateConfirmation
+from ..consented_serum_crag_date_df import ConsentedSerumCragDateDf
+from ..models import ConsentedSerumCragDate
 
 
-@admin.register(SerumCragDateConfirmation, site=effect_reports_admin)
-class SerumCragDateConfirmationAdmin(
+@admin.register(ConsentedSerumCragDate, site=effect_reports_admin)
+class ConsentedSerumCragDateAdmin(
     QaReportWithNoteModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
@@ -49,6 +49,6 @@ class SerumCragDateConfirmationAdmin(
         return obj.subject_identifier
 
     def get_queryset(self, request):
-        cls = CragDateDf()
+        cls = ConsentedSerumCragDateDf()
         cls.to_model()
         return super().get_queryset(request)

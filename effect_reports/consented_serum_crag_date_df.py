@@ -9,15 +9,14 @@ from django_pandas.io import read_frame
 from edc_utils import get_utcnow
 
 if TYPE_CHECKING:
-    from effect_reports.models import SerumCragDateConfirmation
+    from effect_reports.models import ConsentedSerumCragDate
 
 
-class CragDateDf:
+class ConsentedSerumCragDateDf:
 
-    model = "effect_reports.serumcragdateconfirmation"
+    model = "effect_reports.consentedserumcragdate"
 
     def __init__(self):
-
         self.subject_screening_model_cls = django_apps.get_model(
             "effect_screening.subjectscreening"
         )
@@ -46,7 +45,7 @@ class CragDateDf:
         df["report_model"] = self.model
         return df
 
-    def to_model(self) -> SerumCragDateConfirmation:
+    def to_model(self) -> ConsentedSerumCragDate:
         self.model_cls.objects.all().delete()
 
         df = self.to_dataframe()
