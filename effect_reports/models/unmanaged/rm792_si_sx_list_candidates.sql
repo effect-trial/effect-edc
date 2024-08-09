@@ -14,10 +14,12 @@ where
     current_sx_other like '%abdom%'
     or current_sx_other like '%appet%'
     or current_sx_other like '%back%'
+    or current_sx_other like '%behav%'
     or current_sx_other like '%conf%'
     or current_sx_other like '%diz%'
     or current_sx_other like '%itchy%'
     or current_sx_other like '%pleur%'
     or current_sx_other like '%rash%'
+    or current_sx_other like '%urin%'
 order by
     current_sx_other);
