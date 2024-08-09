@@ -1,6 +1,5 @@
-# from .serum_crag_date_confirmation import SerumCragDateConfirmation
+from .confirmed_serum_crag_date import ConfirmedSerumCragDate
 from .consented_serum_crag_date import ConsentedSerumCragDate
-from .screening_crag_date_confirmation import ScreeningCragDateConfirmation
 from .unmanaged import (
     Rm792KwInCurrentSxGteG3Other,
     Rm792KwInCurrentSxOther,
