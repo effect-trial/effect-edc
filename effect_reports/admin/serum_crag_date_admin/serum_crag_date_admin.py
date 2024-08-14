@@ -1,6 +1,6 @@
-from django.apps import apps as django_apps
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.translation import gettext as _
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
 from edc_qareports.modeladmin_mixins import QaReportModelAdminMixin
@@ -8,13 +8,13 @@ from edc_qareports.utils import truncate_string
 from edc_sites.admin import SiteModelAdminMixin
 from edc_utils import escape_braces
 
-from ..admin_site import effect_reports_admin
-from ..consented_serum_crag_date_df import ConsentedSerumCragDateDf
-from ..models import ConsentedSerumCragDate
+from ...admin_site import effect_reports_admin
+from ...dataframes import SerumCragDateDf
+from ...models import SerumCragDate
 
 
-@admin.register(ConsentedSerumCragDate, site=effect_reports_admin)
-class ConsentedSerumCragDateAdmin(
+@admin.register(SerumCragDate, site=effect_reports_admin)
+class SerumCragDateAdmin(
     QaReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
@@ -23,7 +23,7 @@ class ConsentedSerumCragDateAdmin(
 ):
     qa_report_list_display_insert_pos = 5
 
-    note_model_cls = django_apps.get_model("effect_reports.confirmedserumcragdate")
+    note_model = "effect_reports.serumcragdatenote"
 
     ordering = ("subject_identifier",)
     list_display = [
@@ -56,16 +56,16 @@ class ConsentedSerumCragDateAdmin(
     def subject(self, obj=None):
         return obj.subject_identifier
 
-    @admin.display(description="Conf. ser CrAg Date")
+    @admin.display(description="Confirm")
     def notes(self, obj=None):
-        """Returns url to add or edit qa_report model note"""
+        """Overridden to change description"""
         return super().notes(obj=obj)
 
     def get_notes_label(self, obj=None, field_name=None):
         if not obj:
-            label = "Add"
+            label = _("Add")
         else:
-            date = obj.confirmed_serum_crag_date
+            date = obj.serum_crag_date
             note = obj.note
             if date and not note:
                 label = date
@@ -77,10 +77,10 @@ class ConsentedSerumCragDateAdmin(
             elif note:
                 label = truncate_string(note, max_length=35)
             else:
-                label = "Edit"
+                label = _("Edit")
         return label
 
     def get_queryset(self, request):
-        cls = ConsentedSerumCragDateDf()
-        cls.to_model()
+        df_cls = SerumCragDateDf()
+        df_cls.to_model()
         return super().get_queryset(request)

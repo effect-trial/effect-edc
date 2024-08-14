@@ -1,5 +1,5 @@
 from django.db import models
-from edc_qareports.model_mixins import QaReportModelMixin
+from edc_qareports.model_mixins import QaReportModelMixin, qa_reports_permissions
 
 
 class Rm792KwInCurrentSxOther(QaReportModelMixin, models.Model):
@@ -21,3 +21,4 @@ class Rm792KwInCurrentSxOther(QaReportModelMixin, models.Model):
         db_table = "rm792_kw_in_current_sx_other"
         verbose_name = "Redmine #792.1: Signs and Symptoms: Keyword in other sx"
         verbose_name_plural = "Redmine #792.1: Signs and Symptoms: Keyword in other sx"
+        default_permissions = qa_reports_permissions

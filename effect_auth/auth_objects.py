@@ -1,5 +1,5 @@
 from django.apps import apps as django_apps
-from edc_auth.get_app_codenames import get_app_codenames
+from edc_qareports.utils import get_qareports_codenames
 
 EFFECT_AUDITOR = "EFFECT_AUDITOR"
 EFFECT_CLINIC = "EFFECT_CLINIC"
@@ -11,17 +11,14 @@ EFFECT_REPORTS_AUDIT = "EFFECT_REPORTS_AUDIT"
 clinic_codenames = []
 screening_codenames = []
 
-reports_codenames = [c for c in get_app_codenames("effect_reports")]
+reports_codenames = get_qareports_codenames(
+    "effect_reports", "effect_reports.serumcragdatenote"
+)
 
 for app_config in django_apps.get_app_configs():
-    if app_config.name in [
-        "effect_lists",
-    ]:
+    if app_config.name in ["effect_lists"]:
         for model_cls in app_config.get_models():
-            for prefix in ["view"]:
-                clinic_codenames.append(
-                    f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
-                )
+            clinic_codenames.append(f"{app_config.name}.view_{model_cls._meta.model_name}")
 
 for app_config in django_apps.get_app_configs():
     if app_config.name in [

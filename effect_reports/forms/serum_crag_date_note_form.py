@@ -4,7 +4,7 @@ from edc_model_form.mixins import BaseModelFormMixin
 from edc_sites.modelform_mixins import SiteModelFormMixin
 from effect_form_validators.effect_reports import SerumCragDateNoteFormValidator
 
-from ..models import ConfirmedSerumCragDate
+from ..models import SerumCragDateNote
 
 
 class SerumCragDateNoteForm(
@@ -18,7 +18,7 @@ class SerumCragDateNoteForm(
     form_validator_cls = SerumCragDateNoteFormValidator
 
     class Meta:
-        model = ConfirmedSerumCragDate
+        model = SerumCragDateNote
         fields = "__all__"
         help_text = {"subject_identifier": "(read-only)", "name": "(read-only)"}
         widgets = {

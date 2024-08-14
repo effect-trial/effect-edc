@@ -1,18 +1,32 @@
 from django.db import models
+from edc_constants.constants import CONFIRMED, NOT_AVAILABLE, PENDING
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model.validators import date_not_future
 from edc_qareports.model_mixins import NoteModelMixin
 
+NOTE_STATUS = (
+    (CONFIRMED, "Confirmed / Done"),
+    (PENDING, "Pending"),
+    (NOT_AVAILABLE, "Unavailable"),
+)
 
-class ConfirmedSerumCragDate(
+
+class SerumCragDateNote(
     UniqueSubjectIdentifierFieldMixin,
     NoteModelMixin,
 ):
+    """Model class to replace default `Note` model used with
+    QA Report `Serum Crag Date` model.
 
-    history = HistoricalRecords()
+    `serum_crag_date` is to replace the current `serum_crag_date`
+    in the screening model.
+    """
 
-    confirmed_serum_crag_date = models.DateField(
+    status = models.CharField(max_length=25, default=CONFIRMED, choices=NOTE_STATUS)
+
+    # confirmed serum_crag_date
+    serum_crag_date = models.DateField(
         verbose_name="Confirmed serum/plasma CrAg sample collection date",
         validators=[date_not_future],
         null=True,
@@ -22,6 +36,8 @@ class ConfirmedSerumCragDate(
             "Test must have been performed within 21 days of screening."
         ),
     )
+
+    history = HistoricalRecords()
 
     def __str__(self) -> str:
         return f"{self._meta.verbose_name}: {self.subject_identifier}"

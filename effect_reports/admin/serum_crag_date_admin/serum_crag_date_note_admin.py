@@ -14,13 +14,13 @@ from edc_model_admin.mixins import (
 )
 from edc_sites.admin import SiteModelAdminMixin
 
-from ..admin_site import effect_reports_admin
-from ..forms import ConfirmedSerumCragDateForm
-from ..models import ConfirmedSerumCragDate
+from ...admin_site import effect_reports_admin
+from ...forms import SerumCragDateNoteForm
+from ...models import SerumCragDateNote
 
 
-@admin.register(ConfirmedSerumCragDate, site=effect_reports_admin)
-class ConfirmedSerumCragDateAdmin(
+@admin.register(SerumCragDateNote, site=effect_reports_admin)
+class SerumCragDateNoteAdmin(
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     ModelAdminAuditFieldsMixin,
@@ -33,25 +33,32 @@ class ConfirmedSerumCragDateAdmin(
     admin.ModelAdmin,
 ):
 
-    form = ConfirmedSerumCragDateForm
+    form = SerumCragDateNoteForm
     ordering = ["site", "subject_identifier"]
 
     note_template_name = "edc_qareports/qa_report_note.html"
 
     fieldsets = (
         (
+            None,
+            {
+                "fields": (
+                    "subject_identifier",
+                    "report_datetime",
+                    "report_model",
+                )
+            },
+        ),
+        (
             "Screening Serum CrAg Date",
-            {"fields": ("confirmed_serum_crag_date",)},
+            {"fields": ("serum_crag_date",)},
         ),
         (
             "Notes",
             {
                 "fields": (
-                    "note",
                     "status",
-                    "subject_identifier",
-                    "report_model",
-                    "report_datetime",
+                    "note",
                 )
             },
         ),
@@ -63,7 +70,7 @@ class ConfirmedSerumCragDateAdmin(
         "subject_identifier",
         "report",
         "status",
-        "confirmed_serum_crag_date",
+        "serum_crag_date",
         "report_note",
         "report_datetime",
     ]
@@ -71,7 +78,7 @@ class ConfirmedSerumCragDateAdmin(
     radio_fields = {"status": admin.VERTICAL}
 
     list_filter = [
-        "confirmed_serum_crag_date",
+        "serum_crag_date",
         "status",
         "report_datetime",
         "report_model",
