@@ -7,7 +7,7 @@ from django.utils.translation import gettext_lazy as _
 from edc_appointment.models import Appointment
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
-from edc_qareports.admin import NoteModelAdminMixin
+from edc_qareports.modeladmin_mixins import QaReportModelAdminMixin
 from edc_sites.admin import SiteModelAdminMixin
 from edc_visit_schedule.admin import ScheduleStatusListFilter
 
@@ -17,7 +17,7 @@ from ...models import Rm792KwInCurrentSxOther
 
 @admin.register(Rm792KwInCurrentSxOther, site=effect_reports_admin)
 class Rm792KwInCurrentSxOtherAdmin(
-    NoteModelAdminMixin,
+    QaReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     TemplatesModelAdminMixin,

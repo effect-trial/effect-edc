@@ -3,7 +3,7 @@ from django.contrib import admin
 from django.utils.html import format_html
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
-from edc_qareports.admin import NoteModelAdminMixin
+from edc_qareports.modeladmin_mixins import QaReportModelAdminMixin
 from edc_qareports.utils import truncate_string
 from edc_sites.admin import SiteModelAdminMixin
 from edc_utils import escape_braces
@@ -15,7 +15,7 @@ from ..models import ConsentedSerumCragDate
 
 @admin.register(ConsentedSerumCragDate, site=effect_reports_admin)
 class ConsentedSerumCragDateAdmin(
-    NoteModelAdminMixin,
+    QaReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     TemplatesModelAdminMixin,
