@@ -2,12 +2,12 @@ from django import forms
 from edc_form_validators import FormValidatorMixin
 from edc_model_form.mixins import BaseModelFormMixin
 from edc_sites.modelform_mixins import SiteModelFormMixin
-from effect_form_validators.effect_reports import ConfirmedSerumCragDateFormValidator
+from effect_form_validators.effect_reports import SerumCragDateNoteFormValidator
 
 from ..models import ConfirmedSerumCragDate
 
 
-class ConfirmedSerumCragDateForm(
+class SerumCragDateNoteForm(
     SiteModelFormMixin,
     BaseModelFormMixin,
     FormValidatorMixin,
@@ -15,7 +15,7 @@ class ConfirmedSerumCragDateForm(
 ):
 
     report_datetime_field_attr = "report_datetime"
-    form_validator_cls = ConfirmedSerumCragDateFormValidator
+    form_validator_cls = SerumCragDateNoteFormValidator
 
     class Meta:
         model = ConfirmedSerumCragDate
