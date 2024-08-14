@@ -1,9 +1,9 @@
 create view rm792_kw_in_current_sx_gte_g3_other as
 (
 select
-    uuid()                                               as `id`,
-    now()                                                as `created`,
-    'effect_reports.rm792_kw_in_current_sx_gte_g3_other' as `report_model`,
+    uuid()                                        as `id`,
+    now()                                         as `created`,
+    'effect_reports.rm792kwincurrentsxgteg3other' as `report_model`,
     `sv`.`site_id`,
     `sv`.`subject_identifier`,
     `sv`.`visit_code`,

@@ -1,5 +1,5 @@
 from django.db import models
-from edc_qareports.models import QaReportModelMixin
+from edc_qareports.model_mixins import QaReportModelMixin
 
 
 class Rm792KwInCurrentSxGteG3Other(QaReportModelMixin, models.Model):

@@ -1,9 +1,9 @@
 create view rm792_si_sx_list_candidates as
 (
 select
-    uuid()                                       as `id`,
-    now()                                        as `created`,
-    'effect_reports.rm792_si_sx_list_candidates' as `report_model`,
+    uuid()                                   as `id`,
+    now()                                    as `created`,
+    'effect_reports.rm792sisxlistcandidates' as `report_model`,
     sv.site_id,
     crf.current_sx_other
 
