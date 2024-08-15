@@ -23,7 +23,7 @@ class SerumCragDateAdmin(
     admin.ModelAdmin,
 ):
     qa_report_list_display_insert_pos = 5
-
+    list_per_page = 25
     note_model = "effect_reports.serumcragdatenote"
     note_status_list_filter = SerumCragDateNoteStatusListFilter
 

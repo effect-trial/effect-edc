@@ -23,6 +23,7 @@ class Rm792KwInCurrentSxOtherAdmin(
     TemplatesModelAdminMixin,
     admin.ModelAdmin,
 ):
+    list_per_page = 25
     change_list_note = format_html(
         "<p>Dynamic report listing <strong>Signs and Symptoms</strong> CRFs "
         "where <em>current_sx_other</em> contains one or more of the "
