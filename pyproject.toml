@@ -35,7 +35,7 @@ exclude_lines = [
 legacy_tox_ini = """
 [tox]
 envlist =
-    py{312}-dj{42,50}-edc{prod,dev},
+    py{312}-dj{42,50,51}-edc{prod,dev},
     py{312}-dj{dev}-edc{dev},
     lint
 
@@ -49,6 +49,7 @@ python =
 DJANGO =
     4.2: dj42, lint
     5.0: dj50
+    5.1: dj51
     dev: djdev
 EDC_CODEBASE =
     Prod: edcprod, lint
@@ -60,7 +61,8 @@ deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
     dj42: Django>=4.2,<5.0
-    dj50: Django>=5.0
+    dj50: Django>=5.0,<5.1
+    dj51: Django>=5.1
     djdev: https://github.com/django/django/tarball/main
 
 commands =
