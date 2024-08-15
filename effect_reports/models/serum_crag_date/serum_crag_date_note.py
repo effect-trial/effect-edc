@@ -1,15 +1,11 @@
 from django.db import models
-from edc_constants.constants import CONFIRMED, NOT_AVAILABLE, PENDING
+from edc_constants.constants import CONFIRMED
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model.validators import date_not_future
 from edc_qareports.model_mixins import NoteModelMixin
 
-NOTE_STATUS = (
-    (CONFIRMED, "Confirmed / Done"),
-    (PENDING, "Pending"),
-    (NOT_AVAILABLE, "Unavailable"),
-)
+from ...choices import NOTE_STATUSES
 
 
 class SerumCragDateNote(
@@ -23,7 +19,7 @@ class SerumCragDateNote(
     in the screening model.
     """
 
-    status = models.CharField(max_length=25, default=CONFIRMED, choices=NOTE_STATUS)
+    status = models.CharField(max_length=25, default=CONFIRMED, choices=NOTE_STATUSES)
 
     # confirmed serum_crag_date
     serum_crag_date = models.DateField(
@@ -43,5 +39,5 @@ class SerumCragDateNote(
         return f"{self._meta.verbose_name}: {self.subject_identifier}"
 
     class Meta(UniqueSubjectIdentifierFieldMixin.Meta, BaseUuidModel.Meta):
-        verbose_name = "Redmine #488.2 Confirmed Serum Crag Date"
-        verbose_name_plural = "Redmine #488.2 Confirmed Serum Crag Dates"
+        verbose_name = "Redmine #488.2 Serum Crag Date Notes"
+        verbose_name_plural = "Redmine #488.2 Serum Crag Date Notes"

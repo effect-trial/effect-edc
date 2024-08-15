@@ -11,6 +11,7 @@ from edc_utils import escape_braces
 from ...admin_site import effect_reports_admin
 from ...dataframes import SerumCragDateDf
 from ...models import SerumCragDate
+from .list_filters import SerumCragDateNoteStatusListFilter
 
 
 @admin.register(SerumCragDate, site=effect_reports_admin)
@@ -24,6 +25,7 @@ class SerumCragDateAdmin(
     qa_report_list_display_insert_pos = 5
 
     note_model = "effect_reports.serumcragdatenote"
+    note_status_list_filter = SerumCragDateNoteStatusListFilter
 
     ordering = ("subject_identifier",)
     list_display = [
