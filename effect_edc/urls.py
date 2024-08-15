@@ -50,6 +50,7 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_pharmacy"),
     *paths_for_urlpatterns("edc_protocol"),
     *paths_for_urlpatterns("edc_protocol_incident"),
+    *paths_for_urlpatterns("edc_qareports"),
     *paths_for_urlpatterns("edc_randomization"),
     *paths_for_urlpatterns("edc_refusal"),
     *paths_for_urlpatterns("edc_registration"),
@@ -62,6 +63,7 @@ urlpatterns = [
     *paths_for_urlpatterns("effect_export"),
     *paths_for_urlpatterns("effect_lists"),
     *paths_for_urlpatterns("effect_prn"),
+    *paths_for_urlpatterns("effect_reports"),
     *paths_for_urlpatterns("effect_screening"),
     *paths_for_urlpatterns("effect_subject"),
 ]
