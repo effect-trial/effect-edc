@@ -9,7 +9,10 @@ unreleased
       'other' fields that could potentially be categorised (#792)
 - add Consented Serum CrAg Date report allowing capture of confirmed
   Serum CrAg Date Notes (#488)
+- fix issue where certain characters appearing in AE descriptions
+  could cause a server error viewing AE reports (#816)
 - drop Python 3.11 support
+- update forms reference doc
 - bump to edc 0.5.99
 - bump to effect-form-validators 0.1.44
 
