@@ -1,23 +1,22 @@
 from django.apps import apps as django_apps
+from edc_auth.get_app_codenames import get_app_codenames
 
 EFFECT_AUDITOR = "EFFECT_AUDITOR"
 EFFECT_CLINIC = "EFFECT_CLINIC"
 EFFECT_CLINIC_SUPER = "EFFECT_CLINIC_SUPER"
 EFFECT_EXPORT = "EFFECT_EXPORT"
+EFFECT_REPORTS = "EFFECT_REPORTS"
+EFFECT_REPORTS_AUDIT = "EFFECT_REPORTS_AUDIT"
 
 clinic_codenames = []
 screening_codenames = []
 
+reports_codenames = get_app_codenames("effect_reports")
 
 for app_config in django_apps.get_app_configs():
-    if app_config.name in [
-        "effect_lists",
-    ]:
+    if app_config.name in ["effect_lists"]:
         for model_cls in app_config.get_models():
-            for prefix in ["view"]:
-                clinic_codenames.append(
-                    f"{app_config.name}.{prefix}_{model_cls._meta.model_name}"
-                )
+            clinic_codenames.append(f"{app_config.name}.view_{model_cls._meta.model_name}")
 
 for app_config in django_apps.get_app_configs():
     if app_config.name in [
