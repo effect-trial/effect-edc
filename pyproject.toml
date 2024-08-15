@@ -58,14 +58,8 @@ EDC_CODEBASE =
 [testenv]
 deps =
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/tox.txt
-#    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
+    -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
     -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/third_party_dev.txt
-    edcprod: pre-commit
-    edcprod: django-mock-queries
-    edcprod: git+https://github.com/clinicedc/edc-test-utils@0.3.56
-    edcprod: time-machine
-    edcprod: git+https://github.com/clinicedc/edc-test-settings@develop
-    edcdev: -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/test_utils.txt
     dj42: Django>=4.2,<5.0
     dj50: Django>=5.0,<5.1
     dj51: Django>=5.1
