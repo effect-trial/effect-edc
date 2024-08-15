@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.55
 ------
 - add Qa Reports app
 - add additional symptom choices to Signs and Symptoms form (#792)
