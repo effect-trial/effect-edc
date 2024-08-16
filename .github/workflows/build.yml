@@ -6,9 +6,9 @@ on: [push, pull_request]
 jobs:
   build:
     name: >
-      ${{ matrix.codebase }}-
-      Py${{ matrix.python-version }}-
-      Dj${{ matrix.django-version }}-
+      ${{ matrix.codebase }} /
+      Py${{ matrix.python-version }} /
+      Dj${{ matrix.django-version }} /
       ${{ matrix.database-engine }}
     runs-on: ubuntu-latest
 
