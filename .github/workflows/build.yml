@@ -7,8 +7,8 @@ jobs:
   build:
     name: >
       ${{ matrix.codebase }} /
-      Py${{ matrix.python-version }} /
-      Dj${{ matrix.django-version }} /
+      py${{ matrix.python-version }} /
+      dj${{ matrix.django-version }} /
       ${{ matrix.database-engine }}
     runs-on: ubuntu-latest
 
