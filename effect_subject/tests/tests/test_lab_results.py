@@ -8,12 +8,9 @@ from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.test import TestCase
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
-from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
-from edc_utils import convert_php_dateformat, get_utcnow
 from edc_reportable import (
     ALREADY_REPORTED,
     GRADE3,
@@ -23,7 +20,7 @@ from edc_reportable import (
     PRESENT_AT_BASELINE,
     TEN_X_9_PER_LITER,
 )
-from edc_utils import convert_php_dateformat, formatted_datetime, get_utcnow
+from edc_utils import convert_php_dateformat, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
