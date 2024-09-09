@@ -1,12 +1,19 @@
 from dataclasses import dataclass
+from datetime import datetime
 from typing import Any
+from zoneinfo import ZoneInfo
 
+import time_machine
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
+from django.contrib.sites.models import Site
+from django.test import TestCase
 from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
+from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
+from edc_utils import convert_php_dateformat, get_utcnow
 from edc_reportable import (
     ALREADY_REPORTED,
     GRADE3,
@@ -46,6 +53,7 @@ class LabPanelResultTestConfig:
         return self.name
 
 
+@time_machine.travel(datetime(2023, 1, 10, 8, 00, tzinfo=ZoneInfo("UTC")))
 @tag("lab")
 class TestLabResults(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
@@ -53,6 +61,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         self.subject_screening = self.get_subject_screening(
             report_datetime=screening_datetime,
             eligibility_datetime=screening_datetime,
+            cd4_date=(screening_datetime - relativedelta(days=7)).date(),
             serum_crag_date=(screening_datetime - relativedelta(days=6)).date(),
         )
         self.subject_consent = self.get_subject_consent(
@@ -88,6 +97,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             assay_datetime=requisition.requisition_datetime + relativedelta(days=1),
             results_abnormal=NO,
             results_reportable=NOT_APPLICABLE,
+            site=Site.objects.get(id=settings.SITE_ID).id,
         )
 
     @staticmethod
@@ -145,6 +155,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=1),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        site=Site.objects.get(id=settings.SITE_ID).id,
                     )
 
                     form = lab_panel.form(cleaned_data)
@@ -233,13 +244,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
+                    self.assertIn(
+                        "Consent not configured to update any previous versions.",
+                        str(form.errors.get("report_datetime")),
                     )
 
     def test_d9_report_datetime_before_consent_datetime_invalid(self):
@@ -283,13 +290,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
 
                     self.assertIn("report_datetime", form.errors)
-                    self.assertEqual(
-                        [
-                            "Invalid. Cannot be before date of consent. "
-                            "Participant consent on "
-                            f"{formatted_datetime(self.subject_consent.consent_datetime)}"
-                        ],
-                        form.errors.get("report_datetime"),
+                    self.assertIn(
+                        "Consent not configured to update any previous versions.",
+                        str(form.errors.get("report_datetime")),
                     )
 
     def test_d9_report_datetime_before_visit_datetime_invalid(self):

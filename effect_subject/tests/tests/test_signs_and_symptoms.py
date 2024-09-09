@@ -483,9 +483,11 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             with self.subTest(answer=answer):
                 cleaned_data.update(
                     {
-                        "current_sx_gte_g3": SiSx.objects.filter(name="fever")
-                        if answer == YES
-                        else SiSx.objects.filter(name=NOT_APPLICABLE),
+                        "current_sx_gte_g3": (
+                            SiSx.objects.filter(name="fever")
+                            if answer == YES
+                            else SiSx.objects.filter(name=NOT_APPLICABLE)
+                        ),
                         "reportable_as_ae": answer,
                     }
                 )
@@ -799,9 +801,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
                 cleaned_data.update(
                     {
-                        other_field: "3d"
-                        if other_field == "headache_duration"
-                        else "Some other text"
+                        other_field: (
+                            "3d" if other_field == "headache_duration" else "Some other text"
+                        )
                     }
                 )
                 self.assertFormValidatorNoError(
@@ -944,6 +946,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
     def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
         return self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code)
 
+    @tag("1")
     def test_baseline_cleaned_data_valid(self: Any):
         """Test that the test data we're working with is valid."""
         cleaned_data = self.default_cleaned_data(visit_code=DAY01)

@@ -1,7 +1,12 @@
+from datetime import datetime
 from typing import Optional
+from zoneinfo import ZoneInfo
 
+import time_machine
 from dateutil.relativedelta import relativedelta
-from django.test import TestCase
+from django.conf import settings
+from django.contrib.sites.models import Site
+from django.test import TestCase, tag
 from edc_constants.constants import (
     COMPLETE,
     NO,
@@ -26,6 +31,7 @@ from effect_subject.forms.participant_treatment_form import (
 from effect_subject.models import ParticipantTreatment, SubjectVisit
 
 
+@time_machine.travel(datetime(2024, 1, 1, 8, 00, tzinfo=ZoneInfo("UTC")))
 class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
     def setUp(self):
         super().setUp()
@@ -74,6 +80,7 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
             "other_drugs_given": Drugs.objects.none(),
             "other_drugs_given_other": "",
             "crf_status": COMPLETE,  # ???
+            "site": Site.objects.get(id=settings.SITE_ID).id,
         }
 
     def test_ok(self):
@@ -105,6 +112,7 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
             form._errors.get("__all__")[0],
         )
 
+    @tag("6")
     def test_completed_participant_history_ok(self):
         subject_visit = self.subject_visit  # d1
         obj = baker.make_recipe(

@@ -1,10 +1,10 @@
 from django.conf import settings
 from django.conf.urls.i18n import i18n_patterns
-from django.contrib import admin
 from django.contrib.auth.views import LogoutView
 from django.urls.conf import include, path, re_path
 from django.views.defaults import page_not_found, server_error  # noqa
 from django.views.generic import RedirectView
+from edc_dashboard.utils import get_index_page
 from edc_dashboard.views import AdministrationView
 from edc_utils.paths_for_urlpatterns import paths_for_urlpatterns
 
@@ -35,6 +35,7 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_device"),
     *paths_for_urlpatterns("edc_export"),
     *paths_for_urlpatterns("edc_facility"),
+    *paths_for_urlpatterns("edc_form_runners"),
     *paths_for_urlpatterns("edc_identifier"),
     *paths_for_urlpatterns("edc_lab"),
     *paths_for_urlpatterns("edc_lab_dashboard"),
@@ -44,14 +45,15 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_microbiology"),
     *paths_for_urlpatterns("edc_notification"),
     *paths_for_urlpatterns("edc_offstudy"),
+    *paths_for_urlpatterns("edc_pdf_reports"),
     *paths_for_urlpatterns("edc_pdutils"),
     *paths_for_urlpatterns("edc_pharmacy"),
     *paths_for_urlpatterns("edc_protocol"),
     *paths_for_urlpatterns("edc_protocol_incident"),
+    *paths_for_urlpatterns("edc_qareports"),
     *paths_for_urlpatterns("edc_randomization"),
     *paths_for_urlpatterns("edc_refusal"),
     *paths_for_urlpatterns("edc_registration"),
-    # *paths_for_urlpatterns("edc_review_dashboard"),
     *paths_for_urlpatterns("edc_sites"),
     *paths_for_urlpatterns("edc_subject_dashboard"),
     *paths_for_urlpatterns("edc_unblinding"),
@@ -61,6 +63,7 @@ urlpatterns = [
     *paths_for_urlpatterns("effect_export"),
     *paths_for_urlpatterns("effect_lists"),
     *paths_for_urlpatterns("effect_prn"),
+    *paths_for_urlpatterns("effect_reports"),
     *paths_for_urlpatterns("effect_screening"),
     *paths_for_urlpatterns("effect_subject"),
 ]
@@ -71,10 +74,10 @@ if settings.DEFENDER_ENABLED:
     )
 
 urlpatterns += [
-    path("admin/", admin.site.urls),
+    path("admin/", RedirectView.as_view(url="/")),
     path(
         "switch_sites/",
-        LogoutView.as_view(next_page=settings.INDEX_PAGE),
+        LogoutView.as_view(next_page=get_index_page()),
         name="switch_sites_url",
     ),
     path("home/", HomeView.as_view(), name="home_url"),

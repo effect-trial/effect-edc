@@ -1,1 +1,2 @@
 from .subject_consent_form import SubjectConsentForm
+from .subject_consent_update_v2_form import SubjectConsentUpdateV2Form

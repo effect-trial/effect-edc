@@ -3,7 +3,7 @@ from edc_action_item.auth_objects import (
     ACTION_ITEM_EXPORT,
     ACTION_ITEM_VIEW_ONLY,
 )
-from edc_adverse_event.auth_objects import (
+from edc_adverse_event.constants import (
     AE,
     AE_REVIEW,
     AE_SUPER,
@@ -16,7 +16,7 @@ from edc_appointment.auth_objects import (
     APPOINTMENT_EXPORT,
     APPOINTMENT_VIEW,
 )
-from edc_auth.auth_objects import (
+from edc_auth.constants import (
     AUDITOR,
     AUDITOR_ROLE,
     CLINIC,
@@ -30,10 +30,16 @@ from edc_data_manager.auth_objects import (
     DATA_MANAGER_ROLE,
     SITE_DATA_MANAGER_ROLE,
 )
-from edc_export.auth_objects import DATA_EXPORTER_ROLE
+from edc_export.constants import DATA_EXPORTER_ROLE
 from edc_label.auth_objects import LABELING
 from edc_offstudy.auth_objects import OFFSTUDY
 from edc_pharmacy.auth_objects import PHARMACIST_ROLE, SITE_PHARMACIST_ROLE
+from edc_qareports.auth_objects import (
+    QA_REPORTS,
+    QA_REPORTS_AUDIT,
+    QA_REPORTS_AUDIT_ROLE,
+    QA_REPORTS_ROLE,
+)
 from edc_randomization.auth_objects import RANDO_BLINDED, RANDO_UNBLINDED
 from edc_screening.auth_objects import SCREENING, SCREENING_SUPER, SCREENING_VIEW
 from edc_unblinding.auth_objects import UNBLINDING_REQUESTORS
@@ -42,9 +48,15 @@ from .auth_objects import (
     EFFECT_AUDITOR,
     EFFECT_CLINIC,
     EFFECT_CLINIC_SUPER,
+    EFFECT_REPORTS,
+    EFFECT_REPORTS_AUDIT,
     clinic_codenames,
+    reports_codenames,
     screening_codenames,
 )
+
+site_auths.add_group(*reports_codenames, name=EFFECT_REPORTS)
+site_auths.add_group(*reports_codenames, name=EFFECT_REPORTS_AUDIT, view_only=True)
 
 # screening
 site_auths.update_group(*screening_codenames, name=SCREENING_SUPER)
@@ -62,6 +74,8 @@ site_auths.update_role(
     AE,
     APPOINTMENT,
     EFFECT_CLINIC,
+    EFFECT_REPORTS,
+    QA_REPORTS,
     SCREENING,
     UNBLINDING_REQUESTORS,
     name=CLINICIAN_ROLE,
@@ -72,6 +86,8 @@ site_auths.update_role(
     AE_SUPER,
     APPOINTMENT,
     EFFECT_CLINIC_SUPER,
+    EFFECT_REPORTS,
+    QA_REPORTS,
     SCREENING_SUPER,
     UNBLINDING_REQUESTORS,
     name=CLINICIAN_SUPER_ROLE,
@@ -82,6 +98,8 @@ site_auths.update_role(
     AE,
     APPOINTMENT,
     EFFECT_CLINIC,
+    EFFECT_REPORTS,
+    QA_REPORTS,
     SCREENING,
     name=NURSE_ROLE,
 )
@@ -93,7 +111,9 @@ site_auths.update_role(
     CLINIC,
     LABELING,
     EFFECT_CLINIC,
+    EFFECT_REPORTS,
     OFFSTUDY,
+    QA_REPORTS,
     SCREENING_SUPER,
     TMG,
     name=DATA_MANAGER_ROLE,
@@ -106,6 +126,8 @@ site_auths.update_role(
     AE_REVIEW,
     APPOINTMENT_VIEW,
     EFFECT_AUDITOR,
+    EFFECT_REPORTS_AUDIT,
+    QA_REPORTS_AUDIT,
     SCREENING_VIEW,
     TMG_REVIEW,
     name=AUDITOR_ROLE,
@@ -132,3 +154,5 @@ site_auths.update_role(
 
 site_auths.update_role(RANDO_UNBLINDED, name=PHARMACIST_ROLE)
 site_auths.update_role(RANDO_BLINDED, name=SITE_PHARMACIST_ROLE)
+site_auths.update_role(EFFECT_REPORTS, name=QA_REPORTS_ROLE)
+site_auths.update_role(EFFECT_REPORTS_AUDIT, name=QA_REPORTS_AUDIT_ROLE)

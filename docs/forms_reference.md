@@ -1146,15 +1146,28 @@
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -1171,6 +1184,8 @@
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -1206,15 +1221,28 @@
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -1231,6 +1259,8 @@
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -3680,15 +3710,28 @@ Adherence CRF completed at baseline (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -3705,6 +3748,8 @@ Adherence CRF completed at baseline (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -3740,15 +3785,28 @@ Adherence CRF completed at baseline (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -3765,6 +3823,8 @@ Adherence CRF completed at baseline (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -5003,15 +5063,28 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -5028,6 +5101,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -5063,15 +5138,28 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -5088,6 +5176,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -6509,15 +6599,28 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -6534,6 +6637,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -6569,15 +6674,28 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -6594,6 +6712,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -8798,15 +8918,28 @@ Adherence CRF completed at d14 (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -8823,6 +8956,8 @@ Adherence CRF completed at d14 (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -8858,15 +8993,28 @@ Adherence CRF completed at d14 (in-person).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -8883,6 +9031,8 @@ Adherence CRF completed at d14 (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -10338,15 +10488,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -10363,6 +10526,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -10398,15 +10563,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -10423,6 +10601,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -11695,15 +11875,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -11720,6 +11913,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -11755,15 +11950,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -11780,6 +11988,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -13052,15 +13262,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -13077,6 +13300,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -13112,15 +13337,28 @@ Adherence CRF completed after d14 (telephone).
 - type: ManyToManyField
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
+  - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_pain`: *Abdominal pain*
+  - `back_pain_lp_site`: *Back pain at LP site*
+  - `backache`: *Backache*
+  - `behaviour_change`: *Behaviour change*
+  - `confusion`: *Confusion*
+  - `constipation`: *Constipation*
   - `cough`: *Cough*
   - `diarrhoea`: *Diarrhoea*
+  - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
+  - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `itching`: *Itching*
   - `jaundice`: *Jaundice*
+  - `loss_appetite`: *Loss of appetite*
+  - `luts`: *Lower urinary tract symptoms (LUTS)*
   - `nausea`: *Nausea*
   - `night_sweats`: *Night sweats*
   - `CN_VI_palsy_left`: *Neuro - Cranial Nerve VI palsy (left)*
@@ -13137,6 +13375,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `pleuritic_chest_pain`: *Pleuritic chest pain*
+  - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -14239,4 +14479,6 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2023-10-31 14:47*
+*Rendered on 2024-08-16 00:55*
+
+

@@ -7,9 +7,9 @@ from .defaults import *  # noqa
 print(f"Settings file {__file__}")  # noqa
 
 # SA Sites
-# SITE_ID = SiteID(default=110)  # Capetown (Khayelitsha & Mitchell’s Plain)
+SITE_ID = SiteID(default=110)  # Capetown (Khayelitsha & Mitchell’s Plain)
 # SITE_ID = SiteID(default=160)  # Harry Gwala (Pietermaritzburg)
-SITE_ID = SiteID(default=150)  # King Edward VII
+# SITE_ID = SiteID(default=150)  # King Edward VII
 # SITE_ID = SiteID(default=120)  # Baragwanath
 # SITE_ID = SiteID(default=130)  # Helen Joseph
 # SITE_ID = SiteID(default=140)  # Tshepong (Klerksdorp)
@@ -19,7 +19,7 @@ SITE_ID = SiteID(default=150)  # King Edward VII
 # TZ Sites
 # SITE_ID = SiteID(default=200)  # Amana
 # SITE_ID = SiteID(default=220)  # Mwananyamala
-# SITE_ID = SiteID(default=210)  # Dora Nginza
+# SITE_ID = SiteID(default=210)  # Temeke
 
 EDC_SITES_UAT_DOMAIN = False
 DEBUG = True

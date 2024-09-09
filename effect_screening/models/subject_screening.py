@@ -8,7 +8,7 @@ from edc_constants.choices import (
     YES_NO_NOT_EVALUATED,
     YES_NO_NOT_EVALUATED_NA,
 )
-from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED
+from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED, QUESTION_RETIRED
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
@@ -18,6 +18,8 @@ from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,
 )
 
+from effect_consent.consents import consent_v1, consent_v2
+
 from ..choices import (
     CM_ON_CSF_METHODS,
     CSF_CRAG_RESULT_CHOICES,
@@ -25,6 +27,7 @@ from ..choices import (
     HIV_CONFIRMATION_METHODS,
     POS_NEG,
     PREG_YES_NO_NOT_EVALUATED_NA,
+    UNSUITABLE_REASONS,
 )
 from ..eligibility import ScreeningEligibility
 
@@ -37,6 +40,8 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     eligibility_cls = ScreeningEligibility
 
     identifier_cls = ScreeningIdentifier
+
+    consent_definitions = [consent_v1, consent_v2]
 
     site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, related_name="+")
 
@@ -63,6 +68,17 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=25,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
+    )
+
+    parent_guardian_consent = models.CharField(
+        verbose_name=(
+            "If patient is under 18, do you have consent from "
+            "the parent or legal guardian to capture this information?"
+        ),
+        max_length=25,
+        choices=YES_NO_NA,
+        default=NOT_APPLICABLE,
+        help_text="( if 'No', STOP )",
     )
 
     hiv_pos = models.CharField(
@@ -112,7 +128,10 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     )
 
     preg_test_date = models.DateField(
-        verbose_name="Pregnancy test date (Urine or serum βhCG)", blank=True, null=True
+        verbose_name="Pregnancy test date (Urine or serum βhCG)",
+        validators=[date_not_future],
+        blank=True,
+        null=True,
     )
 
     # ineligible if YES
@@ -136,7 +155,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         validators=[date_not_future],
         null=True,
         blank=False,
-        help_text="Test must have been performed within the last 14 days.",
+        help_text="Test must have been performed within the last 21 days.",
     )
 
     lp_done = models.CharField(
@@ -150,6 +169,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     lp_date = models.DateField(
         verbose_name="LP date",
+        validators=[date_not_future],
         null=True,
         blank=True,
         help_text=(
@@ -316,8 +336,42 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=15,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
-        help_text="If YES, patient NOT eligible, please give reason below ...",
+        help_text="If YES, patient NOT eligible, please specify reason below ...",
     )
+
+    unsuitable_reason = models.CharField(
+        verbose_name="If YES, reason not suitable for the study",
+        max_length=30,
+        choices=UNSUITABLE_REASONS,
+        default=NOT_APPLICABLE,
+    )
+
+    unsuitable_reason_other = models.TextField(
+        verbose_name="If other reason unsuitable, please specify ...",
+        max_length=150,
+        null=True,
+        blank=True,
+    )
+
+    # retired, overrides reasons_unsuitable in ScreeningFieldsModeMixin
+    reasons_unsuitable = models.TextField(
+        verbose_name="Reason not suitable for the study",
+        max_length=150,
+        default=QUESTION_RETIRED,
+        editable=False,
+        help_text="question_retired",
+    )
+
+    safe_save_id = models.UUIDField(
+        unique=True,
+        null=True,
+    )
+
+    @property
+    def human_readable_identifier(self):
+        """Returns a humanized screening identifier."""
+        x = self.screening_identifier
+        return f"{x[0:4]}-{x[4:]}"
 
     class Meta(BaseUuidModel.Meta):
         verbose_name = "Subject Screening"

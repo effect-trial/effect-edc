@@ -88,63 +88,65 @@ INSTALLED_APPS = [
     "simple_history",
     "storages",
     "edc_action_item.apps.AppConfig",
-    "edc_appointment.apps.AppConfig",
+    "edc_adherence.apps.AppConfig",
     "edc_adverse_event.apps.AppConfig",
+    "edc_appointment.apps.AppConfig",
+    "edc_auth.apps.AppConfig",
     "edc_consent.apps.AppConfig",
     "edc_crf.apps.AppConfig",
     "edc_csf.apps.AppConfig",
-    "edc_reportable.apps.AppConfig",
-    "edc_lab.apps.AppConfig",
-    "edc_visit_schedule.apps.AppConfig",
-    "edc_visit_tracking.apps.AppConfig",
-    "edc_device.apps.AppConfig",
     "edc_dashboard.apps.AppConfig",
     "edc_data_manager.apps.AppConfig",
+    "edc_device.apps.AppConfig",
     "edc_document_status.apps.AppConfig",
+    "edc_dx.apps.AppConfig",
     "edc_egfr.apps.AppConfig",
     "edc_export.apps.AppConfig",
     "edc_facility.apps.AppConfig",
     "edc_fieldsets.apps.AppConfig",
+    "edc_form_describer.apps.AppConfig",
+    "edc_form_runners.apps.AppConfig",
     "edc_form_validators.apps.AppConfig",
+    "edc_identifier.apps.AppConfig",
+    "edc_lab.apps.AppConfig",
     "edc_lab_dashboard.apps.AppConfig",
     "edc_label.apps.AppConfig",
     "edc_list_data.apps.AppConfig",
     "edc_listboard.apps.AppConfig",
-    "edc_identifier.apps.AppConfig",
     "edc_locator.apps.AppConfig",
     "edc_metadata.apps.AppConfig",
     "edc_microbiology.apps.AppConfig",
     "edc_model.apps.AppConfig",
-    "edc_model_fields.apps.AppConfig",
     "edc_model_admin.apps.AppConfig",
+    "edc_model_fields.apps.AppConfig",
     "edc_navbar.apps.AppConfig",
     "edc_notification.apps.AppConfig",
     "edc_offstudy.apps.AppConfig",
-    "edc_pharmacy.apps.AppConfig",
+    "edc_pdf_reports.apps.AppConfig",
     "edc_pdutils.apps.AppConfig",
+    "edc_pharmacy.apps.AppConfig",
+    "edc_prn.apps.AppConfig",
     "edc_protocol.apps.AppConfig",
     "edc_protocol_incident.apps.AppConfig",
-    "edc_prn.apps.AppConfig",
+    "edc_qareports.apps.AppConfig",
     "edc_randomization.apps.AppConfig",
+    "edc_refusal.apps.AppConfig",
     "edc_registration.apps.AppConfig",
-    "edc_pdf_reports.apps.AppConfig",
+    "edc_reportable.apps.AppConfig",
     "edc_review_dashboard.apps.AppConfig",
     "edc_screening.apps.AppConfig",
     "edc_sites.apps.AppConfig",
     "edc_subject_dashboard.apps.AppConfig",
     "edc_timepoint.apps.AppConfig",
     "edc_unblinding.apps.AppConfig",
-    "edc_form_describer.apps.AppConfig",
-    "edc_adherence.apps.AppConfig",
-    "edc_dx.apps.AppConfig",
-    "edc_refusal.apps.AppConfig",
-]
-EFFECT_APPS = [
+    "edc_visit_schedule.apps.AppConfig",
+    "edc_visit_tracking.apps.AppConfig",
     "effect_consent.apps.AppConfig",
     "effect_lists.apps.AppConfig",
     "effect_dashboard.apps.AppConfig",
     "effect_labs.apps.AppConfig",
     "effect_subject.apps.AppConfig",
+    "effect_reports.apps.AppConfig",
     "effect_visit_schedule.apps.AppConfig",
     "effect_ae.apps.AppConfig",
     "effect_auth.apps.AppConfig",
@@ -153,9 +155,8 @@ EFFECT_APPS = [
     "effect_screening.apps.AppConfig",
     "effect_sites.apps.AppConfig",
     "effect_edc.apps.AppConfig",
+    "edc_appconfig.apps.AppConfig",
 ]
-INSTALLED_APPS.extend(EFFECT_APPS)
-INSTALLED_APPS.append("edc_auth.apps.AppConfig")
 
 if not DEFENDER_ENABLED:
     INSTALLED_APPS.pop(INSTALLED_APPS.index("defender"))
@@ -179,7 +180,7 @@ if not DEFENDER_ENABLED:
 
 MIDDLEWARE.extend(
     [
-        "edc_protocol.middleware.ProtocolMiddleware",
+        "edc_protocol.middleware.ResearchProtocolConfigMiddleware",
         "edc_dashboard.middleware.DashboardMiddleware",
         "edc_subject_dashboard.middleware.DashboardMiddleware",
         "edc_lab_dashboard.middleware.DashboardMiddleware",
@@ -313,12 +314,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # edc-pdutils
 EXPORT_FILENAME_TIMESTAMP_FORMAT = "%Y%m%d"
 
-# django_revision
-with open(os.path.join(os.path.dirname(os.path.join(BASE_DIR, APP_NAME)), "VERSION")) as f:
-    REVISION = f.read().strip()
-
-# EDC_AUTH_SKIP_AUTH_UPDATER = True
-
 # enforce https if DEBUG=False!
 # Note: will cause "CSRF verification failed. Request aborted"
 #       if DEBUG=False and https not configured.
@@ -385,8 +380,9 @@ EDC_RANDOMIZATION_ASSIGNMENT_DESCRIPTION_MAP = {
 # edc-sites
 EDC_SITES_MODULE_NAME = env.str("EDC_SITES_MODULE_NAME")
 
-# django-multisite
+# django-multisite2
 CACHE_MULTISITE_KEY_PREFIX = APP_NAME
+MULTISITE_REGISTER_POST_MIGRATE_SYNC_ALIAS = False
 SILENCED_SYSTEM_CHECKS = ["sites.E101"]
 
 # django-defender
@@ -450,6 +446,9 @@ DATA_DICTIONARY_APP_LABELS = [
     "effect_ae",
     "edc_appointment",
 ]
+
+# edc_form_runners
+EDC_FORM_RUNNERS_ENABLED = False
 
 # edc_protocol
 EDC_PROTOCOL = env.str("EDC_PROTOCOL")

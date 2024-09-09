@@ -1,1 +1,5 @@
+ACTIVE_SUBSTANCE_ADDICTION = "active_substance_addiction"
+G4_RAISED_CREATININE = "g4_raised_creatinine"
 LP_NOT_DONE = "LP_NOT_DONE"
+RELOCATED = "relocated"
+UNABLE_TO_CONTACT = "unable_to_contact"

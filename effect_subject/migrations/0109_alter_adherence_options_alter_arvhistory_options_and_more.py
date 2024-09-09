@@ -2,15 +2,15 @@
 
 import _socket
 import django.core.validators
-from django.db import migrations, models
 import django.db.models.manager
 import django_audit_fields.fields.hostname_modification_field
 import edc_lab.managers
 import edc_model.models.fields.date_estimated
 import edc_model.validators.date
 import edc_protocol.validators
-import edc_sites.model_mixins
+import edc_sites.models
 import edc_visit_tracking.managers
+from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
@@ -574,14 +574,14 @@ class Migration(migrations.Migration):
         migrations.AlterModelManagers(
             name="fluconmisseddoses",
             managers=[
-                ("on_site", edc_sites.model_mixins.CurrentSiteManager()),
+                ("on_site", edc_sites.models.CurrentSiteManager()),
                 ("objects", django.db.models.manager.Manager()),
             ],
         ),
         migrations.AlterModelManagers(
             name="flucytmisseddoses",
             managers=[
-                ("on_site", edc_sites.model_mixins.CurrentSiteManager()),
+                ("on_site", edc_sites.models.CurrentSiteManager()),
                 ("objects", django.db.models.manager.Manager()),
             ],
         ),

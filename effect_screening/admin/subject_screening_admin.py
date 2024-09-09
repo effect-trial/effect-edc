@@ -1,14 +1,13 @@
 from django.contrib import admin
-from django.template.loader import render_to_string
-from django.urls.base import reverse
-from django.urls.exceptions import NoReverseMatch
+from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import conditional_escape, format_html
-from django.utils.translation import gettext as _
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
-from edc_sites.modeladmin_mixins import SiteModelAdminMixin
+from edc_model_admin.mixins import ModelAdminHideDeleteButtonOnCondition
+from edc_sites.admin import SiteModelAdminMixin
+from edc_utils import get_uuid
 
 from effect_screening.eligibility import ScreeningEligibility
 
@@ -19,12 +18,16 @@ from ..models import SubjectScreening
 
 @admin.register(SubjectScreening, site=effect_screening_admin)
 class SubjectScreeningAdmin(
-    ModelAdminSubjectDashboardMixin, SiteModelAdminMixin, SimpleHistoryAdmin
+    ModelAdminSubjectDashboardMixin,
+    ModelAdminHideDeleteButtonOnCondition,
+    SiteModelAdminMixin,
+    SimpleHistoryAdmin,
 ):
     form = SubjectScreeningForm
 
     post_url_on_delete_name = "screening_listboard_url"
-    subject_listboard_url_name = "screening_listboard_url"
+
+    skip_auto_numbering = ["safe_save_id"]
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
@@ -38,7 +41,17 @@ class SubjectScreeningAdmin(
                 "fields": ("screening_identifier", "report_datetime", "site"),
             },
         ],
-        ["Demographics", {"fields": ("initials", "gender", "age_in_years")}],
+        [
+            "Demographics",
+            {
+                "fields": (
+                    "initials",
+                    "gender",
+                    "age_in_years",
+                    "parent_guardian_consent",
+                )
+            },
+        ],
         [
             "HIV",
             {
@@ -142,7 +155,8 @@ class SubjectScreeningAdmin(
             {
                 "fields": (
                     "unsuitable_for_study",
-                    "reasons_unsuitable",
+                    "unsuitable_reason",
+                    "unsuitable_reason_other",
                     "unsuitable_agreed",
                 ),
             },
@@ -162,7 +176,13 @@ class SubjectScreeningAdmin(
                 ),
             },
         ],
-        audit_fieldset_tuple,
+        [
+            audit_fieldset_tuple[0],
+            {
+                "classes": audit_fieldset_tuple[1]["classes"],
+                "fields": tuple(audit_fieldset_tuple[1]["fields"] + ["safe_save_id"]),
+            },
+        ],
     )
 
     radio_fields = {
@@ -185,12 +205,14 @@ class SubjectScreeningAdmin(
         "mg_seizures": admin.VERTICAL,
         "mg_severe_headache": admin.VERTICAL,
         "on_flucon": admin.VERTICAL,
+        "parent_guardian_consent": admin.VERTICAL,
         "pregnant": admin.VERTICAL,
         "prior_cm_episode": admin.VERTICAL,
         "reaction_to_study_drugs": admin.VERTICAL,
         "serum_crag_value": admin.VERTICAL,
         "unsuitable_agreed": admin.VERTICAL,
         "unsuitable_for_study": admin.VERTICAL,
+        "unsuitable_reason": admin.VERTICAL,
         "willing_to_participate": admin.VERTICAL,
     }
 
@@ -208,6 +230,7 @@ class SubjectScreeningAdmin(
         "report_datetime",
         "gender",
         "eligible",
+        "unsuitable_for_study",
         "consented",
         "refused",
     )
@@ -229,6 +252,9 @@ class SubjectScreeningAdmin(
         "consented",
         "refused",
     ]
+
+    def get_post_url_on_delete_name(self, request) -> str:
+        return url_names.get(self.post_url_on_delete_name)
 
     def post_url_on_delete_kwargs(self, request, obj):
         return {}
@@ -252,19 +278,14 @@ class SubjectScreeningAdmin(
         eligibility = ScreeningEligibility(obj)
         return format_html(conditional_escape(eligibility.display_label))
 
-    def dashboard(self, obj=None, label=None):
+    def hide_delete_button_on_condition(self, request, object_id) -> bool:
         try:
-            url = reverse(
-                self.get_subject_dashboard_url_name(),
-                kwargs=self.get_subject_dashboard_url_kwargs(obj),
-            )
-        except NoReverseMatch:
-            url = reverse(url_names.get("screening_listboard_url"), kwargs={})
-            context = dict(
-                title=_("Go to screening listboard"),
-                url=f"{url}?q={obj.screening_identifier}",
-                label=label,
-            )
-        else:
-            context = dict(title=_("Go to subject dashboard"), url=url, label=label)
-        return render_to_string("dashboard_button.html", context=context)
+            obj = SubjectScreening.objects.get(id=object_id)
+        except ObjectDoesNotExist:
+            return False
+        return obj.consented
+
+    def get_changeform_initial_data(self, request) -> dict:
+        initial_data = super().get_changeform_initial_data(request)
+        initial_data["safe_save_id"] = get_uuid()
+        return initial_data

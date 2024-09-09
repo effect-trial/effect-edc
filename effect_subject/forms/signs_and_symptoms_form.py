@@ -4,6 +4,7 @@ from edc_crf.modelform_mixins import CrfModelFormMixin
 from effect_form_validators.effect_subject import SignsAndSymptomsFormValidator as Base
 
 from effect_lists.list_data import list_data
+from effect_lists.models import SiSx
 
 from ..models import SignsAndSymptoms
 
@@ -16,6 +17,11 @@ class SignsAndSymptomsFormValidator(Base):
 
 class SignsAndSymptomsForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelForm):
     form_validator_cls = SignsAndSymptomsFormValidator
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields["current_sx"].queryset = SiSx.objects.order_by("display_index")
+        self.fields["current_sx_gte_g3"].queryset = SiSx.objects.order_by("display_index")
 
     class Meta:
         model = SignsAndSymptoms

@@ -2,10 +2,11 @@ from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 from edc_action_item.models import ActionItem
+from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
 from edc_constants.constants import DEAD
 from edc_form_validators import FormValidatorMixin
 from edc_offstudy.modelform_mixins import OffstudyNonCrfModelFormMixin
-from edc_sites.forms import SiteModelFormMixin
+from edc_utils import formatted_date
 from edc_visit_tracking.modelform_mixins import VisitTrackingModelFormMixin
 from effect_form_validators.effect_subject import SubjectVisitFormValidator
 
@@ -15,7 +16,7 @@ from ..models import SubjectVisit
 
 
 class SubjectVisitForm(
-    SiteModelFormMixin,
+    RequiresConsentModelFormMixin,
     VisitTrackingModelFormMixin,
     OffstudyNonCrfModelFormMixin,
     FormValidatorMixin,
@@ -31,8 +32,8 @@ class SubjectVisitForm(
             )
         else:
             try:
-                DeathReportAction.reference_model_cls().objects.get(
-                    subject_identifier=cleaned_data.get("appointment").subject_identifier
+                obj = DeathReportAction.reference_model_cls().objects.get(
+                    subject_identifier=cleaned_data.get("appointment").subject_identifier,
                 )
             except ObjectDoesNotExist:
                 ActionItem.objects.filter(
@@ -40,14 +41,16 @@ class SubjectVisitForm(
                     action_type__name=DeathReportAction.name,
                 ).delete()
             else:
-                raise forms.ValidationError(
-                    {
-                        "survival_status": (
-                            "Invalid. A Death report has "
-                            "already been submitted for this participant."
-                        )
-                    }
-                )
+                if obj.death_datetime.date() <= self.report_datetime.date():
+                    dt = formatted_date(obj.death_datetime.date())
+                    raise forms.ValidationError(
+                        {
+                            "survival_status": (
+                                "Invalid. A Death report has "
+                                f"already been submitted for this participant. Got {dt}."
+                            )
+                        }
+                    )
         return cleaned_data
 
     class Meta:
