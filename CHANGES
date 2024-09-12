@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+unreleased
+------
+- add QA reports for Missing Lab Values
+
 0.1.55
 ------
 - add Qa Reports app
