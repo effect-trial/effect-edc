@@ -15,6 +15,6 @@ class OnStudyMissingLabValues(OnStudyMissingValuesModelMixin, QaReportModelMixin
     class Meta:
         managed = False
         db_table = "onstudy_missing_lab_values_view"
-        verbose_name = "Missing Lab values for on-study patient"
-        verbose_name_plural = "Missing Lab values for on-study patients"
+        verbose_name = "Missing lab values for on-study patient"
+        verbose_name_plural = "Missing lab values for on-study patients"
         default_permissions = qa_reports_permissions
