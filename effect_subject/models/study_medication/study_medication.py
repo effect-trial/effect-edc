@@ -184,5 +184,5 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Study medication"
-        verbose_name_plural = "Study medication"
+        verbose_name = "Study Medication"
+        verbose_name_plural = "Study Medication"
