@@ -27,6 +27,7 @@ where
     or `current_sx_gte_g3_other` like '%fatig%'
     or `current_sx_gte_g3_other` like '%itchy%'
     or `current_sx_gte_g3_other` like '%mala%'
+    or `current_sx_gte_g3_other` like '%neuro%'
     or `current_sx_gte_g3_other` like '%pleur%'
     or `current_sx_gte_g3_other` like '%rash%'
     or `current_sx_gte_g3_other` like '%urin%'

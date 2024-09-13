@@ -259,6 +259,8 @@ list_data = {
             FOCAL_NEUROLOGIC_DEFICIT_OTHER,
             "Neuro - Other focal neurologic deficit, please specify below ...",
         ),
+        ("neuromuscular_weakness", "Neuromuscular weakness"),
+        ("peripheral_neuropathy", "Peripheral neuropathy"),
         ("pleuritic_chest_pain", "Pleuritic chest pain"),
         ("rash", "Rash"),
         ("shortness_of_breath", "Shortness of breath"),
