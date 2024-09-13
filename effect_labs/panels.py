@@ -26,6 +26,7 @@ chemistry_panel = RequisitionPanel(
         "egfr",
         "magnesium",
         "potassium",
+        "sodium",
         "ggt",
         "urea",
         ("tbil", "Total Bilirubin"),
