@@ -689,6 +689,122 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 except forms.ValidationError as e:
                     self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    def test_sodium_reportable_applicable_if_sodium_abnormal(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for abnormal_value in [
+            # abnormal (G1/G2 low sodium)
+            134,
+            125,
+            # abnormal (G1/G2 high sodium)
+            146,
+            153,
+        ]:
+            with self.subTest(abnormal_value=abnormal_value):
+                panel_results_data.update(
+                    {
+                        "sodium_value": abnormal_value,
+                        "sodium_units": MILLIMOLES_PER_LITER,
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": NOT_APPLICABLE,
+                        "results_abnormal": YES,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "This field is applicable if result is abnormal",
+                    str(cm.exception.error_dict.get("sodium_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": NO,
+                        "results_abnormal": YES,
+                        "results_reportable": NO,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_reportable_raises_if_abnormal_lt_g3_and_reported_reportable(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for abnormal_value in [
+            # abnormal (G1/G2 low sodium)
+            134,
+            125,
+            # abnormal (G1/G2 high sodium)
+            146,
+            153,
+        ]:
+            for reportable_response in [
+                GRADE3,
+                GRADE4,
+                ALREADY_REPORTED,
+                PRESENT_AT_BASELINE,
+            ]:
+                with self.subTest(
+                    abnormal_value=abnormal_value, reportable_response=reportable_response
+                ):
+                    panel_results_data.update(
+                        {
+                            "sodium_value": abnormal_value,
+                            "sodium_units": MILLIMOLES_PER_LITER,
+                            "sodium_abnormal": YES,
+                            "sodium_reportable": reportable_response,
+                            "results_abnormal": YES,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("sodium_reportable", cm.exception.error_dict)
+                    self.assertIn(
+                        "Invalid. Expected 'No' or 'Not applicable'.",
+                        str(cm.exception.error_dict.get("sodium_reportable")),
+                    )
+
+                    panel_results_data.update(
+                        {
+                            "sodium_abnormal": YES,
+                            "sodium_reportable": NO,
+                            "results_abnormal": YES,
+                            "results_reportable": NO,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    try:
+                        form_validator.validate()
+                    except forms.ValidationError as e:
+                        self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
     def test_sodium_g3_raises_if_not_acknowledged(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -706,11 +822,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             # G3 (high sodium)
             154,
             155,
-            156,
+            158,
             159,
         ]:
-            with self.subTest(g3_value=g3_value):
-                for reportable_response in [NOT_APPLICABLE, NO, GRADE4]:
+            for reportable_response in [NOT_APPLICABLE, NO, GRADE4]:
+                with self.subTest(g3_value=g3_value, reportable_response=reportable_response):
                     panel_results_data.update(
                         {
                             "sodium_value": g3_value,
@@ -848,8 +964,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             170,
             200,
         ]:
-            with self.subTest(g4_value=g4_value):
-                for reportable_response in [NOT_APPLICABLE, NO, GRADE3]:
+            for reportable_response in [NOT_APPLICABLE, NO, GRADE3]:
+                with self.subTest(g4_value=g4_value, reportable_response=reportable_response):
                     panel_results_data.update(
                         {
                             "sodium_value": g4_value,
