@@ -27,6 +27,7 @@ where
     or `current_sx_other` like '%fatig%'
     or `current_sx_other` like '%itchy%'
     or `current_sx_other` like '%mala%'
+    or `current_sx_other` like '%neuro%'
     or `current_sx_other` like '%pleur%'
     or `current_sx_other` like '%rash%'
     or `current_sx_other` like '%urin%'
