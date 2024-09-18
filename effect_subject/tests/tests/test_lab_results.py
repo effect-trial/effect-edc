@@ -543,10 +543,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 except forms.ValidationError as e:
                     self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
-    def test_sodium_135_treated_as_normal(self):
-        """... "for the EDC we should allow 135-145 inclusive to be
-        normal".
-        """
+    def test_sodium_135_treated_as_abnormal_and_not_reportable(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
             subject_consent=self.subject_consent,
@@ -558,7 +555,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             {
                 "sodium_value": 135,
                 "sodium_units": MILLIMOLES_PER_LITER,
-                "sodium_abnormal": YES,
+                "sodium_abnormal": NO,
                 "sodium_reportable": NOT_APPLICABLE,
                 "results_abnormal": NO,
                 "results_reportable": NOT_APPLICABLE,
@@ -569,17 +566,34 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
-        self.assertIn("sodium_abnormal", cm.exception.error_dict)
+        self.assertIn("sodium_value", cm.exception.error_dict)
         self.assertIn(
-            "Invalid. Result is not abnormal",
-            str(cm.exception.error_dict.get("sodium_abnormal")),
+            "SODIUM is abnormal.",
+            str(cm.exception.error_dict.get("sodium_value")),
+        )
+
+        panel_results_data.update(
+            {
+                "sodium_abnormal": YES,
+                "sodium_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("sodium_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "This field is applicable",
+            str(cm.exception.error_dict.get("sodium_reportable")),
         )
 
         for reportable_response in [GRADE3, GRADE4, ALREADY_REPORTED, PRESENT_AT_BASELINE]:
             with self.subTest(reportable_response=reportable_response):
                 panel_results_data.update(
                     {
-                        "sodium_abnormal": NO,
+                        "sodium_abnormal": YES,
                         "sodium_reportable": reportable_response,
                     }
                 )
@@ -596,8 +610,12 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
 
         panel_results_data.update(
             {
-                "sodium_abnormal": NO,
+                "sodium_value": 135,
+                "sodium_units": MILLIMOLES_PER_LITER,
+                "sodium_abnormal": YES,
                 "sodium_reportable": NO,
+                "results_abnormal": NO,
+                "results_reportable": NOT_APPLICABLE,
             }
         )
         form_validator = BloodResultsChemFormValidator(
@@ -605,18 +623,54 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
-        self.assertIn("sodium_reportable", cm.exception.error_dict)
+        self.assertIn("results_abnormal", cm.exception.error_dict)
         self.assertIn(
-            "This field is not applicable",
-            str(cm.exception.error_dict.get("sodium_reportable")),
+            "1 of the above results is abnormal",
+            str(cm.exception.error_dict.get("results_abnormal")),
         )
 
         panel_results_data.update(
             {
                 "sodium_value": 135,
                 "sodium_units": MILLIMOLES_PER_LITER,
-                "sodium_abnormal": NO,
-                "sodium_reportable": NOT_APPLICABLE,
+                "sodium_abnormal": YES,
+                "sodium_reportable": NO,
+                "results_abnormal": YES,
+                "results_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("results_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "This field is applicable",
+            str(cm.exception.error_dict.get("results_reportable")),
+        )
+
+        panel_results_data.update(
+            {
+                "results_abnormal": YES,
+                "results_reportable": YES,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("results_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "None of the above results are reportable",
+            str(cm.exception.error_dict.get("results_reportable")),
+        )
+
+        panel_results_data.update(
+            {
+                "results_abnormal": YES,
+                "results_reportable": NO,
             }
         )
         form_validator = BloodResultsChemFormValidator(
@@ -627,7 +681,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         except forms.ValidationError as e:
             self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
-    def test_sodium_abnormal_raises_if_not_acknowledged(self):
+    def test_sodium_abnormal_not_reportable_raises_if_not_acknowledged(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
             subject_consent=self.subject_consent,
@@ -636,6 +690,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
         for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
             # abnormal (G1/G2 low sodium)
             134,
             133,
@@ -698,6 +754,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
         for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
             # abnormal (G1/G2 low sodium)
             134,
             125,
@@ -752,6 +810,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
         for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
             # abnormal (G1/G2 low sodium)
             134,
             125,
