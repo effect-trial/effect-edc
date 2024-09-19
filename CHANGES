@@ -6,7 +6,8 @@ unreleased
 - add QA reports for Missing Lab Values
 - add Sodium field to Blood Result: Chemistry form (#521)
 - add additional symptom choices to Signs and Symptoms form (#792)
-- bump to edc 0.6.12
+- add mg/L, update normal ranges for CRP (#618)
+- bump to edc 0.6.13
 
 0.1.55
 ------
