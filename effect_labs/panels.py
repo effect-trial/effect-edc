@@ -1,5 +1,7 @@
 from edc_lab import RequisitionPanel
+from edc_lab_panel.constants import FBC
 
+from .constants import BLOOD_CULTURE, CHEMISTRY, CSF_CULTURE
 from .processing_profiles import (
     blood_culture_processing,
     chemistry_processing,
@@ -10,7 +12,7 @@ from .processing_profiles import (
 )
 
 chemistry_panel = RequisitionPanel(
-    name="chemistry",
+    name=CHEMISTRY,
     verbose_name="Chemistry: RFT, LFT, Electrolytes",
     abbreviation="CHEM",
     processing_profile=chemistry_processing,
@@ -24,6 +26,7 @@ chemistry_panel = RequisitionPanel(
         "egfr",
         "magnesium",
         "potassium",
+        "sodium",
         "ggt",
         "urea",
         ("tbil", "Total Bilirubin"),
@@ -40,7 +43,7 @@ urinalysis_panel = RequisitionPanel(
     ],
 )
 csf_culture_panel = RequisitionPanel(
-    name="csf_culture",
+    name=CSF_CULTURE,
     verbose_name="CSF culture",
     abbreviation="CSFC",
     processing_profile=csf_culture_processing,
@@ -64,7 +67,7 @@ histopathology_panel = RequisitionPanel(
 )
 
 blood_culture_panel = RequisitionPanel(
-    name="blood_culture",
+    name=BLOOD_CULTURE,
     verbose_name="Blood culture",
     abbreviation="BLE",
     processing_profile=blood_culture_processing,
@@ -73,7 +76,7 @@ blood_culture_panel = RequisitionPanel(
 
 # TODO: update fbc_panel
 fbc_panel = RequisitionPanel(
-    name="fbc",
+    name=FBC,
     verbose_name="Full Blood Count",
     processing_profile=fbc_processing,
     abbreviation="FBC",

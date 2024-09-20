@@ -8,10 +8,19 @@ from dateutil.relativedelta import relativedelta
 from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_constants.constants import NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
-from edc_reportable import GRADE4, PERCENT, TEN_X_9_PER_LITER
+from edc_reportable import (
+    ALREADY_REPORTED,
+    GRADE3,
+    GRADE4,
+    MILLIMOLES_PER_LITER,
+    PERCENT,
+    PRESENT_AT_BASELINE,
+    TEN_X_9_PER_LITER,
+)
+from edc_reportable.units import MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER
 from edc_utils import convert_php_dateformat, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
@@ -43,6 +52,7 @@ class LabPanelResultTestConfig:
 
 
 @time_machine.travel(datetime(2023, 1, 10, 8, 00, tzinfo=ZoneInfo("UTC")))
+@tag("lab")
 class TestLabResults(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         screening_datetime = get_utcnow() - relativedelta(years=1)
@@ -499,3 +509,915 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         ["Ensure this value is greater than or equal to 0.0."],
                         form.errors.get(f"{result_type}_value"),
                     )
+
+    def test_sodium_in_normal_range_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for normal_value in [136, 140, 144, 145]:
+            with self.subTest(normal_value=normal_value):
+                panel_results_data.update(
+                    {
+                        "sodium_value": normal_value,
+                        "sodium_units": MILLIMOLES_PER_LITER,
+                        "sodium_abnormal": NO,
+                        "sodium_reportable": NOT_APPLICABLE,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form = BloodResultsChemForm(panel_results_data)
+                self.assertTrue(
+                    form.is_valid(),
+                    f"Expected form to be valid. Got: {form.errors.as_data()}",
+                )
+
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_135_treated_as_abnormal_and_not_reportable(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        panel_results_data.update(
+            {
+                "sodium_value": 135,
+                "sodium_units": MILLIMOLES_PER_LITER,
+                "sodium_abnormal": NO,
+                "sodium_reportable": NOT_APPLICABLE,
+                "results_abnormal": NO,
+                "results_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("sodium_value", cm.exception.error_dict)
+        self.assertIn(
+            "SODIUM is abnormal.",
+            str(cm.exception.error_dict.get("sodium_value")),
+        )
+
+        panel_results_data.update(
+            {
+                "sodium_abnormal": YES,
+                "sodium_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("sodium_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "This field is applicable",
+            str(cm.exception.error_dict.get("sodium_reportable")),
+        )
+
+        for reportable_response in [GRADE3, GRADE4, ALREADY_REPORTED, PRESENT_AT_BASELINE]:
+            with self.subTest(reportable_response=reportable_response):
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": reportable_response,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "Invalid. Expected 'No' or 'Not applicable'.",
+                    str(cm.exception.error_dict.get("sodium_reportable")),
+                )
+
+        panel_results_data.update(
+            {
+                "sodium_value": 135,
+                "sodium_units": MILLIMOLES_PER_LITER,
+                "sodium_abnormal": YES,
+                "sodium_reportable": NO,
+                "results_abnormal": NO,
+                "results_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("results_abnormal", cm.exception.error_dict)
+        self.assertIn(
+            "1 of the above results is abnormal",
+            str(cm.exception.error_dict.get("results_abnormal")),
+        )
+
+        panel_results_data.update(
+            {
+                "sodium_value": 135,
+                "sodium_units": MILLIMOLES_PER_LITER,
+                "sodium_abnormal": YES,
+                "sodium_reportable": NO,
+                "results_abnormal": YES,
+                "results_reportable": NOT_APPLICABLE,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("results_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "This field is applicable",
+            str(cm.exception.error_dict.get("results_reportable")),
+        )
+
+        panel_results_data.update(
+            {
+                "results_abnormal": YES,
+                "results_reportable": YES,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        with self.assertRaises(forms.ValidationError) as cm:
+            form_validator.validate()
+        self.assertIn("results_reportable", cm.exception.error_dict)
+        self.assertIn(
+            "None of the above results are reportable",
+            str(cm.exception.error_dict.get("results_reportable")),
+        )
+
+        panel_results_data.update(
+            {
+                "results_abnormal": YES,
+                "results_reportable": NO,
+            }
+        )
+        form_validator = BloodResultsChemFormValidator(
+            cleaned_data=panel_results_data, model=BloodResultsChem
+        )
+        try:
+            form_validator.validate()
+        except forms.ValidationError as e:
+            self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_abnormal_not_reportable_raises_if_not_acknowledged(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
+            # abnormal (G1/G2 low sodium)
+            134,
+            133,
+            131,
+            130,
+            129,
+            126,
+            125,
+            # abnormal (G1/G2 high sodium)
+            146,
+            149,
+            150,
+            151,
+            153,
+        ]:
+            with self.subTest(abnormal_value=abnormal_value):
+                panel_results_data.update(
+                    {
+                        "sodium_value": abnormal_value,
+                        "sodium_units": MILLIMOLES_PER_LITER,
+                        "sodium_abnormal": NO,
+                        "sodium_reportable": NOT_APPLICABLE,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_value", cm.exception.error_dict)
+                self.assertIn(
+                    "SODIUM is abnormal.",
+                    str(cm.exception.error_dict.get("sodium_value")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": NO,
+                        "results_abnormal": YES,
+                        "results_reportable": NO,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_reportable_applicable_if_sodium_abnormal(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
+            # abnormal (G1/G2 low sodium)
+            134,
+            125,
+            # abnormal (G1/G2 high sodium)
+            146,
+            153,
+        ]:
+            with self.subTest(abnormal_value=abnormal_value):
+                panel_results_data.update(
+                    {
+                        "sodium_value": abnormal_value,
+                        "sodium_units": MILLIMOLES_PER_LITER,
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": NOT_APPLICABLE,
+                        "results_abnormal": YES,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "This field is applicable if result is abnormal",
+                    str(cm.exception.error_dict.get("sodium_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": NO,
+                        "results_abnormal": YES,
+                        "results_reportable": NO,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_reportable_raises_if_abnormal_lt_g3_and_reported_reportable(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for abnormal_value in [
+            # abnormal (G0 low sodium)
+            135,
+            # abnormal (G1/G2 low sodium)
+            134,
+            125,
+            # abnormal (G1/G2 high sodium)
+            146,
+            153,
+        ]:
+            for reportable_response in [
+                GRADE3,
+                GRADE4,
+                ALREADY_REPORTED,
+                PRESENT_AT_BASELINE,
+            ]:
+                with self.subTest(
+                    abnormal_value=abnormal_value, reportable_response=reportable_response
+                ):
+                    panel_results_data.update(
+                        {
+                            "sodium_value": abnormal_value,
+                            "sodium_units": MILLIMOLES_PER_LITER,
+                            "sodium_abnormal": YES,
+                            "sodium_reportable": reportable_response,
+                            "results_abnormal": YES,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("sodium_reportable", cm.exception.error_dict)
+                    self.assertIn(
+                        "Invalid. Expected 'No' or 'Not applicable'.",
+                        str(cm.exception.error_dict.get("sodium_reportable")),
+                    )
+
+                    panel_results_data.update(
+                        {
+                            "sodium_abnormal": YES,
+                            "sodium_reportable": NO,
+                            "results_abnormal": YES,
+                            "results_reportable": NO,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    try:
+                        form_validator.validate()
+                    except forms.ValidationError as e:
+                        self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_g3_raises_if_not_acknowledged(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for g3_value in [
+            # G3 (low sodium)
+            121,
+            122,
+            123,
+            124,
+            # G3 (high sodium)
+            154,
+            155,
+            158,
+            159,
+        ]:
+            for reportable_response in [NOT_APPLICABLE, NO, GRADE4]:
+                with self.subTest(g3_value=g3_value, reportable_response=reportable_response):
+                    panel_results_data.update(
+                        {
+                            "sodium_value": g3_value,
+                            "sodium_units": MILLIMOLES_PER_LITER,
+                            "sodium_abnormal": NO,
+                            "sodium_reportable": reportable_response,
+                            "results_abnormal": NO,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("sodium_value", cm.exception.error_dict)
+                    self.assertIn(
+                        "SODIUM is reportable.",
+                        str(cm.exception.error_dict.get("sodium_value")),
+                    )
+                    self.assertIn(
+                        "GRADE 3.",
+                        str(cm.exception.error_dict.get("sodium_value")),
+                    )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": NO,
+                        "sodium_reportable": GRADE3,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_value", cm.exception.error_dict)
+                self.assertIn(
+                    "SODIUM is abnormal.",
+                    str(cm.exception.error_dict.get("sodium_value")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE3,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_abnormal", cm.exception.error_dict)
+                self.assertIn(
+                    "1 of the above results is abnormal",
+                    str(cm.exception.error_dict.get("results_abnormal")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE3,
+                        "results_abnormal": YES,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "This field is applicable.",
+                    str(cm.exception.error_dict.get("results_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE3,
+                        "results_abnormal": YES,
+                        "results_reportable": NO,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "1 of the above results is reportable",
+                    str(cm.exception.error_dict.get("results_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE3,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_sodium_g4_raises_if_not_acknowledged(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for g4_value in [
+            # G4 (low sodium)
+            120,
+            119,
+            110,
+            100,
+            # G4 (high sodium)
+            160,
+            161,
+            170,
+            200,
+        ]:
+            for reportable_response in [NOT_APPLICABLE, NO, GRADE3]:
+                with self.subTest(g4_value=g4_value, reportable_response=reportable_response):
+                    panel_results_data.update(
+                        {
+                            "sodium_value": g4_value,
+                            "sodium_units": MILLIMOLES_PER_LITER,
+                            "sodium_abnormal": NO,
+                            "sodium_reportable": reportable_response,
+                            "results_abnormal": NO,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("sodium_value", cm.exception.error_dict)
+                    self.assertIn(
+                        "SODIUM is reportable.",
+                        str(cm.exception.error_dict.get("sodium_value")),
+                    )
+                    self.assertIn(
+                        "GRADE 4.",
+                        str(cm.exception.error_dict.get("sodium_value")),
+                    )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": NO,
+                        "sodium_reportable": GRADE4,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("sodium_value", cm.exception.error_dict)
+                self.assertIn(
+                    "SODIUM is abnormal.",
+                    str(cm.exception.error_dict.get("sodium_value")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE4,
+                        "results_abnormal": NO,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_abnormal", cm.exception.error_dict)
+                self.assertIn(
+                    "1 of the above results is abnormal",
+                    str(cm.exception.error_dict.get("results_abnormal")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": NOT_APPLICABLE,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "This field is applicable.",
+                    str(cm.exception.error_dict.get("results_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": NO,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                with self.assertRaises(forms.ValidationError) as cm:
+                    form_validator.validate()
+                self.assertIn("results_reportable", cm.exception.error_dict)
+                self.assertIn(
+                    "1 of the above results is reportable",
+                    str(cm.exception.error_dict.get("results_reportable")),
+                )
+
+                panel_results_data.update(
+                    {
+                        "sodium_abnormal": YES,
+                        "sodium_reportable": GRADE4,
+                        "results_abnormal": YES,
+                        "results_reportable": YES,
+                    }
+                )
+                form_validator = BloodResultsChemFormValidator(
+                    cleaned_data=panel_results_data, model=BloodResultsChem
+                )
+                try:
+                    form_validator.validate()
+                except forms.ValidationError as e:
+                    self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_negative_crp_values_lt_0_raises(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
+        for value in [-0.01, -0.02, -0.1, -0.2, -1, -9999]:
+            for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
+                with self.subTest(value=value, units=units):
+                    panel_results_data.update(
+                        {
+                            "crp_value": value,
+                            "crp_units": units,
+                            "crp_abnormal": NO,
+                            "crp_reportable": NOT_APPLICABLE,
+                            "results_abnormal": NO,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form = BloodResultsChemForm(panel_results_data)
+                    self.assertFalse(form.is_valid(), "Expected form to be invalid.")
+                    self.assertIn("crp_value", form.errors)
+                    self.assertEqual(
+                        ["Ensure this value is greater than or equal to 0.0."],
+                        form.errors.get("crp_value"),
+                    )
+
+    def test_crp_in_normal_range_ok(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for normal_value in [0, 0.1, 1, 3, 4, 4.9, 5]:
+            for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
+                with self.subTest(normal_value=normal_value, units=units):
+                    panel_results_data.update(
+                        {
+                            "crp_value": (
+                                normal_value
+                                if units == MILLIGRAMS_PER_LITER
+                                else round(normal_value / 10, 2)
+                            ),
+                            "crp_units": units,
+                            "crp_abnormal": NO,
+                            "crp_reportable": NOT_APPLICABLE,
+                            "results_abnormal": NO,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+
+                    form = BloodResultsChemForm(panel_results_data)
+                    self.assertTrue(
+                        form.is_valid(),
+                        f"Expected form to be valid. Got: {form.errors.as_data()}",
+                    )
+
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    try:
+                        form_validator.validate()
+                    except forms.ValidationError as e:
+                        self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_abnormal_crp_raises_if_not_acknowledged_abnormal(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for normal_value in [5.05, 5.1, 6, 10, 50, 999]:
+            for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
+                with self.subTest(normal_value=normal_value, units=units):
+                    panel_results_data.update(
+                        {
+                            "crp_value": (
+                                normal_value
+                                if units == MILLIGRAMS_PER_LITER
+                                else round(normal_value / 10, 2)
+                            ),
+                            "crp_units": units,
+                            "crp_abnormal": NO,
+                            "crp_reportable": NOT_APPLICABLE,
+                            "results_abnormal": NO,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form = BloodResultsChemForm(panel_results_data)
+                    self.assertFalse(form.is_valid(), "Expected form to be invalid.")
+                    self.assertIn("crp_value", form.errors)
+                    self.assertIn(
+                        "CRP is abnormal. ",
+                        str(form.errors.get("crp_value")),
+                    )
+
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("crp_value", cm.exception.error_dict)
+                    self.assertIn(
+                        "CRP is abnormal. ",
+                        str(cm.exception.error_dict.get("crp_value")),
+                    )
+                    self.assertIn(
+                        (
+                            "Normal ranges: 0.0<=x<=5.0 mg/L "
+                            if units == MILLIGRAMS_PER_LITER
+                            else "Normal ranges: 0.0<=x<=0.5 mg/dL"
+                        ),
+                        str(cm.exception.error_dict.get("crp_value")),
+                    )
+
+                    panel_results_data.update(
+                        {
+                            "crp_abnormal": YES,
+                            "crp_reportable": NO,
+                            "results_abnormal": NO,
+                            "results_reportable": NO,
+                        }
+                    )
+                    form = BloodResultsChemForm(panel_results_data)
+                    self.assertFalse(form.is_valid(), "Expected form to be invalid.")
+                    self.assertIn("results_abnormal", form.errors)
+                    self.assertIn(
+                        "1 of the above results is abnormal",
+                        str(form.errors.get("results_abnormal")),
+                    )
+
+                    panel_results_data.update(
+                        {
+                            "crp_abnormal": YES,
+                            "crp_reportable": NO,
+                            "results_abnormal": YES,
+                            "results_reportable": NO,
+                        }
+                    )
+                    form = BloodResultsChemForm(panel_results_data)
+                    self.assertTrue(
+                        form.is_valid(),
+                        f"Expected form to be valid. Got: {form.errors.as_data()}",
+                    )
+
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    try:
+                        form_validator.validate()
+                    except forms.ValidationError as e:
+                        self.fail(f"ValidationError unexpectedly raised. Got {e}")
+
+    def test_abnormal_crp_not_reportable(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for normal_value in [5.05, 5.1, 6, 10, 50, 999]:
+            for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
+                for crp_reportable in [
+                    GRADE3,
+                    GRADE4,
+                    ALREADY_REPORTED,
+                    PRESENT_AT_BASELINE,
+                ]:
+                    with self.subTest(
+                        normal_value=normal_value,
+                        units=units,
+                        crp_reportable=crp_reportable,
+                    ):
+                        panel_results_data.update(
+                            {
+                                "crp_value": (
+                                    normal_value
+                                    if units == MILLIGRAMS_PER_LITER
+                                    else round(normal_value / 10, 2)
+                                ),
+                                "crp_units": units,
+                                "crp_abnormal": YES,
+                                "crp_reportable": NOT_APPLICABLE,
+                                "results_abnormal": YES,
+                                "results_reportable": NOT_APPLICABLE,
+                            }
+                        )
+                        form_validator = BloodResultsChemFormValidator(
+                            cleaned_data=panel_results_data, model=BloodResultsChem
+                        )
+                        with self.assertRaises(forms.ValidationError) as cm:
+                            form_validator.validate()
+                        self.assertIn("crp_reportable", cm.exception.error_dict)
+                        self.assertIn(
+                            "This field is applicable if result is abnormal",
+                            str(cm.exception.error_dict.get("crp_reportable")),
+                        )
+
+                        panel_results_data.update(
+                            {
+                                "crp_abnormal": YES,
+                                "crp_reportable": crp_reportable,
+                                "results_abnormal": YES,
+                                "results_reportable": NOT_APPLICABLE,
+                            }
+                        )
+                        form_validator = BloodResultsChemFormValidator(
+                            cleaned_data=panel_results_data, model=BloodResultsChem
+                        )
+                        with self.assertRaises(forms.ValidationError) as cm:
+                            form_validator.validate()
+                        self.assertIn("crp_reportable", cm.exception.error_dict)
+                        self.assertIn(
+                            "Invalid. Expected 'No' or 'Not applicable'.",
+                            str(cm.exception.error_dict.get("crp_reportable")),
+                        )
+
+                        panel_results_data.update(
+                            {
+                                "crp_abnormal": YES,
+                                "crp_reportable": NO,
+                                "results_abnormal": YES,
+                                "results_reportable": NOT_APPLICABLE,
+                            }
+                        )
+                        form_validator = BloodResultsChemFormValidator(
+                            cleaned_data=panel_results_data, model=BloodResultsChem
+                        )
+                        with self.assertRaises(forms.ValidationError) as cm:
+                            form_validator.validate()
+                        self.assertIn("results_reportable", cm.exception.error_dict)
+                        self.assertIn(
+                            "This field is applicable.",
+                            str(cm.exception.error_dict.get("results_reportable")),
+                        )
+
+                        panel_results_data.update(
+                            {
+                                "crp_abnormal": YES,
+                                "crp_reportable": NO,
+                                "results_abnormal": YES,
+                                "results_reportable": YES,
+                            }
+                        )
+                        form_validator = BloodResultsChemFormValidator(
+                            cleaned_data=panel_results_data, model=BloodResultsChem
+                        )
+                        with self.assertRaises(forms.ValidationError) as cm:
+                            form_validator.validate()
+                        self.assertIn("results_reportable", cm.exception.error_dict)
+                        self.assertIn(
+                            "None of the above results are reportable",
+                            str(cm.exception.error_dict.get("results_reportable")),
+                        )
+
+                        panel_results_data.update(
+                            {
+                                "crp_abnormal": YES,
+                                "crp_reportable": NO,
+                                "results_abnormal": YES,
+                                "results_reportable": NO,
+                            }
+                        )
+                        form_validator = BloodResultsChemFormValidator(
+                            cleaned_data=panel_results_data, model=BloodResultsChem
+                        )
+                        try:
+                            form_validator.validate()
+                        except forms.ValidationError as e:
+                            self.fail(f"ValidationError unexpectedly raised. Got {e}")

@@ -28,6 +28,7 @@ class Rm792SiSxListCandidatesAdmin(
         "    <li>conf</li>"
         "    <li>diz</li>"
         "    <li>itchy</li>"
+        "    <li>neuro</li>"
         "    <li>pleur</li>"
         "    <li>rash</li>"
         "</ul>"

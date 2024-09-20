@@ -40,6 +40,7 @@ class Rm792KwInCurrentSxGteG3OtherAdmin(
         "    <li>fatig</li>"
         "    <li>itchy</li>"
         "    <li>mala</li>"
+        "    <li>neuro</li>"
         "    <li>pleur</li>"
         "    <li>rash</li>"
         "    <li>urin</li>"

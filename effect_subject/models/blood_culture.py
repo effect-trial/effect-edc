@@ -21,5 +21,5 @@ class BloodCulture(BloodCultureModelMixin, CrfModelMixin, edc_models.BaseUuidMod
     comment = models.TextField(verbose_name="Any additional comment", null=True, blank=True)
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
-        verbose_name = "Blood culture"
-        verbose_name_plural = "Blood culture"
+        verbose_name = "Blood Culture"
+        verbose_name_plural = "Blood Culture"

@@ -82,8 +82,9 @@ INSTALLED_APPS = [
     "multisite",
     "fontawesomefree",
     "django_crypto_fields.apps.AppConfig",
-    "django_revision.apps.AppConfig",
+    "django_db_views",
     "django_extensions",
+    "django_revision.apps.AppConfig",
     "logentry_admin",
     "simple_history",
     "storages",
@@ -482,7 +483,7 @@ if env("AWS_ENABLED"):
     AWS_S3_OBJECT_PARAMETERS = {"CacheControl": "max-age=86400"}
     AWS_LOCATION = env.str("AWS_LOCATION")
     AWS_IS_GZIPPED = True
-    STATICFILES_STORAGE = "storages.backends.s3boto3.S3Boto3Storage"
+    STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"}}
     STATIC_URL = f"{os.path.join(AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)}/"
     STATIC_ROOT = ""
 else:

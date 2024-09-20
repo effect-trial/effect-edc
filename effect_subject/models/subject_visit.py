@@ -105,4 +105,5 @@ class SubjectVisit(
     history = HistoricalRecords()
 
     class Meta(VisitModelMixin.Meta, BaseUuidModel.Meta):
-        pass
+        verbose_name = "Subject Visit"
+        verbose_name_plural = "Subject Visits"
