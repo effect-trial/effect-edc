@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+unreleased
+------
+- drop Django 4.1 support
+- bump to edc 0.6.14
+
 0.1.56
 ------
 - add QA reports for Missing Lab Values
