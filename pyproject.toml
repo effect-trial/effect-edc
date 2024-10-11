@@ -64,6 +64,7 @@ deps =
 
 commands =
     pip install -U pip
+    python --version
     pip --version
     edcdev: pip install -U -r https://raw.githubusercontent.com/clinicedc/edc/develop/requirements.tests/edc.txt
     edcdev: pip install -U git+https://github.com/effect-trial/effect-form-validators.git@develop
