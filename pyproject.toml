@@ -36,7 +36,7 @@ legacy_tox_ini = """
 [tox]
 envlist =
     py{312,313}-dj{51}-edc{prod,dev},
-    py{312,313}-dj{dev}-edc{dev},
+    py{313}-dj{dev}-edc{dev},
     lint
 
 isolated_build = true
