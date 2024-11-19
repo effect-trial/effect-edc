@@ -14480,5 +14480,3 @@ Adherence CRF completed after d14 (telephone).
 
 
 *Rendered on 2024-08-16 00:55*
-
-
