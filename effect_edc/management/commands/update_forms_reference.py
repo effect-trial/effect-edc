@@ -27,7 +27,7 @@ def update_forms_reference(sender=None, **kwargs):
         add_per_form_timestamp=False,
     )
     path = os.path.join(doc_folder, "forms_reference.md")
-    forms.to_file(path=path, overwrite=True)
+    forms.to_file(path=path, overwrite=True, pad=0)
 
 
 class Command(BaseCommand):
