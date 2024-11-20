@@ -9,7 +9,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import INCOMPLETE, PENDING, TBD
 from edc_dashboard.url_names import url_names
 from edc_refusal.models import SubjectRefusal
-from edc_subject_dashboard.view_utils import NextQuerystring
+from edc_view_utils import NextQuerystring
 
 from effect_screening.eligibility import ScreeningEligibility
 
