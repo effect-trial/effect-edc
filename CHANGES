@@ -5,7 +5,7 @@ unreleased
 ------
 - minor update to forms_reference output to fix trailing whitespace
 - drop Django 4.1 support
-- bump to edc 0.6.18
+- bump to edc 0.6.19
 
 0.1.56
 ------
