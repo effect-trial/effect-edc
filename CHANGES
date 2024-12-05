@@ -3,7 +3,11 @@ Changes
 
 unreleased
 ------
-- minor update to forms_reference output to fix trailing whitespace
+- updates to forms reference document
+    - standardise new line insertion
+    - fix trailing/end-of-file whitespace
+    - fix docstring insertion
+    - regenerate document
 - drop Django 4.1 support
 - bump to edc 0.6.19
 
