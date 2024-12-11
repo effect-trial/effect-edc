@@ -3,6 +3,7 @@ Changes
 
 unreleased
 ------
+- convert viral_load_result from DecimalField to IntegerField (#658)
 - updates to forms reference document
     - standardise new line insertion
     - fix trailing/end-of-file whitespace
