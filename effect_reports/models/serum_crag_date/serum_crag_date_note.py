@@ -39,5 +39,5 @@ class SerumCragDateNote(
         return f"{self._meta.verbose_name}: {self.subject_identifier}"
 
     class Meta(UniqueSubjectIdentifierFieldMixin.Meta, BaseUuidModel.Meta):
-        verbose_name = "Redmine #488.2 Serum Crag Date Notes"
-        verbose_name_plural = "Redmine #488.2 Serum Crag Date Notes"
+        verbose_name = "Redmine #488.2 - Serum Crag Date Note"
+        verbose_name_plural = "Redmine #488.2 - Serum Crag Date Notes"

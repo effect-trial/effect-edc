@@ -1,6 +1,6 @@
 from edc_qareports.modeladmin_mixins import NoteStatusListFilter
 
-from effect_reports.choices import NOTE_STATUSES
+from ...choices import NOTE_STATUSES
 
 
 class SerumCragDateNoteStatusListFilter(NoteStatusListFilter):

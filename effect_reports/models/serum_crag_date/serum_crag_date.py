@@ -33,6 +33,6 @@ class SerumCragDate(QaReportModelMixin, models.Model):
     objects = models.Manager()
 
     class Meta(QaReportModelMixin.Meta):
-        verbose_name = "Redmine #488.1 Serum Crag Date (Confirmation)"
-        verbose_name_plural = "Redmine #488.1 Serum Crag Dates (Confirmation)"
+        verbose_name = "Redmine #488.1 - Serum Crag Date (Confirmation)"
+        verbose_name_plural = "Redmine #488.1 - Serum Crag Dates (Confirmation)"
         default_permissions = qa_reports_permissions

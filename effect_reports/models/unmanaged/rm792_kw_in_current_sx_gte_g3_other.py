@@ -19,6 +19,6 @@ class Rm792KwInCurrentSxGteG3Other(QaReportModelMixin, models.Model):
     class Meta:
         managed = False
         db_table = "rm792_kw_in_current_sx_gte_g3_other"
-        verbose_name = "Redmine #792.2: Signs and Symptoms: Keyword in other G3 sx"
-        verbose_name_plural = "Redmine #792.2: Signs and Symptoms: Keyword in other G3 sx"
+        verbose_name = "Redmine #792.2 - Signs and Symptoms: Keyword in other G3 sx"
+        verbose_name_plural = "Redmine #792.2 - Signs and Symptoms: Keyword in other G3 sx"
         default_permissions = qa_reports_permissions
