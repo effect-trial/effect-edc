@@ -3,7 +3,9 @@ Changes
 
 unreleased
 ------
-- convert viral_load_result from DecimalField to IntegerField (#658)
+- updates to ARV History form (#658)
+    - convert viral_load_result from DecimalField to IntegerField
+    - add QA reports for baseline VL results
 - updates to forms reference document
     - standardise new line insertion
     - fix trailing/end-of-file whitespace
