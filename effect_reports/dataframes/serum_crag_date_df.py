@@ -1,15 +1,8 @@
-from __future__ import annotations
-
-from typing import TYPE_CHECKING
-
 import pandas as pd
 from django.apps import apps as django_apps
 from django.contrib.sites.models import Site
 from django_pandas.io import read_frame
 from edc_utils import get_utcnow
-
-if TYPE_CHECKING:
-    from effect_reports.models import SerumCragDate
 
 
 class SerumCragDateDf:
@@ -50,7 +43,7 @@ class SerumCragDateDf:
         df["report_model"] = self.model
         return df
 
-    def to_model(self) -> SerumCragDate:
+    def to_model(self) -> None:
         self.model_cls.objects.all().delete()
 
         df = self.to_dataframe()
