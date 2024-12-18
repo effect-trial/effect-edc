@@ -150,14 +150,30 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         choices=YES_NO,
     )
 
-    viral_load_result = models.DecimalField(
+    viral_load_result = models.IntegerField(
         verbose_name="Viral load result",
+        validators=[MinValueValidator(1), MaxValueValidator(9999999)],
+        null=True,
+        blank=True,
+        help_text="copies/mL",
+    )
+
+    retired_viral_load_result = models.DecimalField(
+        verbose_name=(
+            "Viral load result "
+            "(retired/superseded in effect-edc 0.1.57 by `viral_load_result` "
+            "IntegerField, see also #658)"
+        ),
         validators=[MinValueValidator(1), MaxValueValidator(9999999)],
         decimal_places=3,
         max_digits=10,
         null=True,
         blank=True,
-        help_text="copies/mL",
+        help_text=(
+            "copies/mL "
+            "(retired/superseded in effect-edc 0.1.57 by `viral_load_result` "
+            "IntegerField, see also #658)"
+        ),
     )
 
     viral_load_date = models.DateField(
