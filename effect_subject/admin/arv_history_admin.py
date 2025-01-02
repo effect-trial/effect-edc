@@ -56,6 +56,7 @@ class ArvHistoryAdmin(CrfModelAdmin):
                 "fields": (
                     "has_viral_load_result",
                     "viral_load_result",
+                    "viral_load_quantifier",
                     "viral_load_date",
                     "viral_load_date_estimated",
                 ),
@@ -93,4 +94,5 @@ class ArvHistoryAdmin(CrfModelAdmin):
         "is_adherent": admin.VERTICAL,
         "on_art_at_crag": admin.VERTICAL,
         "viral_load_date_estimated": admin.VERTICAL,
+        "viral_load_quantifier": admin.VERTICAL,
     }
