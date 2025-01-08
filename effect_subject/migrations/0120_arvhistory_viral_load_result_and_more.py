@@ -2,6 +2,7 @@
 
 import django.core.validators
 from django.db import migrations, models
+from edc_utils import get_utcnow, truncate_string
 from tqdm import tqdm
 
 
@@ -18,9 +19,12 @@ def migrate_retired_vl_result_to_vl_result(apps, schema_editor):
         f"\nMigrating {total} Arv History `retired_viral_load_result` "
         "to `viral_load_result` ..."
     )
+    user_modified = truncate_string(string=__name__, max_length=50)
     for obj in tqdm(qs, total=total):
         if obj.retired_viral_load_result:
             obj.viral_load_result = int(obj.retired_viral_load_result)
+            obj.modified = get_utcnow()
+            obj.user_modified = user_modified
             obj.save()
             print(
                 f"Migrated {obj} vl from {obj.retired_viral_load_result:>10} "
