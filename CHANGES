@@ -6,7 +6,7 @@ unreleased
 - updates to ARV History form (#658)
     - convert viral_load_result from DecimalField to IntegerField
     - add VL quantifier question
-    - add QA reports for baseline VL results
+    - add QA reports for baseline VL results and missing VL quantifier
     - fix validation around questions related to baseline VL
 - updates to forms reference document
     - standardise new line insertion

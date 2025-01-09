@@ -23,6 +23,28 @@ class BaselineVlAll(BaseBaselineVlModelMixin):
         default_permissions = qa_reports_permissions
 
 
+class BaselineVlMissingQuantifier(BaseBaselineVlModelMixin):
+    """A data management table to list baseline VL results where a VL
+    result has been entered, but no corresponding
+    `viral_load_quantifier` has been set.
+
+    See class BaselineVlMissingQuantifierDf. For example, to populate:
+        df_cls = BaselineVlMissingQuantifierDf()
+        df_cls.to_model(model="effect_reports.baselinevlmissingquantifier")
+
+    Populated in the modeladmin.get_queryset
+    """
+
+    report_model = models.CharField(
+        max_length=50, default="effect_reports.baselinevlmissingquantifier"
+    )
+
+    class Meta(QaReportModelMixin.Meta, BaseUuidModel.Meta):
+        verbose_name = "Redmine #658.2 - Baseline Viral Load (Missing VL Quantifier)"
+        verbose_name_plural = "Redmine #658.2 - Baseline Viral Loads (Missing VL Quantifier)"
+        default_permissions = qa_reports_permissions
+
+
 class BaselineVlDiscrepancy(BaseBaselineVlModelMixin):
     """A data management table to list baseline VL results with
     discrepancies around the responses to `has_viral_load_result` and
@@ -40,6 +62,6 @@ class BaselineVlDiscrepancy(BaseBaselineVlModelMixin):
     )
 
     class Meta(QaReportModelMixin.Meta, BaseUuidModel.Meta):
-        verbose_name = "Redmine #658.2 - Baseline Viral Load (Discrepancy)"
-        verbose_name_plural = "Redmine #658.2 - Baseline Viral Loads (Discrepancies)"
+        verbose_name = "Redmine #658.3 - Baseline Viral Load (Discrepancy)"
+        verbose_name_plural = "Redmine #658.3 - Baseline Viral Loads (Discrepancies)"
         default_permissions = qa_reports_permissions

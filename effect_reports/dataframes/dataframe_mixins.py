@@ -23,6 +23,7 @@ class BaselineVlDfMixin:
             "site_id",
             "has_viral_load_result",
             "viral_load_result",
+            "viral_load_quantifier",
             "viral_load_date",
             "viral_load_date_estimated",
             "user_created",
@@ -51,6 +52,7 @@ class BaselineVlDfMixin:
                 viral_load_result=(
                     None if pd.isna(row["viral_load_result"]) else row["viral_load_result"]
                 ),
+                viral_load_quantifier=row["viral_load_quantifier"],
                 viral_load_date=(
                     None if pd.isna(row["viral_load_date"]) else row["viral_load_date"]
                 ),

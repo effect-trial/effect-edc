@@ -18,6 +18,7 @@ class BaseBaselineVlModelMixin(
 
     has_viral_load_result = models.CharField(max_length=5, null=True)
     viral_load_result = models.IntegerField(null=True)
+    viral_load_quantifier = models.CharField(max_length=20, null=True)
     viral_load_date = models.DateField(null=True)
     viral_load_date_estimated = models.CharField(max_length=50, null=True)
 
