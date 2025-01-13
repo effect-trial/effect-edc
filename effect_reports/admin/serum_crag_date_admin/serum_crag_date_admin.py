@@ -4,9 +4,8 @@ from django.utils.translation import gettext as _
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
 from edc_qareports.modeladmin_mixins import QaReportModelAdminMixin
-from edc_qareports.utils import truncate_string
 from edc_sites.admin import SiteModelAdminMixin
-from edc_utils import escape_braces
+from edc_utils import escape_braces, truncate_string
 
 from ...admin_site import effect_reports_admin
 from ...dataframes import SerumCragDateDf

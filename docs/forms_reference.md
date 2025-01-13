@@ -101,7 +101,6 @@
 #### Arv History
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -413,17 +412,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp; *copies/mL*
 - db_table: effect_subject_arvhistory
 - column: viral_load_result
-- type: DecimalField
+- type: IntegerField
 ---
 
-**22.0.** Viral load date
+**22.0.** viral load quantifier
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If lower than detection limit (LDL), use '<' and enter the lab detection limit value above.*
+- db_table: effect_subject_arvhistory
+- column: viral_load_quantifier
+- type: CharField
+- length: 10
+- responses:
+  - `=`: *=*
+  - `>`: *>*
+  - `<`: *<*
+  - `N/A`: *Not applicable*
+---
+
+**23.0.** Viral load date
 - db_table: effect_subject_arvhistory
 - column: viral_load_date
 - type: DateField
 - format: YYYY-MM-DD
 ---
 
-**23.0.** Is the viral load date estimated?
+**24.0.** Is the viral load date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
 - db_table: effect_subject_arvhistory
@@ -440,7 +453,7 @@
 
 **Section: CD4 count**
 
-**24.0.** CD4 result
+**25.0.** CD4 result
 
 &nbsp;&nbsp;&nbsp;&nbsp; *cells/μL*
 - db_table: effect_subject_arvhistory
@@ -448,14 +461,14 @@
 - type: IntegerField
 ---
 
-**25.0.** CD4 date
+**26.0.** CD4 date
 - db_table: effect_subject_arvhistory
 - column: cd4_date
 - type: DateField
 - format: YYYY-MM-DD
 ---
 
-**26.0.** Is the CD4 date estimated?
+**27.0.** Is the CD4 date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
 - db_table: effect_subject_arvhistory
@@ -472,7 +485,6 @@
 
 #### Participant History
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -807,7 +819,6 @@
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -958,7 +969,6 @@
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -1106,7 +1116,6 @@
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -1184,6 +1193,8 @@
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -1259,6 +1270,8 @@
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -1427,7 +1440,6 @@
 
 #### Study Medication (Baseline)
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -1601,7 +1613,6 @@
 
 #### Blood Result: Fbc
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -1968,7 +1979,6 @@
 #### Blood Result: Chemistry
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -2251,7 +2261,7 @@
 - length: 15
 - responses:
   - `mg/dL`: *mg/dL*
-  - `umol/L`: *μmol/L (micromoles/L)*
+  - `mg/L`: *mg/L*
 ---
 
 **30.0.** abnormal
@@ -2361,15 +2371,56 @@
   - `present_at_baseline`: *Present at baseline*
 ---
 
+**Section: SODIUM**
+
+**40.0.** Sodium (Na)
+- db_table: effect_subject_bloodresultschem
+- column: sodium_value
+- type: DecimalField
+---
+
+**41.0.** units
+- db_table: effect_subject_bloodresultschem
+- column: sodium_units
+- type: CharField
+- length: 15
+- responses:
+  - `mmol/L`: *mmol/L (millimoles/L)*
+---
+
+**42.0.** abnormal
+- db_table: effect_subject_bloodresultschem
+- column: sodium_abnormal
+- type: CharField
+- length: 25
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**43.0.** reportable
+- db_table: effect_subject_bloodresultschem
+- column: sodium_reportable
+- type: CharField
+- length: 25
+- responses:
+  - `N/A`: *Not applicable*
+  - `3`: *Yes, grade 3*
+  - `4`: *Yes, grade 4*
+  - `No`: *Not reportable*
+  - `Already reported`: *Already reported*
+  - `present_at_baseline`: *Present at baseline*
+---
+
 **Section: GGT**
 
-**40.0.** GGT
+**44.0.** GGT
 - db_table: effect_subject_bloodresultschem
 - column: ggt_value
 - type: DecimalField
 ---
 
-**41.0.** units
+**45.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: ggt_units
 - type: CharField
@@ -2378,7 +2429,7 @@
   - `IU/L`: *IU/L*
 ---
 
-**42.0.** abnormal
+**46.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: ggt_abnormal
 - type: CharField
@@ -2388,7 +2439,7 @@
   - `No`: *No*
 ---
 
-**43.0.** reportable
+**47.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: ggt_reportable
 - type: CharField
@@ -2404,13 +2455,13 @@
 
 **Section: UREA**
 
-**44.0.** Urea (BUN)
+**48.0.** Urea (BUN)
 - db_table: effect_subject_bloodresultschem
 - column: urea_value
 - type: DecimalField
 ---
 
-**45.0.** units
+**49.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: urea_units
 - type: CharField
@@ -2419,7 +2470,7 @@
   - `mmol/L`: *mmol/L (millimoles/L)*
 ---
 
-**46.0.** abnormal
+**50.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: urea_abnormal
 - type: CharField
@@ -2429,7 +2480,7 @@
   - `No`: *No*
 ---
 
-**47.0.** reportable
+**51.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: urea_reportable
 - type: CharField
@@ -2445,13 +2496,13 @@
 
 **Section: Total Bilirubin**
 
-**48.0.** Total Bilirubin
+**52.0.** Total Bilirubin
 - db_table: effect_subject_bloodresultschem
 - column: tbil_value
 - type: DecimalField
 ---
 
-**49.0.** units
+**53.0.** units
 - db_table: effect_subject_bloodresultschem
 - column: tbil_units
 - type: CharField
@@ -2460,7 +2511,7 @@
   - `mg/dL`: *mg/dL*
 ---
 
-**50.0.** abnormal
+**54.0.** abnormal
 - db_table: effect_subject_bloodresultschem
 - column: tbil_abnormal
 - type: CharField
@@ -2470,7 +2521,7 @@
   - `No`: *No*
 ---
 
-**51.0.** reportable
+**55.0.** reportable
 - db_table: effect_subject_bloodresultschem
 - column: tbil_reportable
 - type: CharField
@@ -2486,7 +2537,7 @@
 
 **Section: Conclusion**
 
-**52.0.** Are any of the above results abnormal?
+**56.0.** Are any of the above results abnormal?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *Abnormal results present at baseline or continuing from baseline not included.*
 - db_table: effect_subject_bloodresultschem
@@ -2498,7 +2549,7 @@
   - `No`: *No*
 ---
 
-**53.0.** If any results are abnormal, are results within grade 3 or above?
+**57.0.** If any results are abnormal, are results within grade 3 or above?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If YES, this value will open Adverse Event Form. Grade 3 and 4 results present at baseline or continuing from baseline not included*
 - db_table: effect_subject_bloodresultschem
@@ -2513,7 +2564,7 @@
 
 **Section: Summary**
 
-**54.0.** summary
+**58.0.** summary
 - db_table: effect_subject_bloodresultschem
 - column: summary
 - type: TextField
@@ -2521,7 +2572,7 @@
 
 **Section: Action**
 
-**55.0.** action identifier
+**59.0.** action identifier
 - db_table: effect_subject_bloodresultschem
 - column: action_identifier
 - type: CharField
@@ -2529,19 +2580,19 @@
 - responses: *free text*
 ---
 
-**56.0.** action item
+**60.0.** action item
 - db_table: effect_subject_bloodresultschem
 - column: action_item
 - type: ForeignKey
 ---
 
-**57.0.** parent action item
+**61.0.** parent action item
 - db_table: effect_subject_bloodresultschem
 - column: parent_action_item
 - type: ForeignKey
 ---
 
-**58.0.** related action item
+**62.0.** related action item
 - db_table: effect_subject_bloodresultschem
 - column: related_action_item
 - type: ForeignKey
@@ -2550,7 +2601,6 @@
 
 #### Chest X-Ray
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -2619,7 +2669,6 @@
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -2895,7 +2944,6 @@
 
 #### Tb Diagnostics
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -3079,7 +3127,6 @@
 #### Health Economics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -3251,7 +3298,6 @@
 #### Clinical Note
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -3293,6 +3339,7 @@
 
 #### Adherence: Day 1
 Adherence CRF completed at baseline (in-person).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -3370,7 +3417,6 @@ Adherence CRF completed at baseline (in-person).
 
 #### Vital Signs
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -3522,7 +3568,6 @@ Adherence CRF completed at baseline (in-person).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -3670,7 +3715,6 @@ Adherence CRF completed at baseline (in-person).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -3748,6 +3792,8 @@ Adherence CRF completed at baseline (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -3823,6 +3869,8 @@ Adherence CRF completed at baseline (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -3992,7 +4040,6 @@ Adherence CRF completed at baseline (in-person).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -4101,7 +4148,6 @@ Adherence CRF completed at baseline (in-person).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -4169,7 +4215,6 @@ Adherence CRF completed at baseline (in-person).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -4446,7 +4491,6 @@ Adherence CRF completed at baseline (in-person).
 #### Tb Diagnostics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -4628,6 +4672,7 @@ Adherence CRF completed at baseline (in-person).
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -4724,7 +4769,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -4875,7 +4919,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -5023,7 +5066,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -5101,6 +5143,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -5176,6 +5220,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -5345,7 +5391,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -5454,7 +5499,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -5522,7 +5566,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -5799,7 +5842,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Tb Diagnostics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -5981,6 +6023,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Adherence: On Study
 Adherence CRF completed at d3 and d9 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -6076,7 +6119,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Study Medication
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -6260,7 +6302,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -6411,7 +6452,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -6559,7 +6599,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -6637,6 +6676,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -6712,6 +6753,8 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -6881,7 +6924,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -6990,7 +7032,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Arv Treatment
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -7087,7 +7128,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Participant Treatment
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -7489,7 +7529,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Blood Result: Fbc
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -7855,7 +7894,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -7923,7 +7961,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -8199,7 +8236,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Tb Diagnostics
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -8383,7 +8419,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 #### Clinical Note
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -8425,6 +8460,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 
 #### Adherence: Day 14
 Adherence CRF completed at d14 (in-person).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -8579,7 +8615,6 @@ Adherence CRF completed at d14 (in-person).
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -8730,7 +8765,6 @@ Adherence CRF completed at d14 (in-person).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -8878,7 +8912,6 @@ Adherence CRF completed at d14 (in-person).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -8956,6 +8989,8 @@ Adherence CRF completed at d14 (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -9031,6 +9066,8 @@ Adherence CRF completed at d14 (in-person).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -9200,7 +9237,6 @@ Adherence CRF completed at d14 (in-person).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -9309,7 +9345,6 @@ Adherence CRF completed at d14 (in-person).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -9377,7 +9412,6 @@ Adherence CRF completed at d14 (in-person).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -9654,7 +9688,6 @@ Adherence CRF completed at d14 (in-person).
 #### Tb Diagnostics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -9836,6 +9869,7 @@ Adherence CRF completed at d14 (in-person).
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -9965,7 +9999,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Study Medication
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -10149,7 +10182,6 @@ Adherence CRF completed after d14 (telephone).
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -10300,7 +10332,6 @@ Adherence CRF completed after d14 (telephone).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -10448,7 +10479,6 @@ Adherence CRF completed after d14 (telephone).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -10526,6 +10556,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -10601,6 +10633,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -10770,7 +10804,6 @@ Adherence CRF completed after d14 (telephone).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -10879,7 +10912,6 @@ Adherence CRF completed after d14 (telephone).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -10947,7 +10979,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -11224,7 +11255,6 @@ Adherence CRF completed after d14 (telephone).
 #### Tb Diagnostics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -11406,6 +11436,7 @@ Adherence CRF completed after d14 (telephone).
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -11536,7 +11567,6 @@ Adherence CRF completed after d14 (telephone).
 #### Vital Signs
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -11687,7 +11717,6 @@ Adherence CRF completed after d14 (telephone).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -11835,7 +11864,6 @@ Adherence CRF completed after d14 (telephone).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -11913,6 +11941,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -11988,6 +12018,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -12157,7 +12189,6 @@ Adherence CRF completed after d14 (telephone).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -12266,7 +12297,6 @@ Adherence CRF completed after d14 (telephone).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -12334,7 +12364,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -12610,7 +12639,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Tb Diagnostics
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -12793,6 +12821,7 @@ Adherence CRF completed after d14 (telephone).
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -12922,7 +12951,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Vital Signs
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -13074,7 +13102,6 @@ Adherence CRF completed after d14 (telephone).
 #### Mental Status
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -13222,7 +13249,6 @@ Adherence CRF completed after d14 (telephone).
 #### Signs And Symptoms
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -13300,6 +13326,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -13375,6 +13403,8 @@ Adherence CRF completed after d14 (telephone).
   - `papilloedema`: *Neuro - Papilloedema*
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
+  - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
   - `shortness_of_breath`: *Shortness of breath*
@@ -13544,7 +13574,6 @@ Adherence CRF completed after d14 (telephone).
 #### Significant Diagnoses
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -13653,7 +13682,6 @@ Adherence CRF completed after d14 (telephone).
 #### Chest X-Ray
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -13721,7 +13749,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Lumbar Puncture/Csf
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -13997,7 +14024,6 @@ Adherence CRF completed after d14 (telephone).
 
 #### Tb Diagnostics
 *[missing model class docstring]*
-
 
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
@@ -14181,7 +14207,6 @@ Adherence CRF completed after d14 (telephone).
 #### Health Economics
 *[missing model class docstring]*
 
-
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -14352,6 +14377,7 @@ Adherence CRF completed after d14 (telephone).
 
 #### Adherence: Day 14+
 Adherence CRF completed after d14 (telephone).
+
 *Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
 
 
@@ -14479,6 +14505,4 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2024-08-16 00:55*
-
-
+*Rendered on 2025-01-13 18:52*

@@ -6,4 +6,3 @@ ListenStream=/run/gunicorn-live.sock
 
 [Install]
 WantedBy=sockets.target
-

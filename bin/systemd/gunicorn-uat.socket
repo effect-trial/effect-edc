@@ -6,4 +6,3 @@ ListenStream=/run/gunicorn-uat.sock
 
 [Install]
 WantedBy=sockets.target
-

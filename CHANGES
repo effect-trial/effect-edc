@@ -1,6 +1,22 @@
 Changes
 +++++++
 
+0.1.57
+------
+- updates to ARV History form (#658)
+    - convert viral_load_result from DecimalField to IntegerField
+    - add VL quantifier question
+    - add QA reports for baseline VL results and missing VL quantifier
+    - fix validation around questions related to baseline VL
+- updates to forms reference document
+    - standardise new line insertion
+    - fix trailing/end-of-file whitespace
+    - fix docstring insertion
+    - regenerate document
+- drop Django 4.1 support
+- bump to edc 0.6.21
+- bump to effect-form-validators 0.1.45
+
 0.1.56
 ------
 - add QA reports for Missing Lab Values
