@@ -28,6 +28,9 @@ def raise_if_vl_has_decimal(apps, schema_editor):
 
 
 class Migration(migrations.Migration):
+    """Note: Migrations effect_subject/migrations/0119-0123 are all
+    related, and expected to be run together.  See also ticket #658.
+    """
 
     dependencies = [
         ("effect_subject", "0118_alter_bloodresultschem_crp_units_and_more"),

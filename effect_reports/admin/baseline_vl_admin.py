@@ -5,8 +5,12 @@ from typing import TYPE_CHECKING
 from django.contrib import admin
 
 from ..admin_site import effect_reports_admin
-from ..dataframes import BaselineVlAllDf, BaselineVlDiscrepancyDf
-from ..models import BaselineVlAll, BaselineVlDiscrepancy
+from ..dataframes import (
+    BaselineVlAllDf,
+    BaselineVlDiscrepancyDf,
+    BaselineVlMissingQuantifierDf,
+)
+from ..models import BaselineVlAll, BaselineVlMissingQuantifier
 from .modeladmin_mixins import BaselineVlModelAdminMixin
 
 if TYPE_CHECKING:
@@ -23,7 +27,18 @@ class BaselineVlAllAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
         return super().get_queryset(request)
 
 
-@admin.register(BaselineVlDiscrepancy, site=effect_reports_admin)
+@admin.register(BaselineVlMissingQuantifier, site=effect_reports_admin)
+class BaselineVlMissingQuantifierAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
+
+    report_model = "effect_reports.baselinevlmissingquantifier"
+
+    def get_queryset(self, request) -> QuerySet:
+        df_cls = BaselineVlMissingQuantifierDf()
+        df_cls.to_model(model=self.report_model)
+        return super().get_queryset(request)
+
+
+# @admin.register(BaselineVlDiscrepancy, site=effect_reports_admin)
 class BaselineVlDiscrepancyAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
 
     report_model = "effect_reports.baselinevldiscrepancy"

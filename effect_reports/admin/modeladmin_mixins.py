@@ -17,7 +17,7 @@ class BaselineVlModelAdminMixin(
 ):
     report_model: str = None
     site_list_display_insert_pos: int = 2
-    qa_report_list_display_insert_pos = 7
+    qa_report_list_display_insert_pos = 8
     ordering = ["site", "subject_identifier"]
 
     list_display = [
@@ -26,6 +26,7 @@ class BaselineVlModelAdminMixin(
         "subject",
         "has_viral_load_result",
         "viral_load_result",
+        "viral_load_quantifier",
         "viral_load_date",
         "viral_load_date_estimated",
         "user_created",
@@ -37,6 +38,7 @@ class BaselineVlModelAdminMixin(
     list_filter = (
         "has_viral_load_result",
         "viral_load_result",
+        "viral_load_quantifier",
         "viral_load_date",
         "viral_load_date_estimated",
         "site_id",

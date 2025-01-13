@@ -3,6 +3,7 @@ from django.db import models
 from django.utils.html import format_html
 from edc_constants.choices import YES_NO, YES_NO_NA
 from edc_constants.constants import NOT_APPLICABLE
+from edc_lab.choices import VL_QUANTIFIER_NA
 from edc_model import models as edc_models
 from edc_model.validators import date_not_future
 from edc_reportable import CELLS_PER_MICROLITER
@@ -158,11 +159,22 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="copies/mL",
     )
 
+    viral_load_quantifier = models.CharField(
+        max_length=10,
+        choices=VL_QUANTIFIER_NA,
+        null=True,
+        help_text=(
+            "If lower than detection limit (LDL), use '<' and enter "
+            "the lab detection limit value above."
+        ),
+    )
+
     retired_viral_load_result = models.DecimalField(
         verbose_name=(
             "Viral load result "
-            "(retired/superseded in effect-edc 0.1.57 by `viral_load_result` "
-            "IntegerField, see also #658)"
+            "(original `viral_load_result` DecimalField, retired/superseded in "
+            "effect-edc 0.1.57 by `viral_load_result` IntegerField. "
+            "See also #658)"
         ),
         validators=[MinValueValidator(1), MaxValueValidator(9999999)],
         decimal_places=3,
@@ -171,8 +183,9 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
         help_text=(
             "copies/mL "
-            "(retired/superseded in effect-edc 0.1.57 by `viral_load_result` "
-            "IntegerField, see also #658)"
+            "(original `viral_load_result` DecimalField, retired/superseded in "
+            "effect-edc 0.1.57 by `viral_load_result` IntegerField. "
+            "See also #658)"
         ),
     )
 

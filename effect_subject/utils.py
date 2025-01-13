@@ -7,6 +7,8 @@ from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
 
 if TYPE_CHECKING:
+    from typing import Any
+
     from .models import SubjectVisit
 
 
@@ -36,3 +38,7 @@ def get_weight_in_kgs(subject_visit: SubjectVisit | None) -> Decimal | None:
         weight_in_kgs = obj.weight
 
     return weight_in_kgs
+
+
+def get_max_field_len(model_cls: Any, field_name: str) -> int:
+    return model_cls._meta.get_field(field_name).max_length
