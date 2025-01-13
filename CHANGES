@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+0.1.57
 ------
 - updates to ARV History form (#658)
     - convert viral_load_result from DecimalField to IntegerField
