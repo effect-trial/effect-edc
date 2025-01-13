@@ -412,17 +412,31 @@
 &nbsp;&nbsp;&nbsp;&nbsp; *copies/mL*
 - db_table: effect_subject_arvhistory
 - column: viral_load_result
-- type: DecimalField
+- type: IntegerField
 ---
 
-**22.0.** Viral load date
+**22.0.** viral load quantifier
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If lower than detection limit (LDL), use '<' and enter the lab detection limit value above.*
+- db_table: effect_subject_arvhistory
+- column: viral_load_quantifier
+- type: CharField
+- length: 10
+- responses:
+  - `=`: *=*
+  - `>`: *>*
+  - `<`: *<*
+  - `N/A`: *Not applicable*
+---
+
+**23.0.** Viral load date
 - db_table: effect_subject_arvhistory
 - column: viral_load_date
 - type: DateField
 - format: YYYY-MM-DD
 ---
 
-**23.0.** Is the viral load date estimated?
+**24.0.** Is the viral load date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
 - db_table: effect_subject_arvhistory
@@ -439,7 +453,7 @@
 
 **Section: CD4 count**
 
-**24.0.** CD4 result
+**25.0.** CD4 result
 
 &nbsp;&nbsp;&nbsp;&nbsp; *cells/μL*
 - db_table: effect_subject_arvhistory
@@ -447,14 +461,14 @@
 - type: IntegerField
 ---
 
-**25.0.** CD4 date
+**26.0.** CD4 date
 - db_table: effect_subject_arvhistory
 - column: cd4_date
 - type: DateField
 - format: YYYY-MM-DD
 ---
 
-**26.0.** Is the CD4 date estimated?
+**27.0.** Is the CD4 date estimated?
 
 &nbsp;&nbsp;&nbsp;&nbsp; *If the exact date is not known, please indicate which part of the date is estimated.*
 - db_table: effect_subject_arvhistory
@@ -14491,4 +14505,4 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2024-12-05 14:41*
+*Rendered on 2025-01-13 18:52*
