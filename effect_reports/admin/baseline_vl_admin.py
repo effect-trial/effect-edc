@@ -10,7 +10,7 @@ from ..dataframes import (
     BaselineVlDiscrepancyDf,
     BaselineVlMissingQuantifierDf,
 )
-from ..models import BaselineVlAll, BaselineVlDiscrepancy, BaselineVlMissingQuantifier
+from ..models import BaselineVlAll, BaselineVlMissingQuantifier
 from .modeladmin_mixins import BaselineVlModelAdminMixin
 
 if TYPE_CHECKING:
@@ -38,7 +38,7 @@ class BaselineVlMissingQuantifierAdmin(BaselineVlModelAdminMixin, admin.ModelAdm
         return super().get_queryset(request)
 
 
-@admin.register(BaselineVlDiscrepancy, site=effect_reports_admin)
+# @admin.register(BaselineVlDiscrepancy, site=effect_reports_admin)
 class BaselineVlDiscrepancyAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
 
     report_model = "effect_reports.baselinevldiscrepancy"
