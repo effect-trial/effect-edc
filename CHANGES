@@ -15,6 +15,7 @@ unreleased
     - regenerate document
 - drop Django 4.1 support
 - bump to edc 0.6.21
+- bump to effect-form-validators 0.1.45
 
 0.1.56
 ------
