@@ -1,6 +1,10 @@
 Changes
 +++++++
 
+unreleased
+------
+- bump to edc 0.6.25
+
 0.1.57
 ------
 - updates to ARV History form (#658)
