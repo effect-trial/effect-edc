@@ -100,7 +100,9 @@ class SerumCragDateNoteAdmin(
             url = "#"
         return format_html(
             '<a data-toggle="tooltip" title="go to report" href="{}?q={}">{}</a>',
-            *(url, obj.subject_identifier, obj.report_model_cls._meta.verbose_name),
+            url,
+            obj.subject_identifier,
+            obj.report_model_cls._meta.verbose_name,
         )
 
     @admin.display(description="QA Note", ordering="note")

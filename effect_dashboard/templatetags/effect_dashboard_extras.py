@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 
 from bs4 import BeautifulSoup
 from django import template
-from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
 from edc_constants.constants import INCOMPLETE, PENDING, TBD
 from edc_dashboard.url_names import url_names
@@ -21,9 +20,7 @@ if TYPE_CHECKING:
 register = template.Library()
 
 
-@register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/" f"buttons/eligibility_button.html"
-)
+@register.inclusion_tag("effect_dashboard/buttons/eligibility_button.html")
 def render_eligibility_button(subject_screening: SubjectScreening):
     comment = []
     tooltip = None
@@ -46,7 +43,7 @@ def render_eligibility_button(subject_screening: SubjectScreening):
 
 
 @register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/refusal_button.html",
+    "effect_dashboard/buttons/refusal_button.html",
     takes_context=True,
 )
 def render_refusal_button(context, subject_screening: SubjectScreening):
@@ -82,9 +79,7 @@ def render_refusal_button(context, subject_screening: SubjectScreening):
     )
 
 
-@register.inclusion_tag(
-    f"effect_dashboard/bootstrap{settings.EDC_BOOTSTRAP}/buttons/dashboard_button.html"
-)
+@register.inclusion_tag("effect_dashboard/buttons/dashboard_button.html")
 def dashboard_button(subject_screening: SubjectScreening | SubjectConsent):
     subject_dashboard_url = url_names.get("subject_dashboard_url")
     return dict(

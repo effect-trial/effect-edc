@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext as _
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
@@ -72,8 +73,11 @@ class SerumCragDateAdmin(
                 label = date
             elif date and note:
                 label = format_html(
-                    f"{date.strftime('%-d %b %Y')}<br>"
-                    f"({escape_braces(truncate_string(note, max_length=35))})"
+                    "{html}",
+                    html=mark_safe(
+                        f"{date.strftime('%-d %b %Y')}<br>"
+                        f"({escape_braces(truncate_string(note, max_length=35))})"
+                    ),  # nosec #B703 # B308
                 )
             elif note:
                 label = truncate_string(note, max_length=35)

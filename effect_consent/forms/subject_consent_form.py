@@ -53,8 +53,11 @@ class SubjectConsentForm(
                 "number or Country ID receipt number"
             ),
             "witness_name": format_html(
-                "Required only if participant is illiterate or unable to provide consent.<br>"
-                "Format is 'LASTNAME, FIRSTNAME'. "
-                "All uppercase separated by a comma."
+                "{}",
+                (
+                    "Required only if participant is illiterate or unable to "
+                    "provide consent.<br>Format is 'LASTNAME, FIRSTNAME'. "
+                    "All uppercase separated by a comma."
+                ),
             ),
         }

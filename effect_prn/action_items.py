@@ -1,4 +1,3 @@
-from django.utils.html import format_html
 from edc_action_item.action_with_notification import ActionWithNotification
 from edc_action_item.site_action_items import site_action_items
 from edc_adverse_event.constants import DEATH_REPORT_ACTION
@@ -92,9 +91,7 @@ class UnblindingReviewAction(ActionWithNotification):
     priority = HIGH_PRIORITY
     color_style = "info"
     create_by_user = False
-    instructions = format_html(
-        "This report is to be completed by the UNBLINDING REVIEWERS only."
-    )
+    instructions = "This report is to be completed by the UNBLINDING REVIEWERS only."
 
     def get_next_actions(self):
         next_actions = []
