@@ -1,5 +1,6 @@
 from django import forms
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from edc_consent.modelform_mixins import ConsentModelFormMixin
 from edc_constants.constants import NO, YES
 from edc_form_validators import FormValidatorMixin
@@ -54,10 +55,10 @@ class SubjectConsentForm(
             ),
             "witness_name": format_html(
                 "{}",
-                (
+                mark_safe(
                     "Required only if participant is illiterate or unable to "
-                    "provide consent.<br>Format is 'LASTNAME, FIRSTNAME'. "
-                    "All uppercase separated by a comma."
-                ),
+                    "provide consent.<br>"
+                    "Format is 'LASTNAME, FIRSTNAME'. All uppercase separated by a comma."
+                ),  # nosec B703, B308
             ),
         }
