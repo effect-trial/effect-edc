@@ -10,8 +10,8 @@ from ..dataframes import (
     BaselineVlDiscrepancyDf,
     BaselineVlMissingQuantifierDf,
 )
+from ..modeladmin_mixins.baseline_vl_modeladmin_mixin import BaselineVlModelAdminMixin
 from ..models import BaselineVlAll, BaselineVlMissingQuantifier
-from .modeladmin_mixins import BaselineVlModelAdminMixin
 
 if TYPE_CHECKING:
     from django.db.models import QuerySet

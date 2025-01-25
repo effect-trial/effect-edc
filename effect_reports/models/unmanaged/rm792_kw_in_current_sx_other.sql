@@ -8,6 +8,7 @@ select
     `sv`.`subject_identifier`,
     `sv`.`visit_code`,
     `sv`.`visit_code_sequence`,
+    `crf`.`id`                               as crf_id,
     `crf`.`current_sx_other`,
     `crf`.`user_created`,
     `crf`.`user_modified`,

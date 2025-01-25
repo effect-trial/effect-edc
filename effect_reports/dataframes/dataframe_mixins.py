@@ -21,6 +21,8 @@ class BaselineVlDfMixin:
             "id",
             "subject_identifier",
             "site_id",
+            "visit_code_str",
+            "visit_code_sequence",
             "has_viral_load_result",
             "viral_load_result",
             "viral_load_quantifier",
@@ -47,6 +49,8 @@ class BaselineVlDfMixin:
                 crf_id=row["id"],
                 subject_identifier=row["subject_identifier"],
                 site_id=row["site_id"],
+                visit_code=row["visit_code_str"],
+                visit_code_sequence=row["visit_code_sequence"],
                 # data
                 has_viral_load_result=row["has_viral_load_result"],
                 viral_load_result=(

@@ -15,6 +15,8 @@ class BaseBaselineVlModelMixin(
     """
 
     crf_id = models.UUIDField(null=True)
+    visit_code = models.CharField(max_length=25, null=True)
+    visit_code_sequence = models.IntegerField(default=0, null=True)
 
     has_viral_load_result = models.CharField(max_length=5, null=True)
     viral_load_result = models.IntegerField(null=True)
