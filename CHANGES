@@ -7,7 +7,7 @@ unreleased
 - remove all references in templates to `bootstrap3` folders
 - bump to edc-csf 1.0.0
 - bump to edc-microbiology 1.0.0
-- bump to edc 1.0.0
+- bump to edc 1.0.2
 
 0.1.57
 ------
