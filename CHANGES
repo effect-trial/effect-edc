@@ -3,6 +3,8 @@ Changes
 
 unreleased
 ------
+- update use of format_html for DJ6
+- remove all references in templates to `bootstrap3` folders
 - bump to edc-csf 1.0.0
 - bump to edc-microbiology 1.0.0
 - bump to edc 1.0.0
