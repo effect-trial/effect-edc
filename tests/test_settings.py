@@ -66,7 +66,6 @@ project_settings = DefaultTestSettings(
         subject_review_listboard_template="edc_review_dashboard/subject_review_listboard.html",
     ),
     ETC_DIR=base_dir / "tests" / "etc",
-    EDC_BOOTSTRAP=3,
     EMAIL_BACKEND="django.core.mail.backends.locmem.EmailBackend",
     EMAIL_CONTACTS={
         "data_request": "someone@example.com",

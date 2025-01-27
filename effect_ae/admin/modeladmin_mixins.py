@@ -92,7 +92,7 @@ class AeReviewModelAdminMixin(
         elif obj.followup == NO and obj.ae_grade != NOT_APPLICABLE:
             follow_up_reports = self.initial_ae(obj)
         if follow_up_reports:
-            return format_html(f"{obj.get_outcome_display()}. See {follow_up_reports}.")
+            return format_html("{}", f"{obj.get_outcome_display()}. See {follow_up_reports}.")
         return obj.get_outcome_display()
 
     def follow_up_reports(self, obj) -> Any:
@@ -105,8 +105,13 @@ class AeReviewModelAdminMixin(
             namespace = self.admin_site.name
             url = reverse(f"{namespace}:{url_name}_changelist")
             return format_html(
-                f'<a data-toggle="tooltip" title="go to ae initial report" '
-                f'href="{url}?q={obj.ae_initial.action_identifier}">'
-                f"{obj.ae_initial.identifier}</a>"
+                (
+                    '<a data-toggle="tooltip" title="{title}" '
+                    'href="{url}?q={action_identifier}">{identifier}</a>'
+                ),
+                title="go to ae initial report",
+                url=url,
+                action_identifier=obj.ae_initial.action_identifier,
+                identifier=obj.ae_initial.identifier,
             )
         return None

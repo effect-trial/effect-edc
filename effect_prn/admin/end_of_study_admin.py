@@ -1,7 +1,9 @@
 from typing import Tuple
 
 from django.contrib import admin
+from django.template.loader import render_to_string
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item import action_fields, action_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
@@ -22,10 +24,16 @@ class EndOfStudyAdmin(
     form = EndOfStudyForm
 
     additional_instructions = format_html(
-        "Note: if the participant is <i>deceased</i>, complete form "
-        f"`{DeathReport._meta.verbose_name}` before completing this form. "
-        "<BR>If the participant is <i>lost to follow up</i>, complete form "
-        f"`{LossToFollowup._meta.verbose_name}` before completing this form."
+        "{html}",
+        html=mark_safe(
+            render_to_string(
+                "effect_prn/eos/additional_instructions.html",
+                context=dict(
+                    death_report=DeathReport._meta.verbose_name,
+                    ltfu=LossToFollowup._meta.verbose_name,
+                ),
+            )
+        ),  # nosec #B703 # B308
     )
 
     fieldsets = (

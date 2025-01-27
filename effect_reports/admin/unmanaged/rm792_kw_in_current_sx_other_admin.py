@@ -3,6 +3,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.template.loader import render_to_string
 from django.urls import reverse
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django.utils.translation import gettext_lazy as _
 from edc_appointment.models import Appointment
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
@@ -24,28 +25,12 @@ class Rm792KwInCurrentSxOtherAdmin(
     admin.ModelAdmin,
 ):
     list_per_page = 25
+
     change_list_note = format_html(
-        "<p>Dynamic report listing <strong>Signs and Symptoms</strong> CRFs "
-        "where <em>current_sx_other</em> contains one or more of the "
-        "following search terms:"
-        "<ul style='columns: 3; -webkit-columns: 3; -moz-columns: 3; max-width: 250px;'>"
-        "    <li>abdom</li>"
-        "    <li>appet</li>"
-        "    <li>back</li>"
-        "    <li>behav</li>"
-        "    <li>conf</li>"
-        "    <li>consti</li>"
-        "    <li>diar</li>"
-        "    <li>diz</li>"
-        "    <li>fatig</li>"
-        "    <li>itchy</li>"
-        "    <li>mala</li>"
-        "    <li>neuro</li>"
-        "    <li>pleur</li>"
-        "    <li>rash</li>"
-        "    <li>urin</li>"
-        "    <li>weak</li>"
-        "</ul>"
+        "{html}",
+        html=mark_safe(
+            render_to_string("effect_reports/in_current_sx_other/changelist_note.html", {})
+        ),  # nosec #B703 # B308
     )
 
     ordering = ["site", "subject_identifier", "visit_code", "visit_code_sequence"]
@@ -91,4 +76,4 @@ class Rm792KwInCurrentSxOtherAdmin(
             url=url,
             label=_(f"Visit: {obj.visit_code}.{obj.visit_code_sequence}"),
         )
-        return render_to_string("dashboard_button.html", context=context)
+        return render_to_string("edc_subject_dashboard/dashboard_button.html", context=context)

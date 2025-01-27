@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
-from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_visit_tracking.utils import get_related_visit_model_cls
 
@@ -14,10 +14,10 @@ from .modeladmin import CrfModelAdmin
 class StudyMedicationBaselineAdmin(CrfModelAdmin):
     form = StudyMedicationBaselineForm
 
-    additional_instructions = format_html(
+    additional_instructions = mark_safe(
         "Please ensure the baseline Vital Signs form has been completed for "
         "participant <strong>before</strong> starting this form."
-    )
+    )  # nosec #B703 # B308
 
     fieldsets = [
         (None, {"fields": ("subject_visit", "report_datetime")}),
