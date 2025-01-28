@@ -10,29 +10,31 @@ from edc_utils import escape_braces, truncate_string
 
 from ...admin_site import effect_reports_admin
 from ...dataframes import SerumCragDateDf
+from ...modeladmin_mixins import EffectReportModelAdminMixin
 from ...models import SerumCragDate
 from .list_filters import SerumCragDateNoteStatusListFilter
 
 
 @admin.register(SerumCragDate, site=effect_reports_admin)
 class SerumCragDateAdmin(
+    EffectReportModelAdminMixin,
     QaReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     TemplatesModelAdminMixin,
     admin.ModelAdmin,
 ):
-    qa_report_list_display_insert_pos = 5
+    qa_report_list_display_insert_pos = 4
+    site_list_display_insert_pos = 1
     list_per_page = 25
     note_model = "effect_reports.serumcragdatenote"
     note_status_list_filter = SerumCragDateNoteStatusListFilter
 
     ordering = ("subject_identifier",)
     list_display = [
-        "dashboard",
-        "subject",
-        "screening",
+        "subject_dashboard",
         "site",
+        "screening",
         "serum_crag_date",
         "eligibility_date",
         "serum_crag_value",

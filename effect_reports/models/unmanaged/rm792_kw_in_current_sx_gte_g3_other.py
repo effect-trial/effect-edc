@@ -8,6 +8,8 @@ class Rm792KwInCurrentSxGteG3Other(QaReportModelMixin, models.Model):
 
     visit_code_sequence = models.IntegerField(default=0)
 
+    crf_id = models.UUIDField(null=True)
+
     current_sx_gte_g3_other = models.TextField()
 
     user_created = models.CharField(max_length=25)

@@ -16,11 +16,13 @@ from edc_sites.admin import SiteModelAdminMixin
 
 from ...admin_site import effect_reports_admin
 from ...forms import SerumCragDateNoteForm
+from ...modeladmin_mixins import EffectReportModelAdminMixin
 from ...models import SerumCragDateNote
 
 
 @admin.register(SerumCragDateNote, site=effect_reports_admin)
 class SerumCragDateNoteAdmin(
+    EffectReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     ModelAdminAuditFieldsMixin,
@@ -66,8 +68,8 @@ class SerumCragDateNoteAdmin(
     )
 
     list_display = [
-        "dashboard",
-        "subject_identifier",
+        "subject_dashboard",
+        "site",
         "report",
         "status",
         "serum_crag_date",
