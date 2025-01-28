@@ -12,8 +12,10 @@ class VitalSignsForm(CrfModelFormMixin, ActionItemCrfFormMixin, forms.ModelForm)
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["reportable_as_ae"].choices = YES_NO
-        self.fields["patient_admitted"].choices = YES_NO
+        if self.fields.get("reportable_as_ae"):
+            self.fields["reportable_as_ae"].choices = YES_NO
+        if self.fields.get("patient_admitted"):
+            self.fields["patient_admitted"].choices = YES_NO
 
     class Meta(ActionItemCrfFormMixin.Meta):
         model = VitalSigns
