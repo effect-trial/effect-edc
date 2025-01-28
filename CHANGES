@@ -3,6 +3,9 @@ Changes
 
 unreleased
 ------
+- fixes issues where addition of some unscheduled visits could result in
+  a server error when trying to render subject's dashboard
+  (#798, #807, #824, #827, #829, #830, #831)
 - update use of format_html for DJ6
 - remove all references in templates to `bootstrap3` folders
 - bump to edc-csf 1.0.0
