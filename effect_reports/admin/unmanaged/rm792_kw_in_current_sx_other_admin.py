@@ -31,7 +31,10 @@ class Rm792KwInCurrentSxOtherAdmin(
     change_list_note = format_html(
         "{html}",
         html=mark_safe(
-            render_to_string("effect_reports/in_current_sx_other/changelist_note.html", {})
+            render_to_string(
+                "effect_reports/rm792_kw_in_sx_other/changelist_note.html",
+                context=dict(other_field="current_sx_other"),
+            )
         ),  # nosec #B703 # B308
     )
 
