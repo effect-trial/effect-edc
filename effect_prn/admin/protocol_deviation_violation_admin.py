@@ -106,12 +106,20 @@ class ProtocolDeviationViolationAdmin(
         action_flds = tuple(fld for fld in action_fields if fld != "action_identifier")
         return tuple(set(action_flds + readonly_fields))
 
-    def status(self, obj=None):
+    @staticmethod
+    def status(obj=None):
         if obj.report_status == CLOSED:
-            return format_html(f'<font color="green">{obj.report_status.title()}</font>')
+            return format_html(
+                '<span style="color:green">{report_status}</span>',
+                report_status=obj.report_status.title(),
+            )
         elif obj.report_status == OPEN:
-            return format_html(f'<font color="red">{obj.report_status.title()}</font>')
+            return format_html(
+                '<span style="color:red">{report_status}</span>',
+                report_status=obj.report_status.title(),
+            )
         return obj.report_status.title()
 
-    def description(self, obj=None):
+    @staticmethod
+    def description(obj=None):
         return obj.short_description.title()

@@ -20,8 +20,10 @@ class SignsAndSymptomsForm(CrfModelFormMixin, ActionItemFormMixin, forms.ModelFo
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields["current_sx"].queryset = SiSx.objects.order_by("display_index")
-        self.fields["current_sx_gte_g3"].queryset = SiSx.objects.order_by("display_index")
+        if self.fields.get("current_sx"):
+            self.fields["current_sx"].queryset = SiSx.objects.order_by("display_index")
+        if self.fields.get("current_sx_gte_g3"):
+            self.fields["current_sx_gte_g3"].queryset = SiSx.objects.order_by("display_index")
 
     class Meta:
         model = SignsAndSymptoms

@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.html import conditional_escape, format_html
+from django.utils.safestring import mark_safe
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_dashboard.url_names import url_names
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
@@ -117,7 +118,11 @@ class SubjectScreeningAdmin(
             "Clinical symptoms/signs of symptomatic meningitis",
             {
                 "description": format_html(
-                    "<h3>At any time since CrAg screening, has the patient experienced:</h3>"
+                    "{html}",
+                    html=mark_safe(
+                        "<h3>At any time since CrAg screening, "
+                        "has the patient experienced:</h3>"
+                    ),  # nosec #B703 # B308
                 ),
                 "fields": (
                     "mg_severe_headache",
@@ -271,12 +276,14 @@ class SubjectScreeningAdmin(
     @staticmethod
     def reasons(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return format_html(conditional_escape(eligibility.formatted_reasons_ineligible()))
+        return mark_safe(
+            conditional_escape(eligibility.formatted_reasons_ineligible())
+        )  # nosec #B703 # B308
 
     @staticmethod
     def eligibility_status(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return format_html(conditional_escape(eligibility.display_label))
+        return mark_safe(conditional_escape(eligibility.display_label))  # nosec #B703 # B308
 
     def hide_delete_button_on_condition(self, request, object_id) -> bool:
         try:

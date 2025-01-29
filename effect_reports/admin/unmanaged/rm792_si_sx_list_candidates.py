@@ -1,5 +1,7 @@
 from django.contrib import admin
+from django.template.loader import render_to_string
 from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
 from edc_sites.admin import SiteModelAdminMixin
@@ -15,23 +17,15 @@ class Rm792SiSxListCandidatesAdmin(
     TemplatesModelAdminMixin,
     admin.ModelAdmin,
 ):
+
     change_list_note = format_html(
-        "<p>Dynamic report listing <strong>Signs and Symptoms</strong> CRFs "
-        "where <em>current_sx_other</em> contains one or more of the "
-        "following search terms:"
-        "<ul style='columns: 3; -webkit-columns: 3; -moz-columns: 3; max-width: 250px;'>"
-        "    <li>abdom</li>"
-        "    <li>appet</li>"
-        "    <li>back</li>"
-        "    <li>behav</li>"
-        "    <li>behav</li>"
-        "    <li>conf</li>"
-        "    <li>diz</li>"
-        "    <li>itchy</li>"
-        "    <li>neuro</li>"
-        "    <li>pleur</li>"
-        "    <li>rash</li>"
-        "</ul>"
+        "{html}",
+        html=mark_safe(
+            render_to_string(
+                "effect_reports/rm792_kw_in_sx_other/changelist_note.html",
+                context=dict(other_field="current_sx_other"),
+            )
+        ),  # nosec #B703 # B308
     )
 
     ordering = ["current_sx_other", "site"]

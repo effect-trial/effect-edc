@@ -16,11 +16,13 @@ from edc_sites.admin import SiteModelAdminMixin
 
 from ...admin_site import effect_reports_admin
 from ...forms import SerumCragDateNoteForm
+from ...modeladmin_mixins import EffectReportModelAdminMixin
 from ...models import SerumCragDateNote
 
 
 @admin.register(SerumCragDateNote, site=effect_reports_admin)
 class SerumCragDateNoteAdmin(
+    EffectReportModelAdminMixin,
     SiteModelAdminMixin,
     ModelAdminDashboardMixin,
     ModelAdminAuditFieldsMixin,
@@ -66,8 +68,8 @@ class SerumCragDateNoteAdmin(
     )
 
     list_display = [
-        "dashboard",
-        "subject_identifier",
+        "subject_dashboard",
+        "site",
         "report",
         "status",
         "serum_crag_date",
@@ -100,7 +102,9 @@ class SerumCragDateNoteAdmin(
             url = "#"
         return format_html(
             '<a data-toggle="tooltip" title="go to report" href="{}?q={}">{}</a>',
-            *(url, obj.subject_identifier, obj.report_model_cls._meta.verbose_name),
+            url,
+            obj.subject_identifier,
+            obj.report_model_cls._meta.verbose_name,
         )
 
     @admin.display(description="QA Note", ordering="note")

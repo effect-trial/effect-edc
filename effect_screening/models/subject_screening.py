@@ -1,7 +1,7 @@
 from django.contrib.sites.models import Site
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
-from django.utils.html import format_html
+from django.utils.safestring import mark_safe
 from edc_constants.choices import (
     YES_NO,
     YES_NO_NA,
@@ -309,11 +309,11 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         choices=CSF_YES_NO_PENDING_NA,
         default=NOT_APPLICABLE,
         blank=False,
-        help_text=format_html(
+        help_text=mark_safe(
             "At any time between the CrAg test and screening for eligibility. "
             "<BR>If results on tests on CSF are `pending`, report on "
-            "DAY 1 visit or when available.",
-        ),
+            "DAY 1 visit or when available."
+        ),  # nosec #B703 # B308
     )
 
     cm_in_csf_date = models.DateField(

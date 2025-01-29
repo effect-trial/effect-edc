@@ -3,6 +3,7 @@ from django.test import TestCase
 from edc_action_item.managers import ActionIdentifierModelManager
 from edc_identifier.managers import SubjectIdentifierManager
 from edc_model.models.historical_records import SerializableModelManager
+from edc_visit_schedule.model_mixins.on_schedule_model_mixin import OnScheduleManager
 
 
 class TestManagers(TestCase):
@@ -25,7 +26,8 @@ class TestManagers(TestCase):
     def test_models(self):
         app_label = "effect_prn"
         app_config = django_apps.get_app_config(app_label)
-        subject_identifier_managed = [f"{app_label}.endofstudy", f"{app_label}.onschedule"]
+        on_schedule_managed = [f"{app_label}.onschedule"]
+        subject_identifier_managed = [f"{app_label}.endofstudy"]
         action_identifier_managed = [
             f"{app_label}.hospitalization",
             f"{app_label}.losstofollowup",
@@ -36,6 +38,12 @@ class TestManagers(TestCase):
                 self.assertEqual(
                     model_cls._default_manager.__class__,
                     SerializableModelManager,
+                    msg=f"Model is {model_cls}",
+                )
+            elif model_cls._meta.label_lower in on_schedule_managed:
+                self.assertEqual(
+                    model_cls._default_manager.__class__,
+                    OnScheduleManager,
                     msg=f"Model is {model_cls}",
                 )
             elif model_cls._meta.label_lower in subject_identifier_managed:
