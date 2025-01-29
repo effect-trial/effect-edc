@@ -6,6 +6,8 @@ unreleased
 - fix issues where addition of some unscheduled visits could result in
   a server error when trying to render subject's dashboard
   (#798, #807, #824, #827, #829, #830, #831)
+- add additional symptom choices to Signs and Symptoms form, update
+  rm792 sx 'other' field reports (#836)
 - fix Signs and Symptoms and Vital Signs forms unavailable with
   Auditor/read-only role (#839)
 - update use of format_html for DJ6

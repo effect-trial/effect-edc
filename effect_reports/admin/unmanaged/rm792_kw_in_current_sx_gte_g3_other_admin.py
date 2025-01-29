@@ -32,7 +32,8 @@ class Rm792KwInCurrentSxGteG3OtherAdmin(
         "{html}",
         html=mark_safe(
             render_to_string(
-                "effect_reports/in_current_sx_gte_g3_other/changelist_note.html", {}
+                "effect_reports/rm792_kw_in_sx_other/changelist_note.html",
+                context=dict(other_field="current_sx_gte_g3_other"),
             )
         ),  # nosec #B703 # B308
     )

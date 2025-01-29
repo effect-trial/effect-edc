@@ -25,4 +25,11 @@ class Migration(migrations.Migration):
                 app_name="effect_reports",
             )
         ),
+        migrations.RunSQL("drop view if exists rm792_si_sx_list_candidates"),
+        migrations.RunSQL(
+            read_unmanaged_model_sql(
+                "rm792_si_sx_list_candidates.sql",
+                app_name="effect_reports",
+            )
+        ),
     ]
