@@ -1,7 +1,7 @@
 Changes
 +++++++
 
-unreleased
+1.0.0
 ------
 - fix issues where addition of some unscheduled visits could result in
   a server error when trying to render subject's dashboard
@@ -10,6 +10,8 @@ unreleased
   rm792 sx 'other' field reports (#836)
 - fix Signs and Symptoms and Vital Signs forms unavailable with
   Auditor/read-only role (#839)
+- align QA Reports to more consistently present links to
+  subject dashboard, visit dashboard and to directly update CRFs
 - update use of format_html for DJ6
 - remove all references in templates to `bootstrap3` folders
 - update forms reference doc
