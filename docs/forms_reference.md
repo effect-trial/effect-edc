@@ -1156,6 +1156,7 @@
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -1167,13 +1168,18 @@
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -1194,9 +1200,11 @@
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -1233,6 +1241,7 @@
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -1244,13 +1253,18 @@
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -1271,9 +1285,11 @@
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -3755,6 +3771,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -3766,13 +3783,18 @@ Adherence CRF completed at baseline (in-person).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -3793,9 +3815,11 @@ Adherence CRF completed at baseline (in-person).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -3832,6 +3856,7 @@ Adherence CRF completed at baseline (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -3843,13 +3868,18 @@ Adherence CRF completed at baseline (in-person).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -3870,9 +3900,11 @@ Adherence CRF completed at baseline (in-person).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -5106,6 +5138,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -5117,13 +5150,18 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -5144,9 +5182,11 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -5183,6 +5223,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -5194,13 +5235,18 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -5221,9 +5267,11 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -6639,6 +6687,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -6650,13 +6699,18 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -6677,9 +6731,11 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -6716,6 +6772,7 @@ Adherence CRF completed at d3 and d9 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -6727,13 +6784,18 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -6754,9 +6816,11 @@ Adherence CRF completed at d3 and d9 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -8952,6 +9016,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -8963,13 +9028,18 @@ Adherence CRF completed at d14 (in-person).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -8990,9 +9060,11 @@ Adherence CRF completed at d14 (in-person).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -9029,6 +9101,7 @@ Adherence CRF completed at d14 (in-person).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -9040,13 +9113,18 @@ Adherence CRF completed at d14 (in-person).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -9067,9 +9145,11 @@ Adherence CRF completed at d14 (in-person).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -10519,6 +10599,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -10530,13 +10611,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -10557,9 +10643,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -10596,6 +10684,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -10607,13 +10696,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -10634,9 +10728,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -11904,6 +12000,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -11915,13 +12012,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -11942,9 +12044,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -11981,6 +12085,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -11992,13 +12097,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -12019,9 +12129,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -13289,6 +13401,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -13300,13 +13413,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -13327,9 +13445,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -13366,6 +13486,7 @@ Adherence CRF completed after d14 (telephone).
 - responses: *Select all that apply*
   - `N/A`: *--Not applicable*
   - `abdominal_cramps`: *Abdominal cramps*
+  - `abdominal_distention`: *Abdominal distention*
   - `abdominal_pain`: *Abdominal pain*
   - `back_pain_lp_site`: *Back pain at LP site*
   - `backache`: *Backache*
@@ -13377,13 +13498,18 @@ Adherence CRF completed after d14 (telephone).
   - `dizziness`: *Dizziness*
   - `double_vision`: *Double vision*
   - `drowsiness`: *Drowsiness*
+  - `dry_mouth`: *Dry mouth*
+  - `dry_skin`: *Dry skin*
   - `fatigue_malaise`: *Fatigue/malaise*
   - `fever`: *Fever*
   - `focal_weakness`: *Focal weakness*
   - `general_weakness`: *General weakness*
   - `headache`: *Headache*
   - `hearing_loss`: *Hearing loss*
+  - `increased_appetite`: *Increased appetite*
+  - `insomnia`: *Insomnia*
   - `itching`: *Itching*
+  - `itchy_eyes`: *Itchy eyes*
   - `jaundice`: *Jaundice*
   - `loss_appetite`: *Loss of appetite*
   - `luts`: *Lower urinary tract symptoms (LUTS)*
@@ -13404,9 +13530,11 @@ Adherence CRF completed after d14 (telephone).
   - `visual_field_disturbance`: *Neuro - Visual field disturbance*
   - `focal_neurologic_deficit_other`: *Neuro - Other focal neurologic deficit, please specify below ...*
   - `neuromuscular_weakness`: *Neuromuscular weakness*
+  - `palpitations`: *Palpitations*
   - `peripheral_neuropathy`: *Peripheral neuropathy*
   - `pleuritic_chest_pain`: *Pleuritic chest pain*
   - `rash`: *Rash*
+  - `rhinorrhoea`: *Rhinorrhoea (runny nose)*
   - `shortness_of_breath`: *Shortness of breath*
   - `skin_lesions`: *Skin lesions*
   - `visual_loss`: *Visual loss*
@@ -14505,4 +14633,4 @@ Adherence CRF completed after d14 (telephone).
 
 
 
-*Rendered on 2025-01-13 18:52*
+*Rendered on 2025-01-29 13:09*
