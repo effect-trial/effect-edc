@@ -6,6 +6,7 @@ unreleased
 - fix `Server error saving [...] TB Diagnostics forms opened from
   admin site` (#840)
 - # TODO: bump to effect-form-validators 1.0.0 (once released)
+- bump to edc 1.0.5
 
 
 1.0.0
