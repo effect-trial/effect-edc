@@ -3,6 +3,7 @@ Changes
 
 unreleased
 ------
+- fix 'Cannot view beyond the 25th visit in Subject Review' (#835)
 - fix `Server error saving [...] TB Diagnostics forms opened from
   admin site` (#840)
 - # TODO: bump to effect-form-validators 1.0.0 (once released)
