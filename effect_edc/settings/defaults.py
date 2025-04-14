@@ -86,6 +86,7 @@ INSTALLED_APPS = [
     "django_pylabels.apps.AppConfig",
     "django_revision.apps.AppConfig",
     "logentry_admin",
+    "rangefilter",
     "simple_history",
     "storages",
     "edc_action_item.apps.AppConfig",
