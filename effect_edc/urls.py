@@ -53,6 +53,7 @@ urlpatterns = [
     *paths_for_urlpatterns("edc_pylabels"),
     *paths_for_urlpatterns("edc_qareports"),
     *paths_for_urlpatterns("edc_randomization"),
+    *paths_for_urlpatterns("edc_reportable"),
     *paths_for_urlpatterns("edc_refusal"),
     *paths_for_urlpatterns("edc_registration"),
     *paths_for_urlpatterns("edc_sites"),

@@ -15,7 +15,16 @@ from edc_adverse_event.constants import (
     DEATH_REPORT_ACTION,
     DEATH_REPORT_TMG_ACTION,
 )
-from edc_constants.constants import CLOSED, DEAD, HIGH_PRIORITY, NO, YES
+from edc_constants.constants import (
+    CLOSED,
+    DEAD,
+    GRADE3,
+    GRADE4,
+    GRADE5,
+    HIGH_PRIORITY,
+    NO,
+    YES,
+)
 from edc_lab_results.constants import (
     BLOOD_RESULTS_FBC_ACTION,
     BLOOD_RESULTS_LFT_ACTION,
@@ -23,7 +32,6 @@ from edc_lab_results.constants import (
 )
 from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_offstudy.constants import END_OF_STUDY_ACTION
-from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_visit_schedule.utils import get_offschedule_models
 
 from effect_subject.constants import (
