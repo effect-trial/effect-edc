@@ -26,14 +26,14 @@ class TbDiagnosticsFormValidator(
 ):
     def clean(self):
         self.validate_study_day_with_datetime(
-            subject_identifier=self.cleaned_data.get("subject_visit").subject_identifier,
+            subject_identifier=self.related_visit.subject_identifier,
             study_day=self.cleaned_data.get("day_blood_taken"),
             compare_date=self.cleaned_data.get("blood_taken_date"),
             study_day_field="day_blood_taken",
         )
 
         self.validate_study_day_with_datetime(
-            subject_identifier=self.cleaned_data.get("subject_visit").subject_identifier,
+            subject_identifier=self.related_visit.subject_identifier,
             study_day=self.cleaned_data.get("day_biopsy_taken"),
             compare_date=self.cleaned_data.get("biopsy_date"),
             study_day_field="day_biopsy_taken",

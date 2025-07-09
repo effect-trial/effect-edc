@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_appointment.tests.appointment_test_case_mixin import AppointmentTestCaseMixin
+from edc_appointment.tests.test_case_mixins import AppointmentTestCaseMixin
 from edc_consent import site_consents
 from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
@@ -117,7 +117,9 @@ class EffectTestCaseMixin(
         )
 
         subject_screening = SubjectScreening.objects.create(
-            user_created="erikvw", user_modified="erikvw", **eligible_options
+            user_created="erikvw",
+            user_modified="erikvw",
+            **eligible_options,
         )
 
         screening_identifier = subject_screening.screening_identifier

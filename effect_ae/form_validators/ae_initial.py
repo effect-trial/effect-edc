@@ -9,15 +9,14 @@ from edc_adverse_event.constants import (
 )
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import CONTROL, DECEASED, YES
+from edc_constants.constants import CONTROL, DECEASED, GRADE5, YES
 from edc_constants.utils import get_display
 from edc_randomization.utils import (
     get_assignment_description_for_subject,
     get_assignment_for_subject,
 )
-from edc_reportable import GRADE5
 
-from effect_ae.choices import INPATIENT_STATUSES
+from ..choices import INPATIENT_STATUSES
 
 
 class AeInitialFormValidator(FormValidator):

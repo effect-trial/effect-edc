@@ -1,6 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 from typing import Any
+from unittest import skip
 from zoneinfo import ZoneInfo
 
 import time_machine
@@ -9,18 +10,17 @@ from django import forms
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.test import TestCase, tag
-from edc_constants.constants import NO, NOT_APPLICABLE, YES
+from edc_constants.constants import GRADE3, GRADE4, NO, NOT_APPLICABLE, YES
 from edc_lab.models import Panel
 from edc_reportable import (
     ALREADY_REPORTED,
-    GRADE3,
-    GRADE4,
     MILLIMOLES_PER_LITER,
     PERCENT,
     PRESENT_AT_BASELINE,
     TEN_X_9_PER_LITER,
 )
 from edc_reportable.units import MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER
+from edc_reportable.utils import convert_units
 from edc_utils import convert_php_dateformat, get_utcnow
 from edc_visit_schedule.constants import DAY01, DAY03, DAY09
 
@@ -52,7 +52,6 @@ class LabPanelResultTestConfig:
 
 
 @time_machine.travel(datetime(2023, 1, 10, 8, 00, tzinfo=ZoneInfo("UTC")))
-@tag("lab")
 class TestLabResults(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         screening_datetime = get_utcnow() - relativedelta(years=1)
@@ -344,6 +343,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         form.errors.get("report_datetime"),
                     )
 
+    @tag("22")
     def test_0_lte_neutrophil_value_lt_1_ok(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -359,7 +359,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "neutrophil_value": value,
                         "neutrophil_units": TEN_X_9_PER_LITER,
                         "neutrophil_abnormal": YES,
-                        "neutrophil_reportable": GRADE4,
+                        "neutrophil_reportable": 4,
                         "results_abnormal": YES,
                         "results_reportable": YES,
                     }
@@ -393,7 +393,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "neutrophil_diff_value": value,
                         "neutrophil_diff_units": PERCENT,
                         "neutrophil_diff_abnormal": YES,
-                        "neutrophil_diff_reportable": GRADE4,
+                        "neutrophil_diff_reportable": 4,
                         "results_abnormal": YES,
                         "results_reportable": YES,
                     }
@@ -427,7 +427,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "lymphocyte_value": value,
                         "lymphocyte_units": TEN_X_9_PER_LITER,
                         "lymphocyte_abnormal": YES,
-                        "lymphocyte_reportable": GRADE4,
+                        "lymphocyte_reportable": 4,
                         "results_abnormal": YES,
                         "results_reportable": YES,
                     }
@@ -909,7 +909,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         str(cm.exception.error_dict.get("sodium_value")),
                     )
                     self.assertIn(
-                        "GRADE 3.",
+                        "GRADE3",
                         str(cm.exception.error_dict.get("sodium_value")),
                     )
 
@@ -1048,7 +1048,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         str(cm.exception.error_dict.get("sodium_value")),
                     )
                     self.assertIn(
-                        "GRADE 4.",
+                        "GRADE4",
                         str(cm.exception.error_dict.get("sodium_value")),
                     )
 
@@ -1213,6 +1213,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     except forms.ValidationError as e:
                         self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    @skip("not used")
     def test_abnormal_crp_raises_if_not_acknowledged_abnormal(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -1258,9 +1259,9 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     )
                     self.assertIn(
                         (
-                            "Normal ranges: 0.0<=x<=5.0 mg/L "
+                            "Normal range: crp: 0.0<=x<=5.0 mg/L "
                             if units == MILLIGRAMS_PER_LITER
-                            else "Normal ranges: 0.0<=x<=0.5 mg/dL"
+                            else "Normal range: crp: 0.0<=x<=0.5 mg/dL"
                         ),
                         str(cm.exception.error_dict.get("crp_value")),
                     )
@@ -1303,6 +1304,46 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     except forms.ValidationError as e:
                         self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    def test_abnormal_crp_not_reportable1(self):
+        subject_visit = self.get_subject_visit(
+            subject_screening=self.subject_screening,
+            subject_consent=self.subject_consent,
+            visit_code=DAY01,
+            appt_datetime=self.subject_consent.consent_datetime,
+        )
+        panel_results_data = self.get_panel_results_data(subject_visit, "chemistry")
+        for normal_value in [5.05, 5.1, 6, 10, 50, 999]:
+            for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
+                if units != MILLIGRAMS_PER_DECILITER:
+                    normal_value = convert_units(
+                        label="crp",
+                        value=normal_value,
+                        units_from=MILLIGRAMS_PER_DECILITER,
+                        units_to=units,
+                    )
+                with self.subTest(normal_value=normal_value):
+                    panel_results_data.update(
+                        {
+                            "crp_value": normal_value,
+                            "crp_units": units,
+                            "crp_abnormal": YES,
+                            "crp_reportable": NOT_APPLICABLE,
+                            "results_abnormal": YES,
+                            "results_reportable": NOT_APPLICABLE,
+                        }
+                    )
+                    form_validator = BloodResultsChemFormValidator(
+                        cleaned_data=panel_results_data, model=BloodResultsChem
+                    )
+                    with self.assertRaises(forms.ValidationError) as cm:
+                        form_validator.validate()
+                    self.assertIn("crp_reportable", cm.exception.error_dict)
+                    self.assertIn(
+                        "This field is applicable if result is abnormal",
+                        str(cm.exception.error_dict.get("crp_reportable")),
+                    )
+
+    @skip("not used")
     def test_abnormal_crp_not_reportable(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,

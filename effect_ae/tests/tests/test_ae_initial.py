@@ -15,6 +15,9 @@ from edc_adverse_event.constants import (
 from edc_constants.constants import (
     CONTROL,
     DECEASED,
+    GRADE3,
+    GRADE4,
+    GRADE5,
     INTERVENTION,
     NO,
     NOT_APPLICABLE,
@@ -22,7 +25,6 @@ from edc_constants.constants import (
     YES,
 )
 from edc_constants.utils import get_display
-from edc_reportable import GRADE3, GRADE4, GRADE5
 from edc_utils import get_utcnow_as_date
 
 from effect_ae.choices import INPATIENT_STATUSES

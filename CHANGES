@@ -1,6 +1,16 @@
 Changes
 +++++++
 
+unreleased
+------
+- fix 'Cannot view beyond the 25th visit in Subject Review' (#835)
+- fix 'Server error saving Signs and Symptoms / TB Diagnostics forms
+  opened from admin site' (#840)
+- fix 'Signs and symptoms QA reports server error' (#842)
+- bump to edc 1.0.6
+- bump to effect-form-validators 1.0.0
+
+
 1.0.0
 ------
 - fix issues where addition of some unscheduled visits could result in
