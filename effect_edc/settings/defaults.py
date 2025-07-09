@@ -78,6 +78,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.sites",
     "defender",
+    "sequences.apps.SequencesConfig",
     "multisite",
     "fontawesomefree",
     "django_crypto_fields.apps.AppConfig",
