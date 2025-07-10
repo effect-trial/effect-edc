@@ -1,5 +1,5 @@
 from edc_constants.constants import FEMALE, MALE
-from edc_reportable import PERCENT, Formula
+from edc_reportable import PERCENT, TEN_X_9_PER_LITER, Formula
 from edc_reportable.adult_age_options import adult_age_options
 from edc_reportable.data import africa, daids_july_2017
 
@@ -25,7 +25,7 @@ normal_data.update(
         "lymphocyte": [
             Formula(
                 "0<=x<=99999",
-                units=PERCENT,
+                units=TEN_X_9_PER_LITER,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
             )
@@ -96,7 +96,7 @@ grading_data.update(
             Formula(
                 "x<0",
                 grade=0,
-                units=PERCENT,
+                units=TEN_X_9_PER_LITER,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
             )

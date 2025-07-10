@@ -1,11 +1,46 @@
-from django.contrib import admin
+from django.contrib import admin, messages
 from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
+from django.core.handlers.wsgi import WSGIRequest
 from django_audit_fields import audit_fieldset_tuple
+from edc_auth.constants import PII, PII_VIEW
 from edc_identifier import SubjectIdentifierError, is_subject_identifier_or_raise
+from rangefilter.filters import DateRangeFilterBuilder
 
 from effect_consent.models import SubjectConsent
 from effect_screening.models import SubjectScreening
 from effect_subject.models import SubjectVisit
+
+
+def remove_fields_for_blinded_users(request: WSGIRequest, fields: tuple) -> tuple:
+    """You need to secure custom SimpleListFilters yourself"""
+    if not request.user.groups.filter(name__in=[PII, PII_VIEW]).exists():
+        fields = list(fields)
+        for f in fields:
+            if isinstance(f, str):
+                if (
+                    "assignment" in f
+                    or "first_name" in f
+                    or "last_name" in f
+                    or "initials" in f
+                    or "identity" in f
+                    or "confirm_identity" in f
+                ):
+                    fields.remove(f)
+            elif isinstance(f, tuple):
+                f, _ = f
+                if (
+                    "assignment" in f
+                    or "first_name" in f
+                    or "last_name" in f
+                    or "initials" in f
+                    or "identity" in f
+                    or "confirm_identity" in f
+                ):
+                    fields.remove(f)
+            # elif issubclass(f, AssignmentListFilter):
+            #     fields.remove(f)
+        fields = tuple(fields)
+    return fields
 
 
 class EffectSubjectConsentAdminMixin:
@@ -61,6 +96,8 @@ class EffectSubjectConsentAdminMixin:
         audit_fieldset_tuple,
     )
 
+    list_filters = (("consent_datetime", DateRangeFilterBuilder()),)
+
     search_fields = ("subject_identifier", "screening_identifier", "identity")
 
     radio_fields = {
@@ -88,6 +125,49 @@ class EffectSubjectConsentAdminMixin:
         "sample_export",
         "hcw_data_sharing",
     ]
+
+    def save_model(self, request, obj, form, change):
+        if not request.user.groups.filter(name__in=[PII, PII_VIEW]).exists():
+            messages.error(
+                request,
+                "Form not saved. User account does not have PII or PII_VIEW permissions.",
+            )
+        else:
+            super().save_model(request, obj, form, change)
+
+    def get_list_display(self, request):
+        fields = super().get_list_display(request)
+        fields = remove_fields_for_blinded_users(request, fields)
+        return fields
+
+    def get_list_filter(self, request):
+        fields = super().get_list_filter(request)
+        fields = remove_fields_for_blinded_users(request, fields)
+        return fields
+
+    def get_search_fields(self, request):
+        fields = super().get_search_fields(request)
+        fields = remove_fields_for_blinded_users(request, fields)
+        return fields
+
+    def get_fieldsets(self, request, obj=None):
+        fieldsets = super().get_fieldsets(request, obj)
+        if not request.user.groups.filter(name__in=[PII, PII_VIEW]).exists():
+            pii_fields = [
+                "first_name",
+                "last_name",
+                "initials",
+                "identity",
+                "confirm_identity",
+            ]
+            new_fieldsets = []
+            for fieldset in fieldsets:
+                fieldset[1]["fields"] = [
+                    f for f in fieldset[1]["fields"] if f not in pii_fields
+                ]
+                new_fieldsets.append(fieldset)
+            return new_fieldsets
+        return fieldsets
 
     def delete_view(self, request, object_id, extra_context=None):
         """Prevent deletion if SubjectVisit objects exist."""
