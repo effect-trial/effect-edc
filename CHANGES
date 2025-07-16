@@ -1,6 +1,11 @@
 Changes
 +++++++
 
+1.1.1
+------
+- bump edc=1.1.8
+- add lymphocyte and neutrophil normal ranges
+
 1.1.0
 ------
 - bump edc=1.1.7

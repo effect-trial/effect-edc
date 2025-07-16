@@ -378,6 +378,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 except forms.ValidationError as e:
                     self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    @tag("23")
     def test_0_lte_neutrophil_diff_value_lt_1_ok(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -386,16 +387,16 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             appt_datetime=self.subject_consent.consent_datetime,
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
-        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+        for value in [39.0, 39.9, 60.1, 61.0]:
             with self.subTest(value=value):
                 panel_results_data.update(
                     {
                         "neutrophil_diff_value": value,
                         "neutrophil_diff_units": PERCENT,
                         "neutrophil_diff_abnormal": YES,
-                        "neutrophil_diff_reportable": 4,
+                        "neutrophil_diff_reportable": NO,
                         "results_abnormal": YES,
-                        "results_reportable": YES,
+                        "results_reportable": NO,
                     }
                 )
                 form = BloodResultsFbcForm(panel_results_data)
@@ -412,6 +413,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 except forms.ValidationError as e:
                     self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    @tag("23")
     def test_0_lte_lymphocyte_value_lt_1_ok(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -420,16 +422,16 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             appt_datetime=self.subject_consent.consent_datetime,
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
-        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+        for value in [0, 0.1, 0.99, 4.81]:
             with self.subTest(value=value):
                 panel_results_data.update(
                     {
                         "lymphocyte_value": value,
                         "lymphocyte_units": TEN_X_9_PER_LITER,
                         "lymphocyte_abnormal": YES,
-                        "lymphocyte_reportable": 4,
+                        "lymphocyte_reportable": NO,
                         "results_abnormal": YES,
-                        "results_reportable": YES,
+                        "results_reportable": NO,
                     }
                 )
                 form = BloodResultsFbcForm(panel_results_data)
@@ -446,6 +448,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 except forms.ValidationError as e:
                     self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
+    @tag("23")
     def test_0_lte_lymphocyte_diff_value_lt_1_ok(self):
         subject_visit = self.get_subject_visit(
             subject_screening=self.subject_screening,
@@ -454,19 +457,20 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             appt_datetime=self.subject_consent.consent_datetime,
         )
         panel_results_data = self.get_panel_results_data(subject_visit, "fbc")
-        for value in [0, 0.01, 0.02, 0.1, 0.2]:
+        for value in [1.0, 2.0, 19.0, 41.0]:
             with self.subTest(value=value):
                 panel_results_data.update(
                     {
                         "lymphocyte_diff_value": value,
                         "lymphocyte_diff_units": PERCENT,
                         "lymphocyte_diff_abnormal": YES,
-                        "lymphocyte_diff_reportable": GRADE4,
+                        "lymphocyte_diff_reportable": NO,
                         "results_abnormal": YES,
-                        "results_reportable": YES,
+                        "results_reportable": NO,
                     }
                 )
                 form = BloodResultsFbcForm(panel_results_data)
+
                 self.assertTrue(
                     form.is_valid(),
                     f"Expected form to be valid. Got: {form.errors.as_data()}",

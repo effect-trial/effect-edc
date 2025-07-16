@@ -16,7 +16,7 @@ normal_data.update(
     {
         "neutrophil_diff": [
             Formula(
-                "0<=x<=99999",
+                "40.0<=x<=60.0",
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
@@ -24,7 +24,7 @@ normal_data.update(
         ],
         "lymphocyte": [
             Formula(
-                "0<=x<=99999",
+                "1.00<=x<=4.80",
                 units=TEN_X_9_PER_LITER,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
@@ -32,7 +32,7 @@ normal_data.update(
         ],
         "lymphocyte_diff": [
             Formula(
-                "0<=x<=99999",
+                "20.0<=x<=40.0",
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
