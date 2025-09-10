@@ -7,6 +7,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
+from edc_appointment.tests.utils import get_appointment
 from edc_constants.constants import (
     HEADACHE,
     IN_PERSON,
@@ -139,7 +140,7 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
         assessment_type = assessment_type or IN_PERSON
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
         for v in subject_visit.schedule.visits.timepoints:
-            appointment = self.get_appointment(
+            appointment = get_appointment(
                 subject_identifier=subject_visit.subject_identifier,
                 timepoint=v.timepoint,
                 visit_code_sequence=0,

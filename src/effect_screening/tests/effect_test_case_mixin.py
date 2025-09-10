@@ -8,7 +8,7 @@ from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_appointment.tests.test_case_mixins import AppointmentTestCaseMixin
+from edc_appointment.tests.utils import get_appointment
 from edc_consent import site_consents
 from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
 from edc_facility.import_holidays import import_holidays
@@ -72,9 +72,7 @@ def get_eligible_options() -> dict:
     )
 
 
-class EffectTestCaseMixin(
-    AppointmentTestCaseMixin, FormValidatorTestCaseMixin, SiteTestCaseMixin
-):
+class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
     default_sites = site_sites.get_by_country("tanzania", aslist=True)
 
     site_names = [s.name for s in default_sites]
@@ -197,7 +195,7 @@ class EffectTestCaseMixin(
         )
         if appt_datetime:
             options.update(appt_datetime=appt_datetime or subject_consent.consent_datetime)
-        appointment = self.get_appointment(**options)
+        appointment = get_appointment(**options)
         return SubjectVisit.objects.create(
             appointment=appointment,
             reason=SCHEDULED,

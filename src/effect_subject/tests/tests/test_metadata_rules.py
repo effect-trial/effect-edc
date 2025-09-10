@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from django.test import TestCase
+from django.test import TestCase, tag
+from edc_appointment.creators import create_unscheduled_appointment
 from edc_appointment.models import Appointment
 from edc_constants.constants import (
     IN_PERSON,
@@ -288,6 +289,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
         self.assertNotIn("effect_subject.lpcsf", models)
 
     # Post baseline tests
+    @tag("2005")
     def test_lpcsf_crf_not_required_post_baseline_if_only_screening_lp_performed(self):
         subject_screening = self.get_subject_screening_with_lp_done()
         subject_consent = self.get_subject_consent(subject_screening=subject_screening)
@@ -326,7 +328,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.lpcsf", models)
 
                 # Test on unscheduled visit
-                unscheduled_appt = self.create_unscheduled_appointment(
+                unscheduled_appt = create_unscheduled_appointment(
                     appointment=subject_visit.appointment
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
@@ -406,7 +408,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertIn("effect_subject.lpcsf", models)
 
                 # Test on unscheduled visit
-                unscheduled_appt = self.create_unscheduled_appointment(
+                unscheduled_appt = create_unscheduled_appointment(
                     appointment=subject_visit.appointment
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
@@ -548,7 +550,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertIn("effect_subject.vitalsigns", models)
 
                 # Test on unscheduled visit
-                unscheduled_appt = self.create_unscheduled_appointment(
+                unscheduled_appt = create_unscheduled_appointment(
                     appointment=subject_visit.appointment
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
@@ -611,7 +613,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.vitalsigns", models)
 
                 # Test on unscheduled visit
-                unscheduled_appt = self.create_unscheduled_appointment(
+                unscheduled_appt = create_unscheduled_appointment(
                     appointment=subject_visit.appointment
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
@@ -674,7 +676,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 self.assertNotIn("effect_subject.vitalsigns", models)
 
                 # Test on unscheduled visit
-                unscheduled_appt = self.create_unscheduled_appointment(
+                unscheduled_appt = create_unscheduled_appointment(
                     appointment=subject_visit.appointment
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
