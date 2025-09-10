@@ -1,7 +1,0 @@
-include AUTHORS CHANGES LICENSE VERSION
-include MANIFEST.in
-include *.rst
-include *.txt
-recursive-include effect_edc/templates *
-recursive-include effect_edc/docs *
-include */locale/*/LC_MESSAGES/*.mo
