@@ -3,6 +3,7 @@ from typing import Optional
 from zoneinfo import ZoneInfo
 
 import time_machine
+from clinicedc_tests.utils import validate_fields_exists_or_raise
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -14,9 +15,6 @@ from edc_constants.constants import (
     NOT_ESTIMATED,
     OTHER,
     YES,
-)
-from edc_test_utils.validate_fields_exists_or_raise import (
-    validate_fields_exists_or_raise,
 )
 from edc_utils import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.constants import DAY01
