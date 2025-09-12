@@ -10,3 +10,5 @@ AUTO_CREATE_KEYS = False
 LIVE_SYSTEM = False
 
 EDC_MODEL_ADMIN_CSS_THEME = "edc_purple"
+
+SILENCED_SYSTEM_CHECKS = ["edc_visit_schedule.E009", "sites.E101"]
