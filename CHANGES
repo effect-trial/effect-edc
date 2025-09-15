@@ -1,14 +1,24 @@
 Changes
 +++++++
 
-unreleased
+1.1.1
 ------
+- bump edc=1.1.8
+- add lymphocyte and neutrophil normal ranges
+
+1.1.0
+------
+- bump edc=1.1.7
+- add Django 5.2 support
 - fix 'Cannot view beyond the 25th visit in Subject Review' (#835)
 - fix 'Server error saving Signs and Symptoms / TB Diagnostics forms
   opened from admin site' (#840)
 - fix 'Signs and symptoms QA reports server error' (#842)
 - bump to edc 1.0.6
-- bump to effect-form-validators 1.0.0
+- bump to effect-form-validators 1.1.0
+- update dummy reportables
+- add delay save to submit row in change form
+- add PII protections to consent for users w/o PII perms
 
 
 1.0.0

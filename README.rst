@@ -1,4 +1,4 @@
-|pypi| |actions| |codecov| |downloads|
+|pypi| |actions| |codecov| |downloads| |clinicedc|
 
 
 EFFECT Edc
@@ -112,3 +112,7 @@ Login::
 .. |django| image:: https://www.djangoproject.com/m/img/badges/djangomade124x25.gif
    :target: http://www.djangoproject.com/
    :alt: Made with Django
+
+.. |clinicedc| image:: https://img.shields.io/badge/framework-Clinic_EDC-green
+   :alt:Made with clinicedc
+   :target: https://github.com/clinicedc
