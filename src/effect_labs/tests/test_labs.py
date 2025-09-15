@@ -6,7 +6,6 @@ from ..lab_profiles import subject_lab_profile
 
 
 class TestLabs(TestCase):
-
     def setUp(self):
         site_labs._registry = {}
         site_labs.loaded = False

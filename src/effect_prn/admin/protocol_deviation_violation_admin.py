@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from django.contrib import admin
 from django.utils.html import format_html
 from django_audit_fields.admin import audit_fieldset_tuple
@@ -16,7 +14,9 @@ from ..models import ProtocolDeviationViolation
 
 @admin.register(ProtocolDeviationViolation, site=effect_prn_admin)
 class ProtocolDeviationViolationAdmin(
-    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
     form = ProtocolDeviationViolationForm
 
@@ -29,7 +29,7 @@ class ProtocolDeviationViolationAdmin(
                     "report_datetime",
                     "short_description",
                     "report_type",
-                )
+                ),
             },
         ),
         (
@@ -72,7 +72,7 @@ class ProtocolDeviationViolationAdmin(
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "action_required": admin.VERTICAL,
         "report_status": admin.VERTICAL,
         "report_type": admin.VERTICAL,
@@ -95,13 +95,13 @@ class ProtocolDeviationViolationAdmin(
 
     list_filter = ("action_required", "report_status", "report_type")
 
-    search_fields = [
+    search_fields = (
         "subject_identifier",
         "action_identifier",
         "short_description",
-    ]
+    )
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)
         action_flds = tuple(fld for fld in action_fields if fld != "action_identifier")
         return tuple(set(action_flds + readonly_fields))
@@ -113,7 +113,7 @@ class ProtocolDeviationViolationAdmin(
                 '<span style="color:green">{report_status}</span>',
                 report_status=obj.report_status.title(),
             )
-        elif obj.report_status == OPEN:
+        if obj.report_status == OPEN:
             return format_html(
                 '<span style="color:red">{report_status}</span>',
                 report_status=obj.report_status.title(),

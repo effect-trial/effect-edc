@@ -1,6 +1,6 @@
 from copy import deepcopy
 from datetime import timedelta
-from typing import Any, Optional
+from typing import Any
 
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
@@ -35,6 +35,8 @@ from effect_subject.models import SignsAndSymptoms, SubjectVisit
 from effect_visit_schedule.constants import DAY01, DAY14
 
 # TODO: Migrate to effect-form-validator
+
+VISIT_OR_APPT_NOT_FOUND = "subject visit / appointment not found"
 
 
 class SignsSymptomsTestError(Exception):
@@ -84,8 +86,8 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
 
     @staticmethod
     def get_valid_patient_with_no_signs_or_symptoms(
-        visit_code: str = None,
-        assessment_type: str = None,
+        visit_code: str | None = None,
+        assessment_type: str | None = None,
     ):
         visit_code = visit_code or DAY14
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
@@ -111,11 +113,12 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NOT_APPLICABLE,
         }
 
-    def get_valid_patient_any_sx_unknown(self, visit_code: str = None):
+    def get_valid_patient_any_sx_unknown(self, visit_code: str | None = None):
         cleaned_data = deepcopy(
             self.get_valid_patient_with_no_signs_or_symptoms(
-                visit_code=visit_code, assessment_type=TELEPHONE
-            )
+                visit_code=visit_code,
+                assessment_type=TELEPHONE,
+            ),
         )
         cleaned_data.update(
             {
@@ -127,14 +130,14 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
                 "xray_performed": NOT_APPLICABLE,
                 "lp_performed": NOT_APPLICABLE,
                 "urinary_lam_performed": NOT_APPLICABLE,
-            }
+            },
         )
         return cleaned_data
 
     def get_valid_patient_with_signs_or_symptoms(
         self,
-        visit_code: str = None,
-        assessment_type: str = None,
+        visit_code: str | None = None,
+        assessment_type: str | None = None,
     ):
         visit_code = visit_code or DAY14
         assessment_type = assessment_type or IN_PERSON
@@ -158,13 +161,12 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
                 appointment.save()
                 appointment.refresh_from_db()
                 break
-            else:
-                appointment.appt_status = INCOMPLETE_APPT
-                appointment.save()
-                appointment.refresh_from_db()
+            appointment.appt_status = INCOMPLETE_APPT
+            appointment.save()
+            appointment.refresh_from_db()
 
         if not subject_visit:
-            raise SignsSymptomsTestError("subject visit / appointment not found")
+            raise SignsSymptomsTestError(VISIT_OR_APPT_NOT_FOUND)
         subject_visit.assessment_type = assessment_type
         subject_visit.save()
         subject_visit.refresh_from_db()
@@ -190,22 +192,22 @@ class TestSignsAndSymptomsFormValidationBase(EffectTestCaseMixin, TestCase):
             "patient_admitted": NO,
         }
 
-    def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_g3_signs_or_symptoms(self, visit_code: str | None = None):
         cleaned_data = deepcopy(
-            self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code)
+            self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code),
         )
         cleaned_data.update(
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3_other": "",
                 "reportable_as_ae": YES,
-            }
+            },
         )
         return cleaned_data
 
-    def get_valid_patient_with_cm_symptoms(self, visit_code: str = None):
+    def get_valid_patient_with_cm_symptoms(self, visit_code: str | None = None):
         cleaned_data = deepcopy(
-            self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=visit_code)
+            self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=visit_code),
         )
         cleaned_data.update({"cm_sx": YES})
         return cleaned_data
@@ -215,61 +217,61 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
     def test_non_symptomatic_patient_valid_baseline(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_non_symptomatic_patient_valid_d14(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_any_sx_unknown_valid_baseline(self):
         cleaned_data = self.get_valid_patient_any_sx_unknown(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_any_sx_unknown_valid_d14(self):
         cleaned_data = self.get_valid_patient_any_sx_unknown(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_signs_or_symptoms_baseline(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_signs_or_symptoms_d14(self):
         cleaned_data = self.get_valid_patient_with_signs_or_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_g3_signs_or_symptoms_baseline(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_g3_signs_or_symptoms_d14(self):
         cleaned_data = self.get_valid_patient_with_g3_signs_or_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_cm_symptoms_baseline(self):
         cleaned_data = self.get_valid_patient_with_cm_symptoms(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_valid_patient_with_cm_symptoms_d14(self):
         cleaned_data = self.get_valid_patient_with_cm_symptoms(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_m2m_sx_selections_expect_na_if_any_sx_is_no(self):
@@ -279,7 +281,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "any_sx": NO,
                 "current_sx": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx",
@@ -291,7 +293,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -309,7 +311,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "any_sx": UNKNOWN,
                 "current_sx": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx",
@@ -321,7 +323,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -338,7 +340,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "any_sx": YES,
                 "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name=NOT_APPLICABLE)),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx",
@@ -349,7 +351,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         cleaned_data.update(
             {
                 "current_sx": SiSx.objects.filter(Q(name=NOT_APPLICABLE)),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx",
@@ -367,7 +369,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "any_sx": YES,
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "reportable_as_ae": NO,
-            }
+            },
         )
         self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
@@ -377,9 +379,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "any_sx": YES,
                 "current_sx_gte_g3": SiSx.objects.filter(
-                    Q(name="fever") | Q(name=NOT_APPLICABLE)
+                    Q(name="fever") | Q(name=NOT_APPLICABLE),
                 ),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -397,7 +399,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx_gte_g3": SiSx.objects.filter(Q(name=NOT_APPLICABLE)),
                 "reportable_as_ae": NO,
-            }
+            },
         )
         self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
@@ -411,20 +413,20 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     | Q(name="vomiting")
                     | Q(name=OTHER)
                     | Q(name=VISUAL_LOSS)
-                    | Q(name="headache")
+                    | Q(name="headache"),
                 ),
                 "current_sx_gte_g3": SiSx.objects.filter(
                     Q(name="fever")
                     | Q(name="vomiting")
                     | Q(name=OTHER)
                     | Q(name=VISUAL_LOSS)
-                    | Q(name="headache")
+                    | Q(name="headache"),
                 ),
                 "current_sx_other": "Some other sx",
                 "current_sx_gte_g3_other": "Some other sx",
                 "headache_duration": "2d",
                 "visual_field_loss": "Visual field loss details",
-            }
+            },
         )
         self.assertFormValidatorNoError(self.validate_form_validator(cleaned_data))
 
@@ -434,7 +436,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(name=OTHER),
                 "current_sx_other": "",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_other",
@@ -444,7 +446,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"current_sx_other": "Some other sx"})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_current_sx_other_not_required_if_other_not_selected(self):
@@ -453,7 +455,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(name="fever"),
                 "current_sx_other": "Some other sx",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_other",
@@ -463,7 +465,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"current_sx_other": ""})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_applicable_if_any_sx_yes(self):
@@ -472,7 +474,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "any_sx": YES,
                 "reportable_as_ae": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="reportable_as_ae",
@@ -490,10 +492,10 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                             else SiSx.objects.filter(name=NOT_APPLICABLE)
                         ),
                         "reportable_as_ae": answer,
-                    }
+                    },
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_reportable_as_ae_not_applicable_if_any_sx_not_yes(self):
@@ -513,7 +515,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                             "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "reportable_as_ae": reportable_as_ae_answer,
-                        }
+                        },
                     )
                     self.assertFormValidatorError(
                         field="reportable_as_ae",
@@ -523,7 +525,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
                     cleaned_data.update({"reportable_as_ae": NOT_APPLICABLE})
                     self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
+                        form_validator=self.validate_form_validator(cleaned_data),
                     )
 
     def test_reportable_as_ae_if_current_sx_gte_g3s(self):
@@ -532,7 +534,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "reportable_as_ae": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="reportable_as_ae",
@@ -544,15 +546,14 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         self.assertFormValidatorError(
             field="reportable_as_ae",
             expected_msg=(
-                "Invalid selection. "
-                "Expected 'Yes', if symptoms Grade 3 or above were reported"
+                "Invalid selection. Expected 'Yes', if symptoms Grade 3 or above were reported"
             ),
             form_validator=self.validate_form_validator(cleaned_data),
         )
 
         cleaned_data.update({"reportable_as_ae": YES})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_if_no_current_sx_gte_g3(self):
@@ -561,7 +562,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "reportable_as_ae": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="reportable_as_ae",
@@ -581,7 +582,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"reportable_as_ae": NO})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_yes_invalid_if_sx_gte_g3_na(self):
@@ -598,7 +599,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"reportable_as_ae": NO})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_no_invalid_if_sx_gte_g3(self):
@@ -615,7 +616,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"reportable_as_ae": YES})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_can_opt_out_of_current_sx_gte_g3_if_any_sx_is_yes(self):
@@ -633,7 +634,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "any_sx": NO,
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -643,7 +644,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE)})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_sx_gte_g3_not_in_current_sx_raises_error(self):
@@ -652,7 +653,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
                 "current_sx_gte_g3": SiSx.objects.filter(name="cough"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -663,12 +664,12 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         cleaned_data.update(
             {
                 "current_sx": SiSx.objects.filter(
-                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough"),
                 ),
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_other_not_in_current_sx_gte_g3_when_other_in_current_sx_raises_error(
@@ -680,7 +681,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "current_sx": SiSx.objects.filter(name=OTHER),
                 "current_sx_other": "Some other sx",
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -706,9 +707,9 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
                 "current_sx_gte_g3": SiSx.objects.filter(
-                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough"),
                 ),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3",
@@ -719,12 +720,12 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         cleaned_data.update(
             {
                 "current_sx": SiSx.objects.filter(
-                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough"),
                 ),
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_sx_gte_g3_subset_of_current_sx_valid(self):
@@ -732,13 +733,13 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
         cleaned_data.update(
             {
                 "current_sx": SiSx.objects.filter(
-                    Q(name="fever") | Q(name="vomiting") | Q(name="cough")
+                    Q(name="fever") | Q(name="vomiting") | Q(name="cough"),
                 ),
                 "current_sx_gte_g3": SiSx.objects.filter(Q(name="fever") | Q(name="vomiting")),
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_current_sx_gte_g3_other_field_required_if_g3_other_selected(self):
@@ -749,7 +750,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "current_sx_other": "Some other sx",
                 "current_sx_gte_g3": SiSx.objects.filter(name=OTHER),
                 "current_sx_gte_g3_other": "",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3_other",
@@ -759,7 +760,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"current_sx_gte_g3_other": "Some other G3 sx"})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_current_sx_gte_g3_other_not_required_if_other_not_selected(self):
@@ -768,7 +769,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
                 "current_sx_gte_g3_other": "Some other sx",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="current_sx_gte_g3_other",
@@ -778,7 +779,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
         cleaned_data.update({"current_sx_gte_g3_other": ""})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_validate_current_sx_other_specify_fields_required_if_specified(self):
@@ -804,8 +805,8 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     {
                         other_field: (
                             "3d" if other_field == "headache_duration" else "Some other text"
-                        )
-                    }
+                        ),
+                    },
                 )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data),
@@ -844,7 +845,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 "any_sx": YES,
                 "current_sx": SiSx.objects.filter(name="fever"),
                 "patient_admitted": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="patient_admitted",
@@ -856,7 +857,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             with self.subTest(answer=answer):
                 cleaned_data.update({"patient_admitted": answer})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_patient_admitted_not_applicable_if_any_sx_not_yes(self):
@@ -867,7 +868,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     patient_admitted_answer=patient_admitted_answer,
                 ):
                     cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
-                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON,
                     )
                     cleaned_data.update(
                         {
@@ -875,7 +876,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                             "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "patient_admitted": patient_admitted_answer,
-                        }
+                        },
                     )
                     self.assertFormValidatorError(
                         field="patient_admitted",
@@ -885,7 +886,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
                     cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
                     self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
+                        form_validator=self.validate_form_validator(cleaned_data),
                     )
 
     def test_cm_sx_applicable_if_any_sx_yes(self):
@@ -894,7 +895,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
             {
                 "any_sx": YES,
                 "cm_sx": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_sx",
@@ -907,7 +908,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                 cleaned_data = self.get_valid_patient_with_signs_or_symptoms()
                 cleaned_data.update({"cm_sx": answer})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_cm_sx_not_applicable_if_any_sx_not_yes(self):
@@ -918,7 +919,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                     cm_sx_answer=cm_sx_answer,
                 ):
                     cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
-                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON
+                        assessment_type=TELEPHONE if any_sx_answer == UNKNOWN else IN_PERSON,
                     )
                     cleaned_data.update(
                         {
@@ -926,7 +927,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
                             "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                             "cm_sx": cm_sx_answer,
-                        }
+                        },
                     )
                     self.assertFormValidatorError(
                         field="cm_sx",
@@ -936,7 +937,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 
                     cleaned_data.update({"cm_sx": NOT_APPLICABLE})
                     self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
+                        form_validator=self.validate_form_validator(cleaned_data),
                     )
 
 
@@ -944,7 +945,7 @@ class TestSignsAndSymptomsFormValidation(TestSignsAndSymptomsFormValidationBase)
 class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
     TestSignsAndSymptomsFormValidationBase,
 ):
-    def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
+    def default_cleaned_data(self, visit_code: str | None = None) -> dict:
         return self.get_valid_patient_with_signs_or_symptoms(visit_code=visit_code)
 
     @tag("1")
@@ -952,7 +953,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
         """Test that the test data we're working with is valid."""
         cleaned_data = self.default_cleaned_data(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_can_be_applicable_at_baseline(self: Any):
@@ -969,7 +970,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
                         ),
                         "reportable_as_ae": response,
                         "patient_admitted": NO,
-                    }
+                    },
                 )
                 self.assertFormValidatorNoError(
                     form_validator=self.validate_form_validator(cleaned_data),
@@ -985,7 +986,7 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
                         "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                         "reportable_as_ae": NO,
                         "patient_admitted": response,
-                    }
+                    },
                 )
 
                 cleaned_data.update({"patient_admitted": response})
@@ -999,11 +1000,12 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": YES,
                 "current_sx_gte_g3": SiSx.objects.filter(name="fever"),
-            }
+            },
         )
 
         form_validator = self.form_validator_cls(
-            cleaned_data=cleaned_data, model=SignsAndSymptoms
+            cleaned_data=cleaned_data,
+            model=SignsAndSymptoms,
         )
         form_validator.validate()
         self.assertDictEqual({}, form_validator._errors)
@@ -1012,15 +1014,16 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": NO,
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reportable_as_ae_not_required_if_sx_unknown_at_d14(self):
         cleaned_data = self.get_valid_patient_with_no_signs_or_symptoms(
-            visit_code=DAY14, assessment_type=TELEPHONE
+            visit_code=DAY14,
+            assessment_type=TELEPHONE,
         )
         cleaned_data.update(
             {
@@ -1028,10 +1031,11 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
                 "current_sx": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "current_sx_gte_g3": SiSx.objects.filter(name=NOT_APPLICABLE),
                 "reportable_as_ae": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = self.form_validator_cls(
-            cleaned_data=cleaned_data, model=SignsAndSymptoms
+            cleaned_data=cleaned_data,
+            model=SignsAndSymptoms,
         )
         try:
             form_validator.validate()
@@ -1044,12 +1048,12 @@ class TestSignsAndSymptomsStatusReportingFieldsetFormValidation(
             with self.subTest(patient_admitted=response):
                 cleaned_data.update({"patient_admitted": response})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_patient_admitted_not_required_at_d14(self):
         cleaned_data = self.get_valid_patient_any_sx_unknown()
         cleaned_data.update({"patient_admitted": NOT_APPLICABLE})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )

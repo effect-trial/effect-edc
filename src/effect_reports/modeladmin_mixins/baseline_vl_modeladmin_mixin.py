@@ -14,13 +14,16 @@ class BaselineVlModelAdminMixin(
     ModelAdminDashboardMixin,
     TemplatesModelAdminMixin,
 ):
-    report_model: str = None
+    report_model: str | None = None
     crf_model = "effect_subject.arvhistory"
     qa_report_list_display_insert_pos = 4
     site_list_display_insert_pos: int = 2
-    ordering = ["site", "subject_identifier"]
+    ordering = (
+        "site",
+        "subject_identifier",
+    )
 
-    list_display = [
+    list_display = (
         "subject_dashboard",
         "visit_dashboard",
         "site",
@@ -34,7 +37,7 @@ class BaselineVlModelAdminMixin(
         "user_modified",
         "created",
         "modified",
-    ]
+    )
 
     list_filter = (
         "has_viral_load_result",
@@ -49,7 +52,7 @@ class BaselineVlModelAdminMixin(
         "modified",
     )
 
-    search_fields = [
+    search_fields = (
         "subject_identifier",
         "viral_load_result",
-    ]
+    )

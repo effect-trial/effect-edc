@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from django.contrib import admin
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
@@ -11,7 +9,9 @@ from ..models import OnSchedule
 
 @admin.register(OnSchedule, site=effect_prn_admin)
 class OnScheduleAdmin(
-    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
     instructions = None
 
@@ -21,5 +21,5 @@ class OnScheduleAdmin(
 
     list_filter = ("onschedule_datetime",)
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:  # noqa: ARG002
         return ("onschedule_datetime",)

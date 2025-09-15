@@ -22,14 +22,14 @@ class ChestXrayAdmin(CrfModelAdmin):
                     "chest_xray_results",
                     "chest_xray_results_other",
                     "comment",
-                )
+                ),
             },
         ),
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = ["chest_xray_results"]
+    filter_horizontal = ("chest_xray_results",)
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "chest_xray": admin.VERTICAL,
     }

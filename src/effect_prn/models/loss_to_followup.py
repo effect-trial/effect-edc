@@ -25,13 +25,16 @@ class LossToFollowup(
     action_name = LTFU_ACTION
 
     report_datetime = models.DateTimeField(
-        verbose_name="Report Date and Time", default=get_utcnow
+        verbose_name="Report Date and Time",
+        default=get_utcnow,
     )
 
     last_seen_datetime = models.DateField(verbose_name="Date participant last seen")
 
     number_consecutive_missed_visits = models.DateField(
-        verbose_name="Number of consecutive visits missed", null=True, blank=False
+        verbose_name="Number of consecutive visits missed",
+        null=True,
+        blank=False,
     )
 
     last_missed_visit_datetime = models.DateField(
@@ -41,12 +44,13 @@ class LossToFollowup(
     )
 
     home_visited = models.CharField(
-        verbose_name="Has a home visit been made", max_length=15, choices=YES_NO
+        verbose_name="Has a home visit been made",
+        max_length=15,
+        choices=YES_NO,
     )
 
     home_visit_detail = models.TextField(
         verbose_name="If YES, provide any further details of the home visit",
-        null=True,
         blank=False,
     )
 
@@ -62,13 +66,12 @@ class LossToFollowup(
         verbose_name=(
             "Please give details of the circumstances that have led to this decision."
         ),
-        null=True,
         blank=False,
     )
 
     class Meta(BaseUuidModel.Meta):
         verbose_name = "Loss to Follow Up"
         verbose_name_plural = "Loss to Follow Up"
-        indexes = [
-            models.Index(fields=["subject_identifier", "action_identifier", "site", "id"])
-        ]
+        indexes = (
+            models.Index(fields=["subject_identifier", "action_identifier", "site", "id"]),
+        )

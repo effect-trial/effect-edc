@@ -100,7 +100,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
     @staticmethod
     def format_visit_date(subject_visit):
         return subject_visit.report_datetime.date().strftime(
-            convert_php_dateformat(settings.SHORT_DATE_FORMAT)
+            convert_php_dateformat(settings.SHORT_DATE_FORMAT),
         )
 
     def test_data_ok(self):
@@ -121,7 +121,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = lab_panel.form_validator(
-                    cleaned_data=panel_results_data, model=lab_panel.model
+                    cleaned_data=panel_results_data,
+                    model=lab_panel.model,
                 )
                 try:
                     form_validator.validate()
@@ -162,7 +163,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     )
 
                     form_validator = lab_panel.form_validator(
-                        cleaned_data=cleaned_data, model=lab_panel.model
+                        cleaned_data=cleaned_data,
+                        model=lab_panel.model,
                     )
                     try:
                         form_validator.validate()
@@ -206,7 +208,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "Got 7 days."
                             "Visit report datetime is "
                             f"{self.format_visit_date(subject_visit)}. "
-                            "See also AppConfig.report_datetime_allowance."
+                            "See also AppConfig.report_datetime_allowance.",
                         ],
                         form.errors.get("report_datetime"),
                     )
@@ -338,7 +340,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         [
                             "Report datetime may not be before the visit report datetime. "
                             "Visit report datetime is "
-                            f"{self.format_visit_date(subject_visit_d9)}. "
+                            f"{self.format_visit_date(subject_visit_d9)}. ",
                         ],
                         form.errors.get("report_datetime"),
                     )
@@ -362,7 +364,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "neutrophil_reportable": 4,
                         "results_abnormal": YES,
                         "results_reportable": YES,
-                    }
+                    },
                 )
                 form = BloodResultsFbcForm(panel_results_data)
                 self.assertTrue(
@@ -371,7 +373,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = BloodResultsFbcFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsFbc,
                 )
                 try:
                     form_validator.validate()
@@ -397,7 +400,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "neutrophil_diff_reportable": NO,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form = BloodResultsFbcForm(panel_results_data)
                 self.assertTrue(
@@ -406,7 +409,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = BloodResultsFbcFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsFbc,
                 )
                 try:
                     form_validator.validate()
@@ -432,7 +436,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "lymphocyte_reportable": NO,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form = BloodResultsFbcForm(panel_results_data)
                 self.assertTrue(
@@ -441,7 +445,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = BloodResultsFbcFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsFbc,
                 )
                 try:
                     form_validator.validate()
@@ -467,7 +472,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "lymphocyte_diff_reportable": NO,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form = BloodResultsFbcForm(panel_results_data)
 
@@ -477,7 +482,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = BloodResultsFbcFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsFbc
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsFbc,
                 )
                 try:
                     form_validator.validate()
@@ -504,7 +510,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             f"{result_type}_reportable": GRADE4,
                             "results_abnormal": YES,
                             "results_reportable": YES,
-                        }
+                        },
                     )
                     form = BloodResultsFbcForm(panel_results_data)
                     self.assertFalse(form.is_valid(), "Expected form to be invalid.")
@@ -532,7 +538,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": NOT_APPLICABLE,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form = BloodResultsChemForm(panel_results_data)
                 self.assertTrue(
@@ -541,7 +547,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 )
 
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 try:
                     form_validator.validate()
@@ -564,10 +571,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 "sodium_reportable": NOT_APPLICABLE,
                 "results_abnormal": NO,
                 "results_reportable": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
@@ -581,10 +589,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             {
                 "sodium_abnormal": YES,
                 "sodium_reportable": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
@@ -600,10 +609,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     {
                         "sodium_abnormal": YES,
                         "sodium_reportable": reportable_response,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -621,10 +631,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 "sodium_reportable": NO,
                 "results_abnormal": NO,
                 "results_reportable": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
@@ -642,10 +653,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 "sodium_reportable": NO,
                 "results_abnormal": YES,
                 "results_reportable": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
@@ -659,10 +671,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             {
                 "results_abnormal": YES,
                 "results_reportable": YES,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()
@@ -676,10 +689,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             {
                 "results_abnormal": YES,
                 "results_reportable": NO,
-            }
+            },
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=panel_results_data, model=BloodResultsChem
+            cleaned_data=panel_results_data,
+            model=BloodResultsChem,
         )
         try:
             form_validator.validate()
@@ -721,10 +735,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": NOT_APPLICABLE,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -740,10 +755,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": NO,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 try:
                     form_validator.validate()
@@ -777,10 +793,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": NOT_APPLICABLE,
                         "results_abnormal": YES,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -796,10 +813,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": NO,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 try:
                     form_validator.validate()
@@ -831,7 +849,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                 PRESENT_AT_BASELINE,
             ]:
                 with self.subTest(
-                    abnormal_value=abnormal_value, reportable_response=reportable_response
+                    abnormal_value=abnormal_value,
+                    reportable_response=reportable_response,
                 ):
                     panel_results_data.update(
                         {
@@ -841,10 +860,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "sodium_reportable": reportable_response,
                             "results_abnormal": YES,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     with self.assertRaises(forms.ValidationError) as cm:
                         form_validator.validate()
@@ -860,10 +880,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "sodium_reportable": NO,
                             "results_abnormal": YES,
                             "results_reportable": NO,
-                        }
+                        },
                     )
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     try:
                         form_validator.validate()
@@ -900,10 +921,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "sodium_reportable": reportable_response,
                             "results_abnormal": NO,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     with self.assertRaises(forms.ValidationError) as cm:
                         form_validator.validate()
@@ -923,10 +945,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE3,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -942,10 +965,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE3,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -961,10 +985,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE3,
                         "results_abnormal": YES,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -980,10 +1005,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE3,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -999,10 +1025,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE3,
                         "results_abnormal": YES,
                         "results_reportable": YES,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 try:
                     form_validator.validate()
@@ -1039,10 +1066,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "sodium_reportable": reportable_response,
                             "results_abnormal": NO,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     with self.assertRaises(forms.ValidationError) as cm:
                         form_validator.validate()
@@ -1062,10 +1090,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE4,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -1081,10 +1110,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE4,
                         "results_abnormal": NO,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -1100,10 +1130,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE4,
                         "results_abnormal": YES,
                         "results_reportable": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -1119,10 +1150,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE4,
                         "results_abnormal": YES,
                         "results_reportable": NO,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 with self.assertRaises(forms.ValidationError) as cm:
                     form_validator.validate()
@@ -1138,10 +1170,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         "sodium_reportable": GRADE4,
                         "results_abnormal": YES,
                         "results_reportable": YES,
-                    }
+                    },
                 )
                 form_validator = BloodResultsChemFormValidator(
-                    cleaned_data=panel_results_data, model=BloodResultsChem
+                    cleaned_data=panel_results_data,
+                    model=BloodResultsChem,
                 )
                 try:
                     form_validator.validate()
@@ -1167,7 +1200,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NOT_APPLICABLE,
                             "results_abnormal": NO,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form = BloodResultsChemForm(panel_results_data)
                     self.assertFalse(form.is_valid(), "Expected form to be invalid.")
@@ -1200,7 +1233,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NOT_APPLICABLE,
                             "results_abnormal": NO,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
 
                     form = BloodResultsChemForm(panel_results_data)
@@ -1210,7 +1243,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     )
 
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     try:
                         form_validator.validate()
@@ -1241,7 +1275,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NOT_APPLICABLE,
                             "results_abnormal": NO,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form = BloodResultsChemForm(panel_results_data)
                     self.assertFalse(form.is_valid(), "Expected form to be invalid.")
@@ -1252,7 +1286,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     )
 
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     with self.assertRaises(forms.ValidationError) as cm:
                         form_validator.validate()
@@ -1276,7 +1311,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NO,
                             "results_abnormal": NO,
                             "results_reportable": NO,
-                        }
+                        },
                     )
                     form = BloodResultsChemForm(panel_results_data)
                     self.assertFalse(form.is_valid(), "Expected form to be invalid.")
@@ -1292,7 +1327,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NO,
                             "results_abnormal": YES,
                             "results_reportable": NO,
-                        }
+                        },
                     )
                     form = BloodResultsChemForm(panel_results_data)
                     self.assertTrue(
@@ -1301,7 +1336,8 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                     )
 
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     try:
                         form_validator.validate()
@@ -1319,7 +1355,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
         for normal_value in [5.05, 5.1, 6, 10, 50, 999]:
             for units in [MILLIGRAMS_PER_DECILITER, MILLIGRAMS_PER_LITER]:
                 if units != MILLIGRAMS_PER_DECILITER:
-                    normal_value = convert_units(
+                    normal_value = convert_units(  # noqa: PLW2901
                         label="crp",
                         value=normal_value,
                         units_from=MILLIGRAMS_PER_DECILITER,
@@ -1334,10 +1370,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                             "crp_reportable": NOT_APPLICABLE,
                             "results_abnormal": YES,
                             "results_reportable": NOT_APPLICABLE,
-                        }
+                        },
                     )
                     form_validator = BloodResultsChemFormValidator(
-                        cleaned_data=panel_results_data, model=BloodResultsChem
+                        cleaned_data=panel_results_data,
+                        model=BloodResultsChem,
                     )
                     with self.assertRaises(forms.ValidationError) as cm:
                         form_validator.validate()
@@ -1381,10 +1418,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                                 "crp_reportable": NOT_APPLICABLE,
                                 "results_abnormal": YES,
                                 "results_reportable": NOT_APPLICABLE,
-                            }
+                            },
                         )
                         form_validator = BloodResultsChemFormValidator(
-                            cleaned_data=panel_results_data, model=BloodResultsChem
+                            cleaned_data=panel_results_data,
+                            model=BloodResultsChem,
                         )
                         with self.assertRaises(forms.ValidationError) as cm:
                             form_validator.validate()
@@ -1400,10 +1438,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                                 "crp_reportable": crp_reportable,
                                 "results_abnormal": YES,
                                 "results_reportable": NOT_APPLICABLE,
-                            }
+                            },
                         )
                         form_validator = BloodResultsChemFormValidator(
-                            cleaned_data=panel_results_data, model=BloodResultsChem
+                            cleaned_data=panel_results_data,
+                            model=BloodResultsChem,
                         )
                         with self.assertRaises(forms.ValidationError) as cm:
                             form_validator.validate()
@@ -1419,10 +1458,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                                 "crp_reportable": NO,
                                 "results_abnormal": YES,
                                 "results_reportable": NOT_APPLICABLE,
-                            }
+                            },
                         )
                         form_validator = BloodResultsChemFormValidator(
-                            cleaned_data=panel_results_data, model=BloodResultsChem
+                            cleaned_data=panel_results_data,
+                            model=BloodResultsChem,
                         )
                         with self.assertRaises(forms.ValidationError) as cm:
                             form_validator.validate()
@@ -1438,10 +1478,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                                 "crp_reportable": NO,
                                 "results_abnormal": YES,
                                 "results_reportable": YES,
-                            }
+                            },
                         )
                         form_validator = BloodResultsChemFormValidator(
-                            cleaned_data=panel_results_data, model=BloodResultsChem
+                            cleaned_data=panel_results_data,
+                            model=BloodResultsChem,
                         )
                         with self.assertRaises(forms.ValidationError) as cm:
                             form_validator.validate()
@@ -1457,10 +1498,11 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                                 "crp_reportable": NO,
                                 "results_abnormal": YES,
                                 "results_reportable": NO,
-                            }
+                            },
                         )
                         form_validator = BloodResultsChemFormValidator(
-                            cleaned_data=panel_results_data, model=BloodResultsChem
+                            cleaned_data=panel_results_data,
+                            model=BloodResultsChem,
                         )
                         try:
                             form_validator.validate()

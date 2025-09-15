@@ -24,10 +24,14 @@ if TYPE_CHECKING:
 CSF_CRAG_PENDING = "CSF CrAg pending"
 INCOMPLETE_INCLUSION = "Incomplete inclusion criteria"
 INCOMPLETE_EXCLUSION = "Incomplete exclusion criteria"
+TWENTY_ONE_DAYS = 21
+SIXTY_DAYS = 60
+ONE_HUNDRED = 100
+EIGHTEEN_YEARS = 18
 
 
 class ScreeningEligibility(BaseScreeningEligibility):
-    eligible_values_list: list = [YES, NO, TBD, PENDING, INCOMPLETE]
+    eligible_values_list: list = [YES, NO, TBD, PENDING, INCOMPLETE]  # noqa: RUF012
 
     incomplete_value = INCOMPLETE
     incomplete_display_label = INCOMPLETE
@@ -54,7 +58,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
     def assessment_is_incomplete(reasons_ineligible: dict[str, str]) -> bool:
         reasons_as_set = set(reasons_ineligible.values())
         return reasons_as_set and reasons_as_set.issubset(
-            {INCOMPLETE_INCLUSION, INCOMPLETE_EXCLUSION}
+            {INCOMPLETE_INCLUSION, INCOMPLETE_EXCLUSION},
         )
 
     def update_model(self) -> None:
@@ -87,25 +91,27 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(willing_to_participate="Unwilling to participate")
         if self.model_obj.consent_ability == NO:
             reasons_ineligible.update(consent_ability="Incapable of consenting")
-        if self.model_obj.age_in_years is not None and self.model_obj.age_in_years < 18:
+        if (
+            self.model_obj.age_in_years is not None
+            and self.model_obj.age_in_years < EIGHTEEN_YEARS
+        ):
             reasons_ineligible.update(age_in_years="Age not >= 18")
         if self.model_obj.hiv_pos == NO:
             reasons_ineligible.update(hiv_pos="Not HIV sero-positive")
         reasons_ineligible = self.review_cd4(reasons_ineligible)
         reasons_ineligible = self.review_serum_crag(reasons_ineligible)
-        reasons_ineligible = self.review_lp_csf_crag(reasons_ineligible)
-        return reasons_ineligible
+        return self.review_lp_csf_crag(reasons_ineligible)
 
     def review_cd4(self, reasons_ineligible: dict[str, str]) -> dict[str, str]:
         report_datetime = getattr(self.model_obj, "report_datetime", None)
         cd4_date = getattr(self.model_obj, "cd4_date", None)
 
-        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= 100:
+        if self.model_obj.cd4_value is not None and self.model_obj.cd4_value >= ONE_HUNDRED:
             reasons_ineligible.update(cd4_value=f"CD4 not <100 {CELLS_PER_MICROLITER}")
         elif (
             report_datetime
             and cd4_date
-            and abs((to_local(report_datetime).date() - cd4_date).days) > 60
+            and abs((to_local(report_datetime).date() - cd4_date).days) > SIXTY_DAYS
         ):
             reasons_ineligible.update(cd4_date="CD4 > 60 days")
         return reasons_ineligible
@@ -119,7 +125,8 @@ class ScreeningEligibility(BaseScreeningEligibility):
         elif (
             report_datetime
             and serum_crag_date
-            and abs((to_local(report_datetime).date() - serum_crag_date).days) > 21
+            and abs((to_local(report_datetime).date() - serum_crag_date).days)
+            > TWENTY_ONE_DAYS
         ):
             reasons_ineligible.update(serum_crag_date="Serum CrAg > 21 days")
         return reasons_ineligible
@@ -137,7 +144,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(lp_declined="LP not declined")
         return reasons_ineligible
 
-    def review_exclusion(  # noqa C901
+    def review_exclusion(
         self,
         reasons_ineligible: dict[str, str],
     ) -> dict[str, str]:
@@ -165,7 +172,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(exclusion_criteria=INCOMPLETE_EXCLUSION)
         if self.model_obj.contraindicated_meds == YES:
             reasons_ineligible.update(
-                contraindicated_meds="Contraindicated concomitant medications"
+                contraindicated_meds="Contraindicated concomitant medications",
             )
         if self.model_obj.cm_in_csf == YES:
             reasons_ineligible.update(cm_in_csf="Positive evidence of CM on CSF")
@@ -181,7 +188,7 @@ class ScreeningEligibility(BaseScreeningEligibility):
             reasons_ineligible.update(prior_cm_episode="Prior episode of CM")
         if self.model_obj.reaction_to_study_drugs == YES:
             reasons_ineligible.update(
-                reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole"
+                reaction_to_study_drugs="Serious reaction to flucytosine or fluconazole",
             )
         reasons_ineligible = self.review_mg_ssx(reasons_ineligible)
         if self.model_obj.unsuitable_for_study == YES:

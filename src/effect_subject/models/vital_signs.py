@@ -46,7 +46,9 @@ class VitalSigns(
     temperature = TemperatureField()
 
     abnormal_lung_exam = models.CharField(
-        verbose_name="Abnormal lung exam:", max_length=5, choices=YES_NO
+        verbose_name="Abnormal lung exam:",
+        max_length=5,
+        choices=YES_NO,
     )
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

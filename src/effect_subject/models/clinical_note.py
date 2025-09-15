@@ -14,7 +14,7 @@ class ClinicalNote(CrfModelMixin, edc_models.BaseUuidModel):
 
     # TODO: Ask on every visit
     # TODO: Encrypt
-    comments = models.TextField(verbose_name="Comments", null=True, blank=True)
+    comments = models.TextField(verbose_name="Comments", blank=True)
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Clinical Note"

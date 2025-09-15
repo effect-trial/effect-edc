@@ -48,14 +48,14 @@ else:
 
 # copy your .env file from .envs/ to BASE_DIR
 if "test" in sys.argv:
-    env.read_env(os.path.join(ENV_DIR, ".env-tests"))
-    print(f"Reading env from {os.path.join(BASE_DIR, '.env-tests')}")
+    env.read_env(ENV_DIR / ".env-tests")
+    sys.stdout.write(f"Reading env from {BASE_DIR / '.env-tests'}\n")
 else:
-    if not os.path.exists(os.path.join(ENV_DIR, ".env")):
-        raise FileExistsError(
-            f"Environment file does not exist. Got `{os.path.join(ENV_DIR, '.env')}`"
-        )
-    env.read_env(os.path.join(ENV_DIR, ".env"))
+    if not (ENV_DIR / ".env").exists():
+        env.read_env(BASE_DIR / ".env")
+        errmsg = f"Environment file does not exist. Got `{ENV_DIR / '.env'}`"
+        raise FileExistsError(errmsg)
+    env.read_env(ENV_DIR / ".env")
 
 DEBUG = env("DJANGO_DEBUG")
 
@@ -67,7 +67,7 @@ LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
 
 ETC_DIR = env.str("DJANGO_ETC_FOLDER")
 
-TEST_DIR = os.path.join(BASE_DIR, APP_NAME, "tests")
+TEST_DIR = BASE_DIR / APP_NAME / "tests"
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
@@ -203,7 +203,7 @@ MIDDLEWARE.extend(
         "edc_adverse_event.middleware.DashboardMiddleware",
         "edc_listboard.middleware.DashboardMiddleware",
         "edc_review_dashboard.middleware.DashboardMiddleware",
-    ]
+    ],
 )
 
 ROOT_URLCONF = f"{APP_NAME}.urls"
@@ -223,17 +223,17 @@ TEMPLATES = [
                 "edc_constants.context_processor.constants",
                 "edc_appointment.context_processors.constants",
                 "edc_visit_tracking.context_processors.constants",
-            ]
+            ],
         },
-    }
+    },
 ]
 
 if env("DATABASE_SQLITE_ENABLED"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
+            "NAME": BASE_DIR / "db.sqlite3",
+        },
     }
 
 else:
@@ -252,7 +252,7 @@ if env.str("DJANGO_CACHE") == "redis":
                 "PASSWORD": env.str("DJANGO_REDIS_PASSWORD"),
             },
             "KEY_PREFIX": f"{APP_NAME}",
-        }
+        },
     }
     SESSION_ENGINE = "django.contrib.sessions.backends.cache"
     SESSION_CACHE_ALIAS = "default"
@@ -264,7 +264,7 @@ elif env.str("DJANGO_CACHE") == "memcached":
         "default": {
             "BACKEND": "django.core.cache.backends.memcached.PyLibMCCache",
             "LOCATION": "unix:/tmp/memcached.sock",
-        }
+        },
     }
     SESSION_ENGINE = "django.contrib.sessions.backends.cached_db"
 
@@ -295,8 +295,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-USE_I18N = True  # set to False to turn off translation
-USE_L10N = True  # set to False so DATE formats below are used (Deprecated)
+USE_I18N = True  # set to `False` to turn off translation
+USE_L10N = True  # set to `False` so DATE formats below are used (Deprecated)
 USE_TZ = True
 
 # Add custom languages not provided by Django
@@ -347,8 +347,8 @@ if not DEBUG:
     SECURE_BROWSER_XSS_FILTER = True
 
 # edc_lab and label
-LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or os.path.join(
-    BASE_DIR, "label_templates", "2.25x1.25in"
+LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or (
+    BASE_DIR / "label_templates" / "2.25x1.25in"
 )
 CUPS_SERVERS = env.dict("DJANGO_CUPS_SERVERS")
 
@@ -434,13 +434,13 @@ if TWILIO_ENABLED:
     TWILIO_SENDER = env.str("TWILIO_SENDER")
 
 # django_revision
-GIT_DIR = BASE_DIR.parent.parent
+GIT_DIR = BASE_DIR.parent
 
 # django_crypto_fields
 KEY_PATH = env.str("DJANGO_KEY_FOLDER")
 AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
 
-EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or os.path.expanduser("~/")
+EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
 # django_simple_history
 SIMPLE_HISTORY_ENFORCE_HISTORY_MODEL_PERMISSIONS = True
@@ -454,7 +454,7 @@ DJANGO_LOG_FOLDER = env.str("DJANGO_LOG_FOLDER")
 ADVERSE_EVENT_ADMIN_SITE = env.str("EDC_ADVERSE_EVENT_ADMIN_SITE")
 ADVERSE_EVENT_APP_LABEL = env.str("EDC_ADVERSE_EVENT_APP_LABEL")
 EDC_ADVERSE_EVENT_HOSPITALIZATION_APP_LABEL = env.str(
-    "EDC_ADVERSE_EVENT_HOSPITALIZATION_APP_LABEL"
+    "EDC_ADVERSE_EVENT_HOSPITALIZATION_APP_LABEL",
 )
 
 # edc_data_manager
@@ -477,10 +477,10 @@ EDC_PROTOCOL_NUMBER = env.str("EDC_PROTOCOL_NUMBER")
 
 EDC_PROTOCOL_PROJECT_NAME = "EFFECT"
 EDC_PROTOCOL_STUDY_OPEN_DATETIME = get_datetime_from_env(
-    *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME")
+    *env.list("EDC_PROTOCOL_STUDY_OPEN_DATETIME"),
 )
 EDC_PROTOCOL_STUDY_CLOSE_DATETIME = get_datetime_from_env(
-    *env.list("EDC_PROTOCOL_STUDY_CLOSE_DATETIME")
+    *env.list("EDC_PROTOCOL_STUDY_CLOSE_DATETIME"),
 )
 EDC_PROTOCOL_TITLE = env.str("EDC_PROTOCOL_TITLE")
 
@@ -503,7 +503,7 @@ if env("AWS_ENABLED"):
     AWS_LOCATION = env.str("AWS_LOCATION")
     AWS_IS_GZIPPED = True
     STORAGES = {"staticfiles": {"BACKEND": "storages.backends.s3boto3.S3Boto3Storage"}}
-    STATIC_URL = f"{os.path.join(AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)}/"
+    STATIC_URL = str(f"{Path(AWS_S3_CUSTOM_DOMAIN) / AWS_LOCATION}/")
     STATIC_ROOT = ""
 else:
     # run collectstatic, check nginx LOCATION

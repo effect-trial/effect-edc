@@ -16,14 +16,12 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Is the participant currently an inpatient?",
         max_length=5,
         choices=YES_NO,
-        null=True,
         help_text="(answer NO if admission purely for screening LP)",
     )
 
     admission_indication = models.CharField(
         verbose_name="If YES, what is the indication for admission?",
         max_length=50,
-        null=True,
         blank=True,
     )
 
@@ -56,7 +54,7 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     flucon_dose_other_reason = edc_models.OtherCharField(
-        verbose_name="Other Fluconazole dose reason:"
+        verbose_name="Other Fluconazole dose reason:",
     )
 
     reported_neuro_abnormality = models.CharField(
@@ -71,7 +69,6 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     neuro_abnormality_details = models.TextField(
         verbose_name="Details of neurological abnormality?",
-        null=True,
         blank=True,
     )
 
@@ -89,7 +86,8 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     tb_dx_date_estimated = edc_models.IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+        verbose_name="If YES, is this date estimated?",
+        default=NOT_APPLICABLE,
     )
 
     tb_site = models.CharField(
@@ -130,7 +128,7 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     previous_oi_name = edc_models.OtherCharField(
-        verbose_name="If YES, specify opportunistic infection name?"
+        verbose_name="If YES, specify opportunistic infection name?",
     )
 
     previous_oi_dx_date = models.DateField(
@@ -143,7 +141,9 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     any_medications = models.CharField(
-        verbose_name="Other medication?", max_length=5, choices=YES_NO
+        verbose_name="Other medication?",
+        max_length=5,
+        choices=YES_NO,
     )
 
     specify_medications = models.ManyToManyField(Medication, blank=True)
@@ -152,11 +152,12 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If STEROID, specify type and dose of steroid ...",
         max_length=150,
         blank=True,
-        null=True,
     )
 
     specify_medications_other = models.TextField(
-        verbose_name="If OTHER, specify ...", max_length=150, blank=True, null=True
+        verbose_name="If OTHER, specify ...",
+        max_length=150,
+        blank=True,
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

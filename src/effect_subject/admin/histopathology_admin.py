@@ -17,7 +17,7 @@ def get_histopathology_fieldset():
                 "tissue_biopsy_date",
                 "tissue_biopsy_result",
                 "tissue_biopsy_organism_text",
-            )
+            ),
         },
     ]
 
@@ -26,7 +26,7 @@ def get_histopathology_fieldset():
 class HistopathologyAdmin(HistopathologyModelAdminMixin, CrfModelAdmin):
     form = HistopathologyForm
 
-    autocomplete_fields = ["requisition"]
+    autocomplete_fields = ("requisition",)
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

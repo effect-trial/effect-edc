@@ -1,5 +1,3 @@
-from typing import Dict
-
 from django.conf import settings
 from django.contrib.sites.models import Site
 from django.test import TestCase
@@ -14,7 +12,7 @@ class TestSubjectRefusal(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         self.subject_screening = self.get_subject_screening()
 
-    def get_data(self) -> Dict:
+    def get_data(self) -> dict:
         refusal_reason = RefusalReasons.objects.all()[0]
         return {
             "screening_identifier": self.subject_screening.screening_identifier,
@@ -49,7 +47,7 @@ class TestSubjectRefusal(EffectTestCaseMixin, TestCase):
         self.assertTrue(self.subject_screening.refused)
 
         subject_refusal = SubjectRefusal.objects.get(
-            screening_identifier=self.subject_screening.screening_identifier
+            screening_identifier=self.subject_screening.screening_identifier,
         )
         subject_refusal.delete()
         self.subject_screening.refresh_from_db()

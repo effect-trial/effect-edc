@@ -17,7 +17,6 @@ class SerumCragDate(QaReportModelMixin, models.Model):
     screening_identifier = models.CharField(
         verbose_name="Screening ID",
         max_length=50,
-        null=True,
     )
 
     # helper information
@@ -27,7 +26,6 @@ class SerumCragDate(QaReportModelMixin, models.Model):
     serum_crag_value = models.CharField(
         verbose_name="CrAg",
         max_length=50,
-        null=True,
     )
 
     objects = models.Manager()

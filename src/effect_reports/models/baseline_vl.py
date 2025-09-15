@@ -36,7 +36,8 @@ class BaselineVlMissingQuantifier(BaseBaselineVlModelMixin):
     """
 
     report_model = models.CharField(
-        max_length=50, default="effect_reports.baselinevlmissingquantifier"
+        max_length=50,
+        default="effect_reports.baselinevlmissingquantifier",
     )
 
     class Meta(QaReportModelMixin.Meta, BaseUuidModel.Meta):
@@ -58,7 +59,8 @@ class BaselineVlDiscrepancy(BaseBaselineVlModelMixin):
     """
 
     report_model = models.CharField(
-        max_length=50, default="effect_reports.baselinevldiscrepancy"
+        max_length=50,
+        default="effect_reports.baselinevldiscrepancy",
     )
 
     class Meta(QaReportModelMixin.Meta, BaseUuidModel.Meta):

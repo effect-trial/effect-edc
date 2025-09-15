@@ -21,7 +21,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
                 "fields": (
                     "subject_identifier",
                     "report_datetime",
-                )
+                ),
             },
         ),
         (
@@ -37,7 +37,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
                     "hospitalization_date_estimated",
                     "clinical_notes_available",
                     "cm_sx",
-                )
+                ),
             },
         ),
         (
@@ -52,7 +52,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
                     "seizures",
                     "blurred_vision",
                     "nok_narrative",
-                )
+                ),
             },
         ),
         (
@@ -63,7 +63,7 @@ class DeathReportAdmin(SiteModelAdminMixin, DeathReportModelAdminMixin, SimpleHi
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "blurred_vision": admin.VERTICAL,
         "cause_of_death": admin.VERTICAL,
         "clinical_notes_available": admin.VERTICAL,

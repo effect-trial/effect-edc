@@ -1,5 +1,4 @@
 from copy import deepcopy
-from typing import Optional
 
 from clinicedc_tests.utils import validate_fields_exists_or_raise
 from django.db.models import Q
@@ -45,7 +44,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
         self.get_next_subject_visit(subject_visit)
 
     @staticmethod
-    def get_cleaned_data_no_dx(visit_code: str = None):
+    def get_cleaned_data_no_dx(visit_code: str | None = None):
         # Significant Diagnoses CRF only applicable/required at D14
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code or DAY14)
         cleaned_data = {
@@ -62,7 +61,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
         validate_fields_exists_or_raise(cleaned_data, Diagnoses)
         return cleaned_data
 
-    def get_cleaned_data_with_dx(self, visit_code: str = None):
+    def get_cleaned_data_with_dx(self, visit_code: str | None = None):
         cleaned_data = deepcopy(self.get_cleaned_data_no_dx(visit_code=visit_code))
         cleaned_data.update(
             {
@@ -70,7 +69,7 @@ class TestDiagnosesFormValidationBase(EffectTestCaseMixin, TestCase):
                 "diagnoses": Dx.objects.filter(name="malaria"),
                 "reportable_as_ae": NO,
                 "patient_admitted": NO,
-            }
+            },
         )
         validate_fields_exists_or_raise(cleaned_data, Diagnoses)
         return cleaned_data
@@ -80,13 +79,13 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
     def test_d14_cleaned_data_no_dx_ok(self):
         cleaned_data = self.get_cleaned_data_no_dx(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_d14_cleaned_data_with_dx_ok(self):
         cleaned_data = self.get_cleaned_data_with_dx(visit_code=DAY14)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_diagnoses_na_if_has_diagnoses_no(self):
@@ -95,10 +94,10 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": NO,
                 "diagnoses": Dx.objects.filter(name=NOT_APPLICABLE),
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_diagnoses_na_raises_if_has_diagnoses_yes(self):
@@ -107,7 +106,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": YES,
                 "diagnoses": Dx.objects.filter(name=NOT_APPLICABLE),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses",
@@ -124,7 +123,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": NO,
                 "diagnoses": Dx.objects.filter(name="malaria"),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses",
@@ -138,9 +137,9 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": NO,
                 "diagnoses": Dx.objects.filter(
-                    Q(name=NOT_APPLICABLE) | Q(name="malaria") | Q(name="bacteraemia")
+                    Q(name=NOT_APPLICABLE) | Q(name="malaria") | Q(name="bacteraemia"),
                 ),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses",
@@ -152,7 +151,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": NO,
                 "diagnoses": Dx.objects.filter(Q(name=NOT_APPLICABLE) | Q(name="malaria")),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses",
@@ -164,7 +163,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": NO,
                 "diagnoses": Dx.objects.filter(Q(name=NOT_APPLICABLE)),
-            }
+            },
         )
         self.assertFormValidatorNoError(
             form_validator=self.validate_form_validator(cleaned_data),
@@ -176,9 +175,9 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
             {
                 "has_diagnoses": YES,
                 "diagnoses": Dx.objects.filter(
-                    Q(name=OTHER) | Q(name="malaria") | Q(name="bacteraemia")
+                    Q(name=OTHER) | Q(name="malaria") | Q(name="bacteraemia"),
                 ),
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses_other",
@@ -198,7 +197,7 @@ class TestDiagnosesFormValidation(TestDiagnosesFormValidationBase):
                 "has_diagnoses": YES,
                 "diagnoses": Dx.objects.filter(Q(name="malaria") | Q(name="bacteraemia")),
                 "diagnoses_other": "Some other dx",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="diagnoses_other",
@@ -216,7 +215,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
     ReportingFieldsetDay14TestCaseMixin,
     TestDiagnosesFormValidationBase,
 ):
-    def default_cleaned_data(self, visit_code: Optional[str] = None) -> dict:
+    def default_cleaned_data(self, visit_code: str | None = None) -> dict:
         return self.get_cleaned_data_with_dx(visit_code=visit_code)
 
     def test_reporting_fieldset_ok_if_dx(self):
@@ -230,10 +229,10 @@ class TestDiagnosesReportingFieldsetFormValidation(
                             "diagnoses": Dx.objects.filter(name="bacteraemia"),
                             "reportable_as_ae": ae_answer,
                             "patient_admitted": admitted_answer,
-                        }
+                        },
                     )
                     self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
+                        form_validator=self.validate_form_validator(cleaned_data),
                     )
 
     def test_reporting_fieldset_applicable_if_dx(self):
@@ -244,7 +243,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
                 "diagnoses": Dx.objects.filter(name="bacteraemia"),
                 "reportable_as_ae": NOT_APPLICABLE,
                 "patient_admitted": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="reportable_as_ae",
@@ -256,7 +255,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": NO,
                 "patient_admitted": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="patient_admitted",
@@ -268,10 +267,10 @@ class TestDiagnosesReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": NO,
                 "patient_admitted": YES,
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_reporting_fieldset_na_if_no_dx(self):
@@ -282,7 +281,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
                 "diagnoses": Dx.objects.filter(name=""),
                 "reportable_as_ae": NO,
                 "patient_admitted": NO,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="reportable_as_ae",
@@ -294,7 +293,7 @@ class TestDiagnosesReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": NOT_APPLICABLE,
                 "patient_admitted": YES,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="patient_admitted",
@@ -306,8 +305,8 @@ class TestDiagnosesReportingFieldsetFormValidation(
             {
                 "reportable_as_ae": NOT_APPLICABLE,
                 "patient_admitted": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )

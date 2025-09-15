@@ -17,7 +17,6 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         ),
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -31,7 +30,6 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     modifications_reason_other = models.TextField(
         verbose_name="If other reason, please provide details ...",
         max_length=250,
-        null=True,
         blank=True,
     )
 
@@ -39,14 +37,12 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was the participant started on Fluconazole?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
     flucon_not_initiated_reason = models.TextField(
         verbose_name="If NO, please explain",
         max_length=250,
-        null=True,
         blank=True,
     )
 
@@ -83,7 +79,6 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     flucon_notes = models.TextField(
         verbose_name="Fluconazole notes (if any)",
         max_length=250,
-        null=True,
         blank=True,
     )
 
@@ -91,14 +86,12 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Was the participant started on Flucytosine?",
         max_length=15,
         choices=YES_NO_NA,
-        null=True,
         blank=False,
     )
 
     flucyt_not_initiated_reason = models.TextField(
         verbose_name="If NO, please explain",
         max_length=250,
-        null=True,
         blank=True,
     )
 
@@ -179,7 +172,6 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
     flucyt_notes = models.TextField(
         verbose_name="Flucytosine notes (if any)",
         max_length=250,
-        null=True,
         blank=True,
     )
 

@@ -26,14 +26,14 @@ class MentalStatusAdmin(CrfModelAdmin):
                     "modified_rankin_score",
                     "ecog_score",
                     "glasgow_coma_score",
-                )
+                ),
             },
         ),
         reporting_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "any_other_problems": admin.VERTICAL,
         "behaviour_change": admin.VERTICAL,
         "confusion": admin.VERTICAL,

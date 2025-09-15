@@ -28,7 +28,7 @@ class SubjectScreeningAdmin(
 
     post_url_on_delete_name = "screening_listboard_url"
 
-    skip_auto_numbering = ["safe_save_id"]
+    skip_auto_numbering = ["safe_save_id"]  # noqa: RUF012
 
     additional_instructions = (
         "Patients must meet ALL of the inclusion criteria and NONE of the "
@@ -50,7 +50,7 @@ class SubjectScreeningAdmin(
                     "gender",
                     "age_in_years",
                     "parent_guardian_consent",
-                )
+                ),
             },
         ],
         [
@@ -60,7 +60,7 @@ class SubjectScreeningAdmin(
                     "hiv_pos",
                     "hiv_confirmed_date",
                     "hiv_confirmed_method",
-                )
+                ),
             },
         ],
         [
@@ -121,7 +121,7 @@ class SubjectScreeningAdmin(
                     "{html}",
                     html=mark_safe(
                         "<h3>At any time since CrAg screening, "
-                        "has the patient experienced:</h3>"
+                        "has the patient experienced:</h3>",
                     ),  # nosec #B703 # B308
                 ),
                 "fields": (
@@ -190,7 +190,7 @@ class SubjectScreeningAdmin(
         ],
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "any_other_mg_ssx": admin.VERTICAL,
         "breast_feeding": admin.VERTICAL,
         "cm_in_csf": admin.VERTICAL,
@@ -247,7 +247,7 @@ class SubjectScreeningAdmin(
         "reasons_ineligible",
     )
 
-    readonly_fields = [
+    readonly_fields = (
         "screening_identifier",
         "subject_identifier",
         "eligible",
@@ -256,12 +256,12 @@ class SubjectScreeningAdmin(
         "reasons_ineligible",
         "consented",
         "refused",
-    ]
+    )
 
-    def get_post_url_on_delete_name(self, request) -> str:
+    def get_post_url_on_delete_name(self, request) -> str:  # noqa: ARG002
         return url_names.get(self.post_url_on_delete_name)
 
-    def post_url_on_delete_kwargs(self, request, obj):
+    def post_url_on_delete_kwargs(self, request, obj):  # noqa: ARG002
         return {}
 
     @staticmethod
@@ -276,16 +276,14 @@ class SubjectScreeningAdmin(
     @staticmethod
     def reasons(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return mark_safe(
-            conditional_escape(eligibility.formatted_reasons_ineligible())
-        )  # nosec #B703 # B308
+        return mark_safe(conditional_escape(eligibility.formatted_reasons_ineligible()))  # noqa: S308
 
     @staticmethod
     def eligibility_status(obj=None):
         eligibility = ScreeningEligibility(obj)
-        return mark_safe(conditional_escape(eligibility.display_label))  # nosec #B703 # B308
+        return mark_safe(conditional_escape(eligibility.display_label))  # noqa: S308
 
-    def hide_delete_button_on_condition(self, request, object_id) -> bool:
+    def hide_delete_button_on_condition(self, request, object_id) -> bool:  # noqa: ARG002
         try:
             obj = SubjectScreening.objects.get(id=object_id)
         except ObjectDoesNotExist:

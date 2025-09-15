@@ -14,7 +14,7 @@ all_sites = [
     SingleSite(
         110,
         "capetown",
-        title="UCT: Khayelitsha and Mitchell’s Plain (Cape Town)",
+        title="UCT: Khayelitsha and Mitchell's Plain (Cape Town)",
         country="south_africa",
         country_code="sa",
         language_codes=sa_language_codes,

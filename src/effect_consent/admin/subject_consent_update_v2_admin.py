@@ -14,7 +14,9 @@ from .list_filters import ConsentDateListFilter
 
 @admin.register(SubjectConsentUpdateV2, site=effect_consent_admin)
 class SubjectConsentUpdateV2Admin(
-    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
     form = SubjectConsentUpdateV2Form
     show_dashboard_in_list_display_pos = 1
@@ -58,7 +60,7 @@ class SubjectConsentUpdateV2Admin(
 
     search_fields = ("subject_identifier", "action_identifier")
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "he_substudy": admin.VERTICAL,
         "sample_storage": admin.VERTICAL,
         "sample_export": admin.VERTICAL,

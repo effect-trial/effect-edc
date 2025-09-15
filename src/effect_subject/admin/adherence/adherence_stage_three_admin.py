@@ -23,10 +23,10 @@ from .missed_doses_admin import FluconMissedDosesInline, FlucytMissedDosesInline
 class AdherenceStageThreeAdmin(CrfModelAdmin):
     form = AdherenceStageThreeForm
 
-    inlines = [
+    inlines = (
         FluconMissedDosesInline,
         FlucytMissedDosesInline,
-    ]
+    )
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
@@ -38,7 +38,7 @@ class AdherenceStageThreeAdmin(CrfModelAdmin):
                 "description": (
                     "Missed doses must be checked against the participant's pill "
                     "count and adherence diary."
-                )
+                ),
             },
         ),
         medication_diary_review_fieldset_tuple,

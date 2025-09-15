@@ -18,8 +18,6 @@ from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,
 )
 
-from effect_consent.consents import consent_v1, consent_v2
-
 from ..choices import (
     CM_ON_CSF_METHODS,
     CSF_CRAG_RESULT_CHOICES,
@@ -31,6 +29,8 @@ from ..choices import (
 )
 from ..eligibility import ScreeningEligibility
 
+# from effect_consent.consents import consent_v1, consent_v2
+
 
 class ScreeningIdentifier(BaseScreeningIdentifier):
     template = "S{random_string}"
@@ -41,14 +41,13 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     identifier_cls = ScreeningIdentifier
 
-    consent_definitions = [consent_v1, consent_v2]
+    # consent_definitions = [consent_v1, consent_v2]
 
     site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, related_name="+")
 
     screening_consent = models.CharField(
         verbose_name=(
-            "Has the subject given his/her verbal consent "
-            "to be screened for the EFFECT trial?"
+            "Has the subject given his/her verbal consent to be screened for the EFFECT trial?"
         ),
         max_length=15,
         choices=YES_NO,
@@ -86,7 +85,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=15,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
-        null=True,
         blank=False,
     )
 
@@ -162,7 +160,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         verbose_name="Was LP done?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
         help_text="If YES, provide date below ...",
     )
@@ -225,7 +222,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     # exclusion
     contraindicated_meds = models.CharField(
-        verbose_name="Is the patient taking any contraindicated " "concomitant medications?",
+        verbose_name="Is the patient taking any contraindicated concomitant medications?",
         max_length=25,
         choices=YES_NO_NOT_EVALUATED,
         default=NOT_EVALUATED,
@@ -289,7 +286,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
 
     any_other_mg_ssx_other = models.TextField(
         verbose_name="If YES, specify",
-        null=True,
         blank=True,
         help_text="If more than one, please separate each with a comma (,).",
     )
@@ -312,12 +308,14 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         help_text=mark_safe(
             "At any time between the CrAg test and screening for eligibility. "
             "<BR>If results on tests on CSF are `pending`, report on "
-            "DAY 1 visit or when available."
+            "DAY 1 visit or when available.",
         ),  # nosec #B703 # B308
     )
 
     cm_in_csf_date = models.DateField(
-        verbose_name="Date `pending results` expected (estimate)", null=True, blank=True
+        verbose_name="Date `pending results` expected (estimate)",
+        null=True,
+        blank=True,
     )
 
     cm_in_csf_method = models.CharField(
@@ -349,7 +347,6 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     unsuitable_reason_other = models.TextField(
         verbose_name="If other reason unsuitable, please specify ...",
         max_length=150,
-        null=True,
         blank=True,
     )
 

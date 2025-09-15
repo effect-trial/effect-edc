@@ -7,7 +7,6 @@ from ..models import SubjectConsentUpdateV2
 
 
 class SubjectConsentUpdateV2Form(SiteModelFormMixin, FormValidatorMixin, forms.ModelForm):
-
     form_validator_cls = SubjectConsentUpdateV2FormValidator
 
     subject_identifier = forms.CharField(

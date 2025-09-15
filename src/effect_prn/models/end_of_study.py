@@ -33,7 +33,6 @@ class EndOfStudy(SiteModelMixin, OffScheduleModelMixin, ActionModelMixin, BaseUu
         verbose_name="If OTHER, please specify reason ...",
         max_length=500,
         blank=True,
-        null=True,
     )
 
     death_date = models.DateField(
@@ -54,7 +53,6 @@ class EndOfStudy(SiteModelMixin, OffScheduleModelMixin, ActionModelMixin, BaseUu
         verbose_name="If participant withdrew consent, please specify reason ...",
         max_length=500,
         blank=True,
-        null=True,
     )
 
     late_exclusion_reasons = models.ManyToManyField(
@@ -78,14 +76,12 @@ class EndOfStudy(SiteModelMixin, OffScheduleModelMixin, ActionModelMixin, BaseUu
         verbose_name="If participant was included in error, please provide narrative ...",
         max_length=500,
         blank=True,
-        null=True,
     )
 
     comment = models.TextField(
         verbose_name="Please provide further details if possible",
         max_length=500,
         blank=True,
-        null=True,
     )
 
     class Meta(OffScheduleModelMixin.Meta, BaseUuidModel.Meta):

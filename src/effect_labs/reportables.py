@@ -53,7 +53,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "lymphocyte": [
             Formula(
@@ -61,7 +61,7 @@ normal_data.update(
                 units=TEN_X_9_PER_LITER,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "lymphocyte_diff": [
             Formula(
@@ -69,7 +69,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_wbc": [
             Formula(
@@ -77,7 +77,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_glucose": [
             Formula(
@@ -85,7 +85,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_protein": [
             Formula(
@@ -93,7 +93,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_crag": [
             Formula(
@@ -101,7 +101,7 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_crag_lfa": [
             Formula(
@@ -109,9 +109,9 @@ normal_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
-    }
+    },
 )
 
 grading_data.update(
@@ -123,7 +123,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "lymphocyte": [
             Formula(
@@ -132,7 +132,7 @@ grading_data.update(
                 units=TEN_X_9_PER_LITER,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "lymphocyte_diff": [
             Formula(
@@ -141,7 +141,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_wbc": [
             Formula(
@@ -150,7 +150,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_glucose": [
             Formula(
@@ -159,7 +159,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_protein": [
             Formula(
@@ -168,7 +168,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_crag": [
             Formula(
@@ -177,7 +177,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "csf_crag_lfa": [
             Formula(
@@ -186,7 +186,7 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
         "proteinuria": [
             Formula(
@@ -195,9 +195,9 @@ grading_data.update(
                 units=PERCENT,
                 gender=[MALE, FEMALE],
                 **adult_age_options,
-            )
+            ),
         ],
-    }
+    },
 )
 
 

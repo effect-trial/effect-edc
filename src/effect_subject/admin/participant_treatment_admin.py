@@ -35,7 +35,7 @@ class ParticipantTreatmentAdmin(CrfModelAdmin):
                     "tb_tx_given_other",
                     "tb_tx_reason_no",
                     "tb_tx_reason_no_other",
-                )
+                ),
             },
         ),
         (
@@ -48,7 +48,7 @@ class ParticipantTreatmentAdmin(CrfModelAdmin):
                     "steroids_given",
                     "steroids_given_other",
                     "steroids_course",
-                )
+                ),
             },
         ),
         (
@@ -60,7 +60,7 @@ class ParticipantTreatmentAdmin(CrfModelAdmin):
                     "co_trimoxazole_date_estimated",
                     "co_trimoxazole_reason_no",
                     "co_trimoxazole_reason_no_other",
-                )
+                ),
             },
         ),
         (
@@ -72,7 +72,7 @@ class ParticipantTreatmentAdmin(CrfModelAdmin):
                     "antibiotics_date_estimated",
                     "antibiotics_given",
                     "antibiotics_given_other",
-                )
+                ),
             },
         ),
         (
@@ -84,15 +84,15 @@ class ParticipantTreatmentAdmin(CrfModelAdmin):
                     "other_drugs_date_estimated",
                     "other_drugs_given",
                     "other_drugs_given_other",
-                )
+                ),
             },
         ),
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = ["tb_tx_given", "antibiotics_given", "other_drugs_given"]
+    filter_horizontal = ("tb_tx_given", "antibiotics_given", "other_drugs_given")
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "antibiotics_date_estimated": admin.VERTICAL,
         "on_antibiotics": admin.VERTICAL,
         "cm_confirmed": admin.VERTICAL,

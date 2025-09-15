@@ -28,7 +28,7 @@ class SubjectVisitForm(
         cleaned_data = super().clean()
         if cleaned_data.get("survival_status") == DEAD:
             DeathReportAction(
-                subject_identifier=cleaned_data.get("appointment").subject_identifier
+                subject_identifier=cleaned_data.get("appointment").subject_identifier,
             )
         else:
             try:
@@ -48,14 +48,14 @@ class SubjectVisitForm(
                             "survival_status": (
                                 "Invalid. A Death report has "
                                 f"already been submitted for this participant. Got {dt}."
-                            )
-                        }
+                            ),
+                        },
                     )
         return cleaned_data
 
     class Meta:
         model = SubjectVisit
         fields = "__all__"
-        help_texts = {
+        help_texts = {  # noqa: RUF012
             "survival_status": _("If subject deceased, complete Death report"),
         }

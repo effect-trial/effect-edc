@@ -20,7 +20,7 @@ class ListboardView(
     listboard_view_permission_codename = "edc_subject_dashboard.view_subject_listboard"
     navbar_selected_item = "consented_subject"
     search_form_url = "subject_listboard_url"
-    search_fields = [
+    search_fields = [  # noqa: RUF012
         "initials__exact",
         "subject_identifier",
         "screening_identifier",
@@ -32,13 +32,12 @@ class ListboardView(
     def get_updated_queryset(self, queryset):
         """Only return records with first consent for each subject."""
         sub_qs = queryset.values("subject_identifier").annotate(
-            min_consent_datetime=Min("consent_datetime")
+            min_consent_datetime=Min("consent_datetime"),
         )
-        queryset = queryset.filter(
+        return queryset.filter(
             subject_identifier__in=sub_qs.values("subject_identifier"),
             consent_datetime__in=sub_qs.values("min_consent_datetime"),
         )
-        return queryset
 
     def get_queryset_filter_options(self, request, *args, **kwargs) -> tuple[Q, dict]:
         q_object, options = super().get_queryset_filter_options(request, *args, **kwargs)

@@ -13,7 +13,8 @@ class LossToFollowupFormValidator(FormValidator):
     def clean(self):
         self.required_if(YES, field="home_visit", field_required="home_visit_detail")
         self.validate_other_specify(
-            field="loss_category", other_specify_field="loss_category_other"
+            field="loss_category",
+            other_specify_field="loss_category_other",
         )
 
 

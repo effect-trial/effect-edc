@@ -20,7 +20,7 @@ class DiagnosesAdmin(CrfModelAdmin):
                 "fields": (
                     "gi_side_effects",
                     "gi_side_effects_details",
-                )
+                ),
             },
         ),
         (
@@ -31,9 +31,9 @@ class DiagnosesAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = ["diagnoses"]
+    filter_horizontal = ("diagnoses",)
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "gi_side_effects": admin.VERTICAL,
         "has_diagnoses": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,

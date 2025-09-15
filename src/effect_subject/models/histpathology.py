@@ -18,7 +18,7 @@ class Histopathology(HistopathologyModelMixin, CrfModelMixin, edc_models.BaseUui
         help_text="Start typing the requisition identifier or select one from this visit",
     )
 
-    comment = models.TextField(verbose_name="Any additional comment", null=True, blank=True)
+    comment = models.TextField(verbose_name="Any additional comment", blank=True)
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Histopathology"

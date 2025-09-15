@@ -37,7 +37,8 @@ class BloodResultsFbc(
     lab_panel = fbc_panel
 
     requisition = models.ForeignKey(
-        limit_choices_to={"panel__name": fbc_panel.name}, **requisition_fk_options
+        limit_choices_to={"panel__name": fbc_panel.name},
+        **requisition_fk_options,
     )
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

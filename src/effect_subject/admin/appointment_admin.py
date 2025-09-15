@@ -12,5 +12,5 @@ edc_appointment_admin.unregister(Appointment)
 
 @admin.register(Appointment, site=edc_appointment_admin)
 class AppointmentAdmin(BaseAdmin):
-    def get_appt_reason_choices(self, request) -> tuple[str, str]:
+    def get_appt_reason_choices(self, request) -> tuple[str, str]:  # noqa: ARG002
         return APPT_REASON_CHOICES

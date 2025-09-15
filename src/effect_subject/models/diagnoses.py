@@ -19,7 +19,6 @@ class Diagnoses(ReportingFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidMod
 
     gi_side_effects_details = models.TextField(
         verbose_name="If YES, please give details",
-        null=True,
         blank=True,
     )
 
@@ -31,13 +30,13 @@ class Diagnoses(ReportingFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidMod
 
     # Significant Diagnoses CRF (p3)
     diagnoses = models.ManyToManyField(
-        Dx, verbose_name="Please select all diagnoses that are relevant"
+        Dx,
+        verbose_name="Please select all diagnoses that are relevant",
     )
 
     diagnoses_other = models.TextField(
         verbose_name="If other, please specify ...",
         max_length=150,
-        null=True,
         blank=True,
     )
 

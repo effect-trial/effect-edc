@@ -13,9 +13,9 @@ class FluconMissedDoses(MissedDosesModelMixin, CrfInlineModelMixin, edc_models.B
     history = HistoricalRecords()
 
     def natural_key(self):
-        return (self.day_missed,) + self.adherence.natural_key()
+        return self.day_missed, *self.adherence.natural_key()
 
-    natural_key.dependencies = ["effect_subject.adherence"]
+    natural_key.dependencies = ("effect_subject.adherence",)
 
     class Meta(CrfInlineModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         crf_inline_parent = "adherence"

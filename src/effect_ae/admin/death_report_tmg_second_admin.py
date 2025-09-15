@@ -10,6 +10,8 @@ from ..models import DeathReportTmgSecond
 
 @admin.register(DeathReportTmgSecond, site=effect_ae_admin)
 class DeathReportTmgSecondAdmin(
-    SiteModelAdminMixin, DeathReportTmgModelAdminMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    DeathReportTmgModelAdminMixin,
+    SimpleHistoryAdmin,
 ):
     form = DeathReportTmgSecondForm

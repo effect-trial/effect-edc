@@ -11,7 +11,10 @@ class MissedDosesModelMixin(models.Model):
     day_missed = models.IntegerField(verbose_name="Day missed:", choices=DAYS_MISSED)
 
     missed_reason = models.CharField(
-        verbose_name="Reason:", max_length=25, blank=True, choices=REASON_DRUG_MISSED
+        verbose_name="Reason:",
+        max_length=25,
+        blank=True,
+        choices=REASON_DRUG_MISSED,
     )
 
     missed_reason_other = OtherCharField()

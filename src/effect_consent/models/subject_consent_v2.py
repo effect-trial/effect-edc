@@ -5,7 +5,6 @@ from .subject_consent import SubjectConsent
 
 
 class SubjectConsentV2(SubjectConsent):
-
     objects = ConsentObjectsByCdefManager()
 
     on_site = CurrentSiteByCdefManager()

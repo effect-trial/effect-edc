@@ -28,11 +28,10 @@ class ChestXray(CrfModelMixin, edc_models.BaseUuidModel):
 
     chest_xray_results_other = models.TextField(
         verbose_name="If other, please specify ...",
-        null=True,
         blank=True,
     )
 
-    comment = models.TextField(verbose_name="Any additional comment", null=True, blank=True)
+    comment = models.TextField(verbose_name="Any additional comment", blank=True)
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "Chest X-ray"

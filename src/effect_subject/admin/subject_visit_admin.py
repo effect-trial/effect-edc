@@ -31,7 +31,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
                     "reason",
                     "reason_unscheduled",
                     "reason_unscheduled_other",
-                ]
+                ],
             },
         ),
         (
@@ -44,7 +44,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
                     "assessment_who_other",
                     "info_source",
                     "info_source_other",
-                )
+                ),
             },
         ),
         (
@@ -54,7 +54,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
                     "survival_status",
                     "last_alive_date",
                     "hospitalized",
-                )
+                ),
             },
         ),
         ("Comments", {"fields": ("comments",)}),
@@ -63,7 +63,7 @@ class SubjectVisitAdmin(VisitModelAdminMixin, ModelAdminMixin, SimpleHistoryAdmi
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "assessment_type": admin.VERTICAL,
         "assessment_who": admin.VERTICAL,
         "hospitalized": admin.VERTICAL,

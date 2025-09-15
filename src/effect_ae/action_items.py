@@ -47,7 +47,7 @@ class AeFollowupAction(ActionWithNotification):
     name = AE_FOLLOWUP_ACTION
     display_name = "Submit AE Followup Report"
     notification_display_name = "AE Followup Report"
-    parent_action_names = [AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION]
+    parent_action_names = (AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION)
     reference_model = "effect_ae.aefollowup"
     related_reference_model = "effect_ae.aeinitial"
     related_reference_fk_attr = "ae_initial"
@@ -100,7 +100,7 @@ class AeInitialAction(ActionWithNotification):
     name = AE_INITIAL_ACTION
     display_name = "Submit AE Initial Report"
     notification_display_name = "AE Initial Report"
-    parent_action_names = [
+    parent_action_names = (
         BLOOD_RESULTS_FBC_ACTION,
         BLOOD_RESULTS_LFT_ACTION,
         BLOOD_RESULTS_RFT_ACTION,
@@ -108,7 +108,7 @@ class AeInitialAction(ActionWithNotification):
         FOLLOWUP_ACTION,
         SX_ACTION,
         VITAL_SIGNS_ACTION,
-    ]
+    )
     reference_model = "effect_ae.aeinitial"
     show_link_to_changelist = True
     show_link_to_add = True
@@ -129,7 +129,8 @@ class AeInitialAction(ActionWithNotification):
         # add next AeFollowup if not deceased
         if not deceased:
             next_actions = self.append_to_next_if_required(
-                action_name=AE_FOLLOWUP_ACTION, next_actions=next_actions
+                action_name=AE_FOLLOWUP_ACTION,
+                next_actions=next_actions,
             )
 
         # add next AE_SUSAR_ACTION if SUSAR == YES
@@ -150,7 +151,9 @@ class AeInitialAction(ActionWithNotification):
 
         # add next AE Tmg if G5/Death
         next_actions = self.append_to_next_if_required(
-            next_actions=next_actions, action_name=AE_TMG_ACTION, required=deceased
+            next_actions=next_actions,
+            action_name=AE_TMG_ACTION,
+            required=deceased,
         )
         # add next AeTmgAction if G4
         next_actions = self.append_to_next_if_required(
@@ -159,20 +162,18 @@ class AeInitialAction(ActionWithNotification):
             required=self.reference_obj.ae_grade == GRADE4,
         )
         # add next AeTmgAction if G3 and is an SAE
-        next_actions = self.append_to_next_if_required(
+        return self.append_to_next_if_required(
             next_actions=next_actions,
             action_name=AE_TMG_ACTION,
             required=(self.reference_obj.ae_grade == GRADE3 and self.reference_obj.sae == YES),
         )
-
-        return next_actions
 
 
 class AeSusarAction(ActionWithNotification):
     name = AE_SUSAR_ACTION
     display_name = "Submit AE SUSAR Report"
     notification_display_name = "AE SUSAR Report"
-    parent_action_names = [AE_INITIAL_ACTION]
+    parent_action_names = (AE_INITIAL_ACTION,)
     reference_model = "effect_ae.aesusar"
     related_reference_model = "effect_ae.aeinitial"
     related_reference_fk_attr = "ae_initial"
@@ -187,7 +188,7 @@ class AeTmgAction(ActionWithNotification):
     name = AE_TMG_ACTION
     display_name = "TMG AE Report pending"
     notification_display_name = "TMG AE Report"
-    parent_action_names = [AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION, AE_TMG_ACTION]
+    parent_action_names = (AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION, AE_TMG_ACTION)
     reference_model = "effect_ae.aetmg"
     related_reference_model = "effect_ae.aeinitial"
     related_reference_fk_attr = "ae_initial"
@@ -207,13 +208,12 @@ class DeathReportAction(ActionWithNotification):
     display_name = "Submit Death Report"
     notification_display_name = "Death Report"
     reference_model = "effect_ae.deathreport"
-    parent_action_names = [AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION]
+    parent_action_names = (AE_INITIAL_ACTION, AE_FOLLOWUP_ACTION)
     show_link_to_changelist = True
     show_link_to_add = True
     admin_site_name = "effect_ae_admin"
     priority = HIGH_PRIORITY
     singleton = True
-    dirty_fields = ["cause_of_death"]
 
     def get_next_actions(self):
         """Adds 1 DEATHReportTMG if not yet created and

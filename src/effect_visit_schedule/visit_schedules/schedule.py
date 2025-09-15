@@ -23,9 +23,6 @@ from .crfs import (
     crfs_missed,
     crfs_prn_baseline,
     crfs_prn_followup,
-)
-from .crfs import crfs_unscheduled as default_crfs_unscheduled
-from .crfs import (
     crfs_unscheduled_gte_d14,
     crfs_unscheduled_lt_d14,
     crfs_w04,
@@ -33,6 +30,7 @@ from .crfs import (
     crfs_w16,
     crfs_w24,
 )
+from .crfs import crfs_unscheduled as default_crfs_unscheduled
 from .requisitions import requisitions_d01, requisitions_d14
 from .requisitions import requisitions_prn as default_requisitions_prn
 from .requisitions import requisitions_unscheduled as default_requisitions_unscheduled

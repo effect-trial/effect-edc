@@ -53,7 +53,10 @@ class SubjectConsent(
     subject_identifier_cls = SubjectIdentifier
 
     completed_by_next_of_kin = models.CharField(
-        max_length=10, default=NO, choices=YES_NO, editable=False
+        max_length=10,
+        default=NO,
+        choices=YES_NO,
+        editable=False,
     )
 
     is_able = models.CharField(
@@ -62,8 +65,7 @@ class SubjectConsent(
         choices=YES_NO,
         default=YES,
         help_text=(
-            "If 'No' provide witness's name on this "
-            "form and signature on the paper document."
+            "If 'No' provide witness's name on this form and signature on the paper document."
         ),
     )
 

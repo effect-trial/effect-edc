@@ -9,7 +9,9 @@ from edc_sites.admin import SiteModelAdminMixin
 
 
 class ModelAdminMixin(
-    SiteModelAdminMixin, RequiresConsentModelAdminMixin, ModelAdminSubjectDashboardMixin
+    SiteModelAdminMixin,
+    RequiresConsentModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
 ):
     pass
 

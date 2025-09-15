@@ -16,7 +16,7 @@ class SerumCragDateDf:
 
     def __init__(self):
         self.subject_screening_model_cls = django_apps.get_model(
-            "effect_screening.subjectscreening"
+            "effect_screening.subjectscreening",
         )
         self.model_cls = django_apps.get_model(self.model)
 

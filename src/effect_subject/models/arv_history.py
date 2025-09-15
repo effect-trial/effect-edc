@@ -23,13 +23,11 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     hiv_dx_date_estimated = edc_models.IsDateEstimatedField(
-        verbose_name="Is this date estimated?"
+        verbose_name="Is this date estimated?",
     )
 
     on_art_at_crag = models.CharField(
-        verbose_name=mark_safe(
-            "Was the participant on ART <u>at time of</u> CrAg test?"
-        ),  # nosec #B703 # B308
+        verbose_name=mark_safe("Was the participant on ART <u>at time of</u> CrAg test?"),  # nosec #B703 # B308
         max_length=5,
         choices=YES_NO,
         help_text=(
@@ -39,16 +37,14 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     ever_on_art = models.CharField(
-        verbose_name=mark_safe(
-            "Was the participant on ART <u>prior</u> to CrAg test?"
-        ),  # nosec #B703 # B308
+        verbose_name=mark_safe("Was the participant on ART <u>prior</u> to CrAg test?"),  # nosec #B703 # B308
         max_length=5,
         choices=YES_NO,
     )
 
     initial_art_date = models.DateField(
         verbose_name=mark_safe(
-            "When did the participant <u>start</u> ART for the first time?"
+            "When did the participant <u>start</u> ART for the first time?",
         ),  # nosec #B703 # B308
         validators=[date_not_future],
         null=True,
@@ -63,7 +59,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen = models.ManyToManyField(
         ArvRegimens,
         verbose_name=mark_safe(
-            "Which drugs were prescribed for their <u>first</u> (or <u>only</u>) ART regimen?"
+            "Which drugs were prescribed for their <u>first</u> (or <u>only</u>) ART regimen?",
         ),  # nosec #B703 # B308
         related_name="initial_arv",
     )
@@ -71,9 +67,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     initial_art_regimen_other = edc_models.OtherCharField()
 
     has_switched_art_regimen = models.CharField(
-        verbose_name=mark_safe(
-            "Has the participant ever <u>switched</u> ART regimen?"
-        ),  # nosec #B703 # B308
+        verbose_name=mark_safe("Has the participant ever <u>switched</u> ART regimen?"),  # nosec #B703 # B308
         max_length=5,
         choices=YES_NO_NA,
         default=NOT_APPLICABLE,
@@ -81,7 +75,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     current_art_date = models.DateField(
         verbose_name=mark_safe(
-            "If switched, when was their <u>current or most recent</u> " "ART regimen started?"
+            "If switched, when was their <u>current or most recent</u> ART regimen started?",
         ),  # nosec #B703 # B308
         validators=[date_not_future],
         null=True,
@@ -103,7 +97,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     has_defaulted = models.CharField(
         verbose_name=mark_safe(
-            "Has the participant <u>now</u> defaulted from their <u>current</u> ART regimen?"
+            "Has the participant <u>now</u> defaulted from their <u>current</u> ART regimen?",
         ),  # nosec #B703 # B308
         max_length=5,
         choices=YES_NO_NA,
@@ -114,7 +108,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     defaulted_date = models.DateField(
         verbose_name=mark_safe(
             "If `defaulted`, on what date did they default "
-            "from their <u>current</u> ART regimen?"
+            "from their <u>current</u> ART regimen?",
         ),  # nosec #B703 # B308
         validators=[date_not_future],
         null=True,
@@ -122,13 +116,14 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     defaulted_date_estimated = edc_models.IsDateEstimatedFieldNa(
-        verbose_name="Is the `defaulted` date estimated?", default=NOT_APPLICABLE
+        verbose_name="Is the `defaulted` date estimated?",
+        default=NOT_APPLICABLE,
     )
 
     is_adherent = models.CharField(
         verbose_name=mark_safe(
             "If the participant is currently on ART, are they <u>adherent</u> to "
-            "their <u>current</u> ART regimen?"
+            "their <u>current</u> ART regimen?",
         ),  # nosec #B703 # B308
         max_length=10,
         choices=YES_NO_DEFAULTED_NA,
@@ -144,7 +139,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
 
     art_decision = models.CharField(
         verbose_name=mark_safe(
-            "What decision was made at enrolment regarding their <u>current</u> ART regimen?"
+            "What decision was made at enrolment regarding their <u>current</u> ART regimen?",
         ),  # nosec #B703 # B308
         max_length=25,
         choices=ARV_DECISION,
@@ -168,7 +163,6 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     viral_load_quantifier = models.CharField(
         max_length=10,
         choices=VL_QUANTIFIER_NA,
-        null=True,
         help_text=(
             "If lower than detection limit (LDL), use '<' and enter "
             "the lab detection limit value above."
@@ -223,7 +217,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     cd4_date_estimated = edc_models.IsDateEstimatedField(
-        verbose_name="Is the CD4 date estimated?"
+        verbose_name="Is the CD4 date estimated?",
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

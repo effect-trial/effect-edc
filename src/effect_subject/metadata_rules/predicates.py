@@ -20,7 +20,7 @@ def screening_lp_performed(subject_identifier: str):
 class Predicates:
     app_label = "effect_subject"
 
-    def lpcsf_crf_required(self, visit, **kwargs) -> bool:
+    def lpcsf_crf_required(self, visit, **kwargs) -> bool:  # noqa: ARG002
         """Require at baseline if screening form indicates a screening LP was
         performed. Otherwise, require for ANY visit where SiSx form indicates a
         diagnosis LP was performed.
@@ -47,7 +47,6 @@ class Predicates:
         return required
 
     @staticmethod
-    def vitalsigns_crf_required(visit, **kwargs) -> bool:
+    def vitalsigns_crf_required(visit, **kwargs) -> bool:  # noqa: ARG004
         """Require at baseline and at any other IN_PERSON visit."""
-        required = is_baseline(instance=visit) or visit.assessment_type == IN_PERSON
-        return required
+        return is_baseline(instance=visit) or visit.assessment_type == IN_PERSON

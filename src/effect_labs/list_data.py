@@ -12,6 +12,6 @@ model_data = {
             "mobile": "+255763244779",
             "fax": None,
             "email": "sile.molloy@sgul.ac.uk",
-        }
-    ]
+        },
+    ],
 }

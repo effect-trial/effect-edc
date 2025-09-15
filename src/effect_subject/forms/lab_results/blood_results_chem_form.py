@@ -14,7 +14,9 @@ from ...utils import get_weight_in_kgs
 
 
 class BloodResultsChemFormValidator(
-    BloodResultsFormValidatorMixin, EgfrCockcroftGaultFormValidatorMixin, CrfFormValidator
+    BloodResultsFormValidatorMixin,
+    EgfrCockcroftGaultFormValidatorMixin,
+    CrfFormValidator,
 ):
     panel = BloodResultsChem.lab_panel
 
@@ -33,18 +35,17 @@ class BloodResultsChemFormValidator(
 
     def clean(self) -> None:
         if self.cleaned_data.get("creatinine_value") and not get_weight_in_kgs(
-            subject_visit=self.related_visit
+            subject_visit=self.related_visit,
         ):
             self.raise_validation_error(
                 "Participant weight not found. Please complete the Vital Signs CRF first.",
                 INVALID_ERROR,
             )
         if self.cleaned_data.get("creatinine_value") and self.cleaned_data.get(
-            "creatinine_units"
+            "creatinine_units",
         ):
-
             rs = RegisteredSubject.objects.get(
-                subject_identifier=self.related_visit.subject_identifier
+                subject_identifier=self.related_visit.subject_identifier,
             )
             age_in_years = age(rs.dob, self.report_datetime).years
 
@@ -65,10 +66,10 @@ class BloodResultsChemForm(ActionItemCrfFormMixin, CrfModelFormMixin, forms.Mode
     class Meta(ActionItemCrfFormMixin.Meta):
         model = BloodResultsChem
         fields = "__all__"
-        help_texts = {
+        help_texts = {  # noqa: RUF012
             "action_identifier": "(read-only)",
             "egfr_value": mark_safe(  # nosec B308
                 "Calculated using Cockcroft-Gault equation. "
-                "See https://www.mdcalc.com/creatinine-clearance-cockcroft-gault-equation"
+                "See https://www.mdcalc.com/creatinine-clearance-cockcroft-gault-equation",
             ),
         }

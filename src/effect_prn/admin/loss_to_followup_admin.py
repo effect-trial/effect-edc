@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item.fieldsets import action_fields, action_fieldset_tuple
@@ -14,7 +12,9 @@ from ..models import LossToFollowup
 
 @admin.register(LossToFollowup, site=effect_prn_admin)
 class LossToFollowupAdmin(
-    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
     form = LossToFollowupForm
 
@@ -32,7 +32,7 @@ class LossToFollowupAdmin(
                     "loss_category",
                     "loss_category_other",
                     "comment",
-                )
+                ),
             },
         ),
         action_fieldset_tuple,
@@ -53,14 +53,14 @@ class LossToFollowupAdmin(
         "number_consecutive_missed_visits",
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "home_visited": admin.VERTICAL,
         "loss_category": admin.VERTICAL,
     }
 
     search_fields = ("subject_identifier", "action_identifier")
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)
         action_flds = tuple(fld for fld in action_fields if fld != "action_identifier")
         return tuple(set(action_flds + readonly_fields))

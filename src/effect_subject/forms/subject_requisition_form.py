@@ -19,7 +19,7 @@ class SubjectRequisitionForm(RequisitionFormMixin, RequisitionModelFormMixin, fo
         cleaned_data = super().clean()
         if cleaned_data.get("reason_not_drawn") == NOT_REQUIRED:
             raise forms.ValidationError(
-                {"reason_not_drawn": "Invalid choice. Not expected " "for this panel"}
+                {"reason_not_drawn": "Invalid choice. Not expected for this panel"},
             )
         return cleaned_data
 

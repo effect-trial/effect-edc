@@ -59,8 +59,7 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4>=4.13.4",
-    # "edc>=1.2.7",
-    "clinicedc>=2.0.4",
+    "clinicedc>=2.0.5",
     "effect-form-validators>=1.1.2",
     "edc-csf>=1.0.0",
     "edc-dx>=1.0.1",
@@ -76,18 +75,56 @@ Homepage = "https://github.com/effect-trial/effect-edc"
 Repository = "https://github.com/effect-trial/effect-edc.git"
 Changelog = "https://github.com/effect-trial/effect-edc/blob/main/CHANGELOG"
 
-
-[tool.black]
+[tool.ruff]
 line-length = 95
-target-version = ["py312"]
-extend-exclude = '''^(.*\/)*\b(migrations|\.venv)\b($|\/.*$)'''
+indent-width = 4
+target-version = "py312"
+exclude = ["migrations", ".tox", ".venv"]
 
+[tool.ruff.lint]
+select = [
+    "A",
+    "ARG",
+    "B",
+    "C90",
+    "COM",
+    "DJ",
+    "DTZ",
+    "E",
+    "F",
+    "FA",
+    "FURB",
+    "I",
+    "INT",
+    "N",
+    "PD",
+    "PERF",
+    "PL",
+    "PLR",
+    "PTH",
+    "RET",
+    "RUF",
+    "S",
+    "SIM",
+    "T20",
+    "TRY",
+    "UP",
+    "W",
+    # "FIX",
+]
+ignore = ["DJ008", "DJ007", "DJ006", "COM812", "PLC0206"]
 
-[tool.isort]
-profile = "black"
-py_version = "312"
-skip = [".tox", ".eggs", "migrations", "_version.py", ".venv"]
+[tool.ruff.lint.per-file-ignores]
+    "__init__.py" = ["F401"]
 
+[tool.ruff.lint.mccabe]
+max-complexity = 12
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
 
 [tool.coverage.run]
 parallel = false
@@ -110,16 +147,13 @@ exclude_lines = [
 
 
 [dependency-groups]
-lint = [
-    "black>=25.1.0",
-    "isort==5.13.2",
-    "ruff>=0.12.5",
-]
+lint = ["ruff>=0.12.5"]
 
 test = [
     "clinicedc-tests>=0.1.5",
     "coverage>=7.10.6",
     "django-webtest>=1.9.13",
+    "edc-test-settings>=2.0.0",
     "faker>=37.4.2",
     "model-bakery>=1.20.5",
     "time-machine>=2.16.0",
@@ -164,20 +198,21 @@ develop = [
     "ipython>=9.4.0",
     'python-memcached',
     "time-machine>=2.16.0",
+    "reportlab>=4.4.3",
 ]
 
 
 [tool.uv.sources]
 effect-edc = { workspace = true }
 effect-form-validators = { path = "../effect-form-validators", editable = true }
+clinicedc = { path = "../clinicedc", editable = true }
+clinicedc-tests = { path = "../clinicedc-tests", editable = true }
 django-audit-fields = { path = "../django-audit-fields", editable = true }
 django-crypto-fields = { path = "../django-crypto-fields", editable = true }
 django-logentry-admin = { path = "../django-logentry-admin", editable = true }
 django-multisite2 = { path = "../django-multisite2", editable = true }
 django-revision = { path = "../django-revision", editable = true }
 django-simple-history = { path = "../django-simple-history", editable = true }
-clinicedc = { path = "../clinicedc/clinicedc", editable = true }
-clinicedc-tests = { path = "../clinicedc-tests", editable = true }
 edc-csf = { path = "../edc-csf", editable = true }
 edc-dx = { path = "../edc-dx", editable = true }
 edc-dx-review = { path = "../edc-dx-review", editable = true }

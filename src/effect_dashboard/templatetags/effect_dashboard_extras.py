@@ -60,7 +60,7 @@ def render_refusal_button(context, subject_screening: SubjectScreening):
     else:
         try:
             subject_refusal = SubjectRefusal.objects.get(
-                screening_identifier=subject_screening.screening_identifier
+                screening_identifier=subject_screening.screening_identifier,
             )
         except ObjectDoesNotExist:
             url = f"{SubjectRefusal().get_absolute_url()}?{nq.querystring}"

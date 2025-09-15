@@ -19,12 +19,12 @@ class ClinicalNoteAdmin(CrfModelAdmin):
                 "fields": (
                     "has_comment",
                     "comments",
-                )
+                ),
             },
         ),
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "has_comment": admin.VERTICAL,
     }

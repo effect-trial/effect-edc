@@ -1,3 +1,5 @@
+from contextlib import suppress
+
 from edc_lab_panel.panels import sputum_panel
 from edc_qareports.sql_generator import CrfCase, RequisitionCase
 
@@ -17,7 +19,7 @@ for label_lower, panel, id_field in [
             label_lower=label_lower,
             panel=panel.name,
             requisition_id_field=id_field,
-        )
+        ),
     )
 
 for label_lower, panel in [
@@ -25,15 +27,13 @@ for label_lower, panel in [
     ("effect_subject.bloodresultsfbc", fbc_panel),
 ]:
     for utest_id in panel.utest_ids:
-        try:
-            utest_id, _ = utest_id
-        except ValueError:
-            pass
+        with suppress(ValueError):
+            utest_id, _ = utest_id  # noqa: PLW2901
         qa_cases.append(
             CrfCase(
                 label=f"{panel.abbreviation.upper()}: missing {utest_id} value/units",
                 dbtable=label_lower.replace(".", "_"),
                 label_lower=label_lower,
                 where=f"crf.{utest_id}_value is null or crf.{utest_id}_units is null",
-            )
+            ),
         )

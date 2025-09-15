@@ -16,5 +16,7 @@ class TestBaselineActions(EffectTestCaseMixin, TestCase):
         opts = deepcopy(get_eligible_options())
         opts.update(lp_done=PENDING)
         SubjectScreening.objects.create(
-            user_created="erikvw", user_modified="erikvw", **get_eligible_options()
+            user_created="erikvw",
+            user_modified="erikvw",
+            **get_eligible_options(),
         )

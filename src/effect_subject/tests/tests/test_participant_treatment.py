@@ -1,5 +1,4 @@
 from datetime import datetime
-from typing import Optional
 from zoneinfo import ZoneInfo
 
 import time_machine
@@ -36,7 +35,7 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
         # define subject screening in past to allow us to test up to and
         # including day 14 visit
         subject_screening = self.get_subject_screening(
-            report_datetime=get_utcnow() - relativedelta(days=14)
+            report_datetime=get_utcnow() - relativedelta(days=14),
         )
         self.subject_visit = self.get_subject_visit(subject_screening=subject_screening)
 
@@ -84,7 +83,8 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
     def test_ok(self):
         subject_visit = self.subject_visit  # d1
         obj = baker.make_recipe(
-            "effect_subject.participanthistory", subject_visit=self.subject_visit
+            "effect_subject.participanthistory",
+            subject_visit=self.subject_visit,
         )
         obj.save()
         subject_visit = self.get_next_subject_visit(subject_visit)  # d3
@@ -114,7 +114,8 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
     def test_completed_participant_history_ok(self):
         subject_visit = self.subject_visit  # d1
         obj = baker.make_recipe(
-            "effect_subject.participanthistory", subject_visit=self.subject_visit
+            "effect_subject.participanthistory",
+            subject_visit=self.subject_visit,
         )
         obj.save()
         subject_visit = self.get_next_subject_visit(subject_visit)  # d3
@@ -126,9 +127,10 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertNotIn("__all__", form._errors)
 
-    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_YES_raises(self):
+    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_YES_raises(self):  # noqa: N802
         obj = baker.make_recipe(
-            "effect_subject.participanthistory", subject_visit=self.subject_visit
+            "effect_subject.participanthistory",
+            subject_visit=self.subject_visit,
         )
         obj.on_tb_tx = YES
         obj.save()
@@ -147,7 +149,7 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
                 "tb_tx_given_other": "",
                 "tb_tx_reason_no": NOT_APPLICABLE,
                 "tb_tx_reason_no_other": "",
-            }
+            },
         )
         form = ParticipantTreatmentForm(data=data)
         self.assertFalse(form.is_valid())
@@ -159,9 +161,10 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
             form._errors.get("on_tb_tx")[0],
         )
 
-    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_NO_ok(self):
+    def test_d14_ph_on_tb_tx_YES_and_d1_pt_on_tb_tx_NO_ok(self):  # noqa: N802
         obj = baker.make_recipe(
-            "effect_subject.participanthistory", subject_visit=self.subject_visit
+            "effect_subject.participanthistory",
+            subject_visit=self.subject_visit,
         )
         obj.on_tb_tx = NO
         obj.save()
@@ -180,18 +183,19 @@ class TestParticipantTreatment(EffectTestCaseMixin, TestCase):
                 "tb_tx_given_other": "",
                 "tb_tx_reason_no": NOT_APPLICABLE,
                 "tb_tx_reason_no_other": "",
-            }
+            },
         )
         form = ParticipantTreatmentForm(data=data)
         form.is_valid()
         self.assertNotIn("on_tb_tx", form._errors)
 
-    def test_d14_ph_on_tb_tx_NO_ok(self):
+    def test_d14_ph_on_tb_tx_NO_ok(self):  # noqa: N802
         for ph_answ in [YES, NO]:
             with self.subTest(ph_answ=ph_answ):
                 subject_visit = self.get_subject_visit()  # d1
                 obj = baker.make_recipe(
-                    "effect_subject.participanthistory", subject_visit=subject_visit
+                    "effect_subject.participanthistory",
+                    subject_visit=subject_visit,
                 )
                 obj.on_tb_tx = ph_answ
                 obj.save()
@@ -219,7 +223,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         self.get_next_subject_visit(subject_visit)
 
     @staticmethod
-    def get_cleaned_data_patient_no_cm_no_tx(visit_code: Optional[str] = None):
+    def get_cleaned_data_patient_no_cm_no_tx(visit_code: str | None = None):
         visit_code = visit_code or DAY01
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
         cleaned_data = {
@@ -265,7 +269,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
         return cleaned_data
 
     @staticmethod
-    def get_cleaned_data_patient_with_cm_with_all_tx(visit_code: Optional[str] = None):
+    def get_cleaned_data_patient_with_cm_with_all_tx(visit_code: str | None = None):
         visit_code = visit_code or DAY01
         subject_visit = SubjectVisit.objects.get(visit_code=visit_code)
         cleaned_data = {
@@ -313,13 +317,13 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
     def test_cleaned_data_patient_no_cm_no_tx_ok(self):
         cleaned_data = self.get_cleaned_data_patient_no_cm_no_tx(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_cleaned_data_patient_with_cm_with_all_tx_ok(self):
         cleaned_data = self.get_cleaned_data_patient_with_cm_with_all_tx(visit_code=DAY01)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_cm_confirmed_na_if_lp_not_completed(self):
@@ -328,7 +332,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": NO,
                 "cm_confirmed": NO,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_confirmed",
@@ -342,7 +346,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
             {
                 "lp_completed": YES,
                 "cm_confirmed": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_confirmed",
@@ -357,7 +361,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "lp_completed": YES,
                 "cm_confirmed": NO,
                 "on_cm_tx": NO,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="on_cm_tx",
@@ -372,7 +376,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "lp_completed": YES,
                 "cm_confirmed": YES,
                 "on_cm_tx": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="on_cm_tx",
@@ -388,7 +392,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "cm_confirmed": YES,
                 "on_cm_tx": NO,
                 "cm_tx_given": "1w_amb_5fc",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_tx_given",
@@ -404,7 +408,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "cm_confirmed": YES,
                 "on_cm_tx": YES,
                 "cm_tx_given": NOT_APPLICABLE,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_tx_given",
@@ -421,7 +425,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "on_cm_tx": YES,
                 "cm_tx_given": OTHER,
                 "cm_tx_given_other": "",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_tx_given_other",
@@ -438,7 +442,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "on_cm_tx": YES,
                 "cm_tx_given": "1w_amb_5fc",
                 "cm_tx_given_other": "some_other_cm_tx_given",
-            }
+            },
         )
         self.assertFormValidatorError(
             field="cm_tx_given_other",
@@ -455,7 +459,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "",
                 "steroids_course": 1,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_given",
@@ -473,7 +477,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": NOT_APPLICABLE,
                 "steroids_given_other": "",
                 "steroids_course": None,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_given",
@@ -491,7 +495,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": OTHER,
                 "steroids_given_other": "",
                 "steroids_course": 1,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_given_other",
@@ -509,7 +513,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "xxx",
                 "steroids_course": 1,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_given_other",
@@ -525,7 +529,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": NOT_APPLICABLE,
                 "steroids_given_other": "",
                 "steroids_course": 1,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_course",
@@ -543,7 +547,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                 "steroids_given": "oral_prednisolone",
                 "steroids_given_other": "",
                 "steroids_course": None,
-            }
+            },
         )
         self.assertFormValidatorError(
             field="steroids_course",
@@ -565,7 +569,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                     {
                         f"on_{field_stub}": YES,
                         f"{field_stub}_date": None,
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_date",
@@ -587,7 +591,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                     {
                         f"on_{field_stub}": NO,
                         f"{field_stub}_date": get_utcnow_as_date(),
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_date",
@@ -610,7 +614,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"on_{field_stub}": YES,
                         f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": NOT_APPLICABLE,
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_date_estimated",
@@ -633,7 +637,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"on_{field_stub}": NO,
                         f"{field_stub}_date": None,
                         f"{field_stub}_date_estimated": "YMD",
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_date_estimated",
@@ -655,7 +659,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_given": list_model.objects.none(),
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_given",
@@ -676,7 +680,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"on_{field_stub}": NO,
                         f"{field_stub}_date": None,
                         f"{field_stub}_given": list_model.objects.all(),
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_given",
@@ -699,7 +703,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_given": list_model.objects.filter(name=OTHER),
                         f"{field_stub}_given_other": "",
-                    }
+                    },
                 )
                 if field_stub == "tb_tx":
                     cleaned_data.update({"tb_tx_reason_no": NOT_APPLICABLE})
@@ -711,7 +715,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
                 cleaned_data.update({f"{field_stub}_given_other": "Some other value"})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_m2m_other_fields_not_required_if_not_specified(self):
@@ -728,7 +732,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"{field_stub}_date": None,
                         f"{field_stub}_given": list_model.objects.none(),
                         f"{field_stub}_given_other": "Some other value",
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_given_other",
@@ -738,7 +742,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
 
                 cleaned_data.update({f"{field_stub}_given_other": ""})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_reason_no_applicable_if_prescribed_no(self):
@@ -762,7 +766,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"{field_stub}_date": get_utcnow_as_date(),
                         f"{field_stub}_date_estimated": "YMD",
                         f"{field_stub}_reason_no": "contraindicated",
-                    }
+                    },
                 )
                 if field_stub == "tb_tx":
                     cleaned_data.update({"tb_tx_given": TbTreatments.objects.filter(name="H")})
@@ -782,7 +786,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"on_{field_stub}": NO,
                         f"{field_stub}_reason_no": OTHER,
                         f"{field_stub}_reason_no_other": "",
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_reason_no_other",
@@ -799,7 +803,7 @@ class TestParticipantTreatmentFormValidation(EffectTestCaseMixin, TestCase):
                         f"on_{field_stub}": NO,
                         f"{field_stub}_reason_no": "contraindicated",
                         f"{field_stub}_reason_no_other": "Some other reason",
-                    }
+                    },
                 )
                 self.assertFormValidatorError(
                     field=f"{field_stub}_reason_no_other",

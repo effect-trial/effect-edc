@@ -3,10 +3,17 @@ from django.dispatch import receiver
 
 
 @receiver(
-    post_save, weak=False, dispatch_uid="calculate_headache_duration_timedelta_on_post_save"
+    post_save,
+    weak=False,
+    dispatch_uid="calculate_headache_duration_timedelta_on_post_save",
 )
 def calculate_headache_duration_timedelta_on_post_save(
-    sender, instance, raw, created, using, **kwargs
+    sender,  # noqa: ARG001
+    instance,
+    raw,
+    created,  # noqa: ARG001
+    using,  # noqa: ARG001
+    **kwargs,
 ):
     if not raw and not kwargs.get("update_fields"):
         try:

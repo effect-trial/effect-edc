@@ -123,7 +123,7 @@ list_data = {
         (BACTERIAL_PNEUMONIA, "Bacterial pneumonia"),
         (CRYPTOCOCCAL_MENINGITIS, "Cryptococcal meningitis"),
         (DIARRHOEAL_WASTING, "Diarrhoeal wasting"),
-        ("kaposi_sarcoma", "Kaposi’s sarcoma"),
+        ("kaposi_sarcoma", "Kaposi's sarcoma"),
         ("malaria", "Malaria"),
         (TB_EXTRAPULMONARY, "TB extrapulmonary"),
         (TB_PULMONARY, "TB pulmonary"),
@@ -312,7 +312,7 @@ list_data = {
         (OTHER, "Other SSX symptomatic of meningitis ..."),
     ],
     "effect_lists.subjectvisitmissedreasons": [
-        ("forgot", "Forgot / Can’t remember being told about appointment"),
+        ("forgot", "Forgot / Can't remember being told about appointment"),
         ("family_emergency", "Family emergency (e.g. funeral) and was away"),
         ("travelling", "Away travelling/visiting"),
         ("working_schooling", "Away working/schooling"),

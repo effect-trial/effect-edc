@@ -30,19 +30,19 @@ class ParticipantTreatmentForm(CrfModelFormMixin, forms.ModelForm):
         )
         try:
             participant_history = self.participant_history_model_cls.objects.get(
-                subject_visit_id=baseline_visit.id
+                subject_visit_id=baseline_visit.id,
             )
-        except ObjectDoesNotExist:
+        except ObjectDoesNotExist as e:
             raise forms.ValidationError(
                 {
                     "__all__": (
                         "Please complete the Day 1 "
                         f"{self.participant_history_model_cls._meta.verbose_name} "
                         f"form first."
-                    )
+                    ),
                 },
                 INVALID_ERROR,
-            )
+            ) from e
         else:
             if (
                 self.cleaned_data.get("on_tb_tx") == YES
@@ -55,7 +55,7 @@ class ParticipantTreatmentForm(CrfModelFormMixin, forms.ModelForm):
                             "Participant indicated taking TB treatment in "
                             f"{self.participant_history_model_cls._meta.verbose_name} "
                             "form on Day 1 visit. Expected NO."
-                        )
+                        ),
                     },
                     INVALID_ERROR,
                 )

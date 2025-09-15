@@ -12,13 +12,13 @@ class AeInitialForm(AeInitialModelFormMixin, forms.ModelForm):
     class Meta(AeInitialModelFormMixin.Meta):
         model = AeInitial
         fields = "__all__"
-        labels = {
+        labels = {  # noqa: RUF012
             "ae_cause": _("Has any cause other than study medication been identified?"),
         }
         help_texts = AeInitialModelFormMixin.Meta.help_texts | {
             "ae_description": _(
                 "Record Diagnosis if available. "
                 "Include anatomical location, if applicable. "
-                "Please note concurrent ARVs/other medications etc."
+                "Please note concurrent ARVs/other medications etc.",
             ),
         }

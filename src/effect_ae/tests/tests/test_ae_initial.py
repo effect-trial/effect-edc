@@ -38,9 +38,9 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
     form_validator_cls = AeInitialFormValidator
     form_validator_model_cls = AeInitial
 
-    inpatient_statuses = [choice[0] for choice in INPATIENT_STATUSES]
-    study_drugs = ["flucon", "flucyt"]
-    study_drug_relationships_choices = [choice[0] for choice in STUDY_DRUG_RELATIONSHIP]
+    inpatient_statuses = tuple([choice[0] for choice in INPATIENT_STATUSES])
+    study_drugs = ("flucon", "flucyt")
+    study_drug_relationships_choices = tuple([choice[0] for choice in STUDY_DRUG_RELATIONSHIP])
 
     def setUp(self) -> None:
         super().setUp()
@@ -48,14 +48,14 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         # Patch, to allow assumption participant on intervention arm for all
         # tests (unless explicitly overridden)
         assignment_patcher = patch(
-            "effect_ae.form_validators.ae_initial.get_assignment_for_subject"
+            "effect_ae.form_validators.ae_initial.get_assignment_for_subject",
         )
         self.addCleanup(assignment_patcher.stop)
         self.mock_get_assignment_for_subject = assignment_patcher.start()
         self.mock_get_assignment_for_subject.return_value = INTERVENTION
 
         assignment_descr_patcher = patch(
-            "effect_ae.form_validators.ae_initial.get_assignment_description_for_subject"
+            "effect_ae.form_validators.ae_initial.get_assignment_description_for_subject",
         )
         self.addCleanup(assignment_descr_patcher.stop)
         self.mock_get_assignment_description_for_subject = assignment_descr_patcher.start()
@@ -108,10 +108,10 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                         "date_discharged": (
                             get_utcnow_as_date() if status == DISCHARGED else None
                         ),
-                    }
+                    },
                 )
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_inpatient_status_not_applicable_if_patient_not_admitted(self):
@@ -126,7 +126,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
 
         cleaned_data = {"patient_admitted": NO, "inpatient_status": NOT_APPLICABLE}
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_inpatient_status_deceased_invalid_if_not_g5(self):
@@ -155,7 +155,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             "inpatient_status": DECEASED,
         }
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_inpatient_status_inpatient_invalid_if_g5(self):
@@ -184,7 +184,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     "inpatient_status": INPATIENT,
                 }
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_date_discharged_required_if_patient_discharged(self):
@@ -201,14 +201,14 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         )
         cleaned_data.update({"date_discharged": get_utcnow_as_date()})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_date_discharged_not_required_if_patient_not_discharged(self):
         non_discharged_statuses = [
             value
             for value in self.inpatient_statuses
-            if value != DISCHARGED and value != NOT_APPLICABLE
+            if value not in (DISCHARGED, NOT_APPLICABLE)
         ]
         for status in non_discharged_statuses:
             with self.subTest(status=status):
@@ -226,7 +226,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                 )
                 cleaned_data.update({"date_discharged": None})
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_date_discharged_not_required_if_patient_not_admitted(self):
@@ -243,7 +243,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         )
         cleaned_data.update({"date_discharged": None})
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_date_discharged_after_date_admitted_ok(self):
@@ -254,7 +254,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             "date_discharged": get_utcnow_as_date(),
         }
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_date_discharged_on_date_admitted_ok(self):
@@ -265,7 +265,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
             "date_discharged": get_utcnow_as_date(),
         }
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_date_discharged_before_date_admitted_raises_error(self):
@@ -299,7 +299,8 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                             "ae_study_relation_possibility": study_relation_choice,
                         }
                         study_drug_relationship_label = get_display(
-                            STUDY_DRUG_RELATIONSHIP, study_drug_relation_choice
+                            STUDY_DRUG_RELATIONSHIP,
+                            study_drug_relation_choice,
                         )
                         self.assertFormValidatorError(
                             field="ae_study_relation_possibility",
@@ -320,7 +321,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                         "ae_study_relation_possibility": YES,
                     }
                     self.assertFormValidatorNoError(
-                        form_validator=self.validate_form_validator(cleaned_data)
+                        form_validator=self.validate_form_validator(cleaned_data),
                     )
 
     # As defined in #465, but superseded by #537
@@ -348,7 +349,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     "ae_study_relation_possibility": NO,
                 }
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_study_relation_no_with_study_drug_unlikely_ok(self):
@@ -359,7 +360,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     "ae_study_relation_possibility": NO,
                 }
                 self.assertFormValidatorNoError(
-                    form_validator=self.validate_form_validator(cleaned_data)
+                    form_validator=self.validate_form_validator(cleaned_data),
                 )
 
     def test_study_relation_no_with_poss_prob_def_related_raises(self):

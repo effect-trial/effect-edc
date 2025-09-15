@@ -16,10 +16,10 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
 
     additional_instructions = mark_safe(
         "Please ensure the baseline Vital Signs form has been completed for "
-        "participant <strong>before</strong> starting this form."
+        "participant <strong>before</strong> starting this form.",
     )  # nosec #B703 # B308
 
-    fieldsets = [
+    fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
         (
             "Fluconazole",
@@ -53,9 +53,9 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
             },
         ),
         audit_fieldset_tuple,
-    ]
+    )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "flucon_initiated": admin.VERTICAL,
         "flucon_next_dose": admin.VERTICAL,
         "flucyt_initiated": admin.VERTICAL,
@@ -66,7 +66,7 @@ class StudyMedicationBaselineAdmin(CrfModelAdmin):
         initial_data = super().get_changeform_initial_data(request)
         try:
             subject_visit = get_related_visit_model_cls().objects.get(
-                id=request.GET.get(self.model.related_visit_model_attr())
+                id=request.GET.get(self.model.related_visit_model_attr()),
             )
         except ObjectDoesNotExist:
             pass

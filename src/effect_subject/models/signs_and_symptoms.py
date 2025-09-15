@@ -12,7 +12,9 @@ from ..model_mixins import ReportingFieldsModelMixin
 
 
 class SignsAndSymptoms(
-    ReportingFieldsModelMixin, CrfWithActionModelMixin, edc_models.BaseUuidModel
+    ReportingFieldsModelMixin,
+    CrfWithActionModelMixin,
+    edc_models.BaseUuidModel,
 ):
     action_name = SX_ACTION
 
@@ -43,7 +45,6 @@ class SignsAndSymptoms(
 
     current_sx_other = models.TextField(
         verbose_name="If other, please specify ...",
-        null=True,
         blank=True,
         help_text="If more than one, separate each with a comma (,).",
     )
@@ -57,7 +58,6 @@ class SignsAndSymptoms(
 
     current_sx_gte_g3_other = models.TextField(
         verbose_name="If other, please specify ...",
-        null=True,
         blank=True,
         help_text="If more than one, separate each with a comma (,).",
     )
@@ -77,20 +77,19 @@ class SignsAndSymptoms(
     )
 
     cn_palsy_left_other = edc_models.OtherCharField(
-        verbose_name="If other cranial nerve palsy (left), please specify ..."
+        verbose_name="If other cranial nerve palsy (left), please specify ...",
     )
 
     cn_palsy_right_other = edc_models.OtherCharField(
-        verbose_name="If other cranial nerve palsy (right), please specify ..."
+        verbose_name="If other cranial nerve palsy (right), please specify ...",
     )
 
     focal_neurologic_deficit_other = edc_models.OtherCharField(
-        verbose_name="If other focal neurologic deficit, please specify ..."
+        verbose_name="If other focal neurologic deficit, please specify ...",
     )
 
     visual_field_loss = models.TextField(
         verbose_name="If visual field loss, please provide details ...",
-        null=True,
         blank=True,
     )
 

@@ -29,7 +29,6 @@ class BaselineVlAllAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
 
 @admin.register(BaselineVlMissingQuantifier, site=effect_reports_admin)
 class BaselineVlMissingQuantifierAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
-
     report_model = "effect_reports.baselinevlmissingquantifier"
 
     def get_queryset(self, request) -> QuerySet:
@@ -40,7 +39,6 @@ class BaselineVlMissingQuantifierAdmin(BaselineVlModelAdminMixin, admin.ModelAdm
 
 # @admin.register(BaselineVlDiscrepancy, site=effect_reports_admin)
 class BaselineVlDiscrepancyAdmin(BaselineVlModelAdminMixin, admin.ModelAdmin):
-
     report_model = "effect_reports.baselinevldiscrepancy"
 
     def get_queryset(self, request) -> QuerySet:

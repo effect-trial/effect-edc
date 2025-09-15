@@ -8,7 +8,10 @@ from ..models import SubjectScreening
 
 
 class SubjectScreeningForm(
-    AlreadyConsentedFormMixin, SiteModelFormMixin, FormValidatorMixin, forms.ModelForm
+    AlreadyConsentedFormMixin,
+    SiteModelFormMixin,
+    FormValidatorMixin,
+    forms.ModelForm,
 ):
     form_validator_cls = SubjectScreeningFormValidator
 
@@ -32,15 +35,15 @@ class SubjectScreeningForm(
 
     class Meta:
         model = SubjectScreening
-        labels = {
+        labels = {  # noqa: RUF012
             "gender": "Sex",
             "unsuitable_agreed": (
                 "Does the study clinician agree that the patient is not "
                 "suitable for the study?"
             ),
         }
-        exclude = [
+        exclude = (
             "eligibility_datetime",
             "real_eligibility_datetime",
             "reasons_ineligible",
-        ]
+        )

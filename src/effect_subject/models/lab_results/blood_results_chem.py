@@ -68,7 +68,8 @@ class BloodResultsChem(
     egfr_cls = Egfr
 
     requisition = models.ForeignKey(
-        limit_choices_to={"panel__name": chemistry_panel.name}, **requisition_fk_options
+        limit_choices_to={"panel__name": chemistry_panel.name},
+        **requisition_fk_options,
     )
 
     def get_weight_in_kgs_for_egfr(self) -> Decimal | None:

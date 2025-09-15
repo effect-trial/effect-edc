@@ -17,7 +17,7 @@ from .modeladmin import CrfModelAdmin
 class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
     form = LpCsfForm
 
-    autocomplete_fields = ["csf_requisition"]
+    autocomplete_fields = ("csf_requisition",)
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),
@@ -32,7 +32,7 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
                         "fields"
                     ]
                     if f not in {"csf_crag_immy_lfa"}
-                )
+                ),
             },
         ),
         audit_fieldset_tuple,
@@ -42,7 +42,7 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
 
     list_filter = ("lp_datetime", "reason_for_lp")
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "reason_for_lp": admin.VERTICAL,
         "opening_pressure_measured": admin.VERTICAL,
         "csf_culture": admin.VERTICAL,

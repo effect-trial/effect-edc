@@ -11,17 +11,17 @@ from effect_dashboard.navbars import navbar as dashboard_navbar
 
 navbar = Navbar(name=settings.APP_NAME)
 
-navbar_item = copy([item for item in lab_navbar.navbar_items if item.name == "specimens"][0])
+navbar_item = copy(next(item for item in lab_navbar.navbar_items if item.name == "specimens"))
 navbar_item.active = False
 navbar_item.label = "Specimens"
 navbar.register(navbar_item)
 
 navbar.register(
-    [item for item in dashboard_navbar.navbar_items if item.name == "screened_subject"][0]
+    next(item for item in dashboard_navbar.navbar_items if item.name == "screened_subject"),
 )
 
 navbar.register(
-    [item for item in dashboard_navbar.navbar_items if item.name == "consented_subject"][0]
+    next(item for item in dashboard_navbar.navbar_items if item.name == "consented_subject"),
 )
 
 for item in review_navbar.navbar_items:

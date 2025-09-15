@@ -21,7 +21,7 @@ def get_weight_in_kgs(subject_visit: SubjectVisit | None) -> Decimal | None:
     weight_in_kgs = None
     try:
         obj = django_apps.get_model("effect_subject.vitalsigns").objects.get(
-            subject_visit=subject_visit
+            subject_visit=subject_visit,
         )
     except ObjectDoesNotExist:
         if obj := (

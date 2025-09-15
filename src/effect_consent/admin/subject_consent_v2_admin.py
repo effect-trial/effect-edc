@@ -20,4 +20,4 @@ class SubjectConsentV2Admin(
 ):
     form = SubjectConsentForm
 
-    readonly_fields = []
+    readonly_fields = ()

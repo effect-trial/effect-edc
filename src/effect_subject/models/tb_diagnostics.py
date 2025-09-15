@@ -26,7 +26,7 @@ class TbDiagnostics(
         **{k: v for k, v in requisition_fk_options.items() if k != "verbose_name"},
     )
 
-    comment = models.TextField(verbose_name="Any additional comment", null=True, blank=True)
+    comment = models.TextField(verbose_name="Any additional comment", blank=True)
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):
         verbose_name = "TB Diagnostics"

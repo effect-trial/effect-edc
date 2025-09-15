@@ -23,26 +23,29 @@ class TestActions(EffectTestCaseMixin, TestCase):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
         ae_initial = baker.make_recipe(
-            "effect_ae.aeinitial", subject_identifier=subject_consent.subject_identifier
+            "effect_ae.aeinitial",
+            subject_identifier=subject_consent.subject_identifier,
         )
 
         try:
             action_item = ActionItem.objects.get(
-                action_identifier=ae_initial.action_identifier
+                action_identifier=ae_initial.action_identifier,
             )
         except ObjectDoesNotExist:
             self.fail("ObjectDoesNotExist unexpectedly raised.")
         else:
             self.assertEqual(action_item.status, CLOSED)
             self.assertEqual(
-                action_item.subject_identifier, subject_consent.subject_identifier
+                action_item.subject_identifier,
+                subject_consent.subject_identifier,
             )
 
     def test_ae_initial_creates_ae_followup_action(self):
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
         ae_initial = baker.make_recipe(
-            "effect_ae.aeinitial", subject_identifier=subject_consent.subject_identifier
+            "effect_ae.aeinitial",
+            subject_identifier=subject_consent.subject_identifier,
         )
 
         action_item = ActionItem.objects.get(action_identifier=ae_initial.action_identifier)
@@ -57,7 +60,7 @@ class TestActions(EffectTestCaseMixin, TestCase):
         else:
             self.assertEqual(action_item.status, NEW)
 
-    def test_ae_initial_G4_creates_ae_tmg_action(self):
+    def test_ae_initial_G4_creates_ae_tmg_action(self):  # noqa: N802
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
         baker.make_recipe(
@@ -74,7 +77,7 @@ class TestActions(EffectTestCaseMixin, TestCase):
         except ObjectDoesNotExist:
             self.fail("ObjectDoesNotExist unexpectedly raised.")
 
-    def test_ae_initial_G5_creates_death_report_action(self):
+    def test_ae_initial_G5_creates_death_report_action(self):  # noqa: N802
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening)
         baker.make_recipe(

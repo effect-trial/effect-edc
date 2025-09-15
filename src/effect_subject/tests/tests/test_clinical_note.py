@@ -23,7 +23,7 @@ class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
     def test_cleaned_data_ok(self):
         cleaned_data = self.get_cleaned_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )
 
     def test_has_comment_yes_with_no_comments_raises(self):
@@ -51,5 +51,5 @@ class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
         cleaned_data.update(has_comment=NO, comments=None)
 
         self.assertFormValidatorNoError(
-            form_validator=self.validate_form_validator(cleaned_data)
+            form_validator=self.validate_form_validator(cleaned_data),
         )

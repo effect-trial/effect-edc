@@ -62,7 +62,6 @@ class SubjectVisit(
 
     unschedule_detail = models.TextField(
         verbose_name="If 'unschedule', please provide further details, if any",
-        null=True,
         blank=True,
     )
 

@@ -30,17 +30,22 @@ class Rm792KwInCurrentSxOtherAdmin(
 
     change_list_note = format_html(
         "{html}",
-        html=mark_safe(
+        html=mark_safe(  # noqa: S308
             render_to_string(
                 "effect_reports/rm792_kw_in_sx_other/changelist_note.html",
                 context=dict(other_field="current_sx_other"),
-            )
-        ),  # nosec #B703 # B308
+            ),
+        ),
     )
 
-    ordering = ["site", "subject_identifier", "visit_code", "visit_code_sequence"]
+    ordering = (
+        "site",
+        "subject_identifier",
+        "visit_code",
+        "visit_code_sequence",
+    )
 
-    list_display = [
+    list_display = (
         "subject_dashboard",
         "visit_dashboard",
         "site",
@@ -49,15 +54,18 @@ class Rm792KwInCurrentSxOtherAdmin(
         "user_created",
         "user_modified",
         "modified",
-    ]
+    )
 
-    list_filter = [
+    list_filter = (
         ScheduleStatusListFilter,
         "visit_code",
         "visit_code_sequence",
         "site_id",
         "user_created",
         "user_modified",
-    ]
+    )
 
-    search_fields = ["subject_identifier", "current_sx_other"]
+    search_fields = (
+        "subject_identifier",
+        "current_sx_other",
+    )

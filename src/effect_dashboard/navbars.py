@@ -16,7 +16,7 @@ navbar.register(
         codename="edc_screening.view_screening_listboard",
         url_name="screening_listboard_url",
         no_url_namespace=no_url_namespace,
-    )
+    ),
 )
 
 navbar.register(
@@ -28,7 +28,7 @@ navbar.register(
         codename="edc_subject_dashboard.view_subject_listboard",
         url_name="subject_listboard_url",
         no_url_namespace=no_url_namespace,
-    )
+    ),
 )
 
 navbar.register(review_navbar_item)

@@ -27,7 +27,7 @@ class VitalSignsAdmin(CrfWithActionModelAdmin):
                     "respiratory_rate",
                     "temperature",
                     "abnormal_lung_exam",
-                )
+                ),
             },
         ),
         action_fieldset_tuple,
@@ -37,7 +37,7 @@ class VitalSignsAdmin(CrfWithActionModelAdmin):
 
     readonly_fields = action_fields
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "abnormal_lung_exam": admin.VERTICAL,
         "patient_admitted": admin.VERTICAL,
         "reportable_as_ae": admin.VERTICAL,

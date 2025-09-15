@@ -5,8 +5,8 @@ from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
 
-class CrfReportModelAdminMixin(object):
-    crf_model: str = None
+class CrfReportModelAdminMixin:
+    crf_model: str | None = None
 
     @admin.display(description="Update")
     def update_crf(self, obj=None):
@@ -21,13 +21,14 @@ class CrfReportModelAdminMixin(object):
             f"{url}?next={self.admin_site.name}:"
             f"{self.model._meta.label_lower.replace('.', '_')}_changelist"
         )
-        title = _(f"Change {crf_model_cls._meta.verbose_name}")
+        title = _("Change {crf_model_cls._meta.verbose_name}").format(
+            crf_model_cls=crf_model_cls._meta.verbose_name
+        )
         label = _("Change CRF")
-        crf_button = render_to_string(
+        return render_to_string(
             "edc_qareports/columns/change_button.html",
             context=dict(title=title, url=url, label=label),
         )
-        return crf_button
 
     @staticmethod
     def crf_admin_site_name(crf_model_cls) -> str:

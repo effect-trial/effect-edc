@@ -1,37 +1,35 @@
-import os
 import sys
 
 from django.conf import settings
 from django.core.management.base import BaseCommand
 from django.core.management.color import color_style
+from edc_form_describer.forms_reference import FormsReference
+
+from effect_subject.admin_site import effect_subject_admin
+from effect_visit_schedule.visit_schedules import visit_schedule
 
 style = color_style()
 
 
-def update_forms_reference(sender=None, **kwargs):
-    from edc_form_describer import FormsReference
-
-    from effect_subject.admin_site import effect_subject_admin
-    from effect_visit_schedule.visit_schedules import visit_schedule
-
+def update_forms_reference(sender=None, **kwargs):  # noqa: ARG001
     sys.stdout.write(
-        style.MIGRATE_HEADING("Refreshing CRF reference document for effect_subject\n")
+        style.MIGRATE_HEADING("Refreshing CRF reference document for effect_subject\n"),
     )
-    doc_folder = os.path.join(settings.BASE_DIR, "docs")
-    if not os.path.exists(doc_folder):
-        os.mkdir(doc_folder)
+    doc_folder = settings.BASE_DIR / "docs"
+    if not doc_folder.exists():
+        doc_folder.mkdir()
     forms = FormsReference(
         visit_schedules=[visit_schedule],
         admin_site=effect_subject_admin,
         title="EFFECT-EDC Forms Reference",
         add_per_form_timestamp=False,
     )
-    path = os.path.join(doc_folder, "forms_reference.md")
+    path = doc_folder / "forms_reference.md"
     forms.to_file(path=path, overwrite=True, pad=0)
 
 
 class Command(BaseCommand):
     help = "Update forms reference document (.md)"
 
-    def handle(self, *args, **options):
+    def handle(self, *args, **options):  # noqa: ARG002
         update_forms_reference()

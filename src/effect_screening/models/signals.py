@@ -13,12 +13,15 @@ from .subject_screening import SubjectScreening
     dispatch_uid="update_subjectscreening_refusal_on_post_save",
 )
 def update_subjectscreening_refusal_on_post_save(
-    sender, instance, raw, created, using, **kwargs
+    sender,  # noqa: ARG001
+    instance,
+    raw,
+    **kwargs,
 ):
     if not raw and not kwargs.get("update_fields"):
         try:
             subject_screening = SubjectScreening.objects.get(
-                screening_identifier=instance.screening_identifier
+                screening_identifier=instance.screening_identifier,
             )
         except ObjectDoesNotExist:
             pass
@@ -33,10 +36,10 @@ def update_subjectscreening_refusal_on_post_save(
     weak=False,
     dispatch_uid="update_subjectscreening_refusal_on_post_delete",
 )
-def update_subjectscreening_refusal_on_post_delete(sender, instance, using, **kwargs):
+def update_subjectscreening_refusal_on_post_delete(sender, instance, using, **kwargs):  # noqa: ARG001
     try:
         subject_screening = SubjectScreening.objects.get(
-            screening_identifier=instance.screening_identifier
+            screening_identifier=instance.screening_identifier,
         )
     except ObjectDoesNotExist:
         pass

@@ -58,7 +58,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=OTHER),
                 "other_offschedule_reason": "",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -75,7 +75,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "other_offschedule_reason": "Some other reason",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -92,7 +92,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=OTHER),
                 "other_offschedule_reason": "Some other reason",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -106,7 +106,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=DEAD),
                 "death_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -115,8 +115,8 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
         self.assertEqual(
             {
                 "offschedule_reason": [
-                    "Patient is deceased, please complete death report form first."
-                ]
+                    "Patient is deceased, please complete death report form first.",
+                ],
             },
             cm.exception.message_dict,
         )
@@ -132,7 +132,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=DEAD),
                 "death_date": None,
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -149,7 +149,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "death_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -171,7 +171,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=DEAD),
                 "death_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -185,7 +185,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LOST_TO_FOLLOWUP),
                 "ltfu_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -195,8 +195,8 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": [
                     "Patient is lost to followup, please complete "
-                    "`Loss to Follow Up` form first."
-                ]
+                    "`Loss to Follow Up` form first.",
+                ],
             },
             cm.exception.message_dict,
         )
@@ -208,7 +208,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LOST_TO_FOLLOWUP),
                 "ltfu_date": None,
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -225,7 +225,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "ltfu_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -243,7 +243,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LOST_TO_FOLLOWUP),
                 "ltfu_date": get_utcnow_as_date(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -257,7 +257,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=CONSENT_WITHDRAWAL),
                 "consent_withdrawal_reason": "",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -276,7 +276,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "consent_withdrawal_reason": "Some reason...",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -293,7 +293,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=CONSENT_WITHDRAWAL),
                 "consent_withdrawal_reason": "Reason for withdrawal",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -303,7 +303,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
 
     def test_offschedule_reason_not_selected_does_not_raise_attribute_error(self):
         cleaned_data = self.get_cleaned_data()
-        cleaned_data.update({"offschedule_reason": None}),
+        (cleaned_data.update({"offschedule_reason": None}),)
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
             form_validator.validate()
@@ -316,7 +316,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
                 "late_exclusion_reasons": LateExclusionCriteria.objects.none(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -335,9 +335,9 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "late_exclusion_reasons": LateExclusionCriteria.objects.filter(
-                    name="cm_evidence_screening_csf"
+                    name="cm_evidence_screening_csf",
                 ),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -354,9 +354,9 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
                 "late_exclusion_reasons": LateExclusionCriteria.objects.filter(
-                    name="cm_evidence_screening_csf"
+                    name="cm_evidence_screening_csf",
                 ),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -370,7 +370,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=LATE_EXCLUSION),
                 "late_exclusion_reasons": LateExclusionCriteria.objects.all(),
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:
@@ -384,7 +384,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=TRANSFERRED),
                 "transferred_consent": NOT_APPLICABLE,
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -402,10 +402,10 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
                 cleaned_data.update(
                     {
                         "offschedule_reason": OffstudyReasons.objects.get(
-                            name=COMPLETED_FOLLOWUP
+                            name=COMPLETED_FOLLOWUP,
                         ),
                         "transferred_consent": answer,
-                    }
+                    },
                 )
                 form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
                 with self.assertRaises(ValidationError) as cm:
@@ -424,7 +424,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
                     {
                         "offschedule_reason": OffstudyReasons.objects.get(name=TRANSFERRED),
                         "transferred_consent": answer,
-                    }
+                    },
                 )
                 form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
                 try:
@@ -438,7 +438,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=INVALID_ENROLMENT),
                 "invalid_enrol_reason": "",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -457,7 +457,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
                 "invalid_enrol_reason": "Some reason...",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
@@ -474,7 +474,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
             {
                 "offschedule_reason": OffstudyReasons.objects.get(name=INVALID_ENROLMENT),
                 "invalid_enrol_reason": "Details of invalid enrolment",
-            }
+            },
         )
         form_validator = EndOfStudyFormValidator(cleaned_data=cleaned_data)
         try:

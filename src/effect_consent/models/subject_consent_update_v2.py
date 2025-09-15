@@ -19,7 +19,8 @@ class SubjectConsentUpdateV2(
     action_name = CONSENT_V2_ACTION
 
     consent_datetime = models.DateTimeField(
-        verbose_name="Consent date and time", default=get_utcnow
+        verbose_name="Consent date and time",
+        default=get_utcnow,
     )
 
     def __str__(self):

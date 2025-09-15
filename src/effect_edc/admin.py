@@ -19,7 +19,7 @@ class AdminSite(DjangoAdminSite):
     index_title = gettext_lazy("Site administration")
     site_url = "/administration/"
 
-    def __init__(self, **kwargs):
+    def __init__(self, **kwargs):  # noqa: ARG002
         super().__init__(name="effect_edc")
 
 

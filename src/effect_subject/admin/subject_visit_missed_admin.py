@@ -36,7 +36,7 @@ class SubjectVisitMissedAdmin(CrfModelAdmin, FormLabelModelAdminMixin, SimpleHis
 
     filter_horizontal = ("missed_reasons",)
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "survival_status": admin.VERTICAL,
         "contact_attempted": admin.VERTICAL,
         "contact_made": admin.VERTICAL,

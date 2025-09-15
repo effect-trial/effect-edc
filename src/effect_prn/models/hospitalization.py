@@ -94,7 +94,6 @@ class Hospitalization(
     narrative = models.TextField(
         verbose_name="Narrative",
         max_length=500,
-        null=True,
         blank=True,
     )
 

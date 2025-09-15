@@ -14,7 +14,7 @@ adherence_counselling_baseline_fieldset_tuple = (
         "fields": (
             adherence_counselling_fieldset_tuple[1]["fields"]
             + ("diary_issued", "diary_issued_reason_no")
-        )
+        ),
     },
 )
 
@@ -26,7 +26,7 @@ missed_doses_fieldset_tuple = (
             "flucon_doses_missed_number",
             "flucyt_doses_missed",
             "flucyt_doses_missed_number",
-        )
+        ),
     },
 )
 
@@ -40,7 +40,7 @@ medication_diary_review_fieldset_tuple = (
             "diary_returned_reason_no",
             "diary_match_medication",
             "diary_match_medication_reason_no",
-        )
+        ),
     },
 )
 
@@ -62,6 +62,6 @@ adherence_summary_fieldset_tuple = (
             "opinion_flucon_adherent",
             "opinion_arv_adherent",
             "adherence_narrative",
-        )
+        ),
     },
 )

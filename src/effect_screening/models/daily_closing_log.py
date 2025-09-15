@@ -1,5 +1,5 @@
 from datetime import date, datetime
-from typing import Any, Union
+from typing import Any
 
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -13,7 +13,7 @@ from edc_sites.model_mixins import SiteModelMixin
 from edc_utils import convert_php_dateformat, get_utcnow
 
 
-def get_daily_log_revision_date() -> Union[date, datetime]:
+def get_daily_log_revision_date() -> date | datetime:
     try:
         return settings.EFFECT_SCREENING_DCL_REVISION_DATETIME.date()
     except AttributeError:
@@ -53,7 +53,6 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
         verbose_name="How were patients selected to be approached?",
         max_length=25,
         choices=SELECTION_METHOD,
-        null=True,
     )
 
     approached = models.IntegerField(
@@ -82,7 +81,6 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
 
     comment = models.TextField(
         verbose_name="Additional Comments",
-        null=True,
         blank=True,
     )
 
@@ -104,6 +102,6 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
     class Meta:
         verbose_name = "Daily Closing Log"
         verbose_name_plural = "Daily Closing Logs"
-        constraints = [
+        constraints = (
             models.UniqueConstraint(fields=["log_date", "site"], name="unique_date_for_site"),
-        ]
+        )

@@ -19,7 +19,7 @@ class FluconMissedDosesInline(TabularInlineMixin, admin.TabularInline):
                     "day_missed",
                     "missed_reason",
                     "missed_reason_other",
-                )
+                ),
             },
         ],
     )
@@ -40,7 +40,7 @@ class FlucytMissedDosesInline(TabularInlineMixin, admin.TabularInline):
                     "doses_missed",
                     "missed_reason",
                     "missed_reason_other",
-                )
+                ),
             },
         ],
     )

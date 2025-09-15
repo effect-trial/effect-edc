@@ -75,7 +75,7 @@ def get_eligible_options() -> dict:
 class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
     default_sites = site_sites.get_by_country("tanzania", aslist=True)
 
-    site_names = [s.name for s in default_sites]
+    site_names = [s.name for s in default_sites]  # noqa: RUF012
 
     import_randomization_list = True
 
@@ -94,14 +94,14 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         randomizer_cls = site_randomizers.get(cls.randomizer_name)
         randomizer_cls.import_list(sid_count_for_tests=cls.sid_count)
 
-    def get_subject_screening(
+    def get_subject_screening(  # noqa: PLR0913
         self,
         report_datetime: datetime | None = None,
         eligibility_datetime: datetime | None = None,
         gender: str | None = None,
         age_in_years: int | None = None,
-        cd4_date: date = None,
-        serum_crag_date: date = None,
+        cd4_date: date | None = None,
+        serum_crag_date: date | None = None,
     ) -> SubjectScreening:
         eligible_options = deepcopy(get_eligible_options())
         if report_datetime:
@@ -124,7 +124,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         self.assertTrue(subject_screening.eligible)
 
         subject_screening = SubjectScreening.objects.get(
-            screening_identifier=screening_identifier
+            screening_identifier=screening_identifier,
         )
 
         self.assertTrue(subject_screening.eligible)
@@ -133,7 +133,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
             subject_screening.eligibility_datetime = eligibility_datetime
             subject_screening.save()
             subject_screening = SubjectScreening.objects.get(
-                screening_identifier=screening_identifier
+                screening_identifier=screening_identifier,
             )
         return subject_screening
 
@@ -148,7 +148,8 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         single_site = site_sites.get(site.id)
         consent_datetime = consent_datetime or subject_screening.report_datetime
         cdef = site_consents.get_consent_definition(
-            site=single_site, report_datetime=consent_datetime
+            site=single_site,
+            report_datetime=consent_datetime,
         )
         return baker.make_recipe(
             cdef.model,
@@ -163,7 +164,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
             consent_datetime=consent_datetime,
         )
 
-    def get_subject_visit(
+    def get_subject_visit(  # noqa: PLR0913
         self,
         visit_code: str | None = None,
         visit_code_sequence: int | None = None,
@@ -177,13 +178,15 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
     ) -> SubjectVisit:
         reason = reason or SCHEDULED
         subject_screening = subject_screening or self.get_subject_screening(
-            gender=gender, age_in_years=age_in_years
+            gender=gender,
+            age_in_years=age_in_years,
         )
         dob = None
         if age_in_years:
             dob = get_utcnow() - relativedelta(years=age_in_years)
         subject_consent = subject_consent or self.get_subject_consent(
-            subject_screening, dob=dob
+            subject_screening,
+            dob=dob,
         )
         options = dict(
             subject_identifier=subject_consent.subject_identifier,

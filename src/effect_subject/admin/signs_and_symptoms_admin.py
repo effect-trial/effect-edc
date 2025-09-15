@@ -26,7 +26,7 @@ class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
                     "cm_sx",
                     "current_sx_gte_g3",
                     "current_sx_gte_g3_other",
-                )
+                ),
             },
         ),
         (
@@ -38,7 +38,7 @@ class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
                     "cn_palsy_right_other",
                     "focal_neurologic_deficit_other",
                     "visual_field_loss",
-                )
+                ),
             },
         ),
         (
@@ -48,7 +48,7 @@ class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
                     "xray_performed",
                     "lp_performed",
                     "urinary_lam_performed",
-                )
+                ),
             },
         ),
         reporting_fieldset_tuple,
@@ -60,14 +60,14 @@ class SignsAndSymptomsAdmin(CrfWithActionModelAdmin):
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = [
+    filter_horizontal = (
         "current_sx",
         "current_sx_gte_g3",
-    ]
+    )
 
-    readonly_fields = ("calculated_headache_duration",) + action_fields
+    readonly_fields = ("calculated_headache_duration", *action_fields)
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "any_sx": admin.VERTICAL,
         "cm_sx": admin.VERTICAL,
         "lp_performed": admin.VERTICAL,

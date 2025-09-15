@@ -9,7 +9,9 @@ from effect_lists.models import ArvRegimens
 
 class ArvHistoryModelMixin(models.Model):
     hiv_diagnosis_date = models.DateField(
-        verbose_name="When was the diagnosis of HIV made?", null=True, blank=True
+        verbose_name="When was the diagnosis of HIV made?",
+        null=True,
+        blank=True,
     )
 
     arv_initiation_date = models.DateField(
@@ -27,7 +29,9 @@ class ArvHistoryModelMixin(models.Model):
     )
 
     viral_load_date = models.DateField(
-        verbose_name="Date of last viral load", null=True, blank=True
+        verbose_name="Date of last viral load",
+        null=True,
+        blank=True,
     )
 
     cd4 = models.IntegerField(

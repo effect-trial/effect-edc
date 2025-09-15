@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from django.contrib import admin
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item.fieldsets import action_fields, action_fieldset_tuple
@@ -15,7 +13,9 @@ from .list_filters import AdmittedDateListFilter, DischargedDateListFilter
 
 @admin.register(Hospitalization, site=effect_prn_admin)
 class HospitalizationAdmin(
-    SiteModelAdminMixin, ModelAdminSubjectDashboardMixin, SimpleHistoryAdmin
+    SiteModelAdminMixin,
+    ModelAdminSubjectDashboardMixin,
+    SimpleHistoryAdmin,
 ):
     form = HospitalizationForm
 
@@ -28,7 +28,7 @@ class HospitalizationAdmin(
                     "have_details",
                     "admitted_date",
                     "admitted_date_estimated",
-                )
+                ),
             },
         ),
         (
@@ -38,7 +38,7 @@ class HospitalizationAdmin(
                     "discharged",
                     "discharged_date",
                     "discharged_date_estimated",
-                )
+                ),
             },
         ),
         (
@@ -49,7 +49,7 @@ class HospitalizationAdmin(
                     "lp_count",
                     "csf_positive_cm",
                     "csf_positive_cm_date",
-                )
+                ),
             },
         ),
         ("Narrative", {"fields": ("narrative",)}),
@@ -73,7 +73,7 @@ class HospitalizationAdmin(
         "lp_performed",
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "admitted_date_estimated": admin.VERTICAL,
         "csf_positive_cm": admin.VERTICAL,
         "discharged": admin.VERTICAL,
@@ -84,7 +84,7 @@ class HospitalizationAdmin(
 
     search_fields = ("subject_identifier", "action_identifier")
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:
         readonly_fields = super().get_readonly_fields(request, obj=obj)
         action_flds = tuple(fld for fld in action_fields if fld != "action_identifier")
         return tuple(set(action_flds + readonly_fields))

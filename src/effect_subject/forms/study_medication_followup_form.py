@@ -11,7 +11,7 @@ class StudyMedicationFollowupForm(CrfModelFormMixin, forms.ModelForm):
     class Meta:
         model = StudyMedicationFollowup
         fields = "__all__"
-        labels = {
+        labels = {  # noqa: RUF012
             "flucon_dose_datetime": "Date and time modified fluconazole dose administered",
             "flucon_next_dose": "Modified fluconazole dose administered",
             "flucyt_dose_datetime": "Date and time modified flucytosine dose administered",

@@ -11,6 +11,12 @@ class AdherenceStageThreeFormValidator(FormValidator):
     pass
 
 
+INVALID_FLUCON_DAY_MISSED = (
+    "Fluconazole day missed: Invalid. `Day 15` dose only applicable "
+    "if `Day 1` is `Not required according to protocol`."
+)
+
+
 class AdherenceStageThreeForm(InlineModelFormMixin, CrfModelFormMixin, forms.ModelForm):
     form_validator_cls = AdherenceStageThreeFormValidator
 
@@ -54,10 +60,7 @@ class AdherenceStageThreeForm(InlineModelFormMixin, CrfModelFormMixin, forms.Mod
                     day_1_set_to_protocol_not_required = True
 
         if day_15_answered and not day_1_set_to_protocol_not_required:
-            raise forms.ValidationError(
-                "Fluconazole day missed: Invalid. `Day 15` dose only applicable "
-                "if `Day 1` is `Not required according to protocol`."
-            )
+            raise forms.ValidationError(INVALID_FLUCON_DAY_MISSED)
 
     class Meta:
         model = AdherenceStageThree

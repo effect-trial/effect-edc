@@ -108,11 +108,9 @@ class HealthEconomicsEventAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = [
-        "transport",
-    ]
+    filter_horizontal = ("transport",)
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "admitted": admin.VERTICAL,
         "admitted_admin": admin.VERTICAL,
         "admitted_investigations": admin.VERTICAL,

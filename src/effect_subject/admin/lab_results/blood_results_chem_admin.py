@@ -1,5 +1,3 @@
-from typing import Tuple
-
 from django.contrib import admin
 from edc_action_item.fieldsets import action_fieldset_tuple
 from edc_lab_results.admin import BloodResultsModelAdminMixin
@@ -27,7 +25,7 @@ class BloodResultsChemAdmin(BloodResultsModelAdminMixin, CrfModelAdmin):
         ).fieldsets,
     )
 
-    def get_readonly_fields(self, request, obj=None) -> Tuple[str, ...]:
+    def get_readonly_fields(self, request, obj=None) -> tuple[str, ...]:  # noqa: ARG002
         readonly_fields = super().get_readonly_fields(request)
         custom_fields = (
             "egfr_value",

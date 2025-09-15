@@ -53,7 +53,7 @@ class HealthEconomicsAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "educational_attainment": admin.VERTICAL,
         "higher_education": admin.VERTICAL,
         "highest_earner": admin.VERTICAL,

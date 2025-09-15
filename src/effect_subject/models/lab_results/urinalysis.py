@@ -20,7 +20,8 @@ class Urinalysis(
     lab_panel = urinalysis_panel
 
     requisition = models.ForeignKey(
-        limit_choices_to={"panel__name": urinalysis_panel.name}, **requisition_fk_options
+        limit_choices_to={"panel__name": urinalysis_panel.name},
+        **requisition_fk_options,
     )
 
     class Meta(CrfWithActionModelMixin.Meta, edc_models.BaseUuidModel.Meta):

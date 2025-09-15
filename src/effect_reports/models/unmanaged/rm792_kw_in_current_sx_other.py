@@ -3,7 +3,6 @@ from edc_qareports.model_mixins import QaReportModelMixin, qa_reports_permission
 
 
 class Rm792KwInCurrentSxOther(QaReportModelMixin, models.Model):
-
     visit_code = models.CharField(max_length=25)
 
     visit_code_sequence = models.IntegerField(default=0)

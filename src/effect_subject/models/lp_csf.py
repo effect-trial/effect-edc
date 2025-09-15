@@ -32,7 +32,9 @@ class LpCsf(
 
     # overrides from LpModelMixin
     reason_for_lp = models.CharField(
-        verbose_name="Reason for LP", max_length=50, choices=LP_REASON
+        verbose_name="Reason for LP",
+        max_length=50,
+        choices=LP_REASON,
     )
 
     csf_requisition = models.ForeignKey(

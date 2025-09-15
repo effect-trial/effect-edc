@@ -22,7 +22,9 @@ from effect_subject.models import BloodResultsChem, SubjectRequisition, VitalSig
 class TestEgfr(EffectTestCaseMixin, TestCase):
     def setUp(self) -> None:
         self.subject_visit = self.get_subject_visit(
-            visit_code=DAY1, gender=FEMALE, age_in_years=33
+            visit_code=DAY1,
+            gender=FEMALE,
+            age_in_years=33,
         )
         panel = Panel.objects.get(name=BloodResultsChem.lab_panel.name)
         self.requisition = SubjectRequisition.objects.create(
@@ -48,15 +50,16 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
 
     def test_assert_values_for_these_tests(self):
         obj = SubjectScreening.objects.get(
-            subject_identifier=self.subject_visit.subject_identifier
+            subject_identifier=self.subject_visit.subject_identifier,
         )
         self.assertEqual(33, obj.age_in_years)
         self.assertEqual(FEMALE, obj.gender)
         obj = SubjectConsent.objects.get(
-            subject_identifier=self.subject_visit.subject_identifier
+            subject_identifier=self.subject_visit.subject_identifier,
         )
         self.assertEqual(
-            33, age(obj.dob, reference_dt=self.subject_visit.report_datetime).years
+            33,
+            age(obj.dob, reference_dt=self.subject_visit.report_datetime).years,
         )
 
     def test_saves_ok_without_creatinine_value(self):
@@ -150,7 +153,8 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
             results_reportable=NOT_APPLICABLE,
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=cleaned_data, model=BloodResultsChem
+            cleaned_data=cleaned_data,
+            model=BloodResultsChem,
         )
         try:
             form_validator.validate()
@@ -171,7 +175,8 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
             results_reportable=NO,
         )
         form_validator = BloodResultsChemFormValidator(
-            cleaned_data=cleaned_data, model=BloodResultsChem
+            cleaned_data=cleaned_data,
+            model=BloodResultsChem,
         )
         with self.assertRaises(forms.ValidationError) as cm:
             form_validator.validate()

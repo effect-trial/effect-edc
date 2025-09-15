@@ -36,7 +36,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
         return [
             obj.model
             for obj in crf_metadatas.filter(entry_status__in=[KEYED, REQUIRED]).order_by(
-                "model"
+                "model",
             )
         ]
 
@@ -67,11 +67,11 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
     def test_investigations_crfs_not_required_if_sisx_not_completed(self):
         subject_visit = self.get_subject_visit(
             # Avoid triggering lpcsf_crf_required metadata rule with screening lp
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
 
         for obj in Appointment.objects.filter(
-            subject_identifier=subject_visit.subject_identifier
+            subject_identifier=subject_visit.subject_identifier,
         ).order_by("visit_code"):
             with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
                 self.assertEqual(subject_visit.visit_code, obj.visit_code)
@@ -91,11 +91,11 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
     ):
         subject_visit = self.get_subject_visit(
             # Avoid triggering lpcsf_crf_required metadata rule with screening lp
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
 
         for obj in Appointment.objects.filter(
-            subject_identifier=subject_visit.subject_identifier
+            subject_identifier=subject_visit.subject_identifier,
         ).order_by("visit_code"):
             with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
                 self.assertEqual(subject_visit.visit_code, obj.visit_code)
@@ -121,11 +121,11 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
     def test_investigations_crfs_not_required_if_sisx_investigations_na(self):
         subject_visit = self.get_subject_visit(
             # Avoid triggering lpcsf_crf_required metadata rule with screening lp
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
 
         for obj in Appointment.objects.filter(
-            subject_identifier=subject_visit.subject_identifier
+            subject_identifier=subject_visit.subject_identifier,
         ).order_by("visit_code"):
             with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
                 self.assertEqual(subject_visit.visit_code, obj.visit_code)
@@ -151,11 +151,11 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
     def test_investigations_crfs_required_if_sisx_investigations_performed(self):
         subject_visit = self.get_subject_visit(
             # Avoid triggering lpcsf_crf_required metadata rule with screening lp
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
 
         for obj in Appointment.objects.filter(
-            subject_identifier=subject_visit.subject_identifier
+            subject_identifier=subject_visit.subject_identifier,
         ).order_by("visit_code"):
             with self.subTest(visit_code=obj.visit_code, subject_visit=subject_visit):
                 self.assertEqual(subject_visit.visit_code, obj.visit_code)
@@ -216,7 +216,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
     def test_lpcsf_crf_required_at_baseline_if_only_screening_lp_performed(self):
         subject_visit = self.get_subject_visit(
-            subject_screening=self.get_subject_screening_with_lp_done()
+            subject_screening=self.get_subject_screening_with_lp_done(),
         )
         self.assertEqual(subject_visit.visit_code, DAY01)
         self.assertEqual(subject_visit.visit_code_sequence, 0)
@@ -236,7 +236,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
         self,
     ):
         subject_visit = self.get_subject_visit(
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
         self.assertEqual(subject_visit.visit_code, DAY01)
         self.assertEqual(subject_visit.visit_code_sequence, 0)
@@ -254,7 +254,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
     def test_lpcsf_crf_required_at_baseline_if_screening_and_diagnosis_lp_performed(self):
         subject_visit = self.get_subject_visit(
-            subject_screening=self.get_subject_screening_with_lp_done()
+            subject_screening=self.get_subject_screening_with_lp_done(),
         )
         self.assertEqual(subject_visit.visit_code, DAY01)
         self.assertEqual(subject_visit.visit_code_sequence, 0)
@@ -272,7 +272,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
     def test_lpcsf_crf_not_required_at_baseline_if_no_lp_performed(self):
         subject_visit = self.get_subject_visit(
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
         self.assertEqual(subject_visit.visit_code, DAY01)
         self.assertEqual(subject_visit.visit_code_sequence, 0)
@@ -329,7 +329,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
                 # Test on unscheduled visit
                 unscheduled_appt = create_unscheduled_appointment(
-                    appointment=subject_visit.appointment
+                    appointment=subject_visit.appointment,
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
                 self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
@@ -409,7 +409,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
                 # Test on unscheduled visit
                 unscheduled_appt = create_unscheduled_appointment(
-                    appointment=subject_visit.appointment
+                    appointment=subject_visit.appointment,
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
                 self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
@@ -445,7 +445,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
     ):
         # Baseline
         subject_visit = self.get_subject_visit(
-            subject_screening=self.get_subject_screening_with_lp_declined()
+            subject_screening=self.get_subject_screening_with_lp_declined(),
         )
         self.assertEqual(subject_visit.visit_code, DAY01)
         models = self.get_metadata_models(subject_visit)
@@ -517,7 +517,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 # expect vital signs present at baseline, regardless of assessment type
                 self.assertIn("effect_subject.vitalsigns", models)
 
-    def test_vitalsigns_crf_required_if_visit_assessment_type_IN_PERSON(self):
+    def test_vitalsigns_crf_required_if_visit_assessment_type_IN_PERSON(self):  # noqa: N802
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening=subject_screening)
 
@@ -551,7 +551,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
                 # Test on unscheduled visit
                 unscheduled_appt = create_unscheduled_appointment(
-                    appointment=subject_visit.appointment
+                    appointment=subject_visit.appointment,
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
                 self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
@@ -579,7 +579,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 # Hit here after calling get_next_subject_visit() on last visit
                 break
 
-    def test_vitalsigns_crf_not_required_if_visit_assessment_type_TELEPHONE(self):
+    def test_vitalsigns_crf_not_required_if_visit_assessment_type_TELEPHONE(self):  # noqa: N802
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening=subject_screening)
 
@@ -614,7 +614,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
                 # Test on unscheduled visit
                 unscheduled_appt = create_unscheduled_appointment(
-                    appointment=subject_visit.appointment
+                    appointment=subject_visit.appointment,
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
                 self.assertEqual(unscheduled_appt.visit_code_sequence, 1)
@@ -642,7 +642,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
                 # Hit here after calling get_next_subject_visit() on last visit
                 break
 
-    def test_vitalsigns_crf_not_required_if_visit_assessment_type_OTHER(self):
+    def test_vitalsigns_crf_not_required_if_visit_assessment_type_OTHER(self):  # noqa: N802
         subject_screening = self.get_subject_screening()
         subject_consent = self.get_subject_consent(subject_screening=subject_screening)
 
@@ -677,7 +677,7 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
 
                 # Test on unscheduled visit
                 unscheduled_appt = create_unscheduled_appointment(
-                    appointment=subject_visit.appointment
+                    appointment=subject_visit.appointment,
                 )
                 self.assertEqual(unscheduled_appt.visit_code, obj.visit_code)
                 self.assertEqual(unscheduled_appt.visit_code_sequence, 1)

@@ -69,18 +69,18 @@ class ArvHistoryAdmin(CrfModelAdmin):
                     "cd4_value",
                     "cd4_date",
                     "cd4_date_estimated",
-                )
+                ),
             },
         ),
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = [
+    filter_horizontal = (
         "initial_art_regimen",
         "current_art_regimen",
-    ]
+    )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "art_decision": admin.VERTICAL,
         "cd4_date_estimated": admin.VERTICAL,
         "current_art_date_estimated": admin.VERTICAL,

@@ -2,7 +2,7 @@ from django.db import models
 
 
 class MissedDosesManager(models.Manager):
-    def get_by_natural_key(
+    def get_by_natural_key(  # noqa: PLR0913
         self,
         day_missed,
         missed_reason,

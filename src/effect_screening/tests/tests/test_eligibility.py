@@ -1,5 +1,3 @@
-from typing import Dict
-
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
@@ -107,7 +105,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
             reaction_to_study_drugs=NO,
         )
 
-    def get_eligible_opts(self) -> Dict:
+    def get_eligible_opts(self) -> dict:
         return dict(
             **self.inclusion_criteria,
             **self.exclusion_criteria,
@@ -136,7 +134,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_inclusion_criteria_for_eligibility(self):
         instance = SubjectScreening.objects.create(
-            **self.inclusion_criteria, **self.get_basic_opts()
+            **self.inclusion_criteria,
+            **self.get_basic_opts(),
         )
         obj = ScreeningEligibility(instance)
         self.assertFalse(obj.is_eligible)
@@ -144,7 +143,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
 
     def test_exclusion_criteria_for_eligibility(self):
         model_obj = SubjectScreening.objects.create(
-            **self.exclusion_criteria, **self.get_basic_opts()
+            **self.exclusion_criteria,
+            **self.get_basic_opts(),
         )
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertFalse(obj.is_eligible)
@@ -188,7 +188,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                     model_obj = SubjectScreening.objects.create(**opts)
                     obj = ScreeningEligibility(model_obj=model_obj)
                     self.assertDictEqual(
-                        {"age_in_years": "Age not >= 18"}, obj.reasons_ineligible
+                        {"age_in_years": "Age not >= 18"},
+                        obj.reasons_ineligible,
                     )
                     self.assertFalse(obj.is_eligible)
                     self.assertEqual(NO, obj.eligible)
@@ -235,7 +236,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                 model_obj = SubjectScreening.objects.create(**opts)
                 obj = ScreeningEligibility(model_obj=model_obj)
                 self.assertDictEqual(
-                    {"cd4_value": "CD4 not <100 cells/μL"}, obj.reasons_ineligible
+                    {"cd4_value": "CD4 not <100 cells/μL"},
+                    obj.reasons_ineligible,
                 )
                 self.assertFalse(obj.is_eligible)
                 self.assertEqual(NO, obj.eligible)
@@ -419,7 +421,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertEqual(
-            {"willing_to_participate": "Unwilling to participate"}, obj.reasons_ineligible
+            {"willing_to_participate": "Unwilling to participate"},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(NO, obj.eligible)
@@ -469,7 +472,9 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertIn("breast_feeding", form._errors)
 
         opts.update(
-            pregnant=NOT_APPLICABLE, preg_test_date=None, breast_feeding=NOT_APPLICABLE
+            pregnant=NOT_APPLICABLE,
+            preg_test_date=None,
+            breast_feeding=NOT_APPLICABLE,
         )
         form = SubjectScreeningForm(data=opts)
         form.is_valid()
@@ -553,8 +558,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
                                 "Ensure this value is less than or equal to 99."
                                 if cd4_value > 0
                                 else "Ensure this value is greater than or equal to 0."
-                            )
-                        ]
+                            ),
+                        ],
                     },
                     form._errors,
                 )
@@ -599,8 +604,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         self.assertDictEqual(
             {
                 "serum_crag_value": [
-                    "Invalid. " "Subject must have positive serum/plasma CrAg test result."
-                ]
+                    "Invalid. Subject must have positive serum/plasma CrAg test result.",
+                ],
             },
             form._errors,
         )
@@ -714,7 +719,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         form.is_valid()
         self.assertIn("any_other_mg_ssx_other", form._errors)
         self.assertDictEqual(
-            {"any_other_mg_ssx_other": ["This field is required."]}, form._errors
+            {"any_other_mg_ssx_other": ["This field is required."]},
+            form._errors,
         )
 
         opts.update(any_other_mg_ssx=YES, any_other_mg_ssx_other="Some other sx")
@@ -730,7 +736,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"prior_cm_episode": "Prior episode of CM"}, obj.reasons_ineligible
+            {"prior_cm_episode": "Prior episode of CM"},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(NO, obj.eligible)
@@ -942,7 +949,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"cm_in_csf": "Positive evidence of CM on CSF"}, obj.reasons_ineligible
+            {"cm_in_csf": "Positive evidence of CM on CSF"},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(NO, obj.eligible)
@@ -966,7 +974,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"consent_ability": "Incapable of consenting"}, obj.reasons_ineligible
+            {"consent_ability": "Incapable of consenting"},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(NO, obj.eligible)
@@ -988,7 +997,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"unsuitable_for_study": "Deemed unsuitable other reason"}, obj.reasons_ineligible
+            {"unsuitable_for_study": "Deemed unsuitable other reason"},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(NO, obj.eligible)
@@ -1069,7 +1079,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         ):
             with self.subTest(reasons_ineligible=reasons_ineligible):
                 self.assertTrue(
-                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible)
+                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible),
                 )
 
     def test_assessment_is_incomplete_false_if_reasons_ineligible_empty(self):
@@ -1119,7 +1129,7 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         ):
             with self.subTest(reasons_ineligible=reasons_ineligible):
                 self.assertFalse(
-                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible)
+                    ScreeningEligibility.assessment_is_incomplete(reasons_ineligible),
                 )
 
     def test_status_pending_if_csf_crag_value_pending(self):
@@ -1253,7 +1263,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"inclusion_criteria": INCOMPLETE_INCLUSION}, obj.reasons_ineligible
+            {"inclusion_criteria": INCOMPLETE_INCLUSION},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(INCOMPLETE, obj.eligible)
@@ -1265,7 +1276,8 @@ class TestEligibility(EffectTestCaseMixin, TestCase):
         model_obj = SubjectScreening.objects.create(**opts)
         obj = ScreeningEligibility(model_obj=model_obj)
         self.assertDictEqual(
-            {"exclusion_criteria": INCOMPLETE_EXCLUSION}, obj.reasons_ineligible
+            {"exclusion_criteria": INCOMPLETE_EXCLUSION},
+            obj.reasons_ineligible,
         )
         self.assertFalse(obj.is_eligible)
         self.assertEqual(INCOMPLETE, obj.eligible)

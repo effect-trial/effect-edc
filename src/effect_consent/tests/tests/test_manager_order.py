@@ -30,11 +30,9 @@ class TestManagers(TestCase):
         app_label = "effect_consent"
         app_config = django_apps.get_app_config(app_label)
         for model_cls in app_config.get_models():
-            if model_cls._meta.proxy:
+            if model_cls._meta.proxy or model_cls == SubjectConsentUpdateV2:
                 continue
-            elif model_cls == SubjectConsentUpdateV2:
-                continue
-            elif "historical" in model_cls._meta.label_lower:
+            if "historical" in model_cls._meta.label_lower:
                 self.assertEqual(
                     model_cls._default_manager.__class__,
                     SerializableModelManager,
@@ -59,5 +57,5 @@ class TestManagers(TestCase):
                         "matched with test assertion declared above. "
                         "Have you defined a case for it in this test? "
                         f"Model is {model_cls}"
-                    )
+                    ),
                 )

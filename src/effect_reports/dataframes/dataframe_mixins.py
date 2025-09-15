@@ -8,7 +8,7 @@ from edc_pdutils.dataframes import get_crf
 class BaselineVlDfMixin:
     """A dataframe that lists baseline VLs."""
 
-    model: str = None
+    model: str | None = None
 
     def to_dataframe(self) -> pd.DataFrame:
         df = get_crf(
@@ -34,8 +34,7 @@ class BaselineVlDfMixin:
             "modified",
         ]
         df = df[keep_cols]
-        df = df.reset_index(drop=True)
-        return df
+        return df.reset_index(drop=True)
 
     def to_model(self, model: str | None = None) -> None:
         df = self.to_dataframe()

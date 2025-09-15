@@ -17,7 +17,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
         default=NOT_APPLICABLE,
     )
     adherence_counselling_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
+        verbose_name=IF_NO_SPECIFY_REASON,
     )
 
     diary_issued = models.CharField(
@@ -68,7 +68,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     medication_reconciliation_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
+        verbose_name=IF_NO_SPECIFY_REASON,
     )
 
     diary_returned = models.CharField(
@@ -94,7 +94,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     diary_match_medication_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
+        verbose_name=IF_NO_SPECIFY_REASON,
     )
 
     linked_local_clinic = models.CharField(
@@ -106,7 +106,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     linked_local_clinic_reason_no = edc_models.OtherCharField(
-        verbose_name=IF_NO_SPECIFY_REASON
+        verbose_name=IF_NO_SPECIFY_REASON,
     )
 
     on_flucon = models.CharField(
@@ -131,7 +131,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     opinion_flucon_adherent = models.CharField(
         verbose_name=(
-            "In the clinician’s opinion, is the participant 90% adherent to fluconazole?"
+            "In the clinician's opinion, is the participant 90% adherent to fluconazole?"
         ),
         max_length=15,
         choices=YES_NO,
@@ -140,7 +140,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     opinion_arv_adherent = models.CharField(
-        verbose_name="In the clinician’s opinion, is the participant 90% adherent to ART?",
+        verbose_name="In the clinician's opinion, is the participant 90% adherent to ART?",
         max_length=15,
         choices=YES_NO,
         null=False,
@@ -149,7 +149,6 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
 
     adherence_narrative = models.TextField(
         verbose_name="Medication adherence narrative:",
-        null=True,
         blank=True,
     )
 

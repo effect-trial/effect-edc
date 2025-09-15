@@ -23,7 +23,7 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
                     "modifications",
                     "modifications_reason",
                     "modifications_reason_other",
-                )
+                ),
             },
         ),
         (
@@ -57,7 +57,7 @@ class StudyMedicationFollowupAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "flucon_next_dose": admin.VERTICAL,
         "flucon_modified": admin.VERTICAL,
         "flucyt_next_dose": admin.VERTICAL,

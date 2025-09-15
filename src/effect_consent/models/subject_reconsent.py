@@ -17,6 +17,9 @@ from edc_utils import get_utcnow
 from ..action_items import RECONSENT_ACTION
 from .model_mixins import SearchSlugModelMixin
 
+RECONSENT_NOT_REQUIRED = "Reconsent is not required."
+PREVIOUS_CONSENT_DOES_NOT_EXIST = "Previous consent does not exist."
+
 
 class SubjectReconsent(
     UniqueSubjectIdentifierModelMixin,
@@ -60,13 +63,13 @@ class SubjectReconsent(
     def save(self, *args, **kwargs):
         subject_screening = self.get_subject_screening()
         if subject_screening.mental_status != ABNORMAL:
-            raise ValidationError("Reconsent is not required.")
+            raise ValidationError(RECONSENT_NOT_REQUIRED)
         try:
             self.get_subject_consent(
-                screening_identifier=subject_screening.screening_identifier
+                screening_identifier=subject_screening.screening_identifier,
             )
-        except ObjectDoesNotExist:
-            raise ValidationError("Previous consent does not exist.")
+        except ObjectDoesNotExist as e:
+            raise ValidationError(PREVIOUS_CONSENT_DOES_NOT_EXIST) from e
         super().save(*args, **kwargs)
 
     def natural_key(self):

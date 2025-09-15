@@ -32,8 +32,7 @@ class BaselineVlMissingQuantifierDf(BaselineVlDfMixin):
     def to_dataframe(self) -> pd.DataFrame:
         df = super().to_dataframe()
         df = df[df["viral_load_quantifier"].isna()]
-        df = df.reset_index(drop=True)
-        return df
+        return df.reset_index(drop=True)
 
 
 class BaselineVlDiscrepancyDf(BaselineVlDfMixin):
@@ -69,5 +68,4 @@ class BaselineVlDiscrepancyDf(BaselineVlDfMixin):
                 )
             )
         ]
-        df = df.reset_index(drop=True)
-        return df
+        return df.reset_index(drop=True)

@@ -17,21 +17,29 @@ class Rm792SiSxListCandidatesAdmin(
     TemplatesModelAdminMixin,
     admin.ModelAdmin,
 ):
-
     change_list_note = format_html(
         "{html}",
-        html=mark_safe(
+        html=mark_safe(  # noqa: S308
             render_to_string(
                 "effect_reports/rm792_kw_in_sx_other/changelist_note.html",
                 context=dict(other_field="current_sx_other"),
-            )
-        ),  # nosec #B703 # B308
+            ),
+        ),
     )
 
-    ordering = ["current_sx_other", "site"]
+    ordering = (
+        "current_sx_other",
+        "site",
+    )
 
-    list_display = ["current_sx_other", "site"]
+    list_display = (
+        "current_sx_other",
+        "site",
+    )
 
-    list_filter = ["current_sx_other", "site"]
+    list_filter = (
+        "current_sx_other",
+        "site",
+    )
 
-    search_fields = ["current_sx_other"]
+    search_fields = ("current_sx_other",)

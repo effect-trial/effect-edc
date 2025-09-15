@@ -40,7 +40,7 @@ class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistor
                     "date_admitted",
                     "inpatient_status",
                     "date_discharged",
-                )
+                ),
             },
         ),
         (
@@ -52,7 +52,7 @@ class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistor
                     "ae_study_relation_possibility",
                     "ae_cause",
                     "ae_cause_other",
-                )
+                ),
             },
         ),
         (fieldset_part_three[0].replace("Part 3:", "Part 4:"), fieldset_part_three[1]),
@@ -61,7 +61,7 @@ class AeInitialAdmin(SiteModelAdminMixin, AeInitialModelAdminMixin, SimpleHistor
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "ae_cause": admin.VERTICAL,
         "ae_classification": admin.VERTICAL,
         "ae_grade": admin.VERTICAL,

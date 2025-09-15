@@ -19,11 +19,11 @@ class EndOfStudyAction(ActionWithNotification):
     name = END_OF_STUDY_ACTION
     display_name = "Submit End of Study Report"
     notification_display_name = "End of Study Report"
-    parent_action_names = [
+    parent_action_names = (
         UNBLINDING_REVIEW_ACTION,
         DEATH_REPORT_ACTION,
         LTFU_ACTION,
-    ]
+    )
     reference_model = "effect_prn.endofstudy"
     show_link_to_changelist = True
     show_link_to_add = True
@@ -35,7 +35,7 @@ class HospitalizationAction(ActionWithNotification):
     name = HOSPITALIZATION_ACTION
     display_name = "Submit Hospitalization Report"
     notification_display_name = "Hospitalization"
-    parent_action_names = []
+    parent_action_names = ()
     reference_model = "effect_prn.hospitalization"
     show_link_to_changelist = True
     show_link_to_add = True
@@ -47,7 +47,7 @@ class LossToFollowupAction(ActionWithNotification):
     name = LTFU_ACTION
     display_name = "Submit Loss to Follow Up Report"
     notification_display_name = " Loss to Follow Up Report"
-    parent_action_names = []
+    parent_action_names = ()
     reference_model = "effect_prn.losstofollowup"
     show_link_to_changelist = True
     show_link_to_add = True
@@ -55,15 +55,14 @@ class LossToFollowupAction(ActionWithNotification):
     priority = HIGH_PRIORITY
 
     def get_next_actions(self):
-        next_actions = [END_OF_STUDY_ACTION]
-        return next_actions
+        return [END_OF_STUDY_ACTION]
 
 
 class UnblindingRequestAction(ActionWithNotification):
     name = UNBLINDING_REQUEST_ACTION
     display_name = "Unblinding request"
     notification_display_name = " Unblinding request"
-    parent_action_names = []
+    parent_action_names = ()
     reference_model = "edc_unblinding.unblindingrequest"
     show_link_to_changelist = True
     show_link_to_add = True
@@ -71,20 +70,17 @@ class UnblindingRequestAction(ActionWithNotification):
     priority = HIGH_PRIORITY
 
     def get_next_actions(self):
-        next_actions = []
-        next_actions = self.append_to_next_if_required(
-            next_actions=next_actions,
+        return self.append_to_next_if_required(
             action_name=UNBLINDING_REVIEW_ACTION,
             required=self.reference_obj.approved == TBD,
         )
-        return next_actions
 
 
 class UnblindingReviewAction(ActionWithNotification):
     name = UNBLINDING_REVIEW_ACTION
     display_name = "Unblinding review pending"
     notification_display_name = " Unblinding review needed"
-    parent_action_names = [UNBLINDING_REQUEST_ACTION]
+    parent_action_names = (UNBLINDING_REQUEST_ACTION,)
     reference_model = "edc_unblinding.unblindingreview"
     show_link_to_changelist = True
     admin_site_name = "edc_unblinding_admin"
@@ -94,13 +90,10 @@ class UnblindingReviewAction(ActionWithNotification):
     instructions = "This report is to be completed by the UNBLINDING REVIEWERS only."
 
     def get_next_actions(self):
-        next_actions = []
-        next_actions = self.append_to_next_if_required(
-            next_actions=next_actions,
+        return self.append_to_next_if_required(
             action_name=END_OF_STUDY_ACTION,
             required=self.reference_obj.approved == YES,
         )
-        return next_actions
 
 
 class ProtocolDeviationViolationAction(BaseProtocolDeviationViolationAction):

@@ -24,13 +24,13 @@ def format_ae_description(context, ae_initial, wrap_length):
     context["ae_initial"] = ae_initial
     context["sae_reason"] = format_html(
         "{}",
-        mark_safe(
+        mark_safe(  # noqa: S308
             "<BR>".join(wrap(ae_initial.sae_reason.name, wrap_length or 35)),
         ),  # nosec B703, B308
     )
     context["ae_description"] = format_html(
         "{}",
-        mark_safe(
+        mark_safe(  # noqa: S308
             "<BR>".join(wrap(ae_initial.ae_description, wrap_length or 35)),
         ),  # nosec B703, B308
     )

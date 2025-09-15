@@ -44,5 +44,5 @@ class TestManagers(TestCase):
                         "matched with test assertion declared above. "
                         "Have you defined a case for it in this test? "
                         f"Model is {model_cls}"
-                    )
+                    ),
                 )

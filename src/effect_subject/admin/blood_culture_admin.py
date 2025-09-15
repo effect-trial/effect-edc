@@ -17,7 +17,7 @@ def get_blood_culture_fieldset():
                 "blood_culture_date",
                 "blood_culture_result",
                 "blood_culture_organism_text",
-            )
+            ),
         },
     ]
 
@@ -26,7 +26,7 @@ def get_blood_culture_fieldset():
 class BloodCultureAdmin(BloodCultureModelAdminMixin, CrfModelAdmin):
     form = BloodCultureForm
 
-    autocomplete_fields = ["requisition"]
+    autocomplete_fields = ("requisition",)
 
     fieldsets = (
         (None, {"fields": ("subject_visit", "report_datetime")}),

@@ -1,4 +1,4 @@
-from typing import Any, Optional
+from typing import Any
 
 from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
@@ -42,35 +42,35 @@ class AeReviewModelAdminMixin(
                     "ae_grade",
                     "relevant_history",
                     "followup",
-                )
+                ),
             },
         ),
         action_fieldset_tuple,
         audit_fieldset_tuple,
     )
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "outcome": admin.VERTICAL,
         "followup": admin.VERTICAL,
         "ae_grade": admin.VERTICAL,
     }
 
-    list_display = [
+    list_display = (
         "identifier",
         "dashboard",
         "description",
         "initial_ae",
         "follow_up_reports",
         "user",
-    ]
+    )
 
     list_filter = ("ae_grade", "followup", "outcome_date", "report_datetime")
 
-    search_fields = [
+    search_fields = (
         "action_identifier",
         "ae_initial__subject_identifier",
         "ae_initial__action_identifier",
-    ]
+    )
 
     @staticmethod
     def description(obj) -> str:
@@ -98,7 +98,7 @@ class AeReviewModelAdminMixin(
     def follow_up_reports(self, obj) -> Any:
         return super().follow_up_reports(obj.ae_initial)
 
-    def initial_ae(self: Any, obj) -> Optional[str]:
+    def initial_ae(self: Any, obj) -> str | None:
         """Returns a shortened action identifier."""
         if obj.ae_initial:
             url_name = "_".join(obj.ae_initial._meta.label_lower.split("."))

@@ -12,7 +12,9 @@ class SubjectVisitMissed(
     edc_models.BaseUuidModel,
 ):
     missed_reasons = models.ManyToManyField(
-        SubjectVisitMissedReasons, blank=True, related_name="effect_missed_reasons"
+        SubjectVisitMissedReasons,
+        blank=True,
+        related_name="effect_missed_reasons",
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

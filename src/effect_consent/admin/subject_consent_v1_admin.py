@@ -20,12 +20,12 @@ class SubjectConsentV1Admin(
 ):
     form = SubjectConsentForm
 
-    readonly_fields = []
+    readonly_fields = ()
 
     def get_fieldsets(self, request, obj=None):
         fieldsets = super().get_fieldsets(request, obj=obj)
         fieldsets = list(fieldsets)
-        for index, fieldset in enumerate(fieldsets):
+        for _, fieldset in enumerate(fieldsets):
             if fieldset[0] == "Substudy, Specimens and Data Sharing":
                 fieldsets.remove(fieldset)
                 break

@@ -31,14 +31,14 @@ class SerumCragDateAdmin(
     note_status_list_filter = SerumCragDateNoteStatusListFilter
 
     ordering = ("subject_identifier",)
-    list_display = [
+    list_display = (
         "subject_dashboard",
         "site",
         "screening",
         "serum_crag_date",
         "eligibility_date",
         "serum_crag_value",
-    ]
+    )
 
     list_filter = (
         "serum_crag_date",
@@ -47,10 +47,10 @@ class SerumCragDateAdmin(
         "site",
     )
 
-    search_fields = [
+    search_fields = (
         "screening_identifier",
         "subject_identifier",
-    ]
+    )
 
     @admin.display(description="screening", ordering="screening_identifier")
     def screening(self, obj=None):
@@ -65,7 +65,7 @@ class SerumCragDateAdmin(
         """Overridden to change description"""
         return super().notes(obj=obj)
 
-    def get_notes_label(self, obj=None, field_name=None):
+    def get_notes_label(self, obj=None, field_name=None):  # noqa: ARG002
         if not obj:
             label = _("Add")
         else:
@@ -76,10 +76,10 @@ class SerumCragDateAdmin(
             elif date and note:
                 label = format_html(
                     "{html}",
-                    html=mark_safe(
+                    html=mark_safe(  # noqa: S308
                         f"{date.strftime('%-d %b %Y')}<br>"
-                        f"({escape_braces(truncate_string(note, max_length=35))})"
-                    ),  # nosec #B703 # B308
+                        f"({escape_braces(truncate_string(note, max_length=35))})",
+                    ),
                 )
             elif note:
                 label = truncate_string(note, max_length=35)

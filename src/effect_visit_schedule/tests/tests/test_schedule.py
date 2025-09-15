@@ -28,7 +28,8 @@ class TestVisitSchedule(TestCase):
                 self.assertEqual(schedule.offschedule_model, "effect_prn.endofstudy")
                 self.assertEqual(len(schedule.consent_definitions), 2)
                 self.assertEqual(
-                    schedule.consent_definitions[0].model, "effect_consent.subjectconsentv1"
+                    schedule.consent_definitions[0].model,
+                    "effect_consent.subjectconsentv1",
                 )
                 self.assertEqual(schedule.appointment_model, "edc_appointment.appointment")
 
@@ -90,7 +91,9 @@ class TestVisitSchedule(TestCase):
                         actual.sort()
                         prn.sort()
                         self.assertEqual(
-                            prn, actual, msg=f"see PRN requisitions for visit {visit_code}"
+                            prn,
+                            actual,
+                            msg=f"see PRN requisitions for visit {visit_code}",
                         )
 
     def test_crfs(self):
@@ -109,7 +112,7 @@ class TestVisitSchedule(TestCase):
                     "effect_subject.tbdiagnostics",
                     "effect_subject.clinicalnote",
                 ]
-                prn_followup = prn_baseline + ["effect_subject.studymedicationfollowup"]
+                prn_followup = [*prn_baseline, "effect_subject.studymedicationfollowup"]
                 expected = {
                     "1000": [
                         "effect_subject.arvhistory",
@@ -249,7 +252,7 @@ class TestVisitSchedule(TestCase):
                     "effect_subject.tbdiagnostics",
                     "effect_subject.clinicalnote",
                 ]
-                prn_followup = prn_baseline + ["effect_subject.studymedicationfollowup"]
+                prn_followup = [*prn_baseline, "effect_subject.studymedicationfollowup"]
                 crfs_unscheduled = [
                     "effect_subject.vitalsigns",
                     "effect_subject.mentalstatus",
@@ -259,14 +262,14 @@ class TestVisitSchedule(TestCase):
                     "effect_subject.clinicalnote",
                 ]
                 expected = {
-                    "1000": crfs_unscheduled + ["effect_subject.adherencestagetwo"],
-                    "1003": crfs_unscheduled + ["effect_subject.adherencestagetwo"],
-                    "1009": crfs_unscheduled + ["effect_subject.adherencestagetwo"],
-                    "1014": crfs_unscheduled + ["effect_subject.adherencestagefour"],
-                    "1028": crfs_unscheduled + ["effect_subject.adherencestagefour"],
-                    "1070": crfs_unscheduled + ["effect_subject.adherencestagefour"],
-                    "1112": crfs_unscheduled + ["effect_subject.adherencestagefour"],
-                    "1168": crfs_unscheduled + ["effect_subject.adherencestagefour"],
+                    "1000": [*crfs_unscheduled, "effect_subject.adherencestagetwo"],
+                    "1003": [*crfs_unscheduled, "effect_subject.adherencestagetwo"],
+                    "1009": [*crfs_unscheduled, "effect_subject.adherencestagetwo"],
+                    "1014": [*crfs_unscheduled, "effect_subject.adherencestagefour"],
+                    "1028": [*crfs_unscheduled, "effect_subject.adherencestagefour"],
+                    "1070": [*crfs_unscheduled, "effect_subject.adherencestagefour"],
+                    "1112": [*crfs_unscheduled, "effect_subject.adherencestagefour"],
+                    "1168": [*crfs_unscheduled, "effect_subject.adherencestagefour"],
                 }
                 prn_baseline.sort()
                 prn_followup.sort()
@@ -386,7 +389,12 @@ class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
 
     def test_visit_window_floors_against_absolute_dates(self):
         consent_date = datetime(
-            year=2022, month=3, day=9, hour=9, minute=25, tzinfo=ZoneInfo("UTC")
+            year=2022,
+            month=3,
+            day=9,
+            hour=9,
+            minute=25,
+            tzinfo=ZoneInfo("UTC"),
         )
         expected_visit_window_floors = {
             "1000": consent_date,
@@ -433,7 +441,12 @@ class TestVisitScheduleDates(EffectTestCaseMixin, TestCase):
 
     def test_visit_window_ceilings_against_absolute_dates(self):
         consent_date = datetime(
-            year=2022, month=3, day=9, hour=9, minute=25, tzinfo=ZoneInfo("UTC")
+            year=2022,
+            month=3,
+            day=9,
+            hour=9,
+            minute=25,
+            tzinfo=ZoneInfo("UTC"),
         )
         expected_visit_window_ceilings = {
             "1000": consent_date,

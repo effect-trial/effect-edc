@@ -39,7 +39,7 @@ class ParticipantHistoryAdmin(CrfModelAdmin):
                     "tb_dx_date",
                     "tb_dx_date_estimated",
                     "tb_site",
-                )
+                ),
             },
         ),
         (
@@ -49,7 +49,7 @@ class ParticipantHistoryAdmin(CrfModelAdmin):
                     "on_tb_tx",
                     "tb_tx_type",
                     "active_tb_tx",
-                )
+                ),
             },
         ),
         (
@@ -70,9 +70,9 @@ class ParticipantHistoryAdmin(CrfModelAdmin):
         audit_fieldset_tuple,
     )
 
-    filter_horizontal = ["active_tb_tx", "specify_medications"]
+    filter_horizontal = ("active_tb_tx", "specify_medications")
 
-    radio_fields = {
+    radio_fields = {  # noqa: RUF012
         "any_medications": admin.VERTICAL,
         "flucon_1w_prior_rando": admin.VERTICAL,
         "flucon_dose": admin.VERTICAL,

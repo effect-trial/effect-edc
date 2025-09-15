@@ -15,17 +15,17 @@ class BaseBaselineVlModelMixin(
     """
 
     crf_id = models.UUIDField(null=True)
-    visit_code = models.CharField(max_length=25, null=True)
-    visit_code_sequence = models.IntegerField(default=0, null=True)
+    visit_code = models.CharField(max_length=25)
+    visit_code_sequence = models.IntegerField(default=0)
 
-    has_viral_load_result = models.CharField(max_length=5, null=True)
+    has_viral_load_result = models.CharField(max_length=5)
     viral_load_result = models.IntegerField(null=True)
-    viral_load_quantifier = models.CharField(max_length=20, null=True)
+    viral_load_quantifier = models.CharField(max_length=20, default="")
     viral_load_date = models.DateField(null=True)
-    viral_load_date_estimated = models.CharField(max_length=50, null=True)
+    viral_load_date_estimated = models.CharField(max_length=50, default="")
 
-    user_created = models.CharField(max_length=50, null=True)
-    user_modified = models.CharField(max_length=50, null=True)
+    user_created = models.CharField(max_length=50, default="")
+    user_modified = models.CharField(max_length=50, default="")
     created = models.DateTimeField(null=True)
     modified = models.DateTimeField(null=True)
 

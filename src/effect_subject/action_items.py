@@ -1,4 +1,4 @@
-from typing import List
+from contextlib import suppress
 
 from django.conf import settings
 from edc_action_item.action import Action
@@ -18,7 +18,9 @@ from .constants import (
 )
 
 subject_app_label = getattr(
-    settings, "EDC_BLOOD_RESULTS_MODEL_APP_LABEL", settings.SUBJECT_APP_LABEL
+    settings,
+    "EDC_BLOOD_RESULTS_MODEL_APP_LABEL",
+    settings.SUBJECT_APP_LABEL,
 )
 
 
@@ -38,7 +40,7 @@ class SubjectVisitAction(Action):
         next_actions = []
         if is_baseline(instance=self.reference_obj):
             subject_screening = SubjectScreening.objects.get(
-                subject_identifier=self.subject_identifier
+                subject_identifier=self.subject_identifier,
             )
             if subject_screening.lp_done == PENDING:
                 next_actions = [LP_ACTION]
@@ -70,11 +72,10 @@ class SxAction(Action):
     show_on_dashboard = True
     create_by_user = False
 
-    def get_next_actions(self) -> List[str]:
+    def get_next_actions(self) -> list[str]:
         next_actions = []
         if not is_baseline(instance=self.reference_obj.subject_visit) and (
-            self.reference_obj.reportable_as_ae == YES
-            or self.reference_obj.patient_admitted == YES
+            YES in (self.reference_obj.reportable_as_ae, self.reference_obj.patient_admitted)
         ):
             next_actions.append(AE_INITIAL_ACTION)
         return next_actions
@@ -89,11 +90,10 @@ class VitalSignsAction(Action):
     show_on_dashboard = True
     create_by_user = False
 
-    def get_next_actions(self) -> List[str]:
+    def get_next_actions(self) -> list[str]:
         next_actions = []
         if not is_baseline(instance=self.reference_obj.subject_visit) and (
-            self.reference_obj.reportable_as_ae == YES
-            or self.reference_obj.patient_admitted == YES
+            YES in (self.reference_obj.reportable_as_ae, self.reference_obj.patient_admitted)
         ):
             next_actions.append(AE_INITIAL_ACTION)
         return next_actions
@@ -106,10 +106,8 @@ def register_actions():
         SxAction,
         VitalSignsAction,
     ]:
-        try:
+        with suppress(AlreadyRegistered):
             site_action_items.register(action_item_cls)
-        except AlreadyRegistered:
-            pass
 
 
 register_actions()

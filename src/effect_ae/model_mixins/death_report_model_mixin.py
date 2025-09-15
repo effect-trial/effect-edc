@@ -15,7 +15,8 @@ class DeathReportModelMixin(models.Model):
     )
 
     hospitalization_date_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+        verbose_name="If YES, is this date estimated?",
+        default=NOT_APPLICABLE,
     )
 
     clinical_notes_available = models.CharField(
@@ -51,7 +52,8 @@ class DeathReportModelMixin(models.Model):
     )
 
     date_first_unwell_estimated = IsDateEstimatedFieldNa(
-        verbose_name="If YES, is this date estimated?", default=NOT_APPLICABLE
+        verbose_name="If YES, is this date estimated?",
+        default=NOT_APPLICABLE,
     )
 
     headache = models.CharField(
@@ -79,14 +81,12 @@ class DeathReportModelMixin(models.Model):
         verbose_name="If YES, did they complain of blurred vision?",
         max_length=25,
         choices=YES_NO_UNKNOWN_NA,
-        null=True,
         blank=False,
         default=NOT_APPLICABLE,
     )
 
     nok_narrative = models.TextField(
         verbose_name="Next of kin narrative",
-        null=True,
         blank=True,
     )
 

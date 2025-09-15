@@ -11,7 +11,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
     occupation = models.CharField(
         verbose_name="What is your occupation/profession?",
         max_length=50,
-        null=True,
         blank=False,
     )
 
@@ -26,7 +25,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="What is your highest education certificate?",
         max_length=50,
         choices=EDUCATIONAL_ATTAINMENT_CHOICES,
-        null=True,
         blank=False,
     )
 
@@ -34,7 +32,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Did you go to primary/elementary school?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -49,7 +46,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Did you go to secondary school?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -64,7 +60,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Did you go to higher education?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -79,7 +74,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Do you receive any welfare or social service support?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -95,7 +89,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Are you the person who earns the highest income in your household?",
         max_length=15,
         choices=YES_NO,
-        null=True,
         blank=False,
     )
 
@@ -104,7 +97,6 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
             "If NO, what is the profession of the person who earns the highest income?"
         ),
         max_length=50,
-        null=True,
         blank=True,
     )
 

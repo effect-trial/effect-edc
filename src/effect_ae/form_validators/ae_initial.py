@@ -37,7 +37,9 @@ class AeInitialFormValidator(FormValidator):
     def validate_inpatient_status(self):
         self.applicable_if(YES, field="patient_admitted", field_applicable="inpatient_status")
         self.required_if(
-            DISCHARGED, field="inpatient_status", field_required="date_discharged"
+            DISCHARGED,
+            field="inpatient_status",
+            field_required="date_discharged",
         )
 
         g5_display = get_display(choices=AE_GRADE, label=GRADE5)
@@ -54,8 +56,8 @@ class AeInitialFormValidator(FormValidator):
                     "inpatient_status": (
                         f"Invalid. Status cannot be '{inpatient_status_display}' "
                         f"if severity of AE is '{g5_display}'"
-                    )
-                }
+                    ),
+                },
             )
         if (
             self.cleaned_data.get("inpatient_status") == DECEASED
@@ -66,8 +68,8 @@ class AeInitialFormValidator(FormValidator):
                     "inpatient_status": (
                         f"Invalid. Status cannot be '{inpatient_status_display}' "
                         f"if severity of AE is not '{g5_display}'"
-                    )
-                }
+                    ),
+                },
             )
 
     def validate_date_discharged(self):
@@ -81,8 +83,8 @@ class AeInitialFormValidator(FormValidator):
                 {
                     "date_discharged": (
                         "Invalid. Date discharged cannot be before date admitted"
-                    )
-                }
+                    ),
+                },
             )
 
     def validate_study_relation_possibility(self):
@@ -117,8 +119,8 @@ class AeInitialFormValidator(FormValidator):
                             f"Invalid. Cannot be '{study_relation_display}' "
                             f"if '{drug_relation_display}' "
                             f"to study drug: {study_drug.title()}"
-                        )
-                    }
+                        ),
+                    },
                 )
 
     def validate_flucyt_against_study_arm(self):
