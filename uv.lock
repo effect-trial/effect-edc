@@ -460,7 +460,7 @@ wheels = [
 
 [[package]]
 name = "clinicedc"
-version = "2.0.5"
+version = "2.0.6"
 source = { editable = "../clinicedc" }
 dependencies = [
     { name = "argon2-cffi" },
@@ -507,7 +507,7 @@ requires-dist = [
     { name = "boto3", specifier = ">=1.39.16" },
     { name = "celery", specifier = ">=5.5.3" },
     { name = "cryptography", specifier = ">=45.0.7" },
-    { name = "django", specifier = ">=5.2.4,<5.3" },
+    { name = "django", specifier = ">=5.2.4" },
     { name = "django-admin-rangefilter", specifier = ">=0.13.3" },
     { name = "django-audit-fields", editable = "../django-audit-fields" },
     { name = "django-crypto-fields", editable = "../django-crypto-fields" },
@@ -1751,7 +1751,7 @@ test = [
 
 [[package]]
 name = "effect-form-validators"
-version = "1.1.3"
+version = "1.1.4"
 source = { editable = "../effect-form-validators" }
 dependencies = [
     { name = "clinicedc" },
@@ -1763,54 +1763,27 @@ requires-dist = [{ name = "clinicedc", editable = "../clinicedc" }]
 [package.metadata.requires-dev]
 develop = [
     { name = "arrow", specifier = ">=1.3.0" },
-    { name = "django-audit-fields", editable = "../django-audit-fields" },
-    { name = "django-crypto-fields", editable = "../django-crypto-fields" },
+    { name = "clinicedc", editable = "../clinicedc" },
     { name = "django-mock-queries", specifier = ">=2.3.0" },
-    { name = "django-multisite2", editable = "../django-multisite2" },
-    { name = "django-pandas" },
-    { name = "django-revision", editable = "../django-revision" },
     { name = "edc-csf", editable = "../edc-csf" },
     { name = "edc-microbiology", editable = "../edc-microbiology" },
-    { name = "edc-test-settings", editable = "../edc-test-settings" },
-    { name = "edc-vitals" },
-    { name = "effect-form-validators", editable = "../effect-form-validators" },
+    { name = "edc-test-settings", specifier = ">=1.1.2" },
 ]
 docs = [
     { name = "sphinx", specifier = ">=8.2.3" },
     { name = "sphinx-github-changelog", specifier = ">=1.7.1" },
 ]
-lint = [
-    { name = "black", specifier = ">=25.1.0" },
-    { name = "deptry", specifier = ">=0.23.0" },
-    { name = "flake8", specifier = ">=7.3.0" },
-    { name = "isort", specifier = ">=6.0.1" },
-    { name = "ruff", specifier = ">=0.12.5" },
-]
+lint = [{ name = "ruff", specifier = ">=0.12.5" }]
 test = [
     { name = "arrow", specifier = ">=1.3.0" },
     { name = "clinicedc", editable = "../clinicedc" },
     { name = "coverage", extras = ["toml"], specifier = ">=7.10.1" },
-    { name = "django-admin-rangefilter", specifier = ">=0.13.3" },
-    { name = "django-crypto-fields", editable = "../django-crypto-fields" },
-    { name = "django-logentry-admin", editable = "../django-logentry-admin" },
     { name = "django-mock-queries", specifier = ">=2.3.0" },
-    { name = "django-multisite2", editable = "../django-multisite2" },
-    { name = "django-pandas", specifier = ">=0.6.7" },
-    { name = "django-revision", editable = "../django-revision" },
-    { name = "django-simple-history", editable = "../django-simple-history" },
-    { name = "django-webtest", specifier = ">=1.9.13" },
     { name = "edc-csf", editable = "../edc-csf" },
-    { name = "edc-dx", editable = "../edc-dx" },
-    { name = "edc-dx-review", editable = "../edc-dx-review" },
     { name = "edc-microbiology", editable = "../edc-microbiology" },
-    { name = "edc-test-settings", editable = "../edc-test-settings" },
-    { name = "edc-vitals", specifier = ">=1.1.2" },
-    { name = "effect-form-validators", editable = "../effect-form-validators" },
-    { name = "faker", specifier = ">=37.4.2" },
-    { name = "model-bakery", specifier = ">=1.20.5" },
+    { name = "edc-test-settings", specifier = ">=1.1.2" },
     { name = "time-machine", specifier = ">=2.16.0" },
     { name = "tox-uv", specifier = ">=1.26.2" },
-    { name = "tqdm", specifier = ">=4.67.1" },
 ]
 
 [[package]]
