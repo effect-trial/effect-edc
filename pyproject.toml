@@ -28,7 +28,7 @@ namespace = false
 
 [project]
 name = "effect-edc"
-version = "1.1.1"
+version = "1.1.2"
 description = "EFFECT Trial EDC (https://www.isrctn.com/ISRCTN30579828)"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "GPL-3.0-or-later"
@@ -60,7 +60,7 @@ classifiers = [
 dependencies = [
     "beautifulsoup4>=4.13.4",
     "clinicedc>=2.0.5",
-    "effect-form-validators>=1.1.2",
+    "effect-form-validators>=1.1.4",
     "edc-csf>=1.0.0",
     "edc-dx>=1.0.1",
     "edc-dx-review>=1.0.1",
