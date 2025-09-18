@@ -14,7 +14,6 @@ import edc_model.models.fields.other_charfield
 import edc_model.validators.date
 import edc_protocol.validators
 import edc_sites.models
-import edc_utils.date
 import simple_history.models
 from django.conf import settings
 from django.db import migrations, models
@@ -127,7 +126,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow, verbose_name="Report Date and Time"
+                        default=django.utils.timezone.now, verbose_name="Report Date and Time"
                     ),
                 ),
                 (
@@ -476,7 +475,7 @@ class Migration(migrations.Migration):
                 (
                     "onschedule_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
                             edc_model.validators.date.datetime_not_future,
@@ -599,7 +598,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow, verbose_name="Report Date and Time"
+                        default=django.utils.timezone.now, verbose_name="Report Date and Time"
                     ),
                 ),
                 (
@@ -805,7 +804,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow, verbose_name="Report Date and Time"
+                        default=django.utils.timezone.now, verbose_name="Report Date and Time"
                     ),
                 ),
                 (
@@ -1177,7 +1176,7 @@ class Migration(migrations.Migration):
                 (
                     "onschedule_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
                             edc_model.validators.date.datetime_not_future,
@@ -1327,7 +1326,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow, verbose_name="Report Date and Time"
+                        default=django.utils.timezone.now, verbose_name="Report Date and Time"
                     ),
                 ),
                 (

@@ -18,13 +18,12 @@ import edc_model.models.fields.other_charfield
 import edc_model.validators.date
 import edc_model_fields.fields.other_charfield
 import edc_protocol.validators
-import edc_utils.date
 import edc_visit_tracking.managers
 import edc_vitals.models.fields.weight
 import simple_history.models
 from django.conf import settings
 from django.db import migrations, models
-
+import django.utils.timezone
 import effect_subject.fields.temperature
 import effect_subject.models.subject_visit
 
@@ -58,15 +57,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -139,7 +134,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="Date and time of this report",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -357,15 +352,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -417,7 +408,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -553,15 +544,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -613,7 +600,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -666,7 +653,7 @@ class Migration(migrations.Migration):
                     "contact_last_date",
                     models.DateField(
                         blank=True,
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         null=True,
                         validators=[
                             edc_model.validators.date.date_not_future,
@@ -771,15 +758,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -832,7 +815,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -1058,15 +1041,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -1118,7 +1097,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -1253,15 +1232,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -1313,7 +1288,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -1502,15 +1477,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -1562,7 +1533,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -1696,15 +1667,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -1756,7 +1723,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -1907,15 +1874,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -1967,7 +1930,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -2147,15 +2110,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -2207,7 +2166,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -2344,15 +2303,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -2403,7 +2358,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -2563,15 +2518,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -2622,7 +2573,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -2675,7 +2626,7 @@ class Migration(migrations.Migration):
                     "contact_last_date",
                     models.DateField(
                         blank=True,
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         null=True,
                         validators=[
                             edc_model.validators.date.date_not_future,
@@ -2796,15 +2747,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -2876,7 +2823,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="Date and time of this report",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -3113,15 +3060,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -3173,7 +3116,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -3428,15 +3371,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -3487,7 +3426,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -3621,15 +3560,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -3680,7 +3615,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -3879,15 +3814,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -3938,7 +3869,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -4088,15 +4019,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -4147,7 +4074,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -4314,15 +4241,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -4373,7 +4296,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -4577,15 +4500,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -4636,7 +4555,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -4789,15 +4708,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -4848,7 +4763,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -5004,15 +4919,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -5063,7 +4974,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -5179,15 +5090,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -5238,7 +5145,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -5402,15 +5309,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -5461,7 +5364,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -5590,15 +5493,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -5670,7 +5569,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -6109,15 +6008,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -6189,7 +6084,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -6785,15 +6680,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -6865,7 +6756,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -7592,15 +7483,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -7651,7 +7538,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -7822,15 +7709,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -7882,7 +7765,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -8021,15 +7904,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -8081,7 +7960,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -8173,15 +8052,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -8233,7 +8108,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -8373,15 +8248,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -8433,7 +8304,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -8546,15 +8417,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -8627,7 +8494,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -9037,15 +8904,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -9118,7 +8981,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -9685,15 +9548,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -9766,7 +9625,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
@@ -10464,15 +10323,11 @@ class Migration(migrations.Migration):
                 ),
                 (
                     "created",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "modified",
-                    models.DateTimeField(
-                        blank=True, default=django.utils.timezone.now
-                    ),
+                    models.DateTimeField(blank=True, default=django.utils.timezone.now),
                 ),
                 (
                     "user_created",
@@ -10524,7 +10379,7 @@ class Migration(migrations.Migration):
                 (
                     "report_datetime",
                     models.DateTimeField(
-                        default=edc_utils.date.get_utcnow,
+                        default=django.utils.timezone.now,
                         help_text="If reporting today, use today's date/time, otherwise use the date/time this information was reported.",
                         validators=[
                             edc_protocol.validators.datetime_not_before_study_start,
