@@ -11,13 +11,14 @@ from ...model_mixins import CrfModelMixin
 
 
 class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
-    modifications = models.CharField(
+    modifications = models.CharField(  # noqa: DJ001
         verbose_name=(
             "Have there been any modifications to study medication since the last report?"
         ),
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     modifications_reason = models.ManyToManyField(
@@ -31,19 +32,22 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If other reason, please provide details ...",
         max_length=250,
         blank=True,
+        default="",
     )
 
-    flucon_initiated = models.CharField(
+    flucon_initiated = models.CharField(  # noqa: DJ001
         verbose_name="Was the participant started on Fluconazole?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     flucon_not_initiated_reason = models.TextField(
         verbose_name="If NO, please explain",
         max_length=250,
         blank=True,
+        default="",
     )
 
     flucon_modified = models.CharField(
@@ -80,6 +84,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Fluconazole notes (if any)",
         max_length=250,
         blank=True,
+        default="",
     )
 
     flucyt_initiated = models.CharField(
@@ -87,12 +92,14 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         max_length=15,
         choices=YES_NO_NA,
         blank=False,
+        default="",
     )
 
     flucyt_not_initiated_reason = models.TextField(
         verbose_name="If NO, please explain",
         max_length=250,
         blank=True,
+        default="",
     )
 
     flucyt_dose_expected = models.IntegerField(
@@ -173,6 +180,7 @@ class StudyMedication(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="Flucytosine notes (if any)",
         max_length=250,
         blank=True,
+        default="",
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

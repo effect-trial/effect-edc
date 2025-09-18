@@ -163,6 +163,7 @@ class ArvHistory(CrfModelMixin, edc_models.BaseUuidModel):
     viral_load_quantifier = models.CharField(
         max_length=10,
         choices=VL_QUANTIFIER_NA,
+        default="",
         help_text=(
             "If lower than detection limit (LDL), use '<' and enter "
             "the lab detection limit value above."

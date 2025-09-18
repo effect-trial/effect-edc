@@ -12,6 +12,7 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="What is your occupation/profession?",
         max_length=50,
         blank=False,
+        default="",
     )
 
     education_years = models.IntegerField(
@@ -21,18 +22,20 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=False,
     )
 
-    educational_attainment = models.CharField(
+    educational_attainment = models.CharField(  # noqa: DJ001
         verbose_name="What is your highest education certificate?",
         max_length=50,
         choices=EDUCATIONAL_ATTAINMENT_CHOICES,
         blank=False,
+        null=True,
     )
 
-    primary_school = models.CharField(
+    primary_school = models.CharField(  # noqa: DJ001
         verbose_name="Did you go to primary/elementary school?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     primary_school_years = models.IntegerField(
@@ -42,11 +45,12 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    secondary_school = models.CharField(
+    secondary_school = models.CharField(  # noqa: DJ001
         verbose_name="Did you go to secondary school?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     secondary_school_years = models.IntegerField(
@@ -56,11 +60,11 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    higher_education = models.CharField(
+    higher_education = models.CharField(  # noqa: DJ001
         verbose_name="Did you go to higher education?",
         max_length=15,
         choices=YES_NO,
-        blank=False,
+        null=True,
     )
 
     higher_education_years = models.IntegerField(
@@ -70,11 +74,12 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=True,
     )
 
-    welfare = models.CharField(
+    welfare = models.CharField(  # noqa: DJ001
         verbose_name="Do you receive any welfare or social service support?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     monthly_household_income = models.IntegerField(
@@ -85,11 +90,12 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         blank=False,
     )
 
-    highest_earner = models.CharField(
+    highest_earner = models.CharField(  # noqa: DJ001
         verbose_name="Are you the person who earns the highest income in your household?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     profession_highest_earner = models.CharField(
@@ -98,6 +104,7 @@ class HealthEconomics(CrfModelMixin, edc_models.BaseUuidModel):
         ),
         max_length=50,
         blank=True,
+        default="",
     )
 
     food_month = models.IntegerField(

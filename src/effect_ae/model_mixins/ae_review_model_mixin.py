@@ -37,7 +37,11 @@ class AeReviewModelMixin(models.Model):
         blank=False,
     )
 
-    ae_classification_other = OtherCharField(max_length=250, blank=True, null=True)
+    ae_classification_other = OtherCharField(
+        max_length=250,
+        blank=True,
+        default="",
+    )
 
     ae_type = models.CharField(verbose_name="Type of event", max_length=25, choices=AE_TYPE)
 
@@ -63,20 +67,18 @@ class AeReviewModelMixin(models.Model):
     )
 
     investigator_comments = models.TextField(
-        blank=True,
-        verbose_name="This Clinical Reviewer's comments:",
+        blank=True, verbose_name="This Clinical Reviewer's comments:", default=""
     )
 
     original_report_agreed = models.CharField(
         verbose_name="Does this Clinical Reviewer agree with the original AE report?",
         max_length=15,
         choices=YES_NO,
-        blank=False,
         default="",
         help_text="If NO, explain in the narrative below",
     )
 
-    narrative = models.TextField(verbose_name="Narrative", blank=True)
+    narrative = models.TextField(verbose_name="Narrative", blank=True, default="")
 
     officials_notified = models.DateTimeField(
         blank=True,

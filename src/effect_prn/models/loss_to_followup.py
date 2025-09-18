@@ -52,6 +52,7 @@ class LossToFollowup(
     home_visit_detail = models.TextField(
         verbose_name="If YES, provide any further details of the home visit",
         blank=False,
+        default="",
     )
 
     loss_category = models.CharField(
@@ -67,6 +68,7 @@ class LossToFollowup(
             "Please give details of the circumstances that have led to this decision."
         ),
         blank=False,
+        default="",
     )
 
     class Meta(BaseUuidModel.Meta):

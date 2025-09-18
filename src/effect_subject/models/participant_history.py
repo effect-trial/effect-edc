@@ -12,10 +12,11 @@ from ..model_mixins import CrfModelMixin
 
 
 class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
-    inpatient = models.CharField(
+    inpatient = models.CharField(  # noqa: DJ001
         verbose_name="Is the participant currently an inpatient?",
         max_length=5,
         choices=YES_NO,
+        null=True,
         help_text="(answer NO if admission purely for screening LP)",
     )
 
@@ -23,6 +24,7 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If YES, what is the indication for admission?",
         max_length=50,
         blank=True,
+        default="",
     )
 
     flucon_1w_prior_rando = models.CharField(
@@ -70,6 +72,7 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
     neuro_abnormality_details = models.TextField(
         verbose_name="Details of neurological abnormality?",
         blank=True,
+        default="",
     )
 
     tb_prev_dx = models.CharField(
@@ -152,12 +155,14 @@ class ParticipantHistory(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If STEROID, specify type and dose of steroid ...",
         max_length=150,
         blank=True,
+        default="",
     )
 
     specify_medications_other = models.TextField(
         verbose_name="If OTHER, specify ...",
         max_length=150,
         blank=True,
+        default="",
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

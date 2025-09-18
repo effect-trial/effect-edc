@@ -86,8 +86,7 @@ class DeathReportModelMixin(models.Model):
     )
 
     nok_narrative = models.TextField(
-        verbose_name="Next of kin narrative",
-        blank=True,
+        verbose_name="Next of kin narrative", blank=True, default=""
     )
 
     class Meta:

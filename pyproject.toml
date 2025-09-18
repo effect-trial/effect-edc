@@ -156,6 +156,7 @@ test = [
     "edc-test-settings>=2.0.0",
     "faker>=37.4.2",
     "model-bakery>=1.20.5",
+    "psycopg2>=2.9.10",
     "time-machine>=2.16.0",
 ]
 notebook = [

@@ -161,6 +161,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         max_length=15,
         choices=YES_NO,
         blank=False,
+        default="",
         help_text="If YES, provide date below ...",
     )
 
@@ -287,6 +288,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     any_other_mg_ssx_other = models.TextField(
         verbose_name="If YES, specify",
         blank=True,
+        default="",
         help_text="If more than one, please separate each with a comma (,).",
     )
     # exclusion
@@ -348,6 +350,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
         verbose_name="If other reason unsuitable, please specify ...",
         max_length=150,
         blank=True,
+        default="",
     )
 
     # retired, overrides reasons_unsuitable in ScreeningFieldsModeMixin

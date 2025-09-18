@@ -46,6 +46,7 @@ class SignsAndSymptoms(
     current_sx_other = models.TextField(
         verbose_name="If other, please specify ...",
         blank=True,
+        default="",
         help_text="If more than one, separate each with a comma (,).",
     )
 
@@ -59,6 +60,7 @@ class SignsAndSymptoms(
     current_sx_gte_g3_other = models.TextField(
         verbose_name="If other, please specify ...",
         blank=True,
+        default="",
         help_text="If more than one, separate each with a comma (,).",
     )
 
@@ -91,6 +93,7 @@ class SignsAndSymptoms(
     visual_field_loss = models.TextField(
         verbose_name="If visual field loss, please provide details ...",
         blank=True,
+        default="",
     )
 
     xray_performed = models.CharField(
