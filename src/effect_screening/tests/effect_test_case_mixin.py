@@ -10,7 +10,16 @@ from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_appointment.tests.utils import get_appointment
 from edc_consent import site_consents
-from edc_constants.constants import FEMALE, IN_PERSON, NEG, NO, NOT_APPLICABLE, POS, YES
+from edc_constants.constants import (
+    FEMALE,
+    IN_PERSON,
+    NEG,
+    NO,
+    NOT_APPLICABLE,
+    NULL_STRING,
+    POS,
+    YES,
+)
 from edc_facility.import_holidays import import_holidays
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data
@@ -120,7 +129,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         )
 
         screening_identifier = subject_screening.screening_identifier
-        self.assertIsNone(subject_screening.reasons_ineligible)
+        self.assertTrue(subject_screening.reasons_ineligible == NULL_STRING)
         self.assertTrue(subject_screening.eligible)
 
         subject_screening = SubjectScreening.objects.get(
@@ -155,6 +164,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
             cdef.model,
             user_created="erikvw",
             user_modified="erikvw",
+            subject_identifier=None,
             screening_identifier=subject_screening.screening_identifier,
             initials=subject_screening.initials,
             gender=subject_screening.gender,
