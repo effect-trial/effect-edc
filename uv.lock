@@ -489,6 +489,7 @@ dependencies = [
     { name = "inflect" },
     { name = "mempass" },
     { name = "mysqlclient" },
+    { name = "psycopg2" },
     { name = "pycups" },
     { name = "pypdf" },
     { name = "python-dateutil" },
@@ -528,6 +529,7 @@ requires-dist = [
     { name = "inflect", specifier = ">=7.5.0" },
     { name = "mempass", specifier = ">=0.1.2" },
     { name = "mysqlclient", specifier = ">=2.2.7" },
+    { name = "psycopg2", specifier = ">=2.9.10" },
     { name = "pycups", specifier = ">=2.0.4" },
     { name = "pypdf", specifier = ">=5.9.0" },
     { name = "python-dateutil", specifier = ">=2.9.0.post0" },
@@ -903,7 +905,7 @@ wheels = [
 
 [[package]]
 name = "django-audit-fields"
-version = "2.0.1"
+version = "2.0.2"
 source = { editable = "../django-audit-fields" }
 dependencies = [
     { name = "django-revision" },
@@ -943,7 +945,7 @@ dependencies = [
 
 [package.metadata]
 requires-dist = [
-    { name = "django-audit-fields", editable = "../django-audit-fields" },
+    { name = "django-audit-fields", specifier = ">=2.0.2" },
     { name = "django-extensions", specifier = ">=4.1" },
     { name = "django-revision", editable = "../django-revision" },
     { name = "pycryptodomex", specifier = ">=3.23.0" },
