@@ -73,6 +73,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If YES, what was the activity?",
         max_length=145,
         blank=True,
+        default="",
     )
 
     health_activities_spend = models.IntegerField(
@@ -264,6 +265,7 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         verbose_name="If YES, what was the activity?",
         max_length=145,
         blank=True,
+        default="",
     )
 
     health_activities_spend_today = models.IntegerField(
@@ -274,11 +276,12 @@ class HealthEconomicsEvent(CrfModelMixin, edc_models.BaseUuidModel):
         help_text="In rands or shillings",
     )
 
-    admitted = models.CharField(
+    admitted = models.CharField(  # noqa: DJ001
         verbose_name="Was the participant admitted as part of this health event?",
         max_length=15,
         choices=YES_NO,
         blank=False,
+        null=True,
     )
 
     admitted_admin = models.CharField(

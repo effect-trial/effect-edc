@@ -82,6 +82,7 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
     comment = models.TextField(
         verbose_name="Additional Comments",
         blank=True,
+        default="",
     )
 
     on_site = CurrentSiteManager()

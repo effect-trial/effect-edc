@@ -148,8 +148,7 @@ class Adherence(CrfModelMixin, edc_models.BaseUuidModel):
     )
 
     adherence_narrative = models.TextField(
-        verbose_name="Medication adherence narrative:",
-        blank=True,
+        verbose_name="Medication adherence narrative:", blank=True, default=""
     )
 
     class Meta(CrfModelMixin.Meta, edc_models.BaseUuidModel.Meta):

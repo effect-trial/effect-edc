@@ -20,6 +20,7 @@ class Diagnoses(ReportingFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidMod
     gi_side_effects_details = models.TextField(
         verbose_name="If YES, please give details",
         blank=True,
+        default="",
     )
 
     has_diagnoses = models.CharField(
@@ -38,6 +39,7 @@ class Diagnoses(ReportingFieldsModelMixin, CrfModelMixin, edc_models.BaseUuidMod
         verbose_name="If other, please specify ...",
         max_length=150,
         blank=True,
+        default="",
     )
 
     # TODO: If not baseline, AND reportable_as_ae OR patient_admitted YES, prompt for SAE
