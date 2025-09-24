@@ -508,7 +508,7 @@ wheels = [
 
 [[package]]
 name = "clinicedc-tests"
-version = "0.1.9"
+version = "0.1.8"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "clinicedc" },
@@ -517,9 +517,9 @@ dependencies = [
     { name = "time-machine" },
     { name = "tox-uv" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/84/17/4108ac1accd0d47683104e69f420baeb404c280cd72762c8c5a493f218a4/clinicedc_tests-0.1.9.tar.gz", hash = "sha256:7d44ddf531e67acb1b2daf99ee1dfc3a15a6d2c6dc4c86aec428b7acb05d9e57", size = 52848, upload-time = "2025-09-24T22:09:37.062Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/c6/e4/44bac986be2762e9bc87c495fe03d5a82ae1785ffe857d50596c569a3564/clinicedc_tests-0.1.8.tar.gz", hash = "sha256:7e36273da9ac4391640765072a5c998c06f1faf92c2c2ff6f125d4d8ddca0552", size = 52247, upload-time = "2025-09-24T21:28:42.263Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5b/2b/89adfd7f9dd99cde17101427388ca2e344e98beef79786de17ef30e81303/clinicedc_tests-0.1.9-py3-none-any.whl", hash = "sha256:687e56564e4535165a727a9b52d253a660156f6131400c620c3c5bd87d4fae9d", size = 88444, upload-time = "2025-09-24T22:09:35.726Z" },
+    { url = "https://files.pythonhosted.org/packages/d0/eb/5c0f744c5cff9bf430f2d7975ec836da0cfc1fc2874b971c9e5344f999b2/clinicedc_tests-0.1.8-py3-none-any.whl", hash = "sha256:7bfdfdcb10aae1492716b2180ba19bbfc54baa12aab2c0cf9f0271dfe6f7d9e2", size = 86949, upload-time = "2025-09-24T21:28:40.813Z" },
 ]
 
 [[package]]
