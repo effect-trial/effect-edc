@@ -59,7 +59,7 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4>=4.13.4",
-    "clinicedc>=2.0.14",
+    "clinicedc>=2.0.15",
     "effect-form-validators>=1.1.4",
     "edc-csf>=1.0.0",
     "edc-microbiology>=1.0.0",
