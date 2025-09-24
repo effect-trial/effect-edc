@@ -1,13 +1,15 @@
-import os
 import sys
 from pathlib import Path
 
 import django.conf.locale
 import environ
+from django.core.management.color import color_style
 from edc_constants.constants import COMPLETE
 from edc_constants.internationalization import EXTRA_LANG_INFO
 from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_utils import get_datetime_from_env
+
+style = color_style()
 
 env = environ.Env(
     AWS_ENABLED=(bool, False),
@@ -32,32 +34,29 @@ env = environ.Env(
     TWILIO_ENABLED=(bool, False),
 )
 
-if os.getenv("DJANGO_BASE_DIR"):
-    # for deployed systems where meta-edc is pip installed.
-    # same dir as manage.py
-    BASE_DIR = Path(os.getenv("DJANGO_BASE_DIR"))
-else:
-    # when running from a repo
-    BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
-if os.getenv("DJANGO_ENV_DIR"):
-    ENV_DIR = Path(os.getenv("DJANGO_ENV_DIR"))
-else:
-    ENV_DIR = Path(__file__).resolve().parent.parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent  # root of repo
+if not BASE_DIR.exists():
+    errmsg = f"BASE_DIR does not exist. Got {BASE_DIR}\n"
+    raise FileExistsError(errmsg)
+elif not BASE_DIR.is_dir():
+    errmsg = f"BASE_DIR must be a directory not a file. Got `{BASE_DIR}`"
+    raise FileExistsError(errmsg)
+sys.stdout.write(style.MIGRATE_HEADING(f"BASE_DIR: {BASE_DIR}\n"))
 
+ENV_DIR = Path("~/.clinicedc").expanduser()
+if not ENV_DIR.is_dir():
+    errmsg = f"ENV_DIR must be a directory not a file. Got `{ENV_DIR}`"
+    raise FileExistsError(errmsg)
+elif not (ENV_DIR / ".env").exists():
+    sys.stdout.write(
+        style.ERROR(f"ENV_DIR/.env does not exist, Got {ENV_DIR}/.env. Trying BASE_DIR/.env\n")
+    )
+    ENV_DIR = BASE_DIR
+sys.stdout.write(style.MIGRATE_HEADING(f"ENV_DIR: {ENV_DIR}\n"))
+env.read_env(str(ENV_DIR / ".env"))
 
-# copy your .env file from .envs/ to BASE_DIR
-if "test" in sys.argv:
-    env.read_env(ENV_DIR / ".env-tests")
-    sys.stdout.write(f"Reading env from {BASE_DIR / '.env-tests'}\n")
-else:
-    if not (ENV_DIR / ".env").exists():
-        env.read_env(BASE_DIR / ".env")
-        errmsg = f"Environment file does not exist. Got `{ENV_DIR / '.env'}`"
-        raise FileExistsError(errmsg)
-    env.read_env(ENV_DIR / ".env")
-
-DEBUG = env("DJANGO_DEBUG")
+DEBUG = env.str("DJANGO_DEBUG")
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
@@ -67,7 +66,7 @@ LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
 
 ETC_DIR = env.str("DJANGO_ETC_FOLDER")
 
-TEST_DIR = BASE_DIR / APP_NAME / "tests"
+# TEST_DIR = BASE_DIR / APP_NAME / "tests"
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
