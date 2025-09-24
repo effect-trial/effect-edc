@@ -1,10 +1,10 @@
-import sys
-
 from multisite import SiteID
 
 from .defaults import *  # noqa
 
-sys.stdout.write(f"Settings file {__file__}\n")
+style = color_style()  # noqa: F405
+
+sys.stdout.write(style.MIGRATE_HEADING(f"Settings file {__file__}\n"))  # noqa: F405
 
 # SA Sites
 # SITE_ID = SiteID(default=110)  # Capetown (Khayelitsha & Mitchell's Plain)
