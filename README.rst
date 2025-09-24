@@ -31,15 +31,7 @@ You'll need mysql. Create the database
   mysql -Bse 'create database effect character set utf8;'
 
 
-Create a virtualenv, clone the main repo and checkout master
-
-.. code-block:: bash
-
-  conda create -n edc python=3.12
-  conda activate edc
-
-
-Clone the main repo and checkout master
+Clone the main repo and checkout main
 
 .. code-block:: bash
 
@@ -50,13 +42,21 @@ Clone the main repo and checkout master
   git checkout main
 
 
+Create a venv with uv
+
+.. code-block:: bash
+
+    uv venv
+    source .venv/bin/activate
+    uv sync --no-sources --upgrade
+
 Copy the test environment file
 
 .. code-block:: bash
 
+  mkdir ~/.clinicedc/effect_edc
   cd ~/projects/effect-edc
-  git checkout main
-  cp .env.tests .env
+  cp .env.tests ~/.clinicedc/effect_edc/.env
 
 
 Edit the environment file (.env) to include your mysql password in the ``DATABASE_URL``.
@@ -67,15 +67,12 @@ Edit the environment file (.env) to include your mysql password in the ``DATABAS
   DATABASE_URL=mysql://user:password@127.0.0.1:3306/effect
 
 
-Continue with the installation
+Continue with the installation. FOr this example we setup up a test server (DEBUG=True)
 
 .. code-block:: bash
 
   cd ~/projects/effect-edc
-  git checkout main
-  pip install .
-  pip install -U -r requirements.txt
-  python manage.py migrate
+  python manage.py migrate --settings=effect_edc.settings.debug
   python manage.py import_randomization_list
   python manage.py import_holidays
 
