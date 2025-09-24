@@ -34,14 +34,14 @@ class BloodResultsChemFormValidator(
         pass
 
     def clean(self) -> None:
-        if self.cleaned_data.get("creatinine_value") and not get_weight_in_kgs(
+        if self.cleaned_data.get("creatinine_value") is not None and not get_weight_in_kgs(
             subject_visit=self.related_visit,
         ):
             self.raise_validation_error(
                 "Participant weight not found. Please complete the Vital Signs CRF first.",
                 INVALID_ERROR,
             )
-        if self.cleaned_data.get("creatinine_value") and self.cleaned_data.get(
+        if self.cleaned_data.get("creatinine_value") is not None and self.cleaned_data.get(
             "creatinine_units",
         ):
             rs = RegisteredSubject.objects.get(
