@@ -4,11 +4,11 @@ from copy import deepcopy
 from datetime import date, datetime
 from typing import TYPE_CHECKING
 
+from clinicedc_tests.utils import get_appointment
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_appointment.tests.utils import get_appointment
 from edc_consent import site_consents
 from edc_constants.constants import (
     FEMALE,

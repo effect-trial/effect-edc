@@ -2,12 +2,12 @@ from copy import deepcopy
 from datetime import timedelta
 from typing import Any
 
+from clinicedc_tests.utils import get_appointment
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.db.models import Q
 from django.test import TestCase, tag
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_appointment.tests.utils import get_appointment
 from edc_constants.constants import (
     HEADACHE,
     IN_PERSON,

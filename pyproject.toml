@@ -28,7 +28,7 @@ namespace = false
 
 [project]
 name = "effect-edc"
-version = "1.1.9"
+version = "1.1.10"
 description = "EFFECT Trial EDC (https://www.isrctn.com/ISRCTN30579828)"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "GPL-3.0-or-later"
@@ -148,6 +148,7 @@ exclude_lines = [
 lint = ["ruff>=0.12.5"]
 
 test = [
+    "clinicedc>=2.0.16",
     "clinicedc-tests>=0.1.5",
     "coverage>=7.10.6",
     "django-webtest>=1.9.13",
