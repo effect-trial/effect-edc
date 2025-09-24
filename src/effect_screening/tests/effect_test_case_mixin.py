@@ -4,6 +4,7 @@ from copy import deepcopy
 from datetime import date, datetime
 from typing import TYPE_CHECKING
 
+from clinicedc_tests.mixins import SiteTestCaseMixin
 from clinicedc_tests.utils import get_appointment
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
@@ -27,7 +28,6 @@ from edc_metadata import REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_randomization.site_randomizers import site_randomizers
 from edc_sites.site import sites as site_sites
-from edc_sites.tests.site_test_case_mixin import SiteTestCaseMixin
 from edc_sites.utils import add_or_update_django_sites
 from edc_utils.date import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
