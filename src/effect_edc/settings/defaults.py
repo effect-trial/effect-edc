@@ -11,6 +11,8 @@ from edc_utils import get_datetime_from_env
 
 style = color_style()
 
+APP_NAME = "effect_edc"
+
 env = environ.Env(
     AWS_ENABLED=(bool, False),
     CDN_ENABLED=(bool, False),
@@ -44,7 +46,7 @@ elif not BASE_DIR.is_dir():
     raise FileExistsError(errmsg)
 sys.stdout.write(style.MIGRATE_HEADING(f"BASE_DIR: {BASE_DIR}\n"))
 
-ENV_DIR = Path("~/.clinicedc").expanduser()
+ENV_DIR = Path("~/.clinicedc").expanduser() / APP_NAME
 if not ENV_DIR.is_dir():
     errmsg = f"ENV_DIR must be a directory not a file. Got `{ENV_DIR}`"
     raise FileExistsError(errmsg)
@@ -60,13 +62,26 @@ DEBUG = env.str("DJANGO_DEBUG")
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
-APP_NAME = env.str("DJANGO_APP_NAME")
-
 LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
 
-ETC_DIR = env.str("DJANGO_ETC_FOLDER")
+ETC_DIR = Path(env.str("DJANGO_ETC_FOLDER", default=str(ENV_DIR)))
+if not ETC_DIR.exists():
+    errmsg = f"ETC_DIR does not exist. Got {ETC_DIR}\n"
+    raise FileExistsError(errmsg)
+sys.stdout.write(style.MIGRATE_HEADING(f"ETC_DIR: {ETC_DIR}\n"))
 
-# TEST_DIR = BASE_DIR / APP_NAME / "tests"
+# django_crypto_fields
+KEY_PATH = Path(env.str("DJANGO_KEY_FOLDER", default=str(ETC_DIR)))
+if not KEY_PATH.exists():
+    errmsg = f"KEY_PATH does not exist. Got {KEY_PATH}\n"
+    raise FileExistsError(errmsg)
+sys.stdout.write(style.MIGRATE_HEADING(f"KEY_PATH: {KEY_PATH}\n"))
+AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
+
+# django_revision
+GIT_DIR = BASE_DIR
+
+EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
 ALLOWED_HOSTS = env.list("DJANGO_ALLOWED_HOSTS")
 
@@ -74,7 +89,6 @@ ENFORCE_RELATED_ACTION_ITEM_EXISTS = False
 
 DEFAULT_APPOINTMENT_TYPE = "hospital"
 
-# LOGIN_REDIRECT_URL = env.str("DJANGO_LOGIN_REDIRECT_URL")
 LOGIN_URL = "/accounts/login/"
 LOGOUT_REDIRECT_URL = "/accounts/login/"
 
@@ -431,15 +445,6 @@ if TWILIO_ENABLED:
     TWILIO_ACCOUNT_SID = env.str("TWILIO_ACCOUNT_SID")
     TWILIO_AUTH_TOKEN = env.str("TWILIO_AUTH_TOKEN")
     TWILIO_SENDER = env.str("TWILIO_SENDER")
-
-# django_revision
-GIT_DIR = BASE_DIR.parent
-
-# django_crypto_fields
-KEY_PATH = env.str("DJANGO_KEY_FOLDER")
-AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
-
-EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
 # django_simple_history
 SIMPLE_HISTORY_ENFORCE_HISTORY_MODEL_PERMISSIONS = True
