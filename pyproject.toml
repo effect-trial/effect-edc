@@ -28,7 +28,7 @@ namespace = false
 
 [project]
 name = "effect-edc"
-version = "1.1.13"
+version = "1.1.14"
 description = "EFFECT Trial EDC (https://www.isrctn.com/ISRCTN30579828)"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "GPL-3.0-or-later"
@@ -59,8 +59,8 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4>=4.13.4",
-    "clinicedc>=2.0.21",
-    "effect-form-validators>=1.1.4",
+    "clinicedc>=2.0.22",
+    "effect-form-validators>=1.2.1",
     "edc-csf>=1.0.0",
     "edc-microbiology>=1.0.0",
     "notebook>=7.4.5",
@@ -148,8 +148,8 @@ exclude_lines = [
 lint = ["ruff>=0.12.5"]
 
 test = [
-    "clinicedc>=2.0.16",
-    "clinicedc-tests>=0.1.5",
+    "clinicedc>=2.0.22",
+    "clinicedc-tests>=0.1.10",
     "coverage>=7.10.6",
     "django-webtest>=1.9.13",
     "edc-test-settings>=2.0.0",
@@ -179,21 +179,15 @@ develop = [
     'django>=5.2.4,<5.3',
     "django-redis>=6.0.0",
     'django-admin-rangefilter',
-    'django-audit-fields',
-    'django-crypto-fields',
     'django-db-views',
     'django-environ',
     'django-logentry-admin',
-    'django-multisite2',
     'django-pandas',
     'django-revision',
     'django-simple-history',
     'django-storages',
     'edc-csf',
-    'edc-dx',
-    'edc-dx-review',
     'edc-microbiology',
-    'edc-next-appointment',
     'fontawesomefree',
     "ipython>=9.4.0",
     'python-memcached',
@@ -207,12 +201,5 @@ effect-edc = { workspace = true }
 effect-form-validators = { path = "../effect-form-validators", editable = true }
 clinicedc = { path = "../clinicedc", editable = true }
 clinicedc-tests = { path = "../clinicedc-tests", editable = true }
-django-audit-fields = { path = "../django-audit-fields", editable = true }
-django-crypto-fields = { path = "../django-crypto-fields", editable = true }
-django-logentry-admin = { path = "../django-logentry-admin", editable = true }
-django-multisite2 = { path = "../django-multisite2", editable = true }
-django-revision = { path = "../django-revision", editable = true }
-django-simple-history = { path = "../django-simple-history", editable = true }
 edc-csf = { path = "../edc-csf", editable = true }
 edc-microbiology = { path = "../edc-microbiology", editable = true }
-edc-next-appointment = { path = "../edc-next-appointment", editable = true }
