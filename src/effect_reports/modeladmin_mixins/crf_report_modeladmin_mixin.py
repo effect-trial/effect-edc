@@ -21,8 +21,8 @@ class CrfReportModelAdminMixin:
             f"{url}?next={self.admin_site.name}:"
             f"{self.model._meta.label_lower.replace('.', '_')}_changelist"
         )
-        title = _("Change {crf_model_cls._meta.verbose_name}").format(
-            crf_model_cls=crf_model_cls._meta.verbose_name
+        title = _("Change {verbose_name}").format(
+            verbose_name=crf_model_cls._meta.verbose_name
         )
         label = _("Change CRF")
         return render_to_string(
