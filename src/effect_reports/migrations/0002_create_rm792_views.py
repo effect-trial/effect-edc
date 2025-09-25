@@ -5,28 +5,8 @@ from edc_qareports.utils import read_unmanaged_model_sql
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
         ("effect_reports", "0001_initial"),
     ]
 
-    operations = [
-        migrations.RunSQL(
-            read_unmanaged_model_sql(
-                "rm792_kw_in_current_sx_other.sql",
-                app_name="effect_reports",
-            )
-        ),
-        migrations.RunSQL(
-            read_unmanaged_model_sql(
-                "rm792_kw_in_current_sx_gte_g3_other.sql",
-                app_name="effect_reports",
-            )
-        ),
-        migrations.RunSQL(
-            read_unmanaged_model_sql(
-                "rm792_si_sx_list_candidates.sql",
-                app_name="effect_reports",
-            )
-        ),
-    ]
+    operations = []
