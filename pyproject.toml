@@ -1,6 +1,6 @@
 [project]
 name = "effect-edc"
-version = "1.2.3"
+version = "1.2.4"
 description = "EFFECT Trial EDC (https://www.isrctn.com/ISRCTN30579828)"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "GPL-3.0-or-later"
