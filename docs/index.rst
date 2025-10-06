@@ -13,7 +13,9 @@ A phase III randomised controlled trial
 
 https://www.isrctn.com/ISRCTN30579828
 
-Homepage: https://github.com/effect-trial
+Homepage: https://github.com/effect-trial/
+
+Documentation: https://effect-edc.readthedocs.io/
 
 Source code:
 
