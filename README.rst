@@ -1,4 +1,4 @@
-|pypi| |actions| |codecov| |downloads| |clinicedc|
+|pypi| |actions| |codecov| |downloads| |uv| |ruff| |clinicedc|
 
 
 EFFECT Edc
@@ -15,7 +15,10 @@ A phase III randomised controlled trial
 
 https://www.isrctn.com/ISRCTN30579828
 
-See also https://github.com/clinicedc/edc
+Homepage: https://github.com/effect-trial/
+
+Documentation: https://effect-edc.readthedocs.io/
+
 
 |django|
 
@@ -113,3 +116,10 @@ Login::
 .. |clinicedc| image:: https://img.shields.io/badge/framework-Clinic_EDC-green
    :alt:Made with clinicedc
    :target: https://github.com/clinicedc
+
+.. |uv| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/uv/main/assets/badge/v0.json
+  :target: https://github.com/astral-sh/uv
+
+.. |ruff| image:: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json
+    :target: https://github.com/astral-sh/ruff
+    :alt: Ruff
