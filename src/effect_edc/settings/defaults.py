@@ -1,3 +1,4 @@
+import os
 import sys
 from pathlib import Path
 
@@ -36,27 +37,35 @@ env = environ.Env(
     TWILIO_ENABLED=(bool, False),
 )
 
+if os.getenv("DJANGO_BASE_DIR"):
+    # for deployed systems where meta-edc is pip installed.
+    # same dir as manage.py
+    BASE_DIR = Path(os.getenv("DJANGO_BASE_DIR"))
+else:
+    # when running from a repo
+    BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent  # root of repo
-if not BASE_DIR.exists():
-    errmsg = f"BASE_DIR does not exist. Got {BASE_DIR}\n"
-    raise FileExistsError(errmsg)
-elif not BASE_DIR.is_dir():
-    errmsg = f"BASE_DIR must be a directory not a file. Got `{BASE_DIR}`"
-    raise FileExistsError(errmsg)
-sys.stdout.write(style.MIGRATE_HEADING(f"BASE_DIR: {BASE_DIR}\n"))
+if os.getenv("DJANGO_ENV_DIR"):
+    ENV_DIR = Path(os.getenv("DJANGO_ENV_DIR"))
+else:
+    ENV_DIR = Path(__file__).resolve().parent.parent.parent.parent
 
-ENV_DIR = Path("~/.clinicedc").expanduser() / APP_NAME
-if not ENV_DIR.is_dir():
-    errmsg = f"ENV_DIR must be a directory not a file. Got `{ENV_DIR}`"
-    raise FileExistsError(errmsg)
-elif not (ENV_DIR / ".env").exists():
-    sys.stdout.write(
-        style.ERROR(f"ENV_DIR/.env does not exist, Got {ENV_DIR}/.env. Trying BASE_DIR/.env\n")
-    )
-    ENV_DIR = BASE_DIR
-sys.stdout.write(style.MIGRATE_HEADING(f"ENV_DIR: {ENV_DIR}\n"))
+if os.getenv("DJANGO_ETC_DIR"):
+    ETC_DIR = Path(os.getenv("DJANGO_ETC_DIR"))
+else:
+    ETC_DIR = Path(__file__).resolve().parent.parent.parent.parent
+
 env.read_env(str(ENV_DIR / ".env"))
+
+KEY_PATH = Path(env.str("DJANGO_KEY_FOLDER", default=str(ETC_DIR)))
+if not KEY_PATH.exists():
+    errmsg = f"KEY_PATH does not exist. Got {KEY_PATH}\n"
+    raise FileExistsError(errmsg)
+
+sys.stdout.write(style.MIGRATE_HEADING(f"BASE_DIR: {BASE_DIR}\n"))
+sys.stdout.write(style.MIGRATE_HEADING(f"ENV_DIR: {ENV_DIR}\n"))
+sys.stdout.write(style.MIGRATE_HEADING(f"ETC_DIR: {ETC_DIR}\n"))
+sys.stdout.write(style.MIGRATE_HEADING(f"KEY_PATH: {KEY_PATH}\n"))
 
 DEBUG = env.str("DJANGO_DEBUG")
 
@@ -64,22 +73,11 @@ SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
 LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
 
-ETC_DIR = Path(env.str("DJANGO_ETC_FOLDER", default=str(ENV_DIR)))
-if not ETC_DIR.exists():
-    errmsg = f"ETC_DIR does not exist. Got {ETC_DIR}\n"
-    raise FileExistsError(errmsg)
-sys.stdout.write(style.MIGRATE_HEADING(f"ETC_DIR: {ETC_DIR}\n"))
-
 # django_crypto_fields
-KEY_PATH = Path(env.str("DJANGO_KEY_FOLDER", default=str(ETC_DIR)))
-if not KEY_PATH.exists():
-    errmsg = f"KEY_PATH does not exist. Got {KEY_PATH}\n"
-    raise FileExistsError(errmsg)
-sys.stdout.write(style.MIGRATE_HEADING(f"KEY_PATH: {KEY_PATH}\n"))
 AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
 
 # django_revision
-GIT_DIR = BASE_DIR
+GIT_DIR = BASE_DIR.parent
 
 EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
