@@ -9,7 +9,8 @@ sys.stdout.write(style.MIGRATE_HEADING(f"Settings file {__file__}\n"))  # noqa: 
 SITE_ID = SiteID(default=1)
 EDC_SITES_UAT_DOMAIN = False
 AUTO_CREATE_KEYS = False
-
+LIVE_SYSTEM = True
 EDC_MODEL_ADMIN_CSS_THEME = "edc_indigo"
+EDC_SITES_DOMAIN_SUFFIX = "effect.clinicedc.org"
 
 # DJANGO_REVISION_IGNORE_WORKING_DIR = True
