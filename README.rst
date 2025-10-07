@@ -17,7 +17,7 @@ https://www.isrctn.com/ISRCTN30579828
 
 Homepage: https://github.com/effect-trial/
 
-Documentation: https://effect-edc.readthedocs.io/
+Documentation: https://effect-edc.readthedocs.io/en/latest/
 
 
 |django|
