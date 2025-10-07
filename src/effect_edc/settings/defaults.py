@@ -77,7 +77,7 @@ LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
 AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
 
 # django_revision
-GIT_DIR = BASE_DIR.parent
+GIT_DIR = BASE_DIR
 
 EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
@@ -359,7 +359,7 @@ if not DEBUG:
 
 # edc_lab and label
 LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or (
-    BASE_DIR / "label_templates" / "2.25x1.25in"
+    BASE_DIR / "src" / "label_templates" / "2.25x1.25in"
 )
 CUPS_SERVERS = env.dict("DJANGO_CUPS_SERVERS")
 
