@@ -67,17 +67,17 @@ sys.stdout.write(style.MIGRATE_HEADING(f"ENV_DIR: {ENV_DIR}\n"))
 sys.stdout.write(style.MIGRATE_HEADING(f"ETC_DIR: {ETC_DIR}\n"))
 sys.stdout.write(style.MIGRATE_HEADING(f"KEY_PATH: {KEY_PATH}\n"))
 
-DEBUG = env.str("DJANGO_DEBUG")
+DEBUG = env("DJANGO_DEBUG")
 
 SECRET_KEY = env.str("DJANGO_SECRET_KEY")
 
-LIVE_SYSTEM = env.str("DJANGO_LIVE_SYSTEM")
+LIVE_SYSTEM = env("DJANGO_LIVE_SYSTEM")
 
 # django_crypto_fields
-AUTO_CREATE_KEYS = env.str("DJANGO_AUTO_CREATE_KEYS")
+AUTO_CREATE_KEYS = env("DJANGO_AUTO_CREATE_KEYS")
 
 # django_revision
-GIT_DIR = BASE_DIR.parent
+GIT_DIR = BASE_DIR
 
 EXPORT_FOLDER = env.str("DJANGO_EXPORT_FOLDER") or Path("~/").expanduser()
 
@@ -359,7 +359,7 @@ if not DEBUG:
 
 # edc_lab and label
 LABEL_TEMPLATE_FOLDER = env.str("DJANGO_LABEL_TEMPLATE_FOLDER") or (
-    BASE_DIR / "label_templates" / "2.25x1.25in"
+    BASE_DIR / "src" / "label_templates" / "2.25x1.25in"
 )
 CUPS_SERVERS = env.dict("DJANGO_CUPS_SERVERS")
 
