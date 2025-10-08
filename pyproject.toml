@@ -31,7 +31,7 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4>=4.13.4",
-    "clinicedc>=2.0.34",
+    "clinicedc>=2.0.35",
     "effect-form-validators>=1.2.2",
     "edc-csf>=1.2.0",
     "edc-microbiology>=1.2.0",
@@ -150,7 +150,7 @@ docs = [
     "sphinx-inline-tabs>=2023.4.21",
 ]
 test = [
-    "clinicedc>=2.0.34",
+    "clinicedc>=2.0.35",
     "clinicedc-tests>=0.1.10",
     "coverage>=7.10.6",
     "django-webtest>=1.9.13",
@@ -173,7 +173,7 @@ notebook = [
     "tabulate>=0.9.0",
 ]
 develop = [
-    "clinicedc>=2.0.34",
+    "clinicedc>=2.0.35",
     "django-redis>=6.0.0",
     "ipython>=9.4.0",
     "time-machine>=2.16.0",
