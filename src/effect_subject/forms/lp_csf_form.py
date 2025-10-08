@@ -1,13 +1,13 @@
 from django import forms
 from edc_crf.modelform_mixins import CrfModelFormMixin
-from effect_form_validators.effect_subject import LpCsfFormValidator as Base
+from effect_form_validators.effect_subject import LpCsfFormValidator as BaseLpCsfFormValidator
 
 from effect_labs.panels import csf_culture_panel
 
 from ..models import LpCsf
 
 
-class LpCsfFormValidator(Base):
+class LpCsfFormValidator(BaseLpCsfFormValidator):
     csf_culture_panel = csf_culture_panel
 
 
