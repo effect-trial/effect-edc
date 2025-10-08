@@ -501,9 +501,9 @@ class TestMetadataRules(EffectTestCaseMixin, TestCase):
         (e.g. the validation enforcing IN_PERSON at baseline is changed)
         that the Vital Signs form is still required.
         """
-        for assessment_type in [IN_PERSON, TELEPHONE, OTHER]:
+        for index, assessment_type in enumerate([IN_PERSON, TELEPHONE, OTHER]):
             with self.subTest(assessment_type=assessment_type):
-                subject_screening = self.get_subject_screening()
+                subject_screening = self.get_subject_screening(index=index)
                 subject_consent = self.get_subject_consent(subject_screening=subject_screening)
 
                 # Baseline

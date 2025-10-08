@@ -5,7 +5,7 @@ from django.conf import settings
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from edc_constants.constants import OTHER, YES
-from edc_utils import get_utcnow
+from edc_utils.date import get_utcnow
 
 register = template.Library()
 

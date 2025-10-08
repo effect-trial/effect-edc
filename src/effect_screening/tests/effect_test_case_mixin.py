@@ -44,13 +44,14 @@ if TYPE_CHECKING:
     from effect_consent.models import SubjectConsent
 
 
-def get_eligible_options() -> dict:
+def get_eligible_options(i: int | None = None) -> dict:
+    i = i or ""
     return dict(
         screening_consent=YES,
         willing_to_participate=YES,
         consent_ability=YES,
         report_datetime=get_utcnow(),
-        initials="EW",
+        initials=f"E{i}W",
         gender=FEMALE,
         age_in_years=25,
         unsuitable_for_study=NO,
@@ -111,8 +112,9 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         age_in_years: int | None = None,
         cd4_date: date | None = None,
         serum_crag_date: date | None = None,
+        index: int | None = None,
     ) -> SubjectScreening:
-        eligible_options = deepcopy(get_eligible_options())
+        eligible_options = deepcopy(get_eligible_options(index))
         if report_datetime:
             eligible_options.update(report_datetime=report_datetime)
         eligible_options["gender"] = gender or eligible_options["gender"]

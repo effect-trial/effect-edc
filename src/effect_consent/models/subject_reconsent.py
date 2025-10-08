@@ -3,6 +3,7 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.contrib.sites.models import Site
 from django.core.exceptions import ObjectDoesNotExist, ValidationError
 from django.db import models
+from django.utils import timezone
 from django_crypto_fields.fields.identity_field import IdentityField
 from edc_action_item.models import ActionModelMixin
 from edc_consent.field_mixins import ReviewFieldsMixin
@@ -12,7 +13,6 @@ from edc_identifier.model_mixins import UniqueSubjectIdentifierModelMixin
 from edc_model.models import BaseUuidModel
 from edc_registration.models import RegisteredSubject
 from edc_sites.model_mixins import SiteModelMixin
-from edc_utils import get_utcnow
 
 from ..action_items import RECONSENT_ACTION
 from .model_mixins import SearchSlugModelMixin
@@ -43,7 +43,7 @@ class SubjectReconsent(
 
     site = models.ForeignKey(Site, on_delete=models.PROTECT, null=True, editable=False)
 
-    report_datetime = models.DateTimeField(default=get_utcnow)
+    report_datetime = models.DateTimeField(default=timezone.now)
 
     identity = IdentityField(
         verbose_name="Identity number",
