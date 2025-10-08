@@ -1320,6 +1320,7 @@ dependencies = [
     { name = "edc-microbiology" },
     { name = "effect-form-validators" },
     { name = "notebook" },
+    { name = "reportlab" },
 ]
 
 [package.dev-dependencies]
@@ -1370,6 +1371,7 @@ requires-dist = [
     { name = "edc-microbiology", specifier = ">=1.2.0" },
     { name = "effect-form-validators", editable = "../effect-form-validators" },
     { name = "notebook", specifier = ">=7.4.5" },
+    { name = "reportlab", specifier = ">=4.4.4" },
 ]
 
 [package.metadata.requires-dev]

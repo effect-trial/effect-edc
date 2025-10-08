@@ -36,6 +36,7 @@ dependencies = [
     "edc-csf>=1.2.0",
     "edc-microbiology>=1.2.0",
     "notebook>=7.4.5",
+    "reportlab>=4.4.4",
 ]
 
 [project.urls]
