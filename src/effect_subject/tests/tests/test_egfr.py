@@ -147,7 +147,7 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
         cleaned_data = dict(
             subject_visit=self.subject_visit,
             requisition=self.requisition,
-            report_datetime=self.subject_visit.report_datetime,
+            report_datetime=self.requisition.report_datetime + relativedelta(days=1),
             assay_datetime=self.requisition.report_datetime + relativedelta(days=1),
             results_abnormal=NO,
             results_reportable=NOT_APPLICABLE,
@@ -165,7 +165,7 @@ class TestEgfr(EffectTestCaseMixin, TestCase):
         cleaned_data = dict(
             subject_visit=self.subject_visit,
             requisition=self.requisition,
-            report_datetime=self.subject_visit.report_datetime,
+            report_datetime=self.requisition.report_datetime + relativedelta(days=1),
             assay_datetime=self.requisition.report_datetime + relativedelta(days=1),
             creatinine_value=Decimal("115.0"),
             creatinine_units=MICROMOLES_PER_LITER,

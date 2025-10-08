@@ -5,12 +5,13 @@ from django.conf import settings
 from django.contrib.sites.models import Site
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils import timezone
 from edc_constants.choices import SELECTION_METHOD
 from edc_model.models import BaseUuidModel
 from edc_model.models.historical_records import HistoricalRecords
 from edc_sites.managers import CurrentSiteManager as BaseCurrentSiteManager
 from edc_sites.model_mixins import SiteModelMixin
-from edc_utils import convert_php_dateformat, get_utcnow
+from edc_utils.text import convert_php_dateformat
 
 
 def get_daily_log_revision_date() -> date | datetime:
@@ -42,7 +43,7 @@ class DailyClosingLog(SiteModelMixin, BaseUuidModel):
         related_name="+",
     )
 
-    log_date = models.DateField(verbose_name="Clinic date", default=get_utcnow)
+    log_date = models.DateField(verbose_name="Clinic date", default=timezone.now)
 
     attended = models.IntegerField(
         verbose_name="Total number of patients who attended the clinic today",

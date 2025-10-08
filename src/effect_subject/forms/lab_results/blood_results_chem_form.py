@@ -7,7 +7,7 @@ from edc_egfr.form_validator_mixins import EgfrCockcroftGaultFormValidatorMixin
 from edc_form_validators import INVALID_ERROR
 from edc_lab_results.form_validator_mixins import BloodResultsFormValidatorMixin
 from edc_registration.models import RegisteredSubject
-from edc_utils import age
+from edc_utils.age import age
 
 from ...models import BloodResultsChem, VitalSigns
 from ...utils import get_weight_in_kgs
@@ -22,7 +22,9 @@ class BloodResultsChemFormValidator(
 
     def get_weight_in_kgs(self) -> float | None:
         obj = (
-            VitalSigns.objects.filter(subject_visit=self.related_visit, weight__isnull=False)
+            VitalSigns.objects.filter(
+                subject_visit__subject_identifier=self.subject_identifier, weight__isnull=False
+            )
             .order_by("report_datetime")
             .last()
         )

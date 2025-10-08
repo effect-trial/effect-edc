@@ -2,6 +2,7 @@ from unittest.mock import patch
 
 from django.forms import ValidationError
 from django.test import TestCase, tag
+from django.utils import timezone
 from edc_adverse_event.form_validator_mixins import (
     RequiresDeathReportFormValidatorMixin,
 )
@@ -12,7 +13,7 @@ from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
 from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
-from edc_utils import get_utcnow, get_utcnow_as_date
+from edc_utils import get_utcnow_as_date
 
 from effect_lists.models import LateExclusionCriteria, OffstudyReasons
 from effect_prn.forms.end_of_study_form import EndOfStudyFormValidator
@@ -32,7 +33,7 @@ class TestEndOfStudyFormValidation(FormValidatorTestCaseMixin, TestCase):
     def get_cleaned_data() -> dict:
         return {
             "subject_identifier": "123-456-1234-0",
-            "offschedule_datetime": get_utcnow(),
+            "offschedule_datetime": timezone.now(),
             "offschedule_reason": OffstudyReasons.objects.get(name=COMPLETED_FOLLOWUP),
             "other_offschedule_reason": "",
             "ltfu_date": "",

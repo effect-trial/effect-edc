@@ -1,8 +1,8 @@
 import pandas as pd
 from django.apps import apps as django_apps
 from django.contrib.sites.models import Site
+from django.utils import timezone
 from django_pandas.io import read_frame
-from edc_utils import get_utcnow
 
 
 class SerumCragDateDf:
@@ -47,7 +47,7 @@ class SerumCragDateDf:
         self.model_cls.objects.all().delete()
 
         df = self.to_dataframe()
-        now = get_utcnow()
+        now = timezone.now()
         data = [
             self.model_cls(
                 subject_identifier=row["subject_identifier"],

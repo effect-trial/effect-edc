@@ -1,11 +1,11 @@
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.models import AeClassification
 from edc_constants.choices import YES_NO
 from edc_model.models import OtherCharField
 from edc_model.validators import datetime_not_future
-from edc_utils import get_utcnow
 
 from ..choices import AE_TYPE
 
@@ -19,7 +19,7 @@ class AeReviewModelMixin(models.Model):
     report_datetime = models.DateTimeField(
         verbose_name="Report date and time",
         validators=[datetime_not_future],
-        default=get_utcnow,
+        default=timezone.now,
     )
 
     clinical_review_datetime = models.DateTimeField(

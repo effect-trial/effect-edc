@@ -1,5 +1,6 @@
 from django.core.validators import MinValueValidator
 from django.db import models
+from django.utils import timezone
 from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
 from edc_constants.constants import NOT_APPLICABLE
@@ -11,7 +12,6 @@ from edc_protocol.validators import (
     datetime_not_before_study_start,
 )
 from edc_sites.model_mixins import SiteModelMixin
-from edc_utils import get_utcnow
 
 from effect_prn.constants import HOSPITALIZATION_ACTION
 
@@ -27,7 +27,7 @@ class Hospitalization(
     report_datetime = models.DateTimeField(
         verbose_name="Report Date",
         validators=[datetime_not_before_study_start, datetime_not_future],
-        default=get_utcnow,
+        default=timezone.now,
     )
 
     have_details = models.CharField(
