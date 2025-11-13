@@ -1,7 +1,7 @@
+from clinicedc_constants import YES
 from django.contrib import admin
 from django_audit_fields import audit_fieldset_tuple
 from edc_action_item.fieldsets import action_fields, action_fieldset_tuple
-from edc_constants.constants import YES
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin

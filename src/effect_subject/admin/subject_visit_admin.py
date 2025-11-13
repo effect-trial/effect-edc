@@ -1,8 +1,8 @@
+from clinicedc_constants import IN_PERSON, NO, PATIENT
 from django.contrib import admin
 from django.core.exceptions import ObjectDoesNotExist
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_appointment.models import Appointment
-from edc_constants.constants import IN_PERSON, NO, PATIENT
 from edc_document_status.fieldsets import document_status_fieldset_tuple
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_visit_schedule.constants import DAY1

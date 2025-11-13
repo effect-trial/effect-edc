@@ -4,14 +4,7 @@ from copy import deepcopy
 from datetime import date, datetime
 from typing import TYPE_CHECKING
 
-from clinicedc_tests.mixins import SiteTestCaseMixin
-from clinicedc_tests.utils import get_appointment
-from dateutil.relativedelta import relativedelta
-from django.conf import settings
-from django.contrib.sites.models import Site
-from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_consent import site_consents
-from edc_constants.constants import (
+from clinicedc_constants import (
     FEMALE,
     IN_PERSON,
     NEG,
@@ -21,6 +14,13 @@ from edc_constants.constants import (
     POS,
     YES,
 )
+from clinicedc_tests.mixins import SiteTestCaseMixin
+from clinicedc_tests.utils import get_appointment
+from dateutil.relativedelta import relativedelta
+from django.conf import settings
+from django.contrib.sites.models import Site
+from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
+from edc_consent import site_consents
 from edc_facility.import_holidays import import_holidays
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_list_data.site_list_data import site_list_data

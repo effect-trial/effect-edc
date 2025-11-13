@@ -1,16 +1,19 @@
-from django import forms
-from edc_adverse_event.choices import AE_GRADE, STUDY_DRUG_RELATIONSHIP
-from edc_adverse_event.constants import (
+from clinicedc_constants import (
+    CONTROL,
+    DECEASED,
     DEFINITELY_RELATED,
     DISCHARGED,
+    GRADE5,
     INPATIENT,
     POSSIBLY_RELATED,
     PROBABLY_RELATED,
+    YES,
 )
+from clinicedc_utils import get_display_from_choices
+from django import forms
+from edc_adverse_event.choices import AE_GRADE, STUDY_DRUG_RELATIONSHIP
 from edc_adverse_event.form_validators import AeInitialFormValidator as FormValidator
 from edc_constants.choices import YES_NO_UNKNOWN
-from edc_constants.constants import CONTROL, DECEASED, GRADE5, YES
-from edc_constants.utils import get_display
 from edc_randomization.utils import (
     get_assignment_description_for_subject,
     get_assignment_for_subject,
@@ -41,9 +44,8 @@ class AeInitialFormValidator(FormValidator):
             field="inpatient_status",
             field_required="date_discharged",
         )
-
-        g5_display = get_display(choices=AE_GRADE, label=GRADE5)
-        inpatient_status_display = get_display(
+        g5_display = get_display_from_choices(choices=AE_GRADE, label=GRADE5)
+        inpatient_status_display = get_display_from_choices(
             choices=INPATIENT_STATUSES,
             label=self.cleaned_data.get("inpatient_status"),
         )
@@ -105,11 +107,11 @@ class AeInitialFormValidator(FormValidator):
                 #     ]
                 #     and self.cleaned_data.get("ae_study_relation_possibility") == YES
             ):
-                study_relation_display = get_display(
+                study_relation_display = get_display_from_choices(
                     choices=YES_NO_UNKNOWN,
                     label=self.cleaned_data.get("ae_study_relation_possibility"),
                 )
-                drug_relation_display = get_display(
+                drug_relation_display = get_display_from_choices(
                     choices=STUDY_DRUG_RELATIONSHIP,
                     label=self.cleaned_data.get(f"{study_drug}_relation"),
                 )

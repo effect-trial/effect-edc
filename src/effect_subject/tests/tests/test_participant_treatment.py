@@ -2,12 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import time_machine
-from clinicedc_tests.utils import validate_fields_exists_or_raise
-from dateutil.relativedelta import relativedelta
-from django.conf import settings
-from django.contrib.sites.models import Site
-from django.test import TestCase, tag
-from edc_constants.constants import (
+from clinicedc_constants import (
     COMPLETE,
     NO,
     NOT_APPLICABLE,
@@ -15,6 +10,11 @@ from edc_constants.constants import (
     OTHER,
     YES,
 )
+from clinicedc_tests.utils import validate_fields_exists_or_raise
+from dateutil.relativedelta import relativedelta
+from django.conf import settings
+from django.contrib.sites.models import Site
+from django.test import TestCase, tag
 from edc_utils import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.constants import DAY01
 from model_bakery import baker

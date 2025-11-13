@@ -2,10 +2,7 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING
 
-from django.test import TestCase, tag
-from edc_appointment.creators import create_unscheduled_appointment
-from edc_appointment.models import Appointment
-from edc_constants.constants import (
+from clinicedc_constants import (
     IN_PERSON,
     NEG,
     NO,
@@ -14,6 +11,9 @@ from edc_constants.constants import (
     TELEPHONE,
     YES,
 )
+from django.test import TestCase, tag
+from edc_appointment.creators import create_unscheduled_appointment
+from edc_appointment.models import Appointment
 from edc_metadata import KEYED, REQUIRED
 from edc_metadata.models import CrfMetadata
 from edc_visit_schedule.constants import DAY01, DAY03

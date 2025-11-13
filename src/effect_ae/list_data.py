@@ -1,24 +1,22 @@
-from edc_constants.constants import (
-    DEAD,
-    MALIGNANCY,
-    NOT_APPLICABLE,
-    OTHER,
-    OTHER_PLEASE_SPECIFY_TEXT,
-    TUBERCULOSIS,
-    UNKNOWN,
-)
-from edc_constants.disease_constants import (
+from clinicedc_constants import (
     ANAEMIA,
     BACTERAEMIA_SEPSIS,
     BACTERIAL_PNEUMONIA,
     CM_RELAPSE_IRIS,
     COVID_19,
     CRYPTOCOCCAL_MENINGITIS,
+    DEAD,
+    MALIGNANCY,
     NEUTROPAENIA,
+    NOT_APPLICABLE,
+    OTHER,
+    OTHER_PLEASE_SPECIFY_TEXT,
     PNEUMONIA,
     RENAL_IMPAIRMENT,
     TB_PULMONARY,
     THROMBOCYTOPENIA,
+    TUBERCULOSIS,
+    UNKNOWN,
 )
 
 list_data = {

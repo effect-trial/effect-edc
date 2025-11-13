@@ -1,7 +1,7 @@
+from clinicedc_constants import NOT_APPLICABLE
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
 from edc_model import models as edc_models
 
 from effect_lists.models import DoseModificationReasons

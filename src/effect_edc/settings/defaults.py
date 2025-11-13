@@ -4,9 +4,8 @@ from pathlib import Path
 
 import django.conf.locale
 import environ
+from clinicedc_constants import COMPLETE, EXTRA_LANG_INFO
 from django.core.management.color import color_style
-from edc_constants.constants import COMPLETE
-from edc_constants.internationalization import EXTRA_LANG_INFO
 from edc_randomization.constants import CONTROL, INTERVENTION
 from edc_utils import get_datetime_from_env
 

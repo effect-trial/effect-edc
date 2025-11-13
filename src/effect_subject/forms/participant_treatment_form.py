@@ -1,7 +1,7 @@
+from clinicedc_constants import YES
 from django import forms
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
-from edc_constants.constants import YES
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators import INVALID_ERROR
 from edc_visit_schedule.constants import DAY01

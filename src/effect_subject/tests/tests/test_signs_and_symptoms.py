@@ -2,13 +2,10 @@ from copy import deepcopy
 from datetime import timedelta
 from typing import Any
 
-from clinicedc_tests.utils import get_appointment
-from django import forms
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Q
-from django.test import TestCase, tag
-from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
-from edc_constants.constants import (
+from clinicedc_constants import (
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
     HEADACHE,
     IN_PERSON,
     NO,
@@ -19,11 +16,12 @@ from edc_constants.constants import (
     VISUAL_LOSS,
     YES,
 )
-from edc_constants.disease_constants import (
-    CN_PALSY_LEFT_OTHER,
-    CN_PALSY_RIGHT_OTHER,
-    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
-)
+from clinicedc_tests.utils import get_appointment
+from django import forms
+from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
+from django.test import TestCase, tag
+from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
 

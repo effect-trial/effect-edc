@@ -1,3 +1,9 @@
+from clinicedc_constants import (
+    CELLS_PER_MICROLITER,
+    NOT_APPLICABLE,
+    NOT_EVALUATED,
+    QUESTION_RETIRED,
+)
 from django.contrib.sites.models import Site
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
@@ -8,11 +14,9 @@ from edc_constants.choices import (
     YES_NO_NOT_EVALUATED,
     YES_NO_NOT_EVALUATED_NA,
 )
-from edc_constants.constants import NOT_APPLICABLE, NOT_EVALUATED, QUESTION_RETIRED
 from edc_model.models import BaseUuidModel
 from edc_model.validators import date_not_future
 from edc_model_fields.fields import OtherCharField
-from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.model_mixins import EligibilityModelMixin, ScreeningModelMixin
 from edc_screening.screening_identifier import (
     ScreeningIdentifier as BaseScreeningIdentifier,

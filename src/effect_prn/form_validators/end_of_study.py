@@ -1,10 +1,9 @@
+from clinicedc_constants import DEAD, LOST_TO_FOLLOWUP, OTHER
 from edc_adverse_event.form_validator_mixins import (
     RequiresDeathReportFormValidatorMixin,
 )
 from edc_consent.constants import CONSENT_WITHDRAWAL
-from edc_constants.constants import DEAD, OTHER
 from edc_form_validators import FormValidator
-from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
 from edc_offstudy.constants import INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED

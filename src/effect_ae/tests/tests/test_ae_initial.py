@@ -1,30 +1,28 @@
 from unittest.mock import patch
 
-from dateutil.relativedelta import relativedelta
-from django.test import TestCase, tag
-from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
-from edc_adverse_event.constants import (
-    DEFINITELY_RELATED,
-    DISCHARGED,
-    INPATIENT,
-    NOT_RELATED,
-    POSSIBLY_RELATED,
-    PROBABLY_RELATED,
-    UNLIKELY_RELATED,
-)
-from edc_constants.constants import (
+from clinicedc_constants import (
     CONTROL,
     DECEASED,
+    DEFINITELY_RELATED,
+    DISCHARGED,
     GRADE3,
     GRADE4,
     GRADE5,
+    INPATIENT,
     INTERVENTION,
     NO,
     NOT_APPLICABLE,
+    NOT_RELATED,
+    POSSIBLY_RELATED,
+    PROBABLY_RELATED,
     UNKNOWN,
+    UNLIKELY_RELATED,
     YES,
 )
-from edc_constants.utils import get_display
+from clinicedc_utils import get_display_from_choices
+from dateutil.relativedelta import relativedelta
+from django.test import TestCase, tag
+from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_utils import get_utcnow_as_date
 
 from effect_ae.choices import INPATIENT_STATUSES
@@ -298,7 +296,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                             f"{study_drug}_relation": study_drug_relation_choice,
                             "ae_study_relation_possibility": study_relation_choice,
                         }
-                        study_drug_relationship_label = get_display(
+                        study_drug_relationship_label = get_display_from_choices(
                             STUDY_DRUG_RELATIONSHIP,
                             study_drug_relation_choice,
                         )
@@ -375,7 +373,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     self.assertFormValidatorError(
                         field="ae_study_relation_possibility",
                         expected_msg="Invalid. Cannot be 'No' if "
-                        f"'{get_display(STUDY_DRUG_RELATIONSHIP, choice)}' "
+                        f"'{get_display_from_choices(STUDY_DRUG_RELATIONSHIP, choice)}' "
                         f"to study drug: {study_drug.title()}",
                         form_validator=self.validate_form_validator(cleaned_data),
                     )
@@ -393,7 +391,7 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
                     self.assertFormValidatorError(
                         field="ae_study_relation_possibility",
                         expected_msg="Invalid. Cannot be 'Unknown' if "
-                        f"'{get_display(STUDY_DRUG_RELATIONSHIP, choice)}' "
+                        f"'{get_display_from_choices(STUDY_DRUG_RELATIONSHIP, choice)}' "
                         f"to study drug: {study_drug.title()}",
                         form_validator=self.validate_form_validator(cleaned_data),
                     )

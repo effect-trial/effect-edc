@@ -1,6 +1,6 @@
+from clinicedc_constants import NO, NOT_APPLICABLE
 from django.db import models
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN_NA_MISSED
-from edc_constants.constants import NO, NOT_APPLICABLE
 from edc_metadata.model_mixins.creates import CreatesMetadataModelMixin
 from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model_fields.fields import OtherCharField

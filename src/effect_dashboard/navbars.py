@@ -14,8 +14,8 @@ navbar.register(
         label="Screening",
         fa_icon="fa-user-plus",
         codename="edc_screening.view_screening_listboard",
-        url_name="screening_listboard_url",
-        no_url_namespace=no_url_namespace,
+        url_names_key="screening_listboard_url",
+        # no_url_namespace=no_url_namespace,
     ),
 )
 
@@ -26,8 +26,8 @@ navbar.register(
         label="Subjects",
         fa_icon="fa-user-circle",
         codename="edc_subject_dashboard.view_subject_listboard",
-        url_name="subject_listboard_url",
-        no_url_namespace=no_url_namespace,
+        url_names_key="subject_listboard_url",
+        # no_url_namespace=no_url_namespace,
     ),
 )
 

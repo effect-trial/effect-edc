@@ -1,7 +1,7 @@
+from clinicedc_constants import OTHER
 from django.db import models
 from edc_action_item.models.action_model_mixin import ActionModelMixin
 from edc_constants.choices import YES_NO
-from edc_constants.constants import OTHER
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_ltfu.constants import LTFU_ACTION
 from edc_model.models import BaseUuidModel, OtherCharField

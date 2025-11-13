@@ -1,6 +1,6 @@
+from clinicedc_constants import IN_PERSON, YES
 from django.apps import apps as django_apps
 from django.core.exceptions import ObjectDoesNotExist
-from edc_constants.constants import IN_PERSON, YES
 from edc_visit_schedule.constants import DAY01
 from edc_visit_schedule.utils import is_baseline
 

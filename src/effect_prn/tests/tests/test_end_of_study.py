@@ -1,5 +1,6 @@
 from unittest.mock import patch
 
+from clinicedc_constants import DEAD, LOST_TO_FOLLOWUP, NO, NOT_APPLICABLE, OTHER, YES
 from django.forms import ValidationError
 from django.test import TestCase, tag
 from django.utils import timezone
@@ -7,9 +8,7 @@ from edc_adverse_event.form_validator_mixins import (
     RequiresDeathReportFormValidatorMixin,
 )
 from edc_consent.constants import CONSENT_WITHDRAWAL
-from edc_constants.constants import DEAD, NO, NOT_APPLICABLE, OTHER, YES
 from edc_form_validators import FormValidatorTestCaseMixin
-from edc_ltfu.constants import LOST_TO_FOLLOWUP
 from edc_ltfu.modelform_mixins import RequiresLtfuFormValidatorMixin
 from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED

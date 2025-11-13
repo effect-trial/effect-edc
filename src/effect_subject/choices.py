@@ -1,5 +1,4 @@
-from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
-from edc_constants.constants import (
+from clinicedc_constants import (
     DEFAULTED,
     FREE_OF_CHARGE,
     HOSPITAL_NOTES,
@@ -21,6 +20,7 @@ from edc_constants.constants import (
     TOXICITY,
     YES,
 )
+from edc_appointment.constants import SCHEDULED_APPT, UNSCHEDULED_APPT
 from edc_metadata.constants import MISSED
 from edc_visit_tracking.constants import MISSED_VISIT, SCHEDULED, UNSCHEDULED
 

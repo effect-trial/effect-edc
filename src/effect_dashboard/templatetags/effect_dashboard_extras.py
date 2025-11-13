@@ -3,9 +3,9 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from bs4 import BeautifulSoup
+from clinicedc_constants import INCOMPLETE, PENDING, TBD
 from django import template
 from django.core.exceptions import ObjectDoesNotExist
-from edc_constants.constants import INCOMPLETE, PENDING, TBD
 from edc_dashboard.url_names import url_names
 from edc_refusal.models import SubjectRefusal
 from edc_view_utils import NextQuerystring

@@ -1,8 +1,8 @@
+from clinicedc_constants import CLOSED, OPEN
 from django.contrib import admin
 from django.utils.html import format_html
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item.fieldsets import action_fields, action_fieldset_tuple
-from edc_constants.constants import CLOSED, OPEN
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin

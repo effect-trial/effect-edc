@@ -5,7 +5,6 @@ description = "EFFECT Trial EDC (https://www.isrctn.com/ISRCTN30579828)"
 readme = {file = "README.rst", content-type = "text/x-rst"}
 license = "GPL-3.0-or-later"
 license-files = ["LICEN[CS]E*"]
-requires-python = ">=3.12,<3.14"
 keywords = [
     "django",
     "clinicedc",
@@ -29,12 +28,13 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
 ]
+requires-python = ">=3.12,<3.14"
 dependencies = [
     "beautifulsoup4>=4.13.4",
-    "clinicedc>=2.0.39",
-    "effect-form-validators>=1.2.2",
-    "edc-csf>=1.2.0",
-    "edc-microbiology>=1.2.0",
+    "clinicedc>=2.2.2",
+    "effect-form-validators>=1.4.0",
+    "edc-csf>=1.3.0",
+    "edc-microbiology>=1.3.0",
     "notebook>=7.4.5",
     "reportlab>=4.4.4",
 ]
@@ -47,7 +47,7 @@ Changelog = "https://github.com/effect-trial/effect-edc/blob/main/CHANGELOG"
 
 
 [build-system]
-requires = ["uv_build>=0.8.2,<0.9.0"]
+requires = ["uv_build>=0.9.0"]
 build-backend = "uv_build"
 
 [tool.uv.build-backend]
@@ -150,16 +150,6 @@ docs = [
     "sphinx-design>=0.6.1",
     "sphinx-inline-tabs>=2023.4.21",
 ]
-test = [
-    "clinicedc>=2.0.39",
-    "clinicedc-tests>=0.1.10",
-    "coverage>=7.10.6",
-    "django-webtest>=1.9.13",
-    "edc-test-settings>=2.0.0",
-    "faker>=37.4.2",
-    "model-bakery>=1.20.5",
-    "time-machine>=2.16.0",
-]
 notebook = [
     "dj-notebook>=0.7.0",
     "great-tables>=0.18.0",
@@ -174,10 +164,12 @@ notebook = [
     "tabulate>=0.9.0",
 ]
 develop = [
-    "clinicedc>=2.0.39",
     "django-redis>=6.0.0",
     "ipython>=9.4.0",
     "time-machine>=2.16.0",
+]
+dev = [
+    "clinicedc-tests>=1.0.1",
 ]
 
 [tool.uv.sources]
@@ -186,8 +178,8 @@ effect-form-validators = { path = "../effect-form-validators", editable = true }
 clinicedc = { path = "../clinicedc", editable = true }
 clinicedc-tests = { path = "../clinicedc-tests", editable = true }
 edc-test-settings = { path = "../edc-test-settings", editable = true }
-# edc-csf = { path = "../edc-csf", editable = true }
-# edc-microbiology = { path = "../edc-microbiology", editable = true }
+edc-csf = { path = "../edc-csf", editable = true }
+edc-microbiology = { path = "../edc-microbiology", editable = true }
 #django-audit-fields = { path = "../django-audit-fields", editable = true }
 #django-crypto-fields = { path = "../django-crypto-fields", editable = true }
 #django-revision = { path = "../django-revision", editable = true }

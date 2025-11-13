@@ -2,7 +2,7 @@
 
 from django.db import migrations
 from django.db.migrations import RunPython
-from edc_constants.constants import QUESTION_RETIRED, YES
+from clinicedc_constants import QUESTION_RETIRED, YES
 from edc_utils import get_utcnow
 from tqdm import tqdm
 

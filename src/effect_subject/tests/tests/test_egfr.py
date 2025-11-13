@@ -1,12 +1,11 @@
 from decimal import Decimal
 
+from clinicedc_constants import FEMALE, MICROMOLES_PER_LITER, NO, NOT_APPLICABLE, YES
+from clinicedc_utils import EgfrCalculatorError
 from dateutil.relativedelta import relativedelta
 from django import forms
 from django.test import TestCase
-from edc_constants.constants import FEMALE, NO, NOT_APPLICABLE, YES
-from edc_egfr.calculators import EgfrCalculatorError
 from edc_lab.models import Panel
-from edc_reportable import MICROMOLES_PER_LITER
 from edc_utils import age
 from edc_visit_schedule.constants import DAY1
 

@@ -2,7 +2,8 @@ from __future__ import annotations
 
 from typing import TYPE_CHECKING, Any
 
-from edc_constants.constants import (
+from clinicedc_constants import (
+    CELLS_PER_MICROLITER,
     INCOMPLETE,
     NO,
     NOT_DONE,
@@ -12,7 +13,6 @@ from edc_constants.constants import (
     TBD,
     YES,
 )
-from edc_reportable import CELLS_PER_MICROLITER
 from edc_screening.screening_eligibility import (
     ScreeningEligibility as BaseScreeningEligibility,
 )

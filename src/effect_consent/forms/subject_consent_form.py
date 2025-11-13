@@ -1,8 +1,8 @@
+from clinicedc_constants import NO, YES
 from django import forms
 from django.utils.html import format_html
 from django.utils.safestring import mark_safe
 from edc_consent.modelform_mixins import ConsentModelFormMixin
-from edc_constants.constants import NO, YES
 from edc_form_validators import FormValidatorMixin
 from edc_sites.forms import SiteModelFormMixin
 from effect_form_validators.effect_consent import SubjectConsentFormValidator
