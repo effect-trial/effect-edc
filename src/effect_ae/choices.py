@@ -1,5 +1,4 @@
-from edc_adverse_event.constants import DISCHARGED, INPATIENT
-from edc_constants.constants import DECEASED, NOT_APPLICABLE, OTHER, UNKNOWN
+from clinicedc_constants import DECEASED, DISCHARGED, INPATIENT, NOT_APPLICABLE, OTHER, UNKNOWN
 
 AE_TYPE = (
     ("sae", "Serious Adverse Event / Reaction"),

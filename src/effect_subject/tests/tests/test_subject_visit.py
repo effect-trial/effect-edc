@@ -1,8 +1,7 @@
 from copy import deepcopy
 from dataclasses import dataclass
 
-from django.test import TestCase
-from edc_constants.constants import (
+from clinicedc_constants import (
     ALIVE,
     DEAD,
     HOSPITAL_NOTES,
@@ -18,6 +17,7 @@ from edc_constants.constants import (
     UNKNOWN,
     YES,
 )
+from django.test import TestCase
 from edc_visit_tracking.choices import ASSESSMENT_WHO_CHOICES, VISIT_INFO_SOURCE2
 from edc_visit_tracking.constants import SCHEDULED
 

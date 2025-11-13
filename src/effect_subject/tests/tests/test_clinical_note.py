@@ -1,5 +1,5 @@
+from clinicedc_constants import NO, YES
 from django.test import TestCase
-from edc_constants.constants import NO, YES
 from edc_visit_schedule.constants import DAY1
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin

@@ -1,6 +1,6 @@
 from typing import Any
 
-from edc_constants.constants import NO, NOT_APPLICABLE, YES
+from clinicedc_constants import NO, NOT_APPLICABLE, YES
 
 from effect_visit_schedule.constants import DAY14
 

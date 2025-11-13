@@ -1,10 +1,10 @@
 from contextlib import suppress
 
+from clinicedc_constants import HIGH_PRIORITY, PENDING, YES
 from django.conf import settings
 from edc_action_item.action import Action
 from edc_action_item.site_action_items import AlreadyRegistered, site_action_items
 from edc_adverse_event.constants import AE_INITIAL_ACTION
-from edc_constants.constants import HIGH_PRIORITY, PENDING, YES
 from edc_lab_results.action_items import BaseResultsAction, BloodResultsFbcAction
 from edc_visit_schedule.utils import is_baseline
 

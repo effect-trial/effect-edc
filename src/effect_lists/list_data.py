@@ -1,30 +1,28 @@
-from edc_consent.constants import CONSENT_WITHDRAWAL
-from edc_constants.constants import (
+from clinicedc_constants import (
+    BACTERAEMIA,
+    BACTERIAL_PNEUMONIA,
+    CN_PALSY_LEFT_OTHER,
+    CN_PALSY_RIGHT_OTHER,
+    CRYPTOCOCCAL_MENINGITIS,
     DEAD,
+    DIARRHOEA,
+    DIARRHOEAL_WASTING,
+    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
     HEADACHE,
+    LOST_TO_FOLLOWUP,
     NORMAL,
     NOT_APPLICABLE,
     OTHER,
     OTHER_PLEASE_SPECIFY_TEXT,
     PER_PROTOCOL,
     STEROIDS,
+    TB_EXTRAPULMONARY,
+    TB_PULMONARY,
     TOXICITY,
     UNKNOWN,
     VISUAL_LOSS,
 )
-from edc_constants.disease_constants import (
-    BACTERAEMIA,
-    BACTERIAL_PNEUMONIA,
-    CN_PALSY_LEFT_OTHER,
-    CN_PALSY_RIGHT_OTHER,
-    CRYPTOCOCCAL_MENINGITIS,
-    DIARRHOEA,
-    DIARRHOEAL_WASTING,
-    FOCAL_NEUROLOGIC_DEFICIT_OTHER,
-    TB_EXTRAPULMONARY,
-    TB_PULMONARY,
-)
-from edc_ltfu.constants import LOST_TO_FOLLOWUP
+from edc_consent.constants import CONSENT_WITHDRAWAL
 from edc_offstudy.constants import COMPLETED_FOLLOWUP, INVALID_ENROLMENT, LATE_EXCLUSION
 from edc_transfer.constants import TRANSFERRED
 

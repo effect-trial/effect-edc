@@ -1,9 +1,9 @@
+from clinicedc_constants import DEAD
 from django import forms
 from django.core.exceptions import ObjectDoesNotExist
 from django.utils.translation import gettext_lazy as _
 from edc_action_item.models import ActionItem
 from edc_consent.modelform_mixins import RequiresConsentModelFormMixin
-from edc_constants.constants import DEAD
 from edc_form_validators import FormValidatorMixin
 from edc_offstudy.modelform_mixins import OffstudyNonCrfModelFormMixin
 from edc_utils.text import formatted_date

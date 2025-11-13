@@ -1,5 +1,5 @@
+from clinicedc_constants import NOT_REQUIRED
 from django import forms
-from edc_constants.constants import NOT_REQUIRED
 from edc_crf.modelform_mixins import CrfModelFormMixin
 from edc_form_validators.form_validator import FormValidator
 from edc_model_form.mixins import InlineModelFormMixin

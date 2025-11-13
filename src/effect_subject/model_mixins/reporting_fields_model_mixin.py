@@ -1,6 +1,6 @@
+from clinicedc_constants import NOT_APPLICABLE
 from django.db import models
 from edc_constants.choices import YES_NO_NA
-from edc_constants.constants import NOT_APPLICABLE
 
 from effect_subject.constants import IF_ADMITTED_COMPLETE_REPORTS, IF_YES_COMPLETE_AE
 

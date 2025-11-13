@@ -1,9 +1,9 @@
+from clinicedc_constants import NOT_APPLICABLE
 from django.core.validators import MinValueValidator
 from django.db import models
 from django.utils import timezone
 from edc_action_item.models import ActionModelMixin
 from edc_constants.choices import YES_NO, YES_NO_UNKNOWN, YES_NO_UNKNOWN_NA
-from edc_constants.constants import NOT_APPLICABLE
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierFieldMixin
 from edc_model.models import BaseUuidModel, IsDateEstimatedField, IsDateEstimatedFieldNa
 from edc_model.validators import date_not_future, datetime_not_future

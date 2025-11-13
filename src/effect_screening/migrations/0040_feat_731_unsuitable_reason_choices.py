@@ -4,7 +4,7 @@
 
 from django.db import migrations
 from django.db.migrations import RunPython
-from edc_constants.constants import DECEASED, NOT_APPLICABLE, OTHER, YES
+from clinicedc_constants import DECEASED, NOT_APPLICABLE, OTHER, YES
 from edc_utils import get_utcnow
 from tqdm import tqdm
 

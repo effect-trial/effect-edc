@@ -54,7 +54,6 @@ class BloodResultsChemFormValidator(
             self.validate_egfr(
                 gender=rs.gender,
                 age_in_years=age_in_years,
-                ethnicity=rs.ethnicity,
                 weight_in_kgs=self.get_weight_in_kgs(),
             )
         super().clean()

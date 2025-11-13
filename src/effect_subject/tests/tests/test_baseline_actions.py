@@ -1,7 +1,7 @@
 from copy import deepcopy
 
+from clinicedc_constants import PENDING
 from django.test import TestCase, tag
-from edc_constants.constants import PENDING
 
 from effect_screening.models import SubjectScreening
 from effect_screening.tests.effect_test_case_mixin import (

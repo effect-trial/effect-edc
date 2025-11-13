@@ -2,6 +2,7 @@ from datetime import datetime
 from zoneinfo import ZoneInfo
 
 import time_machine
+from clinicedc_constants import CLOSED, GRADE4, GRADE5, NEW
 from django.core.exceptions import ObjectDoesNotExist
 from django.test import TestCase
 from edc_action_item.models import ActionItem
@@ -11,7 +12,6 @@ from edc_adverse_event.constants import (
     DEATH_REPORT_ACTION,
     DEATH_REPORT_TMG_ACTION,
 )
-from edc_constants.constants import CLOSED, GRADE4, GRADE5, NEW
 from model_bakery import baker
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin

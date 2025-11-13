@@ -1,8 +1,4 @@
-from dateutil.relativedelta import relativedelta
-from django.conf import settings
-from django.contrib.sites.models import Site
-from django.test import TestCase, tag
-from edc_constants.constants import (
+from clinicedc_constants import (
     FEMALE,
     INCOMPLETE,
     MALE,
@@ -16,6 +12,10 @@ from edc_constants.constants import (
     POS,
     YES,
 )
+from dateutil.relativedelta import relativedelta
+from django.conf import settings
+from django.contrib.sites.models import Site
+from django.test import TestCase, tag
 from edc_utils.date import get_utcnow
 
 from effect_screening.eligibility import (
