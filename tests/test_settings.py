@@ -5,6 +5,8 @@ from pathlib import Path
 from zoneinfo import ZoneInfo
 
 from edc_randomization.constants import CONTROL, INTERVENTION
+
+# from clinicedc_tests.config import DefaultTestSettings
 from edc_test_settings.default_test_settings import DefaultTestSettings
 from multisite import SiteID
 
