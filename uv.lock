@@ -548,7 +548,7 @@ wheels = [
 
 [[package]]
 name = "clinicedc"
-version = "2.4.7"
+version = "2.4.8"
 source = { editable = "../clinicedc" }
 dependencies = [
     { name = "argon2-cffi" },
@@ -1323,7 +1323,7 @@ test = [
 
 [[package]]
 name = "effect-edc"
-version = "1.4.1"
+version = "1.4.2"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
