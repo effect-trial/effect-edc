@@ -4,6 +4,25 @@
 {% load static %}
 {% load l10n %}
 
+<style>
+    div.ae_description {
+        max-width: 70vw;
+        min-width: 400px;
+        overflow-x: auto; /* Adds a scrollbar if the content is even longer than the container */
+        display: inline-block; /* Ensures the div respects the width of the content */
+        padding-right: 30px;
+        -webkit-overflow-scrolling: touch;
+    }
+    /* Adjustments for larger screens */
+    @media (min-width: 768px) {
+        div.ae_description {
+            min-width: 450px;
+            max-width: 70vw;
+        }
+    }
+</style>
+
+<div class="ae_description">
 <B>{{ ae_initial.subject_identifier }}</B>
 <BR><b>Reported:</b> {{ ae_initial.report_datetime|date|date:SHORT_DATE_FORMAT}} ({{ utc_date|timeuntil:ae_initial.report_datetime.date }} ago)
 <BR><b>Site aware:</b> {{ ae_initial.ae_awareness_date|date:SHORT_DATE_FORMAT }}
@@ -20,3 +39,4 @@
 {% endif %}
 <BR><b>Description:</b>
 <BR>{{ ae_description|default:ae_initial.ae_description }}
+</div>
