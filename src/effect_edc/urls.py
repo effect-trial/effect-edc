@@ -6,6 +6,7 @@ from django.views.defaults import page_not_found, server_error  # noqa
 from django.views.generic import RedirectView
 from edc_dashboard.utils import get_index_page
 from edc_dashboard.views import AdministrationView
+from edc_pharmacy.admin_site import edc_pharmacy_history_admin
 from edc_utils.paths_for_urlpatterns import paths_for_urlpatterns
 
 from .views import HomeView
@@ -72,6 +73,7 @@ if settings.DEFENDER_ENABLED:
 
 urlpatterns += [
     path("admin/", RedirectView.as_view(url="/")),
+    path("edc_pharmacy/history/", edc_pharmacy_history_admin.urls),
     path(
         "switch_sites/",
         LogoutView.as_view(next_page=get_index_page()),
