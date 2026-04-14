@@ -64,6 +64,7 @@ class ProtocolDeviationViolationAdmin(
                     "preventative_action_datetime",
                     "preventative_action",
                     "action_required",
+                    "action_required_followup",
                 ),
             },
         ),
@@ -74,6 +75,7 @@ class ProtocolDeviationViolationAdmin(
 
     radio_fields = {  # noqa: RUF012
         "action_required": admin.VERTICAL,
+        "action_required_followup": admin.VERTICAL,
         "report_status": admin.VERTICAL,
         "report_type": admin.VERTICAL,
         "safety_impact": admin.VERTICAL,
@@ -93,7 +95,12 @@ class ProtocolDeviationViolationAdmin(
         "user_created",
     )
 
-    list_filter = ("action_required", "report_status", "report_type")
+    list_filter = (
+        "action_required",
+        "action_required_followup",
+        "report_status",
+        "report_type",
+    )
 
     search_fields = (
         "subject_identifier",

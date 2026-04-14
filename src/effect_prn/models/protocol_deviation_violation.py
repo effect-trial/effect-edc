@@ -7,7 +7,7 @@ from edc_protocol_incident.constants import PROTOCOL_DEVIATION_VIOLATION_ACTION
 from edc_protocol_incident.model_mixins import ProtocolDeviationViolationModelMixin
 from edc_sites.model_mixins import SiteModelMixin
 
-from ..choices import ACTION_REQUIRED, PROTOCOL_VIOLATION
+from ..choices import ACTION_REQUIRED, ACTION_REQUIRED_FOLLOWUP, PROTOCOL_VIOLATION
 
 
 class ProtocolDeviationViolation(
@@ -39,6 +39,12 @@ class ProtocolDeviationViolation(
         blank=True,
         verbose_name="If other, please specify",
         max_length=75,
+    )
+
+    action_required_followup = models.CharField(
+        max_length=50,
+        choices=ACTION_REQUIRED_FOLLOWUP,
+        default=NOT_APPLICABLE,
     )
 
     action_required_old = models.CharField(max_length=45, choices=ACTION_REQUIRED, default="")
