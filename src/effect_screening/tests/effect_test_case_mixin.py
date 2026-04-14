@@ -19,6 +19,7 @@ from clinicedc_tests.utils import get_appointment
 from dateutil.relativedelta import relativedelta
 from django.conf import settings
 from django.contrib.sites.models import Site
+from django.utils import timezone
 from edc_appointment.constants import IN_PROGRESS_APPT, INCOMPLETE_APPT
 from edc_consent import site_consents
 from edc_facility.import_holidays import import_holidays
@@ -29,7 +30,6 @@ from edc_metadata.models import CrfMetadata
 from edc_randomization.site_randomizers import site_randomizers
 from edc_sites.site import sites as site_sites
 from edc_sites.utils import add_or_update_django_sites
-from edc_utils.date import get_utcnow, get_utcnow_as_date
 from edc_visit_schedule.site_visit_schedules import site_visit_schedules
 from edc_visit_tracking.constants import SCHEDULED
 from model_bakery import baker
@@ -50,7 +50,7 @@ def get_eligible_options(i: int | None = None) -> dict:
         screening_consent=YES,
         willing_to_participate=YES,
         consent_ability=YES,
-        report_datetime=get_utcnow(),
+        report_datetime=timezone.now(),
         initials=f"E{i}W",
         gender=FEMALE,
         age_in_years=25,
@@ -58,12 +58,12 @@ def get_eligible_options(i: int | None = None) -> dict:
         unsuitable_agreed=NOT_APPLICABLE,
         hiv_pos=YES,
         cd4_value=99,
-        cd4_date=(get_utcnow() - relativedelta(days=7)).date(),
+        cd4_date=(timezone.now() - relativedelta(days=7)).date(),
         serum_crag_value=POS,
-        serum_crag_date=(get_utcnow() - relativedelta(days=6)).date(),
+        serum_crag_date=(timezone.now() - relativedelta(days=6)).date(),
         lp_declined=NOT_APPLICABLE,
         lp_done=YES,
-        lp_date=(get_utcnow() - relativedelta(days=6)).date(),
+        lp_date=(timezone.now() - relativedelta(days=6)).date(),
         csf_crag_value=NEG,
         contraindicated_meds=NO,
         cm_in_csf=NO,
@@ -171,7 +171,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
             initials=subject_screening.initials,
             gender=subject_screening.gender,
             dob=dob
-            or (get_utcnow_as_date() - relativedelta(years=subject_screening.age_in_years)),
+            or (timezone.now().date() - relativedelta(years=subject_screening.age_in_years)),
             site=site,
             consent_datetime=consent_datetime,
         )
@@ -195,7 +195,7 @@ class EffectTestCaseMixin(FormValidatorTestCaseMixin, SiteTestCaseMixin):
         )
         dob = None
         if age_in_years:
-            dob = get_utcnow() - relativedelta(years=age_in_years)
+            dob = timezone.now() - relativedelta(years=age_in_years)
         subject_consent = subject_consent or self.get_subject_consent(
             subject_screening,
             dob=dob,

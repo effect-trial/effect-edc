@@ -1,3 +1,4 @@
+from django.contrib import admin
 from edc_model_admin.dashboard import ModelAdminDashboardMixin
 from edc_model_admin.mixins import TemplatesModelAdminMixin
 from edc_qareports.modeladmin_mixins import QaReportModelAdminMixin
@@ -28,7 +29,7 @@ class BaselineVlModelAdminMixin(
         "visit_dashboard",
         "site",
         "update_crf",
-        "has_viral_load_result",
+        "result_available",
         "viral_load_result",
         "viral_load_quantifier",
         "viral_load_date",
@@ -45,7 +46,6 @@ class BaselineVlModelAdminMixin(
         "viral_load_quantifier",
         "viral_load_date",
         "viral_load_date_estimated",
-        "site_id",
         "user_created",
         "user_modified",
         "created",
@@ -56,3 +56,9 @@ class BaselineVlModelAdminMixin(
         "subject_identifier",
         "viral_load_result",
     )
+
+    @admin.display(description="Result available", ordering="has_viral_load_result")
+    def result_available(self, obj=None) -> None | str:
+        if obj:
+            return obj.has_viral_load_result
+        return None

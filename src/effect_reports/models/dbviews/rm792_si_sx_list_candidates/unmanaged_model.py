@@ -16,7 +16,7 @@ class Rm792SiSxListCandidates(QaReportModelMixin, DBView):
 
     class Meta:
         managed = False
-        db_table = "rm792_si_sx_list_candidates"
+        db_table = "effect_reports_rm792sisxlistcandidatesview"
         verbose_name = "Redmine #792.3 - Signs and Symptoms: Possible list candidates"
         verbose_name_plural = "Redmine #792.3 - Signs and Symptoms: Possible list candidates"
         default_permissions = qa_reports_permissions

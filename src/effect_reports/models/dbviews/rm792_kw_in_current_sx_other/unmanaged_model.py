@@ -24,7 +24,7 @@ class Rm792KwInCurrentSxOther(QaReportModelMixin, DBView):
 
     class Meta:
         managed = False
-        db_table = "rm792_kw_in_current_sx_other"
+        db_table = "effect_reports_rm792kwincurrentsxotherview"
         verbose_name = "Redmine #792.1 - Signs and Symptoms: Keyword in other sx"
         verbose_name_plural = "Redmine #792.1 - Signs and Symptoms: Keyword in other sx"
         default_permissions = qa_reports_permissions

@@ -1,22 +1,15 @@
 from django.db import models
 from django_pandas.managers import DataFrameManager
-from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
-from edc_model.models import BaseUuidModel
-from edc_qareports.model_mixins import QaReportModelMixin
 
 
-class BaseBaselineVlModelMixin(
-    UniqueSubjectIdentifierFieldMixin,
-    QaReportModelMixin,
-    BaseUuidModel,
-):
+class BaseBaselineVlModelMixin(models.Model):
     """A modelmixin for VL data management tables with details of each
     participant's baseline viral load.
     """
 
     crf_id = models.UUIDField(null=True)
-    visit_code = models.CharField(max_length=25, default="")
-    visit_code_sequence = models.IntegerField(default=0)
+
+    visit_code_str = models.CharField(max_length=25, default="")
 
     has_viral_load_result = models.CharField(max_length=5, default="")
     viral_load_result = models.IntegerField(null=True)
@@ -31,5 +24,5 @@ class BaseBaselineVlModelMixin(
 
     objects = DataFrameManager()
 
-    class Meta(BaseUuidModel.Meta):
+    class Meta:
         abstract = True

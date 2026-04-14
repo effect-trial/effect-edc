@@ -13,14 +13,15 @@ def get_view_definition() -> dict:
     `crf`.`current_sx_other`,
     `crf`.`user_created`,
     `crf`.`user_modified`,
-    `crf`.`modified`
+    `crf`.`modified`,
+    ""                                       as label
 from
     `effect_subject_signsandsymptoms` as `crf`
         left join `effect_subject_subjectvisit` as `v` on `crf`.`subject_visit_id` = `v`.`id`
     WHERE `current_sx_gte_g3_other` REGEXP '{}'""".format("|".join(search_terms))
 
     sql_view = SqlViewGenerator(
-        report_model="effect_reports.rm792_kw_in_current_sx_other",
+        report_model="effect_reports.rm792kwincurrentsxother",
         ordering=["site_id", "subject_identifier", "visit_code", "visit_code_sequence"],
     )
     return {
