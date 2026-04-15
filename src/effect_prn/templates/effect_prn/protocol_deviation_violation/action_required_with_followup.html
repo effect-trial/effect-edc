@@ -1,0 +1,8 @@
+<style>
+    span {
+        min-width: 15ch;
+    }
+</style>
+
+<span>{{ action_required }}{% if action_required_followup != "Not applicable" %}
+    <BR><BR><span style="background-color: lightpink"><b>Followup:</b></span> {{ action_required_followup }}</span>{% endif %}
