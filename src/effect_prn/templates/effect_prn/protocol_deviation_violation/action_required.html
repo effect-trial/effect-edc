@@ -1,0 +1,8 @@
+<style>
+    span {
+        min-width: 15ch;
+    }
+</style>
+
+<span>{{ action_required }}{% if missed_dose_conditions != "Not applicable" %}
+    <BR><BR><span style="background-color: lightpink"><b>Followup:</b></span> {{ missed_dose_conditions }}</span>{% endif %}
