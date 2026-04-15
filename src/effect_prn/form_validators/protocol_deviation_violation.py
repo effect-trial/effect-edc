@@ -55,3 +55,8 @@ class ProtocolDeviationViolationFormValidator(FormValidator):
             field="report_status",
             field_required="report_closed_datetime",
         )
+
+        self.validate_action()
+
+    def validate_action(self):
+        pass
