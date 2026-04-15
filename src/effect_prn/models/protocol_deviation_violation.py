@@ -42,9 +42,14 @@ class ProtocolDeviationViolation(
     )
 
     action_required_followup = models.CharField(
+        verbose_name="Which conditions apply?",
         max_length=50,
         choices=ACTION_REQUIRED_FOLLOWUP,
         default=NOT_APPLICABLE,
+        help_text=(
+            "Only applicable if the patient remains on "
+            "study but data analysis will be modified"
+        ),
     )
 
     action_required_old = models.CharField(max_length=45, choices=ACTION_REQUIRED, default="")

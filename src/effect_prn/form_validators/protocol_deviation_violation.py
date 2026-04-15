@@ -1,7 +1,7 @@
 from clinicedc_constants import CLOSED, OTHER, YES
 from edc_form_validators import FormValidator
 
-from ..constants import VIOLATION
+from ..constants import REMAIN_ON_STUDY_MODIFIED, VIOLATION
 
 
 class ProtocolDeviationViolationFormValidator(FormValidator):
@@ -50,13 +50,14 @@ class ProtocolDeviationViolationFormValidator(FormValidator):
             field_required="preventative_action",
         )
 
+        self.applicable_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_applicable="action_required_followup",
+        )
+
         self.required_if(
             CLOSED,
             field="report_status",
             field_required="report_closed_datetime",
         )
-
-        self.validate_action()
-
-    def validate_action(self):
-        pass
