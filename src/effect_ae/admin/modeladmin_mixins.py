@@ -131,7 +131,15 @@ class DeathReportTmgModelAdminMixin(BaseDeathReportTmgModelAdminMixin):
                     "cause_of_death_other",
                     "cause_of_death_agreed",
                     "narrative",
+                )
+            },
+        ),
+        (
+            "Cryptococcal infection relatedness",
+            {
+                "fields": (
                     "cryptococcal_relatedness",
+                    "cryptococcal_relatedness_comment",
                 )
             },
         ),

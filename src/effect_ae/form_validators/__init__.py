@@ -1,1 +1,2 @@
-from .ae_initial import AeInitialFormValidator
+from .ae_initial_form_validator import AeInitialFormValidator
+from .death_report_tmg_form_validator import DeathReportTmgFormValidator
