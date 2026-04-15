@@ -14,6 +14,9 @@ from edc_adverse_event.modeladmin_mixins import (
     AdverseEventModelAdminMixin,
     NonAeInitialModelAdminMixin,
 )
+from edc_adverse_event.modeladmin_mixins import (
+    DeathReportTmgModelAdminMixin as BaseDeathReportTmgModelAdminMixin,
+)
 from edc_adverse_event.templatetags.edc_adverse_event_extras import (
     format_ae_followup_description,
     select_description_template,
@@ -115,3 +118,50 @@ class AeReviewModelAdminMixin(
                 identifier=obj.ae_initial.identifier,
             )
         return None
+
+
+class DeathReportTmgModelAdminMixin(BaseDeathReportTmgModelAdminMixin):
+    fieldsets = (
+        (None, {"fields": ("subject_identifier", "death_report", "report_datetime")}),
+        (
+            "Opinion of TMG",
+            {
+                "fields": (
+                    "cause_of_death",
+                    "cause_of_death_other",
+                    "cause_of_death_agreed",
+                    "narrative",
+                    "cryptococcal_relatedness",
+                )
+            },
+        ),
+        (
+            "Report status",
+            {
+                "fields": (
+                    "report_status",
+                    "report_closed_datetime",
+                )
+            },
+        ),
+        action_fieldset_tuple,
+        audit_fieldset_tuple,
+    )
+
+    radio_fields = {  # noqa: RUF012
+        "cause_of_death": admin.VERTICAL,
+        "cause_of_death_agreed": admin.VERTICAL,
+        "cryptococcal_relatedness": admin.VERTICAL,
+        "report_status": admin.VERTICAL,
+    }
+
+    def get_list_filter(self, request) -> tuple[str, ...]:
+        list_filter = super().get_list_filter(request)
+        custom_fields = (
+            "report_datetime",
+            "report_status",
+            "cause_of_death_agreed",
+            "cause_of_death",
+            "cryptococcal_relatedness",
+        )
+        return *custom_fields, *[f for f in list_filter if f not in custom_fields]
