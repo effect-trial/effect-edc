@@ -53,7 +53,25 @@ class ProtocolDeviationViolationFormValidator(FormValidator):
         self.applicable_if(
             REMAIN_ON_STUDY_MODIFIED,
             field="action_required",
-            field_applicable="action_required_followup",
+            field_applicable="missed_dose_conditions",
+        )
+
+        self.required_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_required="missed_dose_count_summary",
+        )
+
+        self.m2m_applicable_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            m2m_field="missed_dose_responsibility",
+        )
+
+        self.required_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_required="missed_dose_reason",
         )
 
         self.required_if(
