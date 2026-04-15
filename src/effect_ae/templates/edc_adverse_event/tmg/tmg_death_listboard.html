@@ -1,0 +1,67 @@
+{% extends edc_listboard_template %}
+
+{% load edc_dashboard_extras %}
+{% load edc_adverse_event_extras %}
+{% load tz %}
+{% load static %}
+{% load l10n %}
+{% load i18n %}
+
+
+{% block listboard_table_header %}
+
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Subject</th>
+    <th>TMG Death Reports</th>
+    <th>Death Report</th>
+    <!-- end results header -->
+
+{% endblock listboard_table_header %}
+
+{% block listboard_table_button_column %}{% endblock %}
+
+
+{% block listboard_table_columns %}
+
+    <td>
+        <small>
+            <a id="{{ result.object.action_identifier }}" name="{{ result.object.action_identifier }}"></a>
+            <a class="btn btn-primary" href="{% url subject_dashboard_url subject_identifier=result.subject_identifier %}" title={% translate "Go to subject dashboard" %}><small>{{ result.subject_identifier }}
+                <i class="fas fa-share"></i></small></a> {% copy_string_to_clipboard_button result.subject_identifier %}
+        </small>
+    </td>
+
+    <td>
+        {# First TMG review #}
+        {% death_report_tmg_action_item result.subject_identifier as first_tmg_action_item %}
+        {% if first_tmg_action_item %}
+            {% render_tmg_panel action_item=first_tmg_action_item next_url_name="tmg_death_listboard_url" %}
+        {% endif %}
+
+        {# Second TMG review — shown whenever the first TMG review exists #}
+        {% death_report_tmg_second_action_item result.subject_identifier as second_tmg_action_item %}
+        {% if first_tmg_action_item and second_tmg_action_item %}
+            {% render_tmg_panel action_item=second_tmg_action_item next_url_name="tmg_death_listboard_url" %}
+        {% endif %}
+    </td>
+
+    <td>
+        <a title="View Death Report"
+           href="{% if SITE_ID != result.object.site.id %}#{% else %}{{ result.href }}{% endif %}"
+           role="button"
+           class="btn btn-sm btn-{% if perms.ambition_ae.change_deathreport %}success{% else %}info{% endif %}"
+           {% if SITE_ID != result.object.site.id %}disabled{% endif %}>
+            {% if perms.ambition_ae.change_deathreport %}
+                <i class="fas fa-pencil-alt fa-fw"></i>
+            {% else %}
+                <i class="fas fa-eye fa-fw"></i>
+            {% endif %}&nbsp;<tt>{{ result.object.identifier }}</tt>
+        </a>
+        <small>
+            <BR>Died: {{ result.object.death_datetime|date:"SHORT_DATE_FORMAT" }}
+            <BR>Reported: {{ result.object.report_datetime|date:"SHORT_DATE_FORMAT" }}
+            <BR>{% if result.object.cause_of_death == OTHER %}{{ result.object.cause_of_death_other }}{% else %}{{ result.object.get_cause_of_death_display }}{% endif %}
+        </small>
+    </td>
+{% endblock listboard_table_columns %}
