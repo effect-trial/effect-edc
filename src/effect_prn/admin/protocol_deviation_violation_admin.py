@@ -1,4 +1,4 @@
-from clinicedc_constants import CLOSED, NULL_STRING, OPEN
+from clinicedc_constants import CLOSED, OPEN
 from django.contrib import admin
 from django.template.loader import render_to_string
 from django.utils.html import format_html
@@ -132,11 +132,13 @@ class ProtocolDeviationViolationAdmin(
     @staticmethod
     def status(obj=None):
         if obj.report_status == CLOSED:
+            # noinspection PyDeprecation
             return format_html(
                 '<span style="color:green">{report_status}</span>',
                 report_status=obj.report_status.title(),
             )
         if obj.report_status == OPEN:
+            # noinspection PyDeprecation
             return format_html(
                 '<span style="color:red">{report_status}</span>',
                 report_status=obj.report_status.title(),
@@ -147,11 +149,13 @@ class ProtocolDeviationViolationAdmin(
     def description(self, obj=None):
         report_status = ""
         if obj.report_status == CLOSED:
+            # noinspection PyDeprecation
             report_status = format_html(
                 '<span style="color:green">{report_status}</span>',
                 report_status=obj.report_status.title(),
             )
         if obj.report_status == OPEN:
+            # noinspection PyDeprecation
             report_status = format_html(
                 '<span style="color:red">{report_status}</span>',
                 report_status=obj.report_status.title(),
@@ -169,17 +173,17 @@ class ProtocolDeviationViolationAdmin(
     @admin.display(description="Action Required", ordering="action_required")
     def action_required_with_missed_dose_conditions(self, obj=None):
         if obj:
-            action_required_with_missed_dose_conditions_string = (
+            missed_dose_conditions_display = (
                 "Not applicable"
-                if obj.action_required_with_missed_dose_conditions in [NULL_STRING, None]
-                else dict(MISSED_DOSE_CONDITIONS).get(obj.action_required_followup)
+                if not obj.missed_dose_conditions
+                else dict(MISSED_DOSE_CONDITIONS).get(obj.missed_dose_conditions)
             )
             context = dict(
                 action_required=obj.action_required,
-                action_required_followup=action_required_with_missed_dose_conditions_string,
+                missed_dose_conditions=missed_dose_conditions_display,
             )
             return render_to_string(
-                "effect_prn/protocol_deviation_violation/action_required_with_followup.html",
+                "effect_prn/protocol_deviation_violation/action_required.html",
                 context=context,
             )
         return None

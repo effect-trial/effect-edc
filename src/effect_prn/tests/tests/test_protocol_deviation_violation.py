@@ -32,32 +32,32 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
             "preventative_action": "",
             "report_closed_datetime": None,
             "action_required": REMAIN_ON_STUDY_MODIFIED,
-            "action_required_followup": "MISSED_GT_2D_INDUCTION_RX",
+            "missed_dose_conditions": "MISSED_GT_2D_INDUCTION_RX",
         }
 
-    def test_action_required_followup_applicable_if_remain_on_study_modified(self):
+    def test_missed_dose_conditions_applicable_if_remain_on_study_modified(self):
         cleaned_data = self.get_cleaned_data()
         cleaned_data.update(
             {
                 "action_required": REMAIN_ON_STUDY_MODIFIED,
-                "action_required_followup": NOT_APPLICABLE,
+                "missed_dose_conditions": NOT_APPLICABLE,
             },
         )
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
             form_validator.validate()
-        self.assertIn("action_required_followup", cm.exception.error_dict)
+        self.assertIn("missed_dose_conditions", cm.exception.error_dict)
         self.assertEqual(
-            {"action_required_followup": ["This field is applicable."]},
+            {"missed_dose_conditions": ["This field is applicable."]},
             cm.exception.message_dict,
         )
 
-    def test_action_required_followup_with_remain_on_study_modified_ok(self):
+    def test_missed_dose_conditions_with_remain_on_study_modified_ok(self):
         cleaned_data = self.get_cleaned_data()
         cleaned_data.update(
             {
                 "action_required": REMAIN_ON_STUDY_MODIFIED,
-                "action_required_followup": "MISSED_GT_2D_INDUCTION_RX",
+                "missed_dose_conditions": "MISSED_GT_2D_INDUCTION_RX",
             },
         )
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)
@@ -66,12 +66,12 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
         except ValidationError as e:
             self.fail(f"ValidationError unexpectedly raised. Got {e}")
 
-    def test_action_required_followup_not_applicable_if_not_remain_on_study_modified(self):
+    def test_missed_dose_conditions_not_applicable_if_not_remain_on_study_modified(self):
         cleaned_data = self.get_cleaned_data()
         cleaned_data.update(
             {
                 "action_required": "to_be_withdrawn",
-                "action_required_followup": "MISSED_GT_2D_INDUCTION_RX",
+                "missed_dose_conditions": "MISSED_GT_2D_INDUCTION_RX",
             },
         )
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)
@@ -79,16 +79,16 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
             form_validator.validate()
         self.assertIn("action_required_followup", cm.exception.error_dict)
         self.assertEqual(
-            {"action_required_followup": ["This field is not applicable."]},
+            {"missed_dose_conditions": ["This field is not applicable."]},
             cm.exception.message_dict,
         )
 
-    def test_action_required_followup_na_if_not_remain_on_study_modified_ok(self):
+    def test_missed_dose_conditions_na_if_not_remain_on_study_modified_ok(self):
         cleaned_data = self.get_cleaned_data()
         cleaned_data.update(
             {
                 "action_required": "to_be_withdrawn",
-                "action_required_followup": NOT_APPLICABLE,
+                "missed_dose_conditions": NOT_APPLICABLE,
             },
         )
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)
