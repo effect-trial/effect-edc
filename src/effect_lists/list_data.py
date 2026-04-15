@@ -373,4 +373,10 @@ list_data = {
         ("moving", "I am moving to another area"),
         (OTHER, "Other, please specify"),
     ],
+    "effect_lists.misseddoseresponsibility": [
+        ("study_staff", "Study staff"),
+        ("routine care staff", "Routine care staff"),
+        ("participant_error", "Participant error"),
+        (NOT_APPLICABLE, "Not applicable"),
+    ],
 }

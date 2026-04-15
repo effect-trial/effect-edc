@@ -1,5 +1,5 @@
 from clinicedc_constants import GRADE4, NO, NOT_APPLICABLE, NOT_RELATED, YES
-from edc_utils.date import get_utcnow
+from django.utils import timezone
 from model_bakery.recipe import Recipe
 
 from effect_ae.models.ae_followup import AeFollowup
@@ -14,8 +14,8 @@ aeinitial = Recipe(
     ae_description="A description of this event",
     ae_grade=GRADE4,
     ae_study_relation_possibility=YES,
-    ae_start_date=get_utcnow().date(),
-    ae_awareness_date=get_utcnow().date(),
+    ae_start_date=timezone.now().date(),
+    ae_awareness_date=timezone.now().date(),
     study_drug_relation=NOT_RELATED,
     ae_treatment="Some special treatment",
     sae=NO,

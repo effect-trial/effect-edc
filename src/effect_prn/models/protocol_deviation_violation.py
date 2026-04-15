@@ -1,3 +1,4 @@
+from clinicedc_constants import NULL_STRING
 from django.db import models
 from edc_action_item.models import ActionItem, ActionModelMixin
 from edc_constants.choices import NOT_APPLICABLE
@@ -7,7 +8,13 @@ from edc_protocol_incident.constants import PROTOCOL_DEVIATION_VIOLATION_ACTION
 from edc_protocol_incident.model_mixins import ProtocolDeviationViolationModelMixin
 from edc_sites.model_mixins import SiteModelMixin
 
-from ..choices import ACTION_REQUIRED, PROTOCOL_VIOLATION
+from effect_lists.models import MissedDoseResponsibility
+
+from ..choices import (
+    ACTION_REQUIRED,
+    MISSED_DOSE_CONDITIONS,
+    PROTOCOL_VIOLATION,
+)
 
 
 class ProtocolDeviationViolation(
@@ -39,6 +46,31 @@ class ProtocolDeviationViolation(
         blank=True,
         verbose_name="If other, please specify",
         max_length=75,
+    )
+
+    missed_dose_conditions = models.CharField(
+        verbose_name="Which conditions apply?",
+        max_length=50,
+        choices=MISSED_DOSE_CONDITIONS,
+        default=NOT_APPLICABLE,
+    )
+
+    missed_dose_count_summary = models.TextField(
+        verbose_name="How many / of what / when?",
+        default=NULL_STRING,
+        blank=True,
+    )
+
+    missed_dose_responsibility = models.ManyToManyField(
+        MissedDoseResponsibility,
+        verbose_name="Who is primarily responsible?",
+        blank=True,
+    )
+
+    missed_dose_reason = models.TextField(
+        verbose_name="Reasons given by ppts for missed induction doses",
+        default=NULL_STRING,
+        blank=True,
     )
 
     action_required_old = models.CharField(max_length=45, choices=ACTION_REQUIRED, default="")

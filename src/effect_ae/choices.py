@@ -1,4 +1,13 @@
-from clinicedc_constants import DECEASED, DISCHARGED, INPATIENT, NOT_APPLICABLE, OTHER, UNKNOWN
+from clinicedc_constants import (
+    DECEASED,
+    DISCHARGED,
+    INPATIENT,
+    NOT_APPLICABLE,
+    NOT_EVALUATED,
+    OTHER,
+    UNKNOWN,
+)
+from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 
 AE_TYPE = (
     ("sae", "Serious Adverse Event / Reaction"),
@@ -36,4 +45,9 @@ INPATIENT_STATUSES = (
     (DISCHARGED, "Discharged"),
     (DECEASED, "Died during hospitalization"),
     (NOT_APPLICABLE, "Not applicable"),
+)
+
+CRYPTOCOCCAL_RELATIONSHIP = (
+    *[c for c in STUDY_DRUG_RELATIONSHIP if c[0] != NOT_APPLICABLE],
+    (NOT_EVALUATED, "Not evaluated"),
 )

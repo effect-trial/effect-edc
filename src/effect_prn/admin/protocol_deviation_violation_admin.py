@@ -1,5 +1,6 @@
 from clinicedc_constants import CLOSED, OPEN
 from django.contrib import admin
+from django.template.loader import render_to_string
 from django.utils.html import format_html
 from django_audit_fields.admin import audit_fieldset_tuple
 from edc_action_item.fieldsets import action_fields, action_fieldset_tuple
@@ -8,6 +9,7 @@ from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_prn_admin
+from ..choices import MISSED_DOSE_CONDITIONS
 from ..forms import ProtocolDeviationViolationForm
 from ..models import ProtocolDeviationViolation
 
@@ -67,6 +69,21 @@ class ProtocolDeviationViolationAdmin(
                 ),
             },
         ),
+        (
+            "Conditions of missed doses",
+            {
+                "description": (
+                    "This section is only applicable if patient remains on "
+                    "study but data analysis will be modified as indicated above."
+                ),
+                "fields": (
+                    "missed_dose_conditions",
+                    "missed_dose_count_summary",
+                    "missed_dose_responsibility",
+                    "missed_dose_reason",
+                ),
+            },
+        ),
         ("Report status", {"fields": ("report_status", "report_closed_datetime")}),
         action_fieldset_tuple,
         audit_fieldset_tuple,
@@ -74,6 +91,7 @@ class ProtocolDeviationViolationAdmin(
 
     radio_fields = {  # noqa: RUF012
         "action_required": admin.VERTICAL,
+        "missed_dose_conditions": admin.VERTICAL,
         "report_status": admin.VERTICAL,
         "report_type": admin.VERTICAL,
         "safety_impact": admin.VERTICAL,
@@ -86,14 +104,19 @@ class ProtocolDeviationViolationAdmin(
         "dashboard",
         "description",
         "report_datetime",
-        "status",
-        "action_required",
-        "report_type",
+        "action_required_with_missed_dose_conditions",
         "action_identifier",
         "user_created",
     )
 
-    list_filter = ("action_required", "report_status", "report_type")
+    list_filter = (
+        "action_required",
+        "missed_dose_conditions",
+        "report_status",
+        "report_type",
+    )
+
+    filter_horizontal = ("missed_dose_responsibility",)
 
     search_fields = (
         "subject_identifier",
@@ -109,17 +132,58 @@ class ProtocolDeviationViolationAdmin(
     @staticmethod
     def status(obj=None):
         if obj.report_status == CLOSED:
+            # noinspection PyDeprecation
             return format_html(
                 '<span style="color:green">{report_status}</span>',
                 report_status=obj.report_status.title(),
             )
         if obj.report_status == OPEN:
+            # noinspection PyDeprecation
             return format_html(
                 '<span style="color:red">{report_status}</span>',
                 report_status=obj.report_status.title(),
             )
         return obj.report_status.title()
 
-    @staticmethod
-    def description(obj=None):
-        return obj.short_description.title()
+    @admin.display(description="Description", ordering="short_description")
+    def description(self, obj=None):
+        report_status = ""
+        if obj.report_status == CLOSED:
+            # noinspection PyDeprecation
+            report_status = format_html(
+                '<span style="color:green">{report_status}</span>',
+                report_status=obj.report_status.title(),
+            )
+        if obj.report_status == OPEN:
+            # noinspection PyDeprecation
+            report_status = format_html(
+                '<span style="color:red">{report_status}</span>',
+                report_status=obj.report_status.title(),
+            )
+        context = dict(
+            status=report_status,
+            description=obj.short_description.title(),
+            report_type=obj.get_report_type_display(),
+        )
+        return render_to_string(
+            "effect_prn/protocol_deviation_violation/description.html",
+            context=context,
+        )
+
+    @admin.display(description="Action Required", ordering="action_required")
+    def action_required_with_missed_dose_conditions(self, obj=None):
+        if obj:
+            missed_dose_conditions_display = (
+                "Not applicable"
+                if not obj.missed_dose_conditions
+                else dict(MISSED_DOSE_CONDITIONS).get(obj.missed_dose_conditions)
+            )
+            context = dict(
+                action_required=obj.action_required,
+                missed_dose_conditions=missed_dose_conditions_display,
+            )
+            return render_to_string(
+                "effect_prn/protocol_deviation_violation/action_required.html",
+                context=context,
+            )
+        return None

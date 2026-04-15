@@ -43,6 +43,12 @@ class Medication(ListModelMixin):
         verbose_name_plural = "Medication"
 
 
+class MissedDoseResponsibility(ListModelMixin):
+    class Meta(ListModelMixin.Meta):
+        verbose_name = "Missed Dose Responsibility"
+        verbose_name_plural = "Missed Dose Responsibility"
+
+
 class NonAdherenceReasons(ListModelMixin):
     class Meta(ListModelMixin.Meta):
         verbose_name = "Non-Adherence Reasons"

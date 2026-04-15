@@ -1,7 +1,7 @@
 from clinicedc_constants import CLOSED, OTHER, YES
 from edc_form_validators import FormValidator
 
-from ..constants import VIOLATION
+from ..constants import REMAIN_ON_STUDY_MODIFIED, VIOLATION
 
 
 class ProtocolDeviationViolationFormValidator(FormValidator):
@@ -48,6 +48,30 @@ class ProtocolDeviationViolationFormValidator(FormValidator):
         self.required_if_not_none(
             field="preventative_action_datetime",
             field_required="preventative_action",
+        )
+
+        self.applicable_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_applicable="missed_dose_conditions",
+        )
+
+        self.required_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_required="missed_dose_count_summary",
+        )
+
+        self.m2m_applicable_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            m2m_field="missed_dose_responsibility",
+        )
+
+        self.required_if(
+            REMAIN_ON_STUDY_MODIFIED,
+            field="action_required",
+            field_required="missed_dose_reason",
         )
 
         self.required_if(
