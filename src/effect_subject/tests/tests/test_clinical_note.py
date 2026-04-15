@@ -1,5 +1,5 @@
 from clinicedc_constants import NO, YES
-from django.test import TestCase
+from django.test import TestCase, tag
 from edc_visit_schedule.constants import DAY1
 
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
@@ -20,6 +20,7 @@ class TestClinicalNoteFormValidation(EffectTestCaseMixin, TestCase):
             "comments": None,
         }
 
+    @tag("erik")
     def test_cleaned_data_ok(self):
         cleaned_data = self.get_cleaned_data(visit_code=DAY1)
         self.assertFormValidatorNoError(
