@@ -26,6 +26,7 @@ from edc_adverse_event.constants import (
     AE_TMG_ACTION,
     DEATH_REPORT_ACTION,
     DEATH_REPORT_TMG_ACTION,
+    DEATH_REPORT_TMG_SECOND_ACTION,
 )
 from edc_lab_results.constants import (
     BLOOD_RESULTS_FBC_ACTION,
@@ -239,8 +240,22 @@ class DeathReportAction(ActionWithNotification):
         return next_actions
 
 
+class EffectDeathReportTmgAction(DeathReportTmgAction):
+    """Always schedule a second TMG review alongside the first.
+
+    Overrides upstream behaviour, which only schedules the second review
+    when ``cause_of_death_agreed == NO``. EFFECT wants the
+    DeathReportTmgSecond link to appear on the TMG listboard whenever a
+    DeathReportTmg exists, so we always return the second-review action
+    as a next action.
+    """
+
+    def get_next_actions(self):
+        return [DEATH_REPORT_TMG_SECOND_ACTION]
+
+
 site_action_items.register(DeathReportAction)
-site_action_items.register(DeathReportTmgAction)
+site_action_items.register(EffectDeathReportTmgAction)
 site_action_items.register(DeathReportTmgSecondAction)
 site_action_items.register(AeFollowupAction)
 site_action_items.register(AeInitialAction)
