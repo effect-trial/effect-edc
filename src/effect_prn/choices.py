@@ -48,7 +48,7 @@ ACTION_REQUIRED = (
     ),
 )
 
-ACTION_REQUIRED_FOLLOWUP = (
+MISSED_DOSE_CONDITIONS = (
     (
         "MISSED_GT_2D_INDUCTION_RX",
         "Missed >2 days INDUCTION Rx (>2 doses FLU and/or >8 doses 5FC)",
@@ -59,3 +59,10 @@ ACTION_REQUIRED_FOLLOWUP = (
     (NOT_APPLICABLE, "Not applicable"),
 )
 REASON_STUDY_TERMINATED = ()
+
+MISSED_DOSE_RESPONSIBILITY = (
+    ("study_staff", "Study staff"),
+    ("routine care staff", "Routine care staff"),
+    ("participant_error", "Participant error"),
+    (NOT_APPLICABLE, "Not applicable"),
+)

@@ -9,7 +9,7 @@ from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin
 
 from ..admin_site import effect_prn_admin
-from ..choices import ACTION_REQUIRED_FOLLOWUP
+from ..choices import MISSED_DOSE_CONDITIONS
 from ..forms import ProtocolDeviationViolationForm
 from ..models import ProtocolDeviationViolation
 
@@ -66,7 +66,21 @@ class ProtocolDeviationViolationAdmin(
                     "preventative_action_datetime",
                     "preventative_action",
                     "action_required",
-                    "action_required_followup",
+                ),
+            },
+        ),
+        (
+            "Conditions of missed doses",
+            {
+                "description": (
+                    "This section is only applicable if patient remains on "
+                    "study but data analysis will be modified as indicated above."
+                ),
+                "fields": (
+                    "missed_dose_conditions",
+                    "missed_dose_count_summary",
+                    "missed_dose_responsibility",
+                    "missed_dose_reason",
                 ),
             },
         ),
@@ -77,7 +91,7 @@ class ProtocolDeviationViolationAdmin(
 
     radio_fields = {  # noqa: RUF012
         "action_required": admin.VERTICAL,
-        "action_required_followup": admin.VERTICAL,
+        "missed_dose_conditions": admin.VERTICAL,
         "report_status": admin.VERTICAL,
         "report_type": admin.VERTICAL,
         "safety_impact": admin.VERTICAL,
@@ -90,17 +104,19 @@ class ProtocolDeviationViolationAdmin(
         "dashboard",
         "description",
         "report_datetime",
-        "action_required_with_followup",
+        "action_required_with_missed_dose_conditions",
         "action_identifier",
         "user_created",
     )
 
     list_filter = (
         "action_required",
-        "action_required_followup",
+        "missed_dose_conditions",
         "report_status",
         "report_type",
     )
+
+    filter_horizontal = ("missed_dose_responsibility",)
 
     search_fields = (
         "subject_identifier",
@@ -151,16 +167,16 @@ class ProtocolDeviationViolationAdmin(
         )
 
     @admin.display(description="Action Required", ordering="action_required")
-    def action_required_with_followup(self, obj=None):
+    def action_required_with_missed_dose_conditions(self, obj=None):
         if obj:
-            action_required_followup_string = (
+            action_required_with_missed_dose_conditions_string = (
                 "Not applicable"
-                if obj.action_required_followup in [NULL_STRING, None]
-                else dict(ACTION_REQUIRED_FOLLOWUP).get(obj.action_required_followup)
+                if obj.action_required_with_missed_dose_conditions in [NULL_STRING, None]
+                else dict(MISSED_DOSE_CONDITIONS).get(obj.action_required_followup)
             )
             context = dict(
                 action_required=obj.action_required,
-                action_required_followup=action_required_followup_string,
+                action_required_followup=action_required_with_missed_dose_conditions_string,
             )
             return render_to_string(
                 "effect_prn/protocol_deviation_violation/action_required_with_followup.html",

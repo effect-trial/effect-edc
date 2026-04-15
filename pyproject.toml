@@ -38,6 +38,7 @@ dependencies = [
     "edc-microbiology>=1.3.0",
     "notebook>=7.4.5",
     "reportlab>=4.4.4",
+    "openpyxl>=3.1.5",
 ]
 
 [project.urls]
