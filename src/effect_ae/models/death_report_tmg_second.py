@@ -5,7 +5,7 @@ from edc_adverse_event.model_mixins import (
     DeathReportTmgSecondSiteManager,
 )
 
-from effect_ae.models import DeathReportTmg
+from ..models import DeathReportTmg
 
 
 class DeathReportTmgSecond(DeathReportTmgSecondModelMixin, DeathReportTmg):

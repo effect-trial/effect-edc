@@ -4,8 +4,8 @@ from django.test import TestCase, tag
 from edc_form_validators import FormValidatorTestCaseMixin
 from edc_protocol_incident.constants import DEVIATION
 
-from effect_prn.constants import REMAIN_ON_STUDY_MODIFIED
-from effect_prn.form_validators import ProtocolDeviationViolationFormValidator
+from ...constants import REMAIN_ON_STUDY_MODIFIED
+from ...form_validators import ProtocolDeviationViolationFormValidator
 
 
 @tag("pdv")
@@ -33,6 +33,9 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
             "report_closed_datetime": None,
             "action_required": REMAIN_ON_STUDY_MODIFIED,
             "missed_dose_conditions": "MISSED_GT_2D_INDUCTION_RX",
+            "missed_dose_count_summary": "1 dose missed",
+            "missed_dose_responsibility": None,
+            "missed_dose_reason": "forgotten",
         }
 
     def test_missed_dose_conditions_applicable_if_remain_on_study_modified(self):
@@ -77,7 +80,7 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)
         with self.assertRaises(ValidationError) as cm:
             form_validator.validate()
-        self.assertIn("action_required_followup", cm.exception.error_dict)
+        self.assertIn("missed_dose_conditions", cm.exception.error_dict)
         self.assertEqual(
             {"missed_dose_conditions": ["This field is not applicable."]},
             cm.exception.message_dict,
@@ -89,6 +92,8 @@ class TestProtocolDeviationViolationFormValidation(FormValidatorTestCaseMixin, T
             {
                 "action_required": "to_be_withdrawn",
                 "missed_dose_conditions": NOT_APPLICABLE,
+                "missed_dose_count_summary": None,
+                "missed_dose_reason": None,
             },
         )
         form_validator = ProtocolDeviationViolationFormValidator(cleaned_data=cleaned_data)

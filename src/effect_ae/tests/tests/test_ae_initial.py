@@ -25,10 +25,11 @@ from django.test import TestCase, tag
 from edc_adverse_event.choices import STUDY_DRUG_RELATIONSHIP
 from edc_utils import get_utcnow_as_date
 
-from effect_ae.choices import INPATIENT_STATUSES
-from effect_ae.form_validators import AeInitialFormValidator
-from effect_ae.models import AeInitial
 from effect_screening.tests.effect_test_case_mixin import EffectTestCaseMixin
+
+from ...choices import INPATIENT_STATUSES
+from ...form_validators import AeInitialFormValidator
+from ...models import AeInitial
 
 
 @tag("ae")
@@ -46,14 +47,15 @@ class TestAeInitialFormValidation(EffectTestCaseMixin, TestCase):
         # Patch, to allow assumption participant on intervention arm for all
         # tests (unless explicitly overridden)
         assignment_patcher = patch(
-            "effect_ae.form_validators.ae_initial.get_assignment_for_subject",
+            "effect_ae.form_validators.ae_initial_form_validator.get_assignment_for_subject",
         )
         self.addCleanup(assignment_patcher.stop)
         self.mock_get_assignment_for_subject = assignment_patcher.start()
         self.mock_get_assignment_for_subject.return_value = INTERVENTION
 
         assignment_descr_patcher = patch(
-            "effect_ae.form_validators.ae_initial.get_assignment_description_for_subject",
+            "effect_ae.form_validators.ae_initial_form_validator"
+            ".get_assignment_description_for_subject",
         )
         self.addCleanup(assignment_descr_patcher.stop)
         self.mock_get_assignment_description_for_subject = assignment_descr_patcher.start()
