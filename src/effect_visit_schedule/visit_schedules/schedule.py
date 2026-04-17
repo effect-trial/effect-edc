@@ -72,6 +72,7 @@ visit000 = Visit(
     crfs_prn=crfs_prn_baseline,
     crfs_unscheduled=crfs_unscheduled_lt_d14,
     facility_name="7-day-clinic",
+    schedule_on_holidays=True,
 )
 
 visit010 = Visit(

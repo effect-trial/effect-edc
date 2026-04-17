@@ -44,7 +44,7 @@ if TYPE_CHECKING:
     from effect_consent.models import SubjectConsent
 
 
-def get_eligible_options(i: int | None = None) -> dict:
+def get_eligible_options(i: str | None = None) -> dict:
     i = i or ""
     return dict(
         screening_consent=YES,
