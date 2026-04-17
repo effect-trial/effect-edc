@@ -26,7 +26,7 @@ def format_as_codename(prefix: str, model_cls, app_config: AppConfig):
 
 
 for app_config in django_apps.get_app_configs():
-    if app_config.name in ["effect_lists"]:
+    if app_config.name == "effect_lists":
         clinic_codenames.extend(
             [
                 format_as_codename("view", model_cls, app_config)
@@ -52,9 +52,7 @@ for app_config in django_apps.get_app_configs():
 clinic_codenames.sort()
 
 for app_config in django_apps.get_app_configs():
-    if app_config.name in [
-        "effect_screening",
-    ]:
+    if app_config.name == "effect_screening":
         for model_cls in app_config.get_models():
             if "historical" in model_cls._meta.label_lower:
                 screening_codenames.append(format_as_codename("view", model_cls, app_config))
