@@ -31,7 +31,7 @@ class LossToFollowup(
 
     last_seen_datetime = models.DateField(verbose_name="Date participant last seen")
 
-    number_consecutive_missed_visits = models.DateField(
+    number_consecutive_missed_visits = models.IntegerField(
         verbose_name="Number of consecutive visits missed",
         null=True,
         blank=False,
