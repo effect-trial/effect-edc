@@ -27,11 +27,13 @@ class LpCsfAdmin(LpCsfModelAdminMixin, CrfModelAdmin):
             get_csf_culture_fieldset(requisition_field="csf_requisition")[0],
             {
                 "fields": tuple(
-                    f
-                    for f in get_csf_culture_fieldset(requisition_field="csf_requisition")[1][
-                        "fields"
+                    [
+                        f
+                        for f in get_csf_culture_fieldset(requisition_field="csf_requisition")[
+                            1
+                        ]["fields"]
+                        if f != "csf_crag_immy_lfa"
                     ]
-                    if f not in {"csf_crag_immy_lfa"}
                 ),
             },
         ),
