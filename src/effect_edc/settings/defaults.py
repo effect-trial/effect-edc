@@ -105,6 +105,7 @@ INSTALLED_APPS = [
     "fontawesomefree",
     "django_crypto_fields.apps.AppConfig",
     "django_db_views",
+    "import_export",
     "django_extensions",
     "django_pylabels.apps.AppConfig",
     "django_revision.apps.AppConfig",
