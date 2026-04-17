@@ -1325,7 +1325,7 @@ test = [
 
 [[package]]
 name = "effect-edc"
-version = "1.7.1"
+version = "1.7.2"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
