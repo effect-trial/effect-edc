@@ -28,7 +28,6 @@ env = environ.Env(
     DJANGO_LOGGING_ENABLED=(bool, True),
     DJANGO_SESSION_COOKIE_SECURE=(bool, True),
     DJANGO_USE_I18N=(bool, True),
-    DJANGO_USE_L10N=(bool, True),
     DJANGO_USE_TZ=(bool, True),
     DEFENDER_ENABLED=(bool, False),
     EDC_RANDOMIZATION_REGISTER_DEFAULT_RANDOMIZER=(bool, True),
@@ -304,10 +303,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 # Internationalization
-# https://docs.djangoproject.com/en/1.11/topics/i18n/
-
 USE_I18N = True  # set to `False` to turn off translation
-USE_L10N = True  # set to `False` so DATE formats below are used (Deprecated)
 USE_TZ = True
 
 # Add custom languages not provided by Django
@@ -492,6 +488,12 @@ EDC_PROTOCOL_TITLE = env.str("EDC_PROTOCOL_TITLE")
 
 SARSCOV2_REDIRECT_URL_NAME = "screening_listboard_url"
 
+# declare STORAGES, overwrite staticfiles if AWS
+STORAGES = {
+    "default": {"BACKEND": "django.core.files.storage.FileSystemStorage"},
+    "staticfiles": {"BACKEND": "django.contrib.staticfiles.storage.StaticFilesStorage"},
+}
+
 # static
 if env("AWS_ENABLED"):
     # see
@@ -561,4 +563,3 @@ if "test" in sys.argv:
 
     MIGRATION_MODULES = DisableMigrations()
     PASSWORD_HASHERS = ("django.contrib.auth.hashers.MD5PasswordHasher",)
-    DEFAULT_FILE_STORAGE = "inmemorystorage.InMemoryStorage"
