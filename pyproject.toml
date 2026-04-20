@@ -33,7 +33,7 @@ requires-python = ">=3.12,<3.15"
 dependencies = [
     "Django>=5.2,<6.1",
     "beautifulsoup4>=4.13.4",
-    "clinicedc==3.0.0",
+    "clinicedc==3.1.0",
     "effect-form-validators>=2.0.0",
     "edc-csf>=2.0.0",
     "edc-microbiology>=2.0.0",
