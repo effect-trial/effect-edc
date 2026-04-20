@@ -122,6 +122,7 @@ class EffectSubjectConsentAdminMixin:
         "sample_storage",
         "sample_export",
         "hcw_data_sharing",
+        "dm_comment",
     )
 
     def save_model(self, request, obj, form, change):
