@@ -180,6 +180,7 @@ INSTALLED_APPS = [
     "effect_export.apps.AppConfig",
     "effect_screening.apps.AppConfig",
     "effect_sites.apps.AppConfig",
+    "effect_analytics",
     "effect_edc.apps.AppConfig",
     "edc_appconfig.apps.AppConfig",
 ]

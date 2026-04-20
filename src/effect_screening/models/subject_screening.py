@@ -2,6 +2,7 @@ from clinicedc_constants import (
     CELLS_PER_MICROLITER,
     NOT_APPLICABLE,
     NOT_EVALUATED,
+    NULL_STRING,
     QUESTION_RETIRED,
 )
 from django.contrib.sites.models import Site
@@ -369,6 +370,12 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     safe_save_id = models.UUIDField(
         unique=True,
         null=True,
+    )
+
+    dm_comment = models.TextField(
+        verbose_name="Data management comment",
+        default=NULL_STRING,
+        help_text="For data manager only",
     )
 
     @property

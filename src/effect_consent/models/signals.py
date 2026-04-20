@@ -75,15 +75,20 @@ def subject_consent_update_v2_on_post_save(sender, instance, raw, created, **kwa
     weak=False,
     dispatch_uid="subject_consent_on_post_save",
 )
-def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):  # noqa: ARG001
+def subject_consent_on_post_save(sender, instance, raw, created, **kwargs):
     """Creates an onschedule instance for this consented subject, if
     it does not exist.
     """
-    if not raw and sender in [
-        SubjectConsent,
-        SubjectConsentV1,
-        SubjectConsentV2,
-    ]:
+    if (
+        not raw
+        and sender
+        in [
+            SubjectConsent,
+            SubjectConsentV1,
+            SubjectConsentV2,
+        ]
+        and not kwargs.get("update_fields")
+    ):
         if (
             not created
             or OnSchedule.objects.filter(

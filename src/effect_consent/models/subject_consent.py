@@ -1,4 +1,4 @@
-from clinicedc_constants import NO, NOT_APPLICABLE, YES
+from clinicedc_constants import NO, NOT_APPLICABLE, NULL_STRING, YES
 from django.apps import apps as django_apps
 from django.contrib.sites.managers import CurrentSiteManager
 from django.db import models
@@ -69,6 +69,12 @@ class SubjectConsent(
         ),
     )
 
+    dm_comment = models.TextField(
+        verbose_name="Data Management comment",
+        default=NULL_STRING,
+        help_text="see also edc.data manager.",
+    )
+
     on_site = CurrentSiteManager()
 
     objects = SubjectConsentManager()
@@ -105,8 +111,3 @@ class SubjectConsent(
     class Meta(ConsentModelMixin.Meta, BaseUuidModel.Meta):
         verbose_name = "Consent"
         verbose_name_plural = "Consents"
-        # unique_together = (
-        #     # ("subject_identifier", "version"),
-        #     ("subject_identifier", "screening_identifier", "version"),
-        #     # ("first_name", "dob", "initials", "version"),
-        # )

@@ -182,6 +182,13 @@ class SubjectScreeningAdmin(
             },
         ],
         [
+            "Data Management",
+            {
+                "classes": ("collapse",),
+                "fields": ("dm_comment",),
+            },
+        ],
+        [
             audit_fieldset_tuple[0],
             {
                 "classes": audit_fieldset_tuple[1]["classes"],
@@ -256,6 +263,7 @@ class SubjectScreeningAdmin(
         "reasons_ineligible",
         "consented",
         "refused",
+        "dm_comment",
     )
 
     def get_post_url_on_delete_name(self, request) -> str:  # noqa: ARG002
