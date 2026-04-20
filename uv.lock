@@ -653,7 +653,7 @@ wheels = [
 
 [[package]]
 name = "clinicedc"
-version = "3.0.0"
+version = "3.1.0"
 source = { editable = "../clinicedc" }
 dependencies = [
     { name = "argon2-cffi" },
@@ -747,11 +747,7 @@ requires-dist = [
 ]
 
 [package.metadata.requires-dev]
-dev = [
-    { name = "clinicedc-tests", editable = "../clinicedc-tests" },
-    { name = "django-webtest", specifier = ">=1.9.14" },
-    { name = "ruff", specifier = ">=0.14.9" },
-]
+dev = [{ name = "clinicedc-tests", editable = "../clinicedc-tests" }]
 docs = [
     { name = "furo", specifier = ">=2025.7.19" },
     { name = "sphinx", specifier = ">=8.2.3" },
@@ -772,11 +768,6 @@ notebook = [
     { name = "scipy", specifier = ">=1.16.0" },
     { name = "selenium", specifier = ">=4.34.2" },
     { name = "tabulate", specifier = ">=0.9.0" },
-]
-test = [
-    { name = "clinicedc-tests", editable = "../clinicedc-tests" },
-    { name = "coverage", specifier = ">=7.6.0" },
-    { name = "django-webtest", specifier = ">=1.9.14" },
 ]
 
 [[package]]
@@ -1498,7 +1489,7 @@ wheels = [
 
 [[package]]
 name = "effect-edc"
-version = "2.0.0"
+version = "2.1.0"
 source = { editable = "." }
 dependencies = [
     { name = "beautifulsoup4" },
