@@ -68,6 +68,18 @@ site_auths.add_group(*clinic_codenames, name=EFFECT_AUDITOR, view_only=True)
 site_auths.add_group(*clinic_codenames, name=EFFECT_CLINIC, no_delete=True)
 site_auths.add_group(*clinic_codenames, name=EFFECT_CLINIC_SUPER)
 
+# ae_groups
+site_auths.update_group(
+    "effect_ae.view_aefinalclassification",
+    "effect_ae.change_aefinalclassification",
+    name=AE,
+)
+site_auths.update_group(
+    "effect_ae.view_aefinalclassification",
+    "effect_ae.change_aefinalclassification",
+    name=AE_SUPER,
+)
+
 # update edc roles
 site_auths.update_role(
     ACTION_ITEM,

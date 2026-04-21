@@ -1,3 +1,4 @@
+from .ae_final_classification_form import AeFinalClassificationForm
 from .ae_followup_form import AeFollowupForm
 from .ae_initial_form import AeInitialForm
 from .ae_local_review_form import AeLocalReviewForm
