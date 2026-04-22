@@ -15,3 +15,9 @@ class DeathReportTmgSecondAdmin(
     SimpleHistoryAdmin,
 ):
     form = DeathReportTmgSecondForm
+
+    def get_view_only_site_ids_for_user(self, request) -> list[int]:
+        return [s.id for s in request.user.userprofile.sites.all() if s.id != request.site.id]
+
+    def user_may_view_other_sites(self, request) -> bool:  # noqa: ARG002
+        return True
