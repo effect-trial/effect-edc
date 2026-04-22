@@ -72,11 +72,15 @@ site_auths.add_group(*clinic_codenames, name=EFFECT_CLINIC_SUPER)
 site_auths.update_group(
     "effect_ae.view_aefinalclassification",
     "effect_ae.change_aefinalclassification",
+    "effect_ae.view_deathfinalcause",
+    "effect_ae.change_deathfinalcause",
     name=AE,
 )
 site_auths.update_group(
     "effect_ae.view_aefinalclassification",
     "effect_ae.change_aefinalclassification",
+    "effect_ae.view_deathfinalcause",
+    "effect_ae.change_deathfinalcause",
     name=AE_SUPER,
 )
 
