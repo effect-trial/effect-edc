@@ -4,8 +4,9 @@ from django.db import models
 from django.utils import timezone
 from edc_adverse_event.models import AeClassification
 from edc_identifier.model_mixins import NonUniqueSubjectIdentifierModelMixin
-from edc_model.models import BaseUuidModel
+from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model_fields.fields import OtherCharField
+from edc_sites.managers import CurrentSiteManager
 from edc_sites.model_mixins import SiteModelMixin
 
 from .ae_initial import AeInitial
@@ -15,6 +16,10 @@ CLASSIFICATION_TRIGGER_FIELDS = (
     "ae_classification",
     "investigator_ae_classification",
 )
+
+
+class ModelManager(models.Manager):
+    use_in_migrations = True
 
 
 def get_ae_values_to_copy(ae_initial: "AeInitial", ae_tmg: "AeTmg | None") -> dict:
@@ -179,6 +184,12 @@ class AeFinalClassification(
         help_text="Copied from the AE TMG",
         default=NULL_STRING,
     )
+
+    objects = ModelManager()
+
+    on_site = CurrentSiteManager()
+
+    history = HistoricalRecords()
 
     def __str__(self):
         return f"{self.subject_identifier}: AeInitial-{self.ae_initial}"
