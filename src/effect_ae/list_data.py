@@ -51,6 +51,7 @@ list_data = {
         (NEUTROPAENIA, "Neutropaenia"),
         ("pcp", "PCP"),
         (PNEUMONIA, "Pneumonia"),
+        ("postdural_puncture_headache_nausea", "Post-dural puncture headache/ nausea"),
         (RENAL_IMPAIRMENT, "Renal impairment"),
         ("seizures", "Seizures"),
         (TUBERCULOSIS, "TB"),
