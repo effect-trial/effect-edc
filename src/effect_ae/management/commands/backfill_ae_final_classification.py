@@ -24,7 +24,7 @@ Usage::
 
 import contextlib
 
-from clinicedc_constants import NULL_STRING, OTHER, YES
+from clinicedc_constants import NOT_APPLICABLE, NULL_STRING, OTHER, YES
 from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.db.models import Q
@@ -80,6 +80,7 @@ class Command(BaseCommand):
                 (
                     copy_values["final_ae_classification"],
                     copy_values["final_ae_classification_other"],
+                    copy_values["verified"],
                 ) = self.get_final_ae_classification(ae_initial_obj, aetmg_obj)
                 if dry_run:
                     tmg_desc = (
@@ -130,6 +131,7 @@ class Command(BaseCommand):
                     # so the dry-run summary matches the real write path.
                     diffs["final_ae_classification"] = None
                     diffs["final_ae_classification_other"] = NULL_STRING
+                    diffs["verified"] = False
                 self.stdout.write(
                     f"  ~ would update {', '.join(sorted(diffs))} on "
                     f"AeFinalClassification for subject "
@@ -179,12 +181,13 @@ class Command(BaseCommand):
     @staticmethod
     def get_final_ae_classification(
         ae_initial_obj: AeInitial, aetmg_obj: AeTmg | None
-    ) -> tuple[AeClassification | None, str | None]:
+    ) -> tuple[AeClassification | None, str | None, bool]:
         """Return an AeClassification instance only when both sides are
         present and agree. Disregard if either is OTHER.
         """
         ae_classification_obj: AeClassification | None = None
         ae_classification_other: str | None = None
+        verified: bool = False
         if aetmg_obj:
             ae_classification_obj = ae_initial_obj.ae_classification
             tmg_classification_obj = aetmg_obj.investigator_ae_classification
@@ -195,11 +198,19 @@ class Command(BaseCommand):
                 not either_is_other
                 and ae_classification_obj is not None
                 and tmg_classification_obj is not None
-                and ae_classification_obj == tmg_classification_obj
+                and (
+                    ae_classification_obj == tmg_classification_obj
+                    or (
+                        aetmg_obj.original_report_agreed == YES
+                        and tmg_classification_obj.name == NOT_APPLICABLE
+                    )
+                )
             ):
-                pass
+                verified = True
             elif (
-                aetmg_obj.original_report_agreed == YES and ae_classification_obj.name == OTHER
+                aetmg_obj.original_report_agreed == YES
+                and ae_classification_obj is not None
+                and ae_classification_obj.name == OTHER
             ):
                 try:
                     ae_classification_obj = AeClassification.objects.get(
@@ -208,6 +219,7 @@ class Command(BaseCommand):
                     )
                 except AeClassification.DoesNotExist:
                     ae_classification_other = ae_initial_obj.ae_classification_other
+                verified = True
             else:
                 ae_classification_obj = None
-        return ae_classification_obj, ae_classification_other or NULL_STRING
+        return ae_classification_obj, ae_classification_other or NULL_STRING, verified

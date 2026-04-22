@@ -17,3 +17,18 @@ class FinalAeClassificationSetListFilter(admin.SimpleListFilter):
         if self.value() == NO:
             return queryset.filter(final_ae_classification__isnull=True)
         return queryset
+
+
+class HasAeTmgListFilter(admin.SimpleListFilter):
+    title = _("Has AE TMG")
+    parameter_name = "has_aetmg"
+
+    def lookups(self, request, model_admin):  # noqa: ARG002
+        return YES_NO
+
+    def queryset(self, request, queryset):  # noqa: ARG002
+        if self.value() == YES:
+            return queryset.filter(ae_tmg__isnull=False)
+        if self.value() == NO:
+            return queryset.filter(ae_tmg__isnull=True)
+        return queryset

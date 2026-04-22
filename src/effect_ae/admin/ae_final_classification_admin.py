@@ -4,11 +4,12 @@ from django_audit_fields.admin import audit_fieldset_tuple
 from edc_model_admin.dashboard import ModelAdminSubjectDashboardMixin
 from edc_model_admin.history import SimpleHistoryAdmin
 from edc_sites.admin import SiteModelAdminMixin
+from edc_sites.admin.list_filters import SiteListFilter
 
 from ..admin_site import effect_ae_admin
 from ..forms import AeFinalClassificationForm
 from ..models import AeFinalClassification
-from .list_filters import FinalAeClassificationSetListFilter
+from .list_filters import FinalAeClassificationSetListFilter, HasAeTmgListFilter
 
 
 @admin.register(AeFinalClassification, site=effect_ae_admin)
@@ -19,6 +20,7 @@ class AeFinalClassificationAdmin(
 ):
     form = AeFinalClassificationForm
     show_object_tools = True
+    change_list_note = "You may only edit documents from the current site."
 
     fieldsets = (
         (
@@ -33,7 +35,11 @@ class AeFinalClassificationAdmin(
         (
             "Final AE Classification",
             {
-                "fields": ("final_ae_classification", "final_ae_classification_other"),
+                "fields": (
+                    "final_ae_classification",
+                    "final_ae_classification_other",
+                    "verified",
+                ),
             },
         ),
         (
@@ -83,8 +89,10 @@ class AeFinalClassificationAdmin(
 
     list_filter = (
         FinalAeClassificationSetListFilter,
-        "report_datetime",
+        "verified",
+        HasAeTmgListFilter,
         "investigator_ae_classification_agreed",
+        SiteListFilter,
         "final_ae_classification",
     )
 
@@ -130,3 +138,6 @@ class AeFinalClassificationAdmin(
 
     def get_view_only_site_ids_for_user(self, request) -> list[int]:
         return [s.id for s in request.user.userprofile.sites.all() if s.id != request.site.id]
+
+    def user_may_view_other_sites(self, request) -> bool:  # noqa: ARG002
+        return True

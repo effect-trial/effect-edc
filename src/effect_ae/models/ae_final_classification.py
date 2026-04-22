@@ -76,6 +76,7 @@ def refresh_copies_from_sources(
     if classification_changed and afc.final_ae_classification_id is not None:
         changed["final_ae_classification"] = None
         changed["final_ae_classification_other"] = NULL_STRING
+        changed["verified"] = False
     for f, v in changed.items():
         setattr(afc, f, v)
     afc.save(update_fields=list(changed))
@@ -112,6 +113,8 @@ class AeFinalClassification(
     )
 
     final_ae_classification_other = OtherCharField(max_length=250)
+
+    verified = models.BooleanField(default=False)
 
     ae_initial = models.ForeignKey(AeInitial, on_delete=models.PROTECT, related_name="+")
 
