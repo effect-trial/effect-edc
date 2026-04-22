@@ -217,9 +217,9 @@ class Command(BaseCommand):
                         Q(name=ae_initial_obj.ae_classification_other.lower())
                         | Q(display_name=ae_initial_obj.ae_classification_other)
                     )
+                    verified = True
                 except AeClassification.DoesNotExist:
                     ae_classification_other = ae_initial_obj.ae_classification_other
-                verified = True
             else:
                 ae_classification_obj = None
         return ae_classification_obj, ae_classification_other or NULL_STRING, verified

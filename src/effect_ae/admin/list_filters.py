@@ -32,3 +32,48 @@ class HasAeTmgListFilter(admin.SimpleListFilter):
         if self.value() == NO:
             return queryset.filter(ae_tmg__isnull=True)
         return queryset
+
+
+class FinalDeathCauseSetListFilter(admin.SimpleListFilter):
+    title = _("Final cause of death set")
+    parameter_name = "final_cause_of_death_set"
+
+    def lookups(self, request, model_admin):  # noqa: ARG002
+        return YES_NO
+
+    def queryset(self, request, queryset):  # noqa: ARG002
+        if self.value() == YES:
+            return queryset.filter(final_cause_of_death__isnull=False)
+        if self.value() == NO:
+            return queryset.filter(final_cause_of_death__isnull=True)
+        return queryset
+
+
+class HasTmgOneListFilter(admin.SimpleListFilter):
+    title = _("Has TMG (1)")
+    parameter_name = "has_tmg_one"
+
+    def lookups(self, request, model_admin):  # noqa: ARG002
+        return YES_NO
+
+    def queryset(self, request, queryset):  # noqa: ARG002
+        if self.value() == YES:
+            return queryset.filter(tmg_one__isnull=False)
+        if self.value() == NO:
+            return queryset.filter(tmg_one__isnull=True)
+        return queryset
+
+
+class HasTmgTwoListFilter(admin.SimpleListFilter):
+    title = _("Has TMG (2)")
+    parameter_name = "has_tmg_two"
+
+    def lookups(self, request, model_admin):  # noqa: ARG002
+        return YES_NO
+
+    def queryset(self, request, queryset):  # noqa: ARG002
+        if self.value() == YES:
+            return queryset.filter(tmg_two__isnull=False)
+        if self.value() == NO:
+            return queryset.filter(tmg_two__isnull=True)
+        return queryset
