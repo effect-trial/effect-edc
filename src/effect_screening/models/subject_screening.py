@@ -375,6 +375,7 @@ class SubjectScreening(ScreeningModelMixin, EligibilityModelMixin, BaseUuidModel
     dm_comment = models.TextField(
         verbose_name="Data management comment",
         default=NULL_STRING,
+        blank=True,
         help_text="For data manager only",
     )
 
