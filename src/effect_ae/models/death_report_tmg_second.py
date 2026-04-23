@@ -8,6 +8,10 @@ from edc_model.models import BaseUuidModel
 from ..choices import CRYPTOCOCCAL_RELATIONSHIP
 
 
+class DeathReportTmgSecondManager(ActionIdentifierModelManager):
+    pass
+
+
 class DeathReportTmgSecond(DeathReportTmgModelMixin, BaseUuidModel):
     action_name = DEATH_REPORT_TMG_SECOND_ACTION
 
@@ -22,7 +26,7 @@ class DeathReportTmgSecond(DeathReportTmgModelMixin, BaseUuidModel):
         max_length=250, default=NULL_STRING, blank=True
     )
 
-    objects = ActionIdentifierModelManager()
+    objects = DeathReportTmgSecondManager()
 
     on_site = ActionIdentifierSiteManager()
 
