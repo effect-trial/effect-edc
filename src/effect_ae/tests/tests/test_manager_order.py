@@ -2,9 +2,10 @@ from django.apps import apps as django_apps
 from django.db.models.manager import Manager
 from django.test import TestCase
 from edc_action_item.managers import ActionIdentifierModelManager
-from edc_adverse_event.model_mixins import DeathReportTmgSecondManager
 from edc_adverse_event.model_mixins.death_report import DeathReportTmgManager
 from edc_model.models.historical_records import SerializableModelManager
+
+from effect_ae.models.death_report_tmg_second import DeathReportTmgSecondManager
 
 
 class TestManagers(TestCase):
