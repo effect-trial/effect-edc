@@ -1,6 +1,13 @@
-from clinicedc_constants import NOT_APPLICABLE, OTHER
+from clinicedc_constants import NO, NOT_APPLICABLE, OTHER, UNKNOWN, YES
 
 from .constants import REMAIN_ON_STUDY_MODIFIED
+
+ARV_CHANGE_OPTIONS = (
+    (YES, "Yes, ART was changed"),
+    (NO, "No, ART was not changed"),
+    (UNKNOWN, "Unknown"),
+    (NOT_APPLICABLE, "Not applicable"),
+)
 
 LOSS_CHOICES = (
     ("unknown_address", "Changed to an unknown address"),
