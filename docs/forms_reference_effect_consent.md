@@ -1,4 +1,4 @@
-# EFFECT_CONSENT Forms Reference v1.1.8
+# EFFECT_CONSENT Forms Reference v2.4.2
 ## Table of contents
 
 
@@ -59,4 +59,4 @@
 
 
 
-* Version v1.1.8 * Rendered on 2025-09-24 19:27*
+* Version v2.4.2 * Rendered on 2026-04-23 19:26*
