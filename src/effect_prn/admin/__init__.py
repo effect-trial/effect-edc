@@ -1,3 +1,5 @@
+from .arv_summary_admin import ArvSummaryAdmin
+from .autocomplete_admin import ArvRegimensAdmin
 from .end_of_study_admin import EndOfStudyAdmin
 from .hospitalization_admin import HospitalizationAdmin
 from .loss_to_followup_admin import LossToFollowupAdmin
