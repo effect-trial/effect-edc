@@ -55,21 +55,26 @@ class ArvSummaryReportAdmin(
 
     search_fields = ("subject_identifier",)
 
-    @admin.display(description="Add/Edit", ordering="subject_identifier")
+    @admin.display(description="Add/Edit ARV Summary", ordering="subject_identifier")
     def arv_summary_link(self, obj=None):
         try:
             arv_summary_obj = ArvSummary.objects.get(subject_identifier=obj.subject_identifier)
         except ObjectDoesNotExist:
             url = reverse("effect_prn_admin:effect_prn_arvsummary_add")
-            label = "Add ARV Summary"
+            label = "Add"
+            bg_color = "#f0ad4e"
         else:
             url = reverse(
                 "effect_prn_admin:effect_prn_arvsummary_change", args=(arv_summary_obj.id,)
             )
-            label = "Edit ARV Summary"
+            label = "Edit"
+            bg_color = "#5cb85c"
         next_querystring = "effect_reports_admin:effect_reports_arvsummaryreport_changelist"
         return format_html(
-            '<a href="{}?next={}&subject_identifier={}">{}</a>',
+            '<a role="button" class="button" '
+            'style="white-space:nowrap;background-color:{}" '
+            'href="{}?next={}&subject_identifier={}">{}</a>',
+            bg_color,
             url,
             next_querystring,
             obj.subject_identifier,
