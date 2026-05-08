@@ -1,3 +1,4 @@
+from .arv_summary_report_admin import ArvSummaryReportAdmin
 from .baseline_vl_all_admin import BaselineVlAllAdmin
 from .baseline_vl_missing_quantifier_admin import BaselineVlMissingQuantifierAdmin
 from .on_study_missing_lab_values_admin import OnStudyMissingLabValuesAdmin

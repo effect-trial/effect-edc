@@ -1,4 +1,5 @@
 from .dbviews import (
+    ArvSummaryReport,
     BaselineVlAll,
     BaselineVlMissingQuantifier,
     OnStudyMissingLabValues,
