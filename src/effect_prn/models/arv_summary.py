@@ -2,16 +2,12 @@ from clinicedc_constants.choices import YES_NO, YES_NO_NA
 from django.db import models
 from django.utils import timezone
 from edc_identifier.model_mixins import UniqueSubjectIdentifierFieldMixin
-from edc_model.models import BaseUuidModel, HistoricalRecords
+from edc_model.models import BaseUuidModel
 from edc_sites.model_mixins import SiteModelMixin
 
 from effect_lists.models import ArvRegimens
 
 from ..choices import ARV_CHANGE_OPTIONS
-
-
-class MyManager(models.Manager):
-    use_in_migrations = True
 
 
 class ArvSummary(SiteModelMixin, UniqueSubjectIdentifierFieldMixin, BaseUuidModel):
@@ -27,7 +23,7 @@ class ArvSummary(SiteModelMixin, UniqueSubjectIdentifierFieldMixin, BaseUuidMode
 
     at_screening_regimen = models.ForeignKey(
         ArvRegimens,
-        verbose_name="If Yes, what ARV regimen was the participant taking at screening?",
+        verbose_name=("If Yes, what ARV regimen was the participant taking at screening?"),
         on_delete=models.PROTECT,
         related_name="arv_summary_screening",
         null=True,
@@ -92,14 +88,10 @@ class ArvSummary(SiteModelMixin, UniqueSubjectIdentifierFieldMixin, BaseUuidMode
     )
 
     after_enrol_start_date = models.DateField(
-        verbose_name="Most recent start/restart date of this ARV regimen",
+        verbose_name=("Most recent start/restart date of this ARV regimen"),
         null=True,
         blank=True,
     )
-
-    objects = MyManager()
-
-    history = HistoricalRecords()
 
     class Meta:
         verbose_name = "Arv summary"
