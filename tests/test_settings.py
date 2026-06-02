@@ -136,6 +136,7 @@ project_settings = DefaultTestSettings(
         "edc_form_validators.apps.AppConfig",
         "edc_identifier.apps.AppConfig",
         "edc_lab.apps.AppConfig",
+        "edc_lab_results.apps.AppConfig",
         "edc_lab_dashboard.apps.AppConfig",
         "edc_label.apps.AppConfig",
         "edc_list_data.apps.AppConfig",
