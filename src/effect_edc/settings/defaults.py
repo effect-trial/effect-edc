@@ -135,6 +135,7 @@ INSTALLED_APPS = [
     "edc_identifier.apps.AppConfig",
     "edc_lab.apps.AppConfig",
     "edc_lab_dashboard.apps.AppConfig",
+    "edc_lab_results.apps.AppConfig",
     "edc_label.apps.AppConfig",
     "edc_list_data.apps.AppConfig",
     "edc_listboard.apps.AppConfig",
@@ -468,6 +469,39 @@ DATA_DICTIONARY_APP_LABELS = [
 
 # edc_form_runners
 EDC_FORM_RUNNERS_ENABLED = False
+
+# edc-lab-results
+EDC_LAB_RESULTS_UPLOAD_DIR = "~/upload/effect/edc_lab_results"
+
+EDC_LAB_RESULTS_PARSERS = {
+    "MNH": "parse_trial_labs.parsers.parse_mnh",
+}
+EDC_LAB_RESULTS_DEFAULT_MAPPINGS = {
+    "MNH": {
+        "WBC": "wbc",
+        "RBC": "rbc",
+        "HGB": "haemoglobin",
+        "HCT": "hct",
+        "MCV": "mcv",
+        "MCH": "mch",
+        "MCHC": "mchc",
+        "PLATELETS": "platelets",
+        "UREA NITROGEN": "urea",
+        "CREATININE": "creatinine",
+        "URIC ACID": "uric_acid",
+        "AST(SGOT)": "ast",
+        "ALT(SGPT)": "alt",
+        "ALKALINE PHOSPHATASE": "alp",
+        "AMYLASE": "amylase",
+        "GAMMA GT": "ggt",
+        "ALBUMIN": "albumin",
+        "CHOLESTEROL": "chol",
+        "HDL CHOLESTEROL": "hdl",
+        "LDL CHOL (CALC)": "ldl",
+        "TRIGLYCERIDES": "trig",
+        "INSULIN": "ins",
+    },
+}
 
 # edc_pdf_reports
 EDC_PDF_REPORTS_DRAW_LOGO = False
