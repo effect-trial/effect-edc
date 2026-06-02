@@ -1,4 +1,4 @@
-from clinicedc_constants import NULL_STRING
+from clinicedc_constants import NOT_EVALUATED, NULL_STRING
 from clinicedc_constants.choices import YES_NO
 from django.db import models
 from django.utils import timezone
@@ -8,6 +8,8 @@ from edc_model.models import BaseUuidModel, HistoricalRecords
 from edc_model_fields.fields import OtherCharField
 from edc_sites.managers import CurrentSiteManager
 from edc_sites.model_mixins import SiteModelMixin
+
+from effect_ae.choices import CRYPTOCOCCAL_RELATIONSHIP
 
 CAUSE_TRIGGER_FIELDS = (
     "cause_of_death",
@@ -125,6 +127,13 @@ class DeathFinalCause(NonUniqueSubjectIdentifierModelMixin, SiteModelMixin, Base
     )
 
     final_cause_of_death_other = OtherCharField(max_length=250)
+
+    cryptococcal_relatedness = models.CharField(
+        verbose_name="In your opinion, is the cause death related to cryptococcal infection?",
+        max_length=25,
+        choices=CRYPTOCOCCAL_RELATIONSHIP,
+        default=NOT_EVALUATED,
+    )
 
     verified = models.BooleanField(default=False)
 

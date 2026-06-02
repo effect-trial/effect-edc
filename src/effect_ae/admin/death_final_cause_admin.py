@@ -41,6 +41,7 @@ class DeathFinalCauseAdmin(
                 "fields": (
                     "final_cause_of_death",
                     "final_cause_of_death_other",
+                    "cryptococcal_relatedness",
                     "verified",
                 ),
             },

@@ -97,6 +97,7 @@ list_data = {
         ("DRV_r", "DRV/r"),
         ("lopinavir_r", "Lopinavir/r"),
         ("abacavir", "Abacavir"),
+        ("DRV_RTV_800_100)", "Darunavir/Ritonavir (800/100)"),
         (UNKNOWN, "Unknown"),
         (OTHER, OTHER_PLEASE_SPECIFY_TEXT),
     ],

@@ -8,6 +8,8 @@ from ..models import ArvSummary
 
 
 class ArvSummaryFormValidator(FormValidator):
+    """Not used"""
+
     def clean(self):
         self.required_if(YES, field="at_screening", field_required="at_screening_regimen")
         self.applicable_if(
