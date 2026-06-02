@@ -1,4 +1,4 @@
-# EFFECT_SUBJECT Forms Reference v2.4.2
+# EFFECT_SUBJECT Forms Reference v2.6.0
 ## Table of contents
 
 
@@ -11,89 +11,89 @@
 6. <a href="#user-content-study-medication-baseline">Study Medication (Baseline)</a>
 7. <a href="#user-content-blood-result-fbc">Blood Result: Fbc</a>
 8. <a href="#user-content-blood-result-chemistry">Blood Result: Chemistry</a>
-9. <a href="#user-content-chest-x-ray">Chest X-Ray</a>
-10. <a href="#user-content-lumbar-puncturecsf">Lumbar Puncture/Csf</a>
-11. <a href="#user-content-tb-diagnostics">Tb Diagnostics</a>
-12. <a href="#user-content-health-economics">Health Economics</a>
-13. <a href="#user-content-clinical-note">Clinical Note</a>
-14. <a href="#user-content-adherence-day-1">Adherence: Day 1</a>
+9. <a href="#user-content-health-economics">Health Economics</a>
+10. <a href="#user-content-clinical-note">Clinical Note</a>
+11. <a href="#user-content-adherence-day-1">Adherence: Day 1</a>
+12. <a href="#user-content-chest-x-ray">Chest X-Ray</a>
+13. <a href="#user-content-lumbar-puncturecsf">Lumbar Puncture/Csf</a>
+14. <a href="#user-content-tb-diagnostics">Tb Diagnostics</a>
 
 <a href="#user-content-1003">**1003.**</a>
-1. <a href="#user-content-vital-signs-1">Vital Signs</a>
-2. <a href="#user-content-mental-status-1">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-1">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-1">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-1">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-1">Tb Diagnostics</a>
-8. <a href="#user-content-adherence-on-study">Adherence: On Study</a>
+1. <a href="#user-content-mental-status-1">Mental Status</a>
+2. <a href="#user-content-signs-and-symptoms-1">Signs And Symptoms</a>
+3. <a href="#user-content-significant-diagnoses">Significant Diagnoses</a>
+4. <a href="#user-content-adherence-on-study">Adherence: On Study</a>
+5. <a href="#user-content-vital-signs-1">Vital Signs</a>
+6. <a href="#user-content-chest-x-ray-1">Chest X-Ray</a>
+7. <a href="#user-content-lumbar-puncturecsf-1">Lumbar Puncture/Csf</a>
+8. <a href="#user-content-tb-diagnostics-1">Tb Diagnostics</a>
 
 <a href="#user-content-1009">**1009.**</a>
-1. <a href="#user-content-vital-signs-2">Vital Signs</a>
-2. <a href="#user-content-mental-status-2">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-2">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses-1">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-2">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-2">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-2">Tb Diagnostics</a>
-8. <a href="#user-content-adherence-on-study-1">Adherence: On Study</a>
+1. <a href="#user-content-mental-status-2">Mental Status</a>
+2. <a href="#user-content-signs-and-symptoms-2">Signs And Symptoms</a>
+3. <a href="#user-content-significant-diagnoses-1">Significant Diagnoses</a>
+4. <a href="#user-content-adherence-on-study-1">Adherence: On Study</a>
+5. <a href="#user-content-vital-signs-2">Vital Signs</a>
+6. <a href="#user-content-chest-x-ray-2">Chest X-Ray</a>
+7. <a href="#user-content-lumbar-puncturecsf-2">Lumbar Puncture/Csf</a>
+8. <a href="#user-content-tb-diagnostics-2">Tb Diagnostics</a>
 
 <a href="#user-content-1014">**1014.**</a>
 1. <a href="#user-content-study-medication">Study Medication</a>
-2. <a href="#user-content-vital-signs-3">Vital Signs</a>
-3. <a href="#user-content-mental-status-3">Mental Status</a>
-4. <a href="#user-content-signs-and-symptoms-3">Signs And Symptoms</a>
-5. <a href="#user-content-significant-diagnoses-2">Significant Diagnoses</a>
-6. <a href="#user-content-arv-treatment">Arv Treatment</a>
-7. <a href="#user-content-participant-treatment">Participant Treatment</a>
-8. <a href="#user-content-blood-result-fbc-1">Blood Result: Fbc</a>
-9. <a href="#user-content-chest-x-ray-3">Chest X-Ray</a>
-10. <a href="#user-content-lumbar-puncturecsf-3">Lumbar Puncture/Csf</a>
-11. <a href="#user-content-tb-diagnostics-3">Tb Diagnostics</a>
-12. <a href="#user-content-clinical-note-1">Clinical Note</a>
-13. <a href="#user-content-adherence-day-14">Adherence: Day 14</a>
+2. <a href="#user-content-mental-status-3">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-3">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-2">Significant Diagnoses</a>
+5. <a href="#user-content-arv-treatment">Arv Treatment</a>
+6. <a href="#user-content-participant-treatment">Participant Treatment</a>
+7. <a href="#user-content-blood-result-fbc-1">Blood Result: Fbc</a>
+8. <a href="#user-content-clinical-note-1">Clinical Note</a>
+9. <a href="#user-content-adherence-day-14">Adherence: Day 14</a>
+10. <a href="#user-content-vital-signs-3">Vital Signs</a>
+11. <a href="#user-content-chest-x-ray-3">Chest X-Ray</a>
+12. <a href="#user-content-lumbar-puncturecsf-3">Lumbar Puncture/Csf</a>
+13. <a href="#user-content-tb-diagnostics-3">Tb Diagnostics</a>
 
 <a href="#user-content-1028">**1028.**</a>
-1. <a href="#user-content-vital-signs-4">Vital Signs</a>
-2. <a href="#user-content-mental-status-4">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-4">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses-3">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-4">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-4">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-4">Tb Diagnostics</a>
-8. <a href="#user-content-adherence-day-14-1">Adherence: Day 14+</a>
+1. <a href="#user-content-mental-status-4">Mental Status</a>
+2. <a href="#user-content-signs-and-symptoms-4">Signs And Symptoms</a>
+3. <a href="#user-content-significant-diagnoses-3">Significant Diagnoses</a>
+4. <a href="#user-content-adherence-day-14-1">Adherence: Day 14+</a>
+5. <a href="#user-content-vital-signs-4">Vital Signs</a>
+6. <a href="#user-content-chest-x-ray-4">Chest X-Ray</a>
+7. <a href="#user-content-lumbar-puncturecsf-4">Lumbar Puncture/Csf</a>
+8. <a href="#user-content-tb-diagnostics-4">Tb Diagnostics</a>
 
 <a href="#user-content-1070">**1070.**</a>
 1. <a href="#user-content-study-medication-1">Study Medication</a>
-2. <a href="#user-content-vital-signs-5">Vital Signs</a>
-3. <a href="#user-content-mental-status-5">Mental Status</a>
-4. <a href="#user-content-signs-and-symptoms-5">Signs And Symptoms</a>
-5. <a href="#user-content-significant-diagnoses-4">Significant Diagnoses</a>
-6. <a href="#user-content-chest-x-ray-5">Chest X-Ray</a>
-7. <a href="#user-content-lumbar-puncturecsf-5">Lumbar Puncture/Csf</a>
-8. <a href="#user-content-tb-diagnostics-5">Tb Diagnostics</a>
-9. <a href="#user-content-adherence-day-14-2">Adherence: Day 14+</a>
+2. <a href="#user-content-mental-status-5">Mental Status</a>
+3. <a href="#user-content-signs-and-symptoms-5">Signs And Symptoms</a>
+4. <a href="#user-content-significant-diagnoses-4">Significant Diagnoses</a>
+5. <a href="#user-content-adherence-day-14-2">Adherence: Day 14+</a>
+6. <a href="#user-content-vital-signs-5">Vital Signs</a>
+7. <a href="#user-content-chest-x-ray-5">Chest X-Ray</a>
+8. <a href="#user-content-lumbar-puncturecsf-5">Lumbar Puncture/Csf</a>
+9. <a href="#user-content-tb-diagnostics-5">Tb Diagnostics</a>
 
 <a href="#user-content-1112">**1112.**</a>
-1. <a href="#user-content-vital-signs-6">Vital Signs</a>
-2. <a href="#user-content-mental-status-6">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-6">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses-5">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-6">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-6">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-6">Tb Diagnostics</a>
-8. <a href="#user-content-adherence-day-14-3">Adherence: Day 14+</a>
+1. <a href="#user-content-mental-status-6">Mental Status</a>
+2. <a href="#user-content-signs-and-symptoms-6">Signs And Symptoms</a>
+3. <a href="#user-content-significant-diagnoses-5">Significant Diagnoses</a>
+4. <a href="#user-content-adherence-day-14-3">Adherence: Day 14+</a>
+5. <a href="#user-content-vital-signs-6">Vital Signs</a>
+6. <a href="#user-content-chest-x-ray-6">Chest X-Ray</a>
+7. <a href="#user-content-lumbar-puncturecsf-6">Lumbar Puncture/Csf</a>
+8. <a href="#user-content-tb-diagnostics-6">Tb Diagnostics</a>
 
 <a href="#user-content-1168">**1168.**</a>
-1. <a href="#user-content-vital-signs-7">Vital Signs</a>
-2. <a href="#user-content-mental-status-7">Mental Status</a>
-3. <a href="#user-content-signs-and-symptoms-7">Signs And Symptoms</a>
-4. <a href="#user-content-significant-diagnoses-6">Significant Diagnoses</a>
-5. <a href="#user-content-chest-x-ray-7">Chest X-Ray</a>
-6. <a href="#user-content-lumbar-puncturecsf-7">Lumbar Puncture/Csf</a>
-7. <a href="#user-content-tb-diagnostics-7">Tb Diagnostics</a>
-8. <a href="#user-content-health-economics-1">Health Economics</a>
-9. <a href="#user-content-adherence-day-14-4">Adherence: Day 14+</a>
+1. <a href="#user-content-mental-status-7">Mental Status</a>
+2. <a href="#user-content-signs-and-symptoms-7">Signs And Symptoms</a>
+3. <a href="#user-content-significant-diagnoses-6">Significant Diagnoses</a>
+4. <a href="#user-content-health-economics-1">Health Economics</a>
+5. <a href="#user-content-adherence-day-14-4">Adherence: Day 14+</a>
+6. <a href="#user-content-vital-signs-7">Vital Signs</a>
+7. <a href="#user-content-chest-x-ray-7">Chest X-Ray</a>
+8. <a href="#user-content-lumbar-puncturecsf-7">Lumbar Puncture/Csf</a>
+9. <a href="#user-content-tb-diagnostics-7">Tb Diagnostics</a>
 
 
 ### 1000
@@ -230,6 +230,7 @@
   - `DRV_r`: *DRV/r*
   - `lopinavir_r`: *Lopinavir/r*
   - `abacavir`: *Abacavir*
+  - `DRV_RTV_800_100)`: *Darunavir/Ritonavir (800/100)*
   - `unknown`: *Unknown*
   - `OTHER`: *Other, please specify below ...*
 ---
@@ -315,6 +316,7 @@
   - `DRV_r`: *DRV/r*
   - `lopinavir_r`: *Lopinavir/r*
   - `abacavir`: *Abacavir*
+  - `DRV_RTV_800_100)`: *Darunavir/Ritonavir (800/100)*
   - `unknown`: *Unknown*
   - `OTHER`: *Other, please specify below ...*
 ---
@@ -2641,531 +2643,6 @@
 ---
 
 
-#### Chest X-Ray
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_chestxray
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_chestxray
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Chest x-ray**
-
-**3.0.** Was a chest x-ray performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If YES, date performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** If YES, indicate results?
-- db_table: effect_subject_chestxray
-- column: chest_xray_results
-- type: ManyToManyField
-- responses: *Select all that apply*
-  - `NORMAL`: *Normal*
-  - `lymphadenopathy`: *Lymphadenopathy*
-  - `consolidation`: *Consolidation*
-  - `miliary_tb`: *Miliary TB*
-  - `infiltrates`: *Infiltrates*
-  - `OTHER`: *Other, please specify below ...*
----
-
-**5.1.** If other, please specify ...
-- db_table: effect_subject_chestxray
-- column: chest_xray_results_other
-- type: TextField
----
-
-**6.0.** Any additional comment
-- db_table: effect_subject_chestxray
-- column: comment
-- type: TextField
----
-
-
-#### Lumbar Puncture/Csf
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_lpcsf
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_lpcsf
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: LP**
-
-**3.0.** Reason for LP
-- db_table: effect_subject_lpcsf
-- column: reason_for_lp
-- type: CharField
-- length: 50
-- responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol*
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
----
-
-**4.0.** LP Date and Time
-- db_table: effect_subject_lpcsf
-- column: lp_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**5.0.** Was the opening pressure measured
-- db_table: effect_subject_lpcsf
-- column: opening_pressure_measured
-- type: CharField
-- length: 25
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** opening pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: opening_pressure
-- type: IntegerField
----
-
-**7.0.** closing pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: closing_pressure
-- type: IntegerField
----
-
-**8.0.** CSF amount removed
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
-- db_table: effect_subject_lpcsf
-- column: csf_amount_removed
-- type: IntegerField
----
-
-**Section: CSF**
-
-**9.0.** CSF positive for cryptococcal meningitis?
-- db_table: effect_subject_lpcsf
-- column: csf_positive
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
----
-
-**10.0.** india ink
-- db_table: effect_subject_lpcsf
-- column: india_ink
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**11.0.** CrAg LFA
-- db_table: effect_subject_lpcsf
-- column: csf_crag_lfa
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**13.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag_pos
-- type: CharField
-- length: 15
-- responses:
-  - `high`: *High*
-  - `low`: *Low*
-  - `N/A`: *Not applicable*
----
-
-**14.0.** Was the CRF CrAg titre done
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre_done
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** crf crag titre
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre
-- type: IntegerField
----
-
-**Section: CSF culture**
-
-**16.0.** CSF Requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_lpcsf
-- column: csf_requisition
-- type: ForeignKey
----
-
-**17.0.** CSF Result Report Date and Time
-- db_table: effect_subject_lpcsf
-- column: csf_culture_assay_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**18.0.** CSF Result: Other organism (non-Cryptococcus)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
-- db_table: effect_subject_lpcsf
-- column: csf_culture
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**19.0.** If YES, specify organism:
-- db_table: effect_subject_lpcsf
-- column: other_csf_culture
-- type: CharField
-- length: 75
-- responses: *free text*
----
-
-**20.0.** Total CSF WBC cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
-- db_table: effect_subject_lpcsf
-- column: csf_wbc_cell_count
-- type: IntegerField
----
-
-**21.0.** Differential lymphocyte cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_count
-- type: IntegerField
----
-
-**22.0.** differential lymphocyte unit
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**23.0.** Differential neutrophil cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_count
-- type: IntegerField
----
-
-**24.0.** differential neutrophil unit
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**25.0.** CSF glucose:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
-- db_table: effect_subject_lpcsf
-- column: csf_glucose
-- type: DecimalField
----
-
-**26.0.** CSF glucose units:
-- db_table: effect_subject_lpcsf
-- column: csf_glucose_units
-- type: CharField
-- length: 6
-- responses:
-  - `mg/dL`: *mg/dL*
-  - `mmol/L`: *mmol/L (millimoles/L)*
----
-
-**27.0.** CSF protein:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
-- db_table: effect_subject_lpcsf
-- column: csf_protein
-- type: DecimalField
----
-
-**28.0.** CSF CrAg:
-- db_table: effect_subject_lpcsf
-- column: csf_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `IND`: *Indeterminate*
----
-
-
-#### Tb Diagnostics
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_tbdiagnostics
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_tbdiagnostics
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Urinary LAM**
-
-**3.0.** Urinary LAM performed?
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** urinary lam date
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** Urinary LAM result
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result
-- type: CharField
-- length: 25
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**6.0.** If Urinary LAM is positive, grade
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result_grade
-- type: CharField
-- length: 25
-- responses:
-  - `1`: *1+ (low)*
-  - `2`: *2+*
-  - `3`: *3+*
-  - `4`: *4+*
-  - `5`: *5+ (high)*
-  - `unknown`: *Unknown / Grade not reported*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum requisition**
-
-**7.0.** Sputum requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_requisition
-- type: ForeignKey
----
-
-**Section: Sputum Gene-Xpert**
-
-**8.0.** Sputum Gene-Xpert performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**9.0.** Sputum Gene-Xpert date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**10.0.** Sputum Gene-Xpert results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_result
-- type: CharField
-- length: 45
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum culture**
-
-**11.0.** Sputum culture performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** sputum culture date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**13.0.** Sputum culture results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate / contaminated*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum AFB**
-
-**14.0.** Sputum AFB microscopy performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_performed
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** Sputum AFB date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**16.0.** Sputum AFB results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**Section: Comment**
-
-**17.0.** Any additional comment
-- db_table: effect_subject_tbdiagnostics
-- column: comment
-- type: TextField
----
-
-
 #### Health Economics
 *[missing model class docstring]*
 
@@ -3449,6 +2926,533 @@ Adherence CRF completed at baseline (in-person).
 ---
 
 
+#### Optional forms
+
+#### Chest X-Ray
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_chestxray
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_chestxray
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Chest x-ray**
+
+**3.0.** Was a chest x-ray performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If YES, date performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** If YES, indicate results?
+- db_table: effect_subject_chestxray
+- column: chest_xray_results
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
+---
+
+**5.1.** If other, please specify ...
+- db_table: effect_subject_chestxray
+- column: chest_xray_results_other
+- type: TextField
+---
+
+**6.0.** Any additional comment
+- db_table: effect_subject_chestxray
+- column: comment
+- type: TextField
+---
+
+
+#### Lumbar Puncture/Csf
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_lpcsf
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_lpcsf
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: LP**
+
+**3.0.** Reason for LP
+- db_table: effect_subject_lpcsf
+- column: reason_for_lp
+- type: CharField
+- length: 50
+- responses:
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
+---
+
+**4.0.** LP Date and Time
+- db_table: effect_subject_lpcsf
+- column: lp_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**5.0.** Was the opening pressure measured
+- db_table: effect_subject_lpcsf
+- column: opening_pressure_measured
+- type: CharField
+- length: 25
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** opening pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: opening_pressure
+- type: IntegerField
+---
+
+**7.0.** closing pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: closing_pressure
+- type: IntegerField
+---
+
+**8.0.** CSF amount removed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
+- db_table: effect_subject_lpcsf
+- column: csf_amount_removed
+- type: IntegerField
+---
+
+**Section: CSF**
+
+**9.0.** CSF positive for cryptococcal meningitis?
+- db_table: effect_subject_lpcsf
+- column: csf_positive
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+---
+
+**10.0.** india ink
+- db_table: effect_subject_lpcsf
+- column: india_ink
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**11.0.** CrAg LFA
+- db_table: effect_subject_lpcsf
+- column: csf_crag_lfa
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**13.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag_pos
+- type: CharField
+- length: 15
+- responses:
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
+---
+
+**14.0.** Was the CRF CrAg titre done
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre_done
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** crf crag titre
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre
+- type: IntegerField
+---
+
+**Section: CSF culture**
+
+**16.0.** CSF Requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_lpcsf
+- column: csf_requisition
+- type: ForeignKey
+---
+
+**17.0.** CSF Result Report Date and Time
+- db_table: effect_subject_lpcsf
+- column: csf_culture_assay_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**18.0.** CSF Result: Other organism (non-Cryptococcus)
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
+- db_table: effect_subject_lpcsf
+- column: csf_culture
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**19.0.** If YES, specify organism:
+- db_table: effect_subject_lpcsf
+- column: other_csf_culture
+- type: CharField
+- length: 75
+- responses: *free text*
+---
+
+**20.0.** Total CSF WBC cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
+- db_table: effect_subject_lpcsf
+- column: csf_wbc_cell_count
+- type: IntegerField
+---
+
+**21.0.** Differential lymphocyte cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_count
+- type: IntegerField
+---
+
+**22.0.** differential lymphocyte unit
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**23.0.** Differential neutrophil cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_count
+- type: IntegerField
+---
+
+**24.0.** differential neutrophil unit
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**25.0.** CSF glucose:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
+- db_table: effect_subject_lpcsf
+- column: csf_glucose
+- type: DecimalField
+---
+
+**26.0.** CSF glucose units:
+- db_table: effect_subject_lpcsf
+- column: csf_glucose_units
+- type: CharField
+- length: 6
+- responses:
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
+---
+
+**27.0.** CSF protein:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
+- db_table: effect_subject_lpcsf
+- column: csf_protein
+- type: DecimalField
+---
+
+**28.0.** CSF CrAg:
+- db_table: effect_subject_lpcsf
+- column: csf_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
+---
+
+
+#### Tb Diagnostics
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_tbdiagnostics
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_tbdiagnostics
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Urinary LAM**
+
+**3.0.** Urinary LAM performed?
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** urinary lam date
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** Urinary LAM result
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result
+- type: CharField
+- length: 25
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** If Urinary LAM is positive, grade
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result_grade
+- type: CharField
+- length: 25
+- responses:
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum requisition**
+
+**7.0.** Sputum requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_requisition
+- type: ForeignKey
+---
+
+**Section: Sputum Gene-Xpert**
+
+**8.0.** Sputum Gene-Xpert performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Sputum Gene-Xpert date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**10.0.** Sputum Gene-Xpert results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_result
+- type: CharField
+- length: 45
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum culture**
+
+**11.0.** Sputum culture performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** sputum culture date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**13.0.** Sputum culture results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum AFB**
+
+**14.0.** Sputum AFB microscopy performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_performed
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** Sputum AFB date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**16.0.** Sputum AFB results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Comment**
+
+**17.0.** Any additional comment
+- db_table: effect_subject_tbdiagnostics
+- column: comment
+- type: TextField
+---
+
+
 #### Requisitions
 
 * fbc
@@ -3457,156 +3461,6 @@ Adherence CRF completed at baseline (in-person).
 
 ### 1003
 
-#### Vital Signs
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_vitalsigns
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_vitalsigns
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Vital signs**
-
-**3.0.** Weight:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
-- db_table: effect_subject_vitalsigns
-- column: weight
-- type: DecimalField
----
-
-**4.0.** Is the weight estimated or measured?
-- db_table: effect_subject_vitalsigns
-- column: weight_measured_or_est
-- type: CharField
-- length: 25
-- responses:
-  - `measured`: *Measured (weighed)*
-  - `estimated`: *Estimated*
----
-
-**5.0.** Blood pressure: systolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
-- db_table: effect_subject_vitalsigns
-- column: sys_blood_pressure
-- type: IntegerField
----
-
-**6.0.** Blood pressure: diastolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
-- db_table: effect_subject_vitalsigns
-- column: dia_blood_pressure
-- type: IntegerField
----
-
-**7.0.** Heart rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
-- db_table: effect_subject_vitalsigns
-- column: heart_rate
-- type: IntegerField
----
-
-**8.0.** Respiratory rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
-- db_table: effect_subject_vitalsigns
-- column: respiratory_rate
-- type: IntegerField
----
-
-**9.0.** Temperature:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
-- db_table: effect_subject_vitalsigns
-- column: temperature
-- type: DecimalField
----
-
-**10.0.** Abnormal lung exam:
-- db_table: effect_subject_vitalsigns
-- column: abnormal_lung_exam
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**Section: Action**
-
-**11.0.** action identifier
-- db_table: effect_subject_vitalsigns
-- column: action_identifier
-- type: CharField
-- length: 50
-- responses: *free text*
----
-
-**12.0.** action item
-- db_table: effect_subject_vitalsigns
-- column: action_item
-- type: ForeignKey
----
-
-**13.0.** parent action item
-- db_table: effect_subject_vitalsigns
-- column: parent_action_item
-- type: ForeignKey
----
-
-**14.0.** related action item
-- db_table: effect_subject_vitalsigns
-- column: related_action_item
-- type: ForeignKey
----
-
-**Section: Reporting**
-
-**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
-- db_table: effect_subject_vitalsigns
-- column: reportable_as_ae
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**16.0.** Has the participant been NEWLY admitted due to any of the above?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
-- db_table: effect_subject_vitalsigns
-- column: patient_admitted
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -4203,6 +4057,250 @@ Adherence CRF completed at baseline (in-person).
 ---
 
 
+#### Adherence: On Study
+Adherence CRF completed at d3 and d9 (telephone).
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_adherence
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_adherence
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Adherence counselling**
+
+**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
+- db_table: effect_subject_adherence
+- column: adherence_counselling
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: adherence_counselling_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**Section: Missed doses**
+
+**5.0.** Have any Fluconazole doses been missed since the last visit?
+- db_table: effect_subject_adherence
+- column: flucon_doses_missed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
+---
+
+**6.0.** If YES, number of Fluconazole doses missed since last visit:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (1 dose per day)*
+- db_table: effect_subject_adherence
+- column: flucon_doses_missed_number
+- type: IntegerField
+---
+
+**7.0.** Have any Flucytosine doses been missed since the last visit?
+- db_table: effect_subject_adherence
+- column: flucyt_doses_missed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
+---
+
+**8.0.** If YES, number of Flucytosine doses missed since last visit:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (4 doses per day)*
+- db_table: effect_subject_adherence
+- column: flucyt_doses_missed_number
+- type: IntegerField
+---
+
+**Section: Adherence narrative**
+
+**9.0.** Medication adherence narrative:
+- db_table: effect_subject_adherence
+- column: adherence_narrative
+- type: TextField
+---
+
+
+#### Optional forms
+
+#### Vital Signs
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -4727,253 +4825,9 @@ Adherence CRF completed at baseline (in-person).
 - type: TextField
 ---
 
-
-#### Adherence: On Study
-Adherence CRF completed at d3 and d9 (telephone).
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_adherence
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_adherence
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Adherence counselling**
-
-**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
-- db_table: effect_subject_adherence
-- column: adherence_counselling
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: adherence_counselling_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**Section: Missed doses**
-
-**5.0.** Have any Fluconazole doses been missed since the last visit?
-- db_table: effect_subject_adherence
-- column: flucon_doses_missed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `unknown`: *Unknown*
----
-
-**6.0.** If YES, number of Fluconazole doses missed since last visit:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (1 dose per day)*
-- db_table: effect_subject_adherence
-- column: flucon_doses_missed_number
-- type: IntegerField
----
-
-**7.0.** Have any Flucytosine doses been missed since the last visit?
-- db_table: effect_subject_adherence
-- column: flucyt_doses_missed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `unknown`: *Unknown*
----
-
-**8.0.** If YES, number of Flucytosine doses missed since last visit:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (4 doses per day)*
-- db_table: effect_subject_adherence
-- column: flucyt_doses_missed_number
-- type: IntegerField
----
-
-**Section: Adherence narrative**
-
-**9.0.** Medication adherence narrative:
-- db_table: effect_subject_adherence
-- column: adherence_narrative
-- type: TextField
----
-
-
-#### Requisitions
 
 ### 1009
 
-#### Vital Signs
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_vitalsigns
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_vitalsigns
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Vital signs**
-
-**3.0.** Weight:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
-- db_table: effect_subject_vitalsigns
-- column: weight
-- type: DecimalField
----
-
-**4.0.** Is the weight estimated or measured?
-- db_table: effect_subject_vitalsigns
-- column: weight_measured_or_est
-- type: CharField
-- length: 25
-- responses:
-  - `measured`: *Measured (weighed)*
-  - `estimated`: *Estimated*
----
-
-**5.0.** Blood pressure: systolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
-- db_table: effect_subject_vitalsigns
-- column: sys_blood_pressure
-- type: IntegerField
----
-
-**6.0.** Blood pressure: diastolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
-- db_table: effect_subject_vitalsigns
-- column: dia_blood_pressure
-- type: IntegerField
----
-
-**7.0.** Heart rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
-- db_table: effect_subject_vitalsigns
-- column: heart_rate
-- type: IntegerField
----
-
-**8.0.** Respiratory rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
-- db_table: effect_subject_vitalsigns
-- column: respiratory_rate
-- type: IntegerField
----
-
-**9.0.** Temperature:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
-- db_table: effect_subject_vitalsigns
-- column: temperature
-- type: DecimalField
----
-
-**10.0.** Abnormal lung exam:
-- db_table: effect_subject_vitalsigns
-- column: abnormal_lung_exam
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**Section: Action**
-
-**11.0.** action identifier
-- db_table: effect_subject_vitalsigns
-- column: action_identifier
-- type: CharField
-- length: 50
-- responses: *free text*
----
-
-**12.0.** action item
-- db_table: effect_subject_vitalsigns
-- column: action_item
-- type: ForeignKey
----
-
-**13.0.** parent action item
-- db_table: effect_subject_vitalsigns
-- column: parent_action_item
-- type: ForeignKey
----
-
-**14.0.** related action item
-- db_table: effect_subject_vitalsigns
-- column: related_action_item
-- type: ForeignKey
----
-
-**Section: Reporting**
-
-**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
-- db_table: effect_subject_vitalsigns
-- column: reportable_as_ae
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**16.0.** Has the participant been NEWLY admitted due to any of the above?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
-- db_table: effect_subject_vitalsigns
-- column: patient_admitted
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -5570,6 +5424,250 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
+#### Adherence: On Study
+Adherence CRF completed at d3 and d9 (telephone).
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_adherence
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_adherence
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Adherence counselling**
+
+**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
+- db_table: effect_subject_adherence
+- column: adherence_counselling
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: adherence_counselling_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**Section: Missed doses**
+
+**5.0.** Have any Fluconazole doses been missed since the last visit?
+- db_table: effect_subject_adherence
+- column: flucon_doses_missed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
+---
+
+**6.0.** If YES, number of Fluconazole doses missed since last visit:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (1 dose per day)*
+- db_table: effect_subject_adherence
+- column: flucon_doses_missed_number
+- type: IntegerField
+---
+
+**7.0.** Have any Flucytosine doses been missed since the last visit?
+- db_table: effect_subject_adherence
+- column: flucyt_doses_missed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `unknown`: *Unknown*
+---
+
+**8.0.** If YES, number of Flucytosine doses missed since last visit:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (4 doses per day)*
+- db_table: effect_subject_adherence
+- column: flucyt_doses_missed_number
+- type: IntegerField
+---
+
+**Section: Adherence narrative**
+
+**9.0.** Medication adherence narrative:
+- db_table: effect_subject_adherence
+- column: adherence_narrative
+- type: TextField
+---
+
+
+#### Optional forms
+
+#### Vital Signs
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -6094,100 +6192,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - type: TextField
 ---
 
-
-#### Adherence: On Study
-Adherence CRF completed at d3 and d9 (telephone).
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_adherence
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_adherence
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Adherence counselling**
-
-**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
-- db_table: effect_subject_adherence
-- column: adherence_counselling
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: adherence_counselling_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**Section: Missed doses**
-
-**5.0.** Have any Fluconazole doses been missed since the last visit?
-- db_table: effect_subject_adherence
-- column: flucon_doses_missed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `unknown`: *Unknown*
----
-
-**6.0.** If YES, number of Fluconazole doses missed since last visit:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (1 dose per day)*
-- db_table: effect_subject_adherence
-- column: flucon_doses_missed_number
-- type: IntegerField
----
-
-**7.0.** Have any Flucytosine doses been missed since the last visit?
-- db_table: effect_subject_adherence
-- column: flucyt_doses_missed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `unknown`: *Unknown*
----
-
-**8.0.** If YES, number of Flucytosine doses missed since last visit:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *This should be measured in single doses (4 doses per day)*
-- db_table: effect_subject_adherence
-- column: flucyt_doses_missed_number
-- type: IntegerField
----
-
-**Section: Adherence narrative**
-
-**9.0.** Medication adherence narrative:
-- db_table: effect_subject_adherence
-- column: adherence_narrative
-- type: TextField
----
-
-
-#### Requisitions
 
 ### 1014
 
@@ -6370,156 +6374,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 - column: flucyt_notes
 - type: TextField
 - length: 250
----
-
-
-#### Vital Signs
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_vitalsigns
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_vitalsigns
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Vital signs**
-
-**3.0.** Weight:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
-- db_table: effect_subject_vitalsigns
-- column: weight
-- type: DecimalField
----
-
-**4.0.** Is the weight estimated or measured?
-- db_table: effect_subject_vitalsigns
-- column: weight_measured_or_est
-- type: CharField
-- length: 25
-- responses:
-  - `measured`: *Measured (weighed)*
-  - `estimated`: *Estimated*
----
-
-**5.0.** Blood pressure: systolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
-- db_table: effect_subject_vitalsigns
-- column: sys_blood_pressure
-- type: IntegerField
----
-
-**6.0.** Blood pressure: diastolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
-- db_table: effect_subject_vitalsigns
-- column: dia_blood_pressure
-- type: IntegerField
----
-
-**7.0.** Heart rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
-- db_table: effect_subject_vitalsigns
-- column: heart_rate
-- type: IntegerField
----
-
-**8.0.** Respiratory rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
-- db_table: effect_subject_vitalsigns
-- column: respiratory_rate
-- type: IntegerField
----
-
-**9.0.** Temperature:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
-- db_table: effect_subject_vitalsigns
-- column: temperature
-- type: DecimalField
----
-
-**10.0.** Abnormal lung exam:
-- db_table: effect_subject_vitalsigns
-- column: abnormal_lung_exam
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**Section: Action**
-
-**11.0.** action identifier
-- db_table: effect_subject_vitalsigns
-- column: action_identifier
-- type: CharField
-- length: 50
-- responses: *free text*
----
-
-**12.0.** action item
-- db_table: effect_subject_vitalsigns
-- column: action_item
-- type: ForeignKey
----
-
-**13.0.** parent action item
-- db_table: effect_subject_vitalsigns
-- column: parent_action_item
-- type: ForeignKey
----
-
-**14.0.** related action item
-- db_table: effect_subject_vitalsigns
-- column: related_action_item
-- type: ForeignKey
----
-
-**Section: Reporting**
-
-**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
-- db_table: effect_subject_vitalsigns
-- column: reportable_as_ae
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**16.0.** Has the participant been NEWLY admitted due to any of the above?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
-- db_table: effect_subject_vitalsigns
-- column: patient_admitted
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
 ---
 
 
@@ -7993,531 +7847,6 @@ Adherence CRF completed at d3 and d9 (telephone).
 ---
 
 
-#### Chest X-Ray
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_chestxray
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_chestxray
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Chest x-ray**
-
-**3.0.** Was a chest x-ray performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If YES, date performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** If YES, indicate results?
-- db_table: effect_subject_chestxray
-- column: chest_xray_results
-- type: ManyToManyField
-- responses: *Select all that apply*
-  - `NORMAL`: *Normal*
-  - `lymphadenopathy`: *Lymphadenopathy*
-  - `consolidation`: *Consolidation*
-  - `miliary_tb`: *Miliary TB*
-  - `infiltrates`: *Infiltrates*
-  - `OTHER`: *Other, please specify below ...*
----
-
-**5.1.** If other, please specify ...
-- db_table: effect_subject_chestxray
-- column: chest_xray_results_other
-- type: TextField
----
-
-**6.0.** Any additional comment
-- db_table: effect_subject_chestxray
-- column: comment
-- type: TextField
----
-
-
-#### Lumbar Puncture/Csf
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_lpcsf
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_lpcsf
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: LP**
-
-**3.0.** Reason for LP
-- db_table: effect_subject_lpcsf
-- column: reason_for_lp
-- type: CharField
-- length: 50
-- responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol*
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
----
-
-**4.0.** LP Date and Time
-- db_table: effect_subject_lpcsf
-- column: lp_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**5.0.** Was the opening pressure measured
-- db_table: effect_subject_lpcsf
-- column: opening_pressure_measured
-- type: CharField
-- length: 25
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** opening pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: opening_pressure
-- type: IntegerField
----
-
-**7.0.** closing pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: closing_pressure
-- type: IntegerField
----
-
-**8.0.** CSF amount removed
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
-- db_table: effect_subject_lpcsf
-- column: csf_amount_removed
-- type: IntegerField
----
-
-**Section: CSF**
-
-**9.0.** CSF positive for cryptococcal meningitis?
-- db_table: effect_subject_lpcsf
-- column: csf_positive
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
----
-
-**10.0.** india ink
-- db_table: effect_subject_lpcsf
-- column: india_ink
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**11.0.** CrAg LFA
-- db_table: effect_subject_lpcsf
-- column: csf_crag_lfa
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**13.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag_pos
-- type: CharField
-- length: 15
-- responses:
-  - `high`: *High*
-  - `low`: *Low*
-  - `N/A`: *Not applicable*
----
-
-**14.0.** Was the CRF CrAg titre done
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre_done
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** crf crag titre
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre
-- type: IntegerField
----
-
-**Section: CSF culture**
-
-**16.0.** CSF Requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_lpcsf
-- column: csf_requisition
-- type: ForeignKey
----
-
-**17.0.** CSF Result Report Date and Time
-- db_table: effect_subject_lpcsf
-- column: csf_culture_assay_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**18.0.** CSF Result: Other organism (non-Cryptococcus)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
-- db_table: effect_subject_lpcsf
-- column: csf_culture
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**19.0.** If YES, specify organism:
-- db_table: effect_subject_lpcsf
-- column: other_csf_culture
-- type: CharField
-- length: 75
-- responses: *free text*
----
-
-**20.0.** Total CSF WBC cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
-- db_table: effect_subject_lpcsf
-- column: csf_wbc_cell_count
-- type: IntegerField
----
-
-**21.0.** Differential lymphocyte cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_count
-- type: IntegerField
----
-
-**22.0.** differential lymphocyte unit
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**23.0.** Differential neutrophil cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_count
-- type: IntegerField
----
-
-**24.0.** differential neutrophil unit
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**25.0.** CSF glucose:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
-- db_table: effect_subject_lpcsf
-- column: csf_glucose
-- type: DecimalField
----
-
-**26.0.** CSF glucose units:
-- db_table: effect_subject_lpcsf
-- column: csf_glucose_units
-- type: CharField
-- length: 6
-- responses:
-  - `mg/dL`: *mg/dL*
-  - `mmol/L`: *mmol/L (millimoles/L)*
----
-
-**27.0.** CSF protein:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
-- db_table: effect_subject_lpcsf
-- column: csf_protein
-- type: DecimalField
----
-
-**28.0.** CSF CrAg:
-- db_table: effect_subject_lpcsf
-- column: csf_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `IND`: *Indeterminate*
----
-
-
-#### Tb Diagnostics
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_tbdiagnostics
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_tbdiagnostics
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Urinary LAM**
-
-**3.0.** Urinary LAM performed?
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** urinary lam date
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** Urinary LAM result
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result
-- type: CharField
-- length: 25
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**6.0.** If Urinary LAM is positive, grade
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result_grade
-- type: CharField
-- length: 25
-- responses:
-  - `1`: *1+ (low)*
-  - `2`: *2+*
-  - `3`: *3+*
-  - `4`: *4+*
-  - `5`: *5+ (high)*
-  - `unknown`: *Unknown / Grade not reported*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum requisition**
-
-**7.0.** Sputum requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_requisition
-- type: ForeignKey
----
-
-**Section: Sputum Gene-Xpert**
-
-**8.0.** Sputum Gene-Xpert performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**9.0.** Sputum Gene-Xpert date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**10.0.** Sputum Gene-Xpert results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_result
-- type: CharField
-- length: 45
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum culture**
-
-**11.0.** Sputum culture performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** sputum culture date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**13.0.** Sputum culture results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate / contaminated*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum AFB**
-
-**14.0.** Sputum AFB microscopy performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_performed
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** Sputum AFB date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**16.0.** Sputum AFB results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**Section: Comment**
-
-**17.0.** Any additional comment
-- db_table: effect_subject_tbdiagnostics
-- column: comment
-- type: TextField
----
-
-
 #### Clinical Note
 *[missing model class docstring]*
 
@@ -8708,11 +8037,7 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
-#### Requisitions
-
-* fbc
-
-### 1028
+#### Optional forms
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -8863,6 +8188,537 @@ Adherence CRF completed at d14 (in-person).
   - `N/A`: *Not applicable*
 ---
 
+
+#### Chest X-Ray
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_chestxray
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_chestxray
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Chest x-ray**
+
+**3.0.** Was a chest x-ray performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If YES, date performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** If YES, indicate results?
+- db_table: effect_subject_chestxray
+- column: chest_xray_results
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
+---
+
+**5.1.** If other, please specify ...
+- db_table: effect_subject_chestxray
+- column: chest_xray_results_other
+- type: TextField
+---
+
+**6.0.** Any additional comment
+- db_table: effect_subject_chestxray
+- column: comment
+- type: TextField
+---
+
+
+#### Lumbar Puncture/Csf
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_lpcsf
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_lpcsf
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: LP**
+
+**3.0.** Reason for LP
+- db_table: effect_subject_lpcsf
+- column: reason_for_lp
+- type: CharField
+- length: 50
+- responses:
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
+---
+
+**4.0.** LP Date and Time
+- db_table: effect_subject_lpcsf
+- column: lp_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**5.0.** Was the opening pressure measured
+- db_table: effect_subject_lpcsf
+- column: opening_pressure_measured
+- type: CharField
+- length: 25
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** opening pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: opening_pressure
+- type: IntegerField
+---
+
+**7.0.** closing pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: closing_pressure
+- type: IntegerField
+---
+
+**8.0.** CSF amount removed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
+- db_table: effect_subject_lpcsf
+- column: csf_amount_removed
+- type: IntegerField
+---
+
+**Section: CSF**
+
+**9.0.** CSF positive for cryptococcal meningitis?
+- db_table: effect_subject_lpcsf
+- column: csf_positive
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+---
+
+**10.0.** india ink
+- db_table: effect_subject_lpcsf
+- column: india_ink
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**11.0.** CrAg LFA
+- db_table: effect_subject_lpcsf
+- column: csf_crag_lfa
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**13.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag_pos
+- type: CharField
+- length: 15
+- responses:
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
+---
+
+**14.0.** Was the CRF CrAg titre done
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre_done
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** crf crag titre
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre
+- type: IntegerField
+---
+
+**Section: CSF culture**
+
+**16.0.** CSF Requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_lpcsf
+- column: csf_requisition
+- type: ForeignKey
+---
+
+**17.0.** CSF Result Report Date and Time
+- db_table: effect_subject_lpcsf
+- column: csf_culture_assay_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**18.0.** CSF Result: Other organism (non-Cryptococcus)
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
+- db_table: effect_subject_lpcsf
+- column: csf_culture
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**19.0.** If YES, specify organism:
+- db_table: effect_subject_lpcsf
+- column: other_csf_culture
+- type: CharField
+- length: 75
+- responses: *free text*
+---
+
+**20.0.** Total CSF WBC cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
+- db_table: effect_subject_lpcsf
+- column: csf_wbc_cell_count
+- type: IntegerField
+---
+
+**21.0.** Differential lymphocyte cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_count
+- type: IntegerField
+---
+
+**22.0.** differential lymphocyte unit
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**23.0.** Differential neutrophil cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_count
+- type: IntegerField
+---
+
+**24.0.** differential neutrophil unit
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**25.0.** CSF glucose:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
+- db_table: effect_subject_lpcsf
+- column: csf_glucose
+- type: DecimalField
+---
+
+**26.0.** CSF glucose units:
+- db_table: effect_subject_lpcsf
+- column: csf_glucose_units
+- type: CharField
+- length: 6
+- responses:
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
+---
+
+**27.0.** CSF protein:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
+- db_table: effect_subject_lpcsf
+- column: csf_protein
+- type: DecimalField
+---
+
+**28.0.** CSF CrAg:
+- db_table: effect_subject_lpcsf
+- column: csf_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
+---
+
+
+#### Tb Diagnostics
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_tbdiagnostics
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_tbdiagnostics
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Urinary LAM**
+
+**3.0.** Urinary LAM performed?
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** urinary lam date
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** Urinary LAM result
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result
+- type: CharField
+- length: 25
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** If Urinary LAM is positive, grade
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result_grade
+- type: CharField
+- length: 25
+- responses:
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum requisition**
+
+**7.0.** Sputum requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_requisition
+- type: ForeignKey
+---
+
+**Section: Sputum Gene-Xpert**
+
+**8.0.** Sputum Gene-Xpert performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Sputum Gene-Xpert date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**10.0.** Sputum Gene-Xpert results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_result
+- type: CharField
+- length: 45
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum culture**
+
+**11.0.** Sputum culture performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** sputum culture date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**13.0.** Sputum culture results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum AFB**
+
+**14.0.** Sputum AFB microscopy performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_performed
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** Sputum AFB date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**16.0.** Sputum AFB results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Comment**
+
+**17.0.** Any additional comment
+- db_table: effect_subject_tbdiagnostics
+- column: comment
+- type: TextField
+---
+
+
+#### Requisitions
+
+* fbc
+
+### 1028
 
 #### Mental Status
 *[missing model class docstring]*
@@ -9460,6 +9316,284 @@ Adherence CRF completed at d14 (in-person).
 ---
 
 
+#### Adherence: Day 14+
+Adherence CRF completed after d14 (telephone).
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_adherence
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_adherence
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Adherence counselling**
+
+**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
+- db_table: effect_subject_adherence
+- column: adherence_counselling
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: adherence_counselling_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**Section: Adherence summary**
+
+**5.0.** Has the participant linked up with their local clinic?
+- db_table: effect_subject_adherence
+- column: linked_local_clinic
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: linked_local_clinic_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**7.0.** Is the participant receiving Fluconazole?
+- db_table: effect_subject_adherence
+- column: on_flucon
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**8.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: on_flucon_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**9.0.** Is the participant receiving ARVs?
+- db_table: effect_subject_adherence
+- column: on_arv
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**10.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: on_arv_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**11.0.** In the clinician's opinion, is the participant 90% adherent to fluconazole?
+- db_table: effect_subject_adherence
+- column: opinion_flucon_adherent
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**12.0.** In the clinician's opinion, is the participant 90% adherent to ART?
+- db_table: effect_subject_adherence
+- column: opinion_arv_adherent
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**13.0.** Medication adherence narrative:
+- db_table: effect_subject_adherence
+- column: adherence_narrative
+- type: TextField
+---
+
+
+#### Optional forms
+
+#### Vital Signs
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -9984,134 +10118,6 @@ Adherence CRF completed at d14 (in-person).
 - type: TextField
 ---
 
-
-#### Adherence: Day 14+
-Adherence CRF completed after d14 (telephone).
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_adherence
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_adherence
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Adherence counselling**
-
-**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
-- db_table: effect_subject_adherence
-- column: adherence_counselling
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: adherence_counselling_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**Section: Adherence summary**
-
-**5.0.** Has the participant linked up with their local clinic?
-- db_table: effect_subject_adherence
-- column: linked_local_clinic
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: linked_local_clinic_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**7.0.** Is the participant receiving Fluconazole?
-- db_table: effect_subject_adherence
-- column: on_flucon
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**8.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: on_flucon_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**9.0.** Is the participant receiving ARVs?
-- db_table: effect_subject_adherence
-- column: on_arv
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**10.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: on_arv_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**11.0.** In the clinician's opinion, is the participant 90% adherent to fluconazole?
-- db_table: effect_subject_adherence
-- column: opinion_flucon_adherent
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**12.0.** In the clinician's opinion, is the participant 90% adherent to ART?
-- db_table: effect_subject_adherence
-- column: opinion_arv_adherent
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**13.0.** Medication adherence narrative:
-- db_table: effect_subject_adherence
-- column: adherence_narrative
-- type: TextField
----
-
-
-#### Requisitions
 
 ### 1070
 
@@ -10297,156 +10303,6 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-#### Vital Signs
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_vitalsigns
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_vitalsigns
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Vital signs**
-
-**3.0.** Weight:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
-- db_table: effect_subject_vitalsigns
-- column: weight
-- type: DecimalField
----
-
-**4.0.** Is the weight estimated or measured?
-- db_table: effect_subject_vitalsigns
-- column: weight_measured_or_est
-- type: CharField
-- length: 25
-- responses:
-  - `measured`: *Measured (weighed)*
-  - `estimated`: *Estimated*
----
-
-**5.0.** Blood pressure: systolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
-- db_table: effect_subject_vitalsigns
-- column: sys_blood_pressure
-- type: IntegerField
----
-
-**6.0.** Blood pressure: diastolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
-- db_table: effect_subject_vitalsigns
-- column: dia_blood_pressure
-- type: IntegerField
----
-
-**7.0.** Heart rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
-- db_table: effect_subject_vitalsigns
-- column: heart_rate
-- type: IntegerField
----
-
-**8.0.** Respiratory rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
-- db_table: effect_subject_vitalsigns
-- column: respiratory_rate
-- type: IntegerField
----
-
-**9.0.** Temperature:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
-- db_table: effect_subject_vitalsigns
-- column: temperature
-- type: DecimalField
----
-
-**10.0.** Abnormal lung exam:
-- db_table: effect_subject_vitalsigns
-- column: abnormal_lung_exam
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**Section: Action**
-
-**11.0.** action identifier
-- db_table: effect_subject_vitalsigns
-- column: action_identifier
-- type: CharField
-- length: 50
-- responses: *free text*
----
-
-**12.0.** action item
-- db_table: effect_subject_vitalsigns
-- column: action_item
-- type: ForeignKey
----
-
-**13.0.** parent action item
-- db_table: effect_subject_vitalsigns
-- column: parent_action_item
-- type: ForeignKey
----
-
-**14.0.** related action item
-- db_table: effect_subject_vitalsigns
-- column: related_action_item
-- type: ForeignKey
----
-
-**Section: Reporting**
-
-**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
-- db_table: effect_subject_vitalsigns
-- column: reportable_as_ae
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**16.0.** Has the participant been NEWLY admitted due to any of the above?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
-- db_table: effect_subject_vitalsigns
-- column: patient_admitted
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -11043,6 +10899,284 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
+#### Adherence: Day 14+
+Adherence CRF completed after d14 (telephone).
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_adherence
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_adherence
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Adherence counselling**
+
+**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
+- db_table: effect_subject_adherence
+- column: adherence_counselling
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: adherence_counselling_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**Section: Adherence summary**
+
+**5.0.** Has the participant linked up with their local clinic?
+- db_table: effect_subject_adherence
+- column: linked_local_clinic
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: linked_local_clinic_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**7.0.** Is the participant receiving Fluconazole?
+- db_table: effect_subject_adherence
+- column: on_flucon
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**8.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: on_flucon_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**9.0.** Is the participant receiving ARVs?
+- db_table: effect_subject_adherence
+- column: on_arv
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**10.0.** If NO, please specify reason ...
+- db_table: effect_subject_adherence
+- column: on_arv_reason_no
+- type: CharField
+- length: 35
+- responses: *free text*
+---
+
+**11.0.** In the clinician's opinion, is the participant 90% adherent to fluconazole?
+- db_table: effect_subject_adherence
+- column: opinion_flucon_adherent
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**12.0.** In the clinician's opinion, is the participant 90% adherent to ART?
+- db_table: effect_subject_adherence
+- column: opinion_arv_adherent
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**13.0.** Medication adherence narrative:
+- db_table: effect_subject_adherence
+- column: adherence_narrative
+- type: TextField
+---
+
+
+#### Optional forms
+
+#### Vital Signs
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
 #### Chest X-Ray
 *[missing model class docstring]*
 
@@ -11567,287 +11701,9 @@ Adherence CRF completed after d14 (telephone).
 - type: TextField
 ---
 
-
-#### Adherence: Day 14+
-Adherence CRF completed after d14 (telephone).
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_adherence
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_adherence
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Adherence counselling**
-
-**3.0.** Has appropriate adherence counselling been given as per the trial SOP?
-- db_table: effect_subject_adherence
-- column: adherence_counselling
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: adherence_counselling_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**Section: Adherence summary**
-
-**5.0.** Has the participant linked up with their local clinic?
-- db_table: effect_subject_adherence
-- column: linked_local_clinic
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: linked_local_clinic_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**7.0.** Is the participant receiving Fluconazole?
-- db_table: effect_subject_adherence
-- column: on_flucon
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**8.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: on_flucon_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**9.0.** Is the participant receiving ARVs?
-- db_table: effect_subject_adherence
-- column: on_arv
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**10.0.** If NO, please specify reason ...
-- db_table: effect_subject_adherence
-- column: on_arv_reason_no
-- type: CharField
-- length: 35
-- responses: *free text*
----
-
-**11.0.** In the clinician's opinion, is the participant 90% adherent to fluconazole?
-- db_table: effect_subject_adherence
-- column: opinion_flucon_adherent
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**12.0.** In the clinician's opinion, is the participant 90% adherent to ART?
-- db_table: effect_subject_adherence
-- column: opinion_arv_adherent
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**13.0.** Medication adherence narrative:
-- db_table: effect_subject_adherence
-- column: adherence_narrative
-- type: TextField
----
-
-
-#### Requisitions
 
 ### 1112
 
-#### Vital Signs
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_vitalsigns
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_vitalsigns
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Vital signs**
-
-**3.0.** Weight:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
-- db_table: effect_subject_vitalsigns
-- column: weight
-- type: DecimalField
----
-
-**4.0.** Is the weight estimated or measured?
-- db_table: effect_subject_vitalsigns
-- column: weight_measured_or_est
-- type: CharField
-- length: 25
-- responses:
-  - `measured`: *Measured (weighed)*
-  - `estimated`: *Estimated*
----
-
-**5.0.** Blood pressure: systolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
-- db_table: effect_subject_vitalsigns
-- column: sys_blood_pressure
-- type: IntegerField
----
-
-**6.0.** Blood pressure: diastolic
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
-- db_table: effect_subject_vitalsigns
-- column: dia_blood_pressure
-- type: IntegerField
----
-
-**7.0.** Heart rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
-- db_table: effect_subject_vitalsigns
-- column: heart_rate
-- type: IntegerField
----
-
-**8.0.** Respiratory rate:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
-- db_table: effect_subject_vitalsigns
-- column: respiratory_rate
-- type: IntegerField
----
-
-**9.0.** Temperature:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
-- db_table: effect_subject_vitalsigns
-- column: temperature
-- type: DecimalField
----
-
-**10.0.** Abnormal lung exam:
-- db_table: effect_subject_vitalsigns
-- column: abnormal_lung_exam
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**Section: Action**
-
-**11.0.** action identifier
-- db_table: effect_subject_vitalsigns
-- column: action_identifier
-- type: CharField
-- length: 50
-- responses: *free text*
----
-
-**12.0.** action item
-- db_table: effect_subject_vitalsigns
-- column: action_item
-- type: ForeignKey
----
-
-**13.0.** parent action item
-- db_table: effect_subject_vitalsigns
-- column: parent_action_item
-- type: ForeignKey
----
-
-**14.0.** related action item
-- db_table: effect_subject_vitalsigns
-- column: related_action_item
-- type: ForeignKey
----
-
-**Section: Reporting**
-
-**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
-- db_table: effect_subject_vitalsigns
-- column: reportable_as_ae
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**16.0.** Has the participant been NEWLY admitted due to any of the above?
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
-- db_table: effect_subject_vitalsigns
-- column: patient_admitted
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-
 #### Mental Status
 *[missing model class docstring]*
 
@@ -12441,531 +12297,6 @@ Adherence CRF completed after d14 (telephone).
   - `Yes`: *Yes*
   - `No`: *No*
   - `N/A`: *Not applicable*
----
-
-
-#### Chest X-Ray
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_chestxray
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_chestxray
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Chest x-ray**
-
-**3.0.** Was a chest x-ray performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If YES, date performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** If YES, indicate results?
-- db_table: effect_subject_chestxray
-- column: chest_xray_results
-- type: ManyToManyField
-- responses: *Select all that apply*
-  - `NORMAL`: *Normal*
-  - `lymphadenopathy`: *Lymphadenopathy*
-  - `consolidation`: *Consolidation*
-  - `miliary_tb`: *Miliary TB*
-  - `infiltrates`: *Infiltrates*
-  - `OTHER`: *Other, please specify below ...*
----
-
-**5.1.** If other, please specify ...
-- db_table: effect_subject_chestxray
-- column: chest_xray_results_other
-- type: TextField
----
-
-**6.0.** Any additional comment
-- db_table: effect_subject_chestxray
-- column: comment
-- type: TextField
----
-
-
-#### Lumbar Puncture/Csf
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_lpcsf
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_lpcsf
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: LP**
-
-**3.0.** Reason for LP
-- db_table: effect_subject_lpcsf
-- column: reason_for_lp
-- type: CharField
-- length: 50
-- responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol*
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
----
-
-**4.0.** LP Date and Time
-- db_table: effect_subject_lpcsf
-- column: lp_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**5.0.** Was the opening pressure measured
-- db_table: effect_subject_lpcsf
-- column: opening_pressure_measured
-- type: CharField
-- length: 25
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** opening pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: opening_pressure
-- type: IntegerField
----
-
-**7.0.** closing pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: closing_pressure
-- type: IntegerField
----
-
-**8.0.** CSF amount removed
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
-- db_table: effect_subject_lpcsf
-- column: csf_amount_removed
-- type: IntegerField
----
-
-**Section: CSF**
-
-**9.0.** CSF positive for cryptococcal meningitis?
-- db_table: effect_subject_lpcsf
-- column: csf_positive
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
----
-
-**10.0.** india ink
-- db_table: effect_subject_lpcsf
-- column: india_ink
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**11.0.** CrAg LFA
-- db_table: effect_subject_lpcsf
-- column: csf_crag_lfa
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**13.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag_pos
-- type: CharField
-- length: 15
-- responses:
-  - `high`: *High*
-  - `low`: *Low*
-  - `N/A`: *Not applicable*
----
-
-**14.0.** Was the CRF CrAg titre done
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre_done
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** crf crag titre
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre
-- type: IntegerField
----
-
-**Section: CSF culture**
-
-**16.0.** CSF Requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_lpcsf
-- column: csf_requisition
-- type: ForeignKey
----
-
-**17.0.** CSF Result Report Date and Time
-- db_table: effect_subject_lpcsf
-- column: csf_culture_assay_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**18.0.** CSF Result: Other organism (non-Cryptococcus)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
-- db_table: effect_subject_lpcsf
-- column: csf_culture
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**19.0.** If YES, specify organism:
-- db_table: effect_subject_lpcsf
-- column: other_csf_culture
-- type: CharField
-- length: 75
-- responses: *free text*
----
-
-**20.0.** Total CSF WBC cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
-- db_table: effect_subject_lpcsf
-- column: csf_wbc_cell_count
-- type: IntegerField
----
-
-**21.0.** Differential lymphocyte cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_count
-- type: IntegerField
----
-
-**22.0.** differential lymphocyte unit
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**23.0.** Differential neutrophil cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_count
-- type: IntegerField
----
-
-**24.0.** differential neutrophil unit
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**25.0.** CSF glucose:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
-- db_table: effect_subject_lpcsf
-- column: csf_glucose
-- type: DecimalField
----
-
-**26.0.** CSF glucose units:
-- db_table: effect_subject_lpcsf
-- column: csf_glucose_units
-- type: CharField
-- length: 6
-- responses:
-  - `mg/dL`: *mg/dL*
-  - `mmol/L`: *mmol/L (millimoles/L)*
----
-
-**27.0.** CSF protein:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
-- db_table: effect_subject_lpcsf
-- column: csf_protein
-- type: DecimalField
----
-
-**28.0.** CSF CrAg:
-- db_table: effect_subject_lpcsf
-- column: csf_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `IND`: *Indeterminate*
----
-
-
-#### Tb Diagnostics
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_tbdiagnostics
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_tbdiagnostics
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Urinary LAM**
-
-**3.0.** Urinary LAM performed?
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** urinary lam date
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** Urinary LAM result
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result
-- type: CharField
-- length: 25
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**6.0.** If Urinary LAM is positive, grade
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result_grade
-- type: CharField
-- length: 25
-- responses:
-  - `1`: *1+ (low)*
-  - `2`: *2+*
-  - `3`: *3+*
-  - `4`: *4+*
-  - `5`: *5+ (high)*
-  - `unknown`: *Unknown / Grade not reported*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum requisition**
-
-**7.0.** Sputum requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_requisition
-- type: ForeignKey
----
-
-**Section: Sputum Gene-Xpert**
-
-**8.0.** Sputum Gene-Xpert performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**9.0.** Sputum Gene-Xpert date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**10.0.** Sputum Gene-Xpert results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_result
-- type: CharField
-- length: 45
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum culture**
-
-**11.0.** Sputum culture performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** sputum culture date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**13.0.** Sputum culture results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate / contaminated*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum AFB**
-
-**14.0.** Sputum AFB microscopy performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_performed
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** Sputum AFB date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**16.0.** Sputum AFB results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**Section: Comment**
-
-**17.0.** Any additional comment
-- db_table: effect_subject_tbdiagnostics
-- column: comment
-- type: TextField
 ---
 
 
@@ -13095,9 +12426,7 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-#### Requisitions
-
-### 1168
+#### Optional forms
 
 #### Vital Signs
 *[missing model class docstring]*
@@ -13248,6 +12577,533 @@ Adherence CRF completed after d14 (telephone).
   - `N/A`: *Not applicable*
 ---
 
+
+#### Chest X-Ray
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_chestxray
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_chestxray
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Chest x-ray**
+
+**3.0.** Was a chest x-ray performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If YES, date performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** If YES, indicate results?
+- db_table: effect_subject_chestxray
+- column: chest_xray_results
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
+---
+
+**5.1.** If other, please specify ...
+- db_table: effect_subject_chestxray
+- column: chest_xray_results_other
+- type: TextField
+---
+
+**6.0.** Any additional comment
+- db_table: effect_subject_chestxray
+- column: comment
+- type: TextField
+---
+
+
+#### Lumbar Puncture/Csf
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_lpcsf
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_lpcsf
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: LP**
+
+**3.0.** Reason for LP
+- db_table: effect_subject_lpcsf
+- column: reason_for_lp
+- type: CharField
+- length: 50
+- responses:
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
+---
+
+**4.0.** LP Date and Time
+- db_table: effect_subject_lpcsf
+- column: lp_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**5.0.** Was the opening pressure measured
+- db_table: effect_subject_lpcsf
+- column: opening_pressure_measured
+- type: CharField
+- length: 25
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** opening pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: opening_pressure
+- type: IntegerField
+---
+
+**7.0.** closing pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: closing_pressure
+- type: IntegerField
+---
+
+**8.0.** CSF amount removed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
+- db_table: effect_subject_lpcsf
+- column: csf_amount_removed
+- type: IntegerField
+---
+
+**Section: CSF**
+
+**9.0.** CSF positive for cryptococcal meningitis?
+- db_table: effect_subject_lpcsf
+- column: csf_positive
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+---
+
+**10.0.** india ink
+- db_table: effect_subject_lpcsf
+- column: india_ink
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**11.0.** CrAg LFA
+- db_table: effect_subject_lpcsf
+- column: csf_crag_lfa
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**13.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag_pos
+- type: CharField
+- length: 15
+- responses:
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
+---
+
+**14.0.** Was the CRF CrAg titre done
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre_done
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** crf crag titre
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre
+- type: IntegerField
+---
+
+**Section: CSF culture**
+
+**16.0.** CSF Requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_lpcsf
+- column: csf_requisition
+- type: ForeignKey
+---
+
+**17.0.** CSF Result Report Date and Time
+- db_table: effect_subject_lpcsf
+- column: csf_culture_assay_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**18.0.** CSF Result: Other organism (non-Cryptococcus)
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
+- db_table: effect_subject_lpcsf
+- column: csf_culture
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**19.0.** If YES, specify organism:
+- db_table: effect_subject_lpcsf
+- column: other_csf_culture
+- type: CharField
+- length: 75
+- responses: *free text*
+---
+
+**20.0.** Total CSF WBC cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
+- db_table: effect_subject_lpcsf
+- column: csf_wbc_cell_count
+- type: IntegerField
+---
+
+**21.0.** Differential lymphocyte cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_count
+- type: IntegerField
+---
+
+**22.0.** differential lymphocyte unit
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**23.0.** Differential neutrophil cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_count
+- type: IntegerField
+---
+
+**24.0.** differential neutrophil unit
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**25.0.** CSF glucose:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
+- db_table: effect_subject_lpcsf
+- column: csf_glucose
+- type: DecimalField
+---
+
+**26.0.** CSF glucose units:
+- db_table: effect_subject_lpcsf
+- column: csf_glucose_units
+- type: CharField
+- length: 6
+- responses:
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
+---
+
+**27.0.** CSF protein:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
+- db_table: effect_subject_lpcsf
+- column: csf_protein
+- type: DecimalField
+---
+
+**28.0.** CSF CrAg:
+- db_table: effect_subject_lpcsf
+- column: csf_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
+---
+
+
+#### Tb Diagnostics
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_tbdiagnostics
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_tbdiagnostics
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Urinary LAM**
+
+**3.0.** Urinary LAM performed?
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** urinary lam date
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** Urinary LAM result
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result
+- type: CharField
+- length: 25
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** If Urinary LAM is positive, grade
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result_grade
+- type: CharField
+- length: 25
+- responses:
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum requisition**
+
+**7.0.** Sputum requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_requisition
+- type: ForeignKey
+---
+
+**Section: Sputum Gene-Xpert**
+
+**8.0.** Sputum Gene-Xpert performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Sputum Gene-Xpert date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**10.0.** Sputum Gene-Xpert results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_result
+- type: CharField
+- length: 45
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum culture**
+
+**11.0.** Sputum culture performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** sputum culture date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**13.0.** Sputum culture results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum AFB**
+
+**14.0.** Sputum AFB microscopy performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_performed
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** Sputum AFB date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**16.0.** Sputum AFB results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Comment**
+
+**17.0.** Any additional comment
+- db_table: effect_subject_tbdiagnostics
+- column: comment
+- type: TextField
+---
+
+
+### 1168
 
 #### Mental Status
 *[missing model class docstring]*
@@ -13842,531 +13698,6 @@ Adherence CRF completed after d14 (telephone).
   - `Yes`: *Yes*
   - `No`: *No*
   - `N/A`: *Not applicable*
----
-
-
-#### Chest X-Ray
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_chestxray
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_chestxray
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Chest x-ray**
-
-**3.0.** Was a chest x-ray performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** If YES, date performed?
-- db_table: effect_subject_chestxray
-- column: chest_xray_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** If YES, indicate results?
-- db_table: effect_subject_chestxray
-- column: chest_xray_results
-- type: ManyToManyField
-- responses: *Select all that apply*
-  - `NORMAL`: *Normal*
-  - `lymphadenopathy`: *Lymphadenopathy*
-  - `consolidation`: *Consolidation*
-  - `miliary_tb`: *Miliary TB*
-  - `infiltrates`: *Infiltrates*
-  - `OTHER`: *Other, please specify below ...*
----
-
-**5.1.** If other, please specify ...
-- db_table: effect_subject_chestxray
-- column: chest_xray_results_other
-- type: TextField
----
-
-**6.0.** Any additional comment
-- db_table: effect_subject_chestxray
-- column: comment
-- type: TextField
----
-
-
-#### Lumbar Puncture/Csf
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_lpcsf
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_lpcsf
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: LP**
-
-**3.0.** Reason for LP
-- db_table: effect_subject_lpcsf
-- column: reason_for_lp
-- type: CharField
-- length: 50
-- responses:
-  - `scheduled_per_protocol`: *Scheduled per protocol*
-  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
----
-
-**4.0.** LP Date and Time
-- db_table: effect_subject_lpcsf
-- column: lp_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**5.0.** Was the opening pressure measured
-- db_table: effect_subject_lpcsf
-- column: opening_pressure_measured
-- type: CharField
-- length: 25
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**6.0.** opening pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: opening_pressure
-- type: IntegerField
----
-
-**7.0.** closing pressure
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
-- db_table: effect_subject_lpcsf
-- column: closing_pressure
-- type: IntegerField
----
-
-**8.0.** CSF amount removed
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
-- db_table: effect_subject_lpcsf
-- column: csf_amount_removed
-- type: IntegerField
----
-
-**Section: CSF**
-
-**9.0.** CSF positive for cryptococcal meningitis?
-- db_table: effect_subject_lpcsf
-- column: csf_positive
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
----
-
-**10.0.** india ink
-- db_table: effect_subject_lpcsf
-- column: india_ink
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**11.0.** CrAg LFA
-- db_table: effect_subject_lpcsf
-- column: csf_crag_lfa
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**13.0.** SQ CrAg
-- db_table: effect_subject_lpcsf
-- column: sq_crag_pos
-- type: CharField
-- length: 15
-- responses:
-  - `high`: *High*
-  - `low`: *Low*
-  - `N/A`: *Not applicable*
----
-
-**14.0.** Was the CRF CrAg titre done
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre_done
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** crf crag titre
-- db_table: effect_subject_lpcsf
-- column: crf_crag_titre
-- type: IntegerField
----
-
-**Section: CSF culture**
-
-**16.0.** CSF Requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_lpcsf
-- column: csf_requisition
-- type: ForeignKey
----
-
-**17.0.** CSF Result Report Date and Time
-- db_table: effect_subject_lpcsf
-- column: csf_culture_assay_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**18.0.** CSF Result: Other organism (non-Cryptococcus)
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
-- db_table: effect_subject_lpcsf
-- column: csf_culture
-- type: CharField
-- length: 18
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `awaiting_results`: *Awaiting results*
-  - `not_done`: *Not done*
-  - `N/A`: *Not applicable*
----
-
-**19.0.** If YES, specify organism:
-- db_table: effect_subject_lpcsf
-- column: other_csf_culture
-- type: CharField
-- length: 75
-- responses: *free text*
----
-
-**20.0.** Total CSF WBC cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
-- db_table: effect_subject_lpcsf
-- column: csf_wbc_cell_count
-- type: IntegerField
----
-
-**21.0.** Differential lymphocyte cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_count
-- type: IntegerField
----
-
-**22.0.** differential lymphocyte unit
-- db_table: effect_subject_lpcsf
-- column: differential_lymphocyte_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**23.0.** Differential neutrophil cell count:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_count
-- type: IntegerField
----
-
-**24.0.** differential neutrophil unit
-- db_table: effect_subject_lpcsf
-- column: differential_neutrophil_unit
-- type: CharField
-- length: 6
-- responses:
-  - `mm3`: *mm<sup>3</sup>*
-  - `%`: *%*
----
-
-**25.0.** CSF glucose:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
-- db_table: effect_subject_lpcsf
-- column: csf_glucose
-- type: DecimalField
----
-
-**26.0.** CSF glucose units:
-- db_table: effect_subject_lpcsf
-- column: csf_glucose_units
-- type: CharField
-- length: 6
-- responses:
-  - `mg/dL`: *mg/dL*
-  - `mmol/L`: *mmol/L (millimoles/L)*
----
-
-**27.0.** CSF protein:
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
-- db_table: effect_subject_lpcsf
-- column: csf_protein
-- type: DecimalField
----
-
-**28.0.** CSF CrAg:
-- db_table: effect_subject_lpcsf
-- column: csf_crag
-- type: CharField
-- length: 15
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `IND`: *Indeterminate*
----
-
-
-#### Tb Diagnostics
-*[missing model class docstring]*
-
-*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
-
-
-**Section: Main**
-
-**1.0.** subject visit
-- db_table: effect_subject_tbdiagnostics
-- column: subject_visit
-- type: OneToOneField
----
-
-**2.0.** Report Date
-
-&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
-- db_table: effect_subject_tbdiagnostics
-- column: report_datetime
-- type: DateTimeField
-- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
----
-
-**Section: Urinary LAM**
-
-**3.0.** Urinary LAM performed?
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
----
-
-**4.0.** urinary lam date
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**5.0.** Urinary LAM result
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result
-- type: CharField
-- length: 25
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**6.0.** If Urinary LAM is positive, grade
-- db_table: effect_subject_tbdiagnostics
-- column: urinary_lam_result_grade
-- type: CharField
-- length: 25
-- responses:
-  - `1`: *1+ (low)*
-  - `2`: *2+*
-  - `3`: *3+*
-  - `4`: *4+*
-  - `5`: *5+ (high)*
-  - `unknown`: *Unknown / Grade not reported*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum requisition**
-
-**7.0.** Sputum requisition
-
-&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_requisition
-- type: ForeignKey
----
-
-**Section: Sputum Gene-Xpert**
-
-**8.0.** Sputum Gene-Xpert performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**9.0.** Sputum Gene-Xpert date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**10.0.** Sputum Gene-Xpert results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_genexpert_result
-- type: CharField
-- length: 45
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum culture**
-
-**11.0.** Sputum culture performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_performed
-- type: CharField
-- length: 15
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**12.0.** sputum culture date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**13.0.** Sputum culture results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_culture_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *MTB Positive*
-  - `NEG`: *MTB Negative*
-  - `IND`: *Indeterminate / contaminated*
-  - `N/A`: *Not applicable*
----
-
-**Section: Sputum AFB**
-
-**14.0.** Sputum AFB microscopy performed?
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_performed
-- type: CharField
-- length: 5
-- responses:
-  - `Yes`: *Yes*
-  - `No`: *No*
-  - `N/A`: *Not applicable*
----
-
-**15.0.** Sputum AFB date
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_date
-- type: DateField
-- format: YYYY-MM-DD
----
-
-**16.0.** Sputum AFB results
-- db_table: effect_subject_tbdiagnostics
-- column: sputum_afb_result
-- type: CharField
-- length: 10
-- responses:
-  - `POS`: *Positive*
-  - `NEG`: *Negative*
-  - `N/A`: *Not applicable*
----
-
-**Section: Comment**
-
-**17.0.** Any additional comment
-- db_table: effect_subject_tbdiagnostics
-- column: comment
-- type: TextField
 ---
 
 
@@ -14667,8 +13998,683 @@ Adherence CRF completed after d14 (telephone).
 ---
 
 
-#### Requisitions
+#### Optional forms
+
+#### Vital Signs
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_vitalsigns
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_vitalsigns
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Vital signs**
+
+**3.0.** Weight:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in kg*
+- db_table: effect_subject_vitalsigns
+- column: weight
+- type: DecimalField
+---
+
+**4.0.** Is the weight estimated or measured?
+- db_table: effect_subject_vitalsigns
+- column: weight_measured_or_est
+- type: CharField
+- length: 25
+- responses:
+  - `measured`: *Measured (weighed)*
+  - `estimated`: *Estimated*
+---
+
+**5.0.** Blood pressure: systolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in mm. format SYS, e.g. 120*
+- db_table: effect_subject_vitalsigns
+- column: sys_blood_pressure
+- type: IntegerField
+---
+
+**6.0.** Blood pressure: diastolic
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in Hg. format DIA, e.g. 80*
+- db_table: effect_subject_vitalsigns
+- column: dia_blood_pressure
+- type: IntegerField
+---
+
+**7.0.** Heart rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *BPM*
+- db_table: effect_subject_vitalsigns
+- column: heart_rate
+- type: IntegerField
+---
+
+**8.0.** Respiratory rate:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *breaths/min*
+- db_table: effect_subject_vitalsigns
+- column: respiratory_rate
+- type: IntegerField
+---
+
+**9.0.** Temperature:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *in degrees Celsius*
+- db_table: effect_subject_vitalsigns
+- column: temperature
+- type: DecimalField
+---
+
+**10.0.** Abnormal lung exam:
+- db_table: effect_subject_vitalsigns
+- column: abnormal_lung_exam
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**Section: Action**
+
+**11.0.** action identifier
+- db_table: effect_subject_vitalsigns
+- column: action_identifier
+- type: CharField
+- length: 50
+- responses: *free text*
+---
+
+**12.0.** action item
+- db_table: effect_subject_vitalsigns
+- column: action_item
+- type: ForeignKey
+---
+
+**13.0.** parent action item
+- db_table: effect_subject_vitalsigns
+- column: parent_action_item
+- type: ForeignKey
+---
+
+**14.0.** related action item
+- db_table: effect_subject_vitalsigns
+- column: related_action_item
+- type: ForeignKey
+---
+
+**Section: Reporting**
+
+**15.0.** Are any of the above Grade 3 or above, and NEWLY reportable?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is NEWLY reportable (or present at baseline).<br/>If YES (and not baseline), complete AE Initial report.*
+- db_table: effect_subject_vitalsigns
+- column: reportable_as_ae
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**16.0.** Has the participant been NEWLY admitted due to any of the above?
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Only answer YES if this is a NEW admission (or already admitted at baseline).<br/>If YES (and not baseline), complete Hospitalization and AE Initial reports.*
+- db_table: effect_subject_vitalsigns
+- column: patient_admitted
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+
+#### Chest X-Ray
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_chestxray
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_chestxray
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Chest x-ray**
+
+**3.0.** Was a chest x-ray performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** If YES, date performed?
+- db_table: effect_subject_chestxray
+- column: chest_xray_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** If YES, indicate results?
+- db_table: effect_subject_chestxray
+- column: chest_xray_results
+- type: ManyToManyField
+- responses: *Select all that apply*
+  - `NORMAL`: *Normal*
+  - `lymphadenopathy`: *Lymphadenopathy*
+  - `consolidation`: *Consolidation*
+  - `miliary_tb`: *Miliary TB*
+  - `infiltrates`: *Infiltrates*
+  - `OTHER`: *Other, please specify below ...*
+---
+
+**5.1.** If other, please specify ...
+- db_table: effect_subject_chestxray
+- column: chest_xray_results_other
+- type: TextField
+---
+
+**6.0.** Any additional comment
+- db_table: effect_subject_chestxray
+- column: comment
+- type: TextField
+---
+
+
+#### Lumbar Puncture/Csf
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_lpcsf
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_lpcsf
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: LP**
+
+**3.0.** Reason for LP
+- db_table: effect_subject_lpcsf
+- column: reason_for_lp
+- type: CharField
+- length: 50
+- responses:
+  - `scheduled_per_protocol`: *Scheduled per protocol*
+  - `clincal_deterioration`: *Suspected Cryptococcal meningitis / Suspected IRIS*
+---
+
+**4.0.** LP Date and Time
+- db_table: effect_subject_lpcsf
+- column: lp_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**5.0.** Was the opening pressure measured
+- db_table: effect_subject_lpcsf
+- column: opening_pressure_measured
+- type: CharField
+- length: 25
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**6.0.** opening pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: opening_pressure
+- type: IntegerField
+---
+
+**7.0.** closing pressure
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units cm of H<sub>2</sub>O*
+- db_table: effect_subject_lpcsf
+- column: closing_pressure
+- type: IntegerField
+---
+
+**8.0.** CSF amount removed
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units ml*
+- db_table: effect_subject_lpcsf
+- column: csf_amount_removed
+- type: IntegerField
+---
+
+**Section: CSF**
+
+**9.0.** CSF positive for cryptococcal meningitis?
+- db_table: effect_subject_lpcsf
+- column: csf_positive
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+---
+
+**10.0.** india ink
+- db_table: effect_subject_lpcsf
+- column: india_ink
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**11.0.** CrAg LFA
+- db_table: effect_subject_lpcsf
+- column: csf_crag_lfa
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**13.0.** SQ CrAg
+- db_table: effect_subject_lpcsf
+- column: sq_crag_pos
+- type: CharField
+- length: 15
+- responses:
+  - `high`: *High*
+  - `low`: *Low*
+  - `N/A`: *Not applicable*
+---
+
+**14.0.** Was the CRF CrAg titre done
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre_done
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** crf crag titre
+- db_table: effect_subject_lpcsf
+- column: crf_crag_titre
+- type: IntegerField
+---
+
+**Section: CSF culture**
+
+**16.0.** CSF Requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_lpcsf
+- column: csf_requisition
+- type: ForeignKey
+---
+
+**17.0.** CSF Result Report Date and Time
+- db_table: effect_subject_lpcsf
+- column: csf_culture_assay_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**18.0.** CSF Result: Other organism (non-Cryptococcus)
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Complete after getting the results.*
+- db_table: effect_subject_lpcsf
+- column: csf_culture
+- type: CharField
+- length: 18
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `awaiting_results`: *Awaiting results*
+  - `not_done`: *Not done*
+  - `N/A`: *Not applicable*
+---
+
+**19.0.** If YES, specify organism:
+- db_table: effect_subject_lpcsf
+- column: other_csf_culture
+- type: CharField
+- length: 75
+- responses: *free text*
+---
+
+**20.0.** Total CSF WBC cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup>*
+- db_table: effect_subject_lpcsf
+- column: csf_wbc_cell_count
+- type: IntegerField
+---
+
+**21.0.** Differential lymphocyte cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_count
+- type: IntegerField
+---
+
+**22.0.** differential lymphocyte unit
+- db_table: effect_subject_lpcsf
+- column: differential_lymphocyte_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**23.0.** Differential neutrophil cell count:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *acceptable units are mm<sup>3</sup> or %*
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_count
+- type: IntegerField
+---
+
+**24.0.** differential neutrophil unit
+- db_table: effect_subject_lpcsf
+- column: differential_neutrophil_unit
+- type: CharField
+- length: 6
+- responses:
+  - `mm3`: *mm<sup>3</sup>*
+  - `%`: *%*
+---
+
+**25.0.** CSF glucose:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in mmol/L or mg/dL*
+- db_table: effect_subject_lpcsf
+- column: csf_glucose
+- type: DecimalField
+---
+
+**26.0.** CSF glucose units:
+- db_table: effect_subject_lpcsf
+- column: csf_glucose_units
+- type: CharField
+- length: 6
+- responses:
+  - `mg/dL`: *mg/dL*
+  - `mmol/L`: *mmol/L (millimoles/L)*
+---
+
+**27.0.** CSF protein:
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Units in g/L*
+- db_table: effect_subject_lpcsf
+- column: csf_protein
+- type: DecimalField
+---
+
+**28.0.** CSF CrAg:
+- db_table: effect_subject_lpcsf
+- column: csf_crag
+- type: CharField
+- length: 15
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `IND`: *Indeterminate*
+---
+
+
+#### Tb Diagnostics
+*[missing model class docstring]*
+
+*Instructions*: Please complete the form below. Required questions are in bold. When all required questions are complete click SAVE or, if available, SAVE NEXT. Based on your responses, additional questions may be required or some answers may need to be corrected.
+
+
+**Section: Main**
+
+**1.0.** subject visit
+- db_table: effect_subject_tbdiagnostics
+- column: subject_visit
+- type: OneToOneField
+---
+
+**2.0.** Report Date
+
+&nbsp;&nbsp;&nbsp;&nbsp; *If reporting today, use today's date/time, otherwise use the date/time this information was reported.*
+- db_table: effect_subject_tbdiagnostics
+- column: report_datetime
+- type: DateTimeField
+- format: YYYY-MM-DD HH:MM:SS.sss (tz=UTC)
+---
+
+**Section: Urinary LAM**
+
+**3.0.** Urinary LAM performed?
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+---
+
+**4.0.** urinary lam date
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**5.0.** Urinary LAM result
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result
+- type: CharField
+- length: 25
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**6.0.** If Urinary LAM is positive, grade
+- db_table: effect_subject_tbdiagnostics
+- column: urinary_lam_result_grade
+- type: CharField
+- length: 25
+- responses:
+  - `1`: *1+ (low)*
+  - `2`: *2+*
+  - `3`: *3+*
+  - `4`: *4+*
+  - `5`: *5+ (high)*
+  - `unknown`: *Unknown / Grade not reported*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum requisition**
+
+**7.0.** Sputum requisition
+
+&nbsp;&nbsp;&nbsp;&nbsp; *Start typing the requisition identifier or select one from this visit*
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_requisition
+- type: ForeignKey
+---
+
+**Section: Sputum Gene-Xpert**
+
+**8.0.** Sputum Gene-Xpert performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**9.0.** Sputum Gene-Xpert date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**10.0.** Sputum Gene-Xpert results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_genexpert_result
+- type: CharField
+- length: 45
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum culture**
+
+**11.0.** Sputum culture performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_performed
+- type: CharField
+- length: 15
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**12.0.** sputum culture date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**13.0.** Sputum culture results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_culture_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *MTB Positive*
+  - `NEG`: *MTB Negative*
+  - `IND`: *Indeterminate / contaminated*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Sputum AFB**
+
+**14.0.** Sputum AFB microscopy performed?
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_performed
+- type: CharField
+- length: 5
+- responses:
+  - `Yes`: *Yes*
+  - `No`: *No*
+  - `N/A`: *Not applicable*
+---
+
+**15.0.** Sputum AFB date
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_date
+- type: DateField
+- format: YYYY-MM-DD
+---
+
+**16.0.** Sputum AFB results
+- db_table: effect_subject_tbdiagnostics
+- column: sputum_afb_result
+- type: CharField
+- length: 10
+- responses:
+  - `POS`: *Positive*
+  - `NEG`: *Negative*
+  - `N/A`: *Not applicable*
+---
+
+**Section: Comment**
+
+**17.0.** Any additional comment
+- db_table: effect_subject_tbdiagnostics
+- column: comment
+- type: TextField
+---
 
 
 
-* Version v2.4.2 * Rendered on 2026-04-23 19:24*
+
+*Version v2.6.0* *Rendered on 2026-06-02 02:56*

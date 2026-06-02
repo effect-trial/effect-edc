@@ -1,4 +1,4 @@
-# EFFECT_AE Forms Reference v2.4.2
+# EFFECT_AE Forms Reference v2.6.0
 ## Table of contents
 
 
@@ -21,6 +21,8 @@
 
 ### 1000
 
+#### Optional forms
+
 #### Requisitions
 
 * fbc
@@ -29,13 +31,15 @@
 
 ### 1003
 
-#### Requisitions
+#### Optional forms
 
 ### 1009
 
-#### Requisitions
+#### Optional forms
 
 ### 1014
+
+#### Optional forms
 
 #### Requisitions
 
@@ -43,20 +47,20 @@
 
 ### 1028
 
-#### Requisitions
+#### Optional forms
 
 ### 1070
 
-#### Requisitions
+#### Optional forms
 
 ### 1112
 
-#### Requisitions
+#### Optional forms
 
 ### 1168
 
-#### Requisitions
+#### Optional forms
 
 
 
-* Version v2.4.2 * Rendered on 2026-04-23 19:25*
+*Version v2.6.0* *Rendered on 2026-06-02 02:57*

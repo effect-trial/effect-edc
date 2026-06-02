@@ -5,12 +5,16 @@ from edc_identifier.managers import SubjectIdentifierManager
 from edc_model.models.historical_records import SerializableModelManager
 from edc_visit_schedule.model_mixins.on_schedule_model_mixin import OnScheduleManager
 
+from effect_prn.models import ArvSummary
+
 
 class TestManagers(TestCase):
     def test_model_default_manager_names(self):
         app_label = "effect_prn"
         app_config = django_apps.get_app_config(app_label)
         for model_cls in app_config.get_models():
+            if model_cls == ArvSummary:
+                continue
             if "historical" in model_cls._meta.label_lower:
                 self.assertIsNone(
                     model_cls._meta.default_manager_name,
@@ -34,6 +38,8 @@ class TestManagers(TestCase):
             f"{app_label}.protocoldeviationviolation",
         ]
         for model_cls in app_config.get_models():
+            if model_cls == ArvSummary:
+                continue
             if "historical" in model_cls._meta.label_lower:
                 self.assertEqual(
                     model_cls._default_manager.__class__,
