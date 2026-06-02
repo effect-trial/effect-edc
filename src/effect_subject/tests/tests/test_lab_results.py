@@ -9,6 +9,7 @@ from clinicedc_constants import (
     ALREADY_REPORTED,
     GRADE3,
     GRADE4,
+    INCOMPLETE,
     MILLIGRAMS_PER_DECILITER,
     MILLIGRAMS_PER_LITER,
     MILLIMOLES_PER_LITER,
@@ -101,6 +102,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
             results_abnormal=NO,
             results_reportable=NOT_APPLICABLE,
             site=Site.objects.get(id=settings.SITE_ID).id,
+            crf_status=INCOMPLETE,
         )
 
     @staticmethod
@@ -160,6 +162,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
                         site=Site.objects.get(id=settings.SITE_ID).id,
+                        crf_status=INCOMPLETE,
                     )
 
                     form = lab_panel.form(cleaned_data)
@@ -201,6 +204,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=1),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        crf_status=INCOMPLETE,
                     )
 
                     form = lab_panel.form(cleaned_data)
@@ -243,6 +247,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=1),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        crf_status=INCOMPLETE,
                     )
 
                     form = lab_panel.form(cleaned_data)
@@ -290,6 +295,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=1),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        crf_status=INCOMPLETE,
                     )
                     form = lab_panel.form(cleaned_data)
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
@@ -337,6 +343,7 @@ class TestLabResults(EffectTestCaseMixin, TestCase):
                         + relativedelta(days=days),
                         results_abnormal=NO,
                         results_reportable=NOT_APPLICABLE,
+                        crf_status=INCOMPLETE,
                     )
                     form = lab_panel.form(cleaned_data)
                     self.assertFalse(form.is_valid(), "Form unexpectedly valid.")
