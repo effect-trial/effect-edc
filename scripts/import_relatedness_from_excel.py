@@ -16,6 +16,12 @@ from effect_ae.models import DeathFinalCause
 
 
 def run(path: str) -> None:
+    """A script for a one-off import of cryptococcal
+    relatedness values manually collected for the final cause
+    of death (DeathFinalCause) in Excel.
+
+    :param path: Path to Excel file.
+    """
     path = Path(path)
     if not path.exists():
         raise FileNotFoundError(path)
