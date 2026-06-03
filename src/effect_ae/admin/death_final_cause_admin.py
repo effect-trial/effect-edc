@@ -92,6 +92,7 @@ class DeathFinalCauseAdmin(
         "cause_of_death": admin.VERTICAL,
         "tmg_one_cause_of_death": admin.VERTICAL,
         "tmg_two_cause_of_death": admin.VERTICAL,
+        "cryptococcal_relatedness": admin.VERTICAL,
     }
 
     list_display = (
