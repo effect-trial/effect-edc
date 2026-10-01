@@ -52,7 +52,7 @@ Create a venv with uv
 
     uv venv
     source .venv/bin/activate
-    uv sync --no-sources --upgrade
+    uv sync --no-dev --no-sources --upgrade
 
 Copy the test environment file
 
@@ -76,9 +76,9 @@ Continue with the installation. FOr this example we setup up a test server (DEBU
 .. code-block:: bash
 
   cd ~/projects/effect-edc
-  python manage.py migrate --settings=effect_edc.settings.debug
-  python manage.py import_randomization_list
-  python manage.py import_holidays
+  uv run --no-dev --no-sources manage.py migrate --settings=effect_edc.settings.debug
+  uv run --no-dev --no-sources manage.py import_randomization_list
+  uv run --no-dev --no-sources manage.py import_holidays
 
 
 Create a user and start up `runserver`
@@ -87,8 +87,8 @@ Create a user and start up `runserver`
 
   cd ~/projects/effect-edc
   git checkout main
-  python manage.py createsuperuser
-  python manage.py runserver
+  uv run --no-dev --no-sources manage.py createsuperuser
+  uv run --no-dev --no-sources manage.py runserver
 
 
 Login::
