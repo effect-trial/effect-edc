@@ -19,6 +19,7 @@ Homepage: https://github.com/effect-trial/
 
 Documentation: https://effect-edc.readthedocs.io/en/latest/
 
+Final deployed version: 2.7.0
 
 |django|
 
